@@ -1,0 +1,35 @@
+{
+  "_comment": "Source-of-truth manifest. The slicer (filament.py) reads this, slices each STL once, and writes ../src/lib/data/parts.generated.json plus thumbnails and downloadable STL copies. color_role: 'frame'|'core'|'any' (user picks a color) or 'fixed' (locked, see fixed_color). quantities are per ONE of each section. A machine = 1 feeder + 1 interface-top + 1 interface-bottom + N x layer. See PARTS_CONTEXT.md.",
+  "sections": [
+    { "id": "feeder",           "name": "Feeder",            "scales_with_layers": false },
+    { "id": "interface-top",    "name": "Top interface",     "scales_with_layers": false },
+    { "id": "interface-bottom", "name": "Bottom interface",  "scales_with_layers": false },
+    { "id": "layer",            "name": "Distribution frame", "scales_with_layers": true }
+  ],
+  "color_roles": [
+    { "id": "frame", "name": "Frame", "default": "black" },
+    { "id": "core",  "name": "Core",  "default": "white" }
+  ],
+  "parts": [
+    {
+      "id": "frame-crossbeam",
+      "name": "Frame crossbeam",
+      "stl": "parts/layer/frame-crossbeam.stl",
+      "color_role": "frame",
+      "fixed_color": null,
+      "optional": false,
+      "quantities": { "feeder": 0, "interface-top": 0, "interface-bottom": 0, "layer": 6 },
+      "notes": "Onshape: combined_internal_bracket. One between each of the 6 frame sections."
+    },
+    {
+      "id": "frame-90deg-bracket",
+      "name": "Frame 90° bracket",
+      "stl": "parts/layer/frame-90deg-bracket.stl",
+      "color_role": "frame",
+      "fixed_color": null,
+      "optional": false,
+      "quantities": { "feeder": 0, "interface-top": 0, "interface-bottom": 0, "layer": 12 },
+      "notes": "Onshape: inner_90_bracket. Two per frame section."
+    }
+  ]
+}
