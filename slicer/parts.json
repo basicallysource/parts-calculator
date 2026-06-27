@@ -1,10 +1,12 @@
 {
-  "_comment": "Source-of-truth manifest. The slicer (filament.py) reads this, slices each STL once, and writes ../src/lib/data/parts.generated.json plus thumbnails and downloadable STL copies. color_role: 'frame'|'core'|'any' (user picks a color) or 'fixed' (locked, see fixed_color). quantities are per ONE of each section. A machine = 1 feeder + 1 interface-top + 1 interface-bottom + N x layer. See PARTS_CONTEXT.md.",
+  "_comment": "Source-of-truth manifest. The slicer (filament.py) reads this, slices each STL once, and writes ../src/lib/data/parts.generated.json + thumbnails + downloadable STL copies. Each part: id, name, category, description, version, date_added, stl (original core STL ref), quantity (per ONE instance of its category), color, optional. color is one of: {\"role\":\"frame\"|\"core\"} (user-picked), {\"fixed\":\"<lego-id>\"}, {\"split\":[{\"color\":\"<lego-id>\",\"qty\":N}, ...]} (must sum to quantity), or {\"any\":true}. A machine = 1 each of non-scaling categories + N of scaling categories. See PARTS_CONTEXT.md.",
   "sections": [
-    { "id": "feeder",           "name": "Feeder",            "scales_with_layers": false },
-    { "id": "interface-top",    "name": "Top interface",     "scales_with_layers": false },
-    { "id": "interface-bottom", "name": "Bottom interface",  "scales_with_layers": false },
-    { "id": "layer",            "name": "Distribution frame", "scales_with_layers": true }
+    { "id": "feeder",                "name": "Feeder",              "scales_with_layers": false },
+    { "id": "classification-channel","name": "Classification channel","scales_with_layers": false },
+    { "id": "interface",             "name": "Interface",           "scales_with_layers": false },
+    { "id": "chute",                 "name": "Chute",               "scales_with_layers": false },
+    { "id": "bins",                  "name": "Bins",                "scales_with_layers": true },
+    { "id": "layer",                 "name": "Distribution frame",  "scales_with_layers": true }
   ],
   "color_roles": [
     { "id": "frame", "name": "Frame", "default": "black" },
@@ -12,24 +14,160 @@
   ],
   "parts": [
     {
+      "id": "stator",
+      "name": "Stator",
+      "category": "feeder",
+      "description": "Feeder stator. 4 required: 1 gray + 3 black.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "stl": "parts/feeder/stator.stl",
+      "quantity": 4,
+      "color": { "split": [ { "color": "light-bluish-gray", "qty": 1 }, { "color": "black", "qty": 3 } ] },
+      "optional": false
+    },
+    {
+      "id": "rotor-faceted",
+      "name": "Rotor (faceted)",
+      "category": "feeder",
+      "description": "Faceted rotor. 3 required: 2 white + 1 gray.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "stl": "parts/feeder/rotor-faceted.stl",
+      "quantity": 3,
+      "color": { "split": [ { "color": "white", "qty": 2 }, { "color": "light-bluish-gray", "qty": 1 } ] },
+      "optional": false
+    },
+    {
+      "id": "c-channel-leg",
+      "name": "C-channel leg",
+      "category": "feeder",
+      "description": "C-channel leg component. 9 in the feeder.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "stl": "parts/feeder/c-channel-leg.stl",
+      "quantity": 9,
+      "color": { "any": true },
+      "optional": false
+    },
+    {
+      "id": "light-cap",
+      "name": "Light cap",
+      "category": "classification-channel",
+      "description": "Light cap for the classification channel. 2, white.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "stl": "parts/classification-channel/light-cap.stl",
+      "quantity": 2,
+      "color": { "fixed": "white" },
+      "optional": false
+    },
+    {
+      "id": "interface-bracket",
+      "name": "Interface bracket",
+      "category": "interface",
+      "description": "Interface bracket. Pairs with the spacer; 6 on the interface.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "stl": "parts/interface/interface-bracket.stl",
+      "quantity": 6,
+      "color": { "role": "frame" },
+      "optional": false
+    },
+    {
+      "id": "interface-spacer",
+      "name": "Interface spacer",
+      "category": "interface",
+      "description": "Interface spacer. Pairs with the bracket; 6 on the interface.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "stl": "parts/interface/interface-spacer.stl",
+      "quantity": 6,
+      "color": { "role": "frame" },
+      "optional": false
+    },
+    {
+      "id": "chute-core",
+      "name": "Chute core",
+      "category": "chute",
+      "description": "The chute core. 1 per machine.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "stl": "parts/chute/chute-core.stl",
+      "quantity": 1,
+      "color": { "role": "core" },
+      "optional": false
+    },
+    {
+      "id": "funnel",
+      "name": "Funnel",
+      "category": "chute",
+      "description": "Funnel that attaches to the chute core. QUANTITY UNCONFIRMED (file tagged 3).",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "stl": "parts/chute/funnel.stl",
+      "quantity": 1,
+      "color": { "any": true },
+      "optional": false
+    },
+    {
+      "id": "bin-third",
+      "name": "Bin (third size)",
+      "category": "bins",
+      "description": "Third-size bin. 18 per layer (per earlier note). CONFIRM per-layer count.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "stl": "parts/bins/bin-third.stl",
+      "quantity": 18,
+      "color": { "any": true },
+      "optional": false
+    },
+    {
+      "id": "bin-retainer-left",
+      "name": "Bin retainer (left)",
+      "category": "bins",
+      "description": "Bin retainer, left. Optional. QUANTITY UNCONFIRMED.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "stl": "parts/bins/bin-retainer-left.stl",
+      "quantity": 1,
+      "color": { "any": true },
+      "optional": true
+    },
+    {
+      "id": "bin-retainer-right",
+      "name": "Bin retainer (right)",
+      "category": "bins",
+      "description": "Bin retainer, right. Optional. QUANTITY UNCONFIRMED.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "stl": "parts/bins/bin-retainer-right.stl",
+      "quantity": 1,
+      "color": { "any": true },
+      "optional": true
+    },
+    {
       "id": "frame-crossbeam",
       "name": "Frame crossbeam",
+      "category": "layer",
+      "description": "Distribution frame crossbeam. One between each of the 6 frame sections.",
+      "version": "1",
+      "date_added": "2026-06-27",
       "stl": "parts/layer/frame-crossbeam.stl",
-      "color_role": "frame",
-      "fixed_color": null,
-      "optional": false,
-      "quantities": { "feeder": 0, "interface-top": 0, "interface-bottom": 0, "layer": 6 },
-      "notes": "Onshape: combined_internal_bracket. One between each of the 6 frame sections."
+      "quantity": 6,
+      "color": { "role": "frame" },
+      "optional": false
     },
     {
       "id": "frame-90deg-bracket",
       "name": "Frame 90° bracket",
+      "category": "layer",
+      "description": "Distribution frame 90° bracket. Two per frame section.",
+      "version": "1",
+      "date_added": "2026-06-27",
       "stl": "parts/layer/frame-90deg-bracket.stl",
-      "color_role": "frame",
-      "fixed_color": null,
-      "optional": false,
-      "quantities": { "feeder": 0, "interface-top": 0, "interface-bottom": 0, "layer": 12 },
-      "notes": "Onshape: inner_90_bracket. Two per frame section."
+      "quantity": 12,
+      "color": { "role": "frame" },
+      "optional": false
     }
   ]
 }
