@@ -15,7 +15,7 @@ Commit the generated JSON, thumbnails, and static STL copies. Re-run this
 whenever a part STL changes or you add/remove parts.
 
 Run:  /opt/homebrew/opt/python@3.11/libexec/bin/python filament.py [--force]
-See PARTS_CONTEXT.md for terminology.
+See ../notes/TERMINOLOGY.md for terminology.
 """
 
 import argparse
