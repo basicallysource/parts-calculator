@@ -75,6 +75,27 @@ def _first(v):
     return v[0] if isinstance(v, list) else v
 
 
+def lego_hex_map():
+    """id -> hex, parsed from the app's lego-colors.ts (single source of truth)."""
+    import re
+    txt = open(os.path.join(REPO, "src", "lib", "lego-colors.ts")).read()
+    return {m.group(1): m.group(2)
+            for m in re.finditer(r"id:\s*'([^']+)'.*?hex:\s*'(#[0-9A-Fa-f]{6})'", txt)}
+
+
+def default_hex(part, role_defaults, hexmap):
+    """The part's default-color hex (role default / fixed / first split / gray)."""
+    c = part.get("color", {})
+    cid = None
+    if "split" in c:
+        cid = c["split"][0]["color"]
+    elif "fixed" in c:
+        cid = c["fixed"]
+    elif "role" in c:
+        cid = role_defaults.get(c["role"])
+    return hexmap.get(cid, "#cfd3d6") if cid else "#cfd3d6"
+
+
 def build_profiles():
     os.makedirs(PROFILE_DIR, exist_ok=True)
     machine_path = os.path.join(PROFILE_DIR, "machine.json")
@@ -217,16 +238,29 @@ def _parse_time(t):
 
 
 # ---------------------------------------------------------------- rendering
-def render(stl_abs, out_png):
+def render(stl_abs, out_png, hexcolor="#cfd3d6"):
+    import numpy as np
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 
     tris = read_triangles(stl_abs)
+    base = np.array([int(hexcolor[i:i + 2], 16) / 255 for i in (1, 3, 5)])
+    # simple lambert shading so any color (incl. black) shows form
+    v0, v1, v2 = tris[:, 0], tris[:, 1], tris[:, 2]
+    n = np.cross(v1 - v0, v2 - v0)
+    ln = np.linalg.norm(n, axis=1, keepdims=True)
+    n = np.divide(n, ln, out=np.zeros_like(n), where=ln != 0)
+    light = np.array([0.4, 0.5, 0.85])
+    light = light / np.linalg.norm(light)
+    shade = 0.45 + 0.55 * np.clip(n @ light, 0, 1)
+    facecolors = np.clip(base[None, :] * shade[:, None], 0, 1)
+    facecolors = np.concatenate([facecolors, np.ones((len(tris), 1))], axis=1)
+
     fig = plt.figure(figsize=(3.2, 3.2), dpi=100)
     ax = fig.add_subplot(111, projection="3d")
-    ax.add_collection3d(Poly3DCollection(tris, facecolor="#cfd3d6", edgecolor="none"))
+    ax.add_collection3d(Poly3DCollection(tris, facecolors=facecolors, edgecolor="none"))
     pts = tris.reshape(-1, 3)
     mins, maxs = pts.min(0), pts.max(0)
     ctr = (mins + maxs) / 2
@@ -268,6 +302,8 @@ def main():
 
     manifest = json.load(open(os.path.join(HERE, "parts.json")))
     profiles, density, cost_per_kg = build_profiles()
+    hexmap = lego_hex_map()
+    role_defaults = {r["id"]: r["default"] for r in manifest["color_roles"]}
     os.makedirs(RENDERS_OUT, exist_ok=True)
     os.makedirs(STL_OUT, exist_ok=True)
     os.makedirs(os.path.dirname(DATA_OUT), exist_ok=True)
@@ -292,7 +328,7 @@ def main():
         png = os.path.join(RENDERS_OUT, p["id"] + ".png")
         if args.force or not os.path.exists(png):
             try:
-                render(stl_abs, png)
+                render(stl_abs, png, default_hex(p, role_defaults, hexmap))
             except Exception as e:
                 print(f"  ! render failed for {p['id']}: {e}")
 
