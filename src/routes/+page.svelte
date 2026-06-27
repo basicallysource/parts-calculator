@@ -73,6 +73,25 @@
 	function setAll(v: boolean) {
 		selected = Object.fromEntries(PARTS.map((p) => [p.id, v]));
 	}
+
+	type Block = { kind: 'part'; part: Part } | { kind: 'assembly'; id: string; parts: Part[] };
+	function groupBlocks(parts: Part[]): Block[] {
+		const blocks: Block[] = [];
+		let cur: { kind: 'assembly'; id: string; parts: Part[] } | null = null;
+		for (const p of parts) {
+			if (p.assembly) {
+				if (!cur || cur.id !== p.assembly) {
+					cur = { kind: 'assembly', id: p.assembly, parts: [] };
+					blocks.push(cur);
+				}
+				cur.parts.push(p);
+			} else {
+				cur = null;
+				blocks.push({ kind: 'part', part: p });
+			}
+		}
+		return blocks;
+	}
 	function openViewer(p: Part) {
 		viewerPart = p;
 		viewerColorId = primaryColorId(p, roleColors) ?? 'light-bluish-gray';
@@ -148,6 +167,47 @@
 		</div>
 	</section>
 
+	{#snippet partRow(p: Part, sectionId: string, mult: number, indent: boolean)}
+		{@const q = sectionQty(p, sectionId)}
+		{@const sw = partSwatches(p, sectionId, roleColors)}
+		<tr class="border-b border-border align-middle last:border-b-0">
+			<td class="w-8 py-2 {indent ? 'border-l-2 border-primary/40 pl-5' : 'pl-3'}">
+				<input class="setup-toggle h-4 w-4" type="checkbox" bind:checked={selected[p.id]} aria-label="Select {p.name}" />
+			</td>
+			<td class="py-2 pl-2">
+				<button
+					type="button"
+					class="group relative h-12 w-12 shrink-0 border border-border bg-[var(--color-bg)]"
+					onclick={() => openViewer(p)}
+					title="View {p.name} in 3D"
+				>
+					<img src={p.render} alt={p.name} class="h-full w-full object-contain" />
+					<span class="absolute inset-0 flex items-center justify-center bg-black/40 text-white opacity-0 transition-opacity group-hover:opacity-100"><ZoomIn size={18} /></span>
+				</button>
+			</td>
+			<td class="py-2 pl-3 pr-2">
+				<span class="flex flex-wrap items-center gap-2 font-medium text-text">
+					{p.name}
+					{#if p.optional}<span class="border border-warning/50 px-1 text-xs text-warning-dark">optional</span>{/if}
+				</span>
+				<span class="flex flex-wrap items-center gap-1.5 text-xs text-text-muted">
+					{#each sw as s}
+						<span class="inline-flex items-center gap-1">
+							<span class="h-3 w-3 border border-border" style="background:{s.color?.hex ?? 'repeating-linear-gradient(45deg,#ccc,#ccc 2px,#eee 2px,#eee 4px)'}"></span>
+							{#if sw.length > 1}{s.qty}× {/if}{s.color?.name ?? 'any'}
+						</span>
+					{/each}
+					{#if p.support_used}· supported{/if} · {duration(p.print_seconds)}
+				</span>
+			</td>
+			<td class="whitespace-nowrap py-2 pr-2 text-right text-xs text-text-muted">{p.grams.toFixed(0)} g × {q * mult}</td>
+			<td class="whitespace-nowrap py-2 pr-2 text-right tabular-nums">{grams(p.grams * q * mult)}</td>
+			<td class="py-2 pr-3 text-right">
+				<a class="inline-flex items-center text-primary hover:text-primary-hover" href={p.stl} download title="Download {p.name}.stl"><Download size={15} /></a>
+			</td>
+		</tr>
+	{/snippet}
+
 	<div class="grid gap-6 lg:grid-cols-[1fr_340px]">
 		<!-- LEFT: parts by section -->
 		<div>
@@ -173,49 +233,19 @@
 					<div class="setup-card-shell border">
 						<table class="w-full text-sm">
 							<tbody>
-								{#each parts as p (p.id)}
-									{@const q = sectionQty(p, section.id)}
-									{@const sw = partSwatches(p, section.id, roleColors)}
-									{@const asm = getAssembly(p.assembly)}
-									<tr class="border-b border-border last:border-b-0 align-middle">
-										<td class="w-8 py-2 pl-3">
-											<input class="setup-toggle h-4 w-4" type="checkbox" bind:checked={selected[p.id]} aria-label="Select {p.name}" />
-										</td>
-										<td class="py-2 pl-2">
-											<button
-												type="button"
-												class="group relative h-12 w-12 shrink-0 border border-border bg-[var(--color-bg)]"
-												onclick={() => openViewer(p)}
-												title="View {p.name} in 3D"
-											>
-												<img src={p.render} alt={p.name} class="h-full w-full object-contain" />
-												<span class="absolute inset-0 flex items-center justify-center bg-black/40 text-white opacity-0 transition-opacity group-hover:opacity-100"><ZoomIn size={18} /></span>
-											</button>
-										</td>
-										<td class="py-2 pl-3 pr-2">
-											<span class="flex flex-wrap items-center gap-2 font-medium text-text">
-												{p.name}
-												{#if p.optional}<span class="border border-warning/50 px-1 text-xs text-warning-dark">optional</span>{/if}
-												{#if asm}<span class="border border-primary/40 px-1 text-xs text-primary" title={asm.description}>{asm.name}</span>{/if}
-											</span>
-											<span class="flex flex-wrap items-center gap-1.5 text-xs text-text-muted">
-												{#each sw as s}
-													<span class="inline-flex items-center gap-1">
-														<span class="h-3 w-3 border border-border" style="background:{s.color?.hex ?? 'repeating-linear-gradient(45deg,#ccc,#ccc 2px,#eee 2px,#eee 4px)'}"></span>
-														{#if sw.length > 1}{s.qty}× {/if}{s.color?.name ?? 'any'}
-													</span>
-												{/each}
-												{#if p.support_used}· supported{/if} · {duration(p.print_seconds)}
-											</span>
-										</td>
-										<td class="whitespace-nowrap py-2 pr-2 text-right text-xs text-text-muted">
-											{p.grams.toFixed(0)} g × {q * mult}
-										</td>
-										<td class="whitespace-nowrap py-2 pr-2 text-right tabular-nums">{grams(p.grams * q * mult)}</td>
-										<td class="py-2 pr-3 text-right">
-											<a class="inline-flex items-center text-primary hover:text-primary-hover" href={p.stl} download title="Download {p.name}.stl"><Download size={15} /></a>
-										</td>
-									</tr>
+								{#each groupBlocks(parts) as block}
+									{#if block.kind === 'assembly'}
+										<tr>
+											<td colspan="6" class="border-l-2 border-primary/40 bg-[var(--color-bg)] py-1.5 pl-3 text-xs font-semibold uppercase tracking-wider text-text-muted" title={getAssembly(block.id)?.description}>
+												{getAssembly(block.id)?.name} · assembly
+											</td>
+										</tr>
+										{#each block.parts as p (p.id)}
+											{@render partRow(p, section.id, mult, true)}
+										{/each}
+									{:else}
+										{@render partRow(block.part, section.id, mult, false)}
+									{/if}
 								{/each}
 							</tbody>
 						</table>
