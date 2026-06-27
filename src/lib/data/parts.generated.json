@@ -75,18 +75,27 @@
 			"default": "light-bluish-gray"
 		}
 	],
+	"assemblies": [
+		{
+			"id": "external-bracket",
+			"name": "External distribution-frame bracket",
+			"description": "Three parts that bolt together into one external bracket. 6 per distribution frame (per layer), plus a set per interface."
+		}
+	],
 	"parts": [
 		{
 			"id": "stator",
 			"name": "Stator",
-			"category": "feeder",
+			"quantities": {
+				"feeder": 4
+			},
+			"assembly": null,
 			"description": "Feeder stator. 4 required: 1 gray + 3 black.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 167.54,
 			"support_used": true,
 			"print_seconds": 16082,
-			"quantity": 4,
 			"color": {
 				"split": [
 					{
@@ -106,14 +115,16 @@
 		{
 			"id": "rotor-faceted",
 			"name": "Rotor (faceted)",
-			"category": "feeder",
+			"quantities": {
+				"feeder": 3
+			},
+			"assembly": null,
 			"description": "Faceted rotor. 3 required: 2 white + 1 gray.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 159.03,
 			"support_used": true,
 			"print_seconds": 11236,
-			"quantity": 3,
 			"color": {
 				"split": [
 					{
@@ -133,14 +144,16 @@
 		{
 			"id": "c-channel-leg",
 			"name": "C-channel leg",
-			"category": "feeder",
+			"quantities": {
+				"feeder": 9
+			},
+			"assembly": null,
 			"description": "C-channel leg. 9 in the feeder.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 15.42,
 			"support_used": true,
 			"print_seconds": 3866,
-			"quantity": 9,
 			"color": {
 				"role": "feeder"
 			},
@@ -151,14 +164,16 @@
 		{
 			"id": "output-gear",
 			"name": "Output gear (130T)",
-			"category": "feeder",
+			"quantities": {
+				"feeder": 4
+			},
+			"assembly": null,
 			"description": "Output gear, 130 teeth. One per C-channel (4 total).",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 59.1,
 			"support_used": true,
 			"print_seconds": 7504,
-			"quantity": 4,
 			"color": {
 				"role": "feeder"
 			},
@@ -169,14 +184,16 @@
 		{
 			"id": "nema-bracket",
 			"name": "NEMA bracket",
-			"category": "feeder",
+			"quantities": {
+				"feeder": 4
+			},
+			"assembly": null,
 			"description": "NEMA motor bracket. One per C-channel (4 total).",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 69.43,
 			"support_used": true,
 			"print_seconds": 7327,
-			"quantity": 4,
 			"color": {
 				"role": "feeder"
 			},
@@ -187,14 +204,16 @@
 		{
 			"id": "light-post-cap",
 			"name": "Light post cap",
-			"category": "feeder",
+			"quantities": {
+				"feeder": 2
+			},
+			"assembly": null,
 			"description": "Light post cap. 2 total (C-channels 2 & 3). White.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 20.98,
 			"support_used": true,
 			"print_seconds": 3241,
-			"quantity": 2,
 			"color": {
 				"fixed": "white"
 			},
@@ -205,14 +224,16 @@
 		{
 			"id": "bulk-cap",
 			"name": "Bulk cap",
-			"category": "feeder",
+			"quantities": {
+				"feeder": 1
+			},
+			"assembly": null,
 			"description": "Bulk cap. Sits on top of the first C-channel.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 1030.72,
 			"support_used": true,
 			"print_seconds": 73128,
-			"quantity": 1,
 			"color": {
 				"role": "feeder"
 			},
@@ -223,14 +244,16 @@
 		{
 			"id": "classification-dome",
 			"name": "Classification dome",
-			"category": "classification-channel",
+			"quantities": {
+				"classification-channel": 1
+			},
+			"assembly": null,
 			"description": "Large classification-channel dome (~full bed). White.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 688.61,
 			"support_used": true,
 			"print_seconds": 63222,
-			"quantity": 1,
 			"color": {
 				"fixed": "white"
 			},
@@ -241,14 +264,16 @@
 		{
 			"id": "interface-bracket",
 			"name": "Interface bracket",
-			"category": "interface",
+			"quantities": {
+				"interface": 6
+			},
+			"assembly": null,
 			"description": "Interface bracket. Pairs with the spacer; 6 on the interface.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 155.07,
 			"support_used": true,
 			"print_seconds": 15855,
-			"quantity": 6,
 			"color": {
 				"role": "frame"
 			},
@@ -259,14 +284,16 @@
 		{
 			"id": "interface-spacer",
 			"name": "Interface spacer",
-			"category": "interface",
+			"quantities": {
+				"interface": 6
+			},
+			"assembly": null,
 			"description": "Interface spacer. Pairs with the bracket; 6 on the interface.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 43.2,
 			"support_used": true,
 			"print_seconds": 6658,
-			"quantity": 6,
 			"color": {
 				"role": "frame"
 			},
@@ -277,14 +304,16 @@
 		{
 			"id": "chute-core",
 			"name": "Chute core",
-			"category": "chute",
+			"quantities": {
+				"chute": 1
+			},
+			"assembly": null,
 			"description": "The chute core. 1 per machine.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 213.46,
 			"support_used": true,
 			"print_seconds": 24043,
-			"quantity": 1,
 			"color": {
 				"role": "chute-core"
 			},
@@ -295,14 +324,16 @@
 		{
 			"id": "funnel",
 			"name": "Funnel",
-			"category": "funnel",
+			"quantities": {
+				"funnel": 1
+			},
+			"assembly": null,
 			"description": "Funnel that attaches to the chute core. 1 per layer.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 187.74,
 			"support_used": true,
 			"print_seconds": 19878,
-			"quantity": 1,
 			"color": {
 				"role": "funnel"
 			},
@@ -313,14 +344,16 @@
 		{
 			"id": "bin-third",
 			"name": "Bin (third size)",
-			"category": "bins",
+			"quantities": {
+				"bins": 18
+			},
+			"assembly": null,
 			"description": "Third-size bin. 18 per layer. Optional.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 117.14,
 			"support_used": true,
 			"print_seconds": 12591,
-			"quantity": 18,
 			"color": {
 				"any": true
 			},
@@ -331,14 +364,16 @@
 		{
 			"id": "bin-retainer-left",
 			"name": "Bin retainer (left)",
-			"category": "bins",
+			"quantities": {
+				"bins": 1
+			},
+			"assembly": null,
 			"description": "Bin retainer, left. Optional.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 20.48,
 			"support_used": true,
 			"print_seconds": 2559,
-			"quantity": 1,
 			"color": {
 				"any": true
 			},
@@ -349,14 +384,16 @@
 		{
 			"id": "bin-retainer-right",
 			"name": "Bin retainer (right)",
-			"category": "bins",
+			"quantities": {
+				"bins": 1
+			},
+			"assembly": null,
 			"description": "Bin retainer, right. Optional.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 20.47,
 			"support_used": true,
 			"print_seconds": 2613,
-			"quantity": 1,
 			"color": {
 				"any": true
 			},
@@ -367,14 +404,16 @@
 		{
 			"id": "frame-crossbeam",
 			"name": "Frame crossbeam",
-			"category": "layer",
+			"quantities": {
+				"layer": 6
+			},
+			"assembly": null,
 			"description": "Distribution frame crossbeam. One between each of the 6 frame sections.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 85.86,
 			"support_used": true,
 			"print_seconds": 10733,
-			"quantity": 6,
 			"color": {
 				"role": "frame"
 			},
@@ -385,14 +424,16 @@
 		{
 			"id": "frame-90deg-bracket",
 			"name": "Frame 90\u00b0 bracket",
-			"category": "layer",
+			"quantities": {
+				"layer": 12
+			},
+			"assembly": null,
 			"description": "Distribution frame 90\u00b0 bracket. Two per frame section.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 13.5,
 			"support_used": true,
 			"print_seconds": 2850,
-			"quantity": 12,
 			"color": {
 				"role": "frame"
 			},
@@ -403,14 +444,16 @@
 		{
 			"id": "ls-mount-to-chute",
 			"name": "Lazy Susan \u2014 chute mount",
-			"category": "lazy-susan",
+			"quantities": {
+				"lazy-susan": 1
+			},
+			"assembly": null,
 			"description": "Bottom lazy Susan adapter that connects to the chute. White.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 223.34,
 			"support_used": true,
 			"print_seconds": 18395,
-			"quantity": 1,
 			"color": {
 				"fixed": "white"
 			},
@@ -421,14 +464,16 @@
 		{
 			"id": "ls-bottom-static",
 			"name": "Lazy Susan \u2014 bottom static",
-			"category": "lazy-susan",
+			"quantities": {
+				"lazy-susan": 1
+			},
+			"assembly": null,
 			"description": "Bottom lazy Susan static base.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 197.07,
 			"support_used": true,
 			"print_seconds": 14662,
-			"quantity": 1,
 			"color": {
 				"role": "frame"
 			},
@@ -439,14 +484,16 @@
 		{
 			"id": "ls-mount-to-extrusion",
 			"name": "Lazy Susan \u2014 extrusion mount",
-			"category": "lazy-susan",
+			"quantities": {
+				"lazy-susan": 1
+			},
+			"assembly": null,
 			"description": "Bottom lazy Susan mount to the external extrusion.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 55.48,
 			"support_used": true,
 			"print_seconds": 8319,
-			"quantity": 1,
 			"color": {
 				"role": "frame"
 			},
@@ -457,14 +504,16 @@
 		{
 			"id": "ls-hold-in-place",
 			"name": "Lazy Susan \u2014 hold in place",
-			"category": "lazy-susan",
+			"quantities": {
+				"lazy-susan": 1
+			},
+			"assembly": null,
 			"description": "Bottom lazy Susan hold-in-place. Optional.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 6.64,
 			"support_used": true,
 			"print_seconds": 1788,
-			"quantity": 1,
 			"color": {
 				"role": "frame"
 			},
@@ -475,20 +524,85 @@
 		{
 			"id": "ls-washer",
 			"name": "Lazy Susan \u2014 washer",
-			"category": "lazy-susan",
+			"quantities": {
+				"lazy-susan": 1
+			},
+			"assembly": null,
 			"description": "Bottom lazy Susan washer.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 10.15,
 			"support_used": true,
 			"print_seconds": 1460,
-			"quantity": 1,
 			"color": {
 				"role": "frame"
 			},
 			"optional": false,
 			"stl": "/stl/ls-washer.stl",
 			"render": "/renders/ls-washer.png"
+		},
+		{
+			"id": "ext-bracket-left",
+			"name": "External bracket \u2014 side",
+			"quantities": {
+				"layer": 6,
+				"interface": 6
+			},
+			"assembly": "external-bracket",
+			"description": "Part of the external distribution-frame bracket (3-part assembly).",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 50.98,
+			"support_used": true,
+			"print_seconds": 7027,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/ext-bracket-left.stl",
+			"render": "/renders/ext-bracket-left.png"
+		},
+		{
+			"id": "ext-bracket-bottom-vertical",
+			"name": "External bracket \u2014 bottom vertical",
+			"quantities": {
+				"layer": 6,
+				"interface": 6
+			},
+			"assembly": "external-bracket",
+			"description": "Part of the external distribution-frame bracket (3-part assembly).",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 48.32,
+			"support_used": true,
+			"print_seconds": 8878,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/ext-bracket-bottom-vertical.stl",
+			"render": "/renders/ext-bracket-bottom-vertical.png"
+		},
+		{
+			"id": "ext-bracket-cover",
+			"name": "External bracket \u2014 cover",
+			"quantities": {
+				"layer": 6,
+				"interface": 6
+			},
+			"assembly": "external-bracket",
+			"description": "Part of the external distribution-frame bracket (3-part assembly).",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 11.89,
+			"support_used": true,
+			"print_seconds": 2264,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/ext-bracket-cover.stl",
+			"render": "/renders/ext-bracket-cover.png"
 		}
 	]
 }

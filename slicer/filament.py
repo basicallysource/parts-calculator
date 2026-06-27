@@ -303,14 +303,14 @@ def main():
         out_parts.append({
             "id": p["id"],
             "name": p["name"],
-            "category": p["category"],
+            "quantities": p.get("quantities", {}),
+            "assembly": p.get("assembly"),
             "description": p.get("description", ""),
             "version": p.get("version", ""),
             "date_added": p.get("date_added", ""),
             "grams": info["grams"],
             "support_used": info["support_used"],
             "print_seconds": info["print_seconds"],
-            "quantity": p.get("quantity", 0),
             "color": p.get("color", {"any": True}),
             "optional": p.get("optional", False),
             "stl": f"/stl/{stl_name}",
@@ -329,6 +329,7 @@ def main():
         },
         "sections": manifest["sections"],
         "color_roles": manifest["color_roles"],
+        "assemblies": manifest.get("assemblies", []),
         "parts": out_parts,
     }
     json.dump(data, open(DATA_OUT, "w"), indent="\t")
