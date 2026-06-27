@@ -33,6 +33,11 @@
 			"scales_with_layers": false
 		},
 		{
+			"id": "funnel",
+			"name": "Funnels",
+			"scales_with_layers": true
+		},
+		{
 			"id": "bins",
 			"name": "Bins",
 			"scales_with_layers": true
@@ -41,6 +46,11 @@
 			"id": "layer",
 			"name": "Distribution frame",
 			"scales_with_layers": true
+		},
+		{
+			"id": "lazy-susan",
+			"name": "Bottom lazy Susan",
+			"scales_with_layers": false
 		}
 	],
 	"color_roles": [
@@ -50,9 +60,19 @@
 			"default": "black"
 		},
 		{
-			"id": "core",
-			"name": "Core",
+			"id": "feeder",
+			"name": "Feeder",
+			"default": "black"
+		},
+		{
+			"id": "chute-core",
+			"name": "Chute core",
 			"default": "white"
+		},
+		{
+			"id": "funnel",
+			"name": "Funnels",
+			"default": "light-bluish-gray"
 		}
 	],
 	"parts": [
@@ -114,7 +134,7 @@
 			"id": "c-channel-leg",
 			"name": "C-channel leg",
 			"category": "feeder",
-			"description": "C-channel leg component. 9 in the feeder.",
+			"description": "C-channel leg. 9 in the feeder.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 15.42,
@@ -122,29 +142,101 @@
 			"print_seconds": 3866,
 			"quantity": 9,
 			"color": {
-				"any": true
+				"role": "feeder"
 			},
 			"optional": false,
 			"stl": "/stl/c-channel-leg.stl",
 			"render": "/renders/c-channel-leg.png"
 		},
 		{
-			"id": "light-cap",
-			"name": "Light cap",
-			"category": "classification-channel",
-			"description": "Light cap for the classification channel. 2, white.",
+			"id": "output-gear",
+			"name": "Output gear (130T)",
+			"category": "feeder",
+			"description": "Output gear, 130 teeth. One per C-channel (4 total).",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 688.61,
+			"grams": 59.1,
 			"support_used": true,
-			"print_seconds": 63222,
+			"print_seconds": 7504,
+			"quantity": 4,
+			"color": {
+				"role": "feeder"
+			},
+			"optional": false,
+			"stl": "/stl/output-gear.stl",
+			"render": "/renders/output-gear.png"
+		},
+		{
+			"id": "nema-bracket",
+			"name": "NEMA bracket",
+			"category": "feeder",
+			"description": "NEMA motor bracket. One per C-channel (4 total).",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 69.43,
+			"support_used": true,
+			"print_seconds": 7327,
+			"quantity": 4,
+			"color": {
+				"role": "feeder"
+			},
+			"optional": false,
+			"stl": "/stl/nema-bracket.stl",
+			"render": "/renders/nema-bracket.png"
+		},
+		{
+			"id": "light-post-cap",
+			"name": "Light post cap",
+			"category": "feeder",
+			"description": "Light post cap. 2 total (C-channels 2 & 3). White.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 20.98,
+			"support_used": true,
+			"print_seconds": 3241,
 			"quantity": 2,
 			"color": {
 				"fixed": "white"
 			},
 			"optional": false,
-			"stl": "/stl/light-cap.stl",
-			"render": "/renders/light-cap.png"
+			"stl": "/stl/light-post-cap.stl",
+			"render": "/renders/light-post-cap.png"
+		},
+		{
+			"id": "bulk-cap",
+			"name": "Bulk cap",
+			"category": "feeder",
+			"description": "Bulk cap. Sits on top of the first C-channel.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 1030.72,
+			"support_used": true,
+			"print_seconds": 73128,
+			"quantity": 1,
+			"color": {
+				"role": "feeder"
+			},
+			"optional": false,
+			"stl": "/stl/bulk-cap.stl",
+			"render": "/renders/bulk-cap.png"
+		},
+		{
+			"id": "classification-dome",
+			"name": "Classification dome",
+			"category": "classification-channel",
+			"description": "Large classification-channel dome (~full bed). White.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 688.61,
+			"support_used": true,
+			"print_seconds": 63222,
+			"quantity": 1,
+			"color": {
+				"fixed": "white"
+			},
+			"optional": false,
+			"stl": "/stl/classification-dome.stl",
+			"render": "/renders/classification-dome.png"
 		},
 		{
 			"id": "interface-bracket",
@@ -194,7 +286,7 @@
 			"print_seconds": 24043,
 			"quantity": 1,
 			"color": {
-				"role": "core"
+				"role": "chute-core"
 			},
 			"optional": false,
 			"stl": "/stl/chute-core.stl",
@@ -203,8 +295,8 @@
 		{
 			"id": "funnel",
 			"name": "Funnel",
-			"category": "chute",
-			"description": "Funnel that attaches to the chute core. QUANTITY UNCONFIRMED (file tagged 3).",
+			"category": "funnel",
+			"description": "Funnel that attaches to the chute core. 1 per layer.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 187.74,
@@ -212,7 +304,7 @@
 			"print_seconds": 19878,
 			"quantity": 1,
 			"color": {
-				"any": true
+				"role": "funnel"
 			},
 			"optional": false,
 			"stl": "/stl/funnel.stl",
@@ -222,7 +314,7 @@
 			"id": "bin-third",
 			"name": "Bin (third size)",
 			"category": "bins",
-			"description": "Third-size bin. 18 per layer (per earlier note). CONFIRM per-layer count.",
+			"description": "Third-size bin. 18 per layer. Optional.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 117.14,
@@ -232,7 +324,7 @@
 			"color": {
 				"any": true
 			},
-			"optional": false,
+			"optional": true,
 			"stl": "/stl/bin-third.stl",
 			"render": "/renders/bin-third.png"
 		},
@@ -240,7 +332,7 @@
 			"id": "bin-retainer-left",
 			"name": "Bin retainer (left)",
 			"category": "bins",
-			"description": "Bin retainer, left. Optional. QUANTITY UNCONFIRMED.",
+			"description": "Bin retainer, left. Optional.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 20.48,
@@ -258,7 +350,7 @@
 			"id": "bin-retainer-right",
 			"name": "Bin retainer (right)",
 			"category": "bins",
-			"description": "Bin retainer, right. Optional. QUANTITY UNCONFIRMED.",
+			"description": "Bin retainer, right. Optional.",
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 20.47,
@@ -307,6 +399,96 @@
 			"optional": false,
 			"stl": "/stl/frame-90deg-bracket.stl",
 			"render": "/renders/frame-90deg-bracket.png"
+		},
+		{
+			"id": "ls-mount-to-chute",
+			"name": "Lazy Susan \u2014 chute mount",
+			"category": "lazy-susan",
+			"description": "Bottom lazy Susan adapter that connects to the chute. White.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 223.34,
+			"support_used": true,
+			"print_seconds": 18395,
+			"quantity": 1,
+			"color": {
+				"fixed": "white"
+			},
+			"optional": false,
+			"stl": "/stl/ls-mount-to-chute.stl",
+			"render": "/renders/ls-mount-to-chute.png"
+		},
+		{
+			"id": "ls-bottom-static",
+			"name": "Lazy Susan \u2014 bottom static",
+			"category": "lazy-susan",
+			"description": "Bottom lazy Susan static base.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 197.07,
+			"support_used": true,
+			"print_seconds": 14662,
+			"quantity": 1,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/ls-bottom-static.stl",
+			"render": "/renders/ls-bottom-static.png"
+		},
+		{
+			"id": "ls-mount-to-extrusion",
+			"name": "Lazy Susan \u2014 extrusion mount",
+			"category": "lazy-susan",
+			"description": "Bottom lazy Susan mount to the external extrusion.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 55.48,
+			"support_used": true,
+			"print_seconds": 8319,
+			"quantity": 1,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/ls-mount-to-extrusion.stl",
+			"render": "/renders/ls-mount-to-extrusion.png"
+		},
+		{
+			"id": "ls-hold-in-place",
+			"name": "Lazy Susan \u2014 hold in place",
+			"category": "lazy-susan",
+			"description": "Bottom lazy Susan hold-in-place. Optional.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 6.64,
+			"support_used": true,
+			"print_seconds": 1788,
+			"quantity": 1,
+			"color": {
+				"role": "frame"
+			},
+			"optional": true,
+			"stl": "/stl/ls-hold-in-place.stl",
+			"render": "/renders/ls-hold-in-place.png"
+		},
+		{
+			"id": "ls-washer",
+			"name": "Lazy Susan \u2014 washer",
+			"category": "lazy-susan",
+			"description": "Bottom lazy Susan washer.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 10.15,
+			"support_used": true,
+			"print_seconds": 1460,
+			"quantity": 1,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/ls-washer.stl",
+			"render": "/renders/ls-washer.png"
 		}
 	]
 }
