@@ -1,179 +1,522 @@
 {
   "_comment": "Source-of-truth manifest. filament.py slices each STL once and writes ../src/lib/data/parts.generated.json + thumbnails + STL copies. Per part: id, name, category, description (short, shown in app), internal_notes (extended, agent-only, NOT emitted to the app), version, date_added, stl, quantity (per ONE instance of its category), color, optional. color is one of {\"role\":\"<roleid>\"} (user-picked), {\"fixed\":\"<lego-id>\"}, {\"split\":[{\"color\":\"<lego-id>\",\"qty\":N},...]} (sums to quantity), or {\"any\":true}. Machine = 1 of each non-scaling category + N of each scaling category. See ../notes/TERMINOLOGY.md.",
   "sections": [
-    { "id": "feeder",                "name": "Feeder",               "scales_with_layers": false },
-    { "id": "classification-channel","name": "Classification channel","scales_with_layers": false },
-    { "id": "interface",             "name": "Interface",            "scales_with_layers": false },
-    { "id": "chute",                 "name": "Chute",                "scales_with_layers": false },
-    { "id": "funnel",                "name": "Funnels",              "scales_with_layers": true },
-    { "id": "bins",                  "name": "Bins",                 "scales_with_layers": true },
-    { "id": "layer",                 "name": "Distribution frame",   "scales_with_layers": true },
-    { "id": "lazy-susan",            "name": "Bottom lazy Susan",    "scales_with_layers": false }
+    {
+      "id": "feeder",
+      "name": "Feeder",
+      "scales_with_layers": false
+    },
+    {
+      "id": "classification-channel",
+      "name": "Classification channel",
+      "scales_with_layers": false
+    },
+    {
+      "id": "interface",
+      "name": "Interface",
+      "scales_with_layers": false
+    },
+    {
+      "id": "chute",
+      "name": "Chute",
+      "scales_with_layers": false
+    },
+    {
+      "id": "funnel",
+      "name": "Funnels",
+      "scales_with_layers": true
+    },
+    {
+      "id": "bins",
+      "name": "Bins",
+      "scales_with_layers": true
+    },
+    {
+      "id": "layer",
+      "name": "Distribution frame",
+      "scales_with_layers": true
+    },
+    {
+      "id": "lazy-susan",
+      "name": "Bottom lazy Susan",
+      "scales_with_layers": false
+    }
   ],
   "color_roles": [
-    { "id": "frame",      "name": "Frame",      "default": "black" },
-    { "id": "feeder",     "name": "Feeder",     "default": "black" },
-    { "id": "chute-core", "name": "Chute core", "default": "white" },
-    { "id": "funnel",     "name": "Funnels",    "default": "light-bluish-gray" }
+    {
+      "id": "frame",
+      "name": "Frame",
+      "default": "black"
+    },
+    {
+      "id": "feeder",
+      "name": "Feeder",
+      "default": "black"
+    },
+    {
+      "id": "chute-core",
+      "name": "Chute core",
+      "default": "white"
+    },
+    {
+      "id": "funnel",
+      "name": "Funnels",
+      "default": "light-bluish-gray"
+    }
   ],
   "parts": [
     {
-      "id": "stator", "name": "Stator", "category": "feeder",
+      "id": "stator",
+      "name": "Stator",
       "description": "Feeder stator. 4 required: 1 gray + 3 black.",
       "internal_notes": "One per C-channel area. 1 gray, 3 black. Required. ~240mm disc (bed-max).",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/feeder/stator.stl",
-      "quantity": 4,
-      "color": { "split": [ { "color": "light-bluish-gray", "qty": 1 }, { "color": "black", "qty": 3 } ] },
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "feeder": 4
+      },
+      "assembly": null,
+      "stl": "parts/feeder/stator.stl",
+      "color": {
+        "split": [
+          {
+            "color": "light-bluish-gray",
+            "qty": 1
+          },
+          {
+            "color": "black",
+            "qty": 3
+          }
+        ]
+      },
       "optional": false
     },
     {
-      "id": "rotor-faceted", "name": "Rotor (faceted)", "category": "feeder",
+      "id": "rotor-faceted",
+      "name": "Rotor (faceted)",
       "description": "Faceted rotor. 3 required: 2 white + 1 gray.",
       "internal_notes": "2 white, 1 gray. Required.",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/feeder/rotor-faceted.stl",
-      "quantity": 3,
-      "color": { "split": [ { "color": "white", "qty": 2 }, { "color": "light-bluish-gray", "qty": 1 } ] },
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "feeder": 3
+      },
+      "assembly": null,
+      "stl": "parts/feeder/rotor-faceted.stl",
+      "color": {
+        "split": [
+          {
+            "color": "white",
+            "qty": 2
+          },
+          {
+            "color": "light-bluish-gray",
+            "qty": 1
+          }
+        ]
+      },
       "optional": false
     },
     {
-      "id": "c-channel-leg", "name": "C-channel leg", "category": "feeder",
+      "id": "c-channel-leg",
+      "name": "C-channel leg",
       "description": "C-channel leg. 9 in the feeder.",
       "internal_notes": "9 total. Feeder/C-channel color.",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/feeder/c-channel-leg.stl",
-      "quantity": 9, "color": { "role": "feeder" }, "optional": false
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "feeder": 9
+      },
+      "assembly": null,
+      "stl": "parts/feeder/c-channel-leg.stl",
+      "color": {
+        "role": "feeder"
+      },
+      "optional": false
     },
     {
-      "id": "output-gear", "name": "Output gear (130T)", "category": "feeder",
+      "id": "output-gear",
+      "name": "Output gear (130T)",
       "description": "Output gear, 130 teeth. One per C-channel (4 total).",
       "internal_notes": "1 per C-channel => 4 total. Feeder color.",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/feeder/output-gear.stl",
-      "quantity": 4, "color": { "role": "feeder" }, "optional": false
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "feeder": 4
+      },
+      "assembly": null,
+      "stl": "parts/feeder/output-gear.stl",
+      "color": {
+        "role": "feeder"
+      },
+      "optional": false
     },
     {
-      "id": "nema-bracket", "name": "NEMA bracket", "category": "feeder",
+      "id": "nema-bracket",
+      "name": "NEMA bracket",
       "description": "NEMA motor bracket. One per C-channel (4 total).",
       "internal_notes": "1 per C-channel => 4 total. File: 'Nema Bracket Bulk Section'; meaning of 'bulk section' unknown. Spencer believes all NEMA brackets are the same across C-channels. Feeder color.",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/feeder/nema-bracket.stl",
-      "quantity": 4, "color": { "role": "feeder" }, "optional": false
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "feeder": 4
+      },
+      "assembly": null,
+      "stl": "parts/feeder/nema-bracket.stl",
+      "color": {
+        "role": "feeder"
+      },
+      "optional": false
     },
     {
-      "id": "light-post-cap", "name": "Light post cap", "category": "feeder",
+      "id": "light-post-cap",
+      "name": "Light post cap",
       "description": "Light post cap. 2 total (C-channels 2 & 3). White.",
       "internal_notes": "2 of the C-channels (2 and 3) have these. White. NOT the big classification dome.",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/feeder/light-post-cap.stl",
-      "quantity": 2, "color": { "fixed": "white" }, "optional": false
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "feeder": 2
+      },
+      "assembly": null,
+      "stl": "parts/feeder/light-post-cap.stl",
+      "color": {
+        "fixed": "white"
+      },
+      "optional": false
     },
     {
-      "id": "bulk-cap", "name": "Bulk cap", "category": "feeder",
+      "id": "bulk-cap",
+      "name": "Bulk cap",
       "description": "Bulk cap. Sits on top of the first C-channel.",
       "internal_notes": "1 bulk cap, on top of the first C-channel. Color not critical; default black (follows feeder color). File: 'Bulk Cap B'. Distinct from the bulk bucket (separate bed-max optional part, not yet provided).",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/feeder/bulk-cap.stl",
-      "quantity": 1, "color": { "role": "feeder" }, "optional": false
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "feeder": 1
+      },
+      "assembly": null,
+      "stl": "parts/feeder/bulk-cap.stl",
+      "color": {
+        "role": "feeder"
+      },
+      "optional": false
     },
     {
-      "id": "classification-dome", "name": "Classification dome", "category": "classification-channel",
+      "id": "classification-dome",
+      "name": "Classification dome",
       "description": "Large classification-channel dome (~full bed). White.",
       "internal_notes": "Big dome, almost the entire print bed. White (lighting/diffusion). Was previously mislabeled 'light cap'. QUANTITY ASSUMED 1 - confirm.",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/classification-channel/classification-dome.stl",
-      "quantity": 1, "color": { "fixed": "white" }, "optional": false
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "classification-channel": 1
+      },
+      "assembly": null,
+      "stl": "parts/classification-channel/classification-dome.stl",
+      "color": {
+        "fixed": "white"
+      },
+      "optional": false
     },
     {
-      "id": "interface-bracket", "name": "Interface bracket", "category": "interface",
+      "id": "interface-bracket",
+      "name": "Interface bracket",
       "description": "Interface bracket. Pairs with the spacer; 6 on the interface.",
       "internal_notes": "6 bracket+spacer pairs on the interface. Frame color. File: 000_interface_layer_assembly - top_bracket.",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/interface/interface-bracket.stl",
-      "quantity": 6, "color": { "role": "frame" }, "optional": false
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "interface": 6
+      },
+      "assembly": null,
+      "stl": "parts/interface/interface-bracket.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
     },
     {
-      "id": "interface-spacer", "name": "Interface spacer", "category": "interface",
+      "id": "interface-spacer",
+      "name": "Interface spacer",
       "description": "Interface spacer. Pairs with the bracket; 6 on the interface.",
       "internal_notes": "6 on the interface. Frame color. File: 000_interface_layer_assembly - bottom_spacer.",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/interface/interface-spacer.stl",
-      "quantity": 6, "color": { "role": "frame" }, "optional": false
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "interface": 6
+      },
+      "assembly": null,
+      "stl": "parts/interface/interface-spacer.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
     },
     {
-      "id": "chute-core", "name": "Chute core", "category": "chute",
+      "id": "chute-core",
+      "name": "Chute core",
       "description": "The chute core. 1 per machine.",
       "internal_notes": "1 per machine. Its own color selector (chute core).",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/chute/chute-core.stl",
-      "quantity": 1, "color": { "role": "chute-core" }, "optional": false
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "chute": 1
+      },
+      "assembly": null,
+      "stl": "parts/chute/chute-core.stl",
+      "color": {
+        "role": "chute-core"
+      },
+      "optional": false
     },
     {
-      "id": "funnel", "name": "Funnel", "category": "funnel",
+      "id": "funnel",
+      "name": "Funnel",
       "description": "Funnel that attaches to the chute core. 1 per layer.",
       "internal_notes": "1 per layer. Own color selector (funnels). Spencer's are gray. File: funnel_third.",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/funnel/funnel.stl",
-      "quantity": 1, "color": { "role": "funnel" }, "optional": false
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "funnel": 1
+      },
+      "assembly": null,
+      "stl": "parts/funnel/funnel.stl",
+      "color": {
+        "role": "funnel"
+      },
+      "optional": false
     },
     {
-      "id": "bin-third", "name": "Bin (third size)", "category": "bins",
+      "id": "bin-third",
+      "name": "Bin (third size)",
       "description": "Third-size bin. 18 per layer. Optional.",
       "internal_notes": "18 PER LAYER (not per machine). Optional - a layer is a layer of bins; if you don't print bins you don't need retainers either. Bins are typically various colors -> 'any'.",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/bins/bin-third.stl",
-      "quantity": 18, "color": { "any": true }, "optional": true
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "bins": 18
+      },
+      "assembly": null,
+      "stl": "parts/bins/bin-third.stl",
+      "color": {
+        "any": true
+      },
+      "optional": true
     },
     {
-      "id": "bin-retainer-left", "name": "Bin retainer (left)", "category": "bins",
+      "id": "bin-retainer-left",
+      "name": "Bin retainer (left)",
       "description": "Bin retainer, left. Optional.",
       "internal_notes": "Optional. QUANTITY UNCONFIRMED (assumed 1/layer).",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/bins/bin-retainer-left.stl",
-      "quantity": 1, "color": { "any": true }, "optional": true
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "bins": 1
+      },
+      "assembly": null,
+      "stl": "parts/bins/bin-retainer-left.stl",
+      "color": {
+        "any": true
+      },
+      "optional": true
     },
     {
-      "id": "bin-retainer-right", "name": "Bin retainer (right)", "category": "bins",
+      "id": "bin-retainer-right",
+      "name": "Bin retainer (right)",
       "description": "Bin retainer, right. Optional.",
       "internal_notes": "Optional. QUANTITY UNCONFIRMED (assumed 1/layer).",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/bins/bin-retainer-right.stl",
-      "quantity": 1, "color": { "any": true }, "optional": true
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "bins": 1
+      },
+      "assembly": null,
+      "stl": "parts/bins/bin-retainer-right.stl",
+      "color": {
+        "any": true
+      },
+      "optional": true
     },
     {
-      "id": "frame-crossbeam", "name": "Frame crossbeam", "category": "layer",
+      "id": "frame-crossbeam",
+      "name": "Frame crossbeam",
       "description": "Distribution frame crossbeam. One between each of the 6 frame sections.",
       "internal_notes": "6 per frame (per layer). Frame color. File: combined_internal_bracket.",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/layer/frame-crossbeam.stl",
-      "quantity": 6, "color": { "role": "frame" }, "optional": false
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "layer": 6
+      },
+      "assembly": null,
+      "stl": "parts/layer/frame-crossbeam.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
     },
     {
-      "id": "frame-90deg-bracket", "name": "Frame 90° bracket", "category": "layer",
-      "description": "Distribution frame 90° bracket. Two per frame section.",
+      "id": "frame-90deg-bracket",
+      "name": "Frame 90\u00b0 bracket",
+      "description": "Distribution frame 90\u00b0 bracket. Two per frame section.",
       "internal_notes": "12 per frame (per layer). Frame color. File: inner_90_bracket.",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/layer/frame-90deg-bracket.stl",
-      "quantity": 12, "color": { "role": "frame" }, "optional": false
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "layer": 12
+      },
+      "assembly": null,
+      "stl": "parts/layer/frame-90deg-bracket.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
     },
     {
-      "id": "ls-mount-to-chute", "name": "Lazy Susan — chute mount", "category": "lazy-susan",
+      "id": "ls-mount-to-chute",
+      "name": "Lazy Susan \u2014 chute mount",
       "description": "Bottom lazy Susan adapter that connects to the chute. White.",
       "internal_notes": "The adapter/connector that mounts to the chute. White. The rest of the lazy Susan is frame color.",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/lazy-susan/ls-mount-to-chute.stl",
-      "quantity": 1, "color": { "fixed": "white" }, "optional": false
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "lazy-susan": 1
+      },
+      "assembly": null,
+      "stl": "parts/lazy-susan/ls-mount-to-chute.stl",
+      "color": {
+        "fixed": "white"
+      },
+      "optional": false
     },
     {
-      "id": "ls-bottom-static", "name": "Lazy Susan — bottom static", "category": "lazy-susan",
+      "id": "ls-bottom-static",
+      "name": "Lazy Susan \u2014 bottom static",
       "description": "Bottom lazy Susan static base.",
       "internal_notes": "Frame color. QUANTITY ASSUMED 1.",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/lazy-susan/ls-bottom-static.stl",
-      "quantity": 1, "color": { "role": "frame" }, "optional": false
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "lazy-susan": 1
+      },
+      "assembly": null,
+      "stl": "parts/lazy-susan/ls-bottom-static.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
     },
     {
-      "id": "ls-mount-to-extrusion", "name": "Lazy Susan — extrusion mount", "category": "lazy-susan",
+      "id": "ls-mount-to-extrusion",
+      "name": "Lazy Susan \u2014 extrusion mount",
       "description": "Bottom lazy Susan mount to the external extrusion.",
       "internal_notes": "Frame color. QUANTITY ASSUMED 1.",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/lazy-susan/ls-mount-to-extrusion.stl",
-      "quantity": 1, "color": { "role": "frame" }, "optional": false
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "lazy-susan": 1
+      },
+      "assembly": null,
+      "stl": "parts/lazy-susan/ls-mount-to-extrusion.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
     },
     {
-      "id": "ls-hold-in-place", "name": "Lazy Susan — hold in place", "category": "lazy-susan",
+      "id": "ls-hold-in-place",
+      "name": "Lazy Susan \u2014 hold in place",
       "description": "Bottom lazy Susan hold-in-place. Optional.",
       "internal_notes": "Optional (file: 'optional hold in place'). Frame color. QUANTITY ASSUMED 1.",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/lazy-susan/ls-hold-in-place.stl",
-      "quantity": 1, "color": { "role": "frame" }, "optional": true
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "lazy-susan": 1
+      },
+      "assembly": null,
+      "stl": "parts/lazy-susan/ls-hold-in-place.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": true
     },
     {
-      "id": "ls-washer", "name": "Lazy Susan — washer", "category": "lazy-susan",
+      "id": "ls-washer",
+      "name": "Lazy Susan \u2014 washer",
       "description": "Bottom lazy Susan washer.",
       "internal_notes": "Frame color. QUANTITY UNCONFIRMED (assumed 1; may be several).",
-      "version": "1", "date_added": "2026-06-27", "stl": "parts/lazy-susan/ls-washer.stl",
-      "quantity": 1, "color": { "role": "frame" }, "optional": false
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "lazy-susan": 1
+      },
+      "assembly": null,
+      "stl": "parts/lazy-susan/ls-washer.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "ext-bracket-left",
+      "name": "External bracket \u2014 side",
+      "description": "Part of the external distribution-frame bracket (3-part assembly).",
+      "internal_notes": "External distribution-frame bracket assembly member. 6 per distribution frame (per layer); interface qty ASSUMED 6 (Spencer said 'one set per interface' - confirm). Frame color.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "stl": "parts/external-bracket/ext-bracket-left.stl",
+      "quantities": {
+        "layer": 6,
+        "interface": 6
+      },
+      "assembly": "external-bracket",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "ext-bracket-bottom-vertical",
+      "name": "External bracket \u2014 bottom vertical",
+      "description": "Part of the external distribution-frame bracket (3-part assembly).",
+      "internal_notes": "External distribution-frame bracket assembly member. 6 per distribution frame (per layer); interface qty ASSUMED 6 (Spencer said 'one set per interface' - confirm). Frame color.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "stl": "parts/external-bracket/ext-bracket-bottom-vertical.stl",
+      "quantities": {
+        "layer": 6,
+        "interface": 6
+      },
+      "assembly": "external-bracket",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "ext-bracket-cover",
+      "name": "External bracket \u2014 cover",
+      "description": "Part of the external distribution-frame bracket (3-part assembly).",
+      "internal_notes": "External distribution-frame bracket assembly member. 6 per distribution frame (per layer); interface qty ASSUMED 6 (Spencer said 'one set per interface' - confirm). Frame color.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "stl": "parts/external-bracket/ext-bracket-cover.stl",
+      "quantities": {
+        "layer": 6,
+        "interface": 6
+      },
+      "assembly": "external-bracket",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    }
+  ],
+  "assemblies": [
+    {
+      "id": "external-bracket",
+      "name": "External distribution-frame bracket",
+      "description": "Three parts that bolt together into one external bracket. 6 per distribution frame (per layer), plus a set per interface."
     }
   ]
 }

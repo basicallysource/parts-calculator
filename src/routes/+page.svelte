@@ -6,6 +6,8 @@
 		SETTINGS,
 		STORE_URL,
 		categoryMultiplier,
+		sectionQty,
+		getAssembly,
 		partSwatches,
 		buyList,
 		grams,
@@ -25,7 +27,7 @@
 	);
 	// default: everything selected EXCEPT bins
 	let selected = $state<Record<string, boolean>>(
-		Object.fromEntries(PARTS.map((p) => [p.id, p.category !== 'bins']))
+		Object.fromEntries(PARTS.map((p) => [p.id, !('bins' in p.quantities)]))
 	);
 	let zipping = $state(false);
 	let viewerOpen = $state(false);
@@ -35,11 +37,11 @@
 
 	const sectionRows = $derived(
 		SECTIONS.map((s) => {
-			const parts = PARTS.filter((p) => p.category === s.id);
+			const parts = PARTS.filter((p) => sectionQty(p, s.id) > 0);
 			const mult = categoryMultiplier(s.id, layers);
 			const selectedGrams = parts
 				.filter((p) => selected[p.id])
-				.reduce((sum, p) => sum + p.grams * p.quantity * mult, 0);
+				.reduce((sum, p) => sum + p.grams * sectionQty(p, s.id) * mult, 0);
 			return { section: s, parts, mult, selectedGrams };
 		}).filter((r) => r.parts.length > 0)
 	);
@@ -171,6 +173,9 @@
 						<table class="w-full text-sm">
 							<tbody>
 								{#each parts as p (p.id)}
+									{@const q = sectionQty(p, section.id)}
+									{@const sw = partSwatches(p, section.id, roleColors)}
+									{@const asm = getAssembly(p.assembly)}
 									<tr class="border-b border-border last:border-b-0 align-middle">
 										<td class="w-8 py-2 pl-3">
 											<input class="setup-toggle h-4 w-4" type="checkbox" bind:checked={selected[p.id]} aria-label="Select {p.name}" />
@@ -187,24 +192,25 @@
 											</button>
 										</td>
 										<td class="py-2 pl-3 pr-2">
-											<span class="flex items-center gap-2 font-medium text-text">
+											<span class="flex flex-wrap items-center gap-2 font-medium text-text">
 												{p.name}
 												{#if p.optional}<span class="border border-warning/50 px-1 text-xs text-warning-dark">optional</span>{/if}
+												{#if asm}<span class="border border-primary/40 px-1 text-xs text-primary" title={asm.description}>{asm.name}</span>{/if}
 											</span>
 											<span class="flex flex-wrap items-center gap-1.5 text-xs text-text-muted">
-												{#each partSwatches(p, roleColors) as sw}
+												{#each sw as s}
 													<span class="inline-flex items-center gap-1">
-														<span class="h-3 w-3 border border-border" style="background:{sw.color?.hex ?? 'repeating-linear-gradient(45deg,#ccc,#ccc 2px,#eee 2px,#eee 4px)'}"></span>
-														{#if partSwatches(p, roleColors).length > 1}{sw.qty}× {/if}{sw.color?.name ?? 'any'}
+														<span class="h-3 w-3 border border-border" style="background:{s.color?.hex ?? 'repeating-linear-gradient(45deg,#ccc,#ccc 2px,#eee 2px,#eee 4px)'}"></span>
+														{#if sw.length > 1}{s.qty}× {/if}{s.color?.name ?? 'any'}
 													</span>
 												{/each}
 												{#if p.support_used}· supported{/if} · {duration(p.print_seconds)}
 											</span>
 										</td>
 										<td class="whitespace-nowrap py-2 pr-2 text-right text-xs text-text-muted">
-											{p.grams.toFixed(0)} g × {p.quantity * mult}
+											{p.grams.toFixed(0)} g × {q * mult}
 										</td>
-										<td class="whitespace-nowrap py-2 pr-2 text-right tabular-nums">{grams(p.grams * p.quantity * mult)}</td>
+										<td class="whitespace-nowrap py-2 pr-2 text-right tabular-nums">{grams(p.grams * q * mult)}</td>
 										<td class="py-2 pr-3 text-right">
 											<a class="inline-flex items-center text-primary hover:text-primary-hover" href={p.stl} download title="Download {p.name}.stl"><Download size={15} /></a>
 										</td>
