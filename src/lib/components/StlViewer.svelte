@@ -8,6 +8,12 @@
 
 	let host: HTMLDivElement;
 	let status = $state<'loading' | 'ready' | 'error'>('loading');
+	let material: THREE.MeshStandardMaterial | undefined;
+
+	// re-tint live when the color prop changes
+	$effect(() => {
+		material?.color.set(color);
+	});
 
 	onMount(() => {
 		const el = host;
@@ -41,13 +47,13 @@
 			(geo) => {
 				geo.computeVertexNormals();
 				geo.center();
-				const mat = new THREE.MeshStandardMaterial({
+				material = new THREE.MeshStandardMaterial({
 					color: new THREE.Color(color),
 					metalness: 0.0,
 					roughness: 0.75,
 					flatShading: false
 				});
-				mesh = new THREE.Mesh(geo, mat);
+				mesh = new THREE.Mesh(geo, material);
 				// STL is Z-up; rotate to Y-up for a natural view
 				mesh.rotation.x = -Math.PI / 2;
 				scene.add(mesh);

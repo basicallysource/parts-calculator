@@ -91,6 +91,15 @@ function colorUnits(
 	return [{ colorId: null, count: catQty }];
 }
 
+/** The part's primary resolved color id (for the 3D preview default). */
+export function primaryColorId(part: Part, roleColors: Record<string, string>): string | null {
+	const c = part.color;
+	if ('split' in c) return c.split[0]?.color ?? null;
+	if ('fixed' in c) return c.fixed;
+	if ('role' in c) return roleColors[c.role] ?? null;
+	return null;
+}
+
 /** Swatches to display for a part within a section (resolved against roles). */
 export function partSwatches(
 	part: Part,
