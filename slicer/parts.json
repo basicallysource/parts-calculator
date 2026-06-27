@@ -312,7 +312,7 @@
       "version": "1",
       "date_added": "2026-06-27",
       "quantities": {
-        "bins": 1
+        "bins": 6
       },
       "assembly": null,
       "stl": "parts/bins/bin-retainer-left.stl",
@@ -329,7 +329,7 @@
       "version": "1",
       "date_added": "2026-06-27",
       "quantities": {
-        "bins": 1
+        "bins": 6
       },
       "assembly": null,
       "stl": "parts/bins/bin-retainer-right.stl",
@@ -414,7 +414,7 @@
       "version": "1",
       "date_added": "2026-06-27",
       "quantities": {
-        "lazy-susan": 1
+        "lazy-susan": 3
       },
       "assembly": null,
       "stl": "parts/lazy-susan/ls-mount-to-extrusion.stl",
@@ -431,7 +431,7 @@
       "version": "1",
       "date_added": "2026-06-27",
       "quantities": {
-        "lazy-susan": 1
+        "lazy-susan": 3
       },
       "assembly": null,
       "stl": "parts/lazy-susan/ls-hold-in-place.stl",
