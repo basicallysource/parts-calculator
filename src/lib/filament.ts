@@ -8,25 +8,26 @@ import { getLegoColor, type LegoColor } from '$lib/lego-colors';
 
 export type Section = { id: string; name: string; scales_with_layers: boolean };
 export type ColorRoleDef = { id: string; name: string; default: string };
+export type Assembly = { id: string; name: string; description: string };
 
 /** A part's color is exactly one of these shapes. */
 export type ColorSpec =
-	| { role: string } // user picks a color for this role (frame, core, ...)
-	| { fixed: string } // locked to one lego color id
-	| { split: { color: string; qty: number }[] } // fixed multi-color (qtys sum to quantity)
-	| { any: true }; // any color — user's choice per build
+	| { role: string }
+	| { fixed: string }
+	| { split: { color: string; qty: number }[] }
+	| { any: true };
 
 export type Part = {
 	id: string;
 	name: string;
-	category: string;
+	quantities: Record<string, number>; // category id -> count per ONE instance of that category
+	assembly: string | null;
 	description: string;
 	version: string;
 	date_added: string;
 	grams: number;
 	support_used: boolean;
 	print_seconds: number;
-	quantity: number; // per ONE instance of its category
 	color: ColorSpec;
 	optional: boolean;
 	stl: string;
@@ -48,58 +49,70 @@ export type Settings = {
 export const SETTINGS = raw.settings as Settings;
 export const SECTIONS = raw.sections as Section[];
 export const COLOR_ROLES = raw.color_roles as ColorRoleDef[];
+export const ASSEMBLIES = (raw.assemblies ?? []) as Assembly[];
 export const PARTS = raw.parts as Part[];
 export const SPOOL_G = 1000;
 
 const sectionById = new Map(SECTIONS.map((s) => [s.id, s]));
+const assemblyById = new Map(ASSEMBLIES.map((a) => [a.id, a]));
 
-/** How many of a category exist per machine, given a layer count. */
 export function categoryMultiplier(categoryId: string, layers: number): number {
-	const s = sectionById.get(categoryId);
-	return s?.scales_with_layers ? layers : 1;
+	return sectionById.get(categoryId)?.scales_with_layers ? layers : 1;
 }
 
-/** Total count of `part` in a whole machine. */
+export function getAssembly(id: string | null): Assembly | undefined {
+	return id ? assemblyById.get(id) : undefined;
+}
+
+/** Count of this part within one instance of a given category. */
+export function sectionQty(part: Part, sectionId: string): number {
+	return part.quantities[sectionId] ?? 0;
+}
+
+/** Total count of this part across a whole machine. */
 export function machineQty(part: Part, layers: number): number {
-	return part.quantity * categoryMultiplier(part.category, layers);
+	let n = 0;
+	for (const [cat, qty] of Object.entries(part.quantities)) {
+		n += qty * categoryMultiplier(cat, layers);
+	}
+	return n;
 }
 
-/** Break a part's per-instance count into (lego color id | null, qty) portions. */
-export function colorPortions(
+/** Per-color unit breakdown of `catQty` pieces of a part (1 category instance). */
+function colorUnits(
 	part: Part,
+	catQty: number,
 	roleColors: Record<string, string>
-): { colorId: string | null; qty: number }[] {
+): { colorId: string | null; count: number }[] {
 	const c = part.color;
-	if ('split' in c) return c.split.map((s) => ({ colorId: s.color, qty: s.qty }));
-	if ('fixed' in c) return [{ colorId: c.fixed, qty: part.quantity }];
-	if ('role' in c) return [{ colorId: roleColors[c.role] ?? null, qty: part.quantity }];
-	return [{ colorId: null, qty: part.quantity }]; // any
+	if ('split' in c) return c.split.map((s) => ({ colorId: s.color, count: s.qty }));
+	if ('fixed' in c) return [{ colorId: c.fixed, count: catQty }];
+	if ('role' in c) return [{ colorId: roleColors[c.role] ?? null, count: catQty }];
+	return [{ colorId: null, count: catQty }];
 }
 
-/** Distinct swatches to show for a part (resolved against role choices). */
+/** Swatches to display for a part within a section (resolved against roles). */
 export function partSwatches(
 	part: Part,
+	sectionId: string,
 	roleColors: Record<string, string>
 ): { color: LegoColor | null; qty: number }[] {
-	return colorPortions(part, roleColors).map((p) => ({
-		color: p.colorId ? getLegoColor(p.colorId) : null,
-		qty: p.qty
+	return colorUnits(part, sectionQty(part, sectionId), roleColors).map((u) => ({
+		color: u.colorId ? getLegoColor(u.colorId) : null,
+		qty: u.count
 	}));
 }
 
-// Bambu Lab PLA Basic, with-spool pricing. Bulk discount applies to the TOTAL
-// number of rolls in the order (mix-and-match across colors). Verified from the
-// Bambu Lab US store filament bulk sale.
+// Bambu Lab PLA Basic, with-spool pricing. Bulk discount keys off the TOTAL roll
+// count in the order (mix-and-match across colors). From the Bambu US store.
 export const STORE_URL = 'https://us.store.bambulab.com/collections/filament-bulk-sale';
 export const PRICE_TIERS = [
 	{ minSpools: 6, pricePerSpool: 16.99 },
 	{ minSpools: 4, pricePerSpool: 17.99 },
 	{ minSpools: 1, pricePerSpool: 24.99 }
 ];
-
 export function pricePerSpool(totalSpools: number): number {
-	return (PRICE_TIERS.find((t) => totalSpools >= t.minSpools) ?? PRICE_TIERS.at(-1)!)
-		.pricePerSpool;
+	return (PRICE_TIERS.find((t) => totalSpools >= t.minSpools) ?? PRICE_TIERS.at(-1)!).pricePerSpool;
 }
 
 export type BuyLine = {
@@ -111,8 +124,7 @@ export type BuyLine = {
 	cost: number;
 };
 
-/** Group the SELECTED parts' filament by resolved color → what to buy, with
- *  Bambu bulk-tier pricing keyed off the total roll count. */
+/** Group the SELECTED parts' filament by resolved color, with bulk-tier pricing. */
 export function buyList(
 	layers: number,
 	roleColors: Record<string, string>,
@@ -127,20 +139,22 @@ export function buyList(
 	const byColor = new Map<string, number>();
 	for (const part of PARTS) {
 		if (!isSelected(part.id)) continue;
-		const mult = categoryMultiplier(part.category, layers);
-		for (const portion of colorPortions(part, roleColors)) {
-			const key = portion.colorId ?? '__any__';
-			byColor.set(key, (byColor.get(key) ?? 0) + part.grams * portion.qty * mult);
+		for (const [cat, qty] of Object.entries(part.quantities)) {
+			const mult = categoryMultiplier(cat, layers);
+			for (const u of colorUnits(part, qty, roleColors)) {
+				const key = u.colorId ?? '__any__';
+				byColor.set(key, (byColor.get(key) ?? 0) + part.grams * u.count * mult);
+			}
 		}
 	}
-	const raw = [...byColor.entries()].map(([key, grams]) => ({
+	const rows = [...byColor.entries()].map(([key, grams]) => ({
 		key,
 		grams,
 		spools: Math.max(1, Math.ceil(grams / SPOOL_G))
 	}));
-	const totalSpools = raw.reduce((a, e) => a + e.spools, 0);
+	const totalSpools = rows.reduce((a, e) => a + e.spools, 0);
 	const perSpool = pricePerSpool(totalSpools);
-	const lines: BuyLine[] = raw
+	const lines: BuyLine[] = rows
 		.map((e) => {
 			const colorId = e.key === '__any__' ? null : e.key;
 			const color = colorId ? getLegoColor(colorId) : null;
@@ -154,9 +168,8 @@ export function buyList(
 			};
 		})
 		.sort((a, b) => b.grams - a.grams);
-	const totalGrams = raw.reduce((a, e) => a + e.grams, 0);
-	const totalCost = totalSpools * perSpool;
-	return { lines, totalGrams, totalSpools, totalCost, perSpool };
+	const totalGrams = rows.reduce((a, e) => a + e.grams, 0);
+	return { lines, totalGrams, totalSpools, totalCost: totalSpools * perSpool, perSpool };
 }
 
 export function grams(n: number): string {
