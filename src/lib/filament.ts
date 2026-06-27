@@ -87,6 +87,21 @@ export function partSwatches(
 	}));
 }
 
+// Bambu Lab PLA Basic, with-spool pricing. Bulk discount applies to the TOTAL
+// number of rolls in the order (mix-and-match across colors). Verified from the
+// Bambu Lab US store filament bulk sale.
+export const STORE_URL = 'https://us.store.bambulab.com/collections/filament-bulk-sale';
+export const PRICE_TIERS = [
+	{ minSpools: 6, pricePerSpool: 16.99 },
+	{ minSpools: 4, pricePerSpool: 17.99 },
+	{ minSpools: 1, pricePerSpool: 24.99 }
+];
+
+export function pricePerSpool(totalSpools: number): number {
+	return (PRICE_TIERS.find((t) => totalSpools >= t.minSpools) ?? PRICE_TIERS.at(-1)!)
+		.pricePerSpool;
+}
+
 export type BuyLine = {
 	colorId: string | null;
 	color: LegoColor | null;
@@ -96,40 +111,52 @@ export type BuyLine = {
 	cost: number;
 };
 
-/** Group the whole machine's filament by resolved color → what to buy. */
+/** Group the SELECTED parts' filament by resolved color → what to buy, with
+ *  Bambu bulk-tier pricing keyed off the total roll count. */
 export function buyList(
 	layers: number,
 	roleColors: Record<string, string>,
-	includeOptional: boolean
-): { lines: BuyLine[]; totalGrams: number; totalSpools: number; totalCost: number } {
+	isSelected: (id: string) => boolean
+): {
+	lines: BuyLine[];
+	totalGrams: number;
+	totalSpools: number;
+	totalCost: number;
+	perSpool: number;
+} {
 	const byColor = new Map<string, number>();
 	for (const part of PARTS) {
-		if (part.optional && !includeOptional) continue;
+		if (!isSelected(part.id)) continue;
 		const mult = categoryMultiplier(part.category, layers);
 		for (const portion of colorPortions(part, roleColors)) {
 			const key = portion.colorId ?? '__any__';
 			byColor.set(key, (byColor.get(key) ?? 0) + part.grams * portion.qty * mult);
 		}
 	}
-	const cost = SETTINGS.cost_per_kg;
-	const lines: BuyLine[] = [...byColor.entries()]
-		.map(([key, grams]) => {
-			const colorId = key === '__any__' ? null : key;
+	const raw = [...byColor.entries()].map(([key, grams]) => ({
+		key,
+		grams,
+		spools: Math.max(1, Math.ceil(grams / SPOOL_G))
+	}));
+	const totalSpools = raw.reduce((a, e) => a + e.spools, 0);
+	const perSpool = pricePerSpool(totalSpools);
+	const lines: BuyLine[] = raw
+		.map((e) => {
+			const colorId = e.key === '__any__' ? null : e.key;
 			const color = colorId ? getLegoColor(colorId) : null;
 			return {
 				colorId,
 				color,
 				label: color ? color.name : 'Any color',
-				grams,
-				spools: Math.max(1, Math.ceil(grams / SPOOL_G)),
-				cost: (grams / 1000) * cost
+				grams: e.grams,
+				spools: e.spools,
+				cost: e.spools * perSpool
 			};
 		})
 		.sort((a, b) => b.grams - a.grams);
-	const totalGrams = [...byColor.values()].reduce((a, b) => a + b, 0);
-	const totalSpools = lines.reduce((a, b) => a + b.spools, 0);
-	const totalCost = (totalGrams / 1000) * cost;
-	return { lines, totalGrams, totalSpools, totalCost };
+	const totalGrams = raw.reduce((a, e) => a + e.grams, 0);
+	const totalCost = totalSpools * perSpool;
+	return { lines, totalGrams, totalSpools, totalCost, perSpool };
 }
 
 export function grams(n: number): string {
