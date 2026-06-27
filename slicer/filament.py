@@ -44,7 +44,7 @@ INFILL_PATTERN = "adaptivecubic"          # adaptive cubic
 SUPPORT_ENABLE = True
 SUPPORT_TYPE = "normal(auto)"             # normal supports, auto-placed
 SUPPORT_THRESHOLD = "10"                  # overhang threshold deg (10 = aggressive; default 30)
-AUTO_ORIENT = True
+AUTO_ORIENT = False                        # CLI auto-orient rotates big parts off-bed; use modeled orientation
 
 # outputs
 BUILD = os.path.join(HERE, "build")       # gitignored slicer scratch
@@ -78,7 +78,16 @@ def _first(v):
 def build_profiles():
     os.makedirs(PROFILE_DIR, exist_ok=True)
     machine_path = os.path.join(PROFILE_DIR, "machine.json")
+    # Keep the leaf profile (Orca resolves its `inherits`); only override the bed.
+    # Slice on a large virtual bed: filament grams are bed-independent (same
+    # nozzle/layer/infill/walls), and the CLI rejects ~240mm parts on the real
+    # 256mm bed (it demands edge margin the GUI doesn't). This avoids that.
     shutil.copy(os.path.join(PROFILES, "machine", PRINTER + ".json"), machine_path)
+    machine = json.load(open(machine_path))
+    machine["printable_area"] = ["0x0", "600x0", "600x600", "0x600"]
+    machine["printable_height"] = "600"
+    machine["bed_exclude_area"] = []
+    json.dump(machine, open(machine_path, "w"), indent=1)
 
     proc = _resolve("process", PROCESS)
     proc.pop("inherits", None)
@@ -88,6 +97,7 @@ def build_profiles():
     proc["enable_support"] = "1" if SUPPORT_ENABLE else "0"
     proc["support_type"] = SUPPORT_TYPE
     proc["support_threshold_angle"] = SUPPORT_THRESHOLD
+    proc["skirt_loops"] = "0"                 # no skirt on any part
     process_path = os.path.join(PROFILE_DIR, "process.json")
     json.dump(proc, open(process_path, "w"), indent=1)
 
@@ -111,6 +121,26 @@ def settings_signature():
     }, sort_keys=True)
 
 
+BED_CENTER = 300.0   # center of the 600mm virtual bed
+
+
+def prepare_mesh(stl_abs, out_path):
+    """Match what the GUI does on import: weld duplicate vertices, drop the part
+    onto the plate (minz->0), and center it. The CLI does NOT auto-drop, so parts
+    carrying CAD assembly coordinates (floating / sunk / off-origin) get rejected
+    without this. No rotation — the modeled orientation is the print orientation."""
+    import trimesh
+    m = trimesh.load(stl_abs, process=True)
+    m.merge_vertices()
+    b = m.bounds
+    m.apply_translation([
+        BED_CENTER - (b[0][0] + b[1][0]) / 2,
+        BED_CENTER - (b[0][1] + b[1][1]) / 2,
+        -b[0][2],
+    ])
+    m.export(out_path)
+
+
 # ---------------------------------------------------------------- slicing
 def slice_part(stl_abs, profiles, force=False):
     machine_path, process_path, filament_path = profiles
@@ -122,18 +152,24 @@ def slice_part(stl_abs, profiles, force=False):
         return json.load(open(info_path))
 
     os.makedirs(cdir, exist_ok=True)
+    prepared = os.path.join(cdir, "prepared.stl")
+    try:
+        prepare_mesh(stl_abs, prepared)
+    except Exception as e:
+        print(f"  ! mesh prep failed for {os.path.basename(stl_abs)}: {e}")
+        return None
+
     cmd = [ORCA,
            "--load-settings", f"{machine_path};{process_path}",
-           "--load-filaments", filament_path]
-    if AUTO_ORIENT:
-        cmd += ["--orient", "1"]
-    cmd += ["--arrange", "1", "--slice", "0",
-            "--export-3mf", "out.3mf", "--outputdir", cdir, stl_abs]
+           "--load-filaments", filament_path,
+           "--orient", "0", "--arrange", "1", "--slice", "0",
+           "--export-3mf", "out.3mf", "--outputdir", cdir, prepared]
     with open(os.path.join(cdir, "slice.log"), "w") as log:
         rc = subprocess.run(cmd, stdout=log, stderr=subprocess.STDOUT).returncode
     threemf = os.path.join(cdir, "out.3mf")
     if rc != 0 or not os.path.exists(threemf):
-        sys.exit(f"slice FAILED for {stl_abs} (rc={rc}); see {cdir}/slice.log")
+        print(f"  ! slice FAILED for {os.path.basename(stl_abs)} (rc={rc}); see {cdir}/slice.log")
+        return None
 
     info = parse_3mf(threemf)
     json.dump(info, open(info_path, "w"), indent=1)
@@ -242,12 +278,16 @@ def main():
 
     out_parts = []
     zip_members = []
+    failed = []
     for p in manifest["parts"]:
         stl_abs = os.path.join(HERE, p["stl"])
         if not os.path.exists(stl_abs):
             print(f"  ! missing STL, skipping: {p['stl']}")
             continue
         info = slice_part(stl_abs, profiles, force=args.force)
+        if info is None:
+            failed.append(p["id"])
+            continue
 
         png = os.path.join(RENDERS_OUT, p["id"] + ".png")
         if args.force or not os.path.exists(png):
@@ -263,16 +303,18 @@ def main():
         out_parts.append({
             "id": p["id"],
             "name": p["name"],
+            "category": p["category"],
+            "description": p.get("description", ""),
+            "version": p.get("version", ""),
+            "date_added": p.get("date_added", ""),
             "grams": info["grams"],
             "support_used": info["support_used"],
             "print_seconds": info["print_seconds"],
-            "color_role": p.get("color_role", "any"),
-            "fixed_color": p.get("fixed_color"),
+            "quantity": p.get("quantity", 0),
+            "color": p.get("color", {"any": True}),
             "optional": p.get("optional", False),
-            "quantities": p.get("quantities", {}),
             "stl": f"/stl/{stl_name}",
             "render": f"/renders/{p['id']}.png",
-            "notes": p.get("notes", ""),
         })
         sup = " +support" if info["support_used"] else ""
         print(f"  {p['name']:<26} {info['grams']:7.1f} g/ea{sup}")
@@ -299,6 +341,8 @@ def main():
 
     print(f"\nwrote {DATA_OUT}")
     print(f"  {len(out_parts)} parts · thumbnails -> static/renders · STLs -> static/stl")
+    if failed:
+        print(f"  ! {len(failed)} part(s) FAILED to slice: {', '.join(failed)}")
 
 
 if __name__ == "__main__":

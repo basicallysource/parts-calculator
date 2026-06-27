@@ -18,14 +18,24 @@
 			"scales_with_layers": false
 		},
 		{
-			"id": "interface-top",
-			"name": "Top interface",
+			"id": "classification-channel",
+			"name": "Classification channel",
 			"scales_with_layers": false
 		},
 		{
-			"id": "interface-bottom",
-			"name": "Bottom interface",
+			"id": "interface",
+			"name": "Interface",
 			"scales_with_layers": false
+		},
+		{
+			"id": "chute",
+			"name": "Chute",
+			"scales_with_layers": false
+		},
+		{
+			"id": "bins",
+			"name": "Bins",
+			"scales_with_layers": true
 		},
 		{
 			"id": "layer",
@@ -47,42 +57,256 @@
 	],
 	"parts": [
 		{
+			"id": "stator",
+			"name": "Stator",
+			"category": "feeder",
+			"description": "Feeder stator. 4 required: 1 gray + 3 black.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 167.54,
+			"support_used": true,
+			"print_seconds": 16082,
+			"quantity": 4,
+			"color": {
+				"split": [
+					{
+						"color": "light-bluish-gray",
+						"qty": 1
+					},
+					{
+						"color": "black",
+						"qty": 3
+					}
+				]
+			},
+			"optional": false,
+			"stl": "/stl/stator.stl",
+			"render": "/renders/stator.png"
+		},
+		{
+			"id": "rotor-faceted",
+			"name": "Rotor (faceted)",
+			"category": "feeder",
+			"description": "Faceted rotor. 3 required: 2 white + 1 gray.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 159.03,
+			"support_used": true,
+			"print_seconds": 11236,
+			"quantity": 3,
+			"color": {
+				"split": [
+					{
+						"color": "white",
+						"qty": 2
+					},
+					{
+						"color": "light-bluish-gray",
+						"qty": 1
+					}
+				]
+			},
+			"optional": false,
+			"stl": "/stl/rotor-faceted.stl",
+			"render": "/renders/rotor-faceted.png"
+		},
+		{
+			"id": "c-channel-leg",
+			"name": "C-channel leg",
+			"category": "feeder",
+			"description": "C-channel leg component. 9 in the feeder.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 15.42,
+			"support_used": true,
+			"print_seconds": 3866,
+			"quantity": 9,
+			"color": {
+				"any": true
+			},
+			"optional": false,
+			"stl": "/stl/c-channel-leg.stl",
+			"render": "/renders/c-channel-leg.png"
+		},
+		{
+			"id": "light-cap",
+			"name": "Light cap",
+			"category": "classification-channel",
+			"description": "Light cap for the classification channel. 2, white.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 688.61,
+			"support_used": true,
+			"print_seconds": 63222,
+			"quantity": 2,
+			"color": {
+				"fixed": "white"
+			},
+			"optional": false,
+			"stl": "/stl/light-cap.stl",
+			"render": "/renders/light-cap.png"
+		},
+		{
+			"id": "interface-bracket",
+			"name": "Interface bracket",
+			"category": "interface",
+			"description": "Interface bracket. Pairs with the spacer; 6 on the interface.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 155.07,
+			"support_used": true,
+			"print_seconds": 15855,
+			"quantity": 6,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/interface-bracket.stl",
+			"render": "/renders/interface-bracket.png"
+		},
+		{
+			"id": "interface-spacer",
+			"name": "Interface spacer",
+			"category": "interface",
+			"description": "Interface spacer. Pairs with the bracket; 6 on the interface.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 43.2,
+			"support_used": true,
+			"print_seconds": 6658,
+			"quantity": 6,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/interface-spacer.stl",
+			"render": "/renders/interface-spacer.png"
+		},
+		{
+			"id": "chute-core",
+			"name": "Chute core",
+			"category": "chute",
+			"description": "The chute core. 1 per machine.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 213.46,
+			"support_used": true,
+			"print_seconds": 24043,
+			"quantity": 1,
+			"color": {
+				"role": "core"
+			},
+			"optional": false,
+			"stl": "/stl/chute-core.stl",
+			"render": "/renders/chute-core.png"
+		},
+		{
+			"id": "funnel",
+			"name": "Funnel",
+			"category": "chute",
+			"description": "Funnel that attaches to the chute core. QUANTITY UNCONFIRMED (file tagged 3).",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 187.74,
+			"support_used": true,
+			"print_seconds": 19878,
+			"quantity": 1,
+			"color": {
+				"any": true
+			},
+			"optional": false,
+			"stl": "/stl/funnel.stl",
+			"render": "/renders/funnel.png"
+		},
+		{
+			"id": "bin-third",
+			"name": "Bin (third size)",
+			"category": "bins",
+			"description": "Third-size bin. 18 per layer (per earlier note). CONFIRM per-layer count.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 117.14,
+			"support_used": true,
+			"print_seconds": 12591,
+			"quantity": 18,
+			"color": {
+				"any": true
+			},
+			"optional": false,
+			"stl": "/stl/bin-third.stl",
+			"render": "/renders/bin-third.png"
+		},
+		{
+			"id": "bin-retainer-left",
+			"name": "Bin retainer (left)",
+			"category": "bins",
+			"description": "Bin retainer, left. Optional. QUANTITY UNCONFIRMED.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 20.48,
+			"support_used": true,
+			"print_seconds": 2559,
+			"quantity": 1,
+			"color": {
+				"any": true
+			},
+			"optional": true,
+			"stl": "/stl/bin-retainer-left.stl",
+			"render": "/renders/bin-retainer-left.png"
+		},
+		{
+			"id": "bin-retainer-right",
+			"name": "Bin retainer (right)",
+			"category": "bins",
+			"description": "Bin retainer, right. Optional. QUANTITY UNCONFIRMED.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 20.47,
+			"support_used": true,
+			"print_seconds": 2613,
+			"quantity": 1,
+			"color": {
+				"any": true
+			},
+			"optional": true,
+			"stl": "/stl/bin-retainer-right.stl",
+			"render": "/renders/bin-retainer-right.png"
+		},
+		{
 			"id": "frame-crossbeam",
 			"name": "Frame crossbeam",
-			"grams": 80.32,
+			"category": "layer",
+			"description": "Distribution frame crossbeam. One between each of the 6 frame sections.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 85.86,
 			"support_used": true,
-			"print_seconds": 8433,
-			"color_role": "frame",
-			"fixed_color": null,
-			"optional": false,
-			"quantities": {
-				"feeder": 0,
-				"interface-top": 0,
-				"interface-bottom": 0,
-				"layer": 6
+			"print_seconds": 10733,
+			"quantity": 6,
+			"color": {
+				"role": "frame"
 			},
+			"optional": false,
 			"stl": "/stl/frame-crossbeam.stl",
-			"render": "/renders/frame-crossbeam.png",
-			"notes": "Onshape: combined_internal_bracket. One between each of the 6 frame sections."
+			"render": "/renders/frame-crossbeam.png"
 		},
 		{
 			"id": "frame-90deg-bracket",
 			"name": "Frame 90\u00b0 bracket",
-			"grams": 13.1,
+			"category": "layer",
+			"description": "Distribution frame 90\u00b0 bracket. Two per frame section.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 13.5,
 			"support_used": true,
-			"print_seconds": 1902,
-			"color_role": "frame",
-			"fixed_color": null,
-			"optional": false,
-			"quantities": {
-				"feeder": 0,
-				"interface-top": 0,
-				"interface-bottom": 0,
-				"layer": 12
+			"print_seconds": 2850,
+			"quantity": 12,
+			"color": {
+				"role": "frame"
 			},
+			"optional": false,
 			"stl": "/stl/frame-90deg-bracket.stl",
-			"render": "/renders/frame-90deg-bracket.png",
-			"notes": "Onshape: inner_90_bracket. Two per frame section."
+			"render": "/renders/frame-90deg-bracket.png"
 		}
 	]
 }

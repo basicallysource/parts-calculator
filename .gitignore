@@ -31,3 +31,6 @@ __pycache__/
 
 # stray OrcaSlicer logs
 slicer/*.log
+
+# raw STL drop zone (sort into slicer/parts/ before committing)
+slicer/inbox/
