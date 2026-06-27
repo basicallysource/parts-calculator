@@ -365,7 +365,7 @@
 			"id": "bin-retainer-left",
 			"name": "Bin retainer (left)",
 			"quantities": {
-				"bins": 1
+				"bins": 6
 			},
 			"assembly": null,
 			"description": "Bin retainer, left. Optional.",
@@ -385,7 +385,7 @@
 			"id": "bin-retainer-right",
 			"name": "Bin retainer (right)",
 			"quantities": {
-				"bins": 1
+				"bins": 6
 			},
 			"assembly": null,
 			"description": "Bin retainer, right. Optional.",
@@ -485,7 +485,7 @@
 			"id": "ls-mount-to-extrusion",
 			"name": "Lazy Susan \u2014 extrusion mount",
 			"quantities": {
-				"lazy-susan": 1
+				"lazy-susan": 3
 			},
 			"assembly": null,
 			"description": "Bottom lazy Susan mount to the external extrusion.",
@@ -505,7 +505,7 @@
 			"id": "ls-hold-in-place",
 			"name": "Lazy Susan \u2014 hold in place",
 			"quantities": {
-				"lazy-susan": 1
+				"lazy-susan": 3
 			},
 			"assembly": null,
 			"description": "Bottom lazy Susan hold-in-place. Optional.",

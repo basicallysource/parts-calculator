@@ -9,12 +9,14 @@
 		sectionQty,
 		getAssembly,
 		partSwatches,
+		primaryColorId,
 		buyList,
 		grams,
 		money,
 		duration,
 		type Part
 	} from '$lib/filament';
+	import { getLegoColor } from '$lib/lego-colors';
 	import ColorPicker from '$lib/components/ColorPicker.svelte';
 	import Modal from '$lib/components/Modal.svelte';
 	import StlViewer from '$lib/components/StlViewer.svelte';
@@ -32,6 +34,7 @@
 	let zipping = $state(false);
 	let viewerOpen = $state(false);
 	let viewerPart = $state<Part | null>(null);
+	let viewerColorId = $state('light-bluish-gray');
 
 	const buy = $derived(buyList(layers, roleColors, (id) => selected[id]));
 
@@ -72,10 +75,8 @@
 	}
 	function openViewer(p: Part) {
 		viewerPart = p;
+		viewerColorId = primaryColorId(p, roleColors) ?? 'light-bluish-gray';
 		viewerOpen = true;
-	}
-	function viewerColor(p: Part): string {
-		return partSwatches(p, roleColors).find((s) => s.color)?.color?.hex ?? '#0055bf';
 	}
 	async function downloadZip(parts: Part[], name: string) {
 		if (!parts.length) return;
@@ -298,9 +299,16 @@
 
 <Modal bind:open={viewerOpen} title={viewerPart?.name}>
 	{#if viewerPart}
-		<StlViewer url={viewerPart.stl} color={viewerColor(viewerPart)} />
-		{#if viewerPart.description}
-			<p class="px-4 py-3 text-sm text-text-muted">{viewerPart.description}</p>
-		{/if}
+		<StlViewer url={viewerPart.stl} color={getLegoColor(viewerColorId).hex} />
+		<div class="flex flex-wrap items-end justify-between gap-3 px-4 py-3">
+			{#if viewerPart.description}
+				<p class="max-w-md text-sm text-text-muted">{viewerPart.description}</p>
+			{:else}
+				<span></span>
+			{/if}
+			<div class="w-44 shrink-0">
+				<ColorPicker bind:value={viewerColorId} label="Preview color" />
+			</div>
+		</div>
 	{/if}
 </Modal>
