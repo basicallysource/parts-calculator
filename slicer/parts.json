@@ -46,12 +46,12 @@
     {
       "id": "frame",
       "name": "Frame",
-      "default": "black"
+      "default": "charcoal"
     },
     {
       "id": "feeder",
       "name": "Feeder",
-      "default": "black"
+      "default": "charcoal"
     },
     {
       "id": "chute-core",
@@ -84,12 +84,13 @@
             "qty": 1
           },
           {
-            "color": "black",
+            "color": "charcoal",
             "qty": 3
           }
         ]
       },
-      "optional": false
+      "optional": false,
+      "support": true
     },
     {
       "id": "rotor-faceted",
@@ -115,7 +116,8 @@
           }
         ]
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "output-gear",
@@ -132,7 +134,8 @@
       "color": {
         "role": "feeder"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "nema-bracket",
@@ -149,7 +152,8 @@
       "color": {
         "role": "feeder"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "light-post-cap",
@@ -166,7 +170,8 @@
       "color": {
         "fixed": "ivory-white"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "bulk-cap",
@@ -183,7 +188,8 @@
       "color": {
         "role": "feeder"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "classification-dome",
@@ -200,7 +206,8 @@
       "color": {
         "fixed": "ivory-white"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "interface-bracket",
@@ -217,7 +224,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "interface-spacer",
@@ -234,7 +242,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "chute-core",
@@ -251,7 +260,8 @@
       "color": {
         "role": "chute-core"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "funnel",
@@ -268,7 +278,8 @@
       "color": {
         "role": "funnel"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "bin-third",
@@ -285,7 +296,8 @@
       "color": {
         "any": true
       },
-      "optional": true
+      "optional": true,
+      "support": false
     },
     {
       "id": "bin-retainer-left",
@@ -302,7 +314,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": true
+      "optional": true,
+      "support": false
     },
     {
       "id": "bin-retainer-right",
@@ -319,7 +332,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": true
+      "optional": true,
+      "support": false
     },
     {
       "id": "frame-crossbeam",
@@ -336,7 +350,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "frame-90deg-bracket",
@@ -353,7 +368,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "ls-mount-to-chute",
@@ -370,7 +386,8 @@
       "color": {
         "fixed": "ivory-white"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "ls-bottom-static",
@@ -387,7 +404,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "ls-mount-to-extrusion",
@@ -404,7 +422,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "ls-hold-in-place",
@@ -421,7 +440,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": true
+      "optional": true,
+      "support": false
     },
     {
       "id": "ls-washer",
@@ -438,7 +458,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "ext-bracket-left",
@@ -456,7 +477,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "ext-bracket-bottom-vertical",
@@ -474,7 +496,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "ext-bracket-cover",
@@ -492,7 +515,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "interface-rib",
@@ -509,7 +533,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "interface-rib-switch",
@@ -526,7 +551,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "cable-clamp-inner",
@@ -543,7 +569,8 @@
       "color": {
         "fixed": "ivory-white"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "cable-clamp-outer",
@@ -560,7 +587,8 @@
       "color": {
         "fixed": "ivory-white"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "interface-spur-gear",
@@ -577,7 +605,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "interface-idler-gear",
@@ -594,7 +623,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "interface-nema23-bracket",
@@ -611,7 +641,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "interface-cage-bracket",
@@ -628,7 +659,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "interface-cage-bracket-cable",
@@ -645,7 +677,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "interface-big-spacer",
@@ -662,7 +695,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "interface-upper-fixed-section",
@@ -679,7 +713,8 @@
       "color": {
         "role": "frame"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "classification-cap-small",
@@ -696,7 +731,8 @@
       "color": {
         "fixed": "ivory-white"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "rotor-finned",
@@ -713,7 +749,8 @@
       "color": {
         "fixed": "ivory-white"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "idler-gear",
@@ -730,7 +767,8 @@
       "color": {
         "role": "feeder"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "input-gear",
@@ -747,7 +785,8 @@
       "color": {
         "role": "feeder"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "output-guide",
@@ -764,7 +803,8 @@
       "color": {
         "role": "feeder"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "funnel-bracket-left",
@@ -781,7 +821,8 @@
       "color": {
         "role": "chute-core"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "funnel-bracket-right",
@@ -798,24 +839,26 @@
       "color": {
         "role": "chute-core"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
-      "id": "chute-door",
-      "name": "Chute door",
-      "description": "Chute door module. 1 needed.",
-      "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
+      "id": "door-module",
+      "name": "Door module",
+      "description": "Door module (part of the chute bearing assembly).",
+      "internal_notes": "Was mislabeled as the door; it's part of the chute bearing assembly. File: part_door_module.",
       "version": "1",
       "date_added": "2026-06-27",
       "quantities": {
         "chute": 1
       },
-      "assembly": null,
-      "stl": "parts/chute/chute-door.stl",
+      "assembly": "chute-bearing",
+      "stl": "parts/chute/door-module.stl",
       "color": {
         "role": "chute-core"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "bearing-holder-left",
@@ -832,7 +875,8 @@
       "color": {
         "role": "chute-core"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "bearing-holder-right",
@@ -849,24 +893,8 @@
       "color": {
         "role": "chute-core"
       },
-      "optional": false
-    },
-    {
-      "id": "bearing-race",
-      "name": "Bearing race (between holders)",
-      "description": "Piece between the bearing holders (best name-match: bearing_race). CONFIRM.",
-      "internal_notes": "Guessed as the 'piece between the bearing holders' (file bearing_race). Alt candidate: left_axle. COLOR UNSPECIFIED - defaulted frame.",
-      "version": "1",
-      "date_added": "2026-06-27",
-      "quantities": {
-        "chute": 1
-      },
-      "assembly": "chute-bearing",
-      "stl": "parts/chute/bearing-race.stl",
-      "color": {
-        "role": "chute-core"
-      },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "servo-adapter-servo-side",
@@ -883,7 +911,8 @@
       "color": {
         "role": "chute-core"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "servo-adapter-flap-side",
@@ -900,7 +929,8 @@
       "color": {
         "role": "chute-core"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "servo-bracket-lower-arm",
@@ -917,7 +947,8 @@
       "color": {
         "role": "chute-core"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "servo-bracket-side-arm",
@@ -934,7 +965,8 @@
       "color": {
         "role": "chute-core"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "servo-bracket-cover",
@@ -951,7 +983,8 @@
       "color": {
         "role": "chute-core"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "servo-bracket-housing",
@@ -968,7 +1001,8 @@
       "color": {
         "role": "chute-core"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "leg",
@@ -985,7 +1019,8 @@
       "color": {
         "role": "feeder"
       },
-      "optional": false
+      "optional": false,
+      "support": false
     },
     {
       "id": "foot",
@@ -1002,7 +1037,26 @@
       "color": {
         "role": "feeder"
       },
-      "optional": false
+      "optional": false,
+      "support": false
+    },
+    {
+      "id": "chute-door",
+      "name": "Chute door",
+      "description": "The chute door / flap. 1 per machine.",
+      "internal_notes": "Correct door file: 'DOOR 3_chute_flap_mg995_and_sc09 - left_axle (2)'. Chute-core color.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "chute": 1
+      },
+      "assembly": null,
+      "stl": "parts/chute/chute-door.stl",
+      "color": {
+        "role": "chute-core"
+      },
+      "optional": false,
+      "support": false
     }
   ],
   "assemblies": [

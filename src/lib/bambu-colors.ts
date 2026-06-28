@@ -5,7 +5,7 @@
  */
 export type BambuColor = { id: string; name: string; hex: string };
 
-export const DEFAULT_COLOR_ID = 'black';
+export const DEFAULT_COLOR_ID = 'charcoal';
 
 export const BAMBU_COLORS: readonly BambuColor[] = [
 	// whites / tans / browns
@@ -37,7 +37,7 @@ export const BAMBU_COLORS: readonly BambuColor[] = [
 	// grays / black
 	{ id: 'ash-gray', name: 'Ash Gray', hex: '#9B9EA0' },
 	{ id: 'nardo-gray', name: 'Nardo Gray', hex: '#757575' },
-	{ id: 'black', name: 'Black', hex: '#000000' }
+	{ id: 'charcoal', name: 'Charcoal', hex: '#000000' }
 ];
 
 export function getBambuColor(id: string | null | undefined): BambuColor {

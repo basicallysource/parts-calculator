@@ -31,13 +31,14 @@
 	let selected = $state<Record<string, boolean>>(
 		Object.fromEntries(PARTS.map((p) => [p.id, !('bins' in p.quantities)]))
 	);
+	let surplus = $state(15);
 	let zipping = $state(false);
 	let infoOpen = $state(false);
 	let viewerOpen = $state(false);
 	let viewerPart = $state<Part | null>(null);
 	let viewerColorId = $state('ash-gray');
 
-	const buy = $derived(buyList(layers, roleColors, (id) => selected[id]));
+	const buy = $derived(buyList(layers, roleColors, (id) => selected[id], surplus));
 
 	const sectionRows = $derived(
 		SECTIONS.map((s) => {
@@ -58,12 +59,7 @@
 		['Printer', 'Bambu Lab A1 · 0.4 mm'],
 		['Layer height', '0.20 mm'],
 		['Infill', `${SETTINGS.infill_density} ${prettyPattern}`],
-		[
-			'Supports',
-			SETTINGS.support_enabled
-				? `Normal (auto), ≤${SETTINGS.support_threshold_deg}° overhang`
-				: 'Off'
-		],
+		['Supports', `Off (per part; stator: normal ≤${SETTINGS.support_threshold_deg}°)`],
 		['Skirt', 'None'],
 		['Filament', `${SETTINGS.filament} · ${SETTINGS.density_g_cm3} g/cm³`]
 	];
@@ -277,6 +273,22 @@
 			<h2 class="mb-2 flex items-center gap-2 text-base font-semibold text-text">
 				<Package size={16} /> What to order
 			</h2>
+			<div class="mb-2 flex items-center gap-2">
+				<label for="surplus" class="text-sm text-text">Extra filament</label>
+				<div class="flex items-center">
+					<input
+						id="surplus"
+						class="setup-control h-8 w-14 text-center text-sm"
+						type="number"
+						min="0"
+						max="100"
+						bind:value={surplus}
+						onchange={() => (surplus = Math.max(0, Math.min(100, Math.round(surplus || 0))))}
+					/>
+					<span class="ml-1 text-sm text-text-muted">%</span>
+				</div>
+			</div>
+			<p class="mb-2 text-xs text-text-muted">Buffer for incidental parts &amp; failed prints.</p>
 			<div class="setup-card-shell border">
 				<table class="w-full text-sm">
 					<thead>
