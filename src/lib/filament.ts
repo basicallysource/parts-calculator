@@ -133,11 +133,13 @@ export type BuyLine = {
 	cost: number;
 };
 
-/** Group the SELECTED parts' filament by resolved color, with bulk-tier pricing. */
+/** Group the SELECTED parts' filament by resolved color, with bulk-tier pricing.
+ *  `surplusPct` adds a buffer (incidental parts / failed prints) before spool counts. */
 export function buyList(
 	layers: number,
 	roleColors: Record<string, string>,
-	isSelected: (id: string) => boolean
+	isSelected: (id: string) => boolean,
+	surplusPct = 0
 ): {
 	lines: BuyLine[];
 	totalGrams: number;
@@ -156,11 +158,11 @@ export function buyList(
 			}
 		}
 	}
-	const rows = [...byColor.entries()].map(([key, grams]) => ({
-		key,
-		grams,
-		spools: Math.max(1, Math.ceil(grams / SPOOL_G))
-	}));
+	const buffer = 1 + surplusPct / 100;
+	const rows = [...byColor.entries()].map(([key, raw]) => {
+		const grams = raw * buffer;
+		return { key, grams, spools: Math.max(1, Math.ceil(grams / SPOOL_G)) };
+	});
 	const totalSpools = rows.reduce((a, e) => a + e.spools, 0);
 	const perSpool = pricePerSpool(totalSpools);
 	const lines: BuyLine[] = rows

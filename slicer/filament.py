@@ -41,10 +41,11 @@ FILAMENT = "Bambu PLA Matte @BBL A1"
 
 INFILL_DENSITY = "15%"
 INFILL_PATTERN = "adaptivecubic"          # adaptive cubic
-SUPPORT_ENABLE = True
+# Supports are OFF by default and enabled PER PART via "support": true in parts.json.
+# These settings apply only when a part opts in (currently just the stator).
 SUPPORT_TYPE = "normal(auto)"             # normal supports, auto-placed
-SUPPORT_THRESHOLD = "10"                  # overhang threshold deg (10 = aggressive; default 30)
-AUTO_ORIENT = False                        # CLI auto-orient rotates big parts off-bed; use modeled orientation
+SUPPORT_THRESHOLD = "10"                  # overhang threshold deg
+AUTO_ORIENT = False                        # CLI auto-orient is unreliable; use the modeled orientation
 
 # outputs
 BUILD = os.path.join(HERE, "build")       # gitignored slicer scratch
@@ -115,12 +116,17 @@ def build_profiles():
     proc["name"] = "sorter process"
     proc["sparse_infill_density"] = INFILL_DENSITY
     proc["sparse_infill_pattern"] = INFILL_PATTERN
-    proc["enable_support"] = "1" if SUPPORT_ENABLE else "0"
+    proc["skirt_loops"] = "0"                 # no skirt on any part
+    # support OFF variant (default)
+    proc["enable_support"] = "0"
+    process_off = os.path.join(PROFILE_DIR, "process.json")
+    json.dump(proc, open(process_off, "w"), indent=1)
+    # support ON variant (opt-in parts)
+    proc["enable_support"] = "1"
     proc["support_type"] = SUPPORT_TYPE
     proc["support_threshold_angle"] = SUPPORT_THRESHOLD
-    proc["skirt_loops"] = "0"                 # no skirt on any part
-    process_path = os.path.join(PROFILE_DIR, "process.json")
-    json.dump(proc, open(process_path, "w"), indent=1)
+    process_on = os.path.join(PROFILE_DIR, "process_support.json")
+    json.dump(proc, open(process_on, "w"), indent=1)
 
     fil = _resolve("filament", FILAMENT)
     fil.pop("inherits", None)
@@ -130,14 +136,14 @@ def build_profiles():
 
     density = float(_first(fil.get("filament_density", ["1.24"])))
     cost = float(_first(fil.get("filament_cost", ["0"])))
-    return (machine_path, process_path, filament_path), density, cost
+    return (machine_path, process_off, process_on, filament_path), density, cost
 
 
 def settings_signature():
     return json.dumps({
         "printer": PRINTER, "process": PROCESS, "filament": FILAMENT,
         "infill": INFILL_DENSITY, "pattern": INFILL_PATTERN,
-        "support": [SUPPORT_ENABLE, SUPPORT_TYPE, SUPPORT_THRESHOLD],
+        "support_params": [SUPPORT_TYPE, SUPPORT_THRESHOLD],
         "orient": AUTO_ORIENT,
     }, sort_keys=True)
 
@@ -163,10 +169,12 @@ def prepare_mesh(stl_abs, out_path):
 
 
 # ---------------------------------------------------------------- slicing
-def slice_part(stl_abs, profiles, force=False):
-    machine_path, process_path, filament_path = profiles
+def slice_part(stl_abs, profiles, support=False, force=False):
+    machine_path, process_off, process_on, filament_path = profiles
+    process_path = process_on if support else process_off
     stl_bytes = open(stl_abs, "rb").read()
-    key = hashlib.sha1(stl_bytes + settings_signature().encode()).hexdigest()[:16]
+    sig = settings_signature() + ("|support" if support else "|nosupport")
+    key = hashlib.sha1(stl_bytes + sig.encode()).hexdigest()[:16]
     cdir = os.path.join(CACHE, key)
     info_path = os.path.join(cdir, "info.json")
     if os.path.exists(info_path) and not force:
@@ -189,8 +197,7 @@ def slice_part(stl_abs, profiles, force=False):
         rc = subprocess.run(cmd, stdout=log, stderr=subprocess.STDOUT).returncode
     threemf = os.path.join(cdir, "out.3mf")
     if rc != 0 or not os.path.exists(threemf):
-        print(f"  ! slice FAILED for {os.path.basename(stl_abs)} (rc={rc}); see {cdir}/slice.log")
-        return None
+        return None   # caller decides whether to fall back / report
 
     info = parse_3mf(threemf)
     json.dump(info, open(info_path, "w"), indent=1)
@@ -308,19 +315,27 @@ def main():
     os.makedirs(STL_OUT, exist_ok=True)
     os.makedirs(os.path.dirname(DATA_OUT), exist_ok=True)
 
-    print(f"settings: {INFILL_DENSITY} {INFILL_PATTERN} | supports "
-          f"{'on' if SUPPORT_ENABLE else 'off'} {SUPPORT_TYPE} @{SUPPORT_THRESHOLD}deg | "
+    print(f"settings: {INFILL_DENSITY} {INFILL_PATTERN} | supports per-part "
+          f"(off by default; {SUPPORT_TYPE} @{SUPPORT_THRESHOLD}deg when on) | "
           f"{FILAMENT} ({density} g/cm3, ${cost_per_kg}/kg)\n")
 
     out_parts = []
     zip_members = []
     failed = []
+    forced_support = []
     for p in manifest["parts"]:
         stl_abs = os.path.join(HERE, p["stl"])
         if not os.path.exists(stl_abs):
             print(f"  ! missing STL, skipping: {p['stl']}")
             continue
-        info = slice_part(stl_abs, profiles, force=args.force)
+        want = bool(p.get("support", False))
+        info = slice_part(stl_abs, profiles, support=want, force=args.force)
+        if info is None and not want:
+            # Orca makes "floating regions" fatal when support is off. Fall back to
+            # support-on so we still get a number; flagged for the user.
+            info = slice_part(stl_abs, profiles, support=True, force=args.force)
+            if info is not None:
+                forced_support.append(p["id"])
         if info is None:
             failed.append(p["id"])
             continue
@@ -359,7 +374,7 @@ def main():
         "settings": {
             "printer": PRINTER, "process": PROCESS, "filament": FILAMENT,
             "infill_density": INFILL_DENSITY, "infill_pattern": INFILL_PATTERN,
-            "support_enabled": SUPPORT_ENABLE, "support_type": SUPPORT_TYPE,
+            "support_enabled": False, "support_type": SUPPORT_TYPE,
             "support_threshold_deg": int(SUPPORT_THRESHOLD),
             "density_g_cm3": density, "cost_per_kg": cost_per_kg,
         },
@@ -378,6 +393,9 @@ def main():
 
     print(f"\nwrote {DATA_OUT}")
     print(f"  {len(out_parts)} parts · thumbnails -> static/renders · STLs -> static/stl")
+    if forced_support:
+        print(f"  ~ {len(forced_support)} part(s) needed support to slice (floating regions "
+              f"in modeled orientation); sliced WITH support: {', '.join(forced_support)}")
     if failed:
         print(f"  ! {len(failed)} part(s) FAILED to slice: {', '.join(failed)}")
 

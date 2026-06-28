@@ -5,7 +5,7 @@
 		"filament": "Bambu PLA Matte @BBL A1",
 		"infill_density": "15%",
 		"infill_pattern": "adaptivecubic",
-		"support_enabled": true,
+		"support_enabled": false,
 		"support_type": "normal(auto)",
 		"support_threshold_deg": 10,
 		"density_g_cm3": 1.32,
@@ -57,12 +57,12 @@
 		{
 			"id": "frame",
 			"name": "Frame",
-			"default": "black"
+			"default": "charcoal"
 		},
 		{
 			"id": "feeder",
 			"name": "Feeder",
-			"default": "black"
+			"default": "charcoal"
 		},
 		{
 			"id": "chute-core",
@@ -118,9 +118,9 @@
 			"description": "Feeder stator. 4 required: 1 gray + 3 black.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 175.75,
+			"grams": 175.52,
 			"support_used": true,
-			"print_seconds": 16022,
+			"print_seconds": 16012,
 			"color": {
 				"split": [
 					{
@@ -128,7 +128,7 @@
 						"qty": 1
 					},
 					{
-						"color": "black",
+						"color": "charcoal",
 						"qty": 3
 					}
 				]
@@ -147,9 +147,9 @@
 			"description": "Faceted rotor. 3 required: 2 white + 1 gray.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 166.6,
-			"support_used": true,
-			"print_seconds": 11173,
+			"grams": 166.5,
+			"support_used": false,
+			"print_seconds": 11084,
 			"color": {
 				"split": [
 					{
@@ -176,9 +176,9 @@
 			"description": "Output gear, 130 teeth. One per C-channel (4 total).",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 61.91,
-			"support_used": true,
-			"print_seconds": 7512,
+			"grams": 59.67,
+			"support_used": false,
+			"print_seconds": 7249,
 			"color": {
 				"role": "feeder"
 			},
@@ -197,7 +197,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 72.74,
-			"support_used": true,
+			"support_used": false,
 			"print_seconds": 7313,
 			"color": {
 				"role": "feeder"
@@ -236,9 +236,9 @@
 			"description": "Bulk cap. Sits on top of the first C-channel.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 1079.8,
-			"support_used": true,
-			"print_seconds": 72806,
+			"grams": 648.51,
+			"support_used": false,
+			"print_seconds": 45438,
 			"color": {
 				"role": "feeder"
 			},
@@ -256,9 +256,9 @@
 			"description": "Large classification-channel dome (~full bed). White.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 721.4,
-			"support_used": true,
-			"print_seconds": 63070,
+			"grams": 371.28,
+			"support_used": false,
+			"print_seconds": 30870,
 			"color": {
 				"fixed": "ivory-white"
 			},
@@ -276,9 +276,9 @@
 			"description": "Interface bracket. Pairs with the spacer; 6 on the interface.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 162.46,
-			"support_used": true,
-			"print_seconds": 15787,
+			"grams": 159.48,
+			"support_used": false,
+			"print_seconds": 14623,
 			"color": {
 				"role": "frame"
 			},
@@ -318,7 +318,7 @@
 			"date_added": "2026-06-27",
 			"grams": 223.63,
 			"support_used": true,
-			"print_seconds": 23962,
+			"print_seconds": 23978,
 			"color": {
 				"role": "chute-core"
 			},
@@ -376,9 +376,9 @@
 			"description": "Bin retainer, left. Optional.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 21.45,
-			"support_used": true,
-			"print_seconds": 2550,
+			"grams": 21.19,
+			"support_used": false,
+			"print_seconds": 2584,
 			"color": {
 				"role": "frame"
 			},
@@ -397,7 +397,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 21.44,
-			"support_used": true,
+			"support_used": false,
 			"print_seconds": 2604,
 			"color": {
 				"role": "frame"
@@ -416,9 +416,9 @@
 			"description": "Distribution frame crossbeam. One between each of the 6 frame sections.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 89.95,
-			"support_used": true,
-			"print_seconds": 10700,
+			"grams": 86.17,
+			"support_used": false,
+			"print_seconds": 9567,
 			"color": {
 				"role": "frame"
 			},
@@ -436,9 +436,9 @@
 			"description": "Distribution frame 90\u00b0 bracket. Two per frame section.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 14.14,
-			"support_used": true,
-			"print_seconds": 2847,
+			"grams": 13.62,
+			"support_used": false,
+			"print_seconds": 2678,
 			"color": {
 				"role": "frame"
 			},
@@ -456,9 +456,9 @@
 			"description": "Bottom lazy Susan adapter that connects to the chute. White.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 233.98,
-			"support_used": true,
-			"print_seconds": 18265,
+			"grams": 233.62,
+			"support_used": false,
+			"print_seconds": 18078,
 			"color": {
 				"fixed": "ivory-white"
 			},
@@ -476,9 +476,9 @@
 			"description": "Bottom lazy Susan static base.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 206.45,
-			"support_used": true,
-			"print_seconds": 14574,
+			"grams": 206.81,
+			"support_used": false,
+			"print_seconds": 14391,
 			"color": {
 				"role": "frame"
 			},
@@ -496,9 +496,9 @@
 			"description": "Bottom lazy Susan mount to the external extrusion.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 58.12,
-			"support_used": true,
-			"print_seconds": 8303,
+			"grams": 56.06,
+			"support_used": false,
+			"print_seconds": 7508,
 			"color": {
 				"role": "frame"
 			},
@@ -537,8 +537,8 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 10.63,
-			"support_used": true,
-			"print_seconds": 1460,
+			"support_used": false,
+			"print_seconds": 1458,
 			"color": {
 				"role": "frame"
 			},
@@ -557,9 +557,9 @@
 			"description": "Part of the external distribution-frame bracket (3-part assembly).",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 53.41,
-			"support_used": true,
-			"print_seconds": 7011,
+			"grams": 48.52,
+			"support_used": false,
+			"print_seconds": 6010,
 			"color": {
 				"role": "frame"
 			},
@@ -600,7 +600,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 12.45,
-			"support_used": true,
+			"support_used": false,
 			"print_seconds": 2264,
 			"color": {
 				"role": "frame"
@@ -619,9 +619,9 @@
 			"description": "Ribbed interface piece. 5 needed.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 28.01,
-			"support_used": true,
-			"print_seconds": 3466,
+			"grams": 26.6,
+			"support_used": false,
+			"print_seconds": 3123,
 			"color": {
 				"role": "frame"
 			},
@@ -639,9 +639,9 @@
 			"description": "Interface rib with the opening for the limit switch. 1 needed.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 16.34,
-			"support_used": true,
-			"print_seconds": 2523,
+			"grams": 15.27,
+			"support_used": false,
+			"print_seconds": 2264,
 			"color": {
 				"role": "frame"
 			},
@@ -659,9 +659,9 @@
 			"description": "Inner half of the ribbon cable clamp. White.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 6.45,
-			"support_used": true,
-			"print_seconds": 1948,
+			"grams": 5.57,
+			"support_used": false,
+			"print_seconds": 1787,
 			"color": {
 				"fixed": "ivory-white"
 			},
@@ -679,9 +679,9 @@
 			"description": "Outer half of the ribbon cable clamp. White.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 19.76,
-			"support_used": true,
-			"print_seconds": 3551,
+			"grams": 13.38,
+			"support_used": false,
+			"print_seconds": 2691,
 			"color": {
 				"fixed": "ivory-white"
 			},
@@ -700,8 +700,8 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 9.0,
-			"support_used": true,
-			"print_seconds": 1921,
+			"support_used": false,
+			"print_seconds": 1920,
 			"color": {
 				"role": "frame"
 			},
@@ -719,9 +719,9 @@
 			"description": "Interface idler gear, 2M 25T. 1 needed.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 10.44,
-			"support_used": true,
-			"print_seconds": 2271,
+			"grams": 8.98,
+			"support_used": false,
+			"print_seconds": 1993,
 			"color": {
 				"role": "frame"
 			},
@@ -739,9 +739,9 @@
 			"description": "NEMA 23 motor bracket on the interface. 1 needed.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 77.02,
-			"support_used": true,
-			"print_seconds": 8020,
+			"grams": 45.02,
+			"support_used": false,
+			"print_seconds": 5384,
 			"color": {
 				"role": "frame"
 			},
@@ -759,9 +759,9 @@
 			"description": "Interface cable cage bracket (regular). 5 needed.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 17.27,
-			"support_used": true,
-			"print_seconds": 3115,
+			"grams": 15.89,
+			"support_used": false,
+			"print_seconds": 2797,
 			"color": {
 				"role": "frame"
 			},
@@ -779,9 +779,9 @@
 			"description": "Cable cage bracket with the cable mount. 1 needed.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 17.17,
-			"support_used": true,
-			"print_seconds": 3150,
+			"grams": 15.88,
+			"support_used": false,
+			"print_seconds": 2841,
 			"color": {
 				"role": "frame"
 			},
@@ -800,8 +800,8 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 22.18,
-			"support_used": true,
-			"print_seconds": 2367,
+			"support_used": false,
+			"print_seconds": 2360,
 			"color": {
 				"role": "frame"
 			},
@@ -819,9 +819,9 @@
 			"description": "Interface upper fixed section. 1 needed.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 153.89,
-			"support_used": true,
-			"print_seconds": 11592,
+			"grams": 153.65,
+			"support_used": false,
+			"print_seconds": 11486,
 			"color": {
 				"role": "frame"
 			},
@@ -839,9 +839,9 @@
 			"description": "Smaller classification cap (not the big dome). White.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 324.43,
-			"support_used": true,
-			"print_seconds": 26242,
+			"grams": 106.11,
+			"support_used": false,
+			"print_seconds": 10305,
 			"color": {
 				"fixed": "ivory-white"
 			},
@@ -859,9 +859,9 @@
 			"description": "Finned rotor on the classification chamber. White. 1 needed.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 178.32,
-			"support_used": true,
-			"print_seconds": 13132,
+			"grams": 178.76,
+			"support_used": false,
+			"print_seconds": 12914,
 			"color": {
 				"fixed": "ivory-white"
 			},
@@ -879,9 +879,9 @@
 			"description": "C-channel idler gear, 24 teeth. One per C-channel (4 total).",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 5.25,
-			"support_used": true,
-			"print_seconds": 1587,
+			"grams": 4.61,
+			"support_used": false,
+			"print_seconds": 1437,
 			"color": {
 				"role": "feeder"
 			},
@@ -899,9 +899,9 @@
 			"description": "C-channel input/drive gear (12T) with vertical screw hole. One per C-channel (4 total).",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 4.32,
-			"support_used": true,
-			"print_seconds": 1624,
+			"grams": 3.57,
+			"support_used": false,
+			"print_seconds": 1448,
 			"color": {
 				"role": "feeder"
 			},
@@ -919,9 +919,9 @@
 			"description": "Output guide. 2 needed. Black.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 21.78,
-			"support_used": true,
-			"print_seconds": 3911,
+			"grams": 20.99,
+			"support_used": false,
+			"print_seconds": 3689,
 			"color": {
 				"role": "feeder"
 			},
@@ -970,24 +970,24 @@
 			"render": "/renders/funnel-bracket-right.png"
 		},
 		{
-			"id": "chute-door",
-			"name": "Chute door",
+			"id": "door-module",
+			"name": "Door module",
 			"quantities": {
 				"chute": 1
 			},
-			"assembly": null,
-			"description": "Chute door module. 1 needed.",
+			"assembly": "chute-bearing",
+			"description": "Door module (part of the chute bearing assembly).",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 22.97,
-			"support_used": true,
-			"print_seconds": 3408,
+			"grams": 20.13,
+			"support_used": false,
+			"print_seconds": 2947,
 			"color": {
 				"role": "chute-core"
 			},
 			"optional": false,
-			"stl": "/stl/chute-door.stl",
-			"render": "/renders/chute-door.png"
+			"stl": "/stl/door-module.stl",
+			"render": "/renders/door-module.png"
 		},
 		{
 			"id": "bearing-holder-left",
@@ -999,9 +999,9 @@
 			"description": "Bearing holder, left.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 8.98,
-			"support_used": true,
-			"print_seconds": 2503,
+			"grams": 7.95,
+			"support_used": false,
+			"print_seconds": 2231,
 			"color": {
 				"role": "chute-core"
 			},
@@ -1019,35 +1019,15 @@
 			"description": "Bearing holder, right.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 9.05,
-			"support_used": true,
-			"print_seconds": 2537,
+			"grams": 7.98,
+			"support_used": false,
+			"print_seconds": 2249,
 			"color": {
 				"role": "chute-core"
 			},
 			"optional": false,
 			"stl": "/stl/bearing-holder-right.stl",
 			"render": "/renders/bearing-holder-right.png"
-		},
-		{
-			"id": "bearing-race",
-			"name": "Bearing race (between holders)",
-			"quantities": {
-				"chute": 1
-			},
-			"assembly": "chute-bearing",
-			"description": "Piece between the bearing holders (best name-match: bearing_race). CONFIRM.",
-			"version": "1",
-			"date_added": "2026-06-27",
-			"grams": 63.39,
-			"support_used": true,
-			"print_seconds": 5070,
-			"color": {
-				"role": "chute-core"
-			},
-			"optional": false,
-			"stl": "/stl/bearing-race.stl",
-			"render": "/renders/bearing-race.png"
 		},
 		{
 			"id": "servo-adapter-servo-side",
@@ -1060,7 +1040,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 4.85,
-			"support_used": true,
+			"support_used": false,
 			"print_seconds": 2035,
 			"color": {
 				"role": "chute-core"
@@ -1079,9 +1059,9 @@
 			"description": "MG995 servo adapter, flap side.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 5.8,
-			"support_used": true,
-			"print_seconds": 2283,
+			"grams": 5.25,
+			"support_used": false,
+			"print_seconds": 2095,
 			"color": {
 				"role": "chute-core"
 			},
@@ -1119,9 +1099,9 @@
 			"description": "MG995 servo bracket, side arm.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 9.55,
-			"support_used": true,
-			"print_seconds": 2331,
+			"grams": 9.58,
+			"support_used": false,
+			"print_seconds": 2330,
 			"color": {
 				"role": "chute-core"
 			},
@@ -1139,9 +1119,9 @@
 			"description": "MG995 servo bracket, cover.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 10.52,
-			"support_used": true,
-			"print_seconds": 2734,
+			"grams": 6.0,
+			"support_used": false,
+			"print_seconds": 2182,
 			"color": {
 				"role": "chute-core"
 			},
@@ -1159,9 +1139,9 @@
 			"description": "MG995 servo bracket, housing.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 26.41,
-			"support_used": true,
-			"print_seconds": 3799,
+			"grams": 17.31,
+			"support_used": false,
+			"print_seconds": 2881,
 			"color": {
 				"role": "chute-core"
 			},
@@ -1179,9 +1159,9 @@
 			"description": "C-channel leg. 9 in the feeder.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 21.82,
-			"support_used": true,
-			"print_seconds": 5834,
+			"grams": 21.11,
+			"support_used": false,
+			"print_seconds": 5597,
 			"color": {
 				"role": "feeder"
 			},
@@ -1200,14 +1180,34 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 8.45,
-			"support_used": true,
-			"print_seconds": 1892,
+			"support_used": false,
+			"print_seconds": 1891,
 			"color": {
 				"role": "feeder"
 			},
 			"optional": false,
 			"stl": "/stl/foot.stl",
 			"render": "/renders/foot.png"
+		},
+		{
+			"id": "chute-door",
+			"name": "Chute door",
+			"quantities": {
+				"chute": 1
+			},
+			"assembly": null,
+			"description": "The chute door / flap. 1 per machine.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 46.85,
+			"support_used": true,
+			"print_seconds": 5504,
+			"color": {
+				"role": "chute-core"
+			},
+			"optional": false,
+			"stl": "/stl/chute-door.stl",
+			"render": "/renders/chute-door.png"
 		}
 	]
 }
