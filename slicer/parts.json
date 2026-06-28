@@ -796,7 +796,7 @@
       "assembly": null,
       "stl": "parts/chute/funnel-bracket-left.stl",
       "color": {
-        "role": "frame"
+        "role": "chute-core"
       },
       "optional": false
     },
@@ -813,7 +813,7 @@
       "assembly": null,
       "stl": "parts/chute/funnel-bracket-right.stl",
       "color": {
-        "role": "frame"
+        "role": "chute-core"
       },
       "optional": false
     },
@@ -830,7 +830,7 @@
       "assembly": null,
       "stl": "parts/chute/chute-door.stl",
       "color": {
-        "role": "frame"
+        "role": "chute-core"
       },
       "optional": false
     },
@@ -847,7 +847,7 @@
       "assembly": "chute-bearing",
       "stl": "parts/chute/bearing-holder-left.stl",
       "color": {
-        "role": "frame"
+        "role": "chute-core"
       },
       "optional": false
     },
@@ -864,7 +864,7 @@
       "assembly": "chute-bearing",
       "stl": "parts/chute/bearing-holder-right.stl",
       "color": {
-        "role": "frame"
+        "role": "chute-core"
       },
       "optional": false
     },
@@ -881,7 +881,7 @@
       "assembly": "chute-bearing",
       "stl": "parts/chute/bearing-race.stl",
       "color": {
-        "role": "frame"
+        "role": "chute-core"
       },
       "optional": false
     },
@@ -898,7 +898,7 @@
       "assembly": "servo-adapter",
       "stl": "parts/chute/servo-adapter-servo-side.stl",
       "color": {
-        "role": "frame"
+        "role": "chute-core"
       },
       "optional": false
     },
@@ -915,7 +915,7 @@
       "assembly": "servo-adapter",
       "stl": "parts/chute/servo-adapter-flap-side.stl",
       "color": {
-        "role": "frame"
+        "role": "chute-core"
       },
       "optional": false
     },
@@ -932,7 +932,7 @@
       "assembly": "servo-bracket",
       "stl": "parts/chute/servo-bracket-lower-arm.stl",
       "color": {
-        "role": "frame"
+        "role": "chute-core"
       },
       "optional": false
     },
@@ -949,7 +949,7 @@
       "assembly": "servo-bracket",
       "stl": "parts/chute/servo-bracket-side-arm.stl",
       "color": {
-        "role": "frame"
+        "role": "chute-core"
       },
       "optional": false
     },
@@ -966,7 +966,7 @@
       "assembly": "servo-bracket",
       "stl": "parts/chute/servo-bracket-cover.stl",
       "color": {
-        "role": "frame"
+        "role": "chute-core"
       },
       "optional": false
     },
@@ -983,7 +983,7 @@
       "assembly": "servo-bracket",
       "stl": "parts/chute/servo-bracket-housing.stl",
       "color": {
-        "role": "frame"
+        "role": "chute-core"
       },
       "optional": false
     }

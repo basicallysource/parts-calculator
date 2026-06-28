@@ -32,6 +32,7 @@
 		Object.fromEntries(PARTS.map((p) => [p.id, !('bins' in p.quantities)]))
 	);
 	let zipping = $state(false);
+	let infoOpen = $state(false);
 	let viewerOpen = $state(false);
 	let viewerPart = $state<Part | null>(null);
 	let viewerColorId = $state('light-bluish-gray');
@@ -118,12 +119,18 @@
 	}
 </script>
 
+<svelte:window
+	onclick={(e) => {
+		if (infoOpen && !(e.target as HTMLElement).closest('[data-info]')) infoOpen = false;
+	}}
+/>
+
 <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
 	<header class="mb-5">
 		<h1 class="text-2xl font-bold text-text">Sorter — Filament Calculator</h1>
 		<p class="mt-1 text-sm text-text-muted">
-			Pick colors and a layer count, check the parts you'll print, and it tells you exactly what
-			filament to order. Grams are OrcaSlicer's own output — not estimates.
+			Configure a build to get per-color filament quantities and download the STLs. Filament
+			estimates from OrcaSlicer outputs.
 		</p>
 	</header>
 
@@ -143,11 +150,22 @@
 	<section class="setup-panel mb-6 p-4">
 		<div class="mb-3 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-text-muted">
 			Build options
-			<span
-				class="inline-flex cursor-help text-text-muted"
-				title="Each color picker sets every part in that group. Parts that must be a specific color — stators, rotors, light post caps, the classification dome, the lazy-Susan chute mount — keep their required color and are not affected."
-			>
-				<Info size={14} />
+			<span class="relative inline-flex" data-info>
+				<button
+					type="button"
+					class="inline-flex text-text-muted hover:text-text"
+					aria-label="About the color options"
+					onclick={() => (infoOpen = !infoOpen)}
+				>
+					<Info size={14} />
+				</button>
+				{#if infoOpen}
+					<div class="setup-panel absolute left-0 top-6 z-30 w-72 p-3 text-xs font-normal normal-case tracking-normal text-text-muted">
+						Each color picker sets every part in that group. Parts that must be a specific color —
+						stators, rotors, light post caps, the classification dome, the lazy-Susan chute mount —
+						keep their required color and aren't affected.
+					</div>
+				{/if}
 			</span>
 		</div>
 		<div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
@@ -299,7 +317,7 @@
 				<Info size={14} class="mt-0.5 shrink-0" />
 				<span>
 					Uses <a class="text-primary hover:text-primary-hover" href={STORE_URL} target="_blank" rel="noopener">Bambu Lab bulk pricing ↗</a>
-					(PLA Basic, w/ spool): $24.99 ea, $17.99 at 4+, $16.99 at 6+. You're at
+					(PLA Matte, w/ spool): $24.99 ea, $17.99 at 4+, $16.99 at 6+. You're at
 					<b>{money(buy.perSpool)}/spool</b> ({buy.totalSpools} roll{buy.totalSpools === 1 ? '' : 's'}).
 				</span>
 			</div>
