@@ -1146,7 +1146,7 @@
       "id": "layer-connector-1",
       "name": "Layer connector A",
       "description": "Layer connector. 1 per layer + 1 per bottom interface.",
-      "internal_notes": "One of the two layer connectors (files Part 1 / Part 2). 1 per layer AND 1 per bottom interface (modeled here as the interface category). For a 1-layer machine: 2 per part = 4 total across both connectors. Color ASSUMED frame.",
+      "internal_notes": "One of the two layer connectors (files Part 1 / Part 2). 1 per layer AND 1 per bottom interface (modeled here as the interface category). For a 1-layer machine: 2 per part = 4 total across both connectors. Color ASSUMED frame. In the chute core; chute-core color.",
       "version": "1",
       "date_added": "2026-06-27",
       "quantities": {
@@ -1156,7 +1156,7 @@
       "assembly": "layer-connector",
       "stl": "parts/layer/layer-connector-1.stl",
       "color": {
-        "role": "frame"
+        "role": "chute-core"
       },
       "optional": false
     },
@@ -1164,7 +1164,7 @@
       "id": "layer-connector-2",
       "name": "Layer connector B",
       "description": "Layer connector. 1 per layer + 1 per bottom interface.",
-      "internal_notes": "One of the two layer connectors (files Part 1 / Part 2). 1 per layer AND 1 per bottom interface (modeled here as the interface category). For a 1-layer machine: 2 per part = 4 total across both connectors. Color ASSUMED frame.",
+      "internal_notes": "One of the two layer connectors (files Part 1 / Part 2). 1 per layer AND 1 per bottom interface (modeled here as the interface category). For a 1-layer machine: 2 per part = 4 total across both connectors. Color ASSUMED frame. In the chute core; chute-core color.",
       "version": "1",
       "date_added": "2026-06-27",
       "quantities": {
@@ -1174,7 +1174,7 @@
       "assembly": "layer-connector",
       "stl": "parts/layer/layer-connector-2.stl",
       "color": {
-        "role": "frame"
+        "role": "chute-core"
       },
       "optional": false
     }
