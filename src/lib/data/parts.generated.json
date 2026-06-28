@@ -110,6 +110,11 @@
 			"id": "camera-mount",
 			"name": "Camera mount",
 			"description": "Camera mount for the C-channels. 2 per machine (each: parts 6/37/37b + 2\u00d7 rod-to-C-channel mount)."
+		},
+		{
+			"id": "layer-connector",
+			"name": "Layer connector",
+			"description": "Pair of connectors. 1 of each per layer + 1 of each per bottom interface."
 		}
 	],
 	"parts": [
@@ -1372,6 +1377,50 @@
 			"optional": false,
 			"stl": "/stl/camera-led-insert.stl",
 			"render": "/renders/camera-led-insert.png"
+		},
+		{
+			"id": "layer-connector-1",
+			"name": "Layer connector A",
+			"quantities": {
+				"layer": 1,
+				"interface": 1
+			},
+			"assembly": "layer-connector",
+			"description": "Layer connector. 1 per layer + 1 per bottom interface.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 12.31,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 2841,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/layer-connector-1.stl",
+			"render": "/renders/layer-connector-1.png"
+		},
+		{
+			"id": "layer-connector-2",
+			"name": "Layer connector B",
+			"quantities": {
+				"layer": 1,
+				"interface": 1
+			},
+			"assembly": "layer-connector",
+			"description": "Layer connector. 1 per layer + 1 per bottom interface.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 12.3,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 2840,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/layer-connector-2.stl",
+			"render": "/renders/layer-connector-2.png"
 		}
 	]
 }
