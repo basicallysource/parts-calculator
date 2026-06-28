@@ -10,6 +10,7 @@
 		getAssembly,
 		partSwatches,
 		primaryColorId,
+		effectiveGrams,
 		buyList,
 		grams,
 		money,
@@ -32,13 +33,19 @@
 		Object.fromEntries(PARTS.map((p) => [p.id, !('bins' in p.quantities)]))
 	);
 	let surplus = $state(15);
+	// include each part's support material in totals — default on for the stator only
+	let inclSupport = $state<Record<string, boolean>>(
+		Object.fromEntries(PARTS.filter((p) => p.support_grams > 0).map((p) => [p.id, p.id === 'stator']))
+	);
 	let zipping = $state(false);
 	let infoOpen = $state(false);
 	let viewerOpen = $state(false);
 	let viewerPart = $state<Part | null>(null);
 	let viewerColorId = $state('ash-gray');
 
-	const buy = $derived(buyList(layers, roleColors, (id) => selected[id], surplus));
+	const buy = $derived(
+		buyList(layers, roleColors, (id) => selected[id], (id) => !!inclSupport[id], surplus)
+	);
 
 	const sectionRows = $derived(
 		SECTIONS.map((s) => {
@@ -46,7 +53,7 @@
 			const mult = categoryMultiplier(s.id, layers);
 			const selectedGrams = parts
 				.filter((p) => selected[p.id])
-				.reduce((sum, p) => sum + p.grams * sectionQty(p, s.id) * mult, 0);
+				.reduce((sum, p) => sum + effectiveGrams(p, !!inclSupport[p.id]) * sectionQty(p, s.id) * mult, 0);
 			return { section: s, parts, mult, selectedGrams };
 		}).filter((r) => r.parts.length > 0)
 	);
@@ -184,6 +191,7 @@
 	{#snippet partRow(p: Part, sectionId: string, mult: number, indent: boolean)}
 		{@const q = sectionQty(p, sectionId)}
 		{@const sw = partSwatches(p, sectionId, roleColors)}
+		{@const eff = effectiveGrams(p, !!inclSupport[p.id])}
 		<tr class="border-b border-border align-middle last:border-b-0">
 			<td class="w-8 py-2 {indent ? 'border-l-2 border-primary/40 pl-5' : 'pl-3'}">
 				<input class="setup-toggle h-4 w-4" type="checkbox" bind:checked={selected[p.id]} aria-label="Select {p.name}" />
@@ -214,9 +222,16 @@
 					{/each}
 					· {duration(p.print_seconds)}
 				</span>
+				{#if p.support_grams > 0}
+					<label class="mt-0.5 flex w-fit cursor-pointer items-center gap-1.5 text-xs text-text-muted">
+						<input class="setup-toggle h-3.5 w-3.5" type="checkbox" bind:checked={inclSupport[p.id]} />
+						total {p.grams.toFixed(0)} g · support {p.support_grams.toFixed(0)} g
+						<span class="opacity-70">({inclSupport[p.id] ? 'included' : 'excluded'})</span>
+					</label>
+				{/if}
 			</td>
-			<td class="whitespace-nowrap py-2 pr-2 text-right text-xs text-text-muted">{p.grams.toFixed(0)} g × {q * mult}</td>
-			<td class="whitespace-nowrap py-2 pr-2 text-right tabular-nums">{grams(p.grams * q * mult)}</td>
+			<td class="whitespace-nowrap py-2 pr-2 text-right text-xs text-text-muted">{eff.toFixed(0)} g × {q * mult}</td>
+			<td class="whitespace-nowrap py-2 pr-2 text-right tabular-nums">{grams(eff * q * mult)}</td>
 			<td class="py-2 pr-3 text-right">
 				<a class="inline-flex items-center text-primary hover:text-primary-hover" href={p.stl} download title="Download {p.name}.stl"><Download size={15} /></a>
 			</td>
