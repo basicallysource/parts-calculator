@@ -76,9 +76,9 @@ def _first(v):
 
 
 def lego_hex_map():
-    """id -> hex, parsed from the app's lego-colors.ts (single source of truth)."""
+    """id -> hex, parsed from the app's bambu-colors.ts (single source of truth)."""
     import re
-    txt = open(os.path.join(REPO, "src", "lib", "lego-colors.ts")).read()
+    txt = open(os.path.join(REPO, "src", "lib", "bambu-colors.ts")).read()
     return {m.group(1): m.group(2)
             for m in re.finditer(r"id:\s*'([^']+)'.*?hex:\s*'(#[0-9A-Fa-f]{6})'", txt)}
 

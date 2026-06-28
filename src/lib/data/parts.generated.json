@@ -67,12 +67,12 @@
 		{
 			"id": "chute-core",
 			"name": "Chute core",
-			"default": "white"
+			"default": "ivory-white"
 		},
 		{
 			"id": "funnel",
 			"name": "Funnels",
-			"default": "light-bluish-gray"
+			"default": "ash-gray"
 		}
 	],
 	"assemblies": [
@@ -124,7 +124,7 @@
 			"color": {
 				"split": [
 					{
-						"color": "light-bluish-gray",
+						"color": "ash-gray",
 						"qty": 1
 					},
 					{
@@ -153,11 +153,11 @@
 			"color": {
 				"split": [
 					{
-						"color": "white",
+						"color": "ivory-white",
 						"qty": 2
 					},
 					{
-						"color": "light-bluish-gray",
+						"color": "ash-gray",
 						"qty": 1
 					}
 				]
@@ -165,26 +165,6 @@
 			"optional": false,
 			"stl": "/stl/rotor-faceted.stl",
 			"render": "/renders/rotor-faceted.png"
-		},
-		{
-			"id": "c-channel-leg",
-			"name": "C-channel leg",
-			"quantities": {
-				"feeder": 9
-			},
-			"assembly": null,
-			"description": "C-channel leg. 9 in the feeder.",
-			"version": "1",
-			"date_added": "2026-06-27",
-			"grams": 16.15,
-			"support_used": true,
-			"print_seconds": 3866,
-			"color": {
-				"role": "feeder"
-			},
-			"optional": false,
-			"stl": "/stl/c-channel-leg.stl",
-			"render": "/renders/c-channel-leg.png"
 		},
 		{
 			"id": "output-gear",
@@ -240,7 +220,7 @@
 			"support_used": true,
 			"print_seconds": 3240,
 			"color": {
-				"fixed": "white"
+				"fixed": "ivory-white"
 			},
 			"optional": false,
 			"stl": "/stl/light-post-cap.stl",
@@ -280,7 +260,7 @@
 			"support_used": true,
 			"print_seconds": 63070,
 			"color": {
-				"fixed": "white"
+				"fixed": "ivory-white"
 			},
 			"optional": false,
 			"stl": "/stl/classification-dome.stl",
@@ -400,7 +380,7 @@
 			"support_used": true,
 			"print_seconds": 2550,
 			"color": {
-				"any": true
+				"role": "frame"
 			},
 			"optional": true,
 			"stl": "/stl/bin-retainer-left.stl",
@@ -420,7 +400,7 @@
 			"support_used": true,
 			"print_seconds": 2604,
 			"color": {
-				"any": true
+				"role": "frame"
 			},
 			"optional": true,
 			"stl": "/stl/bin-retainer-right.stl",
@@ -480,7 +460,7 @@
 			"support_used": true,
 			"print_seconds": 18265,
 			"color": {
-				"fixed": "white"
+				"fixed": "ivory-white"
 			},
 			"optional": false,
 			"stl": "/stl/ls-mount-to-chute.stl",
@@ -683,7 +663,7 @@
 			"support_used": true,
 			"print_seconds": 1948,
 			"color": {
-				"fixed": "white"
+				"fixed": "ivory-white"
 			},
 			"optional": false,
 			"stl": "/stl/cable-clamp-inner.stl",
@@ -703,7 +683,7 @@
 			"support_used": true,
 			"print_seconds": 3551,
 			"color": {
-				"fixed": "white"
+				"fixed": "ivory-white"
 			},
 			"optional": false,
 			"stl": "/stl/cable-clamp-outer.stl",
@@ -863,7 +843,7 @@
 			"support_used": true,
 			"print_seconds": 26242,
 			"color": {
-				"fixed": "white"
+				"fixed": "ivory-white"
 			},
 			"optional": false,
 			"stl": "/stl/classification-cap-small.stl",
@@ -883,7 +863,7 @@
 			"support_used": true,
 			"print_seconds": 13132,
 			"color": {
-				"fixed": "white"
+				"fixed": "ivory-white"
 			},
 			"optional": false,
 			"stl": "/stl/rotor-finned.stl",
@@ -1188,6 +1168,46 @@
 			"optional": false,
 			"stl": "/stl/servo-bracket-housing.stl",
 			"render": "/renders/servo-bracket-housing.png"
+		},
+		{
+			"id": "leg",
+			"name": "Leg",
+			"quantities": {
+				"feeder": 9
+			},
+			"assembly": null,
+			"description": "C-channel leg. 9 in the feeder.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 21.82,
+			"support_used": true,
+			"print_seconds": 5834,
+			"color": {
+				"role": "feeder"
+			},
+			"optional": false,
+			"stl": "/stl/leg.stl",
+			"render": "/renders/leg.png"
+		},
+		{
+			"id": "foot",
+			"name": "Foot",
+			"quantities": {
+				"feeder": 9
+			},
+			"assembly": null,
+			"description": "C-channel foot. 9 in the feeder.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 8.45,
+			"support_used": true,
+			"print_seconds": 1892,
+			"color": {
+				"role": "feeder"
+			},
+			"optional": false,
+			"stl": "/stl/foot.stl",
+			"render": "/renders/foot.png"
 		}
 	]
 }
