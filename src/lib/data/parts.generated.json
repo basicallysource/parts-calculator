@@ -1394,7 +1394,7 @@
 			"support_used": false,
 			"print_seconds": 2841,
 			"color": {
-				"role": "frame"
+				"role": "chute-core"
 			},
 			"optional": false,
 			"stl": "/stl/layer-connector-1.stl",
@@ -1416,7 +1416,7 @@
 			"support_used": false,
 			"print_seconds": 2840,
 			"color": {
-				"role": "frame"
+				"role": "chute-core"
 			},
 			"optional": false,
 			"stl": "/stl/layer-connector-2.stl",
