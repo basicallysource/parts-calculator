@@ -1146,11 +1146,11 @@
       "id": "layer-connector-1",
       "name": "Layer connector A",
       "description": "Layer connector. 1 per layer + 1 per bottom interface.",
-      "internal_notes": "One of the two layer connectors (files Part 1 / Part 2). 1 per layer AND 1 per bottom interface (modeled here as the interface category). For a 1-layer machine: 2 per part = 4 total across both connectors. Color ASSUMED frame. In the chute core; chute-core color.",
+      "internal_notes": "Chute-core concept: A and B go on the chute core (1 each) + one set on the bottom interface (interface category). Chute-core color. NOT per-layer.",
       "version": "1",
       "date_added": "2026-06-27",
       "quantities": {
-        "layer": 1,
+        "chute": 1,
         "interface": 1
       },
       "assembly": "layer-connector",
@@ -1164,11 +1164,11 @@
       "id": "layer-connector-2",
       "name": "Layer connector B",
       "description": "Layer connector. 1 per layer + 1 per bottom interface.",
-      "internal_notes": "One of the two layer connectors (files Part 1 / Part 2). 1 per layer AND 1 per bottom interface (modeled here as the interface category). For a 1-layer machine: 2 per part = 4 total across both connectors. Color ASSUMED frame. In the chute core; chute-core color.",
+      "internal_notes": "Chute-core concept: A and B go on the chute core (1 each) + one set on the bottom interface (interface category). Chute-core color. NOT per-layer.",
       "version": "1",
       "date_added": "2026-06-27",
       "quantities": {
-        "layer": 1,
+        "chute": 1,
         "interface": 1
       },
       "assembly": "layer-connector",

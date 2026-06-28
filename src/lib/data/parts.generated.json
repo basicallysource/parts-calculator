@@ -1382,7 +1382,7 @@
 			"id": "layer-connector-1",
 			"name": "Layer connector A",
 			"quantities": {
-				"layer": 1,
+				"chute": 1,
 				"interface": 1
 			},
 			"assembly": "layer-connector",
@@ -1404,7 +1404,7 @@
 			"id": "layer-connector-2",
 			"name": "Layer connector B",
 			"quantities": {
-				"layer": 1,
+				"chute": 1,
 				"interface": 1
 			},
 			"assembly": "layer-connector",
