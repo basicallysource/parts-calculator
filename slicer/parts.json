@@ -1141,6 +1141,42 @@
         "fixed": "white"
       },
       "optional": false
+    },
+    {
+      "id": "layer-connector-1",
+      "name": "Layer connector A",
+      "description": "Layer connector. 1 per layer + 1 per bottom interface.",
+      "internal_notes": "One of the two layer connectors (files Part 1 / Part 2). 1 per layer AND 1 per bottom interface (modeled here as the interface category). For a 1-layer machine: 2 per part = 4 total across both connectors. Color ASSUMED frame.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "layer": 1,
+        "interface": 1
+      },
+      "assembly": "layer-connector",
+      "stl": "parts/layer/layer-connector-1.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "layer-connector-2",
+      "name": "Layer connector B",
+      "description": "Layer connector. 1 per layer + 1 per bottom interface.",
+      "internal_notes": "One of the two layer connectors (files Part 1 / Part 2). 1 per layer AND 1 per bottom interface (modeled here as the interface category). For a 1-layer machine: 2 per part = 4 total across both connectors. Color ASSUMED frame.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "layer": 1,
+        "interface": 1
+      },
+      "assembly": "layer-connector",
+      "stl": "parts/layer/layer-connector-2.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
     }
   ],
   "assemblies": [
@@ -1178,6 +1214,11 @@
       "id": "camera-mount",
       "name": "Camera mount",
       "description": "Camera mount for the C-channels. 2 per machine (each: parts 6/37/37b + 2\u00d7 rod-to-C-channel mount)."
+    },
+    {
+      "id": "layer-connector",
+      "name": "Layer connector",
+      "description": "Pair of connectors. 1 of each per layer + 1 of each per bottom interface."
     }
   ]
 }
