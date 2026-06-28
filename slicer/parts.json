@@ -717,24 +717,6 @@
       "support": false
     },
     {
-      "id": "classification-cap-small",
-      "name": "Classification cap (small)",
-      "description": "Smaller classification cap (not the big dome). White.",
-      "internal_notes": "From 01_c_channel zip 'Classification Cap.stl' (820KB; the big dome is 'Classification Cap (2)'). White. Qty ASSUMED 1.",
-      "version": "1",
-      "date_added": "2026-06-27",
-      "quantities": {
-        "classification-channel": 1
-      },
-      "assembly": "classification-chamber",
-      "stl": "parts/classification-channel/classification-cap-small.stl",
-      "color": {
-        "fixed": "ivory-white"
-      },
-      "optional": false,
-      "support": false
-    },
-    {
       "id": "rotor-finned",
       "name": "Rotor (finned)",
       "description": "Finned rotor on the classification chamber. White. 1 needed.",

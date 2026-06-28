@@ -119,6 +119,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 175.52,
+			"support_grams": 23.42,
 			"support_used": true,
 			"print_seconds": 16012,
 			"color": {
@@ -148,6 +149,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 166.5,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 11084,
 			"color": {
@@ -177,6 +179,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 59.67,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 7249,
 			"color": {
@@ -197,6 +200,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 72.74,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 7313,
 			"color": {
@@ -217,6 +221,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 21.98,
+			"support_grams": 4.62,
 			"support_used": true,
 			"print_seconds": 3240,
 			"color": {
@@ -237,6 +242,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 648.51,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 45438,
 			"color": {
@@ -257,6 +263,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 371.28,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 30870,
 			"color": {
@@ -277,6 +284,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 159.48,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 14623,
 			"color": {
@@ -297,6 +305,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 45.26,
+			"support_grams": 0.22,
 			"support_used": true,
 			"print_seconds": 6658,
 			"color": {
@@ -317,6 +326,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 223.63,
+			"support_grams": 9.29,
 			"support_used": true,
 			"print_seconds": 23978,
 			"color": {
@@ -337,6 +347,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 196.68,
+			"support_grams": 9.31,
 			"support_used": true,
 			"print_seconds": 19809,
 			"color": {
@@ -357,6 +368,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 122.71,
+			"support_grams": 0.9,
 			"support_used": true,
 			"print_seconds": 12524,
 			"color": {
@@ -377,6 +389,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 21.19,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 2584,
 			"color": {
@@ -397,6 +410,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 21.44,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 2604,
 			"color": {
@@ -417,6 +431,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 86.17,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 9567,
 			"color": {
@@ -437,6 +452,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 13.62,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 2678,
 			"color": {
@@ -457,6 +473,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 233.62,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 18078,
 			"color": {
@@ -477,6 +494,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 206.81,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 14391,
 			"color": {
@@ -497,6 +515,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 56.06,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 7508,
 			"color": {
@@ -517,6 +536,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 6.95,
+			"support_grams": 0.35,
 			"support_used": true,
 			"print_seconds": 1788,
 			"color": {
@@ -537,6 +557,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 10.63,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 1458,
 			"color": {
@@ -558,6 +579,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 48.52,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 6010,
 			"color": {
@@ -579,6 +601,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 50.62,
+			"support_grams": 10.43,
 			"support_used": true,
 			"print_seconds": 8873,
 			"color": {
@@ -600,6 +623,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 12.45,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 2264,
 			"color": {
@@ -620,6 +644,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 26.6,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 3123,
 			"color": {
@@ -640,6 +665,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 15.27,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 2264,
 			"color": {
@@ -660,6 +686,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 5.57,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 1787,
 			"color": {
@@ -680,6 +707,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 13.38,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 2691,
 			"color": {
@@ -700,6 +728,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 9.0,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 1920,
 			"color": {
@@ -720,6 +749,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 8.98,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 1993,
 			"color": {
@@ -740,6 +770,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 45.02,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 5384,
 			"color": {
@@ -760,6 +791,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 15.89,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 2797,
 			"color": {
@@ -780,6 +812,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 15.88,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 2841,
 			"color": {
@@ -800,6 +833,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 22.18,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 2360,
 			"color": {
@@ -820,6 +854,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 153.65,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 11486,
 			"color": {
@@ -828,26 +863,6 @@
 			"optional": false,
 			"stl": "/stl/interface-upper-fixed-section.stl",
 			"render": "/renders/interface-upper-fixed-section.png"
-		},
-		{
-			"id": "classification-cap-small",
-			"name": "Classification cap (small)",
-			"quantities": {
-				"classification-channel": 1
-			},
-			"assembly": "classification-chamber",
-			"description": "Smaller classification cap (not the big dome). White.",
-			"version": "1",
-			"date_added": "2026-06-27",
-			"grams": 106.11,
-			"support_used": false,
-			"print_seconds": 10305,
-			"color": {
-				"fixed": "ivory-white"
-			},
-			"optional": false,
-			"stl": "/stl/classification-cap-small.stl",
-			"render": "/renders/classification-cap-small.png"
 		},
 		{
 			"id": "rotor-finned",
@@ -860,6 +875,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 178.76,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 12914,
 			"color": {
@@ -880,6 +896,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 4.61,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 1437,
 			"color": {
@@ -900,6 +917,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 3.57,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 1448,
 			"color": {
@@ -920,6 +938,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 20.99,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 3689,
 			"color": {
@@ -940,6 +959,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 27.41,
+			"support_grams": 3.01,
 			"support_used": true,
 			"print_seconds": 5794,
 			"color": {
@@ -960,6 +980,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 27.5,
+			"support_grams": 3.33,
 			"support_used": true,
 			"print_seconds": 5811,
 			"color": {
@@ -980,6 +1001,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 20.13,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 2947,
 			"color": {
@@ -1000,6 +1022,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 7.95,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 2231,
 			"color": {
@@ -1020,6 +1043,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 7.98,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 2249,
 			"color": {
@@ -1040,6 +1064,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 4.85,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 2035,
 			"color": {
@@ -1060,6 +1085,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 5.25,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 2095,
 			"color": {
@@ -1080,6 +1106,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 13.96,
+			"support_grams": 5.52,
 			"support_used": true,
 			"print_seconds": 2724,
 			"color": {
@@ -1100,6 +1127,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 9.58,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 2330,
 			"color": {
@@ -1120,6 +1148,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 6.0,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 2182,
 			"color": {
@@ -1140,6 +1169,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 17.31,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 2881,
 			"color": {
@@ -1160,6 +1190,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 21.11,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 5597,
 			"color": {
@@ -1180,6 +1211,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 8.45,
+			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 1891,
 			"color": {
@@ -1200,6 +1232,7 @@
 			"version": "1",
 			"date_added": "2026-06-27",
 			"grams": 46.85,
+			"support_grams": 3.54,
 			"support_used": true,
 			"print_seconds": 5504,
 			"color": {

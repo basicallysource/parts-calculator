@@ -25,7 +25,8 @@ export type Part = {
 	description: string;
 	version: string;
 	date_added: string;
-	grams: number;
+	grams: number; // total incl. any support
+	support_grams: number; // the support portion of `grams`
 	support_used: boolean;
 	print_seconds: number;
 	color: ColorSpec;
@@ -133,12 +134,19 @@ export type BuyLine = {
 	cost: number;
 };
 
+/** Grams counted for a part: total when its support is included, else object-only. */
+export function effectiveGrams(part: Part, inclSupport: boolean): number {
+	return inclSupport ? part.grams : part.grams - part.support_grams;
+}
+
 /** Group the SELECTED parts' filament by resolved color, with bulk-tier pricing.
+ *  `inclSupport(id)` decides whether a part's support material counts.
  *  `surplusPct` adds a buffer (incidental parts / failed prints) before spool counts. */
 export function buyList(
 	layers: number,
 	roleColors: Record<string, string>,
 	isSelected: (id: string) => boolean,
+	inclSupport: (id: string) => boolean,
 	surplusPct = 0
 ): {
 	lines: BuyLine[];
@@ -150,11 +158,12 @@ export function buyList(
 	const byColor = new Map<string, number>();
 	for (const part of PARTS) {
 		if (!isSelected(part.id)) continue;
+		const each = effectiveGrams(part, inclSupport(part.id));
 		for (const [cat, qty] of Object.entries(part.quantities)) {
 			const mult = categoryMultiplier(cat, layers);
 			for (const u of colorUnits(part, qty, roleColors)) {
 				const key = u.colorId ?? '__any__';
-				byColor.set(key, (byColor.get(key) ?? 0) + part.grams * u.count * mult);
+				byColor.set(key, (byColor.get(key) ?? 0) + each * u.count * mult);
 			}
 		}
 	}

@@ -177,8 +177,19 @@ def slice_part(stl_abs, profiles, support=False, force=False):
     key = hashlib.sha1(stl_bytes + sig.encode()).hexdigest()[:16]
     cdir = os.path.join(CACHE, key)
     info_path = os.path.join(cdir, "info.json")
-    if os.path.exists(info_path) and not force:
-        return json.load(open(info_path))
+    threemf = os.path.join(cdir, "out.3mf")
+    fail_path = os.path.join(cdir, "failed")
+    if not force:
+        if os.path.exists(info_path):
+            info = json.load(open(info_path))
+            if "support_grams" in info:        # re-parse if schema changed
+                return info
+        if os.path.exists(threemf):            # re-parse cached slice, no re-slice
+            info = parse_3mf(threemf)
+            json.dump(info, open(info_path, "w"), indent=1)
+            return info
+        if os.path.exists(fail_path):
+            return None                        # cached failure
 
     os.makedirs(cdir, exist_ok=True)
     prepared = os.path.join(cdir, "prepared.stl")
@@ -195,9 +206,9 @@ def slice_part(stl_abs, profiles, support=False, force=False):
            "--export-3mf", "out.3mf", "--outputdir", cdir, prepared]
     with open(os.path.join(cdir, "slice.log"), "w") as log:
         rc = subprocess.run(cmd, stdout=log, stderr=subprocess.STDOUT).returncode
-    threemf = os.path.join(cdir, "out.3mf")
     if rc != 0 or not os.path.exists(threemf):
-        return None   # caller decides whether to fall back / report
+        open(fail_path, "w").close()   # cache the failure
+        return None                    # caller decides whether to fall back / report
 
     info = parse_3mf(threemf)
     json.dump(info, open(info_path, "w"), indent=1)
@@ -205,9 +216,13 @@ def slice_part(stl_abs, profiles, support=False, force=False):
 
 
 def parse_3mf(threemf):
+    """Returns total grams, the support portion (from per-feature G-code), cm3, time."""
     grams = cm3 = 0.0
     support_used = False
     seconds = 0
+    e_total = e_support = 0.0
+    cur_support = False
+    relative = True
     with zipfile.ZipFile(threemf) as z:
         si = z.read("Metadata/slice_info.config").decode("utf-8", "ignore")
         for line in si.splitlines():
@@ -218,17 +233,34 @@ def parse_3mf(threemf):
         gname = next((n for n in z.namelist() if n.endswith(".gcode")), None)
         if gname:
             with z.open(gname) as gf:
-                for _ in range(600):
-                    raw = gf.readline()
-                    if not raw:
-                        break
+                for raw in gf:
                     t = raw.decode("utf-8", "ignore")
-                    if "filament used [cm3]" in t:
+                    if t.startswith("; FEATURE:"):
+                        cur_support = "support" in t.lower()
+                        continue
+                    if t.startswith("M82"):
+                        relative = False
+                    elif t.startswith("M83"):
+                        relative = True
+                    elif t.startswith("filament used [cm3]") or "filament used [cm3]" in t:
                         cm3 = float(t.split("=")[1])
                     elif "total estimated time:" in t:
                         seconds = _parse_time(t)
-    return {"grams": round(grams, 2), "cm3": round(cm3, 2),
-            "support_used": support_used, "print_seconds": seconds}
+                    elif t[:2] in ("G1", "G0"):
+                        m = _ERE.search(t)
+                        if m and relative:
+                            e = float(m.group(1))
+                            if e > 0:
+                                e_total += e
+                                if cur_support:
+                                    e_support += e
+    support_grams = round(grams * e_support / e_total, 2) if e_total else 0.0
+    return {"grams": round(grams, 2), "support_grams": support_grams,
+            "cm3": round(cm3, 2), "support_used": support_used, "print_seconds": seconds}
+
+
+import re as _re
+_ERE = _re.compile(r" E(-?[0-9.]+)")
 
 
 def _parse_time(t):
@@ -360,6 +392,7 @@ def main():
             "version": p.get("version", ""),
             "date_added": p.get("date_added", ""),
             "grams": info["grams"],
+            "support_grams": info.get("support_grams", 0.0),
             "support_used": info["support_used"],
             "print_seconds": info["print_seconds"],
             "color": p.get("color", {"any": True}),
