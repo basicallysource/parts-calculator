@@ -315,7 +315,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						{#each buy.lines as line (line.label)}
+						{#each buy.lines as line (line.colorId ?? '__any__')}
 							<tr class="border-t border-border">
 								<td class="px-3 py-2">
 									<span class="flex items-center gap-2">

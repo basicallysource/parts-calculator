@@ -1372,7 +1372,7 @@
 			"support_used": false,
 			"print_seconds": 10305,
 			"color": {
-				"fixed": "white"
+				"fixed": "ivory-white"
 			},
 			"optional": false,
 			"stl": "/stl/camera-led-insert.stl",

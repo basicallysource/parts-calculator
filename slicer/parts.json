@@ -1138,7 +1138,7 @@
       "assembly": "classification-chamber",
       "stl": "parts/classification-channel/camera-led-insert.stl",
       "color": {
-        "fixed": "white"
+        "fixed": "ivory-white"
       },
       "optional": false
     },
