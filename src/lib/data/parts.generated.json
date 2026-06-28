@@ -85,6 +85,11 @@
 			"id": "cable-clamp",
 			"name": "Cable clamp",
 			"description": "Inner + outer ribbon cable clamp; the two halves go together. White."
+		},
+		{
+			"id": "classification-chamber",
+			"name": "Classification chamber",
+			"description": "The classification chamber: dome, cap, and finned rotor (lighting parts white)."
 		}
 	],
 	"parts": [
@@ -252,7 +257,7 @@
 			"quantities": {
 				"classification-channel": 1
 			},
-			"assembly": null,
+			"assembly": "classification-chamber",
 			"description": "Large classification-channel dome (~full bed). White.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -828,6 +833,106 @@
 			"optional": false,
 			"stl": "/stl/interface-upper-fixed-section.stl",
 			"render": "/renders/interface-upper-fixed-section.png"
+		},
+		{
+			"id": "classification-cap-small",
+			"name": "Classification cap (small)",
+			"quantities": {
+				"classification-channel": 1
+			},
+			"assembly": "classification-chamber",
+			"description": "Smaller classification cap (not the big dome). White.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 309.69,
+			"support_used": true,
+			"print_seconds": 26262,
+			"color": {
+				"fixed": "white"
+			},
+			"optional": false,
+			"stl": "/stl/classification-cap-small.stl",
+			"render": "/renders/classification-cap-small.png"
+		},
+		{
+			"id": "rotor-finned",
+			"name": "Rotor (finned)",
+			"quantities": {
+				"classification-channel": 1
+			},
+			"assembly": "classification-chamber",
+			"description": "Finned rotor on the classification chamber. White. 1 needed.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 170.21,
+			"support_used": true,
+			"print_seconds": 13199,
+			"color": {
+				"fixed": "white"
+			},
+			"optional": false,
+			"stl": "/stl/rotor-finned.stl",
+			"render": "/renders/rotor-finned.png"
+		},
+		{
+			"id": "idler-gear",
+			"name": "Idler gear (24T)",
+			"quantities": {
+				"feeder": 4
+			},
+			"assembly": null,
+			"description": "C-channel idler gear, 24 teeth. One per C-channel (4 total).",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 5.01,
+			"support_used": true,
+			"print_seconds": 1586,
+			"color": {
+				"role": "feeder"
+			},
+			"optional": false,
+			"stl": "/stl/idler-gear.stl",
+			"render": "/renders/idler-gear.png"
+		},
+		{
+			"id": "input-gear",
+			"name": "Input gear (12T, screw)",
+			"quantities": {
+				"feeder": 4
+			},
+			"assembly": null,
+			"description": "C-channel input/drive gear (12T) with vertical screw hole. One per C-channel (4 total).",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 4.12,
+			"support_used": true,
+			"print_seconds": 1624,
+			"color": {
+				"role": "feeder"
+			},
+			"optional": false,
+			"stl": "/stl/input-gear.stl",
+			"render": "/renders/input-gear.png"
+		},
+		{
+			"id": "output-guide",
+			"name": "Output guide",
+			"quantities": {
+				"feeder": 2
+			},
+			"assembly": null,
+			"description": "Output guide. 2 needed. Black.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 20.79,
+			"support_used": true,
+			"print_seconds": 3917,
+			"color": {
+				"role": "feeder"
+			},
+			"optional": false,
+			"stl": "/stl/output-guide.stl",
+			"render": "/renders/output-guide.png"
 		}
 	]
 }
