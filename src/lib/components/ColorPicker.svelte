@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { LEGO_COLORS, getLegoColor } from '$lib/lego-colors';
+	import { BAMBU_COLORS, getBambuColor } from '$lib/bambu-colors';
 
 	let {
 		value = $bindable(),
@@ -7,7 +7,7 @@
 	}: { value: string; label: string } = $props();
 
 	let open = $state(false);
-	const current = $derived(getLegoColor(value));
+	const current = $derived(getBambuColor(value));
 
 	function pick(id: string) {
 		value = id;
@@ -37,7 +37,7 @@
 		<div
 			class="setup-panel absolute z-20 mt-1 grid max-h-72 w-72 grid-cols-8 gap-1 overflow-y-auto p-2"
 		>
-			{#each LEGO_COLORS as c (c.id)}
+			{#each BAMBU_COLORS as c (c.id)}
 				<button
 					type="button"
 					title={c.name}

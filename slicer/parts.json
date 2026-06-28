@@ -56,12 +56,12 @@
     {
       "id": "chute-core",
       "name": "Chute core",
-      "default": "white"
+      "default": "ivory-white"
     },
     {
       "id": "funnel",
       "name": "Funnels",
-      "default": "light-bluish-gray"
+      "default": "ash-gray"
     }
   ],
   "parts": [
@@ -80,7 +80,7 @@
       "color": {
         "split": [
           {
-            "color": "light-bluish-gray",
+            "color": "ash-gray",
             "qty": 1
           },
           {
@@ -106,31 +106,14 @@
       "color": {
         "split": [
           {
-            "color": "white",
+            "color": "ivory-white",
             "qty": 2
           },
           {
-            "color": "light-bluish-gray",
+            "color": "ash-gray",
             "qty": 1
           }
         ]
-      },
-      "optional": false
-    },
-    {
-      "id": "c-channel-leg",
-      "name": "C-channel leg",
-      "description": "C-channel leg. 9 in the feeder.",
-      "internal_notes": "9 total. Feeder/C-channel color.",
-      "version": "1",
-      "date_added": "2026-06-27",
-      "quantities": {
-        "feeder": 9
-      },
-      "assembly": null,
-      "stl": "parts/feeder/c-channel-leg.stl",
-      "color": {
-        "role": "feeder"
       },
       "optional": false
     },
@@ -181,7 +164,7 @@
       "assembly": null,
       "stl": "parts/feeder/light-post-cap.stl",
       "color": {
-        "fixed": "white"
+        "fixed": "ivory-white"
       },
       "optional": false
     },
@@ -215,7 +198,7 @@
       "assembly": "classification-chamber",
       "stl": "parts/classification-channel/classification-dome.stl",
       "color": {
-        "fixed": "white"
+        "fixed": "ivory-white"
       },
       "optional": false
     },
@@ -308,7 +291,7 @@
       "id": "bin-retainer-left",
       "name": "Bin retainer (left)",
       "description": "Bin retainer, left. Optional.",
-      "internal_notes": "Optional. QUANTITY UNCONFIRMED (assumed 1/layer).",
+      "internal_notes": "Optional. QUANTITY UNCONFIRMED (assumed 1/layer). Color: frame.",
       "version": "1",
       "date_added": "2026-06-27",
       "quantities": {
@@ -317,7 +300,7 @@
       "assembly": null,
       "stl": "parts/bins/bin-retainer-left.stl",
       "color": {
-        "any": true
+        "role": "frame"
       },
       "optional": true
     },
@@ -325,7 +308,7 @@
       "id": "bin-retainer-right",
       "name": "Bin retainer (right)",
       "description": "Bin retainer, right. Optional.",
-      "internal_notes": "Optional. QUANTITY UNCONFIRMED (assumed 1/layer).",
+      "internal_notes": "Optional. QUANTITY UNCONFIRMED (assumed 1/layer). Color: frame.",
       "version": "1",
       "date_added": "2026-06-27",
       "quantities": {
@@ -334,7 +317,7 @@
       "assembly": null,
       "stl": "parts/bins/bin-retainer-right.stl",
       "color": {
-        "any": true
+        "role": "frame"
       },
       "optional": true
     },
@@ -385,7 +368,7 @@
       "assembly": null,
       "stl": "parts/lazy-susan/ls-mount-to-chute.stl",
       "color": {
-        "fixed": "white"
+        "fixed": "ivory-white"
       },
       "optional": false
     },
@@ -558,7 +541,7 @@
       "assembly": "cable-clamp",
       "stl": "parts/interface/cable-clamp-inner.stl",
       "color": {
-        "fixed": "white"
+        "fixed": "ivory-white"
       },
       "optional": false
     },
@@ -575,7 +558,7 @@
       "assembly": "cable-clamp",
       "stl": "parts/interface/cable-clamp-outer.stl",
       "color": {
-        "fixed": "white"
+        "fixed": "ivory-white"
       },
       "optional": false
     },
@@ -711,7 +694,7 @@
       "assembly": "classification-chamber",
       "stl": "parts/classification-channel/classification-cap-small.stl",
       "color": {
-        "fixed": "white"
+        "fixed": "ivory-white"
       },
       "optional": false
     },
@@ -728,7 +711,7 @@
       "assembly": "classification-chamber",
       "stl": "parts/classification-channel/rotor-finned.stl",
       "color": {
-        "fixed": "white"
+        "fixed": "ivory-white"
       },
       "optional": false
     },
@@ -984,6 +967,40 @@
       "stl": "parts/chute/servo-bracket-housing.stl",
       "color": {
         "role": "chute-core"
+      },
+      "optional": false
+    },
+    {
+      "id": "leg",
+      "name": "Leg",
+      "description": "C-channel leg. 9 in the feeder.",
+      "internal_notes": "9 per feeder. Plain 'Leg.stl' (135mm) - replaces the earlier mismapped 'Classification Leg'. Feeder color.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "feeder": 9
+      },
+      "assembly": null,
+      "stl": "parts/feeder/leg.stl",
+      "color": {
+        "role": "feeder"
+      },
+      "optional": false
+    },
+    {
+      "id": "foot",
+      "name": "Foot",
+      "description": "C-channel foot. 9 in the feeder.",
+      "internal_notes": "9 per feeder. 'Foot.stl'. Feeder color.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "feeder": 9
+      },
+      "assembly": null,
+      "stl": "parts/feeder/foot.stl",
+      "color": {
+        "role": "feeder"
       },
       "optional": false
     }

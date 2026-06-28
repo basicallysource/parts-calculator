@@ -4,7 +4,7 @@
  * by color. No estimation happens here.
  */
 import raw from '$lib/data/parts.generated.json';
-import { getLegoColor, type LegoColor } from '$lib/lego-colors';
+import { getBambuColor, type BambuColor } from '$lib/bambu-colors';
 
 export type Section = { id: string; name: string; scales_with_layers: boolean };
 export type ColorRoleDef = { id: string; name: string; default: string };
@@ -105,9 +105,9 @@ export function partSwatches(
 	part: Part,
 	sectionId: string,
 	roleColors: Record<string, string>
-): { color: LegoColor | null; qty: number }[] {
+): { color: BambuColor | null; qty: number }[] {
 	return colorUnits(part, sectionQty(part, sectionId), roleColors).map((u) => ({
-		color: u.colorId ? getLegoColor(u.colorId) : null,
+		color: u.colorId ? getBambuColor(u.colorId) : null,
 		qty: u.count
 	}));
 }
@@ -126,7 +126,7 @@ export function pricePerSpool(totalSpools: number): number {
 
 export type BuyLine = {
 	colorId: string | null;
-	color: LegoColor | null;
+	color: BambuColor | null;
 	label: string;
 	grams: number;
 	spools: number;
@@ -166,7 +166,7 @@ export function buyList(
 	const lines: BuyLine[] = rows
 		.map((e) => {
 			const colorId = e.key === '__any__' ? null : e.key;
-			const color = colorId ? getLegoColor(colorId) : null;
+			const color = colorId ? getBambuColor(colorId) : null;
 			return {
 				colorId,
 				color,
