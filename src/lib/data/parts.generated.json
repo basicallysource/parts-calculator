@@ -105,6 +105,11 @@
 			"id": "servo-bracket",
 			"name": "Servo bracket (MG995)",
 			"description": "MG995 servo bracket: lower arm, side arm, cover, housing."
+		},
+		{
+			"id": "camera-mount",
+			"name": "Camera mount",
+			"description": "Camera mount for the C-channels. 2 per machine (each: parts 6/37/37b + 2\u00d7 rod-to-C-channel mount)."
 		}
 	],
 	"parts": [
@@ -1241,6 +1246,132 @@
 			"optional": false,
 			"stl": "/stl/chute-door.stl",
 			"render": "/renders/chute-door.png"
+		},
+		{
+			"id": "leg-extension",
+			"name": "Leg extension",
+			"quantities": {
+				"feeder": 9
+			},
+			"assembly": null,
+			"description": "C-channel leg extension. 9 in the feeder.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 15.47,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 3638,
+			"color": {
+				"role": "feeder"
+			},
+			"optional": false,
+			"stl": "/stl/leg-extension.stl",
+			"render": "/renders/leg-extension.png"
+		},
+		{
+			"id": "camera-mount-part-6",
+			"name": "Camera mount \u2014 part 6",
+			"quantities": {
+				"feeder": 2
+			},
+			"assembly": "camera-mount",
+			"description": "Camera mount part 6. 2 per machine.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 4.28,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 1121,
+			"color": {
+				"role": "feeder"
+			},
+			"optional": false,
+			"stl": "/stl/camera-mount-part-6.stl",
+			"render": "/renders/camera-mount-part-6.png"
+		},
+		{
+			"id": "camera-mount-part-37",
+			"name": "Camera mount \u2014 part 37",
+			"quantities": {
+				"feeder": 2
+			},
+			"assembly": "camera-mount",
+			"description": "Camera mount part 37. 2 per machine.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 19.14,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 3504,
+			"color": {
+				"role": "feeder"
+			},
+			"optional": false,
+			"stl": "/stl/camera-mount-part-37.stl",
+			"render": "/renders/camera-mount-part-37.png"
+		},
+		{
+			"id": "camera-mount-part-37b",
+			"name": "Camera mount \u2014 part 37 (b)",
+			"quantities": {
+				"feeder": 2
+			},
+			"assembly": "camera-mount",
+			"description": "Camera mount part 37 (second). 2 per machine.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 18.34,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 3321,
+			"color": {
+				"role": "feeder"
+			},
+			"optional": false,
+			"stl": "/stl/camera-mount-part-37b.stl",
+			"render": "/renders/camera-mount-part-37b.png"
+		},
+		{
+			"id": "camera-mount-rod-mount",
+			"name": "Camera mount \u2014 rod-to-C-channel mount",
+			"quantities": {
+				"feeder": 4
+			},
+			"assembly": "camera-mount",
+			"description": "Rod-to-C-channel mount (Part 33). 2 per camera mount, 4 total.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 9.41,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 3255,
+			"color": {
+				"role": "feeder"
+			},
+			"optional": false,
+			"stl": "/stl/camera-mount-rod-mount.stl",
+			"render": "/renders/camera-mount-rod-mount.png"
+		},
+		{
+			"id": "camera-led-insert",
+			"name": "Camera & LED insert",
+			"quantities": {
+				"classification-channel": 1
+			},
+			"assembly": "classification-chamber",
+			"description": "C-channel camera & LED light insert. White.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 106.11,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 10305,
+			"color": {
+				"fixed": "white"
+			},
+			"optional": false,
+			"stl": "/stl/camera-led-insert.stl",
+			"render": "/renders/camera-led-insert.png"
 		}
 	]
 }
