@@ -212,7 +212,7 @@
       "quantities": {
         "classification-channel": 1
       },
-      "assembly": null,
+      "assembly": "classification-chamber",
       "stl": "parts/classification-channel/classification-dome.stl",
       "color": {
         "fixed": "white"
@@ -697,6 +697,91 @@
         "role": "frame"
       },
       "optional": false
+    },
+    {
+      "id": "classification-cap-small",
+      "name": "Classification cap (small)",
+      "description": "Smaller classification cap (not the big dome). White.",
+      "internal_notes": "From 01_c_channel zip 'Classification Cap.stl' (820KB; the big dome is 'Classification Cap (2)'). White. Qty ASSUMED 1.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "classification-channel": 1
+      },
+      "assembly": "classification-chamber",
+      "stl": "parts/classification-channel/classification-cap-small.stl",
+      "color": {
+        "fixed": "white"
+      },
+      "optional": false
+    },
+    {
+      "id": "rotor-finned",
+      "name": "Rotor (finned)",
+      "description": "Finned rotor on the classification chamber. White. 1 needed.",
+      "internal_notes": "File '01_c_channel - Rotor - with fins.stl'. White. 1x. On the classification chamber.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "classification-channel": 1
+      },
+      "assembly": "classification-chamber",
+      "stl": "parts/classification-channel/rotor-finned.stl",
+      "color": {
+        "fixed": "white"
+      },
+      "optional": false
+    },
+    {
+      "id": "idler-gear",
+      "name": "Idler gear (24T)",
+      "description": "C-channel idler gear, 24 teeth. One per C-channel (4 total).",
+      "internal_notes": "Idler gear (24 teeth). 1 per C-channel => 4. Feeder color.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "feeder": 4
+      },
+      "assembly": null,
+      "stl": "parts/feeder/idler-gear.stl",
+      "color": {
+        "role": "feeder"
+      },
+      "optional": false
+    },
+    {
+      "id": "input-gear",
+      "name": "Input gear (12T, screw)",
+      "description": "C-channel input/drive gear (12T) with vertical screw hole. One per C-channel (4 total).",
+      "internal_notes": "File 'Spur gear (12 teeth) - vertical screw' - the input/drive gear variant WITH the screw hole. 1 per C-channel => 4. Feeder color.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "feeder": 4
+      },
+      "assembly": null,
+      "stl": "parts/feeder/input-gear.stl",
+      "color": {
+        "role": "feeder"
+      },
+      "optional": false
+    },
+    {
+      "id": "output-guide",
+      "name": "Output guide",
+      "description": "Output guide. 2 needed. Black.",
+      "internal_notes": "Plain 'Output Guide.stl'. 2 total. Black (feeder color default).",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "feeder": 2
+      },
+      "assembly": null,
+      "stl": "parts/feeder/output-guide.stl",
+      "color": {
+        "role": "feeder"
+      },
+      "optional": false
     }
   ],
   "assemblies": [
@@ -709,6 +794,11 @@
       "id": "cable-clamp",
       "name": "Cable clamp",
       "description": "Inner + outer ribbon cable clamp; the two halves go together. White."
+    },
+    {
+      "id": "classification-chamber",
+      "name": "Classification chamber",
+      "description": "The classification chamber: dome, cap, and finned rotor (lighting parts white)."
     }
   ]
 }
