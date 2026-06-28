@@ -90,6 +90,21 @@
 			"id": "classification-chamber",
 			"name": "Classification chamber",
 			"description": "The classification chamber: dome, cap, and finned rotor (lighting parts white)."
+		},
+		{
+			"id": "chute-bearing",
+			"name": "Chute bearing assembly",
+			"description": "Left + right bearing holders and the race between them."
+		},
+		{
+			"id": "servo-adapter",
+			"name": "Servo adapter (MG995)",
+			"description": "MG995 servo adapter: servo side + flap side."
+		},
+		{
+			"id": "servo-bracket",
+			"name": "Servo bracket (MG995)",
+			"description": "MG995 servo bracket: lower arm, side arm, cover, housing."
 		}
 	],
 	"parts": [
@@ -933,6 +948,246 @@
 			"optional": false,
 			"stl": "/stl/output-guide.stl",
 			"render": "/renders/output-guide.png"
+		},
+		{
+			"id": "funnel-bracket-left",
+			"name": "Funnel bracket (left)",
+			"quantities": {
+				"chute": 1
+			},
+			"assembly": null,
+			"description": "Funnel bracket, left. 2 funnel brackets total.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 26.17,
+			"support_used": true,
+			"print_seconds": 5797,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/funnel-bracket-left.stl",
+			"render": "/renders/funnel-bracket-left.png"
+		},
+		{
+			"id": "funnel-bracket-right",
+			"name": "Funnel bracket (right)",
+			"quantities": {
+				"chute": 1
+			},
+			"assembly": null,
+			"description": "Funnel bracket, right. 2 funnel brackets total.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 26.25,
+			"support_used": true,
+			"print_seconds": 5814,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/funnel-bracket-right.stl",
+			"render": "/renders/funnel-bracket-right.png"
+		},
+		{
+			"id": "chute-door",
+			"name": "Chute door",
+			"quantities": {
+				"chute": 1
+			},
+			"assembly": null,
+			"description": "Chute door module. 1 needed.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 21.93,
+			"support_used": true,
+			"print_seconds": 3413,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/chute-door.stl",
+			"render": "/renders/chute-door.png"
+		},
+		{
+			"id": "bearing-holder-left",
+			"name": "Bearing holder (left)",
+			"quantities": {
+				"chute": 1
+			},
+			"assembly": "chute-bearing",
+			"description": "Bearing holder, left.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 8.57,
+			"support_used": true,
+			"print_seconds": 2504,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/bearing-holder-left.stl",
+			"render": "/renders/bearing-holder-left.png"
+		},
+		{
+			"id": "bearing-holder-right",
+			"name": "Bearing holder (right)",
+			"quantities": {
+				"chute": 1
+			},
+			"assembly": "chute-bearing",
+			"description": "Bearing holder, right.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 8.63,
+			"support_used": true,
+			"print_seconds": 2537,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/bearing-holder-right.stl",
+			"render": "/renders/bearing-holder-right.png"
+		},
+		{
+			"id": "bearing-race",
+			"name": "Bearing race (between holders)",
+			"quantities": {
+				"chute": 1
+			},
+			"assembly": "chute-bearing",
+			"description": "Piece between the bearing holders (best name-match: bearing_race). CONFIRM.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 60.51,
+			"support_used": true,
+			"print_seconds": 5088,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/bearing-race.stl",
+			"render": "/renders/bearing-race.png"
+		},
+		{
+			"id": "servo-adapter-servo-side",
+			"name": "Servo adapter \u2014 servo side",
+			"quantities": {
+				"chute": 1
+			},
+			"assembly": "servo-adapter",
+			"description": "MG995 servo adapter, servo side.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 4.63,
+			"support_used": true,
+			"print_seconds": 2035,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/servo-adapter-servo-side.stl",
+			"render": "/renders/servo-adapter-servo-side.png"
+		},
+		{
+			"id": "servo-adapter-flap-side",
+			"name": "Servo adapter \u2014 flap side",
+			"quantities": {
+				"chute": 1
+			},
+			"assembly": "servo-adapter",
+			"description": "MG995 servo adapter, flap side.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 5.53,
+			"support_used": true,
+			"print_seconds": 2283,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/servo-adapter-flap-side.stl",
+			"render": "/renders/servo-adapter-flap-side.png"
+		},
+		{
+			"id": "servo-bracket-lower-arm",
+			"name": "Servo bracket \u2014 lower arm",
+			"quantities": {
+				"chute": 1
+			},
+			"assembly": "servo-bracket",
+			"description": "MG995 servo bracket, lower arm.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 13.33,
+			"support_used": true,
+			"print_seconds": 2725,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/servo-bracket-lower-arm.stl",
+			"render": "/renders/servo-bracket-lower-arm.png"
+		},
+		{
+			"id": "servo-bracket-side-arm",
+			"name": "Servo bracket \u2014 side arm",
+			"quantities": {
+				"chute": 1
+			},
+			"assembly": "servo-bracket",
+			"description": "MG995 servo bracket, side arm.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 9.11,
+			"support_used": true,
+			"print_seconds": 2332,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/servo-bracket-side-arm.stl",
+			"render": "/renders/servo-bracket-side-arm.png"
+		},
+		{
+			"id": "servo-bracket-cover",
+			"name": "Servo bracket \u2014 cover",
+			"quantities": {
+				"chute": 1
+			},
+			"assembly": "servo-bracket",
+			"description": "MG995 servo bracket, cover.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 10.04,
+			"support_used": true,
+			"print_seconds": 2734,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/servo-bracket-cover.stl",
+			"render": "/renders/servo-bracket-cover.png"
+		},
+		{
+			"id": "servo-bracket-housing",
+			"name": "Servo bracket \u2014 housing",
+			"quantities": {
+				"chute": 1
+			},
+			"assembly": "servo-bracket",
+			"description": "MG995 servo bracket, housing.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 25.21,
+			"support_used": true,
+			"print_seconds": 3802,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/servo-bracket-housing.stl",
+			"render": "/renders/servo-bracket-housing.png"
 		}
 	]
 }

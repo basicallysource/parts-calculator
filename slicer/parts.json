@@ -782,6 +782,210 @@
         "role": "feeder"
       },
       "optional": false
+    },
+    {
+      "id": "funnel-bracket-left",
+      "name": "Funnel bracket (left)",
+      "description": "Funnel bracket, left. 2 funnel brackets total.",
+      "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "chute": 1
+      },
+      "assembly": null,
+      "stl": "parts/chute/funnel-bracket-left.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "funnel-bracket-right",
+      "name": "Funnel bracket (right)",
+      "description": "Funnel bracket, right. 2 funnel brackets total.",
+      "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "chute": 1
+      },
+      "assembly": null,
+      "stl": "parts/chute/funnel-bracket-right.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "chute-door",
+      "name": "Chute door",
+      "description": "Chute door module. 1 needed.",
+      "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "chute": 1
+      },
+      "assembly": null,
+      "stl": "parts/chute/chute-door.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "bearing-holder-left",
+      "name": "Bearing holder (left)",
+      "description": "Bearing holder, left.",
+      "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "chute": 1
+      },
+      "assembly": "chute-bearing",
+      "stl": "parts/chute/bearing-holder-left.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "bearing-holder-right",
+      "name": "Bearing holder (right)",
+      "description": "Bearing holder, right.",
+      "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "chute": 1
+      },
+      "assembly": "chute-bearing",
+      "stl": "parts/chute/bearing-holder-right.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "bearing-race",
+      "name": "Bearing race (between holders)",
+      "description": "Piece between the bearing holders (best name-match: bearing_race). CONFIRM.",
+      "internal_notes": "Guessed as the 'piece between the bearing holders' (file bearing_race). Alt candidate: left_axle. COLOR UNSPECIFIED - defaulted frame.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "chute": 1
+      },
+      "assembly": "chute-bearing",
+      "stl": "parts/chute/bearing-race.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "servo-adapter-servo-side",
+      "name": "Servo adapter \u2014 servo side",
+      "description": "MG995 servo adapter, servo side.",
+      "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "chute": 1
+      },
+      "assembly": "servo-adapter",
+      "stl": "parts/chute/servo-adapter-servo-side.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "servo-adapter-flap-side",
+      "name": "Servo adapter \u2014 flap side",
+      "description": "MG995 servo adapter, flap side.",
+      "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "chute": 1
+      },
+      "assembly": "servo-adapter",
+      "stl": "parts/chute/servo-adapter-flap-side.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "servo-bracket-lower-arm",
+      "name": "Servo bracket \u2014 lower arm",
+      "description": "MG995 servo bracket, lower arm.",
+      "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "chute": 1
+      },
+      "assembly": "servo-bracket",
+      "stl": "parts/chute/servo-bracket-lower-arm.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "servo-bracket-side-arm",
+      "name": "Servo bracket \u2014 side arm",
+      "description": "MG995 servo bracket, side arm.",
+      "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "chute": 1
+      },
+      "assembly": "servo-bracket",
+      "stl": "parts/chute/servo-bracket-side-arm.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "servo-bracket-cover",
+      "name": "Servo bracket \u2014 cover",
+      "description": "MG995 servo bracket, cover.",
+      "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "chute": 1
+      },
+      "assembly": "servo-bracket",
+      "stl": "parts/chute/servo-bracket-cover.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "servo-bracket-housing",
+      "name": "Servo bracket \u2014 housing",
+      "description": "MG995 servo bracket, housing.",
+      "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "chute": 1
+      },
+      "assembly": "servo-bracket",
+      "stl": "parts/chute/servo-bracket-housing.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
     }
   ],
   "assemblies": [
@@ -799,6 +1003,21 @@
       "id": "classification-chamber",
       "name": "Classification chamber",
       "description": "The classification chamber: dome, cap, and finned rotor (lighting parts white)."
+    },
+    {
+      "id": "chute-bearing",
+      "name": "Chute bearing assembly",
+      "description": "Left + right bearing holders and the race between them."
+    },
+    {
+      "id": "servo-adapter",
+      "name": "Servo adapter (MG995)",
+      "description": "MG995 servo adapter: servo side + flap side."
+    },
+    {
+      "id": "servo-bracket",
+      "name": "Servo bracket (MG995)",
+      "description": "MG995 servo bracket: lower arm, side arm, cover, housing."
     }
   ]
 }
