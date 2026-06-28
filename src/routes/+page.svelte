@@ -203,6 +203,7 @@
 				<span class="flex flex-wrap items-center gap-2 font-medium text-text">
 					{p.name}
 					{#if p.optional}<span class="border border-warning/50 px-1 text-xs text-warning-dark">optional</span>{/if}
+					{#if p.support_used}<span class="border border-info/50 px-1 text-xs text-info" title="Sliced with support material — included in this part's grams">supports</span>{/if}
 				</span>
 				<span class="flex flex-wrap items-center gap-1.5 text-xs text-text-muted">
 					{#each sw as s}
@@ -211,7 +212,7 @@
 							{#if sw.length > 1}{s.qty}× {/if}{s.color?.name ?? 'any'}
 						</span>
 					{/each}
-					{#if p.support_used}· supported{/if} · {duration(p.print_seconds)}
+					· {duration(p.print_seconds)}
 				</span>
 			</td>
 			<td class="whitespace-nowrap py-2 pr-2 text-right text-xs text-text-muted">{p.grams.toFixed(0)} g × {q * mult}</td>
