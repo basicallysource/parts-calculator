@@ -112,7 +112,7 @@ export function partSwatches(
 	}));
 }
 
-// Bambu Lab PLA Basic, with-spool pricing. Bulk discount keys off the TOTAL roll
+// Bambu Lab PLA Matte, with-spool pricing (same tiers as Basic). Bulk discount keys off the TOTAL roll
 // count in the order (mix-and-match across colors). From the Bambu US store.
 export const STORE_URL = 'https://us.store.bambulab.com/collections/filament-bulk-sale';
 export const PRICE_TIERS = [

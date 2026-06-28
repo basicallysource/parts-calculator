@@ -37,7 +37,7 @@ PROFILES = "/Applications/OrcaSlicer.app/Contents/Resources/profiles/BBL"
 
 PRINTER = "Bambu Lab A1 0.4 nozzle"      # printer choice barely affects grams
 PROCESS = "0.20mm Standard @BBL A1"
-FILAMENT = "Bambu PLA Basic @BBL A1"
+FILAMENT = "Bambu PLA Matte @BBL A1"
 
 INFILL_DENSITY = "15%"
 INFILL_PATTERN = "adaptivecubic"          # adaptive cubic
