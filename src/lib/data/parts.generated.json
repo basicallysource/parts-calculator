@@ -80,6 +80,11 @@
 			"id": "external-bracket",
 			"name": "External distribution-frame bracket",
 			"description": "Three parts that bolt together into one external bracket. 6 per distribution frame (per layer), plus a set per interface."
+		},
+		{
+			"id": "cable-clamp",
+			"name": "Cable clamp",
+			"description": "Inner + outer ribbon cable clamp; the two halves go together. White."
 		}
 	],
 	"parts": [
@@ -603,6 +608,226 @@
 			"optional": false,
 			"stl": "/stl/ext-bracket-cover.stl",
 			"render": "/renders/ext-bracket-cover.png"
+		},
+		{
+			"id": "interface-rib",
+			"name": "Interface rib",
+			"quantities": {
+				"interface": 5
+			},
+			"assembly": null,
+			"description": "Ribbed interface piece. 5 needed.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 26.73,
+			"support_used": true,
+			"print_seconds": 3467,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/interface-rib.stl",
+			"render": "/renders/interface-rib.png"
+		},
+		{
+			"id": "interface-rib-switch",
+			"name": "Interface rib (switch gap)",
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": null,
+			"description": "Interface rib with the opening for the limit switch. 1 needed.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 15.6,
+			"support_used": true,
+			"print_seconds": 2526,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/interface-rib-switch.stl",
+			"render": "/renders/interface-rib-switch.png"
+		},
+		{
+			"id": "cable-clamp-inner",
+			"name": "Cable clamp (inner)",
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": "cable-clamp",
+			"description": "Inner half of the ribbon cable clamp. White.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 6.16,
+			"support_used": true,
+			"print_seconds": 1948,
+			"color": {
+				"fixed": "white"
+			},
+			"optional": false,
+			"stl": "/stl/cable-clamp-inner.stl",
+			"render": "/renders/cable-clamp-inner.png"
+		},
+		{
+			"id": "cable-clamp-outer",
+			"name": "Cable clamp (outer)",
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": "cable-clamp",
+			"description": "Outer half of the ribbon cable clamp. White.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 18.87,
+			"support_used": true,
+			"print_seconds": 3552,
+			"color": {
+				"fixed": "white"
+			},
+			"optional": false,
+			"stl": "/stl/cable-clamp-outer.stl",
+			"render": "/renders/cable-clamp-outer.png"
+		},
+		{
+			"id": "interface-spur-gear",
+			"name": "Interface spur gear (2M 25T)",
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": null,
+			"description": "Interface spur gear, 2M 25T. 1 needed.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 8.59,
+			"support_used": true,
+			"print_seconds": 1921,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/interface-spur-gear.stl",
+			"render": "/renders/interface-spur-gear.png"
+		},
+		{
+			"id": "interface-idler-gear",
+			"name": "Interface idler gear (2M 25T)",
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": null,
+			"description": "Interface idler gear, 2M 25T. 1 needed.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 9.97,
+			"support_used": true,
+			"print_seconds": 2270,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/interface-idler-gear.stl",
+			"render": "/renders/interface-idler-gear.png"
+		},
+		{
+			"id": "interface-nema23-bracket",
+			"name": "Interface NEMA 23 bracket",
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": null,
+			"description": "NEMA 23 motor bracket on the interface. 1 needed.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 73.52,
+			"support_used": true,
+			"print_seconds": 8033,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/interface-nema23-bracket.stl",
+			"render": "/renders/interface-nema23-bracket.png"
+		},
+		{
+			"id": "interface-cage-bracket",
+			"name": "Cable cage bracket",
+			"quantities": {
+				"interface": 5
+			},
+			"assembly": null,
+			"description": "Interface cable cage bracket (regular). 5 needed.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 16.45,
+			"support_used": true,
+			"print_seconds": 3110,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/interface-cage-bracket.stl",
+			"render": "/renders/interface-cage-bracket.png"
+		},
+		{
+			"id": "interface-cage-bracket-cable",
+			"name": "Cable cage bracket (cable mount)",
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": null,
+			"description": "Cable cage bracket with the cable mount. 1 needed.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 16.39,
+			"support_used": true,
+			"print_seconds": 3153,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/interface-cage-bracket-cable.stl",
+			"render": "/renders/interface-cage-bracket-cable.png"
+		},
+		{
+			"id": "interface-big-spacer",
+			"name": "Interface big spacer",
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": null,
+			"description": "Interface big spacer. 1 needed.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 21.17,
+			"support_used": true,
+			"print_seconds": 2369,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/interface-big-spacer.stl",
+			"render": "/renders/interface-big-spacer.png"
+		},
+		{
+			"id": "interface-upper-fixed-section",
+			"name": "Interface upper fixed section",
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": null,
+			"description": "Interface upper fixed section. 1 needed.",
+			"version": "1",
+			"date_added": "2026-06-27",
+			"grams": 146.9,
+			"support_used": true,
+			"print_seconds": 11642,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"stl": "/stl/interface-upper-fixed-section.stl",
+			"render": "/renders/interface-upper-fixed-section.png"
 		}
 	]
 }

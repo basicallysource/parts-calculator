@@ -510,6 +510,193 @@
         "role": "frame"
       },
       "optional": false
+    },
+    {
+      "id": "interface-rib",
+      "name": "Interface rib",
+      "description": "Ribbed interface piece. 5 needed.",
+      "internal_notes": "5 per interface. Frame color.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "interface": 5
+      },
+      "assembly": null,
+      "stl": "parts/interface/interface-rib.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "interface-rib-switch",
+      "name": "Interface rib (switch gap)",
+      "description": "Interface rib with the opening for the limit switch. 1 needed.",
+      "internal_notes": "1 per interface. The rib variant with the limit-switch gap. Frame color.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "interface": 1
+      },
+      "assembly": null,
+      "stl": "parts/interface/interface-rib-switch.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "cable-clamp-inner",
+      "name": "Cable clamp (inner)",
+      "description": "Inner half of the ribbon cable clamp. White.",
+      "internal_notes": "1 per interface. White. Pairs with the outer clamp (cable-clamp assembly).",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "interface": 1
+      },
+      "assembly": "cable-clamp",
+      "stl": "parts/interface/cable-clamp-inner.stl",
+      "color": {
+        "fixed": "white"
+      },
+      "optional": false
+    },
+    {
+      "id": "cable-clamp-outer",
+      "name": "Cable clamp (outer)",
+      "description": "Outer half of the ribbon cable clamp. White.",
+      "internal_notes": "1 per interface. White. Pairs with the inner clamp (cable-clamp assembly).",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "interface": 1
+      },
+      "assembly": "cable-clamp",
+      "stl": "parts/interface/cable-clamp-outer.stl",
+      "color": {
+        "fixed": "white"
+      },
+      "optional": false
+    },
+    {
+      "id": "interface-spur-gear",
+      "name": "Interface spur gear (2M 25T)",
+      "description": "Interface spur gear, 2M 25T. 1 needed.",
+      "internal_notes": "1 per interface. Frame color.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "interface": 1
+      },
+      "assembly": null,
+      "stl": "parts/interface/interface-spur-gear.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "interface-idler-gear",
+      "name": "Interface idler gear (2M 25T)",
+      "description": "Interface idler gear, 2M 25T. 1 needed.",
+      "internal_notes": "1 per interface. Frame color.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "interface": 1
+      },
+      "assembly": null,
+      "stl": "parts/interface/interface-idler-gear.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "interface-nema23-bracket",
+      "name": "Interface NEMA 23 bracket",
+      "description": "NEMA 23 motor bracket on the interface. 1 needed.",
+      "internal_notes": "1 per interface. Frame color.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "interface": 1
+      },
+      "assembly": null,
+      "stl": "parts/interface/interface-nema23-bracket.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "interface-cage-bracket",
+      "name": "Cable cage bracket",
+      "description": "Interface cable cage bracket (regular). 5 needed.",
+      "internal_notes": "5 regular per interface; plus 1 of the cable-mount variant. Frame color.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "interface": 5
+      },
+      "assembly": null,
+      "stl": "parts/interface/interface-cage-bracket.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "interface-cage-bracket-cable",
+      "name": "Cable cage bracket (cable mount)",
+      "description": "Cable cage bracket with the cable mount. 1 needed.",
+      "internal_notes": "1 per interface; the cage bracket variant with a cable mount. Frame color.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "interface": 1
+      },
+      "assembly": null,
+      "stl": "parts/interface/interface-cage-bracket-cable.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "interface-big-spacer",
+      "name": "Interface big spacer",
+      "description": "Interface big spacer. 1 needed.",
+      "internal_notes": "1 per interface. Frame color. Distinct from interface-spacer.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "interface": 1
+      },
+      "assembly": null,
+      "stl": "parts/interface/interface-big-spacer.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
+    },
+    {
+      "id": "interface-upper-fixed-section",
+      "name": "Interface upper fixed section",
+      "description": "Interface upper fixed section. 1 needed.",
+      "internal_notes": "1 per interface. Frame color.",
+      "version": "1",
+      "date_added": "2026-06-27",
+      "quantities": {
+        "interface": 1
+      },
+      "assembly": null,
+      "stl": "parts/interface/interface-upper-fixed-section.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false
     }
   ],
   "assemblies": [
@@ -517,6 +704,11 @@
       "id": "external-bracket",
       "name": "External distribution-frame bracket",
       "description": "Three parts that bolt together into one external bracket. 6 per distribution frame (per layer), plus a set per interface."
+    },
+    {
+      "id": "cable-clamp",
+      "name": "Cable clamp",
+      "description": "Inner + outer ribbon cable clamp; the two halves go together. White."
     }
   ]
 }
