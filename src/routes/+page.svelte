@@ -23,9 +23,17 @@
 	import Modal from '$lib/components/Modal.svelte';
 	import StlViewer from '$lib/components/StlViewer.svelte';
 	import { zipSync } from 'fflate';
-	import { Download, Package, Layers, ZoomIn, Loader, Info } from 'lucide-svelte';
+	import { Download, Package, ZoomIn, Loader, Info, Plus, X } from 'lucide-svelte';
 
-	let layers = $state(3);
+	// per-layer size list IS the source of truth; layer count derives from it
+	let funnelSizes = $state<('third' | 'half')[]>(['third', 'third', 'third']);
+	const layers = $derived(funnelSizes.length);
+	function addLayer() {
+		funnelSizes = [...funnelSizes, 'third'];
+	}
+	function removeLayer(i: number) {
+		if (funnelSizes.length > 1) funnelSizes = funnelSizes.filter((_, j) => j !== i);
+	}
 	let roleColors = $state<Record<string, string>>(
 		Object.fromEntries(COLOR_ROLES.map((r) => [r.id, r.default]))
 	);
@@ -52,13 +60,6 @@
 	let viewerPart = $state<Part | null>(null);
 	let viewerColorId = $state('ash-gray');
 
-	// per-layer funnel size choice ('third' | 'half'); length tracks the layer count
-	let funnelSizes = $state<('third' | 'half')[]>(Array(3).fill('third'));
-	$effect(() => {
-		if (funnelSizes.length !== layers) {
-			funnelSizes = Array.from({ length: layers }, (_, i) => funnelSizes[i] ?? 'third');
-		}
-	});
 	// the per-layer size drives both the funnel and the bin set for that layer
 	function variantCount(id: string): number | null {
 		const nThird = funnelSizes.filter((s) => s === 'third').length;
@@ -115,9 +116,6 @@
 		['Filament', `${SETTINGS.filament} · ${SETTINGS.density_g_cm3} g/cm³`]
 	];
 
-	function clampLayers(n: number) {
-		layers = Math.max(1, Math.min(20, Math.round(n || 1)));
-	}
 	function setAll(v: boolean) {
 		selected = Object.fromEntries(PARTS.map((p) => [p.id, v]));
 	}
@@ -193,78 +191,81 @@
 		</tbody>
 	</table>
 
-	<!-- global controls -->
-	<section class="setup-panel mb-6 p-4">
-		<div class="mb-3 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-text-muted">
-			Build options
-			<span class="relative inline-flex" data-info>
-				<button
-					type="button"
-					class="inline-flex text-text-muted hover:text-text"
-					aria-label="About the color options"
-					onclick={() => (infoOpen = !infoOpen)}
-				>
-					<Info size={14} />
-				</button>
-				{#if infoOpen}
-					<div class="setup-panel absolute left-0 top-6 z-30 w-72 p-3 text-xs font-normal normal-case tracking-normal text-text-muted">
-						Each color picker sets every part in that group. Parts that must be a specific color —
-						stators, rotors, light post caps, the classification dome, the lazy-Susan chute mount —
-						keep their required color and aren't affected.
-					</div>
-				{/if}
-			</span>
-		</div>
-		<div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-			<div>
-				<span class="mb-1 flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-text-muted">
-					<Layers size={13} /> Layers
+	<!-- BUILD OPTIONS = colors + layer configuration -->
+	<section class="mb-8">
+		<h2 class="mb-3 text-base font-semibold text-text">Build options</h2>
+
+		<!-- colors -->
+		<div class="setup-panel mb-4 p-4">
+			<div class="mb-3 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-text-muted">
+				Colors
+				<span class="relative inline-flex" data-info>
+					<button type="button" class="inline-flex text-text-muted hover:text-text" aria-label="About the color options" onclick={() => (infoOpen = !infoOpen)}>
+						<Info size={14} />
+					</button>
+					{#if infoOpen}
+						<div class="setup-panel absolute left-0 top-6 z-30 w-72 p-3 text-xs font-normal normal-case tracking-normal text-text-muted">
+							Each color picker sets every part in that group. Parts that must be a specific color —
+							stators, rotors, light post caps, the classification dome, the lazy-Susan chute mount —
+							keep their required color and aren't affected.
+						</div>
+					{/if}
 				</span>
-				<div class="flex">
-					<button class="setup-button-secondary h-11 w-11 text-lg" onclick={() => clampLayers(layers - 1)}>−</button>
-					<input class="setup-control h-11 w-full min-w-0 border-x-0 text-center text-base" type="number" min="1" max="20" bind:value={layers} onchange={() => clampLayers(layers)} />
-					<button class="setup-button-secondary h-11 w-11 text-lg" onclick={() => clampLayers(layers + 1)}>+</button>
-				</div>
 			</div>
-			{#each COLOR_ROLES as role (role.id)}
-				<ColorPicker bind:value={roleColors[role.id]} label={role.name} />
-			{/each}
+			<div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+				{#each COLOR_ROLES as role (role.id)}
+					<ColorPicker bind:value={roleColors[role.id]} label={role.name} />
+				{/each}
+			</div>
 		</div>
 
-		<div class="mt-4 flex items-center gap-2 border-t border-border pt-3">
-			<input id="printbins" class="setup-toggle h-4 w-4" type="checkbox" bind:checked={printBins} />
-			<label for="printbins" class="text-sm font-medium text-text">Print bins</label>
-			<span class="text-xs text-text-muted">— auto-includes the right bins (size &amp; quantity) per layer, set below.</span>
-		</div>
-	</section>
-
-	<!-- per-layer configuration -->
-	<section class="setup-panel mb-6 p-4">
-		<div class="mb-3 text-xs font-semibold uppercase tracking-wider text-text-muted">
-			Layer configuration <span class="font-normal normal-case text-text-muted">· bins per layer (funnel size follows)</span>
-		</div>
-		<div class="flex flex-col gap-2">
-			{#each funnelSizes as size, i (i)}
-				{@const pv = sizePreview[size]}
-				<div class="setup-card-shell flex flex-wrap items-center gap-3 border px-3 py-2">
-					<span class="w-16 shrink-0 text-sm font-medium text-text">Layer {i + 1}</span>
-					<div class="flex">
-						<button
-							class="setup-button-secondary h-9 px-3 text-sm {size === 'half' ? 'setup-button-primary' : ''}"
-							onclick={() => (funnelSizes[i] = 'half')}>12 bins</button>
-						<button
-							class="setup-button-secondary h-9 border-l-0 px-3 text-sm {size === 'third' ? 'setup-button-primary' : ''}"
-							onclick={() => (funnelSizes[i] = 'third')}>18 bins</button>
+		<!-- layer configuration -->
+		<div class="setup-panel p-4">
+			<div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+				<span class="text-xs font-semibold uppercase tracking-wider text-text-muted">
+					Layers <span class="font-normal normal-case text-text-muted">· {layers} layer{layers === 1 ? '' : 's'}, bins per layer</span>
+				</span>
+				<label class="flex cursor-pointer items-center gap-2 text-sm">
+					<input class="setup-toggle h-4 w-4" type="checkbox" bind:checked={printBins} />
+					<span class="font-medium text-text">Print bins</span>
+					<span class="text-xs text-text-muted">— include bins (size/qty per layer below)</span>
+				</label>
+			</div>
+			<div class="flex flex-col gap-2">
+				{#each funnelSizes as size, i (i)}
+					{@const pv = sizePreview[size]}
+					<div class="group setup-card-shell flex flex-wrap items-center gap-3 border px-3 py-2">
+						<span class="w-16 shrink-0 text-sm font-medium text-text">Layer {i + 1}</span>
+						<div class="flex">
+							<button class="setup-button-secondary h-9 px-3 text-sm {size === 'half' ? 'setup-button-primary' : ''}" onclick={() => (funnelSizes[i] = 'half')}>12 bins</button>
+							<button class="setup-button-secondary h-9 border-l-0 px-3 text-sm {size === 'third' ? 'setup-button-primary' : ''}" onclick={() => (funnelSizes[i] = 'third')}>18 bins</button>
+						</div>
+						<div class="ml-auto flex items-center gap-1.5">
+							{#each pv.bins as b (b)}
+								<img src={render(b)} alt={b} class="h-9 w-9 border border-border bg-[var(--color-bg)] object-contain {printBins ? '' : 'opacity-30'}" title={partsById.get(b)?.name} />
+							{/each}
+							<span class="px-1 text-text-muted">+</span>
+							<img src={render(pv.funnel)} alt="funnel" class="h-9 w-9 border border-primary/40 bg-[var(--color-bg)] object-contain" title="{size} funnel" />
+						</div>
+						{#if layers > 1}
+							<button
+								class="flex h-7 w-7 shrink-0 items-center justify-center text-text-muted opacity-0 transition-opacity hover:text-danger group-hover:opacity-100"
+								onclick={() => removeLayer(i)}
+								aria-label="Remove layer {i + 1}"
+								title="Remove layer"
+							>
+								<X size={16} />
+							</button>
+						{/if}
 					</div>
-					<div class="ml-auto flex items-center gap-1.5">
-						{#each pv.bins as b (b)}
-							<img src={render(b)} alt={b} class="h-9 w-9 border border-border bg-[var(--color-bg)] object-contain {printBins ? '' : 'opacity-30'}" title={partsById.get(b)?.name} />
-						{/each}
-						<span class="px-1 text-text-muted">+</span>
-						<img src={render(pv.funnel)} alt="funnel" class="h-9 w-9 border border-primary/40 bg-[var(--color-bg)] object-contain" title="{size} funnel" />
-					</div>
-				</div>
-			{/each}
+				{/each}
+				<button
+					class="setup-button-secondary flex h-10 w-full items-center justify-center gap-1.5 text-sm font-medium"
+					onclick={addLayer}
+				>
+					<Plus size={16} /> Add layer
+				</button>
+			</div>
 		</div>
 	</section>
 
