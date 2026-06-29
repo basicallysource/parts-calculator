@@ -50,7 +50,7 @@ npm install
 npm run dev
 ```
 
-STLs are stored with **Git LFS** (`git lfs install` once per machine).
+STLs/3mfs are committed as normal Git objects (not LFS) so Vercel serves the real files.
 
 ## Build plates
 
