@@ -11,6 +11,7 @@
 		partSwatches,
 		primaryColorId,
 		effectiveGrams,
+		displayCount,
 		buyList,
 		grams,
 		money,
@@ -43,8 +44,21 @@
 	let viewerPart = $state<Part | null>(null);
 	let viewerColorId = $state('ash-gray');
 
+	// per-layer funnel size choice ('third' | 'half'); length tracks the layer count
+	let funnelSizes = $state<('third' | 'half')[]>(Array(3).fill('third'));
+	$effect(() => {
+		if (funnelSizes.length !== layers) {
+			funnelSizes = Array.from({ length: layers }, (_, i) => funnelSizes[i] ?? 'third');
+		}
+	});
+	function variantCount(id: string): number | null {
+		if (id === 'funnel-third') return funnelSizes.filter((s) => s === 'third').length;
+		if (id === 'funnel-half') return funnelSizes.filter((s) => s === 'half').length;
+		return null;
+	}
+
 	const buy = $derived(
-		buyList(layers, roleColors, (id) => selected[id], (id) => !!inclSupport[id], surplus)
+		buyList(layers, roleColors, (id) => selected[id], (id) => !!inclSupport[id], variantCount, surplus)
 	);
 
 	const sectionRows = $derived(
@@ -53,7 +67,10 @@
 			const mult = categoryMultiplier(s.id, layers);
 			const selectedGrams = parts
 				.filter((p) => selected[p.id])
-				.reduce((sum, p) => sum + effectiveGrams(p, !!inclSupport[p.id]) * sectionQty(p, s.id) * mult, 0);
+				.reduce(
+					(sum, p) => sum + effectiveGrams(p, !!inclSupport[p.id]) * displayCount(p, s.id, layers, variantCount),
+					0
+				);
 			return { section: s, parts, mult, selectedGrams };
 		}).filter((r) => r.parts.length > 0)
 	);
@@ -186,10 +203,25 @@
 				<ColorPicker bind:value={roleColors[role.id]} label={role.name} />
 			{/each}
 		</div>
+
+		<div class="mt-4 border-t border-border pt-3">
+			<span class="mb-2 block text-xs font-semibold uppercase tracking-wider text-text-muted">Funnel size per layer</span>
+			<div class="flex flex-wrap gap-2">
+				{#each funnelSizes as _, i (i)}
+					<label class="flex items-center gap-1.5 text-sm">
+						<span class="text-text-muted">L{i + 1}</span>
+						<select class="setup-control h-9 px-2 text-sm" bind:value={funnelSizes[i]}>
+							<option value="third">Third</option>
+							<option value="half">Half</option>
+						</select>
+					</label>
+				{/each}
+			</div>
+		</div>
 	</section>
 
 	{#snippet partRow(p: Part, sectionId: string, mult: number, indent: boolean)}
-		{@const q = sectionQty(p, sectionId)}
+		{@const n = displayCount(p, sectionId, layers, variantCount)}
 		{@const sw = partSwatches(p, sectionId, roleColors)}
 		{@const eff = effectiveGrams(p, !!inclSupport[p.id])}
 		<tr class="border-b border-border align-middle last:border-b-0">
@@ -230,8 +262,8 @@
 					</label>
 				{/if}
 			</td>
-			<td class="whitespace-nowrap py-2 pr-2 text-right text-xs text-text-muted">{eff.toFixed(0)} g × {q * mult}</td>
-			<td class="whitespace-nowrap py-2 pr-2 text-right tabular-nums">{grams(eff * q * mult)}</td>
+			<td class="whitespace-nowrap py-2 pr-2 text-right text-xs text-text-muted">{eff.toFixed(0)} g × {n}</td>
+			<td class="whitespace-nowrap py-2 pr-2 text-right tabular-nums">{grams(eff * n)}</td>
 			<td class="py-2 pr-3 text-right">
 				<a class="inline-flex items-center text-primary hover:text-primary-hover" href={p.stl} download title="Download {p.name}.stl"><Download size={15} /></a>
 			</td>
