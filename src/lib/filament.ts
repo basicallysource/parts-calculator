@@ -227,3 +227,13 @@ export function duration(sec: number): string {
 	const m = Math.round((sec % 3600) / 60);
 	return h ? `${h}h ${m}m` : `${m}m`;
 }
+/** Longer-form for big totals: days + hours past 2 days, else h + m. */
+export function durationLong(sec: number): string {
+	const totalH = sec / 3600;
+	if (totalH >= 48) {
+		const d = Math.floor(totalH / 24);
+		const h = Math.round(totalH - d * 24);
+		return `${d}d ${h}h`;
+	}
+	return duration(sec);
+}

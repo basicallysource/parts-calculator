@@ -12,10 +12,12 @@
 		primaryColorId,
 		effectiveGrams,
 		displayCount,
+		machineQty,
 		buyList,
 		grams,
 		money,
 		duration,
+		durationLong,
 		type Part
 	} from '$lib/filament';
 	import { getBambuColor } from '$lib/bambu-colors';
@@ -25,7 +27,7 @@
 	import { zipSync } from 'fflate';
 	import { onMount } from 'svelte';
 	import { loadConfig, saveConfig, clearConfig } from '$lib/config';
-	import { Download, Package, ZoomIn, Loader, Info, Plus, X, RotateCcw } from 'lucide-svelte';
+	import { Download, Package, ZoomIn, Loader, Info, Plus, X, RotateCcw, Clock } from 'lucide-svelte';
 
 	// ---- defaults (also used by "reset to default") -----------------------------
 	const defaultFunnelSizes = (): ('third' | 'half')[] => ['third', 'third', 'half'];
@@ -118,6 +120,17 @@
 
 	const buy = $derived(
 		buyList(layers, roleColors, isIncluded, (id) => !!inclSupport[id], variantCount, surplus)
+	);
+
+	// theoretical total print time: every included part printed alone, sequentially,
+	// on one printer (one part per plate — no batching)
+	const totalPrintSeconds = $derived(
+		PARTS.reduce((sum, p) => {
+			if (!isIncluded(p.id)) return sum;
+			const vc = variantCount(p.id);
+			const count = vc !== null ? vc : machineQty(p, layers);
+			return sum + p.print_seconds * count;
+		}, 0)
 	);
 
 	const sectionRows = $derived(
@@ -473,6 +486,16 @@
 					(PLA Matte, w/ spool): $24.99 ea, $17.99 at 4+, $16.99 at 6+. You're at
 					<b>{money(buy.perSpool)}/spool</b> ({buy.totalSpools} roll{buy.totalSpools === 1 ? '' : 's'}).
 				</span>
+			</div>
+
+			<div class="mt-2 flex items-center justify-between border border-border bg-[var(--color-bg)] px-3 py-2.5">
+				<div class="flex items-center gap-2 text-sm text-text">
+					<Clock size={15} class="text-text-muted" /> Total print time
+				</div>
+				<div class="text-right">
+					<div class="text-base font-semibold tabular-nums text-text">{durationLong(totalPrintSeconds)}</div>
+					<div class="text-xs text-text-muted">1 printer · 1 part/plate</div>
+				</div>
 			</div>
 
 			<div class="mt-3 grid gap-2">
