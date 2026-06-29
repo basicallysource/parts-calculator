@@ -22,6 +22,8 @@ export type Part = {
 	name: string;
 	quantities: Record<string, number>; // category id -> count per ONE instance of that category
 	assembly: string | null;
+	variant_group?: string | null; // parts in a group are alternatives chosen per layer
+	variant_name?: string | null;
 	description: string;
 	version: string;
 	date_added: string;
@@ -77,6 +79,18 @@ export function machineQty(part: Part, layers: number): number {
 		n += qty * categoryMultiplier(cat, layers);
 	}
 	return n;
+}
+
+/** Count to show/charge for a part in a given section, honoring variant overrides. */
+export function displayCount(
+	part: Part,
+	sectionId: string,
+	layers: number,
+	variantCount: (id: string) => number | null
+): number {
+	const vc = variantCount(part.id);
+	if (vc !== null) return vc; // variant parts (e.g. funnels) are counted per layer-choice
+	return sectionQty(part, sectionId) * categoryMultiplier(sectionId, layers);
 }
 
 /** Per-color unit breakdown of `catQty` pieces of a part (1 category instance). */
@@ -147,6 +161,7 @@ export function buyList(
 	roleColors: Record<string, string>,
 	isSelected: (id: string) => boolean,
 	inclSupport: (id: string) => boolean,
+	variantCount: (id: string) => number | null,
 	surplusPct = 0
 ): {
 	lines: BuyLine[];
@@ -159,6 +174,15 @@ export function buyList(
 	for (const part of PARTS) {
 		if (!isSelected(part.id)) continue;
 		const each = effectiveGrams(part, inclSupport(part.id));
+		const vc = variantCount(part.id);
+		if (vc !== null) {
+			// variant part (e.g. funnel): total machine count chosen per layer
+			for (const u of colorUnits(part, vc, roleColors)) {
+				const key = u.colorId ?? '__any__';
+				byColor.set(key, (byColor.get(key) ?? 0) + each * u.count);
+			}
+			continue;
+		}
 		for (const [cat, qty] of Object.entries(part.quantities)) {
 			const mult = categoryMultiplier(cat, layers);
 			for (const u of colorUnits(part, qty, roleColors)) {

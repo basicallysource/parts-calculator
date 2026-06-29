@@ -125,6 +125,8 @@
 				"feeder": 4
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Feeder stator. 4 required: 1 gray + 3 black.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -155,6 +157,8 @@
 				"feeder": 3
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Faceted rotor. 3 required: 2 white + 1 gray.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -185,6 +189,8 @@
 				"feeder": 4
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Output gear, 130 teeth. One per C-channel (4 total).",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -206,6 +212,8 @@
 				"feeder": 4
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "NEMA motor bracket. One per C-channel (4 total).",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -227,6 +235,8 @@
 				"feeder": 2
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Light post cap. 2 total (C-channels 2 & 3). White.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -248,6 +258,8 @@
 				"feeder": 1
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Bulk cap. Sits on top of the first C-channel.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -269,6 +281,8 @@
 				"classification-channel": 1
 			},
 			"assembly": "classification-chamber",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Large classification-channel dome (~full bed). White.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -290,6 +304,8 @@
 				"interface": 6
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Interface bracket. Pairs with the spacer; 6 on the interface.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -311,6 +327,8 @@
 				"interface": 6
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Interface spacer. Pairs with the bracket; 6 on the interface.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -332,6 +350,8 @@
 				"chute": 1
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "The chute core. 1 per machine.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -347,33 +367,14 @@
 			"render": "/renders/chute-core.png"
 		},
 		{
-			"id": "funnel",
-			"name": "Funnel",
-			"quantities": {
-				"funnel": 1
-			},
-			"assembly": null,
-			"description": "Funnel that attaches to the chute core. 1 per layer.",
-			"version": "1",
-			"date_added": "2026-06-27",
-			"grams": 196.68,
-			"support_grams": 9.31,
-			"support_used": true,
-			"print_seconds": 19809,
-			"color": {
-				"role": "funnel"
-			},
-			"optional": false,
-			"stl": "/stl/funnel.stl",
-			"render": "/renders/funnel.png"
-		},
-		{
 			"id": "bin-third",
 			"name": "Bin (third size)",
 			"quantities": {
 				"bins": 18
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Third-size bin. 18 per layer. Optional.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -395,6 +396,8 @@
 				"bins": 6
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Bin retainer, left. Optional.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -416,6 +419,8 @@
 				"bins": 6
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Bin retainer, right. Optional.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -437,6 +442,8 @@
 				"layer": 6
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Distribution frame crossbeam. One between each of the 6 frame sections.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -458,6 +465,8 @@
 				"layer": 12
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Distribution frame 90\u00b0 bracket. Two per frame section.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -479,6 +488,8 @@
 				"lazy-susan": 1
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Bottom lazy Susan adapter that connects to the chute. White.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -500,6 +511,8 @@
 				"lazy-susan": 1
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Bottom lazy Susan static base.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -521,6 +534,8 @@
 				"lazy-susan": 3
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Bottom lazy Susan mount to the external extrusion.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -542,6 +557,8 @@
 				"lazy-susan": 3
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Bottom lazy Susan hold-in-place. Optional.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -563,6 +580,8 @@
 				"lazy-susan": 1
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Bottom lazy Susan washer.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -585,6 +604,8 @@
 				"interface": 6
 			},
 			"assembly": "external-bracket",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Part of the external distribution-frame bracket (3-part assembly).",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -607,6 +628,8 @@
 				"interface": 6
 			},
 			"assembly": "external-bracket",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Part of the external distribution-frame bracket (3-part assembly).",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -629,6 +652,8 @@
 				"interface": 6
 			},
 			"assembly": "external-bracket",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Part of the external distribution-frame bracket (3-part assembly).",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -650,6 +675,8 @@
 				"interface": 5
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Ribbed interface piece. 5 needed.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -671,6 +698,8 @@
 				"interface": 1
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Interface rib with the opening for the limit switch. 1 needed.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -692,6 +721,8 @@
 				"interface": 1
 			},
 			"assembly": "cable-clamp",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Inner half of the ribbon cable clamp. White.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -713,6 +744,8 @@
 				"interface": 1
 			},
 			"assembly": "cable-clamp",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Outer half of the ribbon cable clamp. White.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -734,6 +767,8 @@
 				"interface": 1
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Interface spur gear, 2M 25T. 1 needed.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -755,6 +790,8 @@
 				"interface": 1
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Interface idler gear, 2M 25T. 1 needed.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -776,6 +813,8 @@
 				"interface": 1
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "NEMA 23 motor bracket on the interface. 1 needed.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -797,6 +836,8 @@
 				"interface": 5
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Interface cable cage bracket (regular). 5 needed.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -818,6 +859,8 @@
 				"interface": 1
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Cable cage bracket with the cable mount. 1 needed.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -839,6 +882,8 @@
 				"interface": 1
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Interface big spacer. 1 needed.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -860,6 +905,8 @@
 				"interface": 1
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Interface upper fixed section. 1 needed.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -881,6 +928,8 @@
 				"classification-channel": 1
 			},
 			"assembly": "classification-chamber",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Finned rotor on the classification chamber. White. 1 needed.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -902,6 +951,8 @@
 				"feeder": 4
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "C-channel idler gear, 24 teeth. One per C-channel (4 total).",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -923,6 +974,8 @@
 				"feeder": 4
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "C-channel input/drive gear (12T) with vertical screw hole. One per C-channel (4 total).",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -944,6 +997,8 @@
 				"feeder": 2
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Output guide. 2 needed. Black.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -965,13 +1020,15 @@
 				"chute": 1
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Funnel bracket, left. 2 funnel brackets total.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 27.41,
-			"support_grams": 3.01,
+			"grams": 28.75,
+			"support_grams": 4.9,
 			"support_used": true,
-			"print_seconds": 5794,
+			"print_seconds": 6219,
 			"color": {
 				"role": "chute-core"
 			},
@@ -986,13 +1043,15 @@
 				"chute": 1
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Funnel bracket, right. 2 funnel brackets total.",
 			"version": "1",
 			"date_added": "2026-06-27",
-			"grams": 27.5,
-			"support_grams": 3.33,
+			"grams": 28.75,
+			"support_grams": 5.63,
 			"support_used": true,
-			"print_seconds": 5811,
+			"print_seconds": 6291,
 			"color": {
 				"role": "chute-core"
 			},
@@ -1007,6 +1066,8 @@
 				"chute": 1
 			},
 			"assembly": "chute-bearing",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Door module (part of the chute bearing assembly).",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -1028,6 +1089,8 @@
 				"chute": 1
 			},
 			"assembly": "chute-bearing",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Bearing holder, left.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -1049,6 +1112,8 @@
 				"chute": 1
 			},
 			"assembly": "chute-bearing",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Bearing holder, right.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -1070,6 +1135,8 @@
 				"chute": 1
 			},
 			"assembly": "servo-adapter",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "MG995 servo adapter, servo side.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -1091,6 +1158,8 @@
 				"chute": 1
 			},
 			"assembly": "servo-adapter",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "MG995 servo adapter, flap side.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -1112,6 +1181,8 @@
 				"chute": 1
 			},
 			"assembly": "servo-bracket",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "MG995 servo bracket, lower arm.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -1133,6 +1204,8 @@
 				"chute": 1
 			},
 			"assembly": "servo-bracket",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "MG995 servo bracket, side arm.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -1154,6 +1227,8 @@
 				"chute": 1
 			},
 			"assembly": "servo-bracket",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "MG995 servo bracket, cover.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -1175,6 +1250,8 @@
 				"chute": 1
 			},
 			"assembly": "servo-bracket",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "MG995 servo bracket, housing.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -1196,6 +1273,8 @@
 				"feeder": 9
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "C-channel leg. 9 in the feeder.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -1217,6 +1296,8 @@
 				"feeder": 9
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "C-channel foot. 9 in the feeder.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -1238,6 +1319,8 @@
 				"chute": 1
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "The chute door / flap. 1 per machine.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -1259,6 +1342,8 @@
 				"feeder": 9
 			},
 			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
 			"description": "C-channel leg extension. 9 in the feeder.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -1280,6 +1365,8 @@
 				"feeder": 2
 			},
 			"assembly": "camera-mount",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Camera mount part 6. 2 per machine.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -1301,6 +1388,8 @@
 				"feeder": 2
 			},
 			"assembly": "camera-mount",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Camera mount part 37. 2 per machine.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -1322,6 +1411,8 @@
 				"feeder": 2
 			},
 			"assembly": "camera-mount",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Camera mount part 37 (second). 2 per machine.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -1343,6 +1434,8 @@
 				"feeder": 4
 			},
 			"assembly": "camera-mount",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Rod-to-C-channel mount (Part 33). 2 per camera mount, 4 total.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -1364,6 +1457,8 @@
 				"classification-channel": 1
 			},
 			"assembly": "classification-chamber",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "C-channel camera & LED light insert. White.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -1386,6 +1481,8 @@
 				"interface": 1
 			},
 			"assembly": "layer-connector",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Layer connector. 1 per layer + 1 per bottom interface.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -1408,6 +1505,8 @@
 				"interface": 1
 			},
 			"assembly": "layer-connector",
+			"variant_group": null,
+			"variant_name": null,
 			"description": "Layer connector. 1 per layer + 1 per bottom interface.",
 			"version": "1",
 			"date_added": "2026-06-27",
@@ -1421,6 +1520,52 @@
 			"optional": false,
 			"stl": "/stl/layer-connector-2.stl",
 			"render": "/renders/layer-connector-2.png"
+		},
+		{
+			"id": "funnel-third",
+			"name": "Funnel (third size)",
+			"quantities": {
+				"funnel": 1
+			},
+			"assembly": null,
+			"variant_group": "funnel",
+			"variant_name": "Third size",
+			"description": "Third size funnel. Per layer (choose size per layer).",
+			"version": "1",
+			"date_added": "2026-06-29",
+			"grams": 216.27,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 19064,
+			"color": {
+				"role": "funnel"
+			},
+			"optional": false,
+			"stl": "/stl/funnel-third.stl",
+			"render": "/renders/funnel-third.png"
+		},
+		{
+			"id": "funnel-half",
+			"name": "Funnel (half size)",
+			"quantities": {
+				"funnel": 1
+			},
+			"assembly": null,
+			"variant_group": "funnel",
+			"variant_name": "Half size",
+			"description": "Half size funnel. Per layer (choose size per layer).",
+			"version": "1",
+			"date_added": "2026-06-29",
+			"grams": 158.23,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 14385,
+			"color": {
+				"role": "funnel"
+			},
+			"optional": false,
+			"stl": "/stl/funnel-half.stl",
+			"render": "/renders/funnel-half.png"
 		}
 	]
 }

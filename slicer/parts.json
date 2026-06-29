@@ -264,24 +264,6 @@
       "support": false
     },
     {
-      "id": "funnel",
-      "name": "Funnel",
-      "description": "Funnel that attaches to the chute core. 1 per layer.",
-      "internal_notes": "1 per layer. Own color selector (funnels). Spencer's are gray. File: funnel_third.",
-      "version": "1",
-      "date_added": "2026-06-27",
-      "quantities": {
-        "funnel": 1
-      },
-      "assembly": null,
-      "stl": "parts/funnel/funnel.stl",
-      "color": {
-        "role": "funnel"
-      },
-      "optional": false,
-      "support": false
-    },
-    {
       "id": "bin-third",
       "name": "Bin (third size)",
       "description": "Third-size bin. 18 per layer. Optional.",
@@ -792,7 +774,7 @@
       "id": "funnel-bracket-left",
       "name": "Funnel bracket (left)",
       "description": "Funnel bracket, left. 2 funnel brackets total.",
-      "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
+      "internal_notes": "Snap-in funnel bracket (left/right). Chute-core color.",
       "version": "1",
       "date_added": "2026-06-27",
       "quantities": {
@@ -810,7 +792,7 @@
       "id": "funnel-bracket-right",
       "name": "Funnel bracket (right)",
       "description": "Funnel bracket, right. 2 funnel brackets total.",
-      "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
+      "internal_notes": "Snap-in funnel bracket (left/right). Chute-core color.",
       "version": "1",
       "date_added": "2026-06-27",
       "quantities": {
@@ -1175,6 +1157,44 @@
       "stl": "parts/layer/layer-connector-2.stl",
       "color": {
         "role": "chute-core"
+      },
+      "optional": false
+    },
+    {
+      "id": "funnel-third",
+      "name": "Funnel (third size)",
+      "description": "Third size funnel. Per layer (choose size per layer).",
+      "internal_notes": "Funnel size variant (Third size). One funnel per layer; size chosen per layer. Funnel color role.",
+      "version": "1",
+      "date_added": "2026-06-29",
+      "quantities": {
+        "funnel": 1
+      },
+      "assembly": null,
+      "variant_group": "funnel",
+      "variant_name": "Third size",
+      "stl": "parts/funnel/funnel-third.stl",
+      "color": {
+        "role": "funnel"
+      },
+      "optional": false
+    },
+    {
+      "id": "funnel-half",
+      "name": "Funnel (half size)",
+      "description": "Half size funnel. Per layer (choose size per layer).",
+      "internal_notes": "Funnel size variant (Half size). One funnel per layer; size chosen per layer. Funnel color role.",
+      "version": "1",
+      "date_added": "2026-06-29",
+      "quantities": {
+        "funnel": 1
+      },
+      "assembly": null,
+      "variant_group": "funnel",
+      "variant_name": "Half size",
+      "stl": "parts/funnel/funnel-half.stl",
+      "color": {
+        "role": "funnel"
       },
       "optional": false
     }

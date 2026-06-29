@@ -388,6 +388,8 @@ def main():
             "name": p["name"],
             "quantities": p.get("quantities", {}),
             "assembly": p.get("assembly"),
+            "variant_group": p.get("variant_group"),
+            "variant_name": p.get("variant_name"),
             "description": p.get("description", ""),
             "version": p.get("version", ""),
             "date_added": p.get("date_added", ""),
