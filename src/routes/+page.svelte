@@ -34,6 +34,14 @@
 		Object.fromEntries(PARTS.map((p) => [p.id, !('bins' in p.quantities)]))
 	);
 	let surplus = $state(15);
+	let printBins = $state(false); // top-level: print bins or not (auto-selects the right bins)
+	const partsById = new Map(PARTS.map((p) => [p.id, p]));
+	// bins are governed by the printBins toggle (+ per-layer size); everything else by its checkbox
+	function isIncluded(id: string): boolean {
+		const p = partsById.get(id);
+		if (p && 'bins' in p.quantities) return printBins;
+		return selected[id];
+	}
 	// include each part's support material in totals — default on for the stator only
 	let inclSupport = $state<Record<string, boolean>>(
 		Object.fromEntries(PARTS.filter((p) => p.support_grams > 0).map((p) => [p.id, p.id === 'stator']))
@@ -67,8 +75,17 @@
 		}
 	}
 
+	// per-layer size 'half' = 12 bins, 'third' = 18 bins
+	const sizePreview = {
+		half: { count: 12, bins: ['bin-half-left', 'bin-half-right'], funnel: 'funnel-half' },
+		third: { count: 18, bins: ['bin-third-left', 'bin-third-center', 'bin-third-rightback'], funnel: 'funnel-third' }
+	} as const;
+	function render(id: string): string {
+		return partsById.get(id)?.render ?? '';
+	}
+
 	const buy = $derived(
-		buyList(layers, roleColors, (id) => selected[id], (id) => !!inclSupport[id], variantCount, surplus)
+		buyList(layers, roleColors, isIncluded, (id) => !!inclSupport[id], variantCount, surplus)
 	);
 
 	const sectionRows = $derived(
@@ -76,7 +93,7 @@
 			const parts = PARTS.filter((p) => sectionQty(p, s.id) > 0);
 			const mult = categoryMultiplier(s.id, layers);
 			const selectedGrams = parts
-				.filter((p) => selected[p.id])
+				.filter((p) => isIncluded(p.id))
 				.reduce(
 					(sum, p) => sum + effectiveGrams(p, !!inclSupport[p.id]) * displayCount(p, s.id, layers, variantCount),
 					0
@@ -85,7 +102,7 @@
 		}).filter((r) => r.parts.length > 0)
 	);
 
-	const selectedParts = $derived(PARTS.filter((p) => selected[p.id]));
+	const selectedParts = $derived(PARTS.filter((p) => isIncluded(p.id)));
 	const allSelected = $derived(PARTS.every((p) => selected[p.id]));
 
 	const prettyPattern = SETTINGS.infill_pattern.replace('adaptivecubic', 'adaptive cubic');
@@ -214,19 +231,40 @@
 			{/each}
 		</div>
 
-		<div class="mt-4 border-t border-border pt-3">
-			<span class="mb-2 block text-xs font-semibold uppercase tracking-wider text-text-muted">Layer size (funnel &amp; bins) per layer</span>
-			<div class="flex flex-wrap gap-2">
-				{#each funnelSizes as _, i (i)}
-					<label class="flex items-center gap-1.5 text-sm">
-						<span class="text-text-muted">L{i + 1}</span>
-						<select class="setup-control h-9 px-2 text-sm" bind:value={funnelSizes[i]}>
-							<option value="third">Third</option>
-							<option value="half">Half</option>
-						</select>
-					</label>
-				{/each}
-			</div>
+		<div class="mt-4 flex items-center gap-2 border-t border-border pt-3">
+			<input id="printbins" class="setup-toggle h-4 w-4" type="checkbox" bind:checked={printBins} />
+			<label for="printbins" class="text-sm font-medium text-text">Print bins</label>
+			<span class="text-xs text-text-muted">— auto-includes the right bins (size &amp; quantity) per layer, set below.</span>
+		</div>
+	</section>
+
+	<!-- per-layer configuration -->
+	<section class="setup-panel mb-6 p-4">
+		<div class="mb-3 text-xs font-semibold uppercase tracking-wider text-text-muted">
+			Layer configuration <span class="font-normal normal-case text-text-muted">· bins per layer (funnel size follows)</span>
+		</div>
+		<div class="flex flex-col gap-2">
+			{#each funnelSizes as size, i (i)}
+				{@const pv = sizePreview[size]}
+				<div class="setup-card-shell flex flex-wrap items-center gap-3 border px-3 py-2">
+					<span class="w-16 shrink-0 text-sm font-medium text-text">Layer {i + 1}</span>
+					<div class="flex">
+						<button
+							class="setup-button-secondary h-9 px-3 text-sm {size === 'half' ? 'setup-button-primary' : ''}"
+							onclick={() => (funnelSizes[i] = 'half')}>12 bins</button>
+						<button
+							class="setup-button-secondary h-9 border-l-0 px-3 text-sm {size === 'third' ? 'setup-button-primary' : ''}"
+							onclick={() => (funnelSizes[i] = 'third')}>18 bins</button>
+					</div>
+					<div class="ml-auto flex items-center gap-1.5">
+						{#each pv.bins as b (b)}
+							<img src={render(b)} alt={b} class="h-9 w-9 border border-border bg-[var(--color-bg)] object-contain {printBins ? '' : 'opacity-30'}" title={partsById.get(b)?.name} />
+						{/each}
+						<span class="px-1 text-text-muted">+</span>
+						<img src={render(pv.funnel)} alt="funnel" class="h-9 w-9 border border-primary/40 bg-[var(--color-bg)] object-contain" title="{size} funnel" />
+					</div>
+				</div>
+			{/each}
 		</div>
 	</section>
 
@@ -236,7 +274,11 @@
 		{@const eff = effectiveGrams(p, !!inclSupport[p.id])}
 		<tr class="border-b border-border align-middle last:border-b-0">
 			<td class="w-8 py-2 {indent ? 'border-l-2 border-primary/40 pl-5' : 'pl-3'}">
-				<input class="setup-toggle h-4 w-4" type="checkbox" bind:checked={selected[p.id]} aria-label="Select {p.name}" />
+				{#if 'bins' in p.quantities}
+					<input class="setup-toggle h-4 w-4" type="checkbox" checked={printBins} onchange={() => (printBins = !printBins)} aria-label="Print bins (set in Build options)" title="Controlled by the Print bins toggle in Build options" />
+				{:else}
+					<input class="setup-toggle h-4 w-4" type="checkbox" bind:checked={selected[p.id]} aria-label="Select {p.name}" />
+				{/if}
 			</td>
 			<td class="py-2 pl-2">
 				<button
