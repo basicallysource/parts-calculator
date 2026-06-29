@@ -1,0 +1,28 @@
+[
+	{
+		"id": "chute-core-and-funnel-brackets",
+		"name": "chute-core-and-funnel-brackets",
+		"download": "/plates/chute-core-and-funnel-brackets.3mf",
+		"thumbs": [
+			"/plate-thumbs/chute-core-and-funnel-brackets-1.png",
+			"/plate-thumbs/chute-core-and-funnel-brackets-2.png"
+		],
+		"parts": [
+			{
+				"name": "left funnel slide",
+				"count": 4,
+				"part_id": "funnel-bracket-left"
+			},
+			{
+				"name": "right funnel slide",
+				"count": 2,
+				"part_id": "funnel-bracket-right"
+			},
+			{
+				"name": "core (2)",
+				"count": 1,
+				"part_id": "chute-core"
+			}
+		]
+	}
+]

@@ -18,6 +18,8 @@
 		money,
 		duration,
 		durationLong,
+		PLATES,
+		platesForPart,
 		type Part
 	} from '$lib/filament';
 	import { getBambuColor } from '$lib/bambu-colors';
@@ -27,7 +29,7 @@
 	import { zipSync } from 'fflate';
 	import { onMount } from 'svelte';
 	import { loadConfig, saveConfig, clearConfig } from '$lib/config';
-	import { Download, Package, ZoomIn, Loader, Info, Plus, X, RotateCcw, Clock } from 'lucide-svelte';
+	import { Download, Package, ZoomIn, Loader, Info, Plus, X, RotateCcw, Clock, Layers3 } from 'lucide-svelte';
 
 	// ---- defaults (also used by "reset to default") -----------------------------
 	const defaultFunnelSizes = (): ('third' | 'half')[] => ['third', 'third', 'half'];
@@ -89,6 +91,11 @@
 	}
 	let zipping = $state(false);
 	let infoOpen = $state(false);
+	let highlightPartId = $state<string | null>(null); // for "find this part in plates"
+	function showInPlates(id: string) {
+		highlightPartId = id;
+		document.getElementById('build-plates')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	}
 	let viewerOpen = $state(false);
 	let viewerPart = $state<Part | null>(null);
 	let viewerColorId = $state('ash-gray');
@@ -350,6 +357,7 @@
 					{p.name}
 					{#if p.optional}<span class="border border-warning/50 px-1 text-xs text-warning-dark">optional</span>{/if}
 					{#if p.support_used}<span class="border border-info/50 px-1 text-xs text-info" title="Sliced with support material — included in this part's grams">supports</span>{/if}
+						{#if platesForPart(p.id).length}<button type="button" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" onclick={() => showInPlates(p.id)} title="Show plates with this part"><Layers3 size={11} /> {platesForPart(p.id).length} plate{platesForPart(p.id).length === 1 ? '' : 's'}</button>{/if}
 				</span>
 				<span class="flex flex-wrap items-center gap-1.5 text-xs text-text-muted">
 					{#each sw as s}
@@ -513,6 +521,42 @@
 			</div>
 		</aside>
 	</div>
+
+	{#if PLATES.length}
+		<section id="build-plates" class="mt-10">
+			<div class="mb-2 flex items-center justify-between">
+				<h2 class="flex items-center gap-2 text-base font-semibold text-text">
+					<Layers3 size={16} /> Build plates
+				</h2>
+				{#if highlightPartId}
+					<button class="text-sm text-primary hover:text-primary-hover" onclick={() => (highlightPartId = null)}>clear highlight</button>
+				{/if}
+			</div>
+			<p class="mb-3 text-sm text-text-muted">Pre-arranged plates ready to print — download the .3mf and send it to your slicer.</p>
+			<div class="grid gap-4 sm:grid-cols-2">
+				{#each PLATES as plate (plate.id)}
+					{@const hit = highlightPartId && plate.parts.some((pp) => pp.part_id === highlightPartId)}
+					<div class="setup-card-shell border p-3 {hit ? 'ring-2 ring-primary' : ''}">
+						<div class="mb-2 flex gap-2">
+							{#each plate.thumbs as t}
+								<img src={t} alt="plate preview" class="h-24 w-24 border border-border bg-[var(--color-bg)] object-contain" />
+							{/each}
+						</div>
+						<div class="mb-2 flex flex-wrap gap-1.5">
+							{#each plate.parts as pp}
+								<span class="border px-1.5 py-0.5 text-xs {pp.part_id && pp.part_id === highlightPartId ? 'border-primary bg-primary/10 text-primary' : 'border-border text-text-muted'}">
+									{pp.count}× {pp.name}
+								</span>
+							{/each}
+						</div>
+						<a class="setup-button-secondary inline-flex h-9 items-center gap-2 px-3 text-sm font-semibold" href={plate.download} download>
+							<Download size={14} /> Download plate (.3mf)
+						</a>
+					</div>
+				{/each}
+			</div>
+		</section>
+	{/if}
 
 	<footer class="mt-10 border-t border-border pt-4 text-xs text-text-muted">
 		A machine = 1 feeder + 1 classification channel + 1 interface + 1 chute + 1 lazy Susan +
