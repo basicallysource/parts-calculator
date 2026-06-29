@@ -23,10 +23,20 @@
 	import Modal from '$lib/components/Modal.svelte';
 	import StlViewer from '$lib/components/StlViewer.svelte';
 	import { zipSync } from 'fflate';
-	import { Download, Package, ZoomIn, Loader, Info, Plus, X } from 'lucide-svelte';
+	import { onMount } from 'svelte';
+	import { loadConfig, saveConfig, clearConfig } from '$lib/config';
+	import { Download, Package, ZoomIn, Loader, Info, Plus, X, RotateCcw } from 'lucide-svelte';
+
+	// ---- defaults (also used by "reset to default") -----------------------------
+	const defaultFunnelSizes = (): ('third' | 'half')[] => ['third', 'third', 'half'];
+	const defaultRoleColors = () => Object.fromEntries(COLOR_ROLES.map((r) => [r.id, r.default]));
+	const defaultSelected = () =>
+		Object.fromEntries(PARTS.map((p) => [p.id, !('bins' in p.quantities)]));
+	const defaultInclSupport = () =>
+		Object.fromEntries(PARTS.filter((p) => p.support_grams > 0).map((p) => [p.id, p.id === 'stator']));
 
 	// per-layer size list IS the source of truth; layer count derives from it
-	let funnelSizes = $state<('third' | 'half')[]>(['third', 'third', 'half']);
+	let funnelSizes = $state<('third' | 'half')[]>(defaultFunnelSizes());
 	const layers = $derived(funnelSizes.length);
 	function addLayer() {
 		funnelSizes = [...funnelSizes, 'third'];
@@ -34,13 +44,8 @@
 	function removeLayer(i: number) {
 		if (funnelSizes.length > 1) funnelSizes = funnelSizes.filter((_, j) => j !== i);
 	}
-	let roleColors = $state<Record<string, string>>(
-		Object.fromEntries(COLOR_ROLES.map((r) => [r.id, r.default]))
-	);
-	// default: everything selected EXCEPT bins
-	let selected = $state<Record<string, boolean>>(
-		Object.fromEntries(PARTS.map((p) => [p.id, !('bins' in p.quantities)]))
-	);
+	let roleColors = $state<Record<string, string>>(defaultRoleColors());
+	let selected = $state<Record<string, boolean>>(defaultSelected());
 	let surplus = $state(15);
 	let printBins = $state(false); // top-level: print bins or not (auto-selects the right bins)
 	const partsById = new Map(PARTS.map((p) => [p.id, p]));
@@ -51,9 +56,35 @@
 		return selected[id];
 	}
 	// include each part's support material in totals — default on for the stator only
-	let inclSupport = $state<Record<string, boolean>>(
-		Object.fromEntries(PARTS.filter((p) => p.support_grams > 0).map((p) => [p.id, p.id === 'stator']))
-	);
+	let inclSupport = $state<Record<string, boolean>>(defaultInclSupport());
+
+	// ---- persistence: load saved config at boot, save on change ----------------
+	let configLoaded = $state(false);
+	onMount(() => {
+		const c = loadConfig();
+		if (c) {
+			if (Array.isArray(c.funnelSizes) && c.funnelSizes.length) funnelSizes = c.funnelSizes;
+			if (c.roleColors) roleColors = { ...roleColors, ...c.roleColors };
+			if (typeof c.printBins === 'boolean') printBins = c.printBins;
+			if (typeof c.surplus === 'number') surplus = c.surplus;
+			if (c.selected) selected = { ...selected, ...c.selected };
+			if (c.inclSupport) inclSupport = { ...inclSupport, ...c.inclSupport };
+		}
+		configLoaded = true;
+	});
+	$effect(() => {
+		const snapshot = { funnelSizes, roleColors, printBins, surplus, selected, inclSupport };
+		if (configLoaded) saveConfig($state.snapshot(snapshot));
+	});
+	function resetToDefaults() {
+		funnelSizes = defaultFunnelSizes();
+		roleColors = defaultRoleColors();
+		selected = defaultSelected();
+		inclSupport = defaultInclSupport();
+		surplus = 15;
+		printBins = false;
+		clearConfig();
+	}
 	let zipping = $state(false);
 	let infoOpen = $state(false);
 	let viewerOpen = $state(false);
@@ -193,7 +224,16 @@
 
 	<!-- BUILD OPTIONS = colors + layer configuration -->
 	<section class="mb-8">
-		<h2 class="mb-3 text-base font-semibold text-text">Build options</h2>
+		<div class="mb-3 flex items-center justify-between">
+			<h2 class="text-base font-semibold text-text">Build options</h2>
+			<button
+				class="inline-flex items-center gap-1.5 text-sm text-text-muted hover:text-text"
+				onclick={resetToDefaults}
+				title="Reset all build options to defaults"
+			>
+				<RotateCcw size={14} /> Reset to default
+			</button>
+		</div>
 
 		<!-- colors -->
 		<div class="setup-panel mb-4 p-4">
