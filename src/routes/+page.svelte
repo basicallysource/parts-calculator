@@ -26,7 +26,7 @@
 	import { Download, Package, ZoomIn, Loader, Info, Plus, X } from 'lucide-svelte';
 
 	// per-layer size list IS the source of truth; layer count derives from it
-	let funnelSizes = $state<('third' | 'half')[]>(['third', 'third', 'third']);
+	let funnelSizes = $state<('third' | 'half')[]>(['third', 'third', 'half']);
 	const layers = $derived(funnelSizes.length);
 	function addLayer() {
 		funnelSizes = [...funnelSizes, 'third'];
