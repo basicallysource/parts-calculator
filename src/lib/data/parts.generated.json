@@ -73,6 +73,11 @@
 			"id": "funnel",
 			"name": "Funnels",
 			"default": "ash-gray"
+		},
+		{
+			"id": "bin",
+			"name": "Bins",
+			"default": "ash-gray"
 		}
 	],
 	"assemblies": [
@@ -367,29 +372,6 @@
 			"render": "/renders/chute-core.png"
 		},
 		{
-			"id": "bin-third",
-			"name": "Bin (third size)",
-			"quantities": {
-				"bins": 18
-			},
-			"assembly": null,
-			"variant_group": null,
-			"variant_name": null,
-			"description": "Third-size bin. 18 per layer. Optional.",
-			"version": "1",
-			"date_added": "2026-06-27",
-			"grams": 122.71,
-			"support_grams": 0.9,
-			"support_used": true,
-			"print_seconds": 12524,
-			"color": {
-				"any": true
-			},
-			"optional": true,
-			"stl": "/stl/bin-third.stl",
-			"render": "/renders/bin-third.png"
-		},
-		{
 			"id": "bin-retainer-left",
 			"name": "Bin retainer (left)",
 			"quantities": {
@@ -408,7 +390,7 @@
 			"color": {
 				"role": "frame"
 			},
-			"optional": true,
+			"optional": false,
 			"stl": "/stl/bin-retainer-left.stl",
 			"render": "/renders/bin-retainer-left.png"
 		},
@@ -431,7 +413,7 @@
 			"color": {
 				"role": "frame"
 			},
-			"optional": true,
+			"optional": false,
 			"stl": "/stl/bin-retainer-right.stl",
 			"render": "/renders/bin-retainer-right.png"
 		},
@@ -1566,6 +1548,121 @@
 			"optional": false,
 			"stl": "/stl/funnel-half.stl",
 			"render": "/renders/funnel-half.png"
+		},
+		{
+			"id": "bin-half-left",
+			"name": "Bin (half, left)",
+			"quantities": {
+				"bins": 6
+			},
+			"assembly": null,
+			"variant_group": "bin",
+			"variant_name": "Half",
+			"description": "Bin (half, left). Half bins: 6 per layer of that size.",
+			"version": "1",
+			"date_added": "2026-06-29",
+			"grams": 171.54,
+			"support_grams": 0.69,
+			"support_used": true,
+			"print_seconds": 16584,
+			"color": {
+				"role": "bin"
+			},
+			"optional": true,
+			"stl": "/stl/bin-half-left.stl",
+			"render": "/renders/bin-half-left.png"
+		},
+		{
+			"id": "bin-half-right",
+			"name": "Bin (half, right)",
+			"quantities": {
+				"bins": 6
+			},
+			"assembly": null,
+			"variant_group": "bin",
+			"variant_name": "Half",
+			"description": "Bin (half, right). Half bins: 6 per layer of that size.",
+			"version": "1",
+			"date_added": "2026-06-29",
+			"grams": 171.5,
+			"support_grams": 0.67,
+			"support_used": true,
+			"print_seconds": 16657,
+			"color": {
+				"role": "bin"
+			},
+			"optional": true,
+			"stl": "/stl/bin-half-right.stl",
+			"render": "/renders/bin-half-right.png"
+		},
+		{
+			"id": "bin-third-left",
+			"name": "Bin (third, left)",
+			"quantities": {
+				"bins": 6
+			},
+			"assembly": null,
+			"variant_group": "bin",
+			"variant_name": "Third",
+			"description": "Bin (third, left). Third bins: 6 per layer of that size.",
+			"version": "1",
+			"date_added": "2026-06-29",
+			"grams": 121.81,
+			"support_grams": 1.06,
+			"support_used": true,
+			"print_seconds": 12385,
+			"color": {
+				"role": "bin"
+			},
+			"optional": true,
+			"stl": "/stl/bin-third-left.stl",
+			"render": "/renders/bin-third-left.png"
+		},
+		{
+			"id": "bin-third-center",
+			"name": "Bin (third, center)",
+			"quantities": {
+				"bins": 6
+			},
+			"assembly": null,
+			"variant_group": "bin",
+			"variant_name": "Third",
+			"description": "Bin (third, center). Third bins: 6 per layer of that size.",
+			"version": "1",
+			"date_added": "2026-06-29",
+			"grams": 112.24,
+			"support_grams": 2.48,
+			"support_used": true,
+			"print_seconds": 11682,
+			"color": {
+				"role": "bin"
+			},
+			"optional": true,
+			"stl": "/stl/bin-third-center.stl",
+			"render": "/renders/bin-third-center.png"
+		},
+		{
+			"id": "bin-third-rightback",
+			"name": "Bin (third, right-back)",
+			"quantities": {
+				"bins": 6
+			},
+			"assembly": null,
+			"variant_group": "bin",
+			"variant_name": "Third",
+			"description": "Bin (third, right-back). Third bins: 6 per layer of that size.",
+			"version": "1",
+			"date_added": "2026-06-29",
+			"grams": 121.66,
+			"support_grams": 0.83,
+			"support_used": true,
+			"print_seconds": 12384,
+			"color": {
+				"role": "bin"
+			},
+			"optional": true,
+			"stl": "/stl/bin-third-rightback.stl",
+			"render": "/renders/bin-third-rightback.png"
 		}
 	]
 }

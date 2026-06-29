@@ -51,10 +51,20 @@
 			funnelSizes = Array.from({ length: layers }, (_, i) => funnelSizes[i] ?? 'third');
 		}
 	});
+	// the per-layer size drives both the funnel and the bin set for that layer
 	function variantCount(id: string): number | null {
-		if (id === 'funnel-third') return funnelSizes.filter((s) => s === 'third').length;
-		if (id === 'funnel-half') return funnelSizes.filter((s) => s === 'half').length;
-		return null;
+		const nThird = funnelSizes.filter((s) => s === 'third').length;
+		const nHalf = funnelSizes.filter((s) => s === 'half').length;
+		switch (id) {
+			case 'funnel-third': return nThird;
+			case 'funnel-half': return nHalf;
+			case 'bin-half-left':
+			case 'bin-half-right': return nHalf * 6; // 6 per section, 6 sections, per half layer
+			case 'bin-third-left':
+			case 'bin-third-center':
+			case 'bin-third-rightback': return nThird * 6; // 18 per third layer (3 × 6)
+			default: return null;
+		}
 	}
 
 	const buy = $derived(
@@ -205,7 +215,7 @@
 		</div>
 
 		<div class="mt-4 border-t border-border pt-3">
-			<span class="mb-2 block text-xs font-semibold uppercase tracking-wider text-text-muted">Funnel size per layer</span>
+			<span class="mb-2 block text-xs font-semibold uppercase tracking-wider text-text-muted">Layer size (funnel &amp; bins) per layer</span>
 			<div class="flex flex-wrap gap-2">
 				{#each funnelSizes as _, i (i)}
 					<label class="flex items-center gap-1.5 text-sm">
