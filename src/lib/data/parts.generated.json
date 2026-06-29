@@ -77,7 +77,7 @@
 		{
 			"id": "bin",
 			"name": "Bins",
-			"default": "ash-gray"
+			"default": "ivory-white"
 		}
 	],
 	"assemblies": [
