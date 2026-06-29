@@ -62,6 +62,11 @@
       "id": "funnel",
       "name": "Funnels",
       "default": "ash-gray"
+    },
+    {
+      "id": "bin",
+      "name": "Bins",
+      "default": "ash-gray"
     }
   ],
   "parts": [
@@ -264,28 +269,10 @@
       "support": false
     },
     {
-      "id": "bin-third",
-      "name": "Bin (third size)",
-      "description": "Third-size bin. 18 per layer. Optional.",
-      "internal_notes": "18 PER LAYER (not per machine). Optional - a layer is a layer of bins; if you don't print bins you don't need retainers either. Bins are typically various colors -> 'any'.",
-      "version": "1",
-      "date_added": "2026-06-27",
-      "quantities": {
-        "bins": 18
-      },
-      "assembly": null,
-      "stl": "parts/bins/bin-third.stl",
-      "color": {
-        "any": true
-      },
-      "optional": true,
-      "support": false
-    },
-    {
       "id": "bin-retainer-left",
       "name": "Bin retainer (left)",
       "description": "Bin retainer, left. Optional.",
-      "internal_notes": "Optional. QUANTITY UNCONFIRMED (assumed 1/layer). Color: frame.",
+      "internal_notes": "Bin retainer (per layer, 6 each). Required (not optional). Frame color.",
       "version": "1",
       "date_added": "2026-06-27",
       "quantities": {
@@ -296,14 +283,14 @@
       "color": {
         "role": "frame"
       },
-      "optional": true,
+      "optional": false,
       "support": false
     },
     {
       "id": "bin-retainer-right",
       "name": "Bin retainer (right)",
       "description": "Bin retainer, right. Optional.",
-      "internal_notes": "Optional. QUANTITY UNCONFIRMED (assumed 1/layer). Color: frame.",
+      "internal_notes": "Bin retainer (per layer, 6 each). Required (not optional). Frame color.",
       "version": "1",
       "date_added": "2026-06-27",
       "quantities": {
@@ -314,7 +301,7 @@
       "color": {
         "role": "frame"
       },
-      "optional": true,
+      "optional": false,
       "support": false
     },
     {
@@ -1197,6 +1184,101 @@
         "role": "funnel"
       },
       "optional": false
+    },
+    {
+      "id": "bin-half-left",
+      "name": "Bin (half, left)",
+      "description": "Bin (half, left). Half bins: 6 per layer of that size.",
+      "internal_notes": "Bin variant (Half). 6 per layer that uses Half size. Half layer = 12 bins (L+R); Third layer = 18 bins (L+center+right-back). Optional to print. Bin color role.",
+      "version": "1",
+      "date_added": "2026-06-29",
+      "quantities": {
+        "bins": 6
+      },
+      "assembly": null,
+      "variant_group": "bin",
+      "variant_name": "Half",
+      "stl": "parts/bins/bin-half-left.stl",
+      "color": {
+        "role": "bin"
+      },
+      "optional": true
+    },
+    {
+      "id": "bin-half-right",
+      "name": "Bin (half, right)",
+      "description": "Bin (half, right). Half bins: 6 per layer of that size.",
+      "internal_notes": "Bin variant (Half). 6 per layer that uses Half size. Half layer = 12 bins (L+R); Third layer = 18 bins (L+center+right-back). Optional to print. Bin color role.",
+      "version": "1",
+      "date_added": "2026-06-29",
+      "quantities": {
+        "bins": 6
+      },
+      "assembly": null,
+      "variant_group": "bin",
+      "variant_name": "Half",
+      "stl": "parts/bins/bin-half-right.stl",
+      "color": {
+        "role": "bin"
+      },
+      "optional": true
+    },
+    {
+      "id": "bin-third-left",
+      "name": "Bin (third, left)",
+      "description": "Bin (third, left). Third bins: 6 per layer of that size.",
+      "internal_notes": "Bin variant (Third). 6 per layer that uses Third size. Half layer = 12 bins (L+R); Third layer = 18 bins (L+center+right-back). Optional to print. Bin color role.",
+      "version": "1",
+      "date_added": "2026-06-29",
+      "quantities": {
+        "bins": 6
+      },
+      "assembly": null,
+      "variant_group": "bin",
+      "variant_name": "Third",
+      "stl": "parts/bins/bin-third-left.stl",
+      "color": {
+        "role": "bin"
+      },
+      "optional": true
+    },
+    {
+      "id": "bin-third-center",
+      "name": "Bin (third, center)",
+      "description": "Bin (third, center). Third bins: 6 per layer of that size.",
+      "internal_notes": "Bin variant (Third). 6 per layer that uses Third size. Half layer = 12 bins (L+R); Third layer = 18 bins (L+center+right-back). Optional to print. Bin color role.",
+      "version": "1",
+      "date_added": "2026-06-29",
+      "quantities": {
+        "bins": 6
+      },
+      "assembly": null,
+      "variant_group": "bin",
+      "variant_name": "Third",
+      "stl": "parts/bins/bin-third-center.stl",
+      "color": {
+        "role": "bin"
+      },
+      "optional": true
+    },
+    {
+      "id": "bin-third-rightback",
+      "name": "Bin (third, right-back)",
+      "description": "Bin (third, right-back). Third bins: 6 per layer of that size.",
+      "internal_notes": "Bin variant (Third). 6 per layer that uses Third size. Half layer = 12 bins (L+R); Third layer = 18 bins (L+center+right-back). Optional to print. Bin color role.",
+      "version": "1",
+      "date_added": "2026-06-29",
+      "quantities": {
+        "bins": 6
+      },
+      "assembly": null,
+      "variant_group": "bin",
+      "variant_name": "Third",
+      "stl": "parts/bins/bin-third-rightback.stl",
+      "color": {
+        "role": "bin"
+      },
+      "optional": true
     }
   ],
   "assemblies": [
