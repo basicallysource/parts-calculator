@@ -1279,6 +1279,40 @@
         "role": "bin"
       },
       "optional": true
+    },
+    {
+      "id": "bearing-cover-covered",
+      "name": "Bearing cover (covered side)",
+      "description": "Chute bearing cover. 1 per machine.",
+      "internal_notes": "Left/right bearing cover for the chute. Chute-core color. Chute bearing assembly.",
+      "version": "1",
+      "date_added": "2026-06-29",
+      "quantities": {
+        "chute": 1
+      },
+      "assembly": "chute-bearing",
+      "stl": "parts/chute/bearing-cover-covered.stl",
+      "color": {
+        "role": "chute-core"
+      },
+      "optional": false
+    },
+    {
+      "id": "bearing-cover-servo",
+      "name": "Bearing cover (servo side)",
+      "description": "Chute bearing cover. 1 per machine.",
+      "internal_notes": "Left/right bearing cover for the chute. Chute-core color. Chute bearing assembly.",
+      "version": "1",
+      "date_added": "2026-06-29",
+      "quantities": {
+        "chute": 1
+      },
+      "assembly": "chute-bearing",
+      "stl": "parts/chute/bearing-cover-servo.stl",
+      "color": {
+        "role": "chute-core"
+      },
+      "optional": false
     }
   ],
   "assemblies": [

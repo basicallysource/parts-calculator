@@ -1663,6 +1663,52 @@
 			"optional": true,
 			"stl": "/stl/bin-third-rightback.stl",
 			"render": "/renders/bin-third-rightback.png"
+		},
+		{
+			"id": "bearing-cover-covered",
+			"name": "Bearing cover (covered side)",
+			"quantities": {
+				"chute": 1
+			},
+			"assembly": "chute-bearing",
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Chute bearing cover. 1 per machine.",
+			"version": "1",
+			"date_added": "2026-06-29",
+			"grams": 6.47,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 2417,
+			"color": {
+				"role": "chute-core"
+			},
+			"optional": false,
+			"stl": "/stl/bearing-cover-covered.stl",
+			"render": "/renders/bearing-cover-covered.png"
+		},
+		{
+			"id": "bearing-cover-servo",
+			"name": "Bearing cover (servo side)",
+			"quantities": {
+				"chute": 1
+			},
+			"assembly": "chute-bearing",
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Chute bearing cover. 1 per machine.",
+			"version": "1",
+			"date_added": "2026-06-29",
+			"grams": 5.9,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 2426,
+			"color": {
+				"role": "chute-core"
+			},
+			"optional": false,
+			"stl": "/stl/bearing-cover-servo.stl",
+			"render": "/renders/bearing-cover-servo.png"
 		}
 	]
 }
