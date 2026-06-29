@@ -266,7 +266,8 @@
         "role": "chute-core"
       },
       "optional": false,
-      "support": false
+      "support": false,
+      "source": "1_chute_core - core (2).stl"
     },
     {
       "id": "bin-retainer-left",
@@ -773,7 +774,8 @@
         "role": "chute-core"
       },
       "optional": false,
-      "support": false
+      "support": false,
+      "source": "snap_in_funnel_bracket - left_funnel_slide.stl"
     },
     {
       "id": "funnel-bracket-right",
@@ -791,7 +793,8 @@
         "role": "chute-core"
       },
       "optional": false,
-      "support": false
+      "support": false,
+      "source": "snap_in_funnel_bracket - right_funnel_slide.stl"
     },
     {
       "id": "door-module",

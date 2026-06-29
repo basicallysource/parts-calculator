@@ -51,3 +51,10 @@ npm run dev
 ```
 
 STLs are stored with **Git LFS** (`git lfs install` once per machine).
+
+## Build plates
+
+Drop pre-arranged `.3mf` plates into `slicer/plates/` (auto-discovered). `filament.py`
+copies each to `static/plates/` for download, pulls its embedded plate previews, and
+reads the parts it contains. To cross-link a plate's parts to the catalog, set a part's
+`source` field in `parts.json` to the part's original filename as it appears in the 3mf.

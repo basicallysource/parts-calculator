@@ -4,7 +4,19 @@
  * by color. No estimation happens here.
  */
 import raw from '$lib/data/parts.generated.json';
+import platesRaw from '$lib/data/plates.generated.json';
 import { getBambuColor, type BambuColor } from '$lib/bambu-colors';
+
+export type PlatePart = { name: string; count: number; part_id: string | null };
+export type Plate = { id: string; name: string; download: string; thumbs: string[]; parts: PlatePart[] };
+export const PLATES = platesRaw as Plate[];
+const _platesByPart = new Map<string, Plate[]>();
+for (const pl of PLATES)
+	for (const pp of pl.parts)
+		if (pp.part_id) (_platesByPart.get(pp.part_id) ?? _platesByPart.set(pp.part_id, []).get(pp.part_id)!).push(pl);
+export function platesForPart(id: string): Plate[] {
+	return _platesByPart.get(id) ?? [];
+}
 
 export type Section = { id: string; name: string; scales_with_layers: boolean };
 export type ColorRoleDef = { id: string; name: string; default: string };
