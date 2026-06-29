@@ -54,6 +54,11 @@ PROFILE_DIR = os.path.join(BUILD, "profiles")
 DATA_OUT = os.path.join(REPO, "src", "lib", "data", "parts.generated.json")
 RENDERS_OUT = os.path.join(REPO, "static", "renders")
 STL_OUT = os.path.join(REPO, "static", "stl")
+# build plates: pre-arranged .3mf files you drop in slicer/plates/ (auto-discovered)
+PLATES_SRC = os.path.join(HERE, "plates")
+PLATES_OUT = os.path.join(REPO, "static", "plates")
+PLATE_THUMB_OUT = os.path.join(REPO, "static", "plate-thumbs")
+PLATES_DATA = os.path.join(REPO, "src", "lib", "data", "plates.generated.json")
 
 
 # ---------------------------------------------------------------- profile prep
@@ -433,6 +438,47 @@ def main():
               f"in modeled orientation); sliced WITH support: {', '.join(forced_support)}")
     if failed:
         print(f"  ! {len(failed)} part(s) FAILED to slice: {', '.join(failed)}")
+
+    process_plates(manifest)
+
+
+def process_plates(manifest):
+    """Auto-discover pre-arranged build plates (slicer/plates/*.3mf): copy each for
+    download, pull its embedded plate previews, and read the parts it contains
+    (cross-linked to manifest parts via each part's optional `source` filename)."""
+    import re
+    import glob
+    import collections
+    os.makedirs(PLATES_OUT, exist_ok=True)
+    os.makedirs(PLATE_THUMB_OUT, exist_ok=True)
+    src_to_id = {p["source"]: p["id"] for p in manifest["parts"] if p.get("source")}
+    out = []
+    for f in sorted(glob.glob(os.path.join(PLATES_SRC, "*.3mf"))):
+        base = os.path.splitext(os.path.basename(f))[0]
+        pid = re.sub(r"[^a-z0-9]+", "-", base.lower()).strip("-")
+        shutil.copy(f, os.path.join(PLATES_OUT, pid + ".3mf"))
+        thumbs = []
+        with zipfile.ZipFile(f) as z:
+            for name in sorted(n for n in z.namelist() if re.match(r"Metadata/plate_\d+\.png$", n)):
+                num = re.search(r"plate_(\d+)", name).group(1)
+                tn = f"{pid}-{num}.png"
+                with open(os.path.join(PLATE_THUMB_OUT, tn), "wb") as o:
+                    o.write(z.read(name))
+                thumbs.append(f"/plate-thumbs/{tn}")
+            cfg = z.read("Metadata/model_settings.config").decode("utf-8", "ignore")
+        raw = re.findall(r'<object\b[^>]*>\s*<metadata key="name" value="([^"]+)"', cfg)
+        counts = collections.Counter(raw)
+        parts = []
+        for nm, c in counts.items():
+            pretty = nm.rsplit(".stl", 1)[0]
+            pretty = pretty.split(" - ", 1)[1] if " - " in pretty else pretty
+            parts.append({"name": pretty.replace("_", " ").strip(), "count": c,
+                          "part_id": src_to_id.get(nm)})
+        parts.sort(key=lambda x: -x["count"])
+        out.append({"id": pid, "name": base, "download": f"/plates/{pid}.3mf",
+                    "thumbs": thumbs, "parts": parts})
+    json.dump(out, open(PLATES_DATA, "w"), indent="\t")
+    print(f"  {len(out)} build plate(s) -> static/plates + plates.generated.json")
 
 
 if __name__ == "__main__":
