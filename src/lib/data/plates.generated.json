@@ -1,5 +1,20 @@
 [
 	{
+		"id": "90-deg-brackets",
+		"name": "90-deg-brackets",
+		"download": "/plates/90-deg-brackets.3mf",
+		"thumbs": [
+			"/plate-thumbs/90-deg-brackets-1.png"
+		],
+		"parts": [
+			{
+				"name": "inner 90 bracket",
+				"count": 22,
+				"part_id": "frame-90deg-bracket"
+			}
+		]
+	},
+	{
 		"id": "chute-core-and-funnel-brackets",
 		"name": "chute-core-and-funnel-brackets",
 		"download": "/plates/chute-core-and-funnel-brackets.3mf",
