@@ -467,7 +467,8 @@ def process_plates(manifest):
                 thumbs.append(f"/plate-thumbs/{tn}")
             cfg = z.read("Metadata/model_settings.config").decode("utf-8", "ignore")
         raw = re.findall(r'<object\b[^>]*>\s*<metadata key="name" value="([^"]+)"', cfg)
-        counts = collections.Counter(raw)
+        # Skip decorative/label objects (e.g. embossed "text_shape"); real parts are .stl
+        counts = collections.Counter(n for n in raw if n.lower().endswith(".stl"))
         parts = []
         for nm, c in counts.items():
             pretty = nm.rsplit(".stl", 1)[0]

@@ -439,6 +439,7 @@
       "version": "1",
       "date_added": "2026-06-27",
       "stl": "parts/external-bracket/ext-bracket-left.stl",
+      "source": "1_printed_crossbeams - left_external_bracket.stl",
       "quantities": {
         "layer": 6,
         "interface": 6
@@ -458,6 +459,7 @@
       "version": "1",
       "date_added": "2026-06-27",
       "stl": "parts/external-bracket/ext-bracket-bottom-vertical.stl",
+      "source": "1_printed_crossbeams - bottom_vertical_bracket.stl",
       "quantities": {
         "layer": 6,
         "interface": 6
@@ -477,6 +479,7 @@
       "version": "1",
       "date_added": "2026-06-27",
       "stl": "parts/external-bracket/ext-bracket-cover.stl",
+      "source": "1_printed_crossbeams - external_bracket_cover.stl",
       "quantities": {
         "layer": 6,
         "interface": 6
