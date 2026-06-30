@@ -335,6 +335,7 @@
       },
       "assembly": null,
       "stl": "parts/layer/frame-90deg-bracket.stl",
+      "source": "1_printed_crossbeams - inner_90_bracket.stl",
       "color": {
         "role": "frame"
       },
