@@ -220,18 +220,41 @@
 			"variant_group": null,
 			"variant_name": null,
 			"description": "NEMA motor bracket. One per C-channel (4 total).",
-			"version": "1",
+			"version": "2",
 			"date_added": "2026-06-27",
-			"grams": 72.74,
+			"grams": 72.45,
 			"support_grams": 0.0,
 			"support_used": false,
-			"print_seconds": 7313,
+			"print_seconds": 7210,
 			"color": {
 				"role": "feeder"
 			},
 			"optional": false,
 			"stl": "/stl/nema-bracket.stl",
 			"render": "/renders/nema-bracket.png"
+		},
+		{
+			"id": "light-post",
+			"name": "Light post",
+			"quantities": {
+				"feeder": 2
+			},
+			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Light post on the C-channel feeder. 2 total.",
+			"version": "1",
+			"date_added": "2026-07-01",
+			"grams": 12.12,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 4295,
+			"color": {
+				"role": "feeder"
+			},
+			"optional": false,
+			"stl": "/stl/light-post.stl",
+			"render": "/renders/light-post.png"
 		},
 		{
 			"id": "light-post-cap",

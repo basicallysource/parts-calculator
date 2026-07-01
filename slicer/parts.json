@@ -146,14 +146,32 @@
       "id": "nema-bracket",
       "name": "NEMA bracket",
       "description": "NEMA motor bracket. One per C-channel (4 total).",
-      "internal_notes": "1 per C-channel => 4 total. File: 'Nema Bracket Bulk Section'; meaning of 'bulk section' unknown. Spencer believes all NEMA brackets are the same across C-channels. Feeder color.",
-      "version": "1",
+      "internal_notes": "1 per C-channel => 4 total. Spencer believes all NEMA brackets are the same across C-channels. Feeder color. v2 STL from 01_c_channel (5).zip.",
+      "version": "2",
       "date_added": "2026-06-27",
       "quantities": {
         "feeder": 4
       },
       "assembly": null,
       "stl": "parts/feeder/nema-bracket.stl",
+      "color": {
+        "role": "feeder"
+      },
+      "optional": false,
+      "support": false
+    },
+    {
+      "id": "light-post",
+      "name": "Light post",
+      "description": "Light post on the C-channel feeder. 2 total.",
+      "internal_notes": "Part of the feeder. 2x, feeder color. STL from 01_c_channel (5).zip.",
+      "version": "1",
+      "date_added": "2026-07-01",
+      "quantities": {
+        "feeder": 2
+      },
+      "assembly": null,
+      "stl": "parts/feeder/light-post.stl",
       "color": {
         "role": "feeder"
       },
