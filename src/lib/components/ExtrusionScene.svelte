@@ -1,11 +1,14 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, type Snippet } from 'svelte';
 	import * as THREE from 'three';
 	import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 	import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 	import { lengthGroups, STOCK_MM, type LengthGroup } from '$lib/framing';
 	import { extrusionGeometry, aluminiumMaterial } from '$lib/extrusion';
 	import { layerStore } from '$lib/layers.svelte';
+
+	// optional panel rendered beside the 3D view (splits the view area 50/50)
+	let { aside }: { aside?: Snippet } = $props();
 
 	const n = $derived(layerStore.sizes.length);
 	const groups = $derived(lengthGroups(n));
@@ -159,11 +162,16 @@
 		</p>
 	</div>
 
-	<div class="relative h-[54vh] w-full bg-[var(--color-bg)]">
-		<div bind:this={host} class="h-full w-full"></div>
-		<div class="pointer-events-none absolute bottom-2 left-3 text-xs text-text-muted">
-			drag to rotate · scroll to zoom
+	<div class="flex">
+		<div class="relative h-[42vh] {aside ? 'w-1/2' : 'w-full'} bg-[var(--color-bg)]">
+			<div bind:this={host} class="h-full w-full"></div>
+			<div class="pointer-events-none absolute bottom-2 left-3 text-xs text-text-muted">
+				drag to rotate · scroll to zoom
+			</div>
 		</div>
+		{#if aside}
+			<div class="w-1/2 border-l border-border">{@render aside()}</div>
+		{/if}
 	</div>
 
 	<!-- legend: same top→bottom order as the rows -->

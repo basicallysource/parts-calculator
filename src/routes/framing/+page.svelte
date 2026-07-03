@@ -2,6 +2,7 @@
 	import ExtrusionScene from '$lib/components/ExtrusionScene.svelte';
 	import LayerControl from '$lib/components/LayerControl.svelte';
 	import CutPlan from '$lib/components/CutPlan.svelte';
+	import Figure from '$lib/components/Figure.svelte';
 </script>
 
 <svelte:head><title>Sorter Parts Calculator — Aluminium framing</title></svelte:head>
@@ -20,7 +21,17 @@
 	</section>
 
 	<section class="mb-8">
-		<ExtrusionScene />
+		<ExtrusionScene>
+			{#snippet aside()}
+				<Figure
+					src="/extrusion-explainer.png"
+					alt="Extrusion assembly explainer"
+					title="Extrusion assembly explainer"
+					caption="The foot pieces aren't in the CAD yet."
+					imgClass="max-h-[32vh]"
+				/>
+			{/snippet}
+		</ExtrusionScene>
 	</section>
 
 	<section>
