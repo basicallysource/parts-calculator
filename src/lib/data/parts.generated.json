@@ -120,6 +120,11 @@
 			"id": "layer-connector",
 			"name": "Layer connector",
 			"description": "Pair of connectors. 1 of each per layer + 1 of each per bottom interface."
+		},
+		{
+			"id": "top-interface-split-spur-gear",
+			"name": "Top interface split spur gear",
+			"description": "Spur 2M 120T interface gear, split into 3 printable sections. Chute color."
 		}
 	],
 	"parts": [
@@ -152,6 +157,7 @@
 				]
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/stator.stl",
 			"render": "/renders/stator.png"
 		},
@@ -184,6 +190,7 @@
 				]
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/rotor-faceted.stl",
 			"render": "/renders/rotor-faceted.png"
 		},
@@ -207,6 +214,7 @@
 				"role": "feeder"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/output-gear.stl",
 			"render": "/renders/output-gear.png"
 		},
@@ -230,6 +238,7 @@
 				"role": "feeder"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/nema-bracket.stl",
 			"render": "/renders/nema-bracket.png"
 		},
@@ -253,6 +262,7 @@
 				"role": "feeder"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/light-post.stl",
 			"render": "/renders/light-post.png"
 		},
@@ -276,6 +286,7 @@
 				"fixed": "ivory-white"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/light-post-cap.stl",
 			"render": "/renders/light-post-cap.png"
 		},
@@ -299,6 +310,7 @@
 				"role": "feeder"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/bulk-cap.stl",
 			"render": "/renders/bulk-cap.png"
 		},
@@ -322,6 +334,7 @@
 				"fixed": "ivory-white"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/classification-dome.stl",
 			"render": "/renders/classification-dome.png"
 		},
@@ -345,6 +358,7 @@
 				"role": "frame"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/interface-bracket.stl",
 			"render": "/renders/interface-bracket.png"
 		},
@@ -368,6 +382,7 @@
 				"role": "frame"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/interface-spacer.stl",
 			"render": "/renders/interface-spacer.png"
 		},
@@ -391,6 +406,7 @@
 				"role": "chute-core"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/chute-core.stl",
 			"render": "/renders/chute-core.png"
 		},
@@ -414,6 +430,7 @@
 				"role": "frame"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/bin-retainer-left.stl",
 			"render": "/renders/bin-retainer-left.png"
 		},
@@ -437,6 +454,7 @@
 				"role": "frame"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/bin-retainer-right.stl",
 			"render": "/renders/bin-retainer-right.png"
 		},
@@ -460,6 +478,7 @@
 				"role": "frame"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/frame-crossbeam.stl",
 			"render": "/renders/frame-crossbeam.png"
 		},
@@ -483,6 +502,7 @@
 				"role": "frame"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/frame-90deg-bracket.stl",
 			"render": "/renders/frame-90deg-bracket.png"
 		},
@@ -506,6 +526,7 @@
 				"fixed": "ivory-white"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/ls-mount-to-chute.stl",
 			"render": "/renders/ls-mount-to-chute.png"
 		},
@@ -529,6 +550,7 @@
 				"role": "frame"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/ls-bottom-static.stl",
 			"render": "/renders/ls-bottom-static.png"
 		},
@@ -552,6 +574,7 @@
 				"role": "frame"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/ls-mount-to-extrusion.stl",
 			"render": "/renders/ls-mount-to-extrusion.png"
 		},
@@ -575,6 +598,7 @@
 				"role": "frame"
 			},
 			"optional": true,
+			"onshape": null,
 			"stl": "/stl/ls-hold-in-place.stl",
 			"render": "/renders/ls-hold-in-place.png"
 		},
@@ -598,6 +622,7 @@
 				"role": "frame"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/ls-washer.stl",
 			"render": "/renders/ls-washer.png"
 		},
@@ -622,6 +647,7 @@
 				"role": "frame"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/ext-bracket-left.stl",
 			"render": "/renders/ext-bracket-left.png"
 		},
@@ -646,6 +672,7 @@
 				"role": "frame"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/ext-bracket-bottom-vertical.stl",
 			"render": "/renders/ext-bracket-bottom-vertical.png"
 		},
@@ -670,6 +697,7 @@
 				"role": "frame"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/ext-bracket-cover.stl",
 			"render": "/renders/ext-bracket-cover.png"
 		},
@@ -693,6 +721,7 @@
 				"role": "frame"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/interface-rib.stl",
 			"render": "/renders/interface-rib.png"
 		},
@@ -716,6 +745,7 @@
 				"role": "frame"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/interface-rib-switch.stl",
 			"render": "/renders/interface-rib-switch.png"
 		},
@@ -739,6 +769,7 @@
 				"fixed": "ivory-white"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/cable-clamp-inner.stl",
 			"render": "/renders/cable-clamp-inner.png"
 		},
@@ -762,6 +793,7 @@
 				"fixed": "ivory-white"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/cable-clamp-outer.stl",
 			"render": "/renders/cable-clamp-outer.png"
 		},
@@ -785,6 +817,7 @@
 				"role": "frame"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/interface-spur-gear.stl",
 			"render": "/renders/interface-spur-gear.png"
 		},
@@ -808,6 +841,7 @@
 				"role": "frame"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/interface-idler-gear.stl",
 			"render": "/renders/interface-idler-gear.png"
 		},
@@ -831,6 +865,7 @@
 				"role": "frame"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/interface-nema23-bracket.stl",
 			"render": "/renders/interface-nema23-bracket.png"
 		},
@@ -854,6 +889,7 @@
 				"role": "frame"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/interface-cage-bracket.stl",
 			"render": "/renders/interface-cage-bracket.png"
 		},
@@ -877,6 +913,7 @@
 				"role": "frame"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/interface-cage-bracket-cable.stl",
 			"render": "/renders/interface-cage-bracket-cable.png"
 		},
@@ -900,6 +937,7 @@
 				"role": "frame"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/interface-big-spacer.stl",
 			"render": "/renders/interface-big-spacer.png"
 		},
@@ -923,8 +961,81 @@
 				"role": "frame"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/interface-upper-fixed-section.stl",
 			"render": "/renders/interface-upper-fixed-section.png"
+		},
+		{
+			"id": "top-interface-split-spur-gear-1",
+			"name": "Section 1",
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": "top-interface-split-spur-gear",
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Section 1 of 3 of the top interface split spur gear (Spur 2M 120T).",
+			"version": "1",
+			"date_added": "2026-07-03",
+			"grams": 59.97,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 7684,
+			"color": {
+				"role": "chute-core"
+			},
+			"optional": false,
+			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/12bfe1cca4fda5bc5763c0c9",
+			"stl": "/stl/top-interface-split-spur-gear-1.stl",
+			"render": "/renders/top-interface-split-spur-gear-1.png"
+		},
+		{
+			"id": "top-interface-split-spur-gear-2",
+			"name": "Section 2",
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": "top-interface-split-spur-gear",
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Section 2 of 3 of the top interface split spur gear (Spur 2M 120T).",
+			"version": "1",
+			"date_added": "2026-07-03",
+			"grams": 8.0,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 1250,
+			"color": {
+				"role": "chute-core"
+			},
+			"optional": false,
+			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/12bfe1cca4fda5bc5763c0c9",
+			"stl": "/stl/top-interface-split-spur-gear-2.stl",
+			"render": "/renders/top-interface-split-spur-gear-2.png"
+		},
+		{
+			"id": "top-interface-split-spur-gear-3",
+			"name": "Section 3",
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": "top-interface-split-spur-gear",
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Section 3 of 3 of the top interface split spur gear (Spur 2M 120T).",
+			"version": "1",
+			"date_added": "2026-07-03",
+			"grams": 588.3,
+			"support_grams": 400.58,
+			"support_used": true,
+			"print_seconds": 46254,
+			"color": {
+				"role": "chute-core"
+			},
+			"optional": false,
+			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/12bfe1cca4fda5bc5763c0c9",
+			"stl": "/stl/top-interface-split-spur-gear-3.stl",
+			"render": "/renders/top-interface-split-spur-gear-3.png"
 		},
 		{
 			"id": "rotor-finned",
@@ -946,6 +1057,7 @@
 				"fixed": "ivory-white"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/rotor-finned.stl",
 			"render": "/renders/rotor-finned.png"
 		},
@@ -969,6 +1081,7 @@
 				"role": "feeder"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/idler-gear.stl",
 			"render": "/renders/idler-gear.png"
 		},
@@ -992,6 +1105,7 @@
 				"role": "feeder"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/input-gear.stl",
 			"render": "/renders/input-gear.png"
 		},
@@ -1015,6 +1129,7 @@
 				"role": "feeder"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/output-guide.stl",
 			"render": "/renders/output-guide.png"
 		},
@@ -1038,6 +1153,7 @@
 				"role": "chute-core"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/funnel-bracket-left.stl",
 			"render": "/renders/funnel-bracket-left.png"
 		},
@@ -1061,6 +1177,7 @@
 				"role": "chute-core"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/funnel-bracket-right.stl",
 			"render": "/renders/funnel-bracket-right.png"
 		},
@@ -1084,6 +1201,7 @@
 				"role": "chute-core"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/door-module.stl",
 			"render": "/renders/door-module.png"
 		},
@@ -1107,6 +1225,7 @@
 				"role": "chute-core"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/bearing-holder-left.stl",
 			"render": "/renders/bearing-holder-left.png"
 		},
@@ -1130,6 +1249,7 @@
 				"role": "chute-core"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/bearing-holder-right.stl",
 			"render": "/renders/bearing-holder-right.png"
 		},
@@ -1153,6 +1273,7 @@
 				"role": "chute-core"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/servo-adapter-servo-side.stl",
 			"render": "/renders/servo-adapter-servo-side.png"
 		},
@@ -1176,6 +1297,7 @@
 				"role": "chute-core"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/servo-adapter-flap-side.stl",
 			"render": "/renders/servo-adapter-flap-side.png"
 		},
@@ -1199,6 +1321,7 @@
 				"role": "chute-core"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/servo-bracket-lower-arm.stl",
 			"render": "/renders/servo-bracket-lower-arm.png"
 		},
@@ -1222,6 +1345,7 @@
 				"role": "chute-core"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/servo-bracket-side-arm.stl",
 			"render": "/renders/servo-bracket-side-arm.png"
 		},
@@ -1245,6 +1369,7 @@
 				"role": "chute-core"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/servo-bracket-cover.stl",
 			"render": "/renders/servo-bracket-cover.png"
 		},
@@ -1268,6 +1393,7 @@
 				"role": "chute-core"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/servo-bracket-housing.stl",
 			"render": "/renders/servo-bracket-housing.png"
 		},
@@ -1291,6 +1417,7 @@
 				"role": "feeder"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/leg.stl",
 			"render": "/renders/leg.png"
 		},
@@ -1314,6 +1441,7 @@
 				"role": "feeder"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/foot.stl",
 			"render": "/renders/foot.png"
 		},
@@ -1337,6 +1465,7 @@
 				"role": "chute-core"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/chute-door.stl",
 			"render": "/renders/chute-door.png"
 		},
@@ -1360,6 +1489,7 @@
 				"role": "feeder"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/leg-extension.stl",
 			"render": "/renders/leg-extension.png"
 		},
@@ -1383,6 +1513,7 @@
 				"role": "feeder"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/camera-mount-part-6.stl",
 			"render": "/renders/camera-mount-part-6.png"
 		},
@@ -1406,6 +1537,7 @@
 				"role": "feeder"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/camera-mount-part-37.stl",
 			"render": "/renders/camera-mount-part-37.png"
 		},
@@ -1429,6 +1561,7 @@
 				"role": "feeder"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/camera-mount-part-37b.stl",
 			"render": "/renders/camera-mount-part-37b.png"
 		},
@@ -1452,6 +1585,7 @@
 				"role": "feeder"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/camera-mount-rod-mount.stl",
 			"render": "/renders/camera-mount-rod-mount.png"
 		},
@@ -1475,6 +1609,7 @@
 				"fixed": "ivory-white"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/camera-led-insert.stl",
 			"render": "/renders/camera-led-insert.png"
 		},
@@ -1499,6 +1634,7 @@
 				"role": "chute-core"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/layer-connector-1.stl",
 			"render": "/renders/layer-connector-1.png"
 		},
@@ -1523,6 +1659,7 @@
 				"role": "chute-core"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/layer-connector-2.stl",
 			"render": "/renders/layer-connector-2.png"
 		},
@@ -1546,6 +1683,7 @@
 				"role": "funnel"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/funnel-third.stl",
 			"render": "/renders/funnel-third.png"
 		},
@@ -1569,6 +1707,7 @@
 				"role": "funnel"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/funnel-half.stl",
 			"render": "/renders/funnel-half.png"
 		},
@@ -1592,6 +1731,7 @@
 				"role": "bin"
 			},
 			"optional": true,
+			"onshape": null,
 			"stl": "/stl/bin-half-left.stl",
 			"render": "/renders/bin-half-left.png"
 		},
@@ -1615,6 +1755,7 @@
 				"role": "bin"
 			},
 			"optional": true,
+			"onshape": null,
 			"stl": "/stl/bin-half-right.stl",
 			"render": "/renders/bin-half-right.png"
 		},
@@ -1638,6 +1779,7 @@
 				"role": "bin"
 			},
 			"optional": true,
+			"onshape": null,
 			"stl": "/stl/bin-third-left.stl",
 			"render": "/renders/bin-third-left.png"
 		},
@@ -1661,6 +1803,7 @@
 				"role": "bin"
 			},
 			"optional": true,
+			"onshape": null,
 			"stl": "/stl/bin-third-center.stl",
 			"render": "/renders/bin-third-center.png"
 		},
@@ -1684,6 +1827,7 @@
 				"role": "bin"
 			},
 			"optional": true,
+			"onshape": null,
 			"stl": "/stl/bin-third-rightback.stl",
 			"render": "/renders/bin-third-rightback.png"
 		},
@@ -1707,6 +1851,7 @@
 				"role": "chute-core"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/bearing-cover-covered.stl",
 			"render": "/renders/bearing-cover-covered.png"
 		},
@@ -1730,6 +1875,7 @@
 				"role": "chute-core"
 			},
 			"optional": false,
+			"onshape": null,
 			"stl": "/stl/bearing-cover-servo.stl",
 			"render": "/renders/bearing-cover-servo.png"
 		}

@@ -404,6 +404,7 @@ def main():
             "print_seconds": info["print_seconds"],
             "color": p.get("color", {"any": True}),
             "optional": p.get("optional", False),
+            "onshape": p.get("onshape"),
             "stl": f"/stl/{stl_name}",
             "render": f"/renders/{p['id']}.png",
         })
