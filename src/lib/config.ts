@@ -6,8 +6,8 @@ import { browser } from '$app/environment';
 
 export const CONFIG_KEY = 'sorter-filament-config-v1';
 
+// Note: layer configuration lives in layers.svelte.ts (shared across tabs), not here.
 export type StoredConfig = {
-	funnelSizes: ('third' | 'half')[];
 	roleColors: Record<string, string>;
 	printBins: boolean;
 	surplus: number;

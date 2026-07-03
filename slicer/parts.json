@@ -343,8 +343,8 @@
     },
     {
       "id": "frame-90deg-bracket",
-      "name": "Frame 90\u00b0 bracket",
-      "description": "Distribution frame 90\u00b0 bracket. Two per frame section.",
+      "name": "Frame 90° bracket",
+      "description": "Distribution frame 90° bracket. Two per frame section.",
       "internal_notes": "12 per frame (per layer). Frame color. File: inner_90_bracket.",
       "version": "1",
       "date_added": "2026-06-27",
@@ -362,7 +362,7 @@
     },
     {
       "id": "ls-mount-to-chute",
-      "name": "Lazy Susan \u2014 chute mount",
+      "name": "Lazy Susan — chute mount",
       "description": "Bottom lazy Susan adapter that connects to the chute. White.",
       "internal_notes": "The adapter/connector that mounts to the chute. White. The rest of the lazy Susan is frame color.",
       "version": "1",
@@ -380,7 +380,7 @@
     },
     {
       "id": "ls-bottom-static",
-      "name": "Lazy Susan \u2014 bottom static",
+      "name": "Lazy Susan — bottom static",
       "description": "Bottom lazy Susan static base.",
       "internal_notes": "Frame color. QUANTITY ASSUMED 1.",
       "version": "1",
@@ -398,7 +398,7 @@
     },
     {
       "id": "ls-mount-to-extrusion",
-      "name": "Lazy Susan \u2014 extrusion mount",
+      "name": "Lazy Susan — extrusion mount",
       "description": "Bottom lazy Susan mount to the external extrusion.",
       "internal_notes": "Frame color. QUANTITY ASSUMED 1.",
       "version": "1",
@@ -416,7 +416,7 @@
     },
     {
       "id": "ls-hold-in-place",
-      "name": "Lazy Susan \u2014 hold in place",
+      "name": "Lazy Susan — hold in place",
       "description": "Bottom lazy Susan hold-in-place. Optional.",
       "internal_notes": "Optional (file: 'optional hold in place'). Frame color. QUANTITY ASSUMED 1.",
       "version": "1",
@@ -434,7 +434,7 @@
     },
     {
       "id": "ls-washer",
-      "name": "Lazy Susan \u2014 washer",
+      "name": "Lazy Susan — washer",
       "description": "Bottom lazy Susan washer.",
       "internal_notes": "Frame color. QUANTITY UNCONFIRMED (assumed 1; may be several).",
       "version": "1",
@@ -452,7 +452,7 @@
     },
     {
       "id": "ext-bracket-left",
-      "name": "External bracket \u2014 side",
+      "name": "External bracket — side",
       "description": "Part of the external distribution-frame bracket (3-part assembly).",
       "internal_notes": "External distribution-frame bracket assembly member. 6 per distribution frame (per layer); interface qty ASSUMED 6 (Spencer said 'one set per interface' - confirm). Frame color.",
       "version": "1",
@@ -472,7 +472,7 @@
     },
     {
       "id": "ext-bracket-bottom-vertical",
-      "name": "External bracket \u2014 bottom vertical",
+      "name": "External bracket — bottom vertical",
       "description": "Part of the external distribution-frame bracket (3-part assembly).",
       "internal_notes": "External distribution-frame bracket assembly member. 6 per distribution frame (per layer); interface qty ASSUMED 6 (Spencer said 'one set per interface' - confirm). Frame color.",
       "version": "1",
@@ -492,7 +492,7 @@
     },
     {
       "id": "ext-bracket-cover",
-      "name": "External bracket \u2014 cover",
+      "name": "External bracket — cover",
       "description": "Part of the external distribution-frame bracket (3-part assembly).",
       "internal_notes": "External distribution-frame bracket assembly member. 6 per distribution frame (per layer); interface qty ASSUMED 6 (Spencer said 'one set per interface' - confirm). Frame color.",
       "version": "1",
@@ -709,6 +709,63 @@
       "support": false
     },
     {
+      "id": "top-interface-split-spur-gear-1",
+      "name": "Section 1",
+      "description": "Section 1 of 3 of the top interface split spur gear (Spur 2M 120T).",
+      "internal_notes": "Split spur gear for the top interface; the 3 sections print separately and assemble into one gear. Chute-core color.",
+      "version": "1",
+      "date_added": "2026-07-03",
+      "quantities": {
+        "interface": 1
+      },
+      "assembly": "top-interface-split-spur-gear",
+      "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/12bfe1cca4fda5bc5763c0c9",
+      "stl": "parts/interface/top-interface-split-spur-gear-1.stl",
+      "color": {
+        "role": "chute-core"
+      },
+      "optional": false,
+      "support": false
+    },
+    {
+      "id": "top-interface-split-spur-gear-2",
+      "name": "Section 2",
+      "description": "Section 2 of 3 of the top interface split spur gear (Spur 2M 120T).",
+      "internal_notes": "Split spur gear for the top interface; the 3 sections print separately and assemble into one gear. Chute-core color.",
+      "version": "1",
+      "date_added": "2026-07-03",
+      "quantities": {
+        "interface": 1
+      },
+      "assembly": "top-interface-split-spur-gear",
+      "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/12bfe1cca4fda5bc5763c0c9",
+      "stl": "parts/interface/top-interface-split-spur-gear-2.stl",
+      "color": {
+        "role": "chute-core"
+      },
+      "optional": false,
+      "support": false
+    },
+    {
+      "id": "top-interface-split-spur-gear-3",
+      "name": "Section 3",
+      "description": "Section 3 of 3 of the top interface split spur gear (Spur 2M 120T).",
+      "internal_notes": "Split spur gear for the top interface; the 3 sections print separately and assemble into one gear. Chute-core color.",
+      "version": "1",
+      "date_added": "2026-07-03",
+      "quantities": {
+        "interface": 1
+      },
+      "assembly": "top-interface-split-spur-gear",
+      "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/12bfe1cca4fda5bc5763c0c9",
+      "stl": "parts/interface/top-interface-split-spur-gear-3.stl",
+      "color": {
+        "role": "chute-core"
+      },
+      "optional": false,
+      "support": false
+    },
+    {
       "id": "rotor-finned",
       "name": "Rotor (finned)",
       "description": "Finned rotor on the classification chamber. White. 1 needed.",
@@ -874,7 +931,7 @@
     },
     {
       "id": "servo-adapter-servo-side",
-      "name": "Servo adapter \u2014 servo side",
+      "name": "Servo adapter — servo side",
       "description": "MG995 servo adapter, servo side.",
       "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
       "version": "1",
@@ -892,7 +949,7 @@
     },
     {
       "id": "servo-adapter-flap-side",
-      "name": "Servo adapter \u2014 flap side",
+      "name": "Servo adapter — flap side",
       "description": "MG995 servo adapter, flap side.",
       "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
       "version": "1",
@@ -910,7 +967,7 @@
     },
     {
       "id": "servo-bracket-lower-arm",
-      "name": "Servo bracket \u2014 lower arm",
+      "name": "Servo bracket — lower arm",
       "description": "MG995 servo bracket, lower arm.",
       "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
       "version": "1",
@@ -928,7 +985,7 @@
     },
     {
       "id": "servo-bracket-side-arm",
-      "name": "Servo bracket \u2014 side arm",
+      "name": "Servo bracket — side arm",
       "description": "MG995 servo bracket, side arm.",
       "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
       "version": "1",
@@ -946,7 +1003,7 @@
     },
     {
       "id": "servo-bracket-cover",
-      "name": "Servo bracket \u2014 cover",
+      "name": "Servo bracket — cover",
       "description": "MG995 servo bracket, cover.",
       "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
       "version": "1",
@@ -964,7 +1021,7 @@
     },
     {
       "id": "servo-bracket-housing",
-      "name": "Servo bracket \u2014 housing",
+      "name": "Servo bracket — housing",
       "description": "MG995 servo bracket, housing.",
       "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
       "version": "1",
@@ -1053,7 +1110,7 @@
     },
     {
       "id": "camera-mount-part-6",
-      "name": "Camera mount \u2014 part 6",
+      "name": "Camera mount — part 6",
       "description": "Camera mount part 6. 2 per machine.",
       "internal_notes": "1 per camera mount x 2 mounts. Color not important (feeder).",
       "version": "1",
@@ -1070,7 +1127,7 @@
     },
     {
       "id": "camera-mount-part-37",
-      "name": "Camera mount \u2014 part 37",
+      "name": "Camera mount — part 37",
       "description": "Camera mount part 37. 2 per machine.",
       "internal_notes": "1 per camera mount x 2 mounts. Color not important (feeder).",
       "version": "1",
@@ -1087,7 +1144,7 @@
     },
     {
       "id": "camera-mount-part-37b",
-      "name": "Camera mount \u2014 part 37 (b)",
+      "name": "Camera mount — part 37 (b)",
       "description": "Camera mount part 37 (second). 2 per machine.",
       "internal_notes": "1 per camera mount x 2 mounts. Color not important (feeder).",
       "version": "1",
@@ -1104,7 +1161,7 @@
     },
     {
       "id": "camera-mount-rod-mount",
-      "name": "Camera mount \u2014 rod-to-C-channel mount",
+      "name": "Camera mount — rod-to-C-channel mount",
       "description": "Rod-to-C-channel mount (Part 33). 2 per camera mount, 4 total.",
       "internal_notes": "Part 33, the rod-to-c-channel mount. 2 per camera mount x 2 mounts = 4. Color not important (feeder).",
       "version": "1",
@@ -1374,12 +1431,17 @@
     {
       "id": "camera-mount",
       "name": "Camera mount",
-      "description": "Camera mount for the C-channels. 2 per machine (each: parts 6/37/37b + 2\u00d7 rod-to-C-channel mount)."
+      "description": "Camera mount for the C-channels. 2 per machine (each: parts 6/37/37b + 2× rod-to-C-channel mount)."
     },
     {
       "id": "layer-connector",
       "name": "Layer connector",
       "description": "Pair of connectors. 1 of each per layer + 1 of each per bottom interface."
+    },
+    {
+      "id": "top-interface-split-spur-gear",
+      "name": "Top interface split spur gear",
+      "description": "Spur 2M 120T interface gear, split into 3 printable sections. Chute color."
     }
   ]
 }

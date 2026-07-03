@@ -30,7 +30,8 @@
 	import { zipSync } from 'fflate';
 	import { onMount } from 'svelte';
 	import { loadConfig, saveConfig, clearConfig } from '$lib/config';
-	import { Download, Package, ZoomIn, Loader, Info, Plus, X, RotateCcw, Clock, Layers3 } from 'lucide-svelte';
+	import { layerStore, addLayer as addLayerStore, removeLayerAt, setSize, setSizes } from '$lib/layers.svelte';
+	import { Download, Package, ZoomIn, Loader, Info, Plus, X, RotateCcw, Clock, Layers3, ExternalLink } from 'lucide-svelte';
 
 	// ---- defaults (also used by "reset to default") -----------------------------
 	const defaultFunnelSizes = (): ('third' | 'half')[] => ['third', 'third', 'half'];
@@ -40,14 +41,14 @@
 	const defaultInclSupport = () =>
 		Object.fromEntries(PARTS.filter((p) => p.support_grams > 0).map((p) => [p.id, p.id === 'stator']));
 
-	// per-layer size list IS the source of truth; layer count derives from it
-	let funnelSizes = $state<('third' | 'half')[]>(defaultFunnelSizes());
+	// per-layer size list is the shared source of truth (also used by the framing tab)
+	const funnelSizes = $derived(layerStore.sizes);
 	const layers = $derived(funnelSizes.length);
 	function addLayer() {
-		funnelSizes = [...funnelSizes, 'third'];
+		addLayerStore();
 	}
 	function removeLayer(i: number) {
-		if (funnelSizes.length > 1) funnelSizes = funnelSizes.filter((_, j) => j !== i);
+		removeLayerAt(i);
 	}
 	let roleColors = $state<Record<string, string>>(defaultRoleColors());
 	let selected = $state<Record<string, boolean>>(defaultSelected());
@@ -68,7 +69,6 @@
 	onMount(() => {
 		const c = loadConfig();
 		if (c) {
-			if (Array.isArray(c.funnelSizes) && c.funnelSizes.length) funnelSizes = c.funnelSizes;
 			if (c.roleColors) roleColors = { ...roleColors, ...c.roleColors };
 			if (typeof c.printBins === 'boolean') printBins = c.printBins;
 			if (typeof c.surplus === 'number') surplus = c.surplus;
@@ -78,11 +78,11 @@
 		configLoaded = true;
 	});
 	$effect(() => {
-		const snapshot = { funnelSizes, roleColors, printBins, surplus, selected, inclSupport };
+		const snapshot = { roleColors, printBins, surplus, selected, inclSupport };
 		if (configLoaded) saveConfig($state.snapshot(snapshot));
 	});
 	function resetToDefaults() {
-		funnelSizes = defaultFunnelSizes();
+		setSizes(defaultFunnelSizes());
 		roleColors = defaultRoleColors();
 		selected = defaultSelected();
 		inclSupport = defaultInclSupport();
@@ -226,7 +226,7 @@
 
 <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
 	<header class="mb-5">
-		<h1 class="text-2xl font-bold text-text">Sorter — Filament Calculator</h1>
+		<h1 class="text-2xl font-bold text-text">3D printed parts</h1>
 		<p class="mt-1 text-sm text-text-muted">
 			Configure a build to get per-color filament quantities and download the STLs. Filament
 			estimates from OrcaSlicer outputs.
@@ -300,8 +300,8 @@
 					<div class="group setup-card-shell flex flex-wrap items-center gap-3 border px-3 py-2">
 						<span class="w-16 shrink-0 text-sm font-medium text-text">Layer {i + 1}</span>
 						<div class="flex">
-							<button class="setup-button-secondary h-9 px-3 text-sm {size === 'half' ? 'setup-button-primary' : ''}" onclick={() => (funnelSizes[i] = 'half')}>12 bins</button>
-							<button class="setup-button-secondary h-9 border-l-0 px-3 text-sm {size === 'third' ? 'setup-button-primary' : ''}" onclick={() => (funnelSizes[i] = 'third')}>18 bins</button>
+							<button class="setup-button-secondary h-9 px-3 text-sm {size === 'half' ? 'setup-button-primary' : ''}" onclick={() => setSize(i, 'half')}>12 bins</button>
+							<button class="setup-button-secondary h-9 border-l-0 px-3 text-sm {size === 'third' ? 'setup-button-primary' : ''}" onclick={() => setSize(i, 'third')}>18 bins</button>
 						</div>
 						<div class="ml-auto flex items-center gap-1.5">
 							{#each pv.bins as b (b)}
@@ -360,7 +360,7 @@
 					{p.name}
 					{#if p.optional}<span class="border border-warning/50 px-1 text-xs text-warning-dark">optional</span>{/if}
 					{#if p.support_used}<span class="border border-info/50 px-1 text-xs text-info" title="Sliced with support material — included in this part's grams">supports</span>{/if}
-						{#if platesForPart(p.id).length}<button type="button" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" onclick={() => openPlatesModal(p.id)} title="Show plates with this part"><Layers3 size={11} /> {platesForPart(p.id).length} plate{platesForPart(p.id).length === 1 ? '' : 's'}</button>{/if}
+						{#if platesForPart(p.id).length}<button type="button" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" onclick={() => openPlatesModal(p.id)} title="Show plates with this part"><Layers3 size={11} /> {platesForPart(p.id).length} plate{platesForPart(p.id).length === 1 ? '' : 's'}</button>{/if}{#if p.onshape}<a href={p.onshape} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" title="Open the source Onshape document">Onshape <ExternalLink size={11} /></a>{/if}
 				</span>
 				<span class="flex flex-wrap items-center gap-1.5 text-xs text-text-muted">
 					{#each sw as s}

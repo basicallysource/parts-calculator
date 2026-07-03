@@ -45,6 +45,7 @@ export type Part = {
 	print_seconds: number;
 	color: ColorSpec;
 	optional: boolean;
+	onshape?: string | null; // link to the source Onshape document, if known
 	stl: string;
 	render: string;
 };
@@ -65,7 +66,7 @@ export const SETTINGS = raw.settings as Settings;
 export const SECTIONS = raw.sections as Section[];
 export const COLOR_ROLES = raw.color_roles as ColorRoleDef[];
 export const ASSEMBLIES = (raw.assemblies ?? []) as Assembly[];
-export const PARTS = raw.parts as Part[];
+export const PARTS = raw.parts as unknown as Part[];
 export const SPOOL_G = 1000;
 
 const sectionById = new Map(SECTIONS.map((s) => [s.id, s]));
