@@ -185,7 +185,8 @@
         "role": "feeder"
       },
       "optional": false,
-      "support": false
+      "support": false,
+      "onshape": "https://cad.onshape.com/documents/60aa51fc61d18f2155b99910/w/b315cf3f14be460d78b1caa2/e/66109ce96b305bf318354f93"
     },
     {
       "id": "light-post-cap",
@@ -204,6 +205,25 @@
       },
       "optional": false,
       "support": false
+    },
+    {
+      "id": "light-post-cap-adapter",
+      "name": "Light post cap adapter",
+      "description": "Adapts the light post cap to the C-channel. 2 per machine.",
+      "internal_notes": "Light post cap mount/adapter, C-channel feeder. Light post (feeder) colour.",
+      "version": "1",
+      "date_added": "2026-07-03",
+      "quantities": {
+        "feeder": 2
+      },
+      "assembly": null,
+      "stl": "parts/feeder/light-post-cap-adapter.stl",
+      "color": {
+        "role": "feeder"
+      },
+      "optional": false,
+      "support": false,
+      "onshape": "https://cad.onshape.com/documents/60aa51fc61d18f2155b99910/w/b315cf3f14be460d78b1caa2/e/66109ce96b305bf318354f93"
     },
     {
       "id": "bulk-cap",
@@ -594,7 +614,8 @@
         "fixed": "ivory-white"
       },
       "optional": false,
-      "support": false
+      "support": false,
+      "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/63d9095d8167813360e7753c/e/279fa8866ec0d8c56c8226cf"
     },
     {
       "id": "cable-clamp-outer",
@@ -612,7 +633,8 @@
         "fixed": "ivory-white"
       },
       "optional": false,
-      "support": false
+      "support": false,
+      "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/63d9095d8167813360e7753c/e/279fa8866ec0d8c56c8226cf"
     },
     {
       "id": "interface-spur-gear",
@@ -678,7 +700,7 @@
       "quantities": {
         "interface": 5
       },
-      "assembly": null,
+      "assembly": "cable-cage",
       "stl": "parts/interface/interface-cage-bracket.stl",
       "color": {
         "role": "frame"
@@ -696,8 +718,26 @@
       "quantities": {
         "interface": 1
       },
-      "assembly": null,
+      "assembly": "cable-cage",
       "stl": "parts/interface/interface-cage-bracket-cable.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false,
+      "support": false
+    },
+    {
+      "id": "ribbon-cable-clamp",
+      "name": "Ribbon cable clamp",
+      "description": "Outer ribbon cable clamp, paired with the cable cage brackets.",
+      "internal_notes": "Outer ribbon cable clamp. Grouped with the cable cage brackets. Colour (frame) + qty 1/machine are DEFAULTS pending confirmation.",
+      "version": "1",
+      "date_added": "2026-07-03",
+      "quantities": {
+        "interface": 1
+      },
+      "assembly": "cable-cage",
+      "stl": "parts/interface/ribbon-cable-clamp.stl",
       "color": {
         "role": "frame"
       },
@@ -742,7 +782,7 @@
     },
     {
       "id": "top-interface-split-spur-gear-1",
-      "name": "Section 1",
+      "name": "Chute gear",
       "description": "Section 1 of 3 of the top interface split spur gear (Spur 2M 120T).",
       "internal_notes": "Split spur gear for the top interface; the 3 sections print separately and assemble into one gear. Chute-core color.",
       "version": "1",
@@ -750,7 +790,7 @@
       "quantities": {
         "interface": 1
       },
-      "assembly": "top-interface-split-spur-gear",
+      "assembly": null,
       "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/12bfe1cca4fda5bc5763c0c9",
       "stl": "parts/interface/top-interface-split-spur-gear-1.stl",
       "color": {
@@ -761,7 +801,7 @@
     },
     {
       "id": "top-interface-split-spur-gear-2",
-      "name": "Section 2",
+      "name": "Top interface lazy Susan washer",
       "description": "Section 2 of 3 of the top interface split spur gear (Spur 2M 120T).",
       "internal_notes": "Split spur gear for the top interface; the 3 sections print separately and assemble into one gear. Chute-core color.",
       "version": "1",
@@ -769,7 +809,7 @@
       "quantities": {
         "interface": 1
       },
-      "assembly": "top-interface-split-spur-gear",
+      "assembly": null,
       "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/12bfe1cca4fda5bc5763c0c9",
       "stl": "parts/interface/top-interface-split-spur-gear-2.stl",
       "color": {
@@ -780,7 +820,7 @@
     },
     {
       "id": "top-interface-split-spur-gear-3",
-      "name": "Section 3",
+      "name": "Top interface chute mount",
       "description": "Section 3 of 3 of the top interface split spur gear (Spur 2M 120T).",
       "internal_notes": "Split spur gear for the top interface; the 3 sections print separately and assemble into one gear. Chute-core color.",
       "version": "1",
@@ -788,9 +828,68 @@
       "quantities": {
         "interface": 1
       },
-      "assembly": "top-interface-split-spur-gear",
+      "assembly": null,
       "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/12bfe1cca4fda5bc5763c0c9",
       "stl": "parts/interface/top-interface-split-spur-gear-3.stl",
+      "color": {
+        "role": "chute-core"
+      },
+      "optional": false,
+      "support": false
+    },
+    {
+      "id": "limit-switch-dowel-pin",
+      "name": "Printed dowel pin",
+      "description": "Printed dowel pin for the interface limit switch.",
+      "internal_notes": "Interface limit switch assembly. Frame colour + qty 1/machine are DEFAULTS pending confirmation.",
+      "version": "1",
+      "date_added": "2026-07-03",
+      "quantities": {
+        "interface": 1
+      },
+      "assembly": "limit-switch",
+      "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/f23afbf63ca583eed726c9b4",
+      "stl": "parts/interface/limit-switch-dowel-pin.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false,
+      "support": false
+    },
+    {
+      "id": "limit-switch-housing",
+      "name": "Limit switch housing",
+      "description": "Housing for the interface limit switch.",
+      "internal_notes": "Interface limit switch assembly. Frame colour + qty 1/machine are DEFAULTS pending confirmation.",
+      "version": "1",
+      "date_added": "2026-07-03",
+      "quantities": {
+        "interface": 1
+      },
+      "assembly": "limit-switch",
+      "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/70838d736e83bd9b6f0ccb7a",
+      "stl": "parts/interface/limit-switch-housing.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false,
+      "support": false,
+      "suspicious": true,
+      "suspicious_note": "Spencer thinks it may interfere with the switch-gap interface rib (the rib with the cutout)."
+    },
+    {
+      "id": "limit-switch-hammer",
+      "name": "Limit switch hammer",
+      "description": "Hammer/stop for the interface limit switch.",
+      "internal_notes": "Interface limit switch assembly. Frame colour + qty 1/machine are DEFAULTS pending confirmation.",
+      "version": "1",
+      "date_added": "2026-07-03",
+      "quantities": {
+        "interface": 1
+      },
+      "assembly": "limit-switch",
+      "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/6952c4b6ff33a9eff9bf58c6/e/3c6d45d569e85f2df62b8449",
+      "stl": "parts/interface/limit-switch-hammer.stl",
       "color": {
         "role": "chute-core"
       },
@@ -1471,9 +1570,14 @@
       "description": "Pair of connectors. 1 of each per layer + 1 of each per bottom interface."
     },
     {
-      "id": "top-interface-split-spur-gear",
-      "name": "Top interface split spur gear",
-      "description": "Spur 2M 120T interface gear, split into 3 printable sections. Chute color."
+      "id": "limit-switch",
+      "name": "Limit switch",
+      "description": "Interface limit switch: printed dowel pin, housing, and hammer."
+    },
+    {
+      "id": "cable-cage",
+      "name": "Cable cage",
+      "description": "Two cable cage brackets and the outer ribbon cable clamp."
     }
   ]
 }

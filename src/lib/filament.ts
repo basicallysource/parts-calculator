@@ -47,6 +47,8 @@ export type Part = {
 	optional: boolean;
 	onshape?: string | null; // link to the source Onshape document, if known
 	info?: string | null; // short note surfaced as an inline info popover
+	suspicious?: boolean; // flagged as subject-to-change / possibly problematic
+	suspicious_note?: string | null; // optional specifics for the suspicious warning
 	// how the per-layer ('layer') quantity scales: every layer, all but the bottom,
 	// or the bottom layer only (for bottom-layer-swapped parts like the foot cover)
 	layer_scope?: 'all' | 'non-bottom' | 'bottom-only';

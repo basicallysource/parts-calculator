@@ -406,6 +406,8 @@ def main():
             "optional": p.get("optional", False),
             "onshape": p.get("onshape"),
             "info": p.get("info"),
+            "suspicious": p.get("suspicious", False),
+            "suspicious_note": p.get("suspicious_note"),
             "layer_scope": p.get("layer_scope", "all"),
             "stl": f"/stl/{stl_name}",
             "render": f"/renders/{p['id']}.png",
