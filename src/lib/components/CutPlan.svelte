@@ -8,21 +8,63 @@
 	let stock = $state(STOCK_MM);
 	let kerf = $state(3);
 	let mode = $state<'opt' | 'bun'>('opt');
+	// per-piece overrides: only the fields the user has actually changed. Unset
+	// fields fall back to the default (selected, quantity from qtyFor(n)) so
+	// quantities keep tracking the layer count until the user pins them.
+	let overrides = $state<Record<string, { selected?: boolean; qty?: number }>>({});
 
 	const n = $derived(layerStore.sizes.length);
 	const pieces = $derived(
-		FRAMING_PIECES.map((p) => ({
-			letter: p.letter,
-			name: p.name,
-			cadLen: p.cadLen,
-			len: p.len,
-			qty: p.qtyFor(n),
-			cat: p.category,
-			from: p.from
-		})).filter((p) => p.qty > 0)
+		FRAMING_PIECES.map((p) => {
+			const defaultQty = p.qtyFor(n);
+			const ov = overrides[p.letter] ?? {};
+			const qty = ov.qty ?? defaultQty;
+			const selected = ov.selected ?? true;
+			return {
+				letter: p.letter,
+				name: p.name,
+				cadLen: p.cadLen,
+				len: p.len,
+				defaultQty,
+				qty,
+				selected,
+				modified: selected !== true || qty !== defaultQty,
+				cat: p.category,
+				from: p.from,
+				badge: p.badge
+			};
+		}).filter((p) => p.defaultQty > 0)
 	);
+	const anyModified = $derived(pieces.some((p) => p.modified));
+	// only selected pieces with a positive quantity feed the cut plan
+	const activePieces = $derived(pieces.filter((p) => p.selected && p.qty > 0));
+
+	function setQty(letter: string, val: string | number) {
+		const q = Math.max(0, Math.floor(Number(val) || 0));
+		overrides[letter] = { ...(overrides[letter] ?? {}), qty: q };
+	}
+	function toggle(letter: string) {
+		const ov = overrides[letter] ?? {};
+		overrides[letter] = { ...ov, selected: !(ov.selected ?? true) };
+	}
+	function resetRow(letter: string) {
+		delete overrides[letter];
+	}
+	function resetAll() {
+		overrides = {};
+	}
+
+	// pick black/white letter text for a badge colour by its perceived luminance
+	function badgeText(hex: string): string {
+		const h = hex.replace('#', '');
+		const r = parseInt(h.slice(0, 2), 16);
+		const g = parseInt(h.slice(2, 4), 16);
+		const b = parseInt(h.slice(4, 6), 16);
+		return (0.299 * r + 0.587 * g + 0.114 * b) / 255 > 0.6 ? '#1c1c1c' : '#ffffff';
+	}
+
 	function lettersFor(len: number): string {
-		return pieces.filter((p) => Math.abs(p.len - len) < 0.02).map((p) => p.letter).join('/') || '?';
+		return activePieces.filter((p) => Math.abs(p.len - len) < 0.02).map((p) => p.letter).join('/') || '?';
 	}
 	// rows grouped by category, with a header injected when the category changes
 	const rows = $derived.by(() => {
@@ -34,7 +76,7 @@
 		});
 	});
 
-	const units = $derived(expand(pieces));
+	const units = $derived(expand(activePieces));
 	const oversize = $derived(units.filter((u) => u.len > stock + 1e-6));
 	const bins = $derived(
 		oversize.length ? [] : mode === 'opt' ? packOptimal(units, stock, kerf) : packBundle(units, stock, kerf)
@@ -119,12 +161,23 @@
 
 	<!-- pieces -->
 	<div>
-		<h3 class="mb-2 text-sm font-semibold text-text">Pieces — {n} layer{n === 1 ? '' : 's'}</h3>
+		<div class="mb-2 flex items-center justify-between gap-3">
+			<h3 class="text-sm font-semibold text-text">Pieces — {n} layer{n === 1 ? '' : 's'}</h3>
+			<button
+				class="setup-button-secondary h-7 px-2.5 text-xs {anyModified ? '' : 'pointer-events-none opacity-40'}"
+				onclick={resetAll}
+				disabled={!anyModified}>Reset all</button
+			>
+		</div>
+		<p class="mb-2 text-xs text-text-muted">
+			Untick a piece or edit its quantity to plan a partial cut — the summary and cut sheet below update to match.
+		</p>
 		<div class="setup-card-shell border">
 			<table class="w-full text-sm">
 				<thead>
 					<tr class="border-b border-border text-left text-xs uppercase tracking-wider text-text-muted">
 						<th class="w-8 px-3 py-2"></th>
+						<th class="w-8 px-1 py-2"></th>
 						<th class="px-1 py-2 font-semibold">Piece</th>
 						<th class="px-2 py-2 text-right font-semibold">CAD length</th>
 						<th class="px-2 py-2 text-right font-semibold">
@@ -141,13 +194,14 @@
 						<th class="px-2 py-2 font-semibold"></th>
 						<th class="px-2 py-2 text-right font-semibold">Qty</th>
 						<th class="px-3 py-2 font-semibold">From</th>
+						<th class="px-3 py-2"></th>
 					</tr>
 				</thead>
 				<tbody>
 					{#each rows as { p, header } (p.letter)}
 						{#if header}
 							<tr class="bg-[var(--color-bg)]">
-								<td colspan="7" class="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-text-muted">
+								<td colspan="9" class="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-text-muted">
 									<span class="inline-flex items-center gap-1.5">
 										{catLabel(header)}
 										{#if header === 'feet'}
@@ -161,16 +215,45 @@
 								</td>
 							</tr>
 						{/if}
-						<tr class="border-t border-border">
+						<tr class="border-t border-border {p.selected ? '' : 'opacity-45'}">
 							<td class="px-3 py-2">
-								<span class="inline-flex h-[22px] w-[22px] items-center justify-center bg-text font-mono text-xs font-semibold text-[var(--color-primary-contrast)]">{p.letter}</span>
+								<input
+									type="checkbox"
+									checked={p.selected}
+									onchange={() => toggle(p.letter)}
+									aria-label="Include {p.name}"
+									class="h-4 w-4 accent-[var(--color-primary)]"
+								/>
+							</td>
+							<td class="px-1 py-2">
+								<span
+									class="inline-flex h-[22px] w-[22px] items-center justify-center border border-black/15 font-mono text-xs font-semibold"
+									style="background-color: {p.badge}; color: {badgeText(p.badge)}">{p.letter}</span>
 							</td>
 							<td class="px-1 py-2 text-text">{p.name}</td>
 							<td class="whitespace-nowrap px-2 py-2 text-right font-mono tabular-nums text-text-muted">{p.cadLen} mm</td>
 							<td class="whitespace-nowrap px-2 py-2 text-right font-mono tabular-nums text-text">{p.len} mm</td>
 							<td class="whitespace-nowrap px-2 py-2 font-mono text-xs text-text-muted">{ftin(p.len)}</td>
-							<td class="px-2 py-2 text-right font-mono tabular-nums text-text">{p.qty}</td>
+							<td class="whitespace-nowrap px-2 py-2 text-right">
+								<input
+									type="number"
+									min="0"
+									step="1"
+									value={p.qty}
+									disabled={!p.selected}
+									oninput={(e) => setQty(p.letter, e.currentTarget.value)}
+									class="setup-control h-8 w-16 px-2 text-right font-mono text-sm tabular-nums disabled:opacity-50"
+								/>
+							</td>
 							<td class="px-3 py-2 text-xs text-text-muted">{p.from}</td>
+							<td class="px-3 py-2 text-right">
+								{#if p.modified}
+									<button
+										class="text-xs text-text-muted underline decoration-dotted underline-offset-2 hover:text-text"
+										onclick={() => resetRow(p.letter)}>Reset</button
+									>
+								{/if}
+							</td>
 						</tr>
 					{/each}
 				</tbody>
@@ -196,17 +279,23 @@
 	<!-- cut sheet -->
 	<div>
 		<h3 class="mb-2 text-sm font-semibold text-text">Cut sheet</h3>
-		<div class="mb-3 flex gap-2 border border-primary/40 bg-primary/[0.06] px-3 py-2.5 text-sm text-text">
-			<Info size={15} class="mt-0.5 shrink-0 text-primary" />
-			<span>
-				<span class="font-semibold text-primary-dark">How to read it:</span> lay your tape from one clean
-				end of the bar (square that end first if it's ragged). Make every mark, then cut each one keeping
-				the blade just to the <b>waste side</b> (the higher number) of the line. To cut a stack at once,
-				line up the ends and mark/cut the top bar — the rest follow.
-			</span>
-		</div>
+		{#if activePieces.length && !oversize.length}
+			<div class="mb-3 flex gap-2 border border-primary/40 bg-primary/[0.06] px-3 py-2.5 text-sm text-text">
+				<Info size={15} class="mt-0.5 shrink-0 text-primary" />
+				<span>
+					<span class="font-semibold text-primary-dark">How to read it:</span> lay your tape from one clean
+					end of the bar (square that end first if it's ragged). Make every mark, then cut each one keeping
+					the blade just to the <b>waste side</b> (the higher number) of the line. To cut a stack at once,
+					line up the ends and mark/cut the top bar — the rest follow.
+				</span>
+			</div>
+		{/if}
 
-		{#if oversize.length}
+		{#if !activePieces.length}
+			<div class="border border-border bg-[var(--color-bg)] px-3 py-2.5 text-sm text-text-muted">
+				No pieces selected — tick at least one piece above to build a cut plan.
+			</div>
+		{:else if oversize.length}
 			<div class="border border-danger/40 bg-danger/[0.06] px-3 py-2.5 text-sm text-text">
 				<span class="font-semibold text-danger-dark">Can't fit:</span>
 				{[...new Set(oversize.map((u) => `${u.letter} (${u.len} mm)`))].join(', ')} — longer than a usable
