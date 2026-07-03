@@ -5,11 +5,12 @@
 //   • per-layer — quantity scales with the layer count N
 //   • const     — one set per machine, independent of N (the interface/base)
 //
-// Interface pieces (E, F, H) are cut ¼″ short so the frame doesn't pinch the
-// chute. ¼″ = 6.35 mm.
+// Tolerance-sensitive pieces (C, D, E, F) are cut 6 mm short so the frame
+// doesn't pinch the chute — 6 mm (vs ¼″) keeps every length a whole number.
+// The short interface spoke (H) stays at CAD length, same as the layer spoke (B).
 
 export const STOCK_MM = 1000;
-export const QUARTER_INCH = 6.35;
+export const CLEARANCE_MM = 6; // trim on tolerance-sensitive pieces (was ¼″; 6 mm keeps lengths whole)
 
 export type FramingPiece = {
 	letter: string;
@@ -27,17 +28,17 @@ export const FRAMING_PIECES: FramingPiece[] = [
 	{
 		letter: 'C',
 		name: 'Layer vertical support',
-		len: 153.65,
+		len: 160 - CLEARANCE_MM,
 		category: 'per-layer',
-		from: '160 − ¼″ · top N−2 layers (bottom 2 joined into D)',
+		from: '160 − 6 mm · top N−2 layers (bottom 2 joined into D)',
 		qtyFor: (n) => 6 * Math.max(0, n - 2)
 	},
 	// ---- const (per machine) ----
-	{ letter: 'D', name: 'Foot extension', len: 230.475, category: 'const', from: '1.5 × C · bottom 2 layers joined', qtyFor: (n) => (n >= 2 ? 6 : 0) },
-	{ letter: 'E', name: 'Interface spoke (long)', len: 244 - QUARTER_INCH, category: 'const', from: '244 − ¼″', qtyFor: () => 6 },
-	{ letter: 'F', name: 'Interface vertical support', len: 280 - QUARTER_INCH, category: 'const', from: '280 − ¼″', qtyFor: () => 6 },
+	{ letter: 'D', name: 'Foot extension', len: 1.5 * (160 - CLEARANCE_MM), category: 'const', from: '1.5 × C · bottom 2 layers joined', qtyFor: (n) => (n >= 2 ? 6 : 0) },
+	{ letter: 'E', name: 'Interface spoke (long)', len: 244 - CLEARANCE_MM, category: 'const', from: '244 − 6 mm', qtyFor: () => 6 },
+	{ letter: 'F', name: 'Interface vertical support', len: 280 - CLEARANCE_MM, category: 'const', from: '280 − 6 mm', qtyFor: () => 6 },
 	{ letter: 'G', name: 'Horizontal interface frame', len: 320, category: 'const', from: 'per machine', qtyFor: () => 6 },
-	{ letter: 'H', name: 'Interface spoke (short)', len: 158 - QUARTER_INCH, category: 'const', from: '158 − ¼″', qtyFor: () => 6 }
+	{ letter: 'H', name: 'Interface spoke (short)', len: 158, category: 'const', from: 'per machine · same as spoke B', qtyFor: () => 6 }
 ];
 
 export type LengthGroup = {
