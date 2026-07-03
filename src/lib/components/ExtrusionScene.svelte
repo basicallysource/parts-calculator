@@ -176,7 +176,7 @@
 					</td>
 					<td class="py-1.5 pr-2 text-text">{g.names.join(' / ')}</td>
 					<td class="whitespace-nowrap py-1.5 pr-2 text-right text-xs text-text-muted">
-						{g.category === 'per-layer' ? 'per layer' : g.category === 'const' ? 'per machine' : ''}
+						{g.category === 'per-layer' ? 'per layer' : g.category === 'per-machine' ? 'per machine' : ''}
 					</td>
 					<td class="whitespace-nowrap py-1.5 pr-2 text-right font-mono tabular-nums text-text">
 						{g.len} mm
