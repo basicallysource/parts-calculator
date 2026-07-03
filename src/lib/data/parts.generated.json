@@ -113,7 +113,7 @@
 		},
 		{
 			"id": "camera-mount",
-			"name": "Camera mount",
+			"name": "Overhead camera mount",
 			"description": "Camera mount for the C-channels. 2 per machine (each: parts 6/37/37b + 2\u00d7 rod-to-C-channel mount)."
 		},
 		{
@@ -158,6 +158,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/stator.stl",
 			"render": "/renders/stator.png"
 		},
@@ -191,6 +193,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/rotor-faceted.stl",
 			"render": "/renders/rotor-faceted.png"
 		},
@@ -215,6 +219,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/output-gear.stl",
 			"render": "/renders/output-gear.png"
 		},
@@ -235,10 +241,21 @@
 			"support_used": false,
 			"print_seconds": 7210,
 			"color": {
-				"role": "feeder"
+				"split": [
+					{
+						"color": "ash-gray",
+						"qty": 1
+					},
+					{
+						"color": "charcoal",
+						"qty": 3
+					}
+				]
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/nema-bracket.stl",
 			"render": "/renders/nema-bracket.png"
 		},
@@ -263,6 +280,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/light-post.stl",
 			"render": "/renders/light-post.png"
 		},
@@ -287,6 +306,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/light-post-cap.stl",
 			"render": "/renders/light-post-cap.png"
 		},
@@ -311,6 +332,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/bulk-cap.stl",
 			"render": "/renders/bulk-cap.png"
 		},
@@ -335,6 +358,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/classification-dome.stl",
 			"render": "/renders/classification-dome.png"
 		},
@@ -359,6 +384,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/interface-bracket.stl",
 			"render": "/renders/interface-bracket.png"
 		},
@@ -383,6 +410,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/interface-spacer.stl",
 			"render": "/renders/interface-spacer.png"
 		},
@@ -407,6 +436,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/chute-core.stl",
 			"render": "/renders/chute-core.png"
 		},
@@ -431,6 +462,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/bin-retainer-left.stl",
 			"render": "/renders/bin-retainer-left.png"
 		},
@@ -455,6 +488,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/bin-retainer-right.stl",
 			"render": "/renders/bin-retainer-right.png"
 		},
@@ -479,6 +514,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/frame-crossbeam.stl",
 			"render": "/renders/frame-crossbeam.png"
 		},
@@ -503,6 +540,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/frame-90deg-bracket.stl",
 			"render": "/renders/frame-90deg-bracket.png"
 		},
@@ -527,6 +566,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/ls-mount-to-chute.stl",
 			"render": "/renders/ls-mount-to-chute.png"
 		},
@@ -551,6 +592,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/ls-bottom-static.stl",
 			"render": "/renders/ls-bottom-static.png"
 		},
@@ -575,6 +618,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/ls-mount-to-extrusion.stl",
 			"render": "/renders/ls-mount-to-extrusion.png"
 		},
@@ -599,6 +644,8 @@
 			},
 			"optional": true,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/ls-hold-in-place.stl",
 			"render": "/renders/ls-hold-in-place.png"
 		},
@@ -623,6 +670,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/ls-washer.stl",
 			"render": "/renders/ls-washer.png"
 		},
@@ -648,6 +697,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/ext-bracket-left.stl",
 			"render": "/renders/ext-bracket-left.png"
 		},
@@ -673,6 +724,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "non-bottom",
 			"stl": "/stl/ext-bracket-bottom-vertical.stl",
 			"render": "/renders/ext-bracket-bottom-vertical.png"
 		},
@@ -698,8 +751,36 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "non-bottom",
 			"stl": "/stl/ext-bracket-cover.stl",
 			"render": "/renders/ext-bracket-cover.png"
+		},
+		{
+			"id": "ext-bracket-foot-cover",
+			"name": "External bracket - foot cover",
+			"quantities": {
+				"layer": 6
+			},
+			"assembly": "external-bracket",
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Bottom-layer replacement for the external bracket bottom vertical + cover.",
+			"version": "1",
+			"date_added": "2026-07-03",
+			"grams": 23.59,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 3584,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"onshape": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/w/473cbfa6d8551e3b96a576e2/e/ee7cac13ee3ea67850bf1cf3",
+			"info": "For the bottom-most layer only. It is shorter than the standard bottom vertical + cover so the extrusion can pop out and the wheels mount to it.",
+			"layer_scope": "bottom-only",
+			"stl": "/stl/ext-bracket-foot-cover.stl",
+			"render": "/renders/ext-bracket-foot-cover.png"
 		},
 		{
 			"id": "interface-rib",
@@ -722,6 +803,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/interface-rib.stl",
 			"render": "/renders/interface-rib.png"
 		},
@@ -746,6 +829,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/interface-rib-switch.stl",
 			"render": "/renders/interface-rib-switch.png"
 		},
@@ -770,6 +855,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/cable-clamp-inner.stl",
 			"render": "/renders/cable-clamp-inner.png"
 		},
@@ -794,6 +881,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/cable-clamp-outer.stl",
 			"render": "/renders/cable-clamp-outer.png"
 		},
@@ -818,6 +907,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/interface-spur-gear.stl",
 			"render": "/renders/interface-spur-gear.png"
 		},
@@ -842,6 +933,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/interface-idler-gear.stl",
 			"render": "/renders/interface-idler-gear.png"
 		},
@@ -866,6 +959,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/interface-nema23-bracket.stl",
 			"render": "/renders/interface-nema23-bracket.png"
 		},
@@ -890,6 +985,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/interface-cage-bracket.stl",
 			"render": "/renders/interface-cage-bracket.png"
 		},
@@ -914,6 +1011,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/interface-cage-bracket-cable.stl",
 			"render": "/renders/interface-cage-bracket-cable.png"
 		},
@@ -938,6 +1037,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/interface-big-spacer.stl",
 			"render": "/renders/interface-big-spacer.png"
 		},
@@ -962,6 +1063,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/interface-upper-fixed-section.stl",
 			"render": "/renders/interface-upper-fixed-section.png"
 		},
@@ -986,6 +1089,8 @@
 			},
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/12bfe1cca4fda5bc5763c0c9",
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/top-interface-split-spur-gear-1.stl",
 			"render": "/renders/top-interface-split-spur-gear-1.png"
 		},
@@ -1010,6 +1115,8 @@
 			},
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/12bfe1cca4fda5bc5763c0c9",
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/top-interface-split-spur-gear-2.stl",
 			"render": "/renders/top-interface-split-spur-gear-2.png"
 		},
@@ -1034,6 +1141,8 @@
 			},
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/12bfe1cca4fda5bc5763c0c9",
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/top-interface-split-spur-gear-3.stl",
 			"render": "/renders/top-interface-split-spur-gear-3.png"
 		},
@@ -1058,6 +1167,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/rotor-finned.stl",
 			"render": "/renders/rotor-finned.png"
 		},
@@ -1082,6 +1193,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/idler-gear.stl",
 			"render": "/renders/idler-gear.png"
 		},
@@ -1106,6 +1219,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/input-gear.stl",
 			"render": "/renders/input-gear.png"
 		},
@@ -1130,6 +1245,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/output-guide.stl",
 			"render": "/renders/output-guide.png"
 		},
@@ -1154,6 +1271,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/funnel-bracket-left.stl",
 			"render": "/renders/funnel-bracket-left.png"
 		},
@@ -1178,6 +1297,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/funnel-bracket-right.stl",
 			"render": "/renders/funnel-bracket-right.png"
 		},
@@ -1202,6 +1323,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/door-module.stl",
 			"render": "/renders/door-module.png"
 		},
@@ -1226,6 +1349,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/bearing-holder-left.stl",
 			"render": "/renders/bearing-holder-left.png"
 		},
@@ -1250,6 +1375,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/bearing-holder-right.stl",
 			"render": "/renders/bearing-holder-right.png"
 		},
@@ -1274,6 +1401,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/servo-adapter-servo-side.stl",
 			"render": "/renders/servo-adapter-servo-side.png"
 		},
@@ -1298,6 +1427,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/servo-adapter-flap-side.stl",
 			"render": "/renders/servo-adapter-flap-side.png"
 		},
@@ -1322,6 +1453,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/servo-bracket-lower-arm.stl",
 			"render": "/renders/servo-bracket-lower-arm.png"
 		},
@@ -1346,6 +1479,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/servo-bracket-side-arm.stl",
 			"render": "/renders/servo-bracket-side-arm.png"
 		},
@@ -1370,6 +1505,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/servo-bracket-cover.stl",
 			"render": "/renders/servo-bracket-cover.png"
 		},
@@ -1394,6 +1531,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/servo-bracket-housing.stl",
 			"render": "/renders/servo-bracket-housing.png"
 		},
@@ -1418,6 +1557,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/leg.stl",
 			"render": "/renders/leg.png"
 		},
@@ -1442,6 +1583,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/foot.stl",
 			"render": "/renders/foot.png"
 		},
@@ -1466,6 +1609,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/chute-door.stl",
 			"render": "/renders/chute-door.png"
 		},
@@ -1490,12 +1635,14 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/leg-extension.stl",
 			"render": "/renders/leg-extension.png"
 		},
 		{
 			"id": "camera-mount-part-6",
-			"name": "Camera mount \u2014 part 6",
+			"name": "Overhead camera mount \u2014 A/B connector",
 			"quantities": {
 				"feeder": 2
 			},
@@ -1514,12 +1661,14 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/camera-mount-part-6.stl",
 			"render": "/renders/camera-mount-part-6.png"
 		},
 		{
 			"id": "camera-mount-part-37",
-			"name": "Camera mount \u2014 part 37",
+			"name": "Overhead camera mount A",
 			"quantities": {
 				"feeder": 2
 			},
@@ -1538,12 +1687,14 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/camera-mount-part-37.stl",
 			"render": "/renders/camera-mount-part-37.png"
 		},
 		{
 			"id": "camera-mount-part-37b",
-			"name": "Camera mount \u2014 part 37 (b)",
+			"name": "Overhead camera mount B",
 			"quantities": {
 				"feeder": 2
 			},
@@ -1562,6 +1713,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/camera-mount-part-37b.stl",
 			"render": "/renders/camera-mount-part-37b.png"
 		},
@@ -1586,6 +1739,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/camera-mount-rod-mount.stl",
 			"render": "/renders/camera-mount-rod-mount.png"
 		},
@@ -1610,6 +1765,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/camera-led-insert.stl",
 			"render": "/renders/camera-led-insert.png"
 		},
@@ -1635,6 +1792,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/layer-connector-1.stl",
 			"render": "/renders/layer-connector-1.png"
 		},
@@ -1660,6 +1819,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/layer-connector-2.stl",
 			"render": "/renders/layer-connector-2.png"
 		},
@@ -1684,6 +1845,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/funnel-third.stl",
 			"render": "/renders/funnel-third.png"
 		},
@@ -1708,6 +1871,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/funnel-half.stl",
 			"render": "/renders/funnel-half.png"
 		},
@@ -1732,6 +1897,8 @@
 			},
 			"optional": true,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/bin-half-left.stl",
 			"render": "/renders/bin-half-left.png"
 		},
@@ -1756,6 +1923,8 @@
 			},
 			"optional": true,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/bin-half-right.stl",
 			"render": "/renders/bin-half-right.png"
 		},
@@ -1780,6 +1949,8 @@
 			},
 			"optional": true,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/bin-third-left.stl",
 			"render": "/renders/bin-third-left.png"
 		},
@@ -1804,6 +1975,8 @@
 			},
 			"optional": true,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/bin-third-center.stl",
 			"render": "/renders/bin-third-center.png"
 		},
@@ -1828,6 +2001,8 @@
 			},
 			"optional": true,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/bin-third-rightback.stl",
 			"render": "/renders/bin-third-rightback.png"
 		},
@@ -1852,6 +2027,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/bearing-cover-covered.stl",
 			"render": "/renders/bearing-cover-covered.png"
 		},
@@ -1876,6 +2053,8 @@
 			},
 			"optional": false,
 			"onshape": null,
+			"info": null,
+			"layer_scope": "all",
 			"stl": "/stl/bearing-cover-servo.stl",
 			"render": "/renders/bearing-cover-servo.png"
 		}

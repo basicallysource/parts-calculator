@@ -155,7 +155,16 @@
       "assembly": null,
       "stl": "parts/feeder/nema-bracket.stl",
       "color": {
-        "role": "feeder"
+        "split": [
+          {
+            "color": "ash-gray",
+            "qty": 1
+          },
+          {
+            "color": "charcoal",
+            "qty": 3
+          }
+        ]
       },
       "optional": false,
       "support": false
@@ -488,7 +497,8 @@
         "role": "frame"
       },
       "optional": false,
-      "support": false
+      "support": false,
+      "layer_scope": "non-bottom"
     },
     {
       "id": "ext-bracket-cover",
@@ -504,6 +514,28 @@
         "interface": 6
       },
       "assembly": "external-bracket",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false,
+      "support": false,
+      "layer_scope": "non-bottom"
+    },
+    {
+      "id": "ext-bracket-foot-cover",
+      "name": "External bracket - foot cover",
+      "description": "Bottom-layer replacement for the external bracket bottom vertical + cover.",
+      "internal_notes": "Replaces ext-bracket-bottom-vertical + ext-bracket-cover on the bottom-most distribution layer (6 per machine). Shorter so the extrusion pops out to mount the wheels.",
+      "info": "For the bottom-most layer only. It is shorter than the standard bottom vertical + cover so the extrusion can pop out and the wheels mount to it.",
+      "version": "1",
+      "date_added": "2026-07-03",
+      "quantities": {
+        "layer": 6
+      },
+      "layer_scope": "bottom-only",
+      "assembly": "external-bracket",
+      "onshape": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/w/473cbfa6d8551e3b96a576e2/e/ee7cac13ee3ea67850bf1cf3",
+      "stl": "parts/external-bracket/ext-bracket-foot-cover.stl",
       "color": {
         "role": "frame"
       },
@@ -1110,7 +1142,7 @@
     },
     {
       "id": "camera-mount-part-6",
-      "name": "Camera mount — part 6",
+      "name": "Overhead camera mount — A/B connector",
       "description": "Camera mount part 6. 2 per machine.",
       "internal_notes": "1 per camera mount x 2 mounts. Color not important (feeder).",
       "version": "1",
@@ -1127,7 +1159,7 @@
     },
     {
       "id": "camera-mount-part-37",
-      "name": "Camera mount — part 37",
+      "name": "Overhead camera mount A",
       "description": "Camera mount part 37. 2 per machine.",
       "internal_notes": "1 per camera mount x 2 mounts. Color not important (feeder).",
       "version": "1",
@@ -1144,7 +1176,7 @@
     },
     {
       "id": "camera-mount-part-37b",
-      "name": "Camera mount — part 37 (b)",
+      "name": "Overhead camera mount B",
       "description": "Camera mount part 37 (second). 2 per machine.",
       "internal_notes": "1 per camera mount x 2 mounts. Color not important (feeder).",
       "version": "1",
@@ -1430,7 +1462,7 @@
     },
     {
       "id": "camera-mount",
-      "name": "Camera mount",
+      "name": "Overhead camera mount",
       "description": "Camera mount for the C-channels. 2 per machine (each: parts 6/37/37b + 2× rod-to-C-channel mount)."
     },
     {

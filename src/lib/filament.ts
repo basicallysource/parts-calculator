@@ -46,6 +46,10 @@ export type Part = {
 	color: ColorSpec;
 	optional: boolean;
 	onshape?: string | null; // link to the source Onshape document, if known
+	info?: string | null; // short note surfaced as an inline info popover
+	// how the per-layer ('layer') quantity scales: every layer, all but the bottom,
+	// or the bottom layer only (for bottom-layer-swapped parts like the foot cover)
+	layer_scope?: 'all' | 'non-bottom' | 'bottom-only';
 	stl: string;
 	render: string;
 };
@@ -76,6 +80,17 @@ export function categoryMultiplier(categoryId: string, layers: number): number {
 	return sectionById.get(categoryId)?.scales_with_layers ? layers : 1;
 }
 
+/** Layer multiplier for a part in a category, honoring its `layer_scope`.
+ *  Distribution-frame ('layer') parts can apply to all layers, all but the
+ *  bottom (standard brackets), or the bottom layer only (the foot cover). */
+export function effectiveMult(part: Part, categoryId: string, layers: number): number {
+	if (categoryId === 'layer') {
+		if (part.layer_scope === 'non-bottom') return Math.max(0, layers - 1);
+		if (part.layer_scope === 'bottom-only') return layers >= 1 ? 1 : 0;
+	}
+	return categoryMultiplier(categoryId, layers);
+}
+
 export function getAssembly(id: string | null): Assembly | undefined {
 	return id ? assemblyById.get(id) : undefined;
 }
@@ -89,7 +104,7 @@ export function sectionQty(part: Part, sectionId: string): number {
 export function machineQty(part: Part, layers: number): number {
 	let n = 0;
 	for (const [cat, qty] of Object.entries(part.quantities)) {
-		n += qty * categoryMultiplier(cat, layers);
+		n += qty * effectiveMult(part, cat, layers);
 	}
 	return n;
 }
@@ -103,7 +118,7 @@ export function displayCount(
 ): number {
 	const vc = variantCount(part.id);
 	if (vc !== null) return vc; // variant parts (e.g. funnels) are counted per layer-choice
-	return sectionQty(part, sectionId) * categoryMultiplier(sectionId, layers);
+	return sectionQty(part, sectionId) * effectiveMult(part, sectionId, layers);
 }
 
 /** Per-color unit breakdown of `catQty` pieces of a part (1 category instance). */
@@ -197,7 +212,7 @@ export function buyList(
 			continue;
 		}
 		for (const [cat, qty] of Object.entries(part.quantities)) {
-			const mult = categoryMultiplier(cat, layers);
+			const mult = effectiveMult(part, cat, layers);
 			for (const u of colorUnits(part, qty, roleColors)) {
 				const key = u.colorId ?? '__any__';
 				byColor.set(key, (byColor.get(key) ?? 0) + each * u.count * mult);

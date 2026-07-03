@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Info, Printer } from 'lucide-svelte';
+	import { Info } from 'lucide-svelte';
 	import { FRAMING_PIECES, STOCK_MM, CLEARANCE_MM } from '$lib/framing';
 	import { layerStore } from '$lib/layers.svelte';
 	import { ftin, expand, packOptimal, packBundle, planGroups } from '$lib/cutplan';
@@ -91,10 +91,17 @@
 			<span class="text-xs font-semibold uppercase tracking-wider text-text-muted">Stock (mm)</span>
 			<input type="number" min="1" step="1" bind:value={stock} class="setup-control h-9 w-28 px-2 text-sm" />
 		</label>
-		<label class="flex flex-col gap-1">
-			<span class="text-xs font-semibold uppercase tracking-wider text-text-muted">Kerf (mm)</span>
+		<div class="flex flex-col gap-1">
+			<span class="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-text-muted">
+				Kerf (mm)
+				<Popover
+					width="w-64"
+					label="What is kerf"
+					text="Kerf is the width of material the saw blade removes on each cut. The plan leaves one kerf of spacing between pieces on a bar so every piece finishes at its exact length."
+				/>
+			</span>
 			<input type="number" min="0" step="0.1" bind:value={kerf} class="setup-control h-9 w-28 px-2 text-sm" />
-		</label>
+		</div>
 		<div class="flex flex-col gap-1">
 			<span class="text-xs font-semibold uppercase tracking-wider text-text-muted">Mode</span>
 			<div class="flex">
@@ -108,12 +115,6 @@
 				>
 			</div>
 		</div>
-		<button
-			class="setup-button-secondary ml-auto inline-flex h-9 items-center gap-1.5 px-3 text-sm"
-			onclick={() => window.print()}
-		>
-			<Printer size={14} /> Print
-		</button>
 	</div>
 
 	<!-- pieces -->

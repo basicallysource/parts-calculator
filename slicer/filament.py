@@ -405,6 +405,8 @@ def main():
             "color": p.get("color", {"any": True}),
             "optional": p.get("optional", False),
             "onshape": p.get("onshape"),
+            "info": p.get("info"),
+            "layer_scope": p.get("layer_scope", "all"),
             "stl": f"/stl/{stl_name}",
             "render": f"/renders/{p['id']}.png",
         })
