@@ -27,7 +27,7 @@
 					src="/extrusion-explainer.png"
 					alt="Extrusion assembly explainer"
 					title="Extrusion assembly explainer"
-					caption="The foot pieces aren't in the CAD yet."
+					caption="The foot extensions (D) aren't in the CAD yet."
 					imgClass="max-h-[32vh]"
 				/>
 			{/snippet}

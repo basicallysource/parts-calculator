@@ -22,6 +22,7 @@ export type FramingPiece = {
 	len: number; // actual cut length — cadLen minus any tolerance trim (mm)
 	category: PieceCategory;
 	from: string; // human note on where the quantity comes from
+	badge: string; // marker colour for this piece (from the shop paint key)
 	qtyFor: (n: number) => number;
 };
 
@@ -31,8 +32,8 @@ export function scalesWithLayers(c: PieceCategory): boolean {
 
 export const FRAMING_PIECES: FramingPiece[] = [
 	// ---- per layer (×N) ----
-	{ letter: 'A', name: 'Outer horizontal', cadLen: 320, len: 320, category: 'per-layer', from: '6 per layer', qtyFor: (n) => 6 * n },
-	{ letter: 'B', name: 'Spoke', cadLen: 158, len: 158, category: 'per-layer', from: '6 per layer', qtyFor: (n) => 6 * n },
+	{ letter: 'A', name: 'Outer horizontal', cadLen: 320, len: 320, category: 'per-layer', from: '6 per layer', badge: '#e08a97', qtyFor: (n) => 6 * n },
+	{ letter: 'B', name: 'Spoke', cadLen: 158, len: 158, category: 'per-layer', from: '6 per layer', badge: '#d63b2f', qtyFor: (n) => 6 * n },
 	{
 		letter: 'C',
 		name: 'Layer vertical support',
@@ -40,15 +41,16 @@ export const FRAMING_PIECES: FramingPiece[] = [
 		len: 160 - CLEARANCE_MM,
 		category: 'per-layer',
 		from: 'top N−2 layers (bottom 2 joined into feet)',
+		badge: '#ffffff',
 		qtyFor: (n) => 6 * Math.max(0, n - 2)
 	},
 	// ---- interface (one set per machine) ----
-	{ letter: 'E', name: 'Interface spoke (long)', cadLen: 244, len: 244 - CLEARANCE_MM, category: 'interface', from: 'per machine', qtyFor: () => 6 },
-	{ letter: 'F', name: 'Interface vertical support', cadLen: 280, len: 280 - CLEARANCE_MM, category: 'interface', from: 'per machine', qtyFor: () => 6 },
-	{ letter: 'G', name: 'Horizontal interface frame', cadLen: 320, len: 320, category: 'interface', from: 'per machine', qtyFor: () => 6 },
-	{ letter: 'H', name: 'Interface spoke (short)', cadLen: 158, len: 158, category: 'interface', from: 'per machine · same as spoke B', qtyFor: () => 6 },
+	{ letter: 'E', name: 'Interface spoke (long)', cadLen: 244, len: 244 - CLEARANCE_MM, category: 'interface', from: 'per machine', badge: '#1c1c1c', qtyFor: () => 6 },
+	{ letter: 'F', name: 'Interface vertical support', cadLen: 280, len: 280 - CLEARANCE_MM, category: 'interface', from: 'per machine', badge: '#e6c24f', qtyFor: () => 6 },
+	{ letter: 'G', name: 'Horizontal interface frame', cadLen: 320, len: 320, category: 'interface', from: 'per machine', badge: '#e08a97', qtyFor: () => 6 },
+	{ letter: 'H', name: 'Interface spoke (short)', cadLen: 158, len: 158, category: 'interface', from: 'per machine · same as spoke B', badge: '#d63b2f', qtyFor: () => 6 },
 	// ---- feet (bottom 2 layers span into one piece) ----
-	{ letter: 'D', name: 'Foot extension', cadLen: 1.5 * 160, len: 1.5 * (160 - CLEARANCE_MM), category: 'feet', from: '1.5 × C · bottom 2 layers joined', qtyFor: (n) => (n >= 2 ? 6 : 0) }
+	{ letter: 'D', name: 'Foot extension', cadLen: 1.5 * 160, len: 1.5 * (160 - CLEARANCE_MM), category: 'feet', from: '1.5 × C · bottom 2 layers joined', badge: '#1f3a93', qtyFor: (n) => (n >= 2 ? 6 : 0) }
 ];
 
 export type LengthGroup = {
