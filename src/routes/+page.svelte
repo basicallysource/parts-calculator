@@ -32,7 +32,7 @@
 	import { loadConfig, saveConfig, clearConfig } from '$lib/config';
 	import { layerStore, addLayer as addLayerStore, removeLayerAt, setSize, setSizes } from '$lib/layers.svelte';
 	import Popover from '$lib/components/Popover.svelte';
-	import { Download, Package, ZoomIn, Loader, Info, Plus, X, RotateCcw, Clock, Layers3, ExternalLink } from 'lucide-svelte';
+	import { Download, Package, ZoomIn, Loader, Info, Plus, X, RotateCcw, Clock, Layers3, ExternalLink, AlertTriangle } from 'lucide-svelte';
 
 	// ---- defaults (also used by "reset to default") -----------------------------
 	const defaultFunnelSizes = (): ('third' | 'half')[] => ['third', 'third', 'half'];
@@ -347,7 +347,7 @@
 					{p.name}
 					{#if p.optional}<span class="border border-warning/50 px-1 text-xs text-warning-dark">optional</span>{/if}
 					{#if p.support_used}<span class="border border-info/50 px-1 text-xs text-info" title="Sliced with support material — included in this part's grams">supports</span>{/if}
-						{#if platesForPart(p.id).length}<button type="button" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" onclick={() => openPlatesModal(p.id)} title="Show plates with this part"><Layers3 size={11} /> {platesForPart(p.id).length} plate{platesForPart(p.id).length === 1 ? '' : 's'}</button>{/if}{#if p.onshape}<a href={p.onshape} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" title="Open the source Onshape document">Onshape <ExternalLink size={11} /></a>{/if}{#if p.info}<Popover width="w-64" label="About {p.name}" text={p.info} />{/if}
+						{#if platesForPart(p.id).length}<button type="button" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" onclick={() => openPlatesModal(p.id)} title="Show plates with this part"><Layers3 size={11} /> {platesForPart(p.id).length} plate{platesForPart(p.id).length === 1 ? '' : 's'}</button>{/if}{#if p.onshape}<a href={p.onshape} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" title="Open the source Onshape document">Onshape <ExternalLink size={11} /></a>{/if}{#if p.info}<Popover width="w-64" label="About {p.name}" text={p.info} />{/if}{#if p.suspicious}<Popover width="w-72" label="Why {p.name} is flagged">{#snippet trigger({ toggle, open })}<button type="button" onclick={toggle} aria-expanded={open} class="inline-flex items-center gap-0.5 border border-warning/60 bg-warning/[0.10] px-1 text-xs font-semibold text-warning-dark"><AlertTriangle size={11} /> suspect</button>{/snippet}<b class="text-text">Subject to change.</b> This part may still change or have an issue. Unless it's critical, hold off printing it until this warning clears.{#if p.suspicious_note}<span class="mt-2 block border-t border-border pt-2 text-text">{p.suspicious_note}</span>{/if}</Popover>{/if}
 				</span>
 				<span class="flex flex-wrap items-center gap-1.5 text-xs text-text-muted">
 					{#each sw as s}

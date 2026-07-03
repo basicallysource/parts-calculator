@@ -122,9 +122,14 @@
 			"description": "Pair of connectors. 1 of each per layer + 1 of each per bottom interface."
 		},
 		{
-			"id": "top-interface-split-spur-gear",
-			"name": "Top interface split spur gear",
-			"description": "Spur 2M 120T interface gear, split into 3 printable sections. Chute color."
+			"id": "limit-switch",
+			"name": "Limit switch",
+			"description": "Interface limit switch: printed dowel pin, housing, and hammer."
+		},
+		{
+			"id": "cable-cage",
+			"name": "Cable cage",
+			"description": "Two cable cage brackets and the outer ribbon cable clamp."
 		}
 	],
 	"parts": [
@@ -159,6 +164,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/stator.stl",
 			"render": "/renders/stator.png"
@@ -194,6 +201,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/rotor-faceted.stl",
 			"render": "/renders/rotor-faceted.png"
@@ -220,6 +229,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/output-gear.stl",
 			"render": "/renders/output-gear.png"
@@ -255,6 +266,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/nema-bracket.stl",
 			"render": "/renders/nema-bracket.png"
@@ -279,8 +292,10 @@
 				"role": "feeder"
 			},
 			"optional": false,
-			"onshape": null,
+			"onshape": "https://cad.onshape.com/documents/60aa51fc61d18f2155b99910/w/b315cf3f14be460d78b1caa2/e/66109ce96b305bf318354f93",
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/light-post.stl",
 			"render": "/renders/light-post.png"
@@ -307,9 +322,39 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/light-post-cap.stl",
 			"render": "/renders/light-post-cap.png"
+		},
+		{
+			"id": "light-post-cap-adapter",
+			"name": "Light post cap adapter",
+			"quantities": {
+				"feeder": 2
+			},
+			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Adapts the light post cap to the C-channel. 2 per machine.",
+			"version": "1",
+			"date_added": "2026-07-03",
+			"grams": 2.59,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 955,
+			"color": {
+				"role": "feeder"
+			},
+			"optional": false,
+			"onshape": "https://cad.onshape.com/documents/60aa51fc61d18f2155b99910/w/b315cf3f14be460d78b1caa2/e/66109ce96b305bf318354f93",
+			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
+			"layer_scope": "all",
+			"stl": "/stl/light-post-cap-adapter.stl",
+			"render": "/renders/light-post-cap-adapter.png"
 		},
 		{
 			"id": "bulk-cap",
@@ -333,6 +378,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/bulk-cap.stl",
 			"render": "/renders/bulk-cap.png"
@@ -359,6 +406,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/classification-dome.stl",
 			"render": "/renders/classification-dome.png"
@@ -385,6 +434,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/interface-bracket.stl",
 			"render": "/renders/interface-bracket.png"
@@ -411,6 +462,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/interface-spacer.stl",
 			"render": "/renders/interface-spacer.png"
@@ -437,6 +490,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/chute-core.stl",
 			"render": "/renders/chute-core.png"
@@ -463,6 +518,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/bin-retainer-left.stl",
 			"render": "/renders/bin-retainer-left.png"
@@ -489,6 +546,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/bin-retainer-right.stl",
 			"render": "/renders/bin-retainer-right.png"
@@ -515,6 +574,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/frame-crossbeam.stl",
 			"render": "/renders/frame-crossbeam.png"
@@ -541,6 +602,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/frame-90deg-bracket.stl",
 			"render": "/renders/frame-90deg-bracket.png"
@@ -567,6 +630,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/ls-mount-to-chute.stl",
 			"render": "/renders/ls-mount-to-chute.png"
@@ -593,6 +658,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/ls-bottom-static.stl",
 			"render": "/renders/ls-bottom-static.png"
@@ -619,6 +686,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/ls-mount-to-extrusion.stl",
 			"render": "/renders/ls-mount-to-extrusion.png"
@@ -645,6 +714,8 @@
 			"optional": true,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/ls-hold-in-place.stl",
 			"render": "/renders/ls-hold-in-place.png"
@@ -671,6 +742,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/ls-washer.stl",
 			"render": "/renders/ls-washer.png"
@@ -698,6 +771,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/ext-bracket-left.stl",
 			"render": "/renders/ext-bracket-left.png"
@@ -725,6 +800,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "non-bottom",
 			"stl": "/stl/ext-bracket-bottom-vertical.stl",
 			"render": "/renders/ext-bracket-bottom-vertical.png"
@@ -752,6 +829,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "non-bottom",
 			"stl": "/stl/ext-bracket-cover.stl",
 			"render": "/renders/ext-bracket-cover.png"
@@ -778,6 +857,8 @@
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/w/473cbfa6d8551e3b96a576e2/e/ee7cac13ee3ea67850bf1cf3",
 			"info": "For the bottom-most layer only. It is shorter than the standard bottom vertical + cover so the extrusion can pop out and the wheels mount to it.",
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "bottom-only",
 			"stl": "/stl/ext-bracket-foot-cover.stl",
 			"render": "/renders/ext-bracket-foot-cover.png"
@@ -804,6 +885,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/interface-rib.stl",
 			"render": "/renders/interface-rib.png"
@@ -830,6 +913,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/interface-rib-switch.stl",
 			"render": "/renders/interface-rib-switch.png"
@@ -854,8 +939,10 @@
 				"fixed": "ivory-white"
 			},
 			"optional": false,
-			"onshape": null,
+			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/63d9095d8167813360e7753c/e/279fa8866ec0d8c56c8226cf",
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/cable-clamp-inner.stl",
 			"render": "/renders/cable-clamp-inner.png"
@@ -880,8 +967,10 @@
 				"fixed": "ivory-white"
 			},
 			"optional": false,
-			"onshape": null,
+			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/63d9095d8167813360e7753c/e/279fa8866ec0d8c56c8226cf",
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/cable-clamp-outer.stl",
 			"render": "/renders/cable-clamp-outer.png"
@@ -908,6 +997,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/interface-spur-gear.stl",
 			"render": "/renders/interface-spur-gear.png"
@@ -934,6 +1025,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/interface-idler-gear.stl",
 			"render": "/renders/interface-idler-gear.png"
@@ -960,6 +1053,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/interface-nema23-bracket.stl",
 			"render": "/renders/interface-nema23-bracket.png"
@@ -970,7 +1065,7 @@
 			"quantities": {
 				"interface": 5
 			},
-			"assembly": null,
+			"assembly": "cable-cage",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Interface cable cage bracket (regular). 5 needed.",
@@ -986,6 +1081,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/interface-cage-bracket.stl",
 			"render": "/renders/interface-cage-bracket.png"
@@ -996,7 +1093,7 @@
 			"quantities": {
 				"interface": 1
 			},
-			"assembly": null,
+			"assembly": "cable-cage",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Cable cage bracket with the cable mount. 1 needed.",
@@ -1012,9 +1109,39 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/interface-cage-bracket-cable.stl",
 			"render": "/renders/interface-cage-bracket-cable.png"
+		},
+		{
+			"id": "ribbon-cable-clamp",
+			"name": "Ribbon cable clamp",
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": "cable-cage",
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Outer ribbon cable clamp, paired with the cable cage brackets.",
+			"version": "1",
+			"date_added": "2026-07-03",
+			"grams": 5.31,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 1992,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"onshape": null,
+			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
+			"layer_scope": "all",
+			"stl": "/stl/ribbon-cable-clamp.stl",
+			"render": "/renders/ribbon-cable-clamp.png"
 		},
 		{
 			"id": "interface-big-spacer",
@@ -1038,6 +1165,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/interface-big-spacer.stl",
 			"render": "/renders/interface-big-spacer.png"
@@ -1064,17 +1193,19 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/interface-upper-fixed-section.stl",
 			"render": "/renders/interface-upper-fixed-section.png"
 		},
 		{
 			"id": "top-interface-split-spur-gear-1",
-			"name": "Section 1",
+			"name": "Chute gear",
 			"quantities": {
 				"interface": 1
 			},
-			"assembly": "top-interface-split-spur-gear",
+			"assembly": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Section 1 of 3 of the top interface split spur gear (Spur 2M 120T).",
@@ -1090,17 +1221,19 @@
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/12bfe1cca4fda5bc5763c0c9",
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/top-interface-split-spur-gear-1.stl",
 			"render": "/renders/top-interface-split-spur-gear-1.png"
 		},
 		{
 			"id": "top-interface-split-spur-gear-2",
-			"name": "Section 2",
+			"name": "Top interface lazy Susan washer",
 			"quantities": {
 				"interface": 1
 			},
-			"assembly": "top-interface-split-spur-gear",
+			"assembly": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Section 2 of 3 of the top interface split spur gear (Spur 2M 120T).",
@@ -1116,17 +1249,19 @@
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/12bfe1cca4fda5bc5763c0c9",
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/top-interface-split-spur-gear-2.stl",
 			"render": "/renders/top-interface-split-spur-gear-2.png"
 		},
 		{
 			"id": "top-interface-split-spur-gear-3",
-			"name": "Section 3",
+			"name": "Top interface chute mount",
 			"quantities": {
 				"interface": 1
 			},
-			"assembly": "top-interface-split-spur-gear",
+			"assembly": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Section 3 of 3 of the top interface split spur gear (Spur 2M 120T).",
@@ -1142,9 +1277,95 @@
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/12bfe1cca4fda5bc5763c0c9",
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/top-interface-split-spur-gear-3.stl",
 			"render": "/renders/top-interface-split-spur-gear-3.png"
+		},
+		{
+			"id": "limit-switch-dowel-pin",
+			"name": "Printed dowel pin",
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": "limit-switch",
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Printed dowel pin for the interface limit switch.",
+			"version": "1",
+			"date_added": "2026-07-03",
+			"grams": 0.71,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 1057,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/f23afbf63ca583eed726c9b4",
+			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
+			"layer_scope": "all",
+			"stl": "/stl/limit-switch-dowel-pin.stl",
+			"render": "/renders/limit-switch-dowel-pin.png"
+		},
+		{
+			"id": "limit-switch-housing",
+			"name": "Limit switch housing",
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": "limit-switch",
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Housing for the interface limit switch.",
+			"version": "1",
+			"date_added": "2026-07-03",
+			"grams": 10.13,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 2140,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/70838d736e83bd9b6f0ccb7a",
+			"info": null,
+			"suspicious": true,
+			"suspicious_note": "Spencer thinks it may interfere with the switch-gap interface rib (the rib with the cutout).",
+			"layer_scope": "all",
+			"stl": "/stl/limit-switch-housing.stl",
+			"render": "/renders/limit-switch-housing.png"
+		},
+		{
+			"id": "limit-switch-hammer",
+			"name": "Limit switch hammer",
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": "limit-switch",
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Hammer/stop for the interface limit switch.",
+			"version": "1",
+			"date_added": "2026-07-03",
+			"grams": 3.56,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 973,
+			"color": {
+				"role": "chute-core"
+			},
+			"optional": false,
+			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/6952c4b6ff33a9eff9bf58c6/e/3c6d45d569e85f2df62b8449",
+			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
+			"layer_scope": "all",
+			"stl": "/stl/limit-switch-hammer.stl",
+			"render": "/renders/limit-switch-hammer.png"
 		},
 		{
 			"id": "rotor-finned",
@@ -1168,6 +1389,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/rotor-finned.stl",
 			"render": "/renders/rotor-finned.png"
@@ -1194,6 +1417,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/idler-gear.stl",
 			"render": "/renders/idler-gear.png"
@@ -1220,6 +1445,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/input-gear.stl",
 			"render": "/renders/input-gear.png"
@@ -1246,6 +1473,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/output-guide.stl",
 			"render": "/renders/output-guide.png"
@@ -1272,6 +1501,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/funnel-bracket-left.stl",
 			"render": "/renders/funnel-bracket-left.png"
@@ -1298,6 +1529,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/funnel-bracket-right.stl",
 			"render": "/renders/funnel-bracket-right.png"
@@ -1324,6 +1557,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/door-module.stl",
 			"render": "/renders/door-module.png"
@@ -1350,6 +1585,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/bearing-holder-left.stl",
 			"render": "/renders/bearing-holder-left.png"
@@ -1376,6 +1613,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/bearing-holder-right.stl",
 			"render": "/renders/bearing-holder-right.png"
@@ -1402,6 +1641,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/servo-adapter-servo-side.stl",
 			"render": "/renders/servo-adapter-servo-side.png"
@@ -1428,6 +1669,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/servo-adapter-flap-side.stl",
 			"render": "/renders/servo-adapter-flap-side.png"
@@ -1454,6 +1697,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/servo-bracket-lower-arm.stl",
 			"render": "/renders/servo-bracket-lower-arm.png"
@@ -1480,6 +1725,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/servo-bracket-side-arm.stl",
 			"render": "/renders/servo-bracket-side-arm.png"
@@ -1506,6 +1753,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/servo-bracket-cover.stl",
 			"render": "/renders/servo-bracket-cover.png"
@@ -1532,6 +1781,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/servo-bracket-housing.stl",
 			"render": "/renders/servo-bracket-housing.png"
@@ -1558,6 +1809,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/leg.stl",
 			"render": "/renders/leg.png"
@@ -1584,6 +1837,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/foot.stl",
 			"render": "/renders/foot.png"
@@ -1610,6 +1865,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/chute-door.stl",
 			"render": "/renders/chute-door.png"
@@ -1636,6 +1893,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/leg-extension.stl",
 			"render": "/renders/leg-extension.png"
@@ -1662,6 +1921,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/camera-mount-part-6.stl",
 			"render": "/renders/camera-mount-part-6.png"
@@ -1688,6 +1949,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/camera-mount-part-37.stl",
 			"render": "/renders/camera-mount-part-37.png"
@@ -1714,6 +1977,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/camera-mount-part-37b.stl",
 			"render": "/renders/camera-mount-part-37b.png"
@@ -1740,6 +2005,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/camera-mount-rod-mount.stl",
 			"render": "/renders/camera-mount-rod-mount.png"
@@ -1766,6 +2033,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/camera-led-insert.stl",
 			"render": "/renders/camera-led-insert.png"
@@ -1793,6 +2062,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/layer-connector-1.stl",
 			"render": "/renders/layer-connector-1.png"
@@ -1820,6 +2091,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/layer-connector-2.stl",
 			"render": "/renders/layer-connector-2.png"
@@ -1846,6 +2119,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/funnel-third.stl",
 			"render": "/renders/funnel-third.png"
@@ -1872,6 +2147,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/funnel-half.stl",
 			"render": "/renders/funnel-half.png"
@@ -1898,6 +2175,8 @@
 			"optional": true,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/bin-half-left.stl",
 			"render": "/renders/bin-half-left.png"
@@ -1924,6 +2203,8 @@
 			"optional": true,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/bin-half-right.stl",
 			"render": "/renders/bin-half-right.png"
@@ -1950,6 +2231,8 @@
 			"optional": true,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/bin-third-left.stl",
 			"render": "/renders/bin-third-left.png"
@@ -1976,6 +2259,8 @@
 			"optional": true,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/bin-third-center.stl",
 			"render": "/renders/bin-third-center.png"
@@ -2002,6 +2287,8 @@
 			"optional": true,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/bin-third-rightback.stl",
 			"render": "/renders/bin-third-rightback.png"
@@ -2028,6 +2315,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/bearing-cover-covered.stl",
 			"render": "/renders/bearing-cover-covered.png"
@@ -2054,6 +2343,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/bearing-cover-servo.stl",
 			"render": "/renders/bearing-cover-servo.png"
