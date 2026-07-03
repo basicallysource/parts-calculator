@@ -3,9 +3,6 @@
 	import * as THREE from 'three';
 	import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 	import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
-	import { STLExporter } from 'three/examples/jsm/exporters/STLExporter.js';
-	import { zipSync } from 'fflate';
-	import { Download, Loader } from 'lucide-svelte';
 	import { lengthGroups, STOCK_MM, type LengthGroup } from '$lib/framing';
 	import { extrusionGeometry, aluminiumMaterial } from '$lib/extrusion';
 	import { layerStore } from '$lib/layers.svelte';
@@ -20,7 +17,6 @@
 	const ROW_PITCH = 95; // mm vertical gap between length rows
 
 	let host: HTMLDivElement;
-	let exporting = $state(false);
 	// set inside onMount; the effect below drives (re)builds when groups change
 	let rebuild = $state<((gs: LengthGroup[]) => void) | null>(null);
 
@@ -41,31 +37,6 @@
 			}
 		pts.sort((a, b) => a[2] - b[2]);
 		return pts.slice(0, count).map((p) => [p[0], p[1]] as [number, number]);
-	}
-
-	async function downloadStls() {
-		exporting = true;
-		try {
-			const exporter = new STLExporter();
-			const files: Record<string, Uint8Array> = {};
-			for (const g of groups) {
-				const geo = extrusionGeometry(g.len);
-				const mesh = new THREE.Mesh(geo);
-				const data = exporter.parse(mesh, { binary: true }) as unknown as DataView;
-				files[`${g.label.replace(/\//g, '-')}_${g.len}mm.stl`] = new Uint8Array(
-					data.buffer as ArrayBuffer
-				);
-				geo.dispose();
-			}
-			const zipped = zipSync(files, { level: 6 });
-			const a = document.createElement('a');
-			a.href = URL.createObjectURL(new Blob([zipped as BlobPart], { type: 'application/zip' }));
-			a.download = 'aluminium-profiles.zip';
-			a.click();
-			URL.revokeObjectURL(a.href);
-		} finally {
-			exporting = false;
-		}
 	}
 
 	onMount(() => {
@@ -181,22 +152,11 @@
 </script>
 
 <div class="setup-card-shell border">
-	<div class="flex items-center justify-between border-b border-border px-4 py-2.5">
-		<div>
-			<h3 class="text-base font-semibold text-text">Piece family</h3>
-			<p class="text-sm text-text-muted">
-				2020 extrusion · each length drawn to scale, bundled by quantity
-			</p>
-		</div>
-		<button
-			class="setup-button-secondary inline-flex h-9 items-center justify-center gap-2 px-3 text-sm font-medium disabled:opacity-50"
-			onclick={downloadStls}
-			disabled={exporting}
-			title="Export one STL per unique length"
-		>
-			{#if exporting}<Loader size={15} class="animate-spin" />{:else}<Download size={15} />{/if}
-			STLs
-		</button>
+	<div class="border-b border-border px-4 py-2.5">
+		<h3 class="text-base font-semibold text-text">Piece family</h3>
+		<p class="text-sm text-text-muted">
+			2020 extrusion · each length drawn to scale, bundled by quantity
+		</p>
 	</div>
 
 	<div class="relative h-[54vh] w-full bg-[var(--color-bg)]">

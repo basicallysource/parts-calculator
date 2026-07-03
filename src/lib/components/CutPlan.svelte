@@ -246,18 +246,19 @@
 		<h3 class="mb-2 text-sm font-semibold text-text">Notes</h3>
 		<ul class="space-y-2 text-sm leading-relaxed text-text-muted">
 			<li>
-				<b class="text-text">Interface pieces cut ¼″ short (E, F, H):</b> each trimmed 6.35 mm so the frame
+				<b class="text-text">Interface pieces cut 6 mm short (E, F):</b> each trimmed 6 mm so the frame
 				doesn't clamp the chute too tightly. A too-tight fit binds the chute and can stall the motor.
+				The short interface spoke (H) stays full length.
 			</li>
 			<li>
-				<b class="text-text">C — layer vertical support:</b> 160 mm − ¼″ = 153.65 mm. Used on the top
+				<b class="text-text">C — layer vertical support:</b> 160 mm − 6 mm = 154 mm. Used on the top
 				{Math.max(0, n - 2)} layer{Math.max(0, n - 2) === 1 ? '' : 's'}; the bottom two are joined into D.
 			</li>
 			<li>
 				<b class="text-text">D — foot extension:</b> the bottom two layers' supports join into one —
-				second-from-bottom full + bottom half = 1.5 × C = 230.475 mm. 6 per machine.
+				second-from-bottom full + bottom half = 1.5 × C = 231 mm. 6 per machine.
 			</li>
-			<li>Pieces that share a length stack together at the saw: <b class="text-text">A &amp; G</b> = 320 mm.</li>
+			<li>Pieces that share a length stack together at the saw: <b class="text-text">A &amp; G</b> = 320 mm, <b class="text-text">B &amp; H</b> = 158 mm.</li>
 		</ul>
 	</div>
 </div>
