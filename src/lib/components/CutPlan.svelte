@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { Info, Printer } from 'lucide-svelte';
-	import { FRAMING_PIECES, STOCK_MM } from '$lib/framing';
+	import { FRAMING_PIECES, STOCK_MM, CLEARANCE_MM } from '$lib/framing';
 	import { layerStore } from '$lib/layers.svelte';
 	import { ftin, expand, packOptimal, packBundle, planGroups } from '$lib/cutplan';
+	import Popover from '$lib/components/Popover.svelte';
 
 	let stock = $state(STOCK_MM);
 	let kerf = $state(3);
@@ -13,6 +14,7 @@
 		FRAMING_PIECES.map((p) => ({
 			letter: p.letter,
 			name: p.name,
+			cadLen: p.cadLen,
 			len: p.len,
 			qty: p.qtyFor(n),
 			cat: p.category,
@@ -76,7 +78,8 @@
 		})
 	);
 
-	const catLabel = (c: string) => (c === 'per-layer' ? `Per layer · ×${n}` : 'Per machine · constant');
+	const catLabel = (c: string) =>
+		c === 'per-layer' ? `Per layer · ×${n}` : c === 'interface' ? 'Interface · per machine' : 'Feet · per machine';
 	const scrapHatch =
 		'repeating-linear-gradient(45deg,#f0eee7,#f0eee7 5px,#e2e0db 5px,#e2e0db 10px)';
 </script>
@@ -122,7 +125,18 @@
 					<tr class="border-b border-border text-left text-xs uppercase tracking-wider text-text-muted">
 						<th class="w-8 px-3 py-2"></th>
 						<th class="px-1 py-2 font-semibold">Piece</th>
-						<th class="px-2 py-2 text-right font-semibold">Length</th>
+						<th class="px-2 py-2 text-right font-semibold">CAD length</th>
+						<th class="px-2 py-2 text-right font-semibold">
+							<span class="inline-flex items-center justify-end gap-1">
+								Cut length
+								<Popover
+									align="right"
+									width="w-72"
+									label="Why some cut lengths differ from CAD"
+									text={`Some pieces are cut ${CLEARANCE_MM} mm shorter than their CAD length on purpose. Sawn aluminium extrusion holds looser tolerances than 3D-printed parts, so the extra ${CLEARANCE_MM} mm of clearance keeps a slightly-off frame from clamping the chute.`}
+								/>
+							</span>
+						</th>
 						<th class="px-2 py-2 font-semibold"></th>
 						<th class="px-2 py-2 text-right font-semibold">Qty</th>
 						<th class="px-3 py-2 font-semibold">From</th>
@@ -132,8 +146,17 @@
 					{#each rows as { p, header } (p.letter)}
 						{#if header}
 							<tr class="bg-[var(--color-bg)]">
-								<td colspan="6" class="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-text-muted">
-									{catLabel(header)}
+								<td colspan="7" class="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-text-muted">
+									<span class="inline-flex items-center gap-1.5">
+										{catLabel(header)}
+										{#if header === 'feet'}
+											<Popover
+												width="w-72"
+												label="Why the feet span two layers"
+												text="The bottom two layers share one continuous length of extrusion that spans both — instead of a separate support per layer — so the wheels can sustain more force."
+											/>
+										{/if}
+									</span>
 								</td>
 							</tr>
 						{/if}
@@ -142,6 +165,7 @@
 								<span class="inline-flex h-[22px] w-[22px] items-center justify-center bg-text font-mono text-xs font-semibold text-[var(--color-primary-contrast)]">{p.letter}</span>
 							</td>
 							<td class="px-1 py-2 text-text">{p.name}</td>
+							<td class="whitespace-nowrap px-2 py-2 text-right font-mono tabular-nums text-text-muted">{p.cadLen} mm</td>
 							<td class="whitespace-nowrap px-2 py-2 text-right font-mono tabular-nums text-text">{p.len} mm</td>
 							<td class="whitespace-nowrap px-2 py-2 font-mono text-xs text-text-muted">{ftin(p.len)}</td>
 							<td class="px-2 py-2 text-right font-mono tabular-nums text-text">{p.qty}</td>
@@ -246,19 +270,13 @@
 		<h3 class="mb-2 text-sm font-semibold text-text">Notes</h3>
 		<ul class="space-y-2 text-sm leading-relaxed text-text-muted">
 			<li>
-				<b class="text-text">Interface pieces cut 6 mm short (E, F):</b> each trimmed 6 mm so the frame
-				doesn't clamp the chute too tightly. A too-tight fit binds the chute and can stall the motor.
-				The short interface spoke (H) stays full length.
+				Pieces that share a cut length stack together at the saw — mark and cut the top bar, the rest
+				follow: <b class="text-text">A &amp; G</b> = 320 mm, <b class="text-text">B &amp; H</b> = 158 mm.
 			</li>
 			<li>
-				<b class="text-text">C — layer vertical support:</b> 160 mm − 6 mm = 154 mm. Used on the top
-				{Math.max(0, n - 2)} layer{Math.max(0, n - 2) === 1 ? '' : 's'}; the bottom two are joined into D.
+				Where the cut length is under the CAD length, the piece is trimmed {CLEARANCE_MM} mm for
+				tolerance (see the <b class="text-text">Cut length</b> note above).
 			</li>
-			<li>
-				<b class="text-text">D — foot extension:</b> the bottom two layers' supports join into one —
-				second-from-bottom full + bottom half = 1.5 × C = 231 mm. 6 per machine.
-			</li>
-			<li>Pieces that share a length stack together at the saw: <b class="text-text">A &amp; G</b> = 320 mm, <b class="text-text">B &amp; H</b> = 158 mm.</li>
 		</ul>
 	</div>
 </div>
