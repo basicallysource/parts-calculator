@@ -31,6 +31,7 @@
 	import { onMount } from 'svelte';
 	import { loadConfig, saveConfig, clearConfig } from '$lib/config';
 	import { layerStore, addLayer as addLayerStore, removeLayerAt, setSize, setSizes } from '$lib/layers.svelte';
+	import Popover from '$lib/components/Popover.svelte';
 	import { Download, Package, ZoomIn, Loader, Info, Plus, X, RotateCcw, Clock, Layers3, ExternalLink } from 'lucide-svelte';
 
 	// ---- defaults (also used by "reset to default") -----------------------------
@@ -91,7 +92,6 @@
 		clearConfig();
 	}
 	let zipping = $state(false);
-	let infoOpen = $state(false);
 	let activeTab = $state<'parts' | 'plates'>('parts');
 	let platesModalOpen = $state(false);
 	let platesModalPartId = $state<string | null>(null);
@@ -218,12 +218,6 @@
 	}
 </script>
 
-<svelte:window
-	onclick={(e) => {
-		if (infoOpen && !(e.target as HTMLElement).closest('[data-info]')) infoOpen = false;
-	}}
-/>
-
 <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
 	<header class="mb-5">
 		<h1 class="text-2xl font-bold text-text">3D printed parts</h1>
@@ -262,18 +256,11 @@
 		<div class="setup-panel mb-4 p-4">
 			<div class="mb-3 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-text-muted">
 				Colors
-				<span class="relative inline-flex" data-info>
-					<button type="button" class="inline-flex text-text-muted hover:text-text" aria-label="About the color options" onclick={() => (infoOpen = !infoOpen)}>
-						<Info size={14} />
-					</button>
-					{#if infoOpen}
-						<div class="setup-panel absolute left-0 top-6 z-30 w-72 p-3 text-xs font-normal normal-case tracking-normal text-text-muted">
-							Each color picker sets every part in that group. Parts that must be a specific color —
-							stators, rotors, light post caps, the classification dome, the lazy-Susan chute mount —
-							keep their required color and aren't affected.
-						</div>
-					{/if}
-				</span>
+				<Popover width="w-72" label="About the color options">
+					Each color picker sets every part in that group. Parts that must be a specific color —
+					stators, rotors, light post caps, the classification dome, the lazy-Susan chute mount — keep
+					their required color and aren't affected.
+				</Popover>
 			</div>
 			<div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
 				{#each COLOR_ROLES as role (role.id)}

@@ -12,33 +12,43 @@
 export const STOCK_MM = 1000;
 export const CLEARANCE_MM = 6; // trim on tolerance-sensitive pieces (was ¼″; 6 mm keeps lengths whole)
 
+// per-layer scales with the layer count; interface + feet are one set per machine
+export type PieceCategory = 'per-layer' | 'interface' | 'feet';
+
 export type FramingPiece = {
 	letter: string;
 	name: string;
-	len: number; // mm
-	category: 'per-layer' | 'const';
-	from: string; // human note on where the quantity/length comes from
+	cadLen: number; // nominal design length from CAD (mm)
+	len: number; // actual cut length — cadLen minus any tolerance trim (mm)
+	category: PieceCategory;
+	from: string; // human note on where the quantity comes from
 	qtyFor: (n: number) => number;
 };
 
+export function scalesWithLayers(c: PieceCategory): boolean {
+	return c === 'per-layer';
+}
+
 export const FRAMING_PIECES: FramingPiece[] = [
 	// ---- per layer (×N) ----
-	{ letter: 'A', name: 'Outer horizontal', len: 320, category: 'per-layer', from: '6 per layer', qtyFor: (n) => 6 * n },
-	{ letter: 'B', name: 'Spoke', len: 158, category: 'per-layer', from: '6 per layer', qtyFor: (n) => 6 * n },
+	{ letter: 'A', name: 'Outer horizontal', cadLen: 320, len: 320, category: 'per-layer', from: '6 per layer', qtyFor: (n) => 6 * n },
+	{ letter: 'B', name: 'Spoke', cadLen: 158, len: 158, category: 'per-layer', from: '6 per layer', qtyFor: (n) => 6 * n },
 	{
 		letter: 'C',
 		name: 'Layer vertical support',
+		cadLen: 160,
 		len: 160 - CLEARANCE_MM,
 		category: 'per-layer',
-		from: '160 − 6 mm · top N−2 layers (bottom 2 joined into D)',
+		from: 'top N−2 layers (bottom 2 joined into feet)',
 		qtyFor: (n) => 6 * Math.max(0, n - 2)
 	},
-	// ---- const (per machine) ----
-	{ letter: 'D', name: 'Foot extension', len: 1.5 * (160 - CLEARANCE_MM), category: 'const', from: '1.5 × C · bottom 2 layers joined', qtyFor: (n) => (n >= 2 ? 6 : 0) },
-	{ letter: 'E', name: 'Interface spoke (long)', len: 244 - CLEARANCE_MM, category: 'const', from: '244 − 6 mm', qtyFor: () => 6 },
-	{ letter: 'F', name: 'Interface vertical support', len: 280 - CLEARANCE_MM, category: 'const', from: '280 − 6 mm', qtyFor: () => 6 },
-	{ letter: 'G', name: 'Horizontal interface frame', len: 320, category: 'const', from: 'per machine', qtyFor: () => 6 },
-	{ letter: 'H', name: 'Interface spoke (short)', len: 158, category: 'const', from: 'per machine · same as spoke B', qtyFor: () => 6 }
+	// ---- interface (one set per machine) ----
+	{ letter: 'E', name: 'Interface spoke (long)', cadLen: 244, len: 244 - CLEARANCE_MM, category: 'interface', from: 'per machine', qtyFor: () => 6 },
+	{ letter: 'F', name: 'Interface vertical support', cadLen: 280, len: 280 - CLEARANCE_MM, category: 'interface', from: 'per machine', qtyFor: () => 6 },
+	{ letter: 'G', name: 'Horizontal interface frame', cadLen: 320, len: 320, category: 'interface', from: 'per machine', qtyFor: () => 6 },
+	{ letter: 'H', name: 'Interface spoke (short)', cadLen: 158, len: 158, category: 'interface', from: 'per machine · same as spoke B', qtyFor: () => 6 },
+	// ---- feet (bottom 2 layers span into one piece) ----
+	{ letter: 'D', name: 'Foot extension', cadLen: 1.5 * 160, len: 1.5 * (160 - CLEARANCE_MM), category: 'feet', from: '1.5 × C · bottom 2 layers joined', qtyFor: (n) => (n >= 2 ? 6 : 0) }
 ];
 
 export type LengthGroup = {
@@ -47,7 +57,7 @@ export type LengthGroup = {
 	letters: string[];
 	names: string[];
 	label: string; // "A/G"
-	category: 'per-layer' | 'const' | 'mixed';
+	category: 'per-layer' | 'per-machine' | 'mixed';
 };
 
 // Collapse pieces that share a length into one bundle, using the layer count to
@@ -58,15 +68,16 @@ export function lengthGroups(n: number, pieces: FramingPiece[] = FRAMING_PIECES)
 		const qty = p.qtyFor(n);
 		if (qty <= 0) continue;
 		const key = p.len.toFixed(3);
+		const scale = scalesWithLayers(p.category) ? 'per-layer' : 'per-machine';
 		let g = byLen.get(key);
 		if (!g) {
-			g = { len: p.len, qty: 0, letters: [], names: [], label: '', category: p.category };
+			g = { len: p.len, qty: 0, letters: [], names: [], label: '', category: scale };
 			byLen.set(key, g);
 		}
 		g.qty += qty;
 		g.letters.push(p.letter);
 		g.names.push(p.name);
-		if (g.category !== p.category) g.category = 'mixed';
+		if (g.category !== scale) g.category = 'mixed';
 	}
 	const groups = [...byLen.values()];
 	for (const g of groups) g.label = g.letters.join('/');
