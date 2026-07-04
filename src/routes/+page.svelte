@@ -400,6 +400,15 @@
 						{#if section.scales_with_layers}
 							<span class="text-xs font-normal uppercase tracking-wider text-text-muted">× {mult} layer{mult === 1 ? '' : 's'}</span>
 						{/if}
+						{#if section.experimental}
+							<Popover width="w-80" label="Why {section.name} is experimental">
+								{#snippet trigger({ toggle, open })}
+									<button type="button" onclick={toggle} aria-expanded={open} class="inline-flex items-center gap-0.5 border border-warning/60 bg-warning/[0.10] px-1.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-warning-dark"><AlertTriangle size={11} /> experimental</button>
+								{/snippet}
+								<b class="text-text">Experimental — subject to lots of change.</b>
+								{#if section.experimental_note}<span class="mt-2 block border-t border-border pt-2 text-text">{section.experimental_note}</span>{/if}
+							</Popover>
+						{/if}
 						<span class="ml-auto text-xs font-normal text-text-muted">{grams(selectedGrams)}</span>
 					</h3>
 					<div class="setup-card-shell border">

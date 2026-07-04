@@ -23,6 +23,7 @@ export type FramingPiece = {
 	category: PieceCategory;
 	from: string; // human note on where the quantity comes from
 	badge: string; // marker colour for this piece (from the shop paint key)
+	optional?: boolean; // not part of the standard build — starts off, excluded from the family render
 	qtyFor: (n: number) => number;
 };
 
@@ -49,6 +50,8 @@ export const FRAMING_PIECES: FramingPiece[] = [
 	{ letter: 'F', name: 'Interface vertical support', cadLen: 280, len: 280 - CLEARANCE_MM, category: 'interface', from: 'per machine', badge: '#e6c24f', qtyFor: () => 6 },
 	{ letter: 'G', name: 'Horizontal interface frame', cadLen: 320, len: 320, category: 'interface', from: 'per machine', badge: '#e08a97', qtyFor: () => 6 },
 	{ letter: 'H', name: 'Interface spoke (short)', cadLen: 158, len: 158, category: 'interface', from: 'per machine · same as spoke B', badge: '#d63b2f', qtyFor: () => 6 },
+	// optional — 10.5″ (267 mm), 3 per machine when enabled
+	{ letter: 'I', name: 'Bulk bucket support', cadLen: 267, len: 267, category: 'interface', from: 'per machine · optional', badge: '#7c8330', optional: true, qtyFor: () => 3 },
 	// ---- feet (bottom 2 layers span into one piece) ----
 	{ letter: 'D', name: 'Foot extension', cadLen: 1.5 * 160, len: 1.5 * (160 - CLEARANCE_MM), category: 'feet', from: '1.5 × C · bottom 2 layers joined', badge: '#1f3a93', qtyFor: (n) => (n >= 2 ? 6 : 0) }
 ];
@@ -67,6 +70,7 @@ export type LengthGroup = {
 export function lengthGroups(n: number, pieces: FramingPiece[] = FRAMING_PIECES): LengthGroup[] {
 	const byLen = new Map<string, LengthGroup>();
 	for (const p of pieces) {
+		if (p.optional) continue; // optional pieces aren't part of the standard family render
 		const qty = p.qtyFor(n);
 		if (qty <= 0) continue;
 		const key = p.len.toFixed(3);

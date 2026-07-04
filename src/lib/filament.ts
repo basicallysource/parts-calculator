@@ -18,7 +18,13 @@ export function platesForPart(id: string): Plate[] {
 	return _platesByPart.get(id) ?? [];
 }
 
-export type Section = { id: string; name: string; scales_with_layers: boolean };
+export type Section = {
+	id: string;
+	name: string;
+	scales_with_layers: boolean;
+	experimental?: boolean; // early / subject to heavy change — surfaced with a warning
+	experimental_note?: string | null;
+};
 export type ColorRoleDef = { id: string; name: string; default: string };
 export type Assembly = { id: string; name: string; description: string };
 
