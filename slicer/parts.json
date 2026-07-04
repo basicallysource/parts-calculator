@@ -40,6 +40,13 @@
       "id": "lazy-susan",
       "name": "Bottom lazy Susan",
       "scales_with_layers": false
+    },
+    {
+      "id": "electronics",
+      "name": "Electronics",
+      "scales_with_layers": false,
+      "experimental": true,
+      "experimental_note": "The electronics are early and changing a lot. Only build these if you have the experience to adapt as the design moves."
     }
   ],
   "color_roles": [
@@ -1361,6 +1368,26 @@
       "optional": false
     },
     {
+      "id": "chute-stepper-support-block",
+      "name": "Chute stepper support block",
+      "description": "Support block for the chute stepper.",
+      "internal_notes": "Interface part. Frame colour. Qty 1/machine is a DEFAULT pending confirmation.",
+      "version": "1",
+      "date_added": "2026-07-03",
+      "quantities": {
+        "interface": 1
+      },
+      "assembly": null,
+      "onshape": "https://cad.onshape.com/documents/238eb36f4ee3382c5a50a32b/w/78eed8b37e676b442c6450e1/e/753de7ce802d72cd739d82e2",
+      "stl": "parts/interface/chute-stepper-support-block.stl",
+      "source": "Chute stepper support block.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false,
+      "support": false
+    },
+    {
       "id": "funnel-third",
       "name": "Funnel (third size)",
       "description": "Third size funnel. Per layer (choose size per layer).",
@@ -1526,6 +1553,66 @@
         "role": "chute-core"
       },
       "optional": false
+    },
+    {
+      "id": "meanwell-psu-back-mount",
+      "name": "PSU back mount",
+      "description": "Back mount that holds the Meanwell 24V PSU.",
+      "internal_notes": "Meanwell 24V PSU box assembly. Colour (frame) + qty 1/machine are DEFAULTS pending confirmation. Electronics section is experimental.",
+      "version": "1",
+      "date_added": "2026-07-03",
+      "quantities": {
+        "electronics": 1
+      },
+      "assembly": "meanwell-psu-box",
+      "onshape": "https://cad.onshape.com/documents/ff3546ceb03f5fc907e6ed4c/w/76ea03e60d160b9d0990194d/e/b9f80b00e4dd34407e23b560",
+      "stl": "parts/electronics/meanwell-psu-back-mount.stl",
+      "source": "Meanwell 24v PSU Box - psu back mount.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false,
+      "support": false
+    },
+    {
+      "id": "meanwell-psu-connections",
+      "name": "PSU connections plate",
+      "description": "Connections plate for the Meanwell 24V PSU box.",
+      "internal_notes": "Meanwell 24V PSU box assembly. Colour (frame) + qty 1/machine are DEFAULTS pending confirmation. Electronics section is experimental.",
+      "version": "1",
+      "date_added": "2026-07-03",
+      "quantities": {
+        "electronics": 1
+      },
+      "assembly": "meanwell-psu-box",
+      "onshape": "https://cad.onshape.com/documents/ff3546ceb03f5fc907e6ed4c/w/76ea03e60d160b9d0990194d/e/b9f80b00e4dd34407e23b560",
+      "stl": "parts/electronics/meanwell-psu-connections.stl",
+      "source": "Meanwell 24v PSU Box - psu connections.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false,
+      "support": false
+    },
+    {
+      "id": "meanwell-psu-cap",
+      "name": "PSU box cap",
+      "description": "Cap for the Meanwell 24V PSU box.",
+      "internal_notes": "Meanwell 24V PSU box assembly. Colour (frame) + qty 1/machine are DEFAULTS pending confirmation. Electronics section is experimental.",
+      "version": "1",
+      "date_added": "2026-07-03",
+      "quantities": {
+        "electronics": 1
+      },
+      "assembly": "meanwell-psu-box",
+      "onshape": "https://cad.onshape.com/documents/ff3546ceb03f5fc907e6ed4c/w/76ea03e60d160b9d0990194d/e/b9f80b00e4dd34407e23b560",
+      "stl": "parts/electronics/meanwell-psu-cap.stl",
+      "source": "Meanwell 24v PSU Box - cap.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false,
+      "support": false
     }
   ],
   "assemblies": [
@@ -1578,6 +1665,11 @@
       "id": "cable-cage",
       "name": "Cable cage",
       "description": "Two cable cage brackets and the outer ribbon cable clamp."
+    },
+    {
+      "id": "meanwell-psu-box",
+      "name": "Meanwell 24V PSU box",
+      "description": "Enclosure for the Meanwell 24V power supply: back mount, connections plate, and cap."
     }
   ]
 }

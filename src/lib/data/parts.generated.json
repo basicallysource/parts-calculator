@@ -51,6 +51,13 @@
 			"id": "lazy-susan",
 			"name": "Bottom lazy Susan",
 			"scales_with_layers": false
+		},
+		{
+			"id": "electronics",
+			"name": "Electronics",
+			"scales_with_layers": false,
+			"experimental": true,
+			"experimental_note": "The electronics are early and changing a lot. Only build these if you have the experience to adapt as the design moves."
 		}
 	],
 	"color_roles": [
@@ -130,6 +137,11 @@
 			"id": "cable-cage",
 			"name": "Cable cage",
 			"description": "Two cable cage brackets and the outer ribbon cable clamp."
+		},
+		{
+			"id": "meanwell-psu-box",
+			"name": "Meanwell 24V PSU box",
+			"description": "Enclosure for the Meanwell 24V power supply: back mount, connections plate, and cap."
 		}
 	],
 	"parts": [
@@ -2098,6 +2110,34 @@
 			"render": "/renders/layer-connector-2.png"
 		},
 		{
+			"id": "chute-stepper-support-block",
+			"name": "Chute stepper support block",
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": null,
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Support block for the chute stepper.",
+			"version": "1",
+			"date_added": "2026-07-03",
+			"grams": 26.1,
+			"support_grams": 0.45,
+			"support_used": true,
+			"print_seconds": 4143,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"onshape": "https://cad.onshape.com/documents/238eb36f4ee3382c5a50a32b/w/78eed8b37e676b442c6450e1/e/753de7ce802d72cd739d82e2",
+			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
+			"layer_scope": "all",
+			"stl": "/stl/chute-stepper-support-block.stl",
+			"render": "/renders/chute-stepper-support-block.png"
+		},
+		{
 			"id": "funnel-third",
 			"name": "Funnel (third size)",
 			"quantities": {
@@ -2348,6 +2388,90 @@
 			"layer_scope": "all",
 			"stl": "/stl/bearing-cover-servo.stl",
 			"render": "/renders/bearing-cover-servo.png"
+		},
+		{
+			"id": "meanwell-psu-back-mount",
+			"name": "PSU back mount",
+			"quantities": {
+				"electronics": 1
+			},
+			"assembly": "meanwell-psu-box",
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Back mount that holds the Meanwell 24V PSU.",
+			"version": "1",
+			"date_added": "2026-07-03",
+			"grams": 55.74,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 5727,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"onshape": "https://cad.onshape.com/documents/ff3546ceb03f5fc907e6ed4c/w/76ea03e60d160b9d0990194d/e/b9f80b00e4dd34407e23b560",
+			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
+			"layer_scope": "all",
+			"stl": "/stl/meanwell-psu-back-mount.stl",
+			"render": "/renders/meanwell-psu-back-mount.png"
+		},
+		{
+			"id": "meanwell-psu-connections",
+			"name": "PSU connections plate",
+			"quantities": {
+				"electronics": 1
+			},
+			"assembly": "meanwell-psu-box",
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Connections plate for the Meanwell 24V PSU box.",
+			"version": "1",
+			"date_added": "2026-07-03",
+			"grams": 101.9,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 10583,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"onshape": "https://cad.onshape.com/documents/ff3546ceb03f5fc907e6ed4c/w/76ea03e60d160b9d0990194d/e/b9f80b00e4dd34407e23b560",
+			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
+			"layer_scope": "all",
+			"stl": "/stl/meanwell-psu-connections.stl",
+			"render": "/renders/meanwell-psu-connections.png"
+		},
+		{
+			"id": "meanwell-psu-cap",
+			"name": "PSU box cap",
+			"quantities": {
+				"electronics": 1
+			},
+			"assembly": "meanwell-psu-box",
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Cap for the Meanwell 24V PSU box.",
+			"version": "1",
+			"date_added": "2026-07-03",
+			"grams": 60.81,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 7682,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"onshape": "https://cad.onshape.com/documents/ff3546ceb03f5fc907e6ed4c/w/76ea03e60d160b9d0990194d/e/b9f80b00e4dd34407e23b560",
+			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
+			"layer_scope": "all",
+			"stl": "/stl/meanwell-psu-cap.stl",
+			"render": "/renders/meanwell-psu-cap.png"
 		}
 	]
 }

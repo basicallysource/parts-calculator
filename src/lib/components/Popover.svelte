@@ -21,21 +21,36 @@
 		trigger?: Snippet<[{ toggle: () => void; open: boolean }]>;
 	} = $props();
 
-	let open = $state(false);
+	// Open on hover; click "pins" it open (so it survives on touch / after the
+	// pointer leaves). Visible whenever hovered or pinned.
+	let hovered = $state(false);
+	let pinned = $state(false);
+	const open = $derived(hovered || pinned);
 	let root: HTMLElement;
-	const toggle = () => (open = !open);
+	const toggle = () => (pinned = !pinned);
 
 	function onWindowClick(e: MouseEvent) {
-		if (open && root && !root.contains(e.target as Node)) open = false;
+		if (pinned && root && !root.contains(e.target as Node)) pinned = false;
 	}
 	function onKey(e: KeyboardEvent) {
-		if (e.key === 'Escape') open = false;
+		if (e.key === 'Escape') {
+			pinned = false;
+			hovered = false;
+		}
 	}
 </script>
 
 <svelte:window onclick={onWindowClick} onkeydown={onKey} />
 
-<span bind:this={root} class="relative inline-flex align-middle">
+<span
+	bind:this={root}
+	class="relative inline-flex align-middle"
+	onmouseenter={() => (hovered = true)}
+	onmouseleave={() => (hovered = false)}
+	onfocusin={() => (hovered = true)}
+	onfocusout={() => (hovered = false)}
+	role="presentation"
+>
 	{#if trigger}
 		{@render trigger({ toggle, open })}
 	{:else}

@@ -17,9 +17,10 @@
 	const pieces = $derived(
 		FRAMING_PIECES.map((p) => {
 			const defaultQty = p.qtyFor(n);
+			const defaultSelected = !p.optional; // optional pieces start off
 			const ov = overrides[p.letter] ?? {};
 			const qty = ov.qty ?? defaultQty;
-			const selected = ov.selected ?? true;
+			const selected = ov.selected ?? defaultSelected;
 			return {
 				letter: p.letter,
 				name: p.name,
@@ -28,7 +29,8 @@
 				defaultQty,
 				qty,
 				selected,
-				modified: selected !== true || qty !== defaultQty,
+				optional: !!p.optional,
+				modified: selected !== defaultSelected || qty !== defaultQty,
 				cat: p.category,
 				from: p.from,
 				badge: p.badge
@@ -43,9 +45,8 @@
 		const q = Math.max(0, Math.floor(Number(val) || 0));
 		overrides[letter] = { ...(overrides[letter] ?? {}), qty: q };
 	}
-	function toggle(letter: string) {
-		const ov = overrides[letter] ?? {};
-		overrides[letter] = { ...ov, selected: !(ov.selected ?? true) };
+	function toggle(letter: string, current: boolean) {
+		overrides[letter] = { ...(overrides[letter] ?? {}), selected: !current };
 	}
 	function resetRow(letter: string) {
 		delete overrides[letter];
@@ -220,7 +221,7 @@
 								<input
 									type="checkbox"
 									checked={p.selected}
-									onchange={() => toggle(p.letter)}
+									onchange={() => toggle(p.letter, p.selected)}
 									aria-label="Include {p.name}"
 									class="h-4 w-4 accent-[var(--color-primary)]"
 								/>
@@ -230,7 +231,12 @@
 									class="inline-flex h-[22px] w-[22px] items-center justify-center border border-black/15 font-mono text-xs font-semibold"
 									style="background-color: {p.badge}; color: {badgeText(p.badge)}">{p.letter}</span>
 							</td>
-							<td class="px-1 py-2 text-text">{p.name}</td>
+							<td class="px-1 py-2 text-text">
+								{p.name}
+								{#if p.optional}
+									<span class="ml-1.5 inline-block bg-[var(--color-bg)] px-1.5 py-0.5 align-middle text-[10px] font-semibold uppercase tracking-wider text-text-muted">optional</span>
+								{/if}
+							</td>
 							<td class="whitespace-nowrap px-2 py-2 text-right font-mono tabular-nums text-text-muted">{p.cadLen} mm</td>
 							<td class="whitespace-nowrap px-2 py-2 text-right font-mono tabular-nums text-text">{p.len} mm</td>
 							<td class="whitespace-nowrap px-2 py-2 font-mono text-xs text-text-muted">{ftin(p.len)}</td>
