@@ -502,6 +502,8 @@ def main():
             "info": p.get("info"),
             "suspicious": p.get("suspicious", False),
             "suspicious_note": p.get("suspicious_note"),
+            "low_tolerance": p.get("low_tolerance", False),
+            "low_tolerance_note": p.get("low_tolerance_note"),
             "layer_scope": p.get("layer_scope", "all"),
             "stl": f"/stl/{stl_name}",
             "render": f"/renders/{p['id']}.png",

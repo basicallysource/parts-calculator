@@ -1086,6 +1086,8 @@
 			"info": null,
 			"suspicious": false,
 			"suspicious_note": null,
+			"low_tolerance": true,
+			"low_tolerance_note": "A test print is suggested. This part is a tight fit around the 2020 aluminum profile, so print one first and confirm it seats properly before committing to the full set \u2014 dial in your printer and profile together.",
 			"layer_scope": "all",
 			"stl": "/stl/ext-bracket-left.stl",
 			"render": "/renders/ext-bracket-left.png"
