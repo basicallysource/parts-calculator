@@ -614,7 +614,7 @@
           "version": "2",
           "date": "2026-07-08",
           "message": "Reshaped: now 35 mm tall (was 33 mm), with rib attachments.",
-          "commit": null
+          "commit": "f1be906"
         }
       ],
       "quantities": {
@@ -687,7 +687,7 @@
           "version": "2",
           "date": "2026-07-08",
           "message": "Reshaped: now 1 mm thick (was 3 mm).",
-          "commit": null
+          "commit": "f1be906"
         }
       ],
       "quantities": {
@@ -954,7 +954,7 @@
           "version": "2",
           "date": "2026-07-08",
           "message": "Resolved the suspected clearance issue with the fixed-upper-section rib; no longer flagged. (Geometry unchanged from v1 — the concern was cleared, not re-cut.)",
-          "commit": null
+          "commit": "f1be906"
         }
       ],
       "quantities": {
@@ -1454,7 +1454,7 @@
           "version": "1",
           "date": "2026-07-08",
           "message": "Initial version.",
-          "commit": null,
+          "commit": "f1be906",
           "onshape_doc": "https://cad.onshape.com/documents/249bded2198af476185014b6",
           "onshape_version": "https://cad.onshape.com/documents/249bded2198af476185014b6/v/021402d3659fca34ef82486c/e/48c64d61f1276c46f515d6bd"
         }
@@ -1493,7 +1493,7 @@
           "version": "1",
           "date": "2026-07-08",
           "message": "Initial version.",
-          "commit": null,
+          "commit": "f1be906",
           "onshape_doc": "https://cad.onshape.com/documents/249bded2198af476185014b6",
           "onshape_version": "https://cad.onshape.com/documents/249bded2198af476185014b6/v/021402d3659fca34ef82486c/e/48c64d61f1276c46f515d6bd"
         }
