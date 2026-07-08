@@ -180,7 +180,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/stator.stl",
+					"render": "/renders/stator.png",
+					"grams": 175.52
 				}
 			],
 			"attributes": [],
@@ -225,7 +228,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/rotor-faceted.stl",
+					"render": "/renders/rotor-faceted.png",
+					"grams": 166.5
 				}
 			],
 			"attributes": [],
@@ -273,7 +279,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/output-gear.stl",
+					"render": "/renders/output-gear.png",
+					"grams": 59.67
 				}
 			],
 			"attributes": [],
@@ -312,7 +321,10 @@
 					"version": "2",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/nema-bracket.stl",
+					"render": "/renders/nema-bracket.png",
+					"grams": 72.45
 				}
 			],
 			"attributes": [],
@@ -357,7 +369,10 @@
 					"version": "1",
 					"date": "2026-07-01",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/light-post.stl",
+					"render": "/renders/light-post.png",
+					"grams": 12.12
 				}
 			],
 			"attributes": [],
@@ -395,7 +410,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/light-post-cap.stl",
+					"render": "/renders/light-post-cap.png",
+					"grams": 21.98
 				}
 			],
 			"attributes": [],
@@ -433,7 +451,10 @@
 					"version": "1",
 					"date": "2026-07-03",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/light-post-cap-adapter.stl",
+					"render": "/renders/light-post-cap-adapter.png",
+					"grams": 2.59
 				}
 			],
 			"attributes": [],
@@ -471,7 +492,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/bulk-cap.stl",
+					"render": "/renders/bulk-cap.png",
+					"grams": 648.51
 				}
 			],
 			"attributes": [],
@@ -509,7 +533,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/classification-dome.stl",
+					"render": "/renders/classification-dome.png",
+					"grams": 371.28
 				}
 			],
 			"attributes": [],
@@ -547,7 +574,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/interface-bracket.stl",
+					"render": "/renders/interface-bracket.png",
+					"grams": 159.48
 				}
 			],
 			"attributes": [],
@@ -585,7 +615,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/interface-spacer.stl",
+					"render": "/renders/interface-spacer.png",
+					"grams": 45.26
 				}
 			],
 			"attributes": [],
@@ -623,7 +656,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/chute-core.stl",
+					"render": "/renders/chute-core.png",
+					"grams": 223.63
 				}
 			],
 			"attributes": [],
@@ -661,7 +697,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/bin-retainer-left.stl",
+					"render": "/renders/bin-retainer-left.png",
+					"grams": 21.19
 				}
 			],
 			"attributes": [],
@@ -699,7 +738,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/bin-retainer-right.stl",
+					"render": "/renders/bin-retainer-right.png",
+					"grams": 21.44
 				}
 			],
 			"attributes": [],
@@ -737,7 +779,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/frame-crossbeam.stl",
+					"render": "/renders/frame-crossbeam.png",
+					"grams": 86.17
 				}
 			],
 			"attributes": [],
@@ -775,7 +820,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/frame-90deg-bracket.stl",
+					"render": "/renders/frame-90deg-bracket.png",
+					"grams": 13.62
 				}
 			],
 			"attributes": [],
@@ -813,7 +861,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/ls-mount-to-chute.stl",
+					"render": "/renders/ls-mount-to-chute.png",
+					"grams": 233.62
 				}
 			],
 			"attributes": [],
@@ -851,7 +902,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/ls-bottom-static.stl",
+					"render": "/renders/ls-bottom-static.png",
+					"grams": 206.81
 				}
 			],
 			"attributes": [],
@@ -889,7 +943,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/ls-mount-to-extrusion.stl",
+					"render": "/renders/ls-mount-to-extrusion.png",
+					"grams": 56.06
 				}
 			],
 			"attributes": [],
@@ -927,7 +984,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/ls-hold-in-place.stl",
+					"render": "/renders/ls-hold-in-place.png",
+					"grams": 6.95
 				}
 			],
 			"attributes": [],
@@ -965,7 +1025,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/ls-washer.stl",
+					"render": "/renders/ls-washer.png",
+					"grams": 10.63
 				}
 			],
 			"attributes": [],
@@ -1004,7 +1067,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/ext-bracket-left.stl",
+					"render": "/renders/ext-bracket-left.png",
+					"grams": 48.52
 				}
 			],
 			"attributes": [],
@@ -1043,7 +1109,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/ext-bracket-bottom-vertical.stl",
+					"render": "/renders/ext-bracket-bottom-vertical.png",
+					"grams": 50.62
 				}
 			],
 			"attributes": [],
@@ -1082,7 +1151,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/ext-bracket-cover.stl",
+					"render": "/renders/ext-bracket-cover.png",
+					"grams": 12.45
 				}
 			],
 			"attributes": [],
@@ -1120,7 +1192,10 @@
 					"version": "1",
 					"date": "2026-07-03",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/ext-bracket-foot-cover.stl",
+					"render": "/renders/ext-bracket-foot-cover.png",
+					"grams": 23.59
 				}
 			],
 			"attributes": [],
@@ -1158,13 +1233,19 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": "be3f4cd"
+					"commit": "be3f4cd",
+					"stl": "/stl/versions/interface-upper-fixed-section-v1.stl",
+					"render": "/renders/versions/interface-upper-fixed-section-v1.png",
+					"grams": 153.65
 				},
 				{
 					"version": "2",
 					"date": "2026-07-08",
 					"message": "Reshaped: now 35 mm tall (was 33 mm), with rib attachments.",
-					"commit": "f1be906"
+					"commit": "f1be906",
+					"stl": "/stl/interface-upper-fixed-section.stl",
+					"render": "/renders/interface-upper-fixed-section.png",
+					"grams": 164.14
 				}
 			],
 			"attributes": [],
@@ -1202,7 +1283,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/interface-rib.stl",
+					"render": "/renders/interface-rib.png",
+					"grams": 26.6
 				}
 			],
 			"attributes": [],
@@ -1240,7 +1324,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/interface-rib-switch.stl",
+					"render": "/renders/interface-rib-switch.png",
+					"grams": 15.27
 				}
 			],
 			"attributes": [],
@@ -1278,13 +1365,19 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": "be3f4cd"
+					"commit": "be3f4cd",
+					"stl": "/stl/versions/interface-big-spacer-v1.stl",
+					"render": "/renders/versions/interface-big-spacer-v1.png",
+					"grams": 22.18
 				},
 				{
 					"version": "2",
 					"date": "2026-07-08",
 					"message": "Reshaped: now 1 mm thick (was 3 mm).",
-					"commit": "f1be906"
+					"commit": "f1be906",
+					"stl": "/stl/interface-big-spacer.stl",
+					"render": "/renders/interface-big-spacer.png",
+					"grams": 11.13
 				}
 			],
 			"attributes": [],
@@ -1322,7 +1415,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/cable-clamp-inner.stl",
+					"render": "/renders/cable-clamp-inner.png",
+					"grams": 5.57
 				}
 			],
 			"attributes": [],
@@ -1360,7 +1456,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/cable-clamp-outer.stl",
+					"render": "/renders/cable-clamp-outer.png",
+					"grams": 13.38
 				}
 			],
 			"attributes": [],
@@ -1398,7 +1497,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/interface-spur-gear.stl",
+					"render": "/renders/interface-spur-gear.png",
+					"grams": 9.0
 				}
 			],
 			"attributes": [],
@@ -1436,7 +1538,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/interface-idler-gear.stl",
+					"render": "/renders/interface-idler-gear.png",
+					"grams": 8.98
 				}
 			],
 			"attributes": [],
@@ -1474,7 +1579,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/interface-nema23-bracket.stl",
+					"render": "/renders/interface-nema23-bracket.png",
+					"grams": 45.02
 				}
 			],
 			"attributes": [],
@@ -1512,7 +1620,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/interface-cage-bracket.stl",
+					"render": "/renders/interface-cage-bracket.png",
+					"grams": 15.89
 				}
 			],
 			"attributes": [],
@@ -1550,7 +1661,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/interface-cage-bracket-cable.stl",
+					"render": "/renders/interface-cage-bracket-cable.png",
+					"grams": 15.88
 				}
 			],
 			"attributes": [],
@@ -1588,7 +1702,10 @@
 					"version": "1",
 					"date": "2026-07-03",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/ribbon-cable-clamp.stl",
+					"render": "/renders/ribbon-cable-clamp.png",
+					"grams": 5.31
 				}
 			],
 			"attributes": [],
@@ -1626,7 +1743,10 @@
 					"version": "1",
 					"date": "2026-07-03",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/top-interface-split-spur-gear-1.stl",
+					"render": "/renders/top-interface-split-spur-gear-1.png",
+					"grams": 59.97
 				}
 			],
 			"attributes": [],
@@ -1664,7 +1784,10 @@
 					"version": "1",
 					"date": "2026-07-03",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/top-interface-split-spur-gear-2.stl",
+					"render": "/renders/top-interface-split-spur-gear-2.png",
+					"grams": 8.0
 				}
 			],
 			"attributes": [],
@@ -1702,7 +1825,10 @@
 					"version": "1",
 					"date": "2026-07-03",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/top-interface-split-spur-gear-3.stl",
+					"render": "/renders/top-interface-split-spur-gear-3.png",
+					"grams": 588.3
 				}
 			],
 			"attributes": [],
@@ -1740,7 +1866,10 @@
 					"version": "1",
 					"date": "2026-07-03",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/limit-switch-dowel-pin.stl",
+					"render": "/renders/limit-switch-dowel-pin.png",
+					"grams": 0.71
 				}
 			],
 			"attributes": [],
@@ -1778,13 +1907,19 @@
 					"version": "1",
 					"date": "2026-07-03",
 					"message": "Initial version.",
-					"commit": "f73766e"
+					"commit": "f73766e",
+					"stl": "/stl/limit-switch-housing.stl",
+					"render": "/renders/limit-switch-housing.png",
+					"grams": 10.13
 				},
 				{
 					"version": "2",
 					"date": "2026-07-08",
 					"message": "Resolved the suspected clearance issue with the fixed-upper-section rib; no longer flagged. (Geometry unchanged from v1 \u2014 the concern was cleared, not re-cut.)",
-					"commit": "f1be906"
+					"commit": "f1be906",
+					"stl": "/stl/limit-switch-housing.stl",
+					"render": "/renders/limit-switch-housing.png",
+					"grams": 10.13
 				}
 			],
 			"attributes": [],
@@ -1822,7 +1957,10 @@
 					"version": "1",
 					"date": "2026-07-03",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/limit-switch-hammer.stl",
+					"render": "/renders/limit-switch-hammer.png",
+					"grams": 3.56
 				}
 			],
 			"attributes": [],
@@ -1860,7 +1998,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/rotor-finned.stl",
+					"render": "/renders/rotor-finned.png",
+					"grams": 178.76
 				}
 			],
 			"attributes": [],
@@ -1898,7 +2039,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/idler-gear.stl",
+					"render": "/renders/idler-gear.png",
+					"grams": 4.61
 				}
 			],
 			"attributes": [],
@@ -1936,7 +2080,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/input-gear.stl",
+					"render": "/renders/input-gear.png",
+					"grams": 3.57
 				}
 			],
 			"attributes": [],
@@ -1974,7 +2121,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/output-guide.stl",
+					"render": "/renders/output-guide.png",
+					"grams": 20.99
 				}
 			],
 			"attributes": [],
@@ -2012,7 +2162,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/funnel-bracket-left.stl",
+					"render": "/renders/funnel-bracket-left.png",
+					"grams": 28.75
 				}
 			],
 			"attributes": [],
@@ -2050,7 +2203,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/funnel-bracket-right.stl",
+					"render": "/renders/funnel-bracket-right.png",
+					"grams": 28.75
 				}
 			],
 			"attributes": [],
@@ -2088,7 +2244,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/door-module.stl",
+					"render": "/renders/door-module.png",
+					"grams": 20.13
 				}
 			],
 			"attributes": [],
@@ -2126,7 +2285,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/bearing-holder-left.stl",
+					"render": "/renders/bearing-holder-left.png",
+					"grams": 7.95
 				}
 			],
 			"attributes": [],
@@ -2164,7 +2326,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/bearing-holder-right.stl",
+					"render": "/renders/bearing-holder-right.png",
+					"grams": 7.98
 				}
 			],
 			"attributes": [],
@@ -2202,7 +2367,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/servo-adapter-servo-side.stl",
+					"render": "/renders/servo-adapter-servo-side.png",
+					"grams": 4.85
 				}
 			],
 			"attributes": [],
@@ -2240,7 +2408,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/servo-adapter-flap-side.stl",
+					"render": "/renders/servo-adapter-flap-side.png",
+					"grams": 5.25
 				}
 			],
 			"attributes": [],
@@ -2278,7 +2449,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/servo-bracket-lower-arm.stl",
+					"render": "/renders/servo-bracket-lower-arm.png",
+					"grams": 13.96
 				}
 			],
 			"attributes": [],
@@ -2316,7 +2490,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/servo-bracket-side-arm.stl",
+					"render": "/renders/servo-bracket-side-arm.png",
+					"grams": 9.58
 				}
 			],
 			"attributes": [],
@@ -2354,7 +2531,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/servo-bracket-cover.stl",
+					"render": "/renders/servo-bracket-cover.png",
+					"grams": 6.0
 				}
 			],
 			"attributes": [],
@@ -2392,7 +2572,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/servo-bracket-housing.stl",
+					"render": "/renders/servo-bracket-housing.png",
+					"grams": 17.31
 				}
 			],
 			"attributes": [],
@@ -2430,7 +2613,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/leg.stl",
+					"render": "/renders/leg.png",
+					"grams": 21.11
 				}
 			],
 			"attributes": [],
@@ -2468,7 +2654,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/foot.stl",
+					"render": "/renders/foot.png",
+					"grams": 8.45
 				}
 			],
 			"attributes": [],
@@ -2506,7 +2695,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/chute-door.stl",
+					"render": "/renders/chute-door.png",
+					"grams": 46.85
 				}
 			],
 			"attributes": [],
@@ -2544,7 +2736,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/leg-extension.stl",
+					"render": "/renders/leg-extension.png",
+					"grams": 15.47
 				}
 			],
 			"attributes": [],
@@ -2582,7 +2777,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/camera-mount-part-6.stl",
+					"render": "/renders/camera-mount-part-6.png",
+					"grams": 4.28
 				}
 			],
 			"attributes": [],
@@ -2620,7 +2818,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/camera-mount-part-37.stl",
+					"render": "/renders/camera-mount-part-37.png",
+					"grams": 19.14
 				}
 			],
 			"attributes": [],
@@ -2658,7 +2859,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/camera-mount-part-37b.stl",
+					"render": "/renders/camera-mount-part-37b.png",
+					"grams": 18.34
 				}
 			],
 			"attributes": [],
@@ -2696,7 +2900,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/camera-mount-rod-mount.stl",
+					"render": "/renders/camera-mount-rod-mount.png",
+					"grams": 9.41
 				}
 			],
 			"attributes": [],
@@ -2734,7 +2941,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/camera-led-insert.stl",
+					"render": "/renders/camera-led-insert.png",
+					"grams": 106.11
 				}
 			],
 			"attributes": [],
@@ -2774,7 +2984,10 @@
 					"message": "Initial version.",
 					"commit": "f1be906",
 					"onshape_doc": "https://cad.onshape.com/documents/249bded2198af476185014b6",
-					"onshape_version": "https://cad.onshape.com/documents/249bded2198af476185014b6/v/021402d3659fca34ef82486c/e/48c64d61f1276c46f515d6bd"
+					"onshape_version": "https://cad.onshape.com/documents/249bded2198af476185014b6/v/021402d3659fca34ef82486c/e/48c64d61f1276c46f515d6bd",
+					"stl": "/stl/camera-extension.stl",
+					"render": "/renders/camera-extension.png",
+					"grams": 28.6
 				}
 			],
 			"attributes": [
@@ -2823,7 +3036,10 @@
 					"message": "Initial version.",
 					"commit": "f1be906",
 					"onshape_doc": "https://cad.onshape.com/documents/249bded2198af476185014b6",
-					"onshape_version": "https://cad.onshape.com/documents/249bded2198af476185014b6/v/021402d3659fca34ef82486c/e/48c64d61f1276c46f515d6bd"
+					"onshape_version": "https://cad.onshape.com/documents/249bded2198af476185014b6/v/021402d3659fca34ef82486c/e/48c64d61f1276c46f515d6bd",
+					"stl": "/stl/camera-extension-mount.stl",
+					"render": "/renders/camera-extension-mount.png",
+					"grams": 7.58
 				}
 			],
 			"attributes": [
@@ -2871,7 +3087,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/layer-connector-1.stl",
+					"render": "/renders/layer-connector-1.png",
+					"grams": 12.31
 				}
 			],
 			"attributes": [],
@@ -2910,7 +3129,10 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/layer-connector-2.stl",
+					"render": "/renders/layer-connector-2.png",
+					"grams": 12.3
 				}
 			],
 			"attributes": [],
@@ -2948,7 +3170,10 @@
 					"version": "1",
 					"date": "2026-07-03",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/chute-stepper-support-block.stl",
+					"render": "/renders/chute-stepper-support-block.png",
+					"grams": 26.1
 				}
 			],
 			"attributes": [],
@@ -2986,7 +3211,10 @@
 					"version": "1",
 					"date": "2026-06-29",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/funnel-third.stl",
+					"render": "/renders/funnel-third.png",
+					"grams": 216.27
 				}
 			],
 			"attributes": [],
@@ -3024,7 +3252,10 @@
 					"version": "1",
 					"date": "2026-06-29",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/funnel-half.stl",
+					"render": "/renders/funnel-half.png",
+					"grams": 158.23
 				}
 			],
 			"attributes": [],
@@ -3062,7 +3293,10 @@
 					"version": "1",
 					"date": "2026-06-29",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/bin-half-left.stl",
+					"render": "/renders/bin-half-left.png",
+					"grams": 171.54
 				}
 			],
 			"attributes": [],
@@ -3100,7 +3334,10 @@
 					"version": "1",
 					"date": "2026-06-29",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/bin-half-right.stl",
+					"render": "/renders/bin-half-right.png",
+					"grams": 171.5
 				}
 			],
 			"attributes": [],
@@ -3138,7 +3375,10 @@
 					"version": "1",
 					"date": "2026-06-29",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/bin-third-left.stl",
+					"render": "/renders/bin-third-left.png",
+					"grams": 121.81
 				}
 			],
 			"attributes": [],
@@ -3176,7 +3416,10 @@
 					"version": "1",
 					"date": "2026-06-29",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/bin-third-center.stl",
+					"render": "/renders/bin-third-center.png",
+					"grams": 112.24
 				}
 			],
 			"attributes": [],
@@ -3214,7 +3457,10 @@
 					"version": "1",
 					"date": "2026-06-29",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/bin-third-rightback.stl",
+					"render": "/renders/bin-third-rightback.png",
+					"grams": 121.66
 				}
 			],
 			"attributes": [],
@@ -3252,7 +3498,10 @@
 					"version": "1",
 					"date": "2026-06-29",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/bearing-cover-covered.stl",
+					"render": "/renders/bearing-cover-covered.png",
+					"grams": 6.47
 				}
 			],
 			"attributes": [],
@@ -3290,7 +3539,10 @@
 					"version": "1",
 					"date": "2026-06-29",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/bearing-cover-servo.stl",
+					"render": "/renders/bearing-cover-servo.png",
+					"grams": 5.9
 				}
 			],
 			"attributes": [],
@@ -3328,7 +3580,10 @@
 					"version": "1",
 					"date": "2026-07-03",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/meanwell-psu-back-mount.stl",
+					"render": "/renders/meanwell-psu-back-mount.png",
+					"grams": 55.74
 				}
 			],
 			"attributes": [],
@@ -3366,7 +3621,10 @@
 					"version": "1",
 					"date": "2026-07-03",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/meanwell-psu-connections.stl",
+					"render": "/renders/meanwell-psu-connections.png",
+					"grams": 101.9
 				}
 			],
 			"attributes": [],
@@ -3404,7 +3662,10 @@
 					"version": "1",
 					"date": "2026-07-03",
 					"message": "Initial version.",
-					"commit": null
+					"commit": null,
+					"stl": "/stl/meanwell-psu-cap.stl",
+					"render": "/renders/meanwell-psu-cap.png",
+					"grams": 60.81
 				}
 			],
 			"attributes": [],

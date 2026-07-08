@@ -54,6 +54,9 @@ PROFILE_DIR = os.path.join(BUILD, "profiles")
 DATA_OUT = os.path.join(REPO, "src", "lib", "data", "parts.generated.json")
 RENDERS_OUT = os.path.join(REPO, "static", "renders")
 STL_OUT = os.path.join(REPO, "static", "stl")
+# per-version archival: old STLs pulled from git so the app can preview/download them
+VERS_STL_OUT = os.path.join(STL_OUT, "versions")
+VERS_RENDERS_OUT = os.path.join(RENDERS_OUT, "versions")
 # build plates: pre-arranged .3mf files you drop in slicer/plates/ (auto-discovered)
 PLATES_SRC = os.path.join(HERE, "plates")
 PLATES_OUT = os.path.join(REPO, "static", "plates")
@@ -99,6 +102,64 @@ def normalize_versions(part):
     date = part.get("created_at", part.get("date_added", ""))
     return [{"version": part.get("version", "1"), "date": date,
              "message": "Initial version.", "commit": None}]
+
+
+def git_show_bytes(commit, repo_rel):
+    """Raw bytes of a file at a past commit, or None if it didn't exist there."""
+    r = subprocess.run(["git", "-C", REPO, "show", f"{commit}:{repo_rel}"],
+                       capture_output=True)
+    return r.stdout if r.returncode == 0 and r.stdout else None
+
+
+def is_lfs_pointer(data):
+    return data is not None and data[:40].startswith(b"version https://git-lfs")
+
+
+def archive_versions(parts_by_id, out_parts, profiles, hexmap, role_defaults, force):
+    """Give every part version a previewable/downloadable STL. A version's geometry
+    is the file state right *before* the next version's commit changed it (the newest
+    version is just the current working-tree file). That view sidesteps the git-LFS
+    era (old commits stored pointers, not meshes) since the un-LFS'd bytes live in the
+    later commit's parent. Versions whose geometry equals the current part reuse the
+    live asset; distinct old geometry is sliced + rendered under static/*/versions/."""
+    os.makedirs(VERS_STL_OUT, exist_ok=True)
+    os.makedirs(VERS_RENDERS_OUT, exist_ok=True)
+    archived = 0
+    for out in out_parts:
+        p = parts_by_id[out["id"]]
+        versions = out.get("versions") or []
+        stl_abs = os.path.join(HERE, p["stl"])
+        repo_rel = os.path.relpath(stl_abs, REPO)
+        current = open(stl_abs, "rb").read() if os.path.exists(stl_abs) else b""
+        for i, v in enumerate(versions):
+            if i == len(versions) - 1:
+                data = current                      # newest version == working tree
+            else:
+                nxt = versions[i + 1].get("commit")  # state just before the next version
+                data = git_show_bytes(nxt + "~1", repo_rel) if nxt else None
+            if data is None or is_lfs_pointer(data) or data == current:
+                # current / unavailable geometry -> reuse the live part asset
+                if out.get("stl"):
+                    v["stl"], v["render"], v["grams"] = out["stl"], out["render"], out["grams"]
+                continue
+            vid = f"{out['id']}-v{v['version']}"
+            tmp = os.path.join(CACHE, vid + ".stl")
+            os.makedirs(CACHE, exist_ok=True)
+            with open(tmp, "wb") as f:
+                f.write(data)
+            info = slice_part(tmp, profiles, support=bool(p.get("support", False)), force=force)
+            shutil.copy(tmp, os.path.join(VERS_STL_OUT, vid + ".stl"))
+            png = os.path.join(VERS_RENDERS_OUT, vid + ".png")
+            if force or not os.path.exists(png):
+                try:
+                    render(tmp, png, default_hex(p, role_defaults, hexmap))
+                except Exception as e:
+                    print(f"  ! version render failed for {vid}: {e}")
+            v["stl"] = f"/stl/versions/{vid}.stl"
+            v["render"] = f"/renders/versions/{vid}.png"
+            v["grams"] = info["grams"] if info else None
+            archived += 1
+    print(f"  {archived} historical part version(s) archived -> static/*/versions")
 
 
 def git_commit_base_url():
@@ -447,6 +508,9 @@ def main():
         })
         sup = " +support" if info["support_used"] else ""
         print(f"  {p['name']:<26} {info['grams']:7.1f} g/ea{sup}")
+
+    archive_versions({p["id"]: p for p in manifest["parts"]}, out_parts,
+                     profiles, hexmap, role_defaults, args.force)
 
     data = {
         "settings": {

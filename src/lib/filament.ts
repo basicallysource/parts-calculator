@@ -48,6 +48,11 @@ export type PartVersion = {
 	commit: string | null;
 	onshape_doc?: string | null;
 	onshape_version?: string | null;
+	// archived assets for this version (old geometry pulled from git); the current
+	// version reuses the live part asset. grams may be null if it couldn't slice.
+	stl?: string;
+	render?: string;
+	grams?: number | null;
 };
 
 export type Part = {
