@@ -78,6 +78,8 @@ export type Part = {
 	info?: string | null; // short note surfaced as an inline info popover
 	suspicious?: boolean; // flagged as subject-to-change / possibly problematic
 	suspicious_note?: string | null; // optional specifics for the suspicious warning
+	low_tolerance?: boolean; // tight/precise fit — little tolerance for dimensional error, so a test print is worth doing
+	low_tolerance_note?: string | null; // optional specifics for the low-tolerance warning
 	// how the per-layer ('layer') quantity scales: every layer, all but the bottom,
 	// or the bottom layer only (for bottom-layer-swapped parts like the foot cover)
 	layer_scope?: 'all' | 'non-bottom' | 'bottom-only';
