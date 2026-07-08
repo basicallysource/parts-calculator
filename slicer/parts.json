@@ -1,5 +1,5 @@
 {
-  "_comment": "Source-of-truth manifest. filament.py slices each STL once and writes ../src/lib/data/parts.generated.json + thumbnails + STL copies. Per part: id, name, category, description (short, shown in app), internal_notes (extended, agent-only, NOT emitted to the app), version, date_added, stl, quantity (per ONE instance of its category), color, optional. color is one of {\"role\":\"<roleid>\"} (user-picked), {\"fixed\":\"<lego-id>\"}, {\"split\":[{\"color\":\"<lego-id>\",\"qty\":N},...]} (sums to quantity), or {\"any\":true}. Machine = 1 of each non-scaling category + N of each scaling category. See ../notes/TERMINOLOGY.md.",
+  "_comment": "Source-of-truth manifest. filament.py slices each STL once and writes ../src/lib/data/parts.generated.json + thumbnails + STL copies. Per part: id, name, category, description (short, shown in app), internal_notes (extended, agent-only, NOT emitted to the app), version, created_at, updated_at, stl, quantity (per ONE instance of its category), color, optional. attributes (optional list of {label,value} shown in the app), versions (optional archetype history: list of {version,date,message,commit}; commit ties to a real git commit, null = pending an upcoming clean commit). color is one of {\"role\":\"<roleid>\"} (user-picked), {\"fixed\":\"<lego-id>\"}, {\"split\":[{\"color\":\"<lego-id>\",\"qty\":N},...]} (sums to quantity), or {\"any\":true}, or {\"by_section\":{\"<sectionid>\":<colorspec>,...}} (per-section color when a part lives in multiple sections). Machine = 1 of each non-scaling category + N of each scaling category. See ../notes/TERMINOLOGY.md.",
   "sections": [
     {
       "id": "feeder",
@@ -19,7 +19,7 @@
     {
       "id": "chute",
       "name": "Chute",
-      "scales_with_layers": false
+      "scales_with_layers": true
     },
     {
       "id": "funnel",
@@ -83,23 +83,23 @@
       "description": "Feeder stator. 4 required: 1 gray + 3 black.",
       "internal_notes": "One per C-channel area. 1 gray, 3 black. Required. ~240mm disc (bed-max).",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
-        "feeder": 4
+        "feeder": 3,
+        "classification-channel": 1
       },
       "assembly": null,
       "stl": "parts/feeder/stator.stl",
       "color": {
-        "split": [
-          {
-            "color": "ash-gray",
-            "qty": 1
+        "by_section": {
+          "feeder": {
+            "fixed": "charcoal"
           },
-          {
-            "color": "charcoal",
-            "qty": 3
+          "classification-channel": {
+            "fixed": "ash-gray"
           }
-        ]
+        }
       },
       "optional": false,
       "support": true
@@ -110,7 +110,8 @@
       "description": "Faceted rotor. 3 required: 2 white + 1 gray.",
       "internal_notes": "2 white, 1 gray. Required.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "feeder": 3
       },
@@ -137,9 +138,11 @@
       "description": "Output gear, 130 teeth. One per C-channel (4 total).",
       "internal_notes": "1 per C-channel => 4 total. Feeder color.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
-        "feeder": 4
+        "feeder": 4,
+        "classification-channel": 1
       },
       "assembly": null,
       "stl": "parts/feeder/output-gear.stl",
@@ -155,23 +158,23 @@
       "description": "NEMA motor bracket. One per C-channel (4 total).",
       "internal_notes": "1 per C-channel => 4 total. Spencer believes all NEMA brackets are the same across C-channels. Feeder color. v2 STL from 01_c_channel (5).zip.",
       "version": "2",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
-        "feeder": 4
+        "feeder": 3,
+        "classification-channel": 1
       },
       "assembly": null,
       "stl": "parts/feeder/nema-bracket.stl",
       "color": {
-        "split": [
-          {
-            "color": "ash-gray",
-            "qty": 1
+        "by_section": {
+          "feeder": {
+            "fixed": "charcoal"
           },
-          {
-            "color": "charcoal",
-            "qty": 3
+          "classification-channel": {
+            "fixed": "ash-gray"
           }
-        ]
+        }
       },
       "optional": false,
       "support": false
@@ -182,11 +185,12 @@
       "description": "Light post on the C-channel feeder. 2 total.",
       "internal_notes": "Part of the feeder. 2x, feeder color. STL from 01_c_channel (5).zip.",
       "version": "1",
-      "date_added": "2026-07-01",
+      "created_at": "2026-07-01",
+      "updated_at": "2026-07-01",
       "quantities": {
         "feeder": 2
       },
-      "assembly": null,
+      "assembly": "light-post",
       "stl": "parts/feeder/light-post.stl",
       "color": {
         "role": "feeder"
@@ -201,11 +205,12 @@
       "description": "Light post cap. 2 total (C-channels 2 & 3). White.",
       "internal_notes": "2 of the C-channels (2 and 3) have these. White. NOT the big classification dome.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "feeder": 2
       },
-      "assembly": null,
+      "assembly": "light-post",
       "stl": "parts/feeder/light-post-cap.stl",
       "color": {
         "fixed": "ivory-white"
@@ -219,11 +224,12 @@
       "description": "Adapts the light post cap to the C-channel. 2 per machine.",
       "internal_notes": "Light post cap mount/adapter, C-channel feeder. Light post (feeder) colour.",
       "version": "1",
-      "date_added": "2026-07-03",
+      "created_at": "2026-07-03",
+      "updated_at": "2026-07-03",
       "quantities": {
         "feeder": 2
       },
-      "assembly": null,
+      "assembly": "light-post",
       "stl": "parts/feeder/light-post-cap-adapter.stl",
       "color": {
         "role": "feeder"
@@ -238,7 +244,8 @@
       "description": "Bulk cap. Sits on top of the first C-channel.",
       "internal_notes": "1 bulk cap, on top of the first C-channel. Color not critical; default black (follows feeder color). File: 'Bulk Cap B'. Distinct from the bulk bucket (separate bed-max optional part, not yet provided).",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "feeder": 1
       },
@@ -256,7 +263,8 @@
       "description": "Large classification-channel dome (~full bed). White.",
       "internal_notes": "Big dome, almost the entire print bed. White (lighting/diffusion). Was previously mislabeled 'light cap'. QUANTITY ASSUMED 1 - confirm.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "classification-channel": 1
       },
@@ -274,7 +282,8 @@
       "description": "Interface bracket. Pairs with the spacer; 6 on the interface.",
       "internal_notes": "6 bracket+spacer pairs on the interface. Frame color. File: 000_interface_layer_assembly - top_bracket.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "interface": 6
       },
@@ -284,7 +293,9 @@
         "role": "frame"
       },
       "optional": false,
-      "support": false
+      "support": false,
+      "suspicious": true,
+      "suspicious_note": "The fit onto the interface spoke (long) is too tight — there's no clearance."
     },
     {
       "id": "interface-spacer",
@@ -292,7 +303,8 @@
       "description": "Interface spacer. Pairs with the bracket; 6 on the interface.",
       "internal_notes": "6 on the interface. Frame color. File: 000_interface_layer_assembly - bottom_spacer.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "interface": 6
       },
@@ -310,7 +322,8 @@
       "description": "The chute core. 1 per machine.",
       "internal_notes": "1 per machine. Its own color selector (chute core).",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "chute": 1
       },
@@ -329,7 +342,8 @@
       "description": "Bin retainer, left. Optional.",
       "internal_notes": "Bin retainer (per layer, 6 each). Required (not optional). Frame color.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "bins": 6
       },
@@ -347,7 +361,8 @@
       "description": "Bin retainer, right. Optional.",
       "internal_notes": "Bin retainer (per layer, 6 each). Required (not optional). Frame color.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "bins": 6
       },
@@ -365,7 +380,8 @@
       "description": "Distribution frame crossbeam. One between each of the 6 frame sections.",
       "internal_notes": "6 per frame (per layer). Frame color. File: combined_internal_bracket.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "layer": 6
       },
@@ -383,7 +399,8 @@
       "description": "Distribution frame 90° bracket. Two per frame section.",
       "internal_notes": "12 per frame (per layer). Frame color. File: inner_90_bracket.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "layer": 12
       },
@@ -402,7 +419,8 @@
       "description": "Bottom lazy Susan adapter that connects to the chute. White.",
       "internal_notes": "The adapter/connector that mounts to the chute. White. The rest of the lazy Susan is frame color.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "lazy-susan": 1
       },
@@ -420,7 +438,8 @@
       "description": "Bottom lazy Susan static base.",
       "internal_notes": "Frame color. QUANTITY ASSUMED 1.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "lazy-susan": 1
       },
@@ -438,7 +457,8 @@
       "description": "Bottom lazy Susan mount to the external extrusion.",
       "internal_notes": "Frame color. QUANTITY ASSUMED 1.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "lazy-susan": 3
       },
@@ -456,7 +476,8 @@
       "description": "Bottom lazy Susan hold-in-place. Optional.",
       "internal_notes": "Optional (file: 'optional hold in place'). Frame color. QUANTITY ASSUMED 1.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "lazy-susan": 3
       },
@@ -474,7 +495,8 @@
       "description": "Bottom lazy Susan washer.",
       "internal_notes": "Frame color. QUANTITY UNCONFIRMED (assumed 1; may be several).",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "lazy-susan": 1
       },
@@ -492,7 +514,8 @@
       "description": "Part of the external distribution-frame bracket (3-part assembly).",
       "internal_notes": "External distribution-frame bracket assembly member. 6 per distribution frame (per layer); interface qty ASSUMED 6 (Spencer said 'one set per interface' - confirm). Frame color.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "stl": "parts/external-bracket/ext-bracket-left.stl",
       "source": "1_printed_crossbeams - left_external_bracket.stl",
       "quantities": {
@@ -512,7 +535,8 @@
       "description": "Part of the external distribution-frame bracket (3-part assembly).",
       "internal_notes": "External distribution-frame bracket assembly member. 6 per distribution frame (per layer); interface qty ASSUMED 6 (Spencer said 'one set per interface' - confirm). Frame color.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "stl": "parts/external-bracket/ext-bracket-bottom-vertical.stl",
       "source": "1_printed_crossbeams - bottom_vertical_bracket.stl",
       "quantities": {
@@ -533,7 +557,8 @@
       "description": "Part of the external distribution-frame bracket (3-part assembly).",
       "internal_notes": "External distribution-frame bracket assembly member. 6 per distribution frame (per layer); interface qty ASSUMED 6 (Spencer said 'one set per interface' - confirm). Frame color.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "stl": "parts/external-bracket/ext-bracket-cover.stl",
       "source": "1_printed_crossbeams - external_bracket_cover.stl",
       "quantities": {
@@ -555,7 +580,8 @@
       "internal_notes": "Replaces ext-bracket-bottom-vertical + ext-bracket-cover on the bottom-most distribution layer (6 per machine). Shorter so the extrusion pops out to mount the wheels.",
       "info": "For the bottom-most layer only. It is shorter than the standard bottom vertical + cover so the extrusion can pop out and the wheels mount to it.",
       "version": "1",
-      "date_added": "2026-07-03",
+      "created_at": "2026-07-03",
+      "updated_at": "2026-07-03",
       "quantities": {
         "layer": 6
       },
@@ -570,16 +596,52 @@
       "support": false
     },
     {
+      "id": "interface-upper-fixed-section",
+      "name": "Interface upper fixed section",
+      "description": "Interface upper fixed section. 1 needed.",
+      "internal_notes": "1 per interface. Frame color. Part of the fixed-upper-section assembly. v2 (2026-07-08): reshaped STL, now 35mm tall (was 33mm).",
+      "version": "2",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-07-08",
+      "versions": [
+        {
+          "version": "1",
+          "date": "2026-06-27",
+          "message": "Initial version.",
+          "commit": "be3f4cd"
+        },
+        {
+          "version": "2",
+          "date": "2026-07-08",
+          "message": "Reshaped: now 35 mm tall (was 33 mm), with rib attachments.",
+          "commit": null
+        }
+      ],
+      "quantities": {
+        "interface": 1
+      },
+      "assembly": "fixed-upper-section",
+      "stl": "parts/interface/interface-upper-fixed-section.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false,
+      "support": false,
+      "suspicious": true,
+      "suspicious_note": "The lazy-Susan holes are slightly too close together. We intend to make them M5-compatible; they're currently M4."
+    },
+    {
       "id": "interface-rib",
       "name": "Interface rib",
       "description": "Ribbed interface piece. 5 needed.",
-      "internal_notes": "5 per interface. Frame color.",
+      "internal_notes": "5 per interface. Frame color. Part of the fixed-upper-section assembly.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "interface": 5
       },
-      "assembly": null,
+      "assembly": "fixed-upper-section",
       "stl": "parts/interface/interface-rib.stl",
       "color": {
         "role": "frame"
@@ -591,14 +653,48 @@
       "id": "interface-rib-switch",
       "name": "Interface rib (switch gap)",
       "description": "Interface rib with the opening for the limit switch. 1 needed.",
-      "internal_notes": "1 per interface. The rib variant with the limit-switch gap. Frame color.",
+      "internal_notes": "1 per interface. The rib variant with the limit-switch gap. Frame color. Part of the fixed-upper-section assembly.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "interface": 1
       },
-      "assembly": null,
+      "assembly": "fixed-upper-section",
       "stl": "parts/interface/interface-rib-switch.stl",
+      "color": {
+        "role": "frame"
+      },
+      "optional": false,
+      "support": false
+    },
+    {
+      "id": "interface-big-spacer",
+      "name": "Interface big spacer",
+      "description": "Interface big spacer. 1 needed.",
+      "internal_notes": "1 per interface. Frame color. Distinct from interface-spacer. Part of the fixed-upper-section assembly. v2 (2026-07-08): reshaped STL, now 1mm thick (was 3mm).",
+      "version": "2",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-07-08",
+      "versions": [
+        {
+          "version": "1",
+          "date": "2026-06-27",
+          "message": "Initial version.",
+          "commit": "be3f4cd"
+        },
+        {
+          "version": "2",
+          "date": "2026-07-08",
+          "message": "Reshaped: now 1 mm thick (was 3 mm).",
+          "commit": null
+        }
+      ],
+      "quantities": {
+        "interface": 1
+      },
+      "assembly": "fixed-upper-section",
+      "stl": "parts/interface/interface-big-spacer.stl",
       "color": {
         "role": "frame"
       },
@@ -611,7 +707,8 @@
       "description": "Inner half of the ribbon cable clamp. White.",
       "internal_notes": "1 per interface. White. Pairs with the outer clamp (cable-clamp assembly).",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "interface": 1
       },
@@ -630,7 +727,8 @@
       "description": "Outer half of the ribbon cable clamp. White.",
       "internal_notes": "1 per interface. White. Pairs with the inner clamp (cable-clamp assembly).",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "interface": 1
       },
@@ -649,7 +747,8 @@
       "description": "Interface spur gear, 2M 25T. 1 needed.",
       "internal_notes": "1 per interface. Frame color.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "interface": 1
       },
@@ -667,7 +766,8 @@
       "description": "Interface idler gear, 2M 25T. 1 needed.",
       "internal_notes": "1 per interface. Frame color.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "interface": 1
       },
@@ -685,7 +785,8 @@
       "description": "NEMA 23 motor bracket on the interface. 1 needed.",
       "internal_notes": "1 per interface. Frame color.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "interface": 1
       },
@@ -703,7 +804,8 @@
       "description": "Interface cable cage bracket (regular). 5 needed.",
       "internal_notes": "5 regular per interface; plus 1 of the cable-mount variant. Frame color.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "interface": 5
       },
@@ -721,7 +823,8 @@
       "description": "Cable cage bracket with the cable mount. 1 needed.",
       "internal_notes": "1 per interface; the cage bracket variant with a cable mount. Frame color.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "interface": 1
       },
@@ -739,7 +842,8 @@
       "description": "Outer ribbon cable clamp, paired with the cable cage brackets.",
       "internal_notes": "Outer ribbon cable clamp. Grouped with the cable cage brackets. Colour (frame) + qty 1/machine are DEFAULTS pending confirmation.",
       "version": "1",
-      "date_added": "2026-07-03",
+      "created_at": "2026-07-03",
+      "updated_at": "2026-07-03",
       "quantities": {
         "interface": 1
       },
@@ -752,48 +856,13 @@
       "support": false
     },
     {
-      "id": "interface-big-spacer",
-      "name": "Interface big spacer",
-      "description": "Interface big spacer. 1 needed.",
-      "internal_notes": "1 per interface. Frame color. Distinct from interface-spacer.",
-      "version": "1",
-      "date_added": "2026-06-27",
-      "quantities": {
-        "interface": 1
-      },
-      "assembly": null,
-      "stl": "parts/interface/interface-big-spacer.stl",
-      "color": {
-        "role": "frame"
-      },
-      "optional": false,
-      "support": false
-    },
-    {
-      "id": "interface-upper-fixed-section",
-      "name": "Interface upper fixed section",
-      "description": "Interface upper fixed section. 1 needed.",
-      "internal_notes": "1 per interface. Frame color.",
-      "version": "1",
-      "date_added": "2026-06-27",
-      "quantities": {
-        "interface": 1
-      },
-      "assembly": null,
-      "stl": "parts/interface/interface-upper-fixed-section.stl",
-      "color": {
-        "role": "frame"
-      },
-      "optional": false,
-      "support": false
-    },
-    {
       "id": "top-interface-split-spur-gear-1",
       "name": "Chute gear",
       "description": "Section 1 of 3 of the top interface split spur gear (Spur 2M 120T).",
       "internal_notes": "Split spur gear for the top interface; the 3 sections print separately and assemble into one gear. Chute-core color.",
       "version": "1",
-      "date_added": "2026-07-03",
+      "created_at": "2026-07-03",
+      "updated_at": "2026-07-03",
       "quantities": {
         "interface": 1
       },
@@ -812,7 +881,8 @@
       "description": "Section 2 of 3 of the top interface split spur gear (Spur 2M 120T).",
       "internal_notes": "Split spur gear for the top interface; the 3 sections print separately and assemble into one gear. Chute-core color.",
       "version": "1",
-      "date_added": "2026-07-03",
+      "created_at": "2026-07-03",
+      "updated_at": "2026-07-03",
       "quantities": {
         "interface": 1
       },
@@ -831,7 +901,8 @@
       "description": "Section 3 of 3 of the top interface split spur gear (Spur 2M 120T).",
       "internal_notes": "Split spur gear for the top interface; the 3 sections print separately and assemble into one gear. Chute-core color.",
       "version": "1",
-      "date_added": "2026-07-03",
+      "created_at": "2026-07-03",
+      "updated_at": "2026-07-03",
       "quantities": {
         "interface": 1
       },
@@ -850,7 +921,8 @@
       "description": "Printed dowel pin for the interface limit switch.",
       "internal_notes": "Interface limit switch assembly. Frame colour + qty 1/machine are DEFAULTS pending confirmation.",
       "version": "1",
-      "date_added": "2026-07-03",
+      "created_at": "2026-07-03",
+      "updated_at": "2026-07-03",
       "quantities": {
         "interface": 1
       },
@@ -868,8 +940,23 @@
       "name": "Limit switch housing",
       "description": "Housing for the interface limit switch.",
       "internal_notes": "Interface limit switch assembly. Frame colour + qty 1/machine are DEFAULTS pending confirmation.",
-      "version": "1",
-      "date_added": "2026-07-03",
+      "version": "2",
+      "created_at": "2026-07-03",
+      "updated_at": "2026-07-08",
+      "versions": [
+        {
+          "version": "1",
+          "date": "2026-07-03",
+          "message": "Initial version.",
+          "commit": "f73766e"
+        },
+        {
+          "version": "2",
+          "date": "2026-07-08",
+          "message": "Resolved the suspected clearance issue with the fixed-upper-section rib; no longer flagged. (Geometry unchanged from v1 — the concern was cleared, not re-cut.)",
+          "commit": null
+        }
+      ],
       "quantities": {
         "interface": 1
       },
@@ -880,9 +967,7 @@
         "role": "frame"
       },
       "optional": false,
-      "support": false,
-      "suspicious": true,
-      "suspicious_note": "Spencer thinks it may interfere with the switch-gap interface rib (the rib with the cutout)."
+      "support": false
     },
     {
       "id": "limit-switch-hammer",
@@ -890,7 +975,8 @@
       "description": "Hammer/stop for the interface limit switch.",
       "internal_notes": "Interface limit switch assembly. Frame colour + qty 1/machine are DEFAULTS pending confirmation.",
       "version": "1",
-      "date_added": "2026-07-03",
+      "created_at": "2026-07-03",
+      "updated_at": "2026-07-03",
       "quantities": {
         "interface": 1
       },
@@ -909,7 +995,8 @@
       "description": "Finned rotor on the classification chamber. White. 1 needed.",
       "internal_notes": "File '01_c_channel - Rotor - with fins.stl'. White. 1x. On the classification chamber.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "classification-channel": 1
       },
@@ -927,7 +1014,8 @@
       "description": "C-channel idler gear, 24 teeth. One per C-channel (4 total).",
       "internal_notes": "Idler gear (24 teeth). 1 per C-channel => 4. Feeder color.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "feeder": 4
       },
@@ -945,7 +1033,8 @@
       "description": "C-channel input/drive gear (12T) with vertical screw hole. One per C-channel (4 total).",
       "internal_notes": "File 'Spur gear (12 teeth) - vertical screw' - the input/drive gear variant WITH the screw hole. 1 per C-channel => 4. Feeder color.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "feeder": 4
       },
@@ -963,7 +1052,8 @@
       "description": "Output guide. 2 needed. Black.",
       "internal_notes": "Plain 'Output Guide.stl'. 2 total. Black (feeder color default).",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "feeder": 2
       },
@@ -981,7 +1071,8 @@
       "description": "Funnel bracket, left. 2 funnel brackets total.",
       "internal_notes": "Snap-in funnel bracket (left/right). Chute-core color.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "chute": 1
       },
@@ -1000,7 +1091,8 @@
       "description": "Funnel bracket, right. 2 funnel brackets total.",
       "internal_notes": "Snap-in funnel bracket (left/right). Chute-core color.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "chute": 1
       },
@@ -1019,7 +1111,8 @@
       "description": "Door module (part of the chute bearing assembly).",
       "internal_notes": "Was mislabeled as the door; it's part of the chute bearing assembly. File: part_door_module.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "chute": 1
       },
@@ -1037,7 +1130,8 @@
       "description": "Bearing holder, left.",
       "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "chute": 1
       },
@@ -1055,7 +1149,8 @@
       "description": "Bearing holder, right.",
       "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "chute": 1
       },
@@ -1073,7 +1168,8 @@
       "description": "MG995 servo adapter, servo side.",
       "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "chute": 1
       },
@@ -1091,7 +1187,8 @@
       "description": "MG995 servo adapter, flap side.",
       "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "chute": 1
       },
@@ -1109,7 +1206,8 @@
       "description": "MG995 servo bracket, lower arm.",
       "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "chute": 1
       },
@@ -1127,7 +1225,8 @@
       "description": "MG995 servo bracket, side arm.",
       "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "chute": 1
       },
@@ -1145,7 +1244,8 @@
       "description": "MG995 servo bracket, cover.",
       "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "chute": 1
       },
@@ -1163,7 +1263,8 @@
       "description": "MG995 servo bracket, housing.",
       "internal_notes": "Chute-core assembly part. COLOR UNSPECIFIED by Spencer - defaulted to frame (black); confirm.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "chute": 1
       },
@@ -1181,7 +1282,8 @@
       "description": "C-channel leg. 9 in the feeder.",
       "internal_notes": "9 per feeder. Plain 'Leg.stl' (135mm) - replaces the earlier mismapped 'Classification Leg'. Feeder color.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "feeder": 9
       },
@@ -1199,7 +1301,8 @@
       "description": "C-channel foot. 9 in the feeder.",
       "internal_notes": "9 per feeder. 'Foot.stl'. Feeder color.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "feeder": 9
       },
@@ -1217,7 +1320,8 @@
       "description": "The chute door / flap. 1 per machine.",
       "internal_notes": "Correct door file: 'DOOR 3_chute_flap_mg995_and_sc09 - left_axle (2)'. Chute-core color.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "chute": 1
       },
@@ -1235,7 +1339,8 @@
       "description": "C-channel leg extension. 9 in the feeder.",
       "internal_notes": "9 per feeder. C-channel (feeder) color.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "feeder": 9
       },
@@ -1252,7 +1357,8 @@
       "description": "Camera mount part 6. 2 per machine.",
       "internal_notes": "1 per camera mount x 2 mounts. Color not important (feeder).",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "feeder": 2
       },
@@ -1269,7 +1375,8 @@
       "description": "Camera mount part 37. 2 per machine.",
       "internal_notes": "1 per camera mount x 2 mounts. Color not important (feeder).",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "feeder": 2
       },
@@ -1286,7 +1393,8 @@
       "description": "Camera mount part 37 (second). 2 per machine.",
       "internal_notes": "1 per camera mount x 2 mounts. Color not important (feeder).",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "feeder": 2
       },
@@ -1303,7 +1411,8 @@
       "description": "Rod-to-C-channel mount (Part 33). 2 per camera mount, 4 total.",
       "internal_notes": "Part 33, the rod-to-c-channel mount. 2 per camera mount x 2 mounts = 4. Color not important (feeder).",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "feeder": 4
       },
@@ -1320,7 +1429,8 @@
       "description": "C-channel camera & LED light insert. White.",
       "internal_notes": "The other classification cap piece (Classification Cap (3) == removed small cap geometry). Must be WHITE. Qty ASSUMED 1.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "classification-channel": 1
       },
@@ -1332,12 +1442,91 @@
       "optional": false
     },
     {
+      "id": "camera-extension",
+      "name": "Camera extension",
+      "description": "Camera extension tube for the classification channel. 1 needed.",
+      "internal_notes": "Raises the Innomaker 4K camera module (50 mm extension). Part of the camera-extension assembly. Ash gray.",
+      "version": "1",
+      "created_at": "2026-07-08",
+      "updated_at": "2026-07-08",
+      "versions": [
+        {
+          "version": "1",
+          "date": "2026-07-08",
+          "message": "Initial version.",
+          "commit": null,
+          "onshape_doc": "https://cad.onshape.com/documents/249bded2198af476185014b6",
+          "onshape_version": "https://cad.onshape.com/documents/249bded2198af476185014b6/v/021402d3659fca34ef82486c/e/48c64d61f1276c46f515d6bd"
+        }
+      ],
+      "attributes": [
+        {
+          "label": "Extension",
+          "value": "50 mm"
+        },
+        {
+          "label": "Camera",
+          "value": "Innomaker 4K Camera Module"
+        }
+      ],
+      "quantities": {
+        "classification-channel": 1
+      },
+      "assembly": "camera-extension",
+      "stl": "parts/classification-channel/camera-extension.stl",
+      "color": {
+        "fixed": "ash-gray"
+      },
+      "optional": false,
+      "support": false
+    },
+    {
+      "id": "camera-extension-mount",
+      "name": "Camera extension mount",
+      "description": "Clamp/mount ring that fixes the camera to the extension. 1 needed.",
+      "internal_notes": "Clamps the Innomaker 4K camera module to the extension. Part of the camera-extension assembly. Ash gray.",
+      "version": "1",
+      "created_at": "2026-07-08",
+      "updated_at": "2026-07-08",
+      "versions": [
+        {
+          "version": "1",
+          "date": "2026-07-08",
+          "message": "Initial version.",
+          "commit": null,
+          "onshape_doc": "https://cad.onshape.com/documents/249bded2198af476185014b6",
+          "onshape_version": "https://cad.onshape.com/documents/249bded2198af476185014b6/v/021402d3659fca34ef82486c/e/48c64d61f1276c46f515d6bd"
+        }
+      ],
+      "attributes": [
+        {
+          "label": "Extension",
+          "value": "50 mm"
+        },
+        {
+          "label": "Camera",
+          "value": "Innomaker 4K Camera Module"
+        }
+      ],
+      "quantities": {
+        "classification-channel": 1
+      },
+      "assembly": "camera-extension",
+      "stl": "parts/classification-channel/camera-extension-mount.stl",
+      "color": {
+        "fixed": "ash-gray"
+      },
+      "optional": false,
+      "support": false
+    },
+    {
       "id": "layer-connector-1",
       "name": "Layer connector A",
       "description": "Layer connector. 1 per layer + 1 per bottom interface.",
       "internal_notes": "Chute-core concept: A and B go on the chute core (1 each) + one set on the bottom interface (interface category). Chute-core color. NOT per-layer.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "chute": 1,
         "interface": 1
@@ -1355,7 +1544,8 @@
       "description": "Layer connector. 1 per layer + 1 per bottom interface.",
       "internal_notes": "Chute-core concept: A and B go on the chute core (1 each) + one set on the bottom interface (interface category). Chute-core color. NOT per-layer.",
       "version": "1",
-      "date_added": "2026-06-27",
+      "created_at": "2026-06-27",
+      "updated_at": "2026-06-27",
       "quantities": {
         "chute": 1,
         "interface": 1
@@ -1373,7 +1563,8 @@
       "description": "Support block for the chute stepper.",
       "internal_notes": "Interface part. Frame colour. Qty 1/machine is a DEFAULT pending confirmation.",
       "version": "1",
-      "date_added": "2026-07-03",
+      "created_at": "2026-07-03",
+      "updated_at": "2026-07-03",
       "quantities": {
         "interface": 1
       },
@@ -1393,7 +1584,8 @@
       "description": "Third size funnel. Per layer (choose size per layer).",
       "internal_notes": "Funnel size variant (Third size). One funnel per layer; size chosen per layer. Funnel color role.",
       "version": "1",
-      "date_added": "2026-06-29",
+      "created_at": "2026-06-29",
+      "updated_at": "2026-06-29",
       "quantities": {
         "funnel": 1
       },
@@ -1412,7 +1604,8 @@
       "description": "Half size funnel. Per layer (choose size per layer).",
       "internal_notes": "Funnel size variant (Half size). One funnel per layer; size chosen per layer. Funnel color role.",
       "version": "1",
-      "date_added": "2026-06-29",
+      "created_at": "2026-06-29",
+      "updated_at": "2026-06-29",
       "quantities": {
         "funnel": 1
       },
@@ -1431,7 +1624,8 @@
       "description": "Bin (half, left). Half bins: 6 per layer of that size.",
       "internal_notes": "Bin variant (Half). 6 per layer that uses Half size. Half layer = 12 bins (L+R); Third layer = 18 bins (L+center+right-back). Optional to print. Bin color role.",
       "version": "1",
-      "date_added": "2026-06-29",
+      "created_at": "2026-06-29",
+      "updated_at": "2026-06-29",
       "quantities": {
         "bins": 6
       },
@@ -1450,7 +1644,8 @@
       "description": "Bin (half, right). Half bins: 6 per layer of that size.",
       "internal_notes": "Bin variant (Half). 6 per layer that uses Half size. Half layer = 12 bins (L+R); Third layer = 18 bins (L+center+right-back). Optional to print. Bin color role.",
       "version": "1",
-      "date_added": "2026-06-29",
+      "created_at": "2026-06-29",
+      "updated_at": "2026-06-29",
       "quantities": {
         "bins": 6
       },
@@ -1469,7 +1664,8 @@
       "description": "Bin (third, left). Third bins: 6 per layer of that size.",
       "internal_notes": "Bin variant (Third). 6 per layer that uses Third size. Half layer = 12 bins (L+R); Third layer = 18 bins (L+center+right-back). Optional to print. Bin color role.",
       "version": "1",
-      "date_added": "2026-06-29",
+      "created_at": "2026-06-29",
+      "updated_at": "2026-06-29",
       "quantities": {
         "bins": 6
       },
@@ -1488,7 +1684,8 @@
       "description": "Bin (third, center). Third bins: 6 per layer of that size.",
       "internal_notes": "Bin variant (Third). 6 per layer that uses Third size. Half layer = 12 bins (L+R); Third layer = 18 bins (L+center+right-back). Optional to print. Bin color role.",
       "version": "1",
-      "date_added": "2026-06-29",
+      "created_at": "2026-06-29",
+      "updated_at": "2026-06-29",
       "quantities": {
         "bins": 6
       },
@@ -1507,7 +1704,8 @@
       "description": "Bin (third, right-back). Third bins: 6 per layer of that size.",
       "internal_notes": "Bin variant (Third). 6 per layer that uses Third size. Half layer = 12 bins (L+R); Third layer = 18 bins (L+center+right-back). Optional to print. Bin color role.",
       "version": "1",
-      "date_added": "2026-06-29",
+      "created_at": "2026-06-29",
+      "updated_at": "2026-06-29",
       "quantities": {
         "bins": 6
       },
@@ -1526,7 +1724,8 @@
       "description": "Chute bearing cover. 1 per machine.",
       "internal_notes": "Left/right bearing cover for the chute. Chute-core color. Chute bearing assembly.",
       "version": "1",
-      "date_added": "2026-06-29",
+      "created_at": "2026-06-29",
+      "updated_at": "2026-06-29",
       "quantities": {
         "chute": 1
       },
@@ -1543,7 +1742,8 @@
       "description": "Chute bearing cover. 1 per machine.",
       "internal_notes": "Left/right bearing cover for the chute. Chute-core color. Chute bearing assembly.",
       "version": "1",
-      "date_added": "2026-06-29",
+      "created_at": "2026-06-29",
+      "updated_at": "2026-06-29",
       "quantities": {
         "chute": 1
       },
@@ -1560,7 +1760,8 @@
       "description": "Back mount that holds the Meanwell 24V PSU.",
       "internal_notes": "Meanwell 24V PSU box assembly. Colour (frame) + qty 1/machine are DEFAULTS pending confirmation. Electronics section is experimental.",
       "version": "1",
-      "date_added": "2026-07-03",
+      "created_at": "2026-07-03",
+      "updated_at": "2026-07-03",
       "quantities": {
         "electronics": 1
       },
@@ -1580,7 +1781,8 @@
       "description": "Connections plate for the Meanwell 24V PSU box.",
       "internal_notes": "Meanwell 24V PSU box assembly. Colour (frame) + qty 1/machine are DEFAULTS pending confirmation. Electronics section is experimental.",
       "version": "1",
-      "date_added": "2026-07-03",
+      "created_at": "2026-07-03",
+      "updated_at": "2026-07-03",
       "quantities": {
         "electronics": 1
       },
@@ -1600,7 +1802,8 @@
       "description": "Cap for the Meanwell 24V PSU box.",
       "internal_notes": "Meanwell 24V PSU box assembly. Colour (frame) + qty 1/machine are DEFAULTS pending confirmation. Electronics section is experimental.",
       "version": "1",
-      "date_added": "2026-07-03",
+      "created_at": "2026-07-03",
+      "updated_at": "2026-07-03",
       "quantities": {
         "electronics": 1
       },
@@ -1617,9 +1820,19 @@
   ],
   "assemblies": [
     {
+      "id": "light-post",
+      "name": "Light post",
+      "description": "The feeder light post: post, cap, and cap adapter. 2 per machine."
+    },
+    {
       "id": "external-bracket",
       "name": "External distribution-frame bracket",
       "description": "Three parts that bolt together into one external bracket. 6 per distribution frame (per layer), plus a set per interface."
+    },
+    {
+      "id": "fixed-upper-section",
+      "name": "Fixed upper section",
+      "description": "The interface's fixed upper section: the upper-fixed-section plate, its ribs (5 plain + 1 with the limit-switch gap), and the big spacer. 1 per interface."
     },
     {
       "id": "cable-clamp",
@@ -1670,6 +1883,11 @@
       "id": "meanwell-psu-box",
       "name": "Meanwell 24V PSU box",
       "description": "Enclosure for the Meanwell 24V power supply: back mount, connections plate, and cap."
+    },
+    {
+      "id": "camera-extension",
+      "name": "Camera extension",
+      "description": "Classification-channel camera extension for the Innomaker 4K camera module: the 50 mm extension tube and its mount. 1 per machine."
     }
   ]
 }

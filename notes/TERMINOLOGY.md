@@ -14,28 +14,34 @@ Source of truth for the calculator is `slicer/parts.json`; this explains the *wh
   Holds bracket + spacer pairs (6 of each).
 - **Distribution frame** — the big hex frame (6 sections) pieces drop through.
   One frame **per layer**. crossbeam ×6, 90° bracket ×12 per frame.
-- **Chute** — central column; **chute core** (1 per machine).
+- **Chute** — central column; **chute core** and everything in the chute section
+  are **per layer** (one chute per distribution layer).
 - **Bins** — circle of bins per layer. Third-size bin = **18 per layer**.
 - **Bottom lazy Susan** — at the very bottom; connects the chute to the external
   aluminium extrusion and lets it rotate.
 
 ## Scaling — READ THIS CAREFULLY
 
-A machine = 1 feeder + 1 classification channel + 1 interface + 1 chute +
-1 lazy Susan + **N layers**.
+A machine = 1 feeder + 1 classification channel + 1 interface +
+1 lazy Susan + **N layers** (each layer includes a distribution frame, a chute,
+funnels, and bins).
 
 **Per LAYER, not per machine** (these scale with the layer count):
 - **Distribution frame** — there is ONE distribution frame **per layer**. Never
   describe it as "per machine." (The interface also contains some of these same
   frame parts inside it — that's the interface's own bracket/spacer set.)
+- **Chute** — one chute **per layer** (chute core, funnel brackets, door module,
+  bearing holders, servo adapter/bracket, chute door, bearing covers, and the
+  layer connectors all scale with the layer count).
 - **Bins** — each layer is *a layer of bins*. The third-size bin = **18 per
   layer**. Bins are **optional**.
 - **Bin retainers** — per layer, **optional**. If you don't print bins, you
   don't need retainers.
 - **Funnels** — 1 per layer.
 
-So with N layers you get N distribution frames, N×18 bins (if bins are made),
-N funnels, etc. Everything else is once per machine.
+So with N layers you get N distribution frames, N chutes, N×18 bins (if bins are
+made), N funnels, etc. Everything else (feeder, classification channel,
+interface, lazy Susan) is once per machine.
 
 ## Parts designed to bed-max
 
