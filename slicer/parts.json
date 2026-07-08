@@ -739,7 +739,9 @@
       },
       "optional": false,
       "support": false,
-      "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/63d9095d8167813360e7753c/e/279fa8866ec0d8c56c8226cf"
+      "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/63d9095d8167813360e7753c/e/279fa8866ec0d8c56c8226cf",
+      "suspicious": true,
+      "suspicious_note": "The M3 nut does not fit into the hole."
     },
     {
       "id": "interface-spur-gear",

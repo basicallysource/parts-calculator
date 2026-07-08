@@ -1473,8 +1473,8 @@
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/63d9095d8167813360e7753c/e/279fa8866ec0d8c56c8226cf",
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
+			"suspicious": true,
+			"suspicious_note": "The M3 nut does not fit into the hole.",
 			"layer_scope": "all",
 			"stl": "/stl/cable-clamp-outer.stl",
 			"render": "/renders/cable-clamp-outer.png"
