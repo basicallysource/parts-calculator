@@ -37,6 +37,7 @@
 	import Popover from '$lib/components/Popover.svelte';
 	import Badge from '$lib/components/Badge.svelte';
 	import Callout from '$lib/components/Callout.svelte';
+	import DownloadButton from '$lib/components/DownloadButton.svelte';
 	import { Download, Package, ZoomIn, Loader, Info, Plus, X, RotateCcw, Clock, Layers3, ExternalLink, AlertTriangle, History } from 'lucide-svelte';
 
 	// ---- defaults (also used by "reset to default") -----------------------------
@@ -584,21 +585,29 @@
 					<Callout variant="warning" title="Suspect">{viewerPart.suspicious_note ?? 'This part may still change or have an issue. Hold off printing it until this clears.'}</Callout>
 				{/if}
 				<div class="flex flex-wrap items-center gap-3 pt-1">
-					<a href={activeStl} download class="setup-button-secondary inline-flex h-8 items-center gap-1.5 px-3 text-xs font-semibold"><Download size={14} /> Download STL{isCurrent ? '' : ` (v${active?.version})`}</a>
+					<DownloadButton href={activeStl} size="md" label={isCurrent ? 'Download STL' : `Download STL (v${active?.version})`} />
 					{#if os.version}<a href={os.version} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 text-xs text-primary hover:text-primary-hover">OnShape <ExternalLink size={11} /></a>{/if}
 				</div>
 				{#if plates.length}
 					<div class="pt-1">
-						<div class="mb-1 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-text-muted"><Layers3 size={12} /> On build plates</div>
-						<ul class="space-y-1">
+						<div class="mb-1.5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-text-muted"><Layers3 size={12} /> On build plates</div>
+						<div class="flex gap-2 overflow-x-auto pb-1">
 							{#each plates as pl (pl.id)}
-								<li class="flex items-center gap-2 text-sm">
-									<span class="text-text">{pl.name}</span>
-									<button type="button" class="text-xs text-primary hover:text-primary-hover" onclick={() => { viewerOpen = false; openPlatesModal(pid); }}>view</button>
-									<a href={pl.download} download class="inline-flex items-center gap-0.5 text-xs text-primary hover:text-primary-hover" title="Download {pl.name}.3mf">.3mf <Download size={11} /></a>
-								</li>
+								<div class="flex w-56 shrink-0 flex-col border border-border bg-[var(--color-bg)] p-2">
+									<div class="mb-1.5 flex gap-1 overflow-x-auto">
+										{#each pl.thumbs as t}<img src={t} alt="{pl.name} preview" class="h-20 w-20 shrink-0 border border-border bg-[var(--color-surface)] object-contain" />{/each}
+									</div>
+									<div class="mb-2 flex flex-wrap gap-1">
+										{#each pl.parts as pp}<span class="border px-1 py-0.5 text-[11px] {pp.part_id === pid ? 'border-primary bg-primary/10 text-primary' : 'border-border text-text-muted'}">{pp.count}× {pp.name}</span>{/each}
+									</div>
+									<div class="mt-auto flex items-center gap-2">
+										<span class="min-w-0 flex-1 truncate text-xs font-medium text-text" title={pl.name}>{pl.name}</span>
+										<button type="button" class="shrink-0 text-xs text-primary hover:text-primary-hover" onclick={() => { viewerOpen = false; openPlatesModal(pid); }}>view</button>
+										<DownloadButton href={pl.download} size="sm" label="3mf" title="Download {pl.name}.3mf" />
+									</div>
+								</div>
 							{/each}
-						</ul>
+						</div>
 					</div>
 				{/if}
 			</div>
