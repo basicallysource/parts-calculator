@@ -35,6 +35,8 @@
 	import { loadConfig, saveConfig, clearConfig } from '$lib/config';
 	import { layerStore, addLayer as addLayerStore, removeLayerAt, setSize, setSizes } from '$lib/layers.svelte';
 	import Popover from '$lib/components/Popover.svelte';
+	import Badge from '$lib/components/Badge.svelte';
+	import Callout from '$lib/components/Callout.svelte';
 	import { Download, Package, ZoomIn, Loader, Info, Plus, X, RotateCcw, Clock, Layers3, ExternalLink, AlertTriangle, History } from 'lucide-svelte';
 
 	// ---- defaults (also used by "reset to default") -----------------------------
@@ -203,6 +205,12 @@
 		viewerVersion = p.versions?.[p.versions.length - 1] ?? null; // newest by default
 		viewerOpen = true;
 	}
+	// A click anywhere on a part row opens its detail modal — except on the row's
+	// own interactive controls (checkbox, links, buttons, popovers).
+	function rowClickToOpen(e: MouseEvent, p: Part) {
+		if ((e.target as HTMLElement).closest('button, a, input, label, [role="tooltip"]')) return;
+		openViewer(p);
+	}
 	async function downloadZip(parts: Part[], name: string) {
 		if (!parts.length) return;
 		zipping = true;
@@ -330,7 +338,8 @@
 		{@const sw = partSwatches(p, sectionId, roleColors)}
 		{@const eff = effectiveGrams(p, !!inclSupport[p.id])}
 		{@const os = partOnshape(p)}
-		<tr class="border-b border-border align-middle last:border-b-0">
+		<!-- svelte-ignore a11y_no_noninteractive_element_interactions a11y_click_events_have_key_events -->
+		<tr class="group/row cursor-pointer border-b border-border align-middle transition-colors last:border-b-0 hover:bg-[var(--color-bg)]" onclick={(e) => rowClickToOpen(e, p)} title="View {p.name} details">
 			<td class="w-8 py-2 {indent ? 'border-l-2 border-primary/40 pl-5' : 'pl-3'}">
 				{#if 'bins' in p.quantities}
 					<input class="setup-toggle h-4 w-4" type="checkbox" checked={printBins} onchange={() => (printBins = !printBins)} aria-label="Print bins (set in Build options)" title="Controlled by the Print bins toggle in Build options" />
@@ -346,15 +355,15 @@
 					title="View {p.name} in 3D"
 				>
 					<img src={p.render} alt={p.name} class="h-full w-full object-contain" />
-					<span class="absolute inset-0 flex items-center justify-center bg-black/40 text-white opacity-0 transition-opacity group-hover:opacity-100"><ZoomIn size={18} /></span>
+					<span class="absolute inset-0 flex items-center justify-center bg-black/40 text-white opacity-0 transition-opacity group-hover:opacity-100 group-hover/row:opacity-100"><ZoomIn size={18} /></span>
 				</button>
 			</td>
 			<td class="py-2 pl-3 pr-2">
 				<span class="flex flex-wrap items-center gap-2 font-medium text-text">
 					{p.name}
-					{#if p.optional}<span class="border border-warning/50 px-1 text-xs text-warning-dark">optional</span>{/if}
-					{#if p.support_used}<span class="border border-info/50 px-1 text-xs text-info" title="Sliced with support material — included in this part's grams">Supports</span>{/if}
-						{#if platesForPart(p.id).length}<button type="button" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" onclick={() => openPlatesModal(p.id)} title="Show plates with this part"><Layers3 size={11} /> {platesForPart(p.id).length} plate{platesForPart(p.id).length === 1 ? '' : 's'}</button>{/if}{#if os.doc}<a href={os.doc} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" title="Open the live OnShape document">OnShape <ExternalLink size={11} /></a>{/if}{#if os.version}<a href={os.version} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" title="Open the exact OnShape version this STL came from">OnShape v{p.version} <ExternalLink size={11} /></a>{/if}{#if p.info}<Popover width="w-64" label="About {p.name}" text={p.info} />{/if}{#if p.suspicious}<Popover width="w-72" label="Why {p.name} is flagged">{#snippet trigger({ toggle, open })}<button type="button" onclick={toggle} aria-expanded={open} class="inline-flex items-center gap-0.5 border border-warning/60 bg-warning/[0.10] px-1 text-xs font-semibold text-warning-dark"><AlertTriangle size={11} /> Suspect</button>{/snippet}<b class="text-text">Subject to change.</b> This part may still change or have an issue. Unless it's critical, hold off printing it until this warning clears.{#if p.suspicious_note}<span class="mt-2 block border-t border-border pt-2 text-text">{p.suspicious_note}</span>{/if}</Popover>{/if}{#if p.attributes?.length}{#each p.attributes as a}<span class="border border-border bg-[var(--color-bg)] px-1 text-xs text-text-muted" title={a.label}>{a.label}: <span class="text-text">{a.value}</span></span>{/each}{/if}{#if p.versions && p.versions.length > 1}<Popover width="w-80" label="Version history for {p.name}">{#snippet trigger({ toggle, open })}<button type="button" onclick={toggle} aria-expanded={open} class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" title="Version history"><History size={11} /> v{p.version} · {p.versions?.length ?? 0} versions</button>{/snippet}<b class="text-text">Version history</b><ul class="mt-1 space-y-2">{#each [...(p.versions ?? [])].reverse() as v}<li class="border-t border-border pt-2 first:border-t-0 first:pt-0"><div class="flex items-center gap-1.5 text-text"><b>v{v.version}</b><span class="text-text-muted">· {fmtDate(v.date)}</span>{#if commitUrl(v.commit)}<a href={commitUrl(v.commit)} target="_blank" rel="noopener" class="ml-auto inline-flex items-center gap-0.5 text-primary hover:text-primary-hover">{v.commit} <ExternalLink size={10} /></a>{:else}<span class="ml-auto italic text-text-muted/70">uncommitted</span>{/if}</div><div class="mt-0.5">{v.message}</div>{#if v.onshape_doc || v.onshape_version}<div class="mt-1 flex flex-wrap items-center gap-2">{#if v.onshape_doc}<a href={v.onshape_doc} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 text-primary hover:text-primary-hover">OnShape doc <ExternalLink size={10} /></a>{/if}{#if v.onshape_version}<a href={v.onshape_version} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 text-primary hover:text-primary-hover">OnShape version <ExternalLink size={10} /></a>{/if}</div>{/if}</li>{/each}</ul></Popover>{/if}
+					{#if p.optional}<Badge variant="warning">optional</Badge>{/if}
+					{#if p.support_used}<Badge variant="info" title="Sliced with support material — included in this part's grams">Supports</Badge>{/if}
+						{#if platesForPart(p.id).length}<button type="button" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" onclick={() => openPlatesModal(p.id)} title="Show plates with this part"><Layers3 size={11} /> {platesForPart(p.id).length} plate{platesForPart(p.id).length === 1 ? '' : 's'}</button>{/if}{#if os.doc}<a href={os.doc} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" title="Open the live OnShape document">OnShape <ExternalLink size={11} /></a>{/if}{#if os.version}<a href={os.version} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" title="Open the exact OnShape version this STL came from">OnShape v{p.version} <ExternalLink size={11} /></a>{/if}{#if p.info}<Popover width="w-64" label="About {p.name}" text={p.info} />{/if}{#if p.suspicious}<Popover width="w-72" label="Why {p.name} is flagged">{#snippet trigger({ toggle, open })}<Badge as="button" variant="warning" onclick={toggle} aria-expanded={open}><AlertTriangle size={11} /> Suspect</Badge>{/snippet}<b class="text-text">Subject to change.</b> This part may still change or have an issue. Unless it's critical, hold off printing it until this warning clears.{#if p.suspicious_note}<span class="mt-2 block border-t border-border pt-2 text-text">{p.suspicious_note}</span>{/if}</Popover>{/if}{#if p.attributes?.length}{#each p.attributes as a}<span class="border border-border bg-[var(--color-bg)] px-1 text-xs text-text-muted" title={a.label}>{a.label}: <span class="text-text">{a.value}</span></span>{/each}{/if}{#if p.versions && p.versions.length > 1}<Popover width="w-80" label="Version history for {p.name}">{#snippet trigger({ toggle, open })}<button type="button" onclick={toggle} aria-expanded={open} class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" title="Version history"><History size={11} /> v{p.version} · {p.versions?.length ?? 0} versions</button>{/snippet}<b class="text-text">Version history</b><ul class="mt-1 space-y-2">{#each [...(p.versions ?? [])].reverse() as v}<li class="border-t border-border pt-2 first:border-t-0 first:pt-0"><div class="flex items-center gap-1.5 text-text"><b>v{v.version}</b><span class="text-text-muted">· {fmtDate(v.date)}</span>{#if commitUrl(v.commit)}<a href={commitUrl(v.commit)} target="_blank" rel="noopener" class="ml-auto inline-flex items-center gap-0.5 text-primary hover:text-primary-hover">{v.commit} <ExternalLink size={10} /></a>{:else}<span class="ml-auto italic text-text-muted/70">uncommitted</span>{/if}</div><div class="mt-0.5">{v.message}</div>{#if v.onshape_doc || v.onshape_version}<div class="mt-1 flex flex-wrap items-center gap-2">{#if v.onshape_doc}<a href={v.onshape_doc} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 text-primary hover:text-primary-hover">OnShape doc <ExternalLink size={10} /></a>{/if}{#if v.onshape_version}<a href={v.onshape_version} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 text-primary hover:text-primary-hover">OnShape version <ExternalLink size={10} /></a>{/if}</div>{/if}</li>{/each}</ul></Popover>{/if}
 				</span>
 				<span class="flex flex-wrap items-center gap-1.5 text-xs text-text-muted">
 					{#each sw as s}
@@ -411,7 +420,7 @@
 						{#if section.experimental}
 							<Popover width="w-80" label="Why {section.name} is experimental">
 								{#snippet trigger({ toggle, open })}
-									<button type="button" onclick={toggle} aria-expanded={open} class="inline-flex items-center gap-0.5 border border-warning/60 bg-warning/[0.10] px-1.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-warning-dark"><AlertTriangle size={11} /> experimental</button>
+									<Badge as="button" variant="warning" class="px-1.5 py-0.5 uppercase tracking-wider" onclick={toggle} aria-expanded={open}><AlertTriangle size={11} /> experimental</Badge>
 								{/snippet}
 								<b class="text-text">Experimental — subject to lots of change.</b>
 								{#if section.experimental_note}<span class="mt-2 block border-t border-border pt-2 text-text">{section.experimental_note}</span>{/if}
@@ -569,8 +578,8 @@
 					{#if active?.grams != null}<dt>Filament</dt><dd class="text-text">{active.grams.toFixed(0)} g</dd>{/if}
 					<dt>Print time</dt><dd class="text-text">{duration(viewerPart.print_seconds)}</dd>
 				</dl>
-				{#if viewerPart.suspicious && viewerPart.suspicious_note}
-					<p class="flex items-start gap-1.5 border border-warning/50 bg-warning/[0.08] px-2 py-1.5 text-xs text-warning-dark"><AlertTriangle size={12} class="mt-0.5 shrink-0" /> {viewerPart.suspicious_note}</p>
+				{#if viewerPart.suspicious}
+					<Callout variant="warning" title="Suspect">{viewerPart.suspicious_note ?? 'This part may still change or have an issue. Hold off printing it until this clears.'}</Callout>
 				{/if}
 				<div class="flex flex-wrap items-center gap-3 pt-1">
 					<a href={activeStl} download class="setup-button-secondary inline-flex h-8 items-center gap-1.5 px-3 text-xs font-semibold"><Download size={14} /> Download STL{isCurrent ? '' : ` (v${active?.version})`}</a>
