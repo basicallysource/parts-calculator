@@ -105,6 +105,8 @@
 	let viewerOpen = $state(false);
 	let viewerPart = $state<Part | null>(null);
 	let viewerColorId = $state('ash-gray');
+	// which version of the part the detail modal is previewing (null = current/newest)
+	let viewerVersion = $state<import('$lib/filament').PartVersion | null>(null);
 
 	// the per-layer size drives both the funnel and the bin set for that layer
 	function variantCount(id: string): number | null {
@@ -198,6 +200,7 @@
 	function openViewer(p: Part) {
 		viewerPart = p;
 		viewerColorId = primaryColorId(p, roleColors) ?? 'ash-gray';
+		viewerVersion = p.versions?.[p.versions.length - 1] ?? null; // newest by default
 		viewerOpen = true;
 	}
 	async function downloadZip(parts: Part[], name: string) {
@@ -544,17 +547,65 @@
 
 <Modal bind:open={viewerOpen} title={viewerPart?.name}>
 	{#if viewerPart}
-		<StlViewer url={viewerPart.stl} color={getBambuColor(viewerColorId).hex} />
-		<div class="flex flex-wrap items-end justify-between gap-3 px-4 py-3">
-			{#if viewerPart.description}
-				<p class="max-w-md text-sm text-text-muted">{viewerPart.description}</p>
-			{:else}
-				<span></span>
-			{/if}
+		{@const vers = [...(viewerPart.versions ?? [])].reverse()}
+		{@const active = viewerVersion ?? viewerPart.versions?.[viewerPart.versions.length - 1] ?? null}
+		{@const activeStl = active?.stl ?? viewerPart.stl}
+		{@const isCurrent = !active || active.version === viewerPart.version}
+		{@const os = partOnshape(viewerPart)}
+		{#key activeStl}
+			<StlViewer url={activeStl} color={getBambuColor(viewerColorId).hex} />
+		{/key}
+		<div class="grid gap-4 px-4 py-3 sm:grid-cols-[1fr_auto]">
+			<div class="min-w-0 space-y-2 text-sm">
+				{#if viewerPart.description}<p class="text-text-muted">{viewerPart.description}</p>{/if}
+				{#if viewerPart.attributes?.length}
+					<div class="flex flex-wrap gap-1.5">
+						{#each viewerPart.attributes as a}<span class="border border-border bg-[var(--color-bg)] px-1.5 py-0.5 text-xs text-text-muted">{a.label}: <span class="text-text">{a.value}</span></span>{/each}
+					</div>
+				{/if}
+				<dl class="grid max-w-sm grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-xs text-text-muted">
+					<dt>Version</dt><dd class="text-text">v{active?.version ?? viewerPart.version}{isCurrent ? ' (current)' : ''}</dd>
+					<dt>{isCurrent ? 'Updated' : 'Dated'}</dt><dd class="text-text">{fmtDate(active?.date ?? viewerPart.updated_at)}</dd>
+					{#if active?.grams != null}<dt>Filament</dt><dd class="text-text">{active.grams.toFixed(0)} g</dd>{/if}
+					<dt>Print time</dt><dd class="text-text">{duration(viewerPart.print_seconds)}</dd>
+				</dl>
+				{#if viewerPart.suspicious && viewerPart.suspicious_note}
+					<p class="flex items-start gap-1.5 border border-warning/50 bg-warning/[0.08] px-2 py-1.5 text-xs text-warning-dark"><AlertTriangle size={12} class="mt-0.5 shrink-0" /> {viewerPart.suspicious_note}</p>
+				{/if}
+				<div class="flex flex-wrap items-center gap-3 pt-1">
+					<a href={activeStl} download class="setup-button-secondary inline-flex h-8 items-center gap-1.5 px-3 text-xs font-semibold"><Download size={14} /> Download STL{isCurrent ? '' : ` (v${active?.version})`}</a>
+					{#if os.doc}<a href={os.doc} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 text-xs text-primary hover:text-primary-hover">OnShape doc <ExternalLink size={11} /></a>{/if}
+					{#if os.version}<a href={os.version} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 text-xs text-primary hover:text-primary-hover">OnShape version <ExternalLink size={11} /></a>{/if}
+				</div>
+			</div>
 			<div class="w-44 shrink-0">
 				<ColorPicker bind:value={viewerColorId} label="Preview color" />
 			</div>
 		</div>
+		{#if vers.length > 1}
+			<div class="border-t border-border px-4 py-3">
+				<h3 class="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-text-muted"><History size={12} /> Version history</h3>
+				<div class="flex gap-2 overflow-x-auto pb-1">
+					{#each vers as v (v.version)}
+						{@const sel = active?.version === v.version}
+						<button type="button" onclick={() => (viewerVersion = v)} class="flex w-32 shrink-0 flex-col border {sel ? 'border-primary ring-1 ring-primary' : 'border-border hover:border-primary/60'} bg-[var(--color-bg)] p-1.5 text-left" aria-pressed={sel}>
+							<span class="mb-1 flex h-20 items-center justify-center border border-border bg-[var(--color-bg)]">
+								{#if v.render}<img src={v.render} alt="v{v.version} preview" class="h-full w-full object-contain" />{:else}<span class="text-xs text-text-muted">no preview</span>{/if}
+							</span>
+							<span class="flex items-center gap-1 text-xs font-semibold text-text">v{v.version}{#if v.version === viewerPart.version}<span class="text-[10px] font-normal text-text-muted">current</span>{/if}</span>
+							<span class="text-[11px] text-text-muted">{fmtDate(v.date)}{#if v.grams != null} · {v.grams.toFixed(0)} g{/if}</span>
+						</button>
+					{/each}
+				</div>
+				{#if active}
+					<div class="mt-2 border-t border-border pt-2 text-sm">
+						<div class="font-medium text-text">v{active.version} · {fmtDate(active.date)}</div>
+						<p class="mt-0.5 text-text-muted">{active.message}</p>
+						{#if !isCurrent}<p class="mt-1 text-xs italic text-text-muted/70">Viewing an older version for reference. Build from the current version unless you specifically need this one.</p>{/if}
+					</div>
+				{/if}
+			</div>
+		{/if}
 	{/if}
 </Modal>
 
