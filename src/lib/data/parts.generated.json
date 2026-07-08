@@ -9,7 +9,8 @@
 		"support_type": "normal(auto)",
 		"support_threshold_deg": 10,
 		"density_g_cm3": 1.32,
-		"cost_per_kg": 24.99
+		"cost_per_kg": 24.99,
+		"commit_base_url": "https://github.com/basicallysource/filament-calculator/commit/"
 	},
 	"sections": [
 		{
@@ -30,7 +31,7 @@
 		{
 			"id": "chute",
 			"name": "Chute",
-			"scales_with_layers": false
+			"scales_with_layers": true
 		},
 		{
 			"id": "funnel",
@@ -89,9 +90,19 @@
 	],
 	"assemblies": [
 		{
+			"id": "light-post",
+			"name": "Light post",
+			"description": "The feeder light post: post, cap, and cap adapter. 2 per machine."
+		},
+		{
 			"id": "external-bracket",
 			"name": "External distribution-frame bracket",
 			"description": "Three parts that bolt together into one external bracket. 6 per distribution frame (per layer), plus a set per interface."
+		},
+		{
+			"id": "fixed-upper-section",
+			"name": "Fixed upper section",
+			"description": "The interface's fixed upper section: the upper-fixed-section plate, its ribs (5 plain + 1 with the limit-switch gap), and the big spacer. 1 per interface."
 		},
 		{
 			"id": "cable-clamp",
@@ -142,6 +153,11 @@
 			"id": "meanwell-psu-box",
 			"name": "Meanwell 24V PSU box",
 			"description": "Enclosure for the Meanwell 24V power supply: back mount, connections plate, and cap."
+		},
+		{
+			"id": "camera-extension",
+			"name": "Camera extension",
+			"description": "Classification-channel camera extension for the Innomaker 4K camera module: the 50 mm extension tube and its mount. 1 per machine."
 		}
 	],
 	"parts": [
@@ -149,29 +165,38 @@
 			"id": "stator",
 			"name": "Stator",
 			"quantities": {
-				"feeder": 4
+				"feeder": 3,
+				"classification-channel": 1
 			},
 			"assembly": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Feeder stator. 4 required: 1 gray + 3 black.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 175.52,
 			"support_grams": 23.42,
 			"support_used": true,
 			"print_seconds": 16012,
 			"color": {
-				"split": [
-					{
-						"color": "ash-gray",
-						"qty": 1
+				"by_section": {
+					"feeder": {
+						"fixed": "charcoal"
 					},
-					{
-						"color": "charcoal",
-						"qty": 3
+					"classification-channel": {
+						"fixed": "ash-gray"
 					}
-				]
+				}
 			},
 			"optional": false,
 			"onshape": null,
@@ -193,7 +218,17 @@
 			"variant_name": null,
 			"description": "Faceted rotor. 3 required: 2 white + 1 gray.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 166.5,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -223,14 +258,25 @@
 			"id": "output-gear",
 			"name": "Output gear (130T)",
 			"quantities": {
-				"feeder": 4
+				"feeder": 4,
+				"classification-channel": 1
 			},
 			"assembly": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Output gear, 130 teeth. One per C-channel (4 total).",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 59.67,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -251,29 +297,38 @@
 			"id": "nema-bracket",
 			"name": "NEMA bracket",
 			"quantities": {
-				"feeder": 4
+				"feeder": 3,
+				"classification-channel": 1
 			},
 			"assembly": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "NEMA motor bracket. One per C-channel (4 total).",
 			"version": "2",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "2",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 72.45,
 			"support_grams": 0.0,
 			"support_used": false,
 			"print_seconds": 7210,
 			"color": {
-				"split": [
-					{
-						"color": "ash-gray",
-						"qty": 1
+				"by_section": {
+					"feeder": {
+						"fixed": "charcoal"
 					},
-					{
-						"color": "charcoal",
-						"qty": 3
+					"classification-channel": {
+						"fixed": "ash-gray"
 					}
-				]
+				}
 			},
 			"optional": false,
 			"onshape": null,
@@ -290,12 +345,22 @@
 			"quantities": {
 				"feeder": 2
 			},
-			"assembly": null,
+			"assembly": "light-post",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Light post on the C-channel feeder. 2 total.",
 			"version": "1",
-			"date_added": "2026-07-01",
+			"created_at": "2026-07-01",
+			"updated_at": "2026-07-01",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-07-01",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 12.12,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -318,12 +383,22 @@
 			"quantities": {
 				"feeder": 2
 			},
-			"assembly": null,
+			"assembly": "light-post",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Light post cap. 2 total (C-channels 2 & 3). White.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 21.98,
 			"support_grams": 4.62,
 			"support_used": true,
@@ -346,12 +421,22 @@
 			"quantities": {
 				"feeder": 2
 			},
-			"assembly": null,
+			"assembly": "light-post",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Adapts the light post cap to the C-channel. 2 per machine.",
 			"version": "1",
-			"date_added": "2026-07-03",
+			"created_at": "2026-07-03",
+			"updated_at": "2026-07-03",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-07-03",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 2.59,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -379,7 +464,17 @@
 			"variant_name": null,
 			"description": "Bulk cap. Sits on top of the first C-channel.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 648.51,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -407,7 +502,17 @@
 			"variant_name": null,
 			"description": "Large classification-channel dome (~full bed). White.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 371.28,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -435,7 +540,17 @@
 			"variant_name": null,
 			"description": "Interface bracket. Pairs with the spacer; 6 on the interface.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 159.48,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -446,8 +561,8 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
+			"suspicious": true,
+			"suspicious_note": "The fit onto the interface spoke (long) is too tight \u2014 there's no clearance.",
 			"layer_scope": "all",
 			"stl": "/stl/interface-bracket.stl",
 			"render": "/renders/interface-bracket.png"
@@ -463,7 +578,17 @@
 			"variant_name": null,
 			"description": "Interface spacer. Pairs with the bracket; 6 on the interface.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 45.26,
 			"support_grams": 0.22,
 			"support_used": true,
@@ -491,7 +616,17 @@
 			"variant_name": null,
 			"description": "The chute core. 1 per machine.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 223.63,
 			"support_grams": 9.29,
 			"support_used": true,
@@ -519,7 +654,17 @@
 			"variant_name": null,
 			"description": "Bin retainer, left. Optional.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 21.19,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -547,7 +692,17 @@
 			"variant_name": null,
 			"description": "Bin retainer, right. Optional.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 21.44,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -575,7 +730,17 @@
 			"variant_name": null,
 			"description": "Distribution frame crossbeam. One between each of the 6 frame sections.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 86.17,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -603,7 +768,17 @@
 			"variant_name": null,
 			"description": "Distribution frame 90\u00b0 bracket. Two per frame section.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 13.62,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -631,7 +806,17 @@
 			"variant_name": null,
 			"description": "Bottom lazy Susan adapter that connects to the chute. White.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 233.62,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -659,7 +844,17 @@
 			"variant_name": null,
 			"description": "Bottom lazy Susan static base.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 206.81,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -687,7 +882,17 @@
 			"variant_name": null,
 			"description": "Bottom lazy Susan mount to the external extrusion.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 56.06,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -715,7 +920,17 @@
 			"variant_name": null,
 			"description": "Bottom lazy Susan hold-in-place. Optional.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 6.95,
 			"support_grams": 0.35,
 			"support_used": true,
@@ -743,7 +958,17 @@
 			"variant_name": null,
 			"description": "Bottom lazy Susan washer.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 10.63,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -772,7 +997,17 @@
 			"variant_name": null,
 			"description": "Part of the external distribution-frame bracket (3-part assembly).",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 48.52,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -801,7 +1036,17 @@
 			"variant_name": null,
 			"description": "Part of the external distribution-frame bracket (3-part assembly).",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 50.62,
 			"support_grams": 10.43,
 			"support_used": true,
@@ -830,7 +1075,17 @@
 			"variant_name": null,
 			"description": "Part of the external distribution-frame bracket (3-part assembly).",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 12.45,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -858,7 +1113,17 @@
 			"variant_name": null,
 			"description": "Bottom-layer replacement for the external bracket bottom vertical + cover.",
 			"version": "1",
-			"date_added": "2026-07-03",
+			"created_at": "2026-07-03",
+			"updated_at": "2026-07-03",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-07-03",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 23.59,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -876,17 +1141,71 @@
 			"render": "/renders/ext-bracket-foot-cover.png"
 		},
 		{
+			"id": "interface-upper-fixed-section",
+			"name": "Interface upper fixed section",
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": "fixed-upper-section",
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Interface upper fixed section. 1 needed.",
+			"version": "2",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-07-08",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": "be3f4cd"
+				},
+				{
+					"version": "2",
+					"date": "2026-07-08",
+					"message": "Reshaped: now 35 mm tall (was 33 mm), with rib attachments.",
+					"commit": null
+				}
+			],
+			"attributes": [],
+			"grams": 164.14,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 12186,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"onshape": null,
+			"info": null,
+			"suspicious": true,
+			"suspicious_note": "The lazy-Susan holes are slightly too close together. We intend to make them M5-compatible; they're currently M4.",
+			"layer_scope": "all",
+			"stl": "/stl/interface-upper-fixed-section.stl",
+			"render": "/renders/interface-upper-fixed-section.png"
+		},
+		{
 			"id": "interface-rib",
 			"name": "Interface rib",
 			"quantities": {
 				"interface": 5
 			},
-			"assembly": null,
+			"assembly": "fixed-upper-section",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Ribbed interface piece. 5 needed.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 26.6,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -909,12 +1228,22 @@
 			"quantities": {
 				"interface": 1
 			},
-			"assembly": null,
+			"assembly": "fixed-upper-section",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Interface rib with the opening for the limit switch. 1 needed.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 15.27,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -932,6 +1261,50 @@
 			"render": "/renders/interface-rib-switch.png"
 		},
 		{
+			"id": "interface-big-spacer",
+			"name": "Interface big spacer",
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": "fixed-upper-section",
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Interface big spacer. 1 needed.",
+			"version": "2",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-07-08",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": "be3f4cd"
+				},
+				{
+					"version": "2",
+					"date": "2026-07-08",
+					"message": "Reshaped: now 1 mm thick (was 3 mm).",
+					"commit": null
+				}
+			],
+			"attributes": [],
+			"grams": 11.13,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 1485,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"onshape": null,
+			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
+			"layer_scope": "all",
+			"stl": "/stl/interface-big-spacer.stl",
+			"render": "/renders/interface-big-spacer.png"
+		},
+		{
 			"id": "cable-clamp-inner",
 			"name": "Cable clamp (inner)",
 			"quantities": {
@@ -942,7 +1315,17 @@
 			"variant_name": null,
 			"description": "Inner half of the ribbon cable clamp. White.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 5.57,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -970,7 +1353,17 @@
 			"variant_name": null,
 			"description": "Outer half of the ribbon cable clamp. White.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 13.38,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -998,7 +1391,17 @@
 			"variant_name": null,
 			"description": "Interface spur gear, 2M 25T. 1 needed.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 9.0,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1026,7 +1429,17 @@
 			"variant_name": null,
 			"description": "Interface idler gear, 2M 25T. 1 needed.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 8.98,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1054,7 +1467,17 @@
 			"variant_name": null,
 			"description": "NEMA 23 motor bracket on the interface. 1 needed.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 45.02,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1082,7 +1505,17 @@
 			"variant_name": null,
 			"description": "Interface cable cage bracket (regular). 5 needed.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 15.89,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1110,7 +1543,17 @@
 			"variant_name": null,
 			"description": "Cable cage bracket with the cable mount. 1 needed.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 15.88,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1138,7 +1581,17 @@
 			"variant_name": null,
 			"description": "Outer ribbon cable clamp, paired with the cable cage brackets.",
 			"version": "1",
-			"date_added": "2026-07-03",
+			"created_at": "2026-07-03",
+			"updated_at": "2026-07-03",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-07-03",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 5.31,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1156,62 +1609,6 @@
 			"render": "/renders/ribbon-cable-clamp.png"
 		},
 		{
-			"id": "interface-big-spacer",
-			"name": "Interface big spacer",
-			"quantities": {
-				"interface": 1
-			},
-			"assembly": null,
-			"variant_group": null,
-			"variant_name": null,
-			"description": "Interface big spacer. 1 needed.",
-			"version": "1",
-			"date_added": "2026-06-27",
-			"grams": 22.18,
-			"support_grams": 0.0,
-			"support_used": false,
-			"print_seconds": 2360,
-			"color": {
-				"role": "frame"
-			},
-			"optional": false,
-			"onshape": null,
-			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
-			"layer_scope": "all",
-			"stl": "/stl/interface-big-spacer.stl",
-			"render": "/renders/interface-big-spacer.png"
-		},
-		{
-			"id": "interface-upper-fixed-section",
-			"name": "Interface upper fixed section",
-			"quantities": {
-				"interface": 1
-			},
-			"assembly": null,
-			"variant_group": null,
-			"variant_name": null,
-			"description": "Interface upper fixed section. 1 needed.",
-			"version": "1",
-			"date_added": "2026-06-27",
-			"grams": 153.65,
-			"support_grams": 0.0,
-			"support_used": false,
-			"print_seconds": 11486,
-			"color": {
-				"role": "frame"
-			},
-			"optional": false,
-			"onshape": null,
-			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
-			"layer_scope": "all",
-			"stl": "/stl/interface-upper-fixed-section.stl",
-			"render": "/renders/interface-upper-fixed-section.png"
-		},
-		{
 			"id": "top-interface-split-spur-gear-1",
 			"name": "Chute gear",
 			"quantities": {
@@ -1222,7 +1619,17 @@
 			"variant_name": null,
 			"description": "Section 1 of 3 of the top interface split spur gear (Spur 2M 120T).",
 			"version": "1",
-			"date_added": "2026-07-03",
+			"created_at": "2026-07-03",
+			"updated_at": "2026-07-03",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-07-03",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 59.97,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1250,7 +1657,17 @@
 			"variant_name": null,
 			"description": "Section 2 of 3 of the top interface split spur gear (Spur 2M 120T).",
 			"version": "1",
-			"date_added": "2026-07-03",
+			"created_at": "2026-07-03",
+			"updated_at": "2026-07-03",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-07-03",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 8.0,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1278,7 +1695,17 @@
 			"variant_name": null,
 			"description": "Section 3 of 3 of the top interface split spur gear (Spur 2M 120T).",
 			"version": "1",
-			"date_added": "2026-07-03",
+			"created_at": "2026-07-03",
+			"updated_at": "2026-07-03",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-07-03",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 588.3,
 			"support_grams": 400.58,
 			"support_used": true,
@@ -1306,7 +1733,17 @@
 			"variant_name": null,
 			"description": "Printed dowel pin for the interface limit switch.",
 			"version": "1",
-			"date_added": "2026-07-03",
+			"created_at": "2026-07-03",
+			"updated_at": "2026-07-03",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-07-03",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 0.71,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1333,8 +1770,24 @@
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Housing for the interface limit switch.",
-			"version": "1",
-			"date_added": "2026-07-03",
+			"version": "2",
+			"created_at": "2026-07-03",
+			"updated_at": "2026-07-08",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-07-03",
+					"message": "Initial version.",
+					"commit": "f73766e"
+				},
+				{
+					"version": "2",
+					"date": "2026-07-08",
+					"message": "Resolved the suspected clearance issue with the fixed-upper-section rib; no longer flagged. (Geometry unchanged from v1 \u2014 the concern was cleared, not re-cut.)",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 10.13,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1345,8 +1798,8 @@
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/70838d736e83bd9b6f0ccb7a",
 			"info": null,
-			"suspicious": true,
-			"suspicious_note": "Spencer thinks it may interfere with the switch-gap interface rib (the rib with the cutout).",
+			"suspicious": false,
+			"suspicious_note": null,
 			"layer_scope": "all",
 			"stl": "/stl/limit-switch-housing.stl",
 			"render": "/renders/limit-switch-housing.png"
@@ -1362,7 +1815,17 @@
 			"variant_name": null,
 			"description": "Hammer/stop for the interface limit switch.",
 			"version": "1",
-			"date_added": "2026-07-03",
+			"created_at": "2026-07-03",
+			"updated_at": "2026-07-03",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-07-03",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 3.56,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1390,7 +1853,17 @@
 			"variant_name": null,
 			"description": "Finned rotor on the classification chamber. White. 1 needed.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 178.76,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1418,7 +1891,17 @@
 			"variant_name": null,
 			"description": "C-channel idler gear, 24 teeth. One per C-channel (4 total).",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 4.61,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1446,7 +1929,17 @@
 			"variant_name": null,
 			"description": "C-channel input/drive gear (12T) with vertical screw hole. One per C-channel (4 total).",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 3.57,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1474,7 +1967,17 @@
 			"variant_name": null,
 			"description": "Output guide. 2 needed. Black.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 20.99,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1502,7 +2005,17 @@
 			"variant_name": null,
 			"description": "Funnel bracket, left. 2 funnel brackets total.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 28.75,
 			"support_grams": 4.9,
 			"support_used": true,
@@ -1530,7 +2043,17 @@
 			"variant_name": null,
 			"description": "Funnel bracket, right. 2 funnel brackets total.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 28.75,
 			"support_grams": 5.63,
 			"support_used": true,
@@ -1558,7 +2081,17 @@
 			"variant_name": null,
 			"description": "Door module (part of the chute bearing assembly).",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 20.13,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1586,7 +2119,17 @@
 			"variant_name": null,
 			"description": "Bearing holder, left.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 7.95,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1614,7 +2157,17 @@
 			"variant_name": null,
 			"description": "Bearing holder, right.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 7.98,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1642,7 +2195,17 @@
 			"variant_name": null,
 			"description": "MG995 servo adapter, servo side.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 4.85,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1670,7 +2233,17 @@
 			"variant_name": null,
 			"description": "MG995 servo adapter, flap side.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 5.25,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1698,7 +2271,17 @@
 			"variant_name": null,
 			"description": "MG995 servo bracket, lower arm.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 13.96,
 			"support_grams": 5.52,
 			"support_used": true,
@@ -1726,7 +2309,17 @@
 			"variant_name": null,
 			"description": "MG995 servo bracket, side arm.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 9.58,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1754,7 +2347,17 @@
 			"variant_name": null,
 			"description": "MG995 servo bracket, cover.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 6.0,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1782,7 +2385,17 @@
 			"variant_name": null,
 			"description": "MG995 servo bracket, housing.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 17.31,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1810,7 +2423,17 @@
 			"variant_name": null,
 			"description": "C-channel leg. 9 in the feeder.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 21.11,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1838,7 +2461,17 @@
 			"variant_name": null,
 			"description": "C-channel foot. 9 in the feeder.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 8.45,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1866,7 +2499,17 @@
 			"variant_name": null,
 			"description": "The chute door / flap. 1 per machine.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 46.85,
 			"support_grams": 3.54,
 			"support_used": true,
@@ -1894,7 +2537,17 @@
 			"variant_name": null,
 			"description": "C-channel leg extension. 9 in the feeder.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 15.47,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1922,7 +2575,17 @@
 			"variant_name": null,
 			"description": "Camera mount part 6. 2 per machine.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 4.28,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1950,7 +2613,17 @@
 			"variant_name": null,
 			"description": "Camera mount part 37. 2 per machine.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 19.14,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -1978,7 +2651,17 @@
 			"variant_name": null,
 			"description": "Camera mount part 37 (second). 2 per machine.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 18.34,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -2006,7 +2689,17 @@
 			"variant_name": null,
 			"description": "Rod-to-C-channel mount (Part 33). 2 per camera mount, 4 total.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 9.41,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -2034,7 +2727,17 @@
 			"variant_name": null,
 			"description": "C-channel camera & LED light insert. White.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 106.11,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -2052,6 +2755,104 @@
 			"render": "/renders/camera-led-insert.png"
 		},
 		{
+			"id": "camera-extension",
+			"name": "Camera extension",
+			"quantities": {
+				"classification-channel": 1
+			},
+			"assembly": "camera-extension",
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Camera extension tube for the classification channel. 1 needed.",
+			"version": "1",
+			"created_at": "2026-07-08",
+			"updated_at": "2026-07-08",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-07-08",
+					"message": "Initial version.",
+					"commit": null,
+					"onshape_doc": "https://cad.onshape.com/documents/249bded2198af476185014b6",
+					"onshape_version": "https://cad.onshape.com/documents/249bded2198af476185014b6/v/021402d3659fca34ef82486c/e/48c64d61f1276c46f515d6bd"
+				}
+			],
+			"attributes": [
+				{
+					"label": "Extension",
+					"value": "50 mm"
+				},
+				{
+					"label": "Camera",
+					"value": "Innomaker 4K Camera Module"
+				}
+			],
+			"grams": 28.6,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 4219,
+			"color": {
+				"fixed": "ash-gray"
+			},
+			"optional": false,
+			"onshape": null,
+			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
+			"layer_scope": "all",
+			"stl": "/stl/camera-extension.stl",
+			"render": "/renders/camera-extension.png"
+		},
+		{
+			"id": "camera-extension-mount",
+			"name": "Camera extension mount",
+			"quantities": {
+				"classification-channel": 1
+			},
+			"assembly": "camera-extension",
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Clamp/mount ring that fixes the camera to the extension. 1 needed.",
+			"version": "1",
+			"created_at": "2026-07-08",
+			"updated_at": "2026-07-08",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-07-08",
+					"message": "Initial version.",
+					"commit": null,
+					"onshape_doc": "https://cad.onshape.com/documents/249bded2198af476185014b6",
+					"onshape_version": "https://cad.onshape.com/documents/249bded2198af476185014b6/v/021402d3659fca34ef82486c/e/48c64d61f1276c46f515d6bd"
+				}
+			],
+			"attributes": [
+				{
+					"label": "Extension",
+					"value": "50 mm"
+				},
+				{
+					"label": "Camera",
+					"value": "Innomaker 4K Camera Module"
+				}
+			],
+			"grams": 7.58,
+			"support_grams": 0.0,
+			"support_used": false,
+			"print_seconds": 1344,
+			"color": {
+				"fixed": "ash-gray"
+			},
+			"optional": false,
+			"onshape": null,
+			"info": null,
+			"suspicious": false,
+			"suspicious_note": null,
+			"layer_scope": "all",
+			"stl": "/stl/camera-extension-mount.stl",
+			"render": "/renders/camera-extension-mount.png"
+		},
+		{
 			"id": "layer-connector-1",
 			"name": "Layer connector A",
 			"quantities": {
@@ -2063,7 +2864,17 @@
 			"variant_name": null,
 			"description": "Layer connector. 1 per layer + 1 per bottom interface.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 12.31,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -2092,7 +2903,17 @@
 			"variant_name": null,
 			"description": "Layer connector. 1 per layer + 1 per bottom interface.",
 			"version": "1",
-			"date_added": "2026-06-27",
+			"created_at": "2026-06-27",
+			"updated_at": "2026-06-27",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-27",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 12.3,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -2120,7 +2941,17 @@
 			"variant_name": null,
 			"description": "Support block for the chute stepper.",
 			"version": "1",
-			"date_added": "2026-07-03",
+			"created_at": "2026-07-03",
+			"updated_at": "2026-07-03",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-07-03",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 26.1,
 			"support_grams": 0.45,
 			"support_used": true,
@@ -2148,7 +2979,17 @@
 			"variant_name": "Third size",
 			"description": "Third size funnel. Per layer (choose size per layer).",
 			"version": "1",
-			"date_added": "2026-06-29",
+			"created_at": "2026-06-29",
+			"updated_at": "2026-06-29",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-29",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 216.27,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -2176,7 +3017,17 @@
 			"variant_name": "Half size",
 			"description": "Half size funnel. Per layer (choose size per layer).",
 			"version": "1",
-			"date_added": "2026-06-29",
+			"created_at": "2026-06-29",
+			"updated_at": "2026-06-29",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-29",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 158.23,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -2204,7 +3055,17 @@
 			"variant_name": "Half",
 			"description": "Bin (half, left). Half bins: 6 per layer of that size.",
 			"version": "1",
-			"date_added": "2026-06-29",
+			"created_at": "2026-06-29",
+			"updated_at": "2026-06-29",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-29",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 171.54,
 			"support_grams": 0.69,
 			"support_used": true,
@@ -2232,7 +3093,17 @@
 			"variant_name": "Half",
 			"description": "Bin (half, right). Half bins: 6 per layer of that size.",
 			"version": "1",
-			"date_added": "2026-06-29",
+			"created_at": "2026-06-29",
+			"updated_at": "2026-06-29",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-29",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 171.5,
 			"support_grams": 0.67,
 			"support_used": true,
@@ -2260,7 +3131,17 @@
 			"variant_name": "Third",
 			"description": "Bin (third, left). Third bins: 6 per layer of that size.",
 			"version": "1",
-			"date_added": "2026-06-29",
+			"created_at": "2026-06-29",
+			"updated_at": "2026-06-29",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-29",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 121.81,
 			"support_grams": 1.06,
 			"support_used": true,
@@ -2288,7 +3169,17 @@
 			"variant_name": "Third",
 			"description": "Bin (third, center). Third bins: 6 per layer of that size.",
 			"version": "1",
-			"date_added": "2026-06-29",
+			"created_at": "2026-06-29",
+			"updated_at": "2026-06-29",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-29",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 112.24,
 			"support_grams": 2.48,
 			"support_used": true,
@@ -2316,7 +3207,17 @@
 			"variant_name": "Third",
 			"description": "Bin (third, right-back). Third bins: 6 per layer of that size.",
 			"version": "1",
-			"date_added": "2026-06-29",
+			"created_at": "2026-06-29",
+			"updated_at": "2026-06-29",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-29",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 121.66,
 			"support_grams": 0.83,
 			"support_used": true,
@@ -2344,7 +3245,17 @@
 			"variant_name": null,
 			"description": "Chute bearing cover. 1 per machine.",
 			"version": "1",
-			"date_added": "2026-06-29",
+			"created_at": "2026-06-29",
+			"updated_at": "2026-06-29",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-29",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 6.47,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -2372,7 +3283,17 @@
 			"variant_name": null,
 			"description": "Chute bearing cover. 1 per machine.",
 			"version": "1",
-			"date_added": "2026-06-29",
+			"created_at": "2026-06-29",
+			"updated_at": "2026-06-29",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-06-29",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 5.9,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -2400,7 +3321,17 @@
 			"variant_name": null,
 			"description": "Back mount that holds the Meanwell 24V PSU.",
 			"version": "1",
-			"date_added": "2026-07-03",
+			"created_at": "2026-07-03",
+			"updated_at": "2026-07-03",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-07-03",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 55.74,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -2428,7 +3359,17 @@
 			"variant_name": null,
 			"description": "Connections plate for the Meanwell 24V PSU box.",
 			"version": "1",
-			"date_added": "2026-07-03",
+			"created_at": "2026-07-03",
+			"updated_at": "2026-07-03",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-07-03",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 101.9,
 			"support_grams": 0.0,
 			"support_used": false,
@@ -2456,7 +3397,17 @@
 			"variant_name": null,
 			"description": "Cap for the Meanwell 24V PSU box.",
 			"version": "1",
-			"date_added": "2026-07-03",
+			"created_at": "2026-07-03",
+			"updated_at": "2026-07-03",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-07-03",
+					"message": "Initial version.",
+					"commit": null
+				}
+			],
+			"attributes": [],
 			"grams": 60.81,
 			"support_grams": 0.0,
 			"support_used": false,

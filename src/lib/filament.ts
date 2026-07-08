@@ -28,12 +28,27 @@ export type Section = {
 export type ColorRoleDef = { id: string; name: string; default: string };
 export type Assembly = { id: string; name: string; description: string };
 
-/** A part's color is exactly one of these shapes. */
+/** A part's color is exactly one of these shapes. `by_section` lets a part that
+ *  lives in multiple sections resolve a different color per section. */
 export type ColorSpec =
 	| { role: string }
 	| { fixed: string }
 	| { split: { color: string; qty: number }[] }
+	| { by_section: Record<string, ColorSpec> }
 	| { any: true };
+
+/** One entry in a part archetype's version history. `commit` ties the version to
+ *  a real git commit (null = pending an upcoming clean commit). OnShape links live
+ *  at the version level: `onshape_doc` is the live document, `onshape_version` the
+ *  immutable OnShape version this STL was exported from. */
+export type PartVersion = {
+	version: string;
+	date: string;
+	message: string;
+	commit: string | null;
+	onshape_doc?: string | null;
+	onshape_version?: string | null;
+};
 
 export type Part = {
 	id: string;
@@ -44,7 +59,10 @@ export type Part = {
 	variant_name?: string | null;
 	description: string;
 	version: string;
-	date_added: string;
+	created_at: string;
+	updated_at: string;
+	versions?: PartVersion[]; // archetype history, newest last
+	attributes?: { label: string; value: string }[]; // variant characteristics shown in the app
 	grams: number; // total incl. any support
 	support_grams: number; // the support portion of `grams`
 	support_used: boolean;
@@ -72,7 +90,14 @@ export type Settings = {
 	support_threshold_deg: number;
 	density_g_cm3: number;
 	cost_per_kg: number;
+	commit_base_url?: string; // e.g. https://github.com/owner/repo/commit/
 };
+
+/** Full URL for a version's commit, or null when the commit isn't known yet. */
+export function commitUrl(commit: string | null | undefined): string | null {
+	const base = SETTINGS.commit_base_url;
+	return commit && base ? `${base}${commit}` : null;
+}
 
 export const SETTINGS = raw.settings as Settings;
 export const SECTIONS = raw.sections as Section[];
@@ -103,6 +128,16 @@ export function getAssembly(id: string | null): Assembly | undefined {
 	return id ? assemblyById.get(id) : undefined;
 }
 
+/** The part's current OnShape links, taken from its latest version (a part-level
+ *  `onshape` link is honored as a legacy document fallback). */
+export function partOnshape(part: Part): { doc: string | null; version: string | null } {
+	const v = part.versions?.[part.versions.length - 1];
+	return {
+		doc: v?.onshape_doc ?? part.onshape ?? null,
+		version: v?.onshape_version ?? null
+	};
+}
+
 /** Count of this part within one instance of a given category. */
 export function sectionQty(part: Part, sectionId: string): number {
 	return part.quantities[sectionId] ?? 0;
@@ -129,13 +164,24 @@ export function displayCount(
 	return sectionQty(part, sectionId) * effectiveMult(part, sectionId, layers);
 }
 
+/** Resolve a `by_section` color to the spec for one section (falls back to the
+ *  first section's spec when the section isn't listed / isn't given). */
+function resolveColor(c: ColorSpec, sectionId?: string): Exclude<ColorSpec, { by_section: unknown }> {
+	if ('by_section' in c) {
+		const sub = (sectionId && c.by_section[sectionId]) || Object.values(c.by_section)[0];
+		return resolveColor(sub, sectionId);
+	}
+	return c;
+}
+
 /** Per-color unit breakdown of `catQty` pieces of a part (1 category instance). */
 function colorUnits(
 	part: Part,
 	catQty: number,
-	roleColors: Record<string, string>
+	roleColors: Record<string, string>,
+	sectionId?: string
 ): { colorId: string | null; count: number }[] {
-	const c = part.color;
+	const c = resolveColor(part.color, sectionId);
 	if ('split' in c) return c.split.map((s) => ({ colorId: s.color, count: s.qty }));
 	if ('fixed' in c) return [{ colorId: c.fixed, count: catQty }];
 	if ('role' in c) return [{ colorId: roleColors[c.role] ?? null, count: catQty }];
@@ -144,7 +190,7 @@ function colorUnits(
 
 /** The part's primary resolved color id (for the 3D preview default). */
 export function primaryColorId(part: Part, roleColors: Record<string, string>): string | null {
-	const c = part.color;
+	const c = resolveColor(part.color);
 	if ('split' in c) return c.split[0]?.color ?? null;
 	if ('fixed' in c) return c.fixed;
 	if ('role' in c) return roleColors[c.role] ?? null;
@@ -157,7 +203,7 @@ export function partSwatches(
 	sectionId: string,
 	roleColors: Record<string, string>
 ): { color: BambuColor | null; qty: number }[] {
-	return colorUnits(part, sectionQty(part, sectionId), roleColors).map((u) => ({
+	return colorUnits(part, sectionQty(part, sectionId), roleColors, sectionId).map((u) => ({
 		color: u.colorId ? getBambuColor(u.colorId) : null,
 		qty: u.count
 	}));
@@ -221,7 +267,7 @@ export function buyList(
 		}
 		for (const [cat, qty] of Object.entries(part.quantities)) {
 			const mult = effectiveMult(part, cat, layers);
-			for (const u of colorUnits(part, qty, roleColors)) {
+			for (const u of colorUnits(part, qty, roleColors, cat)) {
 				const key = u.colorId ?? '__any__';
 				byColor.set(key, (byColor.get(key) ?? 0) + each * u.count * mult);
 			}
@@ -257,6 +303,14 @@ export function grams(n: number): string {
 }
 export function money(n: number): string {
 	return `$${n.toFixed(2)}`;
+}
+/** Format an ISO date (YYYY-MM-DD) as e.g. "Jul 8, 2026". Empty in -> "". */
+export function fmtDate(iso: string | undefined | null): string {
+	if (!iso) return '';
+	const [y, m, d] = iso.split('-').map(Number);
+	if (!y || !m || !d) return iso;
+	const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	return `${months[m - 1]} ${d}, ${y}`;
 }
 export function duration(sec: number): string {
 	const h = Math.floor(sec / 3600);

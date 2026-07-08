@@ -89,9 +89,39 @@ def lego_hex_map():
             for m in re.finditer(r"id:\s*'([^']+)'.*?hex:\s*'(#[0-9A-Fa-f]{6})'", txt)}
 
 
+def normalize_versions(part):
+    """Always return a versions list. If the manifest declares `versions`, pass it
+    through; otherwise synthesize a single entry from created_at/version so the app
+    can render history uniformly."""
+    vs = part.get("versions")
+    if vs:
+        return vs
+    date = part.get("created_at", part.get("date_added", ""))
+    return [{"version": part.get("version", "1"), "date": date,
+             "message": "Initial version.", "commit": None}]
+
+
+def git_commit_base_url():
+    """`https://github.com/owner/repo/commit/` derived from origin, else None."""
+    try:
+        url = subprocess.run(["git", "-C", REPO, "config", "--get", "remote.origin.url"],
+                             capture_output=True, text=True).stdout.strip()
+    except Exception:
+        return None
+    if not url:
+        return None
+    if url.startswith("git@github.com:"):
+        url = "https://github.com/" + url[len("git@github.com:"):]
+    if url.endswith(".git"):
+        url = url[:-4]
+    return url.rstrip("/") + "/commit/" if "github.com" in url else None
+
+
 def default_hex(part, role_defaults, hexmap):
     """The part's default-color hex (role default / fixed / first split / gray)."""
     c = part.get("color", {})
+    if "by_section" in c:                       # resolve to the first section's spec
+        c = next(iter(c["by_section"].values()), {})
     cid = None
     if "split" in c:
         cid = c["split"][0]["color"]
@@ -397,7 +427,10 @@ def main():
             "variant_name": p.get("variant_name"),
             "description": p.get("description", ""),
             "version": p.get("version", ""),
-            "date_added": p.get("date_added", ""),
+            "created_at": p.get("created_at", p.get("date_added", "")),
+            "updated_at": p.get("updated_at", p.get("created_at", p.get("date_added", ""))),
+            "versions": normalize_versions(p),
+            "attributes": p.get("attributes", []),
             "grams": info["grams"],
             "support_grams": info.get("support_grams", 0.0),
             "support_used": info["support_used"],
@@ -422,6 +455,7 @@ def main():
             "support_enabled": False, "support_type": SUPPORT_TYPE,
             "support_threshold_deg": int(SUPPORT_THRESHOLD),
             "density_g_cm3": density, "cost_per_kg": cost_per_kg,
+            "commit_base_url": git_commit_base_url(),
         },
         "sections": manifest["sections"],
         "color_roles": manifest["color_roles"],
