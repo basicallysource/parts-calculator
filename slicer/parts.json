@@ -27,11 +27,6 @@
       "scales_with_layers": true
     },
     {
-      "id": "bins",
-      "name": "Bins",
-      "scales_with_layers": true
-    },
-    {
       "id": "layer",
       "name": "Distribution frame",
       "scales_with_layers": true
@@ -40,6 +35,11 @@
       "id": "lazy-susan",
       "name": "Bottom lazy Susan",
       "scales_with_layers": false
+    },
+    {
+      "id": "bins",
+      "name": "Bins",
+      "scales_with_layers": true
     },
     {
       "id": "electronics",
@@ -196,7 +196,7 @@
         "role": "feeder"
       },
       "optional": false,
-      "support": false,
+      "support": true,
       "onshape": "https://cad.onshape.com/documents/60aa51fc61d18f2155b99910/w/b315cf3f14be460d78b1caa2/e/66109ce96b305bf318354f93"
     },
     {
@@ -216,7 +216,7 @@
         "fixed": "ivory-white"
       },
       "optional": false,
-      "support": false
+      "support": true
     },
     {
       "id": "light-post-cap-adapter",
@@ -345,7 +345,7 @@
       "created_at": "2026-06-27",
       "updated_at": "2026-06-27",
       "quantities": {
-        "bins": 6
+        "layer": 6
       },
       "assembly": null,
       "stl": "parts/bins/bin-retainer-left.stl",
@@ -364,7 +364,7 @@
       "created_at": "2026-06-27",
       "updated_at": "2026-06-27",
       "quantities": {
-        "bins": 6
+        "layer": 6
       },
       "assembly": null,
       "stl": "parts/bins/bin-retainer-right.stl",
@@ -724,7 +724,7 @@
         "fixed": "ivory-white"
       },
       "optional": false,
-      "support": false,
+      "support": true,
       "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/63d9095d8167813360e7753c/e/279fa8866ec0d8c56c8226cf"
     },
     {
@@ -744,7 +744,7 @@
         "fixed": "ivory-white"
       },
       "optional": false,
-      "support": false,
+      "support": true,
       "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/63d9095d8167813360e7753c/e/279fa8866ec0d8c56c8226cf",
       "suspicious": true,
       "suspicious_note": "The M3 nut does not fit into the hole."
