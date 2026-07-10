@@ -7,7 +7,8 @@
 
 	const tabs = [
 		{ href: '/', label: '3D printed parts' },
-		{ href: '/framing', label: 'Aluminium framing' }
+		{ href: '/framing', label: 'Aluminium framing' },
+		{ href: '/lasercut', label: 'Laser cut parts' }
 	];
 
 	const isActive = (href: string) =>
