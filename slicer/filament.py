@@ -100,8 +100,14 @@ def normalize_versions(part):
     if vs:
         return vs
     date = part.get("created_at", part.get("date_added", ""))
-    return [{"version": part.get("version", "1"), "date": date,
-             "message": "Initial version.", "commit": None}]
+    entry = {"version": part.get("version", "1"), "date": date,
+             "message": "Initial version.", "commit": None}
+    # a single-version part can still carry OnShape links at the part level
+    if part.get("onshape_version"):
+        entry["onshape_version"] = part["onshape_version"]
+    if part.get("onshape_doc"):
+        entry["onshape_doc"] = part["onshape_doc"]
+    return [entry]
 
 
 def git_show_bytes(commit, repo_rel):
@@ -495,6 +501,9 @@ def main():
             "grams": info["grams"],
             "support_grams": info.get("support_grams", 0.0),
             "support_used": info["support_used"],
+            # true only when the part *opts into* support in the manifest; the slicer
+            # may force support on other parts just to slice, but that isn't surfaced.
+            "support_intentional": bool(p.get("support", False)),
             "print_seconds": info["print_seconds"],
             "color": p.get("color", {"any": True}),
             "optional": p.get("optional", False),
