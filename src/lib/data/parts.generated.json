@@ -39,11 +39,6 @@
 			"scales_with_layers": true
 		},
 		{
-			"id": "bins",
-			"name": "Bins",
-			"scales_with_layers": true
-		},
-		{
 			"id": "layer",
 			"name": "Distribution frame",
 			"scales_with_layers": true
@@ -52,6 +47,11 @@
 			"id": "lazy-susan",
 			"name": "Bottom lazy Susan",
 			"scales_with_layers": false
+		},
+		{
+			"id": "bins",
+			"name": "Bins",
+			"scales_with_layers": true
 		},
 		{
 			"id": "electronics",
@@ -384,15 +384,15 @@
 					"commit": null,
 					"stl": "/stl/light-post.stl",
 					"render": "/renders/light-post.png",
-					"grams": 12.12
+					"grams": 13.16
 				}
 			],
 			"attributes": [],
-			"grams": 12.12,
-			"support_grams": 0.0,
-			"support_used": false,
-			"support_intentional": false,
-			"print_seconds": 4295,
+			"grams": 13.16,
+			"support_grams": 2.47,
+			"support_used": true,
+			"support_intentional": true,
+			"print_seconds": 5172,
 			"color": {
 				"role": "feeder"
 			},
@@ -435,7 +435,7 @@
 			"grams": 21.98,
 			"support_grams": 4.62,
 			"support_used": true,
-			"support_intentional": false,
+			"support_intentional": true,
 			"print_seconds": 3240,
 			"color": {
 				"fixed": "ivory-white"
@@ -719,7 +719,7 @@
 			"id": "bin-retainer-left",
 			"name": "Bin retainer (left)",
 			"quantities": {
-				"bins": 6
+				"layer": 6
 			},
 			"assembly": null,
 			"variant_group": null,
@@ -763,7 +763,7 @@
 			"id": "bin-retainer-right",
 			"name": "Bin retainer (right)",
 			"quantities": {
-				"bins": 6
+				"layer": 6
 			},
 			"assembly": null,
 			"variant_group": null,
@@ -1509,15 +1509,15 @@
 					"commit": null,
 					"stl": "/stl/cable-clamp-inner.stl",
 					"render": "/renders/cable-clamp-inner.png",
-					"grams": 5.57
+					"grams": 6.45
 				}
 			],
 			"attributes": [],
-			"grams": 5.57,
-			"support_grams": 0.0,
-			"support_used": false,
-			"support_intentional": false,
-			"print_seconds": 1787,
+			"grams": 6.45,
+			"support_grams": 0.92,
+			"support_used": true,
+			"support_intentional": true,
+			"print_seconds": 1948,
 			"color": {
 				"fixed": "ivory-white"
 			},
@@ -1553,15 +1553,15 @@
 					"commit": null,
 					"stl": "/stl/cable-clamp-outer.stl",
 					"render": "/renders/cable-clamp-outer.png",
-					"grams": 13.38
+					"grams": 19.76
 				}
 			],
 			"attributes": [],
-			"grams": 13.38,
-			"support_grams": 0.0,
-			"support_used": false,
-			"support_intentional": false,
-			"print_seconds": 2691,
+			"grams": 19.76,
+			"support_grams": 6.89,
+			"support_used": true,
+			"support_intentional": true,
+			"print_seconds": 3551,
 			"color": {
 				"fixed": "ivory-white"
 			},
