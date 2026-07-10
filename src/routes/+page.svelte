@@ -45,8 +45,11 @@
 	const defaultRoleColors = () => Object.fromEntries(COLOR_ROLES.map((r) => [r.id, r.default]));
 	const defaultSelected = () =>
 		Object.fromEntries(PARTS.map((p) => [p.id, !('bins' in p.quantities)]));
+	// only parts that *opt into* support (support_intentional) expose the toggle; they
+	// default to counting their support. Parts the slicer auto-forced support on are
+	// left out entirely — no toggle, no support in the totals.
 	const defaultInclSupport = () =>
-		Object.fromEntries(PARTS.filter((p) => p.support_grams > 0).map((p) => [p.id, p.id === 'stator']));
+		Object.fromEntries(PARTS.filter((p) => p.support_intentional).map((p) => [p.id, true]));
 
 	// per-layer size list is the shared source of truth (also used by the framing tab)
 	const funnelSizes = $derived(layerStore.sizes);
@@ -70,6 +73,8 @@
 	}
 	// include each part's support material in totals — default on for the stator only
 	let inclSupport = $state<Record<string, boolean>>(defaultInclSupport());
+	// support counts only for parts that intentionally opt into it, never auto-forced ones
+	const supportOn = (id: string): boolean => !!partsById.get(id)?.support_intentional && !!inclSupport[id];
 
 	// ---- persistence: load saved config at boot, save on change ----------------
 	let configLoaded = $state(false);
@@ -137,7 +142,7 @@
 	}
 
 	const buy = $derived(
-		buyList(layers, roleColors, isIncluded, (id) => !!inclSupport[id], variantCount, surplus)
+		buyList(layers, roleColors, isIncluded, supportOn, variantCount, surplus)
 	);
 
 	// theoretical total print time: every included part printed alone, sequentially,
@@ -158,7 +163,7 @@
 			const selectedGrams = parts
 				.filter((p) => isIncluded(p.id))
 				.reduce(
-					(sum, p) => sum + effectiveGrams(p, !!inclSupport[p.id]) * displayCount(p, s.id, layers, variantCount),
+					(sum, p) => sum + effectiveGrams(p, supportOn(p.id)) * displayCount(p, s.id, layers, variantCount),
 					0
 				);
 			return { section: s, parts, mult, selectedGrams };
@@ -337,7 +342,7 @@
 	{#snippet partRow(p: Part, sectionId: string, mult: number, indent: boolean)}
 		{@const n = displayCount(p, sectionId, layers, variantCount)}
 		{@const sw = partSwatches(p, sectionId, roleColors)}
-		{@const eff = effectiveGrams(p, !!inclSupport[p.id])}
+		{@const eff = effectiveGrams(p, supportOn(p.id))}
 		{@const os = partOnshape(p)}
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions a11y_click_events_have_key_events -->
 		<tr class="group/row cursor-pointer border-b border-border align-middle transition-colors last:border-b-0 hover:bg-[var(--color-bg)]" onclick={(e) => rowClickToOpen(e, p)} title="View {p.name} details">
@@ -363,7 +368,7 @@
 				<span class="flex flex-wrap items-center gap-2 font-medium text-text">
 					{p.name}
 					{#if p.optional}<Badge variant="warning">Optional</Badge>{/if}
-					{#if p.support_used}<Badge variant="info" title="Sliced with support material — included in this part's grams">Supports</Badge>{/if}
+					{#if p.support_intentional}<Badge variant="info" title="Printed with support material — included in this part's grams">Supports</Badge>{/if}
 						{#if platesForPart(p.id).length}<button type="button" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" onclick={() => openPlatesModal(p.id)} title="Show plates with this part"><Layers3 size={11} /> {platesForPart(p.id).length} plate{platesForPart(p.id).length === 1 ? '' : 's'}</button>{/if}{#if os.version}<a href={os.version} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" title="Open the exact OnShape version this STL came from">OnShape <ExternalLink size={11} /></a>{/if}{#if p.info}<Popover width="w-64" label="About {p.name}" text={p.info} />{/if}{#if p.suspicious}<Popover width="w-72" label="Why {p.name} is flagged">{#snippet trigger({ toggle, open })}<Badge as="button" variant="warning" onclick={toggle} aria-expanded={open}><AlertTriangle size={11} /> Suspect</Badge>{/snippet}<b class="text-text">Subject to change.</b> This part may still change or have an issue. Unless it's critical, hold off printing it until this warning clears.{#if p.suspicious_note}<span class="mt-2 block border-t border-border pt-2 text-text">{p.suspicious_note}</span>{/if}</Popover>{/if}{#if p.low_tolerance}<Popover width="w-72" label="Fit notes for {p.name}">{#snippet trigger({ toggle, open })}<Badge as="button" variant="warning" onclick={toggle} aria-expanded={open}><AlertTriangle size={11} /> Tight fit</Badge>{/snippet}<b class="text-text">Low tolerance.</b> This part has little room for dimensional error, so a test print is worth doing before you commit to the full set.{#if p.low_tolerance_note}<span class="mt-2 block border-t border-border pt-2 text-text">{p.low_tolerance_note}</span>{/if}</Popover>{/if}{#if p.attributes?.length}{#each p.attributes as a}<span class="border border-border bg-[var(--color-bg)] px-1 text-xs text-text-muted" title={a.label}>{a.label}: <span class="text-text">{a.value}</span></span>{/each}{/if}{#if p.versions && p.versions.length > 1}<Popover width="w-80" label="Version history for {p.name}">{#snippet trigger({ toggle, open })}<button type="button" onclick={toggle} aria-expanded={open} class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" title="Version history"><History size={11} /> v{p.version} · {p.versions?.length ?? 0} versions</button>{/snippet}<b class="text-text">Version history</b><ul class="mt-1 space-y-2">{#each [...(p.versions ?? [])].reverse() as v}<li class="border-t border-border pt-2 first:border-t-0 first:pt-0"><div class="flex items-center gap-1.5 text-text"><b>v{v.version}</b><span class="text-text-muted">· {fmtDate(v.date)}</span>{#if commitUrl(v.commit)}<a href={commitUrl(v.commit)} target="_blank" rel="noopener" class="ml-auto inline-flex items-center gap-0.5 text-primary hover:text-primary-hover">{v.commit} <ExternalLink size={10} /></a>{:else}<span class="ml-auto italic text-text-muted/70">uncommitted</span>{/if}</div><div class="mt-0.5">{v.message}</div>{#if v.onshape_version}<div class="mt-1"><a href={v.onshape_version} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 text-primary hover:text-primary-hover">OnShape <ExternalLink size={10} /></a></div>{/if}</li>{/each}</ul></Popover>{/if}
 				</span>
 				<span class="flex flex-wrap items-center gap-1.5 text-xs text-text-muted">
@@ -376,7 +381,7 @@
 					· {duration(p.print_seconds)}
 					{#if p.updated_at}<span title="Part last updated {fmtDate(p.updated_at)}">· updated {fmtDate(p.updated_at)}</span>{/if}
 				</span>
-				{#if p.support_grams > 0}
+				{#if p.support_intentional}
 					<label class="mt-0.5 flex w-fit cursor-pointer items-center gap-1.5 text-xs text-text-muted">
 						<input class="setup-toggle h-3.5 w-3.5" type="checkbox" bind:checked={inclSupport[p.id]} />
 						total {p.grams.toFixed(0)} g · support {p.support_grams.toFixed(0)} g
@@ -555,7 +560,7 @@
 	</footer>
 </div>
 
-<Modal bind:open={viewerOpen} title={viewerPart?.name}>
+<Modal bind:open={viewerOpen} title={viewerPart?.name} bodyScroll={false}>
 	{#if viewerPart}
 		{@const vers = [...(viewerPart.versions ?? [])].reverse()}
 		{@const active = viewerVersion ?? viewerPart.versions?.[viewerPart.versions.length - 1] ?? null}
@@ -564,9 +569,13 @@
 		{@const os = partOnshape(viewerPart)}
 		{@const pid = viewerPart.id}
 		{@const plates = platesForPart(pid)}
-		{#key activeStl}
-			<StlViewer url={activeStl} color={getBambuColor(viewerColorId).hex} />
-		{/key}
+		<div class="shrink-0">
+			{#key activeStl}
+				<StlViewer url={activeStl} color={getBambuColor(viewerColorId).hex} />
+			{/key}
+		</div>
+		<!-- details scroll independently of the pinned 3D viewer (which owns wheel = zoom) -->
+		<div class="min-h-0 flex-1 overflow-y-auto">
 		<div class="grid gap-4 px-4 py-3 sm:grid-cols-[1fr_auto]">
 			<div class="min-w-0 space-y-2 text-sm">
 				{#if viewerPart.description}<p class="text-text-muted">{viewerPart.description}</p>{/if}
@@ -642,6 +651,7 @@
 				{/if}
 			</div>
 		{/if}
+		</div>
 	{/if}
 </Modal>
 

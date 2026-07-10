@@ -70,7 +70,8 @@ export type Part = {
 	attributes?: { label: string; value: string }[]; // variant characteristics shown in the app
 	grams: number; // total incl. any support
 	support_grams: number; // the support portion of `grams`
-	support_used: boolean;
+	support_used: boolean; // slicer used support to slice this (may be auto-forced)
+	support_intentional?: boolean; // the part *opts into* support in the manifest (vs. auto-forced)
 	print_seconds: number;
 	color: ColorSpec;
 	optional: boolean;

@@ -616,7 +616,8 @@
           "version": "2",
           "date": "2026-07-08",
           "message": "Reshaped: now 35 mm tall (was 33 mm), with rib attachments.",
-          "commit": "f1be906"
+          "commit": "f1be906",
+          "onshape_version": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/v/3b8fafc8cab54b09332e14d2/e/8f693a0bd7ce7d62c0c00291"
         }
       ],
       "quantities": {
@@ -649,7 +650,8 @@
         "role": "frame"
       },
       "optional": false,
-      "support": false
+      "support": false,
+      "onshape_version": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/v/3b8fafc8cab54b09332e14d2/e/8f693a0bd7ce7d62c0c00291"
     },
     {
       "id": "interface-rib-switch",
@@ -668,7 +670,8 @@
         "role": "frame"
       },
       "optional": false,
-      "support": false
+      "support": false,
+      "onshape_version": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/v/3b8fafc8cab54b09332e14d2/e/8f693a0bd7ce7d62c0c00291"
     },
     {
       "id": "interface-big-spacer",
@@ -689,7 +692,8 @@
           "version": "2",
           "date": "2026-07-08",
           "message": "Reshaped: now 1 mm thick (was 3 mm).",
-          "commit": "f1be906"
+          "commit": "f1be906",
+          "onshape_version": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/v/3b8fafc8cab54b09332e14d2/e/8f693a0bd7ce7d62c0c00291"
         }
       ],
       "quantities": {

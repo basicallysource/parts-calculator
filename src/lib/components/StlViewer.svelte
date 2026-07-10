@@ -95,7 +95,7 @@
 	});
 </script>
 
-<div class="relative h-[60vh] w-full bg-[var(--color-bg)]">
+<div class="relative h-[48vh] w-full bg-[var(--color-bg)]">
 	<div bind:this={host} class="h-full w-full"></div>
 	{#if status !== 'ready'}
 		<div class="absolute inset-0 flex items-center justify-center text-sm text-text-muted">

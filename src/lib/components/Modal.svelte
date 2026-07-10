@@ -5,8 +5,9 @@
 	let {
 		open = $bindable(false),
 		title,
+		bodyScroll = true,
 		children
-	}: { open?: boolean; title?: string; children: Snippet } = $props();
+	}: { open?: boolean; title?: string; bodyScroll?: boolean; children: Snippet } = $props();
 
 	function onKey(e: KeyboardEvent) {
 		if (e.key === 'Escape') open = false;
@@ -40,7 +41,11 @@
 					<X size={16} />
 				</button>
 			</div>
-			<div class="setup-card-body min-h-0 flex-1 overflow-auto">
+			<div
+				class="setup-card-body min-h-0 flex-1 {bodyScroll
+					? 'overflow-auto'
+					: 'flex flex-col overflow-hidden'}"
+			>
 				{@render children()}
 			</div>
 		</div>
