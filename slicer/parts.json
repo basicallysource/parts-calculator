@@ -427,7 +427,7 @@
       "assembly": null,
       "stl": "parts/lazy-susan/ls-mount-to-chute.stl",
       "color": {
-        "fixed": "ivory-white"
+        "role": "chute-core"
       },
       "optional": false,
       "support": false
@@ -721,7 +721,7 @@
       "assembly": "cable-clamp",
       "stl": "parts/interface/cable-clamp-inner.stl",
       "color": {
-        "fixed": "ivory-white"
+        "role": "chute-core"
       },
       "optional": false,
       "support": true,
@@ -741,7 +741,7 @@
       "assembly": "cable-clamp",
       "stl": "parts/interface/cable-clamp-outer.stl",
       "color": {
-        "fixed": "ivory-white"
+        "role": "chute-core"
       },
       "optional": false,
       "support": true,

@@ -922,7 +922,7 @@
 			"support_intentional": false,
 			"print_seconds": 18078,
 			"color": {
-				"fixed": "ivory-white"
+				"role": "chute-core"
 			},
 			"optional": false,
 			"onshape": null,
@@ -1519,7 +1519,7 @@
 			"support_intentional": true,
 			"print_seconds": 1948,
 			"color": {
-				"fixed": "ivory-white"
+				"role": "chute-core"
 			},
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/63d9095d8167813360e7753c/e/279fa8866ec0d8c56c8226cf",
@@ -1563,7 +1563,7 @@
 			"support_intentional": true,
 			"print_seconds": 3551,
 			"color": {
-				"fixed": "ivory-white"
+				"role": "chute-core"
 			},
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/63d9095d8167813360e7753c/e/279fa8866ec0d8c56c8226cf",
