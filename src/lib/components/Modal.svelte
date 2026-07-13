@@ -6,8 +6,15 @@
 		open = $bindable(false),
 		title,
 		bodyScroll = true,
+		maxW = 'max-w-3xl',
 		children
-	}: { open?: boolean; title?: string; bodyScroll?: boolean; children: Snippet } = $props();
+	}: {
+		open?: boolean;
+		title?: string;
+		bodyScroll?: boolean;
+		maxW?: string;
+		children: Snippet;
+	} = $props();
 
 	function onKey(e: KeyboardEvent) {
 		if (e.key === 'Escape') open = false;
@@ -24,7 +31,7 @@
 		role="presentation"
 	>
 		<div
-			class="setup-card-shell flex max-h-[90vh] w-full max-w-3xl flex-col border"
+			class="setup-card-shell flex max-h-[90vh] w-full {maxW} flex-col border"
 			onclick={(e) => e.stopPropagation()}
 			onkeydown={() => {}}
 			role="dialog"
