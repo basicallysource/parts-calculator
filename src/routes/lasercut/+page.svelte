@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ExternalLink, Hammer, Printer, Zap } from 'lucide-svelte';
+	import { Box, ExternalLink, Hammer, Zap } from 'lucide-svelte';
 	import DownloadButton from '$lib/components/DownloadButton.svelte';
 	import Modal from '$lib/components/Modal.svelte';
 	import HandCutTopPlateGuide from '$lib/components/HandCutTopPlateGuide.svelte';
@@ -73,7 +73,7 @@
 									class="inline-flex cursor-not-allowed items-center gap-1 border-b-2 border-transparent px-2.5 py-1.5 text-xs font-semibold text-text-muted opacity-40"
 									title="Not ready"
 								>
-									<Printer size={12} /> Printed
+									<Box size={12} /> 3D Printed
 								</span>
 							{/if}
 						</div>
