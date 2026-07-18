@@ -9,6 +9,7 @@ on:
     branches: [main]
     paths:
       - 'slicer/parts/**'
+      - 'slicer/images/**'
       - 'static/stl/versions/**'
       - 'static/plates/**'
       - 'scripts/sync_bucket.py'
