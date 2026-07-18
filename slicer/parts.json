@@ -2508,7 +2508,7 @@
       "cots": {
         "type": "cable"
       },
-      "name": "IDC ribbon cable, 2x8 (16-pin), 2.54mm pitch - 1m to 1.5m length",
+      "name": "IDC ribbon cable, 16-pin (2×8), 1 m",
       "category": "Electronics",
       "description": "Cable from distribution board to chute",
       "created_at": "2026-07-18",
@@ -2516,20 +2516,38 @@
       "sheet_qty": {
         "per_machine": 1
       },
-      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/74cf23b456b9fe16a238498c06c429730c3253046fc5d5991995ad526ce7b94f.jpg",
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/69b3da40ac51375f2b998afe1fec97e5faad1adfb0cd9b0a1fbce205a76f9179.jpg",
       "sourcing": {
         "vendors": [
           {
             "region": "US",
             "vendor": "Amazon",
-            "url": "https://a.co/d/0cCwQhmh",
+            "url": "https://www.amazon.com/dp/B07S2W4N9T",
             "price": 9.99,
             "pack_qty": 1,
-            "as_of": "2026-04-16",
-            "affiliate_url": "https://a.co/d/0cCwQhmh?tag=sorterv2-20"
+            "as_of": "2026-07-18",
+            "affiliate_url": "https://www.amazon.com/dp/B07S2W4N9T?tag=sorterv2-20"
           }
         ]
-      }
+      },
+      "attributes": [
+        {
+          "label": "Pins",
+          "value": "16 (2×8), FC to FC, A-type"
+        },
+        {
+          "label": "Pitch",
+          "value": "2.54 mm"
+        },
+        {
+          "label": "Length",
+          "value": "1 m"
+        },
+        {
+          "label": "Brand",
+          "value": "uxcell"
+        }
+      ]
     },
     {
       "id": "psu-24v-350w",
@@ -2773,7 +2791,7 @@
       "cots": {
         "type": "cable"
       },
-      "name": "IDC ribbon cable, 2x8 (16-pin), 2.54mm pitch - >250mm length",
+      "name": "IDC ribbon cable, 16-pin (2×8), 30 cm",
       "category": "Per layer",
       "description": "Cable between layer and layer below",
       "created_at": "2026-07-18",
@@ -2787,14 +2805,32 @@
           {
             "region": "US",
             "vendor": "Amazon",
-            "url": "https://www.amazon.com/Antrader-16-Pin-Connector-Ribbon-Sockets/dp/B07FZWH9S6",
+            "url": "https://www.amazon.com/dp/B07FZWH9S6",
             "price": 7.99,
             "pack_qty": 6,
-            "as_of": "2026-04-16",
-            "affiliate_url": "https://www.amazon.com/Antrader-16-Pin-Connector-Ribbon-Sockets/dp/B07FZWH9S6?tag=sorterv2-20"
+            "as_of": "2026-07-18",
+            "affiliate_url": "https://www.amazon.com/dp/B07FZWH9S6?tag=sorterv2-20"
           }
         ]
-      }
+      },
+      "attributes": [
+        {
+          "label": "Pins",
+          "value": "16 (2×8), female-to-female FC"
+        },
+        {
+          "label": "Pitch",
+          "value": "2.54 mm"
+        },
+        {
+          "label": "Length",
+          "value": "30 cm"
+        },
+        {
+          "label": "Brand",
+          "value": "Antrader"
+        }
+      ]
     }
   ],
   "assemblies": [
