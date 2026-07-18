@@ -1915,19 +1915,6 @@
       }
     },
     {
-      "id": "cam-classification-bottom",
-      "kind": "cots",
-      "cots": {
-        "type": "camera"
-      },
-      "name": "Classification bottom camera (TBD)",
-      "category": "Cameras",
-      "description": "Classification bottom camera",
-      "note": "Not locked in or being used on any of the dev machines right now",
-      "created_at": "2026-07-18",
-      "updated_at": "2026-07-18"
-    },
-    {
       "id": "cam-ov9732",
       "kind": "cots",
       "cots": {
@@ -2366,7 +2353,6 @@
       "name": "Powered USB Hub - 24v - 4 ports",
       "category": "Computer",
       "description": "Powered USB Hub(s) for webcams and Picos (see note)",
-      "note": "Can we use unpowered hub? is this reliable? if so then we can get something with 7 ports for less money. additionally if you want to just plug two things in, there are cheaper usb hubs with their own wall wart: https://www.amazon.com/dp/B07V6MXF3C",
       "created_at": "2026-07-18",
       "updated_at": "2026-07-18",
       "sheet_qty": {
@@ -2426,60 +2412,6 @@
       }
     },
     {
-      "id": "cable-usb-c-1m",
-      "kind": "cots",
-      "cots": {
-        "type": "cable"
-      },
-      "name": "USB C Data Cable - >=1m",
-      "category": "Computer",
-      "description": "Connect classification chamber camera to host (note)",
-      "note": "I'm almost sure the one that comes with the IMX 4k camera module is not long enough but I can't find it anymore. Need double check",
-      "created_at": "2026-07-18",
-      "updated_at": "2026-07-18",
-      "sheet_qty": {
-        "per_machine": 1
-      }
-    },
-    {
-      "id": "drv-pca9685",
-      "kind": "cots",
-      "cots": {
-        "type": "driver-board"
-      },
-      "name": "PCA 16 Channel 12-Bit PWM Servo Motor Driver IIC Module",
-      "category": "Electronics",
-      "description": "Driver for the servos (Not needed for Basically Board v1.0 or newer.)",
-      "note": "***VERY IMPORTANT*** Not needed with latest Basically Board v1.0 or newer. For older boards, modifications to the PCA board are necessary. See: https://docs.google.com/document/d/16lYSzO20PJOO-aiw8lv3WWaXwBrEL7mdCXNbYGW2aeQ/edit?tab=t.0",
-      "created_at": "2026-07-18",
-      "updated_at": "2026-07-18",
-      "sheet_qty": {
-        "per_machine": 1
-      },
-      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/68892aab4352a861a9fd8d24d2de46f315a3d21e555e957fa7e521af074d7d2c.jpg",
-      "sourcing": {
-        "vendors": [
-          {
-            "region": "US",
-            "vendor": "Amazon",
-            "url": "https://www.amazon.com/dp/B07BRS249H",
-            "price": 13.99,
-            "pack_qty": 2,
-            "as_of": "2026-04-16",
-            "affiliate_url": "https://www.amazon.com/dp/B07BRS249H?tag=sorterv2-20"
-          },
-          {
-            "region": "CN",
-            "vendor": "AliExpress",
-            "url": "https://www.aliexpress.com/item/1005005201765346.html",
-            "price": 3.54,
-            "currency": "EUR",
-            "as_of": "2026-04-25"
-          }
-        ]
-      }
-    },
-    {
       "id": "drv-tmc2209",
       "kind": "cots",
       "cots": {
@@ -2525,7 +2457,6 @@
       "name": "Raspberry Pi Pico",
       "category": "Electronics",
       "description": "Embedded MCUs for controlling motors (Only 1 needed for Basically Board v1.0 or newer.)",
-      "note": "Possibly only need one. Will know by May",
       "created_at": "2026-07-18",
       "updated_at": "2026-07-18",
       "sheet_qty": {
@@ -2646,66 +2577,13 @@
       "updated_at": "2026-07-18"
     },
     {
-      "id": "wire-leds",
-      "kind": "cots",
-      "cots": {
-        "type": "wire"
-      },
-      "name": "Wire for LEDs (TBD)",
-      "category": "Electronics",
-      "description": "Wire for LEDs",
-      "created_at": "2026-07-18",
-      "updated_at": "2026-07-18"
-    },
-    {
-      "id": "conn-jst-vh-2pin",
-      "kind": "cots",
-      "cots": {
-        "type": "connector"
-      },
-      "name": "JST VH 3.96 mm Pitch 2 Pin",
-      "category": "Connectors & terminals",
-      "description": "Connect PSU and LEDs to main board",
-      "created_at": "2026-07-18",
-      "updated_at": "2026-07-18",
-      "sheet_qty": {
-        "per_machine": 6
-      },
-      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/1ba539c2ef6748e20d2ca6df6ec64019c372084c70946d90afe6ade14526d59e.jpg",
-      "sourcing": {
-        "vendors": [
-          {
-            "region": "US",
-            "vendor": "Amazon",
-            "url": "https://www.amazon.com/dp/B089QRPTYS",
-            "price": 10.99,
-            "pack_qty": 50,
-            "as_of": "2026-04-16",
-            "affiliate_url": "https://www.amazon.com/dp/B089QRPTYS?tag=sorterv2-20"
-          }
-        ]
-      }
-    },
-    {
-      "id": "conn-dupont-endstop",
-      "kind": "cots",
-      "cots": {
-        "type": "connector"
-      },
-      "name": "Dupont connector or pre-crimped wire",
-      "category": "Connectors & terminals",
-      "description": "Wire mechanical endstop",
-      "created_at": "2026-07-18",
-      "updated_at": "2026-07-18"
-    },
-    {
       "id": "standoff-m3-10mm",
       "kind": "cots",
       "cots": {
         "type": "standoff"
       },
       "name": "Standoff - M3 - 10mm",
-      "category": "Connectors & terminals",
+      "category": "Electronics",
       "description": "Mount main board",
       "created_at": "2026-07-18",
       "updated_at": "2026-07-18",
@@ -2752,44 +2630,6 @@
             "pack_qty": 1,
             "as_of": "2026-04-16",
             "affiliate_url": "https://amzn.to/41fFCjF?tag=sorterv2-20"
-          }
-        ]
-      }
-    },
-    {
-      "id": "endstop-optical",
-      "kind": "cots",
-      "cots": {
-        "type": "endstop"
-      },
-      "name": "Optical Endstop, \"Optical Limit Switch Endstop with Cable for Ramps\"",
-      "category": "Endstops",
-      "description": "Homing sensor for carousel",
-      "note": "Needs new US source",
-      "created_at": "2026-07-18",
-      "updated_at": "2026-07-18",
-      "sheet_qty": {
-        "per_machine": 1
-      },
-      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/2c38bafc6b6b364e14504493e323646b416211eebfff1c627b11e1b422717982.jpg",
-      "sourcing": {
-        "vendors": [
-          {
-            "region": "US",
-            "vendor": "Amazon",
-            "url": "https://www.amazon.com/dp/B0719K9Z9R",
-            "price": 8.99,
-            "pack_qty": 6,
-            "as_of": "2026-03-31",
-            "affiliate_url": "https://www.amazon.com/dp/B0719K9Z9R?tag=sorterv2-20"
-          },
-          {
-            "region": "CN",
-            "vendor": "AliExpress",
-            "url": "https://www.aliexpress.com/item/1005010519284536.html",
-            "price": 2.38,
-            "currency": "EUR",
-            "as_of": "2026-04-25"
           }
         ]
       }
@@ -2853,65 +2693,6 @@
             "price": 9.99,
             "as_of": "2026-04-16",
             "affiliate_url": "https://www.amazon.com/dp/B0DHV8ZF4R?tag=sorterv2-20"
-          }
-        ]
-      }
-    },
-    {
-      "id": "acrylic-3mm-clear",
-      "kind": "cots",
-      "cots": {
-        "type": "stock"
-      },
-      "name": "1/8\" or 3mm clear acrylic",
-      "category": "Stock",
-      "description": "To cut four clear carousel tray, 90mm x 94mm each",
-      "created_at": "2026-07-18",
-      "updated_at": "2026-07-18",
-      "sheet_qty_text": "four 90×94 mm trays",
-      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/3f55ac03a2d196c65c22ebc2446acfe44683b98524b808d51f317970b696e241.jpg",
-      "sourcing": {
-        "vendors": [
-          {
-            "region": "US",
-            "vendor": "Amazon",
-            "url": "https://www.amazon.com/dp/B0BYSCZKPP",
-            "price": 14.29,
-            "as_of": "2026-04-16",
-            "affiliate_url": "https://www.amazon.com/dp/B0BYSCZKPP?tag=sorterv2-20"
-          }
-        ]
-      }
-    },
-    {
-      "id": "ender-wheels",
-      "kind": "cots",
-      "cots": {
-        "type": "wheel"
-      },
-      "name": "Ender wheels",
-      "category": "Per layer",
-      "description": "Wheels to align chute",
-      "created_at": "2026-07-18",
-      "updated_at": "2026-07-18",
-      "sheet_qty": {
-        "per_layer": 6
-      },
-      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/59dbdf973a805fc414979f3c222ba13362601af8f7e7626230eb471e2b93e9ad.jpg",
-      "sourcing": {
-        "vendors": [
-          {
-            "region": "US",
-            "vendor": "Amazon",
-            "url": "https://www.amazon.com/Redrex-Printer-Plastic-Bearing-Tarantula/dp/B07Q5WN3GK/ref=sr_1_5?crid=1X0WW4AHSHES1&dib=eyJ2IjoiMSJ9.ro589gxabelJ1tGj99LkQvJFj8wfEOgZTiZUfRzMAzhZ-l_ahnJhjWtg8kAWPDtN0oTxDUefvQ5fdG4iOcvHVaSzL1xwOxAZy25JhX7yuRGoiT4JE6mqMNntiYuMFScoAhX7jEdyu8NrLKk4G91UanT2VuCDvoQoFjQktJqVecLhhjeLgdJBwi4T2dVRw_tTBpi8sIOuB0G6dYaMvrGZz4Rn9bjSdr3pFjIdvYoaYDIedLiqNanem9SdiOH1gGmChfKlKDro-cFWW7WfZPeBIXTWEaAuDlu2gocnTs3vJyE.6krH_gLYmet5RpVQMecfI99raH8YSq_xOEKM9wlGaVg&dib_tag=se&keywords=ender+wheels&qid=1776360828&s=industrial&sprefix=ender+wheel%2Cindustrial%2C103&sr=1-5",
-            "price": 8.99,
-            "pack_qty": 10,
-            "as_of": "2026-04-16"
-          },
-          {
-            "region": "CN",
-            "vendor": "AliExpress",
-            "url": "https://www.aliexpress.com/item/1005007025834805.html"
           }
         ]
       }
