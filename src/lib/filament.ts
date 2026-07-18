@@ -36,6 +36,21 @@ export type AssemblyLine = {
 	qty: number | 'per-layer' | 'middle-layers';
 };
 
+/** How an assembly's lines are physically joined. This belongs to the joint —
+ *  the assembly — not to either member, the same rule the screws follow: a Pico
+ *  isn't "a part that requires soldering", it's a part that gets soldered *to
+ *  headers*. Buying either one alone implies no iron. */
+export type JoinMethod = 'solder' | 'crimp' | 'glue' | 'press';
+export type Joining = { method: JoinMethod; note?: string };
+
+/** Human labels for the join methods, for badges and prose. */
+export const JOIN_LABELS: Record<JoinMethod, string> = {
+	solder: 'Soldering',
+	crimp: 'Crimping',
+	glue: 'Gluing',
+	press: 'Press fit'
+};
+
 /** Assemblies double as (a) legacy flat groupings the parts list rolls up under
  *  and (b) nodes of the experimental machine tree (when they carry `lines`).
  *  status: 'stub' = placeholder with nothing inside yet, 'partial' = some lines
@@ -45,6 +60,7 @@ export type Assembly = {
 	name: string;
 	description: string;
 	status?: 'stub' | 'partial';
+	joining?: Joining[]; // work needed to make these lines into one unit
 	lines?: AssemblyLine[];
 };
 
@@ -178,6 +194,25 @@ const assemblyById = new Map(ASSEMBLIES.map((a) => [a.id, a]));
 const partById = new Map(PARTS.map((p) => [p.id, p]));
 const hardwareById = new Map(HARDWARE.map((h) => [h.id, h]));
 
+// Reverse index: which assemblies list a given part/hardware id as a member.
+// Lets a flat view (the hardware page) surface the joint a part belongs to
+// without walking the tree from the root — most electronics aren't placed in
+// the machine tree yet, but they already know what they go together with.
+const assembliesByMember = new Map<string, Assembly[]>();
+for (const a of ASSEMBLIES) {
+	for (const line of a.lines ?? []) {
+		if (!line.part) continue;
+		const list = assembliesByMember.get(line.part);
+		if (list) list.push(a);
+		else assembliesByMember.set(line.part, [a]);
+	}
+}
+
+/** Assemblies this part or hardware item is a member of. */
+export function assembliesContaining(id: string): Assembly[] {
+	return assembliesByMember.get(id) ?? [];
+}
+
 export function getPart(id: string): Part | undefined {
 	return partById.get(id);
 }
@@ -193,9 +228,11 @@ export function lineQty(line: AssemblyLine, layers: number): number {
 	return line.qty;
 }
 
-/** Sum every `requires` of every printed part reachable from an assembly,
- *  multiplied down the tree — the design doc's resolver, restricted to the
- *  hardware group. Returns hardware id -> total count. */
+/** Sum the hardware reachable from an assembly, multiplied down the tree — the
+ *  design doc's resolver, restricted to the hardware group. Hardware arrives two
+ *  ways: committed to a printed part (`requires`), or listed directly as a line
+ *  of the assembly, which is how a joint's own components are recorded.
+ *  Returns hardware id -> total count. */
 export function resolveHardwareTotals(root: string, layers: number): Map<string, number> {
 	const acc = new Map<string, number>();
 	const walk = (id: string, mult: number) => {
@@ -203,6 +240,10 @@ export function resolveHardwareTotals(root: string, layers: number): Map<string,
 			const q = lineQty(line, layers) * mult;
 			if (line.assembly) walk(line.assembly, q);
 			else if (line.part) {
+				if (hardwareById.has(line.part)) {
+					acc.set(line.part, (acc.get(line.part) ?? 0) + q);
+					continue;
+				}
 				for (const r of partById.get(line.part)?.requires ?? []) {
 					acc.set(r.part, (acc.get(r.part) ?? 0) + r.qty * q);
 				}

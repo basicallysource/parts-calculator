@@ -3216,6 +3216,28 @@
       "description": "Classification-channel camera extension for the Innomaker 4K camera module: the 50 mm extension tube and its mount. 1 per machine."
     },
     {
+      "id": "pico-headers",
+      "name": "Pico with headers",
+      "description": "The Raspberry Pi Pico with 2.54 mm header pins fitted, so it can seat in the PCB. The board ships bare — the pins are a separate purchase.",
+      "status": "partial",
+      "joining": [
+        {
+          "method": "solder",
+          "note": "Every pin solders into the Pico's through-holes. Nothing here presses or clips together."
+        }
+      ],
+      "lines": [
+        {
+          "part": "mcu-rpi-pico",
+          "qty": 1
+        },
+        {
+          "part": "header-pins-254",
+          "qty": 20
+        }
+      ]
+    },
+    {
       "id": "machine",
       "name": "Sorter V2",
       "description": "The whole machine: feeder on top, interface, the distribution layers between the interfaces, and the bottom interface.",
