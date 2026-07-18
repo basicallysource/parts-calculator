@@ -38,7 +38,7 @@
 	import Badge from '$lib/components/Badge.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 	import DownloadButton from '$lib/components/DownloadButton.svelte';
-	import { Download, Package, ZoomIn, Loader, Info, Plus, X, RotateCcw, Clock, Layers3, ExternalLink, AlertTriangle, History } from 'lucide-svelte';
+	import { Download, Package, ZoomIn, Loader, Info, Plus, X, RotateCcw, Clock, Layers3, ExternalLink, AlertTriangle, History, ChevronRight, ChevronDown } from 'lucide-svelte';
 
 	// ---- defaults (also used by "reset to default") -----------------------------
 	const defaultFunnelSizes = (): ('third' | 'half')[] => ['third', 'third', 'half'];
@@ -205,6 +205,30 @@
 		}
 		return blocks;
 	}
+	// Assemblies collapse to a single rollup row carrying the part count and the
+	// summed grams; expanding reveals the individual parts underneath.
+	let expandedAsm = $state<Record<string, boolean>>({});
+	const asmKey = (sectionId: string, id: string) => `${sectionId}:${id}`;
+	function toggleAsm(k: string) {
+		expandedAsm[k] = !expandedAsm[k];
+	}
+	function asmGrams(parts: Part[], sectionId: string): number {
+		return parts.reduce(
+			(sum, p) =>
+				sum +
+				(isIncluded(p.id)
+					? effectiveGrams(p, supportOn(p.id)) * displayCount(p, sectionId, layers, variantCount)
+					: 0),
+			0
+		);
+	}
+	const asmAllOn = (parts: Part[]) => parts.every((p) => isIncluded(p.id));
+	const asmSomeOn = (parts: Part[]) => parts.some((p) => isIncluded(p.id));
+	// bins are governed by the Print bins toggle, so the rollup checkbox skips them
+	function setAsm(parts: Part[], v: boolean) {
+		for (const p of parts) if (!('bins' in p.quantities)) selected[p.id] = v;
+	}
+
 	function openViewer(p: Part) {
 		viewerPart = p;
 		viewerColorId = primaryColorId(p, roleColors) ?? 'ash-gray';
@@ -248,12 +272,12 @@
 	</header>
 
 	<!-- print settings -->
-	<table class="mb-6 w-full max-w-xl border border-border text-sm">
+	<table class="pl-card pl-settings mb-6 max-w-xl">
 		<tbody>
-			{#each settingsRows as [k, v], i (k)}
-				<tr class={i % 2 ? 'bg-[var(--color-bg)]' : ''}>
-					<td class="w-40 border-r border-border px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-text-muted">{k}</td>
-					<td class="px-3 py-1.5 text-text">{v}</td>
+			{#each settingsRows as [k, v] (k)}
+				<tr>
+					<td class="pl-settings-k">{k}</td>
+					<td class="pl-settings-v">{v}</td>
 				</tr>
 			{/each}
 		</tbody>
@@ -339,60 +363,59 @@
 		</div>
 	</section>
 
-	{#snippet partRow(p: Part, sectionId: string, mult: number, indent: boolean)}
+	{#snippet partRow(p: Part, sectionId: string, indent: boolean)}
 		{@const n = displayCount(p, sectionId, layers, variantCount)}
 		{@const sw = partSwatches(p, sectionId, roleColors)}
 		{@const eff = effectiveGrams(p, supportOn(p.id))}
 		{@const os = partOnshape(p)}
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions a11y_click_events_have_key_events -->
-		<tr class="group/row cursor-pointer border-b border-border align-middle transition-colors last:border-b-0 hover:bg-[var(--color-bg)]" onclick={(e) => rowClickToOpen(e, p)} title="View {p.name} details">
-			<td class="w-8 py-2 {indent ? 'border-l-2 border-primary/40 pl-5' : 'pl-3'}">
+		<tr class="pl-row group/row" class:pl-kid={indent} onclick={(e) => rowClickToOpen(e, p)} title="View {p.name} details">
+			<td class="pl-c-check">
 				{#if 'bins' in p.quantities}
 					<input class="setup-toggle h-4 w-4" type="checkbox" checked={printBins} onchange={() => (printBins = !printBins)} aria-label="Print bins (set in Build options)" title="Controlled by the Print bins toggle in Build options" />
 				{:else}
 					<input class="setup-toggle h-4 w-4" type="checkbox" bind:checked={selected[p.id]} aria-label="Select {p.name}" />
 				{/if}
 			</td>
-			<td class="py-2 pl-2">
+			<td class="pl-c-thumb">
 				<button
 					type="button"
-					class="group relative h-12 w-12 shrink-0 border border-border bg-[var(--color-bg)]"
+					class="pl-thumb group relative"
 					onclick={() => openViewer(p)}
 					title="View {p.name} in 3D"
 				>
-					<img src={p.render} alt={p.name} class="h-full w-full object-contain" />
-					<span class="absolute inset-0 flex items-center justify-center bg-black/40 text-white opacity-0 transition-opacity group-hover:opacity-100 group-hover/row:opacity-100"><ZoomIn size={18} /></span>
+					<img src={p.render} alt={p.name} />
+					<span class="absolute inset-0 flex items-center justify-center bg-black/40 text-white opacity-0 transition-opacity group-hover:opacity-100 group-hover/row:opacity-100"><ZoomIn size={16} /></span>
 				</button>
 			</td>
-			<td class="py-2 pl-3 pr-2">
-				<span class="flex flex-wrap items-center gap-2 font-medium text-text">
+			<td class="pl-c-name">
+				<span class="pl-name">
 					{p.name}
 					{#if p.optional}<Badge variant="warning">Optional</Badge>{/if}
 					{#if p.support_intentional}<Badge variant="info" title="Printed with support material — included in this part's grams">Supports</Badge>{/if}
 						{#if platesForPart(p.id).length}<button type="button" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" onclick={() => openPlatesModal(p.id)} title="Show plates with this part"><Layers3 size={11} /> {platesForPart(p.id).length} plate{platesForPart(p.id).length === 1 ? '' : 's'}</button>{/if}{#if os.version}<a href={os.version} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" title="Open the exact OnShape version this STL came from">OnShape <ExternalLink size={11} /></a>{/if}{#if p.info}<Popover width="w-64" label="About {p.name}" text={p.info} />{/if}{#if p.suspicious}<Popover width="w-72" label="Why {p.name} is flagged">{#snippet trigger({ toggle, open })}<Badge as="button" variant="warning" onclick={toggle} aria-expanded={open}><AlertTriangle size={11} /> Suspect</Badge>{/snippet}<b class="text-text">Subject to change.</b> This part may still change or have an issue. Unless it's critical, hold off printing it until this warning clears.{#if p.suspicious_note}<span class="mt-2 block border-t border-border pt-2 text-text">{p.suspicious_note}</span>{/if}</Popover>{/if}{#if p.low_tolerance}<Popover width="w-72" label="Fit notes for {p.name}">{#snippet trigger({ toggle, open })}<Badge as="button" variant="warning" onclick={toggle} aria-expanded={open}><AlertTriangle size={11} /> Tight fit</Badge>{/snippet}<b class="text-text">Low tolerance.</b> This part has little room for dimensional error, so a test print is worth doing before you commit to the full set.{#if p.low_tolerance_note}<span class="mt-2 block border-t border-border pt-2 text-text">{p.low_tolerance_note}</span>{/if}</Popover>{/if}{#if p.attributes?.length}{#each p.attributes as a}<span class="border border-border bg-[var(--color-bg)] px-1 text-xs text-text-muted" title={a.label}>{a.label}: <span class="text-text">{a.value}</span></span>{/each}{/if}{#if p.versions && p.versions.length > 1}<Popover width="w-80" label="Version history for {p.name}">{#snippet trigger({ toggle, open })}<button type="button" onclick={toggle} aria-expanded={open} class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" title="Version history"><History size={11} /> v{p.version} · {p.versions?.length ?? 0} versions</button>{/snippet}<b class="text-text">Version history</b><ul class="mt-1 space-y-2">{#each [...(p.versions ?? [])].reverse() as v}<li class="border-t border-border pt-2 first:border-t-0 first:pt-0"><div class="flex items-center gap-1.5 text-text"><b>v{v.version}</b><span class="text-text-muted">· {fmtDate(v.date)}</span>{#if commitUrl(v.commit)}<a href={commitUrl(v.commit)} target="_blank" rel="noopener" class="ml-auto inline-flex items-center gap-0.5 text-primary hover:text-primary-hover">{v.commit} <ExternalLink size={10} /></a>{:else}<span class="ml-auto italic text-text-muted/70">uncommitted</span>{/if}</div><div class="mt-0.5">{v.message}</div>{#if v.onshape_version}<div class="mt-1"><a href={v.onshape_version} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 text-primary hover:text-primary-hover">OnShape <ExternalLink size={10} /></a></div>{/if}</li>{/each}</ul></Popover>{/if}
 				</span>
-				<span class="flex flex-wrap items-center gap-1.5 text-xs text-text-muted">
+				<span class="pl-meta">
 					{#each sw as s}
 						<span class="inline-flex items-center gap-1">
-							<span class="h-3 w-3 border border-border" style="background:{s.color?.hex ?? 'repeating-linear-gradient(45deg,#ccc,#ccc 2px,#eee 2px,#eee 4px)'}"></span>
+							<span class="pl-chip" style="background:{s.color?.hex ?? 'repeating-linear-gradient(45deg,#ccc,#ccc 2px,#eee 2px,#eee 4px)'}"></span>
 							{#if sw.length > 1}{s.qty}× {/if}{s.color?.name ?? 'any'}
 						</span>
 					{/each}
-					· {duration(p.print_seconds)}
-					{#if p.updated_at}<span title="Part last updated {fmtDate(p.updated_at)}">· updated {fmtDate(p.updated_at)}</span>{/if}
+					<span title="Print time for one {p.name}">· {duration(p.print_seconds)}</span>
 				</span>
 				{#if p.support_intentional}
-					<label class="mt-0.5 flex w-fit cursor-pointer items-center gap-1.5 text-xs text-text-muted">
+					<label class="pl-support">
 						<input class="setup-toggle h-3.5 w-3.5" type="checkbox" bind:checked={inclSupport[p.id]} />
 						total {p.grams.toFixed(0)} g · support {p.support_grams.toFixed(0)} g
 						<span class="opacity-70">({inclSupport[p.id] ? 'included' : 'excluded'})</span>
 					</label>
 				{/if}
 			</td>
-			<td class="whitespace-nowrap py-2 pr-2 text-right text-xs text-text-muted">{eff.toFixed(0)} g × {n}</td>
-			<td class="whitespace-nowrap py-2 pr-2 text-right tabular-nums">{grams(eff * n)}</td>
-			<td class="py-2 pr-3 text-right">
-				<a class="inline-flex items-center text-primary hover:text-primary-hover" href={p.stl} download title="Download {p.name}.stl"><Download size={15} /></a>
+			<td class="pl-c-each">{eff.toFixed(0)} g × {n}</td>
+			<td class="pl-c-total">{grams(eff * n)}</td>
+			<td class="pl-c-dl">
+				<a class="pl-dl" href={p.stl} download title="Download {p.name}.stl"><Download size={16} /></a>
 			</td>
 		</tr>
 	{/snippet}
@@ -417,11 +440,11 @@
 
 			{#if activeTab === 'parts'}
 				{#each sectionRows as { section, parts, mult, selectedGrams } (section.id)}
-				<section class="mb-6">
-					<h3 class="mb-1 flex items-baseline gap-2 border-b-2 border-text pb-1 text-sm font-semibold text-text">
+				<section class="pl-sec">
+					<h3 class="pl-sec-hd">
 						{section.name}
 						{#if section.scales_with_layers}
-							<span class="text-xs font-normal uppercase tracking-wider text-text-muted">× {mult} layer{mult === 1 ? '' : 's'}</span>
+							<span class="pl-sec-mult">× {mult} layer{mult === 1 ? '' : 's'}</span>
 						{/if}
 						{#if section.experimental}
 							<Popover width="w-80" label="Why {section.name} is experimental">
@@ -432,28 +455,76 @@
 								{#if section.experimental_note}<span class="mt-2 block border-t border-border pt-2 text-text">{section.experimental_note}</span>{/if}
 							</Popover>
 						{/if}
-						<span class="ml-auto text-xs font-normal text-text-muted">{grams(selectedGrams)}</span>
+						<span class="pl-sec-total">{grams(selectedGrams)}</span>
 					</h3>
-					<div class="setup-card-shell border">
-						<table class="w-full text-sm">
-							<tbody>
-								{#each groupBlocks(parts) as block}
-									{#if block.kind === 'assembly'}
-										<tr>
-											<td colspan="6" class="border-l-2 border-primary/40 bg-[var(--color-bg)] py-1.5 pl-3 text-xs font-semibold uppercase tracking-wider text-text-muted" title={getAssembly(block.id)?.description}>
-												{getAssembly(block.id)?.name} · assembly
-											</td>
-										</tr>
+					<table class="pl-tbl">
+						<thead>
+							<tr>
+								<th class="pl-c-check"></th>
+								<th class="pl-c-thumb"></th>
+								<th class="pl-c-name">Part</th>
+								<th class="pl-c-each">Each</th>
+								<th class="pl-c-total">Total</th>
+								<th class="pl-c-dl"></th>
+							</tr>
+						</thead>
+						<tbody>
+							{#each groupBlocks(parts) as block}
+								{#if block.kind === 'assembly'}
+									{@const a = getAssembly(block.id)}
+									{@const k = asmKey(section.id, block.id)}
+									{@const open = expandedAsm[k]}
+									{@const allOn = asmAllOn(block.parts)}
+									<!-- svelte-ignore a11y_no_noninteractive_element_interactions a11y_click_events_have_key_events -->
+									<tr class="pl-row" onclick={() => toggleAsm(k)} title={a?.description}>
+										<td class="pl-c-check">
+											<input
+												class="setup-toggle h-4 w-4"
+												type="checkbox"
+												checked={allOn}
+												indeterminate={!allOn && asmSomeOn(block.parts)}
+												onclick={(e) => e.stopPropagation()}
+												onchange={() => setAsm(block.parts, !allOn)}
+												aria-label="Select every part in {a?.name}"
+											/>
+										</td>
+										<td class="pl-c-thumb">
+											<span class="pl-fan">
+												{#each block.parts.slice(0, 3) as bp, i (bp.id)}
+													<span class="pl-thumb" style="z-index:{3 - i}"><img src={bp.render} alt={bp.name} /></span>
+												{/each}
+											</span>
+										</td>
+										<td class="pl-c-name">
+											<span class="pl-name">
+												{#if open}<ChevronDown size={15} class="text-text-muted" />{:else}<ChevronRight size={15} class="text-text-muted" />{/if}
+												{a?.name}
+												<Badge variant="info">Assembly</Badge>
+											</span>
+											<span class="pl-meta">{block.parts.length} parts · click to {open ? 'collapse' : 'expand'}</span>
+										</td>
+										<td class="pl-c-each">{block.parts.length} parts</td>
+										<td class="pl-c-total">{grams(asmGrams(block.parts, section.id))}</td>
+										<td class="pl-c-dl">
+											<button
+												type="button"
+												class="pl-dl"
+												onclick={(e) => { e.stopPropagation(); downloadZip(block.parts, `${block.id}.zip`); }}
+												title="Download every STL in {a?.name}"
+											><Download size={16} /></button>
+										</td>
+									</tr>
+									{#if open}
 										{#each block.parts as p (p.id)}
-											{@render partRow(p, section.id, mult, true)}
+											{@render partRow(p, section.id, true)}
 										{/each}
-									{:else}
-										{@render partRow(block.part, section.id, mult, false)}
 									{/if}
-								{/each}
-							</tbody>
-						</table>
-					</div>
+								{:else}
+									{@render partRow(block.part, section.id, false)}
+								{/if}
+							{/each}
+						</tbody>
+					</table>
 				</section>
 			{/each}
 			{:else}
@@ -463,8 +534,8 @@
 
 		<!-- RIGHT: order summary -->
 		<aside class="self-start lg:sticky lg:top-6">
-			<h2 class="mb-2 flex items-center gap-2 text-base font-semibold text-text">
-				<Package size={16} /> What to order
+			<h2 class="pl-sec-hd">
+				<Package size={16} class="self-center" /> What to order
 			</h2>
 			<div class="mb-2 flex items-center gap-2">
 				<label for="surplus" class="text-sm text-text">Extra filament</label>
@@ -482,40 +553,38 @@
 				</div>
 			</div>
 			<p class="mb-2 text-xs text-text-muted">Buffer for incidental parts &amp; failed prints.</p>
-			<div class="setup-card-shell border">
-				<table class="w-full text-sm">
-					<thead>
-						<tr class="bg-[var(--color-bg)] text-left text-xs uppercase tracking-wider text-text-muted">
-							<th class="px-3 py-2 font-semibold">Color</th>
-							<th class="px-3 py-2 text-right font-semibold">Spools</th>
-							<th class="px-3 py-2 text-right font-semibold">Cost</th>
+			<table class="pl-card pl-buy">
+				<thead>
+					<tr>
+						<th>Color</th>
+						<th class="pl-num">Spools</th>
+						<th class="pl-num">Cost</th>
+					</tr>
+				</thead>
+				<tbody>
+					{#each buy.lines as line (line.colorId ?? '__any__')}
+						<tr>
+							<td>
+								<span class="flex items-center gap-2">
+									<span class="pl-chip pl-chip-lg" style="background:{line.color?.hex ?? 'repeating-linear-gradient(45deg,#ccc,#ccc 3px,#eee 3px,#eee 6px)'}"></span>
+									<span class="leading-tight">{line.label}<br><span class="pl-buy-sub">{grams(line.grams)}</span></span>
+								</span>
+							</td>
+							<td class="pl-num pl-num-strong">{line.spools}</td>
+							<td class="pl-num">{money(line.cost)}</td>
 						</tr>
-					</thead>
-					<tbody>
-						{#each buy.lines as line (line.colorId ?? '__any__')}
-							<tr class="border-t border-border">
-								<td class="px-3 py-2">
-									<span class="flex items-center gap-2">
-										<span class="h-4 w-4 border border-border" style="background:{line.color?.hex ?? 'repeating-linear-gradient(45deg,#ccc,#ccc 3px,#eee 3px,#eee 6px)'}"></span>
-										<span class="leading-tight">{line.label}<br><span class="text-xs text-text-muted">{grams(line.grams)}</span></span>
-									</span>
-								</td>
-								<td class="px-3 py-2 text-right font-semibold tabular-nums">{line.spools}</td>
-								<td class="px-3 py-2 text-right tabular-nums">{money(line.cost)}</td>
-							</tr>
-						{:else}
-							<tr><td colspan="3" class="px-3 py-4 text-center text-sm text-text-muted">Nothing selected.</td></tr>
-						{/each}
-					</tbody>
-					<tfoot>
-						<tr class="border-t-2 border-text/20 bg-[var(--color-bg)] font-semibold">
-							<td class="px-3 py-2">Total · {grams(buy.totalGrams)}</td>
-							<td class="px-3 py-2 text-right tabular-nums">{buy.totalSpools}</td>
-							<td class="px-3 py-2 text-right tabular-nums">{money(buy.totalCost)}</td>
-						</tr>
-					</tfoot>
-				</table>
-			</div>
+					{:else}
+						<tr><td colspan="3" class="pl-buy-empty">Nothing selected.</td></tr>
+					{/each}
+				</tbody>
+				<tfoot>
+					<tr>
+						<td>Total · {grams(buy.totalGrams)}</td>
+						<td class="pl-num">{buy.totalSpools}</td>
+						<td class="pl-num">{money(buy.totalCost)}</td>
+					</tr>
+				</tfoot>
+			</table>
 
 			<!-- pricing note -->
 			<div class="mt-2 flex gap-2 border border-border/60 bg-[var(--color-bg)] p-2.5 text-xs text-text-muted">
@@ -660,3 +729,113 @@
 		<BuildPlates highlightPartId={platesModalPartId} />
 	</div>
 </Modal>
+
+<style>
+	/* Parts list surface. One white card per section on the warm page background,
+	   square corners + a hairline border to match the rest of the app. There are
+	   no rules between rows — padding does the separating — and nothing on a row
+	   is heavier than 500, so size and colour carry the hierarchy. */
+	.pl-sec { margin-bottom: 2.5rem; }
+	.pl-sec-hd {
+		display: flex; align-items: baseline; gap: 0.5rem;
+		padding: 0 0.25rem 0.75rem;
+		font-size: 1rem; font-weight: 500; color: var(--color-text);
+	}
+	.pl-sec-mult, .pl-sec-total { font-size: 0.875rem; font-weight: 400; color: var(--color-text-muted); }
+	.pl-sec-total { margin-left: auto; }
+
+	.pl-tbl {
+		width: 100%;
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		box-shadow: 0 1px 2px rgba(32, 28, 20, 0.03);
+		border-collapse: separate; border-spacing: 0;
+	}
+	.pl-tbl thead th {
+		font-size: 0.8125rem; font-weight: 400; text-align: right;
+		color: color-mix(in oklab, var(--color-text-muted) 70%, transparent);
+		padding: 1rem 1.25rem 0.625rem 0;
+	}
+	.pl-tbl thead th.pl-c-name { text-align: left; }
+	.pl-tbl thead th:first-child { padding-left: 1.25rem; }
+
+	.pl-row { cursor: pointer; transition: background-color 120ms; }
+	.pl-row > td { padding: 0.875rem 1.25rem 0.875rem 0; vertical-align: middle; }
+	.pl-row > td:first-child { padding-left: 1.25rem; }
+	.pl-row:hover { background: color-mix(in oklab, var(--color-bg) 55%, transparent); }
+	/* expanded assembly children sit on a tint and indent under the rollup row */
+	.pl-kid { background: color-mix(in oklab, var(--color-bg) 50%, transparent); }
+	.pl-kid > td:first-child { padding-left: 2.5rem; }
+	.pl-kid .pl-name { color: color-mix(in oklab, var(--color-text) 88%, transparent); }
+
+	.pl-c-check { width: 2rem; }
+	.pl-c-thumb { width: 3.5rem; }
+	.pl-c-name { width: 100%; text-align: left; }
+	.pl-c-each, .pl-c-total { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+	.pl-c-each { font-size: 0.875rem; color: color-mix(in oklab, var(--color-text-muted) 70%, transparent); }
+	.pl-c-total { font-size: 1rem; font-weight: 500; color: var(--color-text); }
+	.pl-c-dl { width: 2rem; text-align: right; }
+
+	.pl-name {
+		display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;
+		font-size: 1rem; font-weight: 400; color: var(--color-text);
+	}
+	.pl-meta {
+		display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;
+		margin-top: 0.25rem; font-size: 0.875rem;
+		color: color-mix(in oklab, var(--color-text-muted) 85%, transparent);
+	}
+	.pl-chip { display: block; width: 0.75rem; height: 0.75rem; flex: none; border: 1px solid var(--color-border); }
+	.pl-support {
+		display: flex; width: fit-content; align-items: center; gap: 0.375rem;
+		margin-top: 0.25rem; cursor: pointer;
+		font-size: 0.8125rem; color: var(--color-text-muted);
+	}
+
+	.pl-thumb {
+		display: block; position: relative; flex: none;
+		width: 2.75rem; height: 2.75rem;
+		background: var(--color-bg); padding: 0.125rem;
+	}
+	.pl-thumb img { width: 100%; height: 100%; object-fit: contain; }
+	.pl-fan { display: flex; }
+	.pl-fan .pl-thumb { border: 1px solid var(--color-border); background: var(--color-surface); }
+	.pl-fan .pl-thumb + .pl-thumb { margin-left: -0.75rem; }
+
+	.pl-dl { display: inline-flex; color: var(--color-primary); }
+	.pl-dl:hover { color: var(--color-primary-hover); }
+
+	/* The settings and order-summary tables share the parts list's surface and
+	   type scale so the page reads as one system. */
+	.pl-card {
+		width: 100%;
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		box-shadow: 0 1px 2px rgba(32, 28, 20, 0.03);
+		border-collapse: separate; border-spacing: 0;
+	}
+
+	.pl-settings td { padding: 0.625rem 1.25rem; vertical-align: baseline; }
+	.pl-settings-k {
+		width: 10rem; font-size: 0.875rem; font-weight: 400;
+		color: color-mix(in oklab, var(--color-text-muted) 85%, transparent);
+	}
+	.pl-settings-v { font-size: 0.9375rem; color: var(--color-text); }
+
+	.pl-buy th {
+		padding: 1rem 1.25rem 0.625rem; text-align: left;
+		font-size: 0.8125rem; font-weight: 400;
+		color: color-mix(in oklab, var(--color-text-muted) 70%, transparent);
+	}
+	.pl-buy td { padding: 0.75rem 1.25rem; font-size: 0.9375rem; color: var(--color-text); }
+	.pl-buy .pl-num { text-align: right; font-variant-numeric: tabular-nums; }
+	.pl-buy .pl-num-strong { font-weight: 500; }
+	.pl-buy-sub { font-size: 0.8125rem; color: color-mix(in oklab, var(--color-text-muted) 85%, transparent); }
+	.pl-buy-empty { text-align: center; color: var(--color-text-muted); padding: 1.25rem; }
+	.pl-buy tfoot td {
+		border-top: 1px solid var(--color-border);
+		font-weight: 500;
+		background: color-mix(in oklab, var(--color-bg) 55%, transparent);
+	}
+	.pl-chip-lg { width: 1rem; height: 1rem; }
+</style>
