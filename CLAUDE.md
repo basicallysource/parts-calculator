@@ -84,11 +84,18 @@ duplicated in `slicer/parts/**` (canonical, 49 MB) and `static/stl/**`
 copy.
 
 The `.gitattributes` note says LFS is banned because Vercel does not
-materialize LFS objects, which broke previews and downloads. **That
-constraint dissolves once the site reads bucket URLs** — Vercel then never
-needs the bytes at build time, only the JSON manifest, so LFS pointer files
-on the deploy are harmless. Do not re-introduce LFS until that rewiring has
-shipped and is verified.
+materialize LFS objects, which broke previews and downloads. That
+constraint dissolved once the site started reading bucket URLs — Vercel
+never needs the bytes at build time, only the JSON manifest.
+
+**But do not migrate history to LFS yet.** Historical part revisions are
+not stored anywhere; `archive_versions()` in `slicer/filament.py`
+reconstructs them by reading pre-change geometry out of git history
+(`git show <commit>~1:<path>`). Under LFS that returns pointer text, the
+`is_lfs_pointer()` guard fires, and the revision silently falls back to the
+current geometry — wrong data with no error. LFS becomes safe only once
+each revision pins its own `stl_hash` in the manifest, making the bucket
+authoritative. See `notes/UNIFIED-PARTS-SYSTEM.md` §9 step 9.
 
 Renders (`static/renders/`, ~1.4 MB) stay as normal git blobs — small, and
 the site wants them at build time.
