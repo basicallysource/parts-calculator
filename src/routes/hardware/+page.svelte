@@ -127,12 +127,15 @@
 	}
 
 	// ---------------------------------------------------------------- selection
-	// Everything starts unselected; the cart is opt-in.
+	// Everything starts unselected; the cart is opt-in. Only hardware with a
+	// priced US vendor is buyable — "select all" and the total only ever touch
+	// those, so an in-house part with no source yet can't end up selected.
 	let selected = $state<Record<string, boolean>>({});
-	const selectedList = $derived(HARDWARE.filter((h) => selected[h.id]));
-	const allSelected = $derived(HARDWARE.every((h) => selected[h.id]));
+	const buyable = $derived(HARDWARE.filter((h) => bestUsVendor(h)));
+	const selectedList = $derived(buyable.filter((h) => selected[h.id]));
+	const allSelected = $derived(buyable.every((h) => selected[h.id]));
 	const setAll = (on: boolean) => {
-		selected = on ? Object.fromEntries(HARDWARE.map((h) => [h.id, true])) : {};
+		selected = on ? Object.fromEntries(buyable.map((h) => [h.id, true])) : {};
 	};
 
 	// ------------------------------------------------------------ detail modal
@@ -220,15 +223,21 @@
 		}}
 	>
 		<!-- the checkbox owns selection; its label keeps the hit target generous
-		     without making the whole row a toggle -->
-		<label class="mt-0.5 shrink-0 cursor-pointer p-0.5">
-			<input
-				type="checkbox"
-				class="setup-toggle h-4 w-4"
-				bind:checked={selected[h.id]}
-				aria-label="Select {h.name}"
-			/>
-		</label>
+		     without making the whole row a toggle. Nothing to buy yet (no US
+		     vendor) means nothing to add to a cart, so the row gets a same-sized
+		     blank spacer instead, keeping every row's thumbnail aligned. -->
+		{#if bestUsVendor(h)}
+			<label class="mt-0.5 shrink-0 cursor-pointer p-0.5">
+				<input
+					type="checkbox"
+					class="setup-toggle h-4 w-4"
+					bind:checked={selected[h.id]}
+					aria-label="Select {h.name}"
+				/>
+			</label>
+		{:else}
+			<span class="mt-0.5 h-4 w-4 shrink-0 p-0.5" aria-hidden="true"></span>
+		{/if}
 		{#if h.image}
 			<span class="hw-thumb relative shrink-0">
 				<img src={h.image} alt={h.name} class="h-16 w-16 border border-border bg-white object-contain p-1" />
@@ -275,31 +284,36 @@
 			<div class="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-0.5">
 				{#if h.sourcing?.vendors?.length}
 					{#each h.sourcing.vendors as v (v.url)}
-						{@const cost = buyCost(v, qty)}
-						<span class="inline-flex items-center gap-1 text-xs">
-							<a
-								href={v.affiliate_url ?? v.url}
-								target="_blank"
-								rel="noopener"
-								class="inline-flex items-center gap-1 font-medium text-primary hover:text-primary-hover"
-								title={v.as_of ? `price as of ${v.as_of}` : undefined}
-							>
-								{v.vendor ?? v.region}
-								<span class="font-normal text-text-muted">({v.region})</span>
-								<ExternalLink size={11} />
-							</a>
-							<!-- the untagged link lives on the detail modal, to keep rows terse -->
-							<span class="tabular-nums text-text-muted">
-								{#if fmtPrice(v)}
-									{fmtPrice(v)}{v.pack_qty && v.pack_qty > 1 ? ` / ${v.pack_qty}` : ''}
-									{#if cost != null && v.pack_qty && cost !== v.price}
-										→ <span class="font-semibold text-text">${cost.toFixed(2)}</span>
+						{#if v.vendor === 'basically'}
+							<!-- in-house part, not shipping yet — no link out, no price to show -->
+							<span class="text-xs italic text-text-muted/70">Coming soon to basically</span>
+						{:else}
+							{@const cost = buyCost(v, qty)}
+							<span class="inline-flex items-center gap-1 text-xs">
+								<a
+									href={v.affiliate_url ?? v.url}
+									target="_blank"
+									rel="noopener"
+									class="inline-flex items-center gap-1 font-medium text-primary hover:text-primary-hover"
+									title={v.as_of ? `price as of ${v.as_of}` : undefined}
+								>
+									{v.vendor ?? v.region}
+									<span class="font-normal text-text-muted">({v.region})</span>
+									<ExternalLink size={11} />
+								</a>
+								<!-- the untagged link lives on the detail modal, to keep rows terse -->
+								<span class="tabular-nums text-text-muted">
+									{#if fmtPrice(v)}
+										{fmtPrice(v)}{v.pack_qty && v.pack_qty > 1 ? ` / ${v.pack_qty}` : ''}
+										{#if cost != null && v.pack_qty && cost !== v.price}
+											→ <span class="font-semibold text-text">${cost.toFixed(2)}</span>
+										{/if}
+									{:else}
+										no price
 									{/if}
-								{:else}
-									no price
-								{/if}
+								</span>
 							</span>
-						</span>
+						{/if}
 					{/each}
 				{:else}
 					<span class="text-xs text-text-muted">No source picked yet.</span>
@@ -333,7 +347,7 @@
 					{#if selectedList.length}selected{/if}
 				</span>
 				<span class="text-sm text-text-muted">
-					{selectedList.length}/{HARDWARE.length} selected ·
+					{selectedList.length}/{buyable.length} selected ·
 					<button class="text-primary hover:text-primary-hover" onclick={() => setAll(!allSelected)}>
 						{allSelected ? 'deselect all' : 'select all'}
 					</button>
@@ -496,7 +510,7 @@
 	</div>
 </div>
 
-<Modal bind:open={detailOpen} title={detail?.name}>
+<Modal bind:open={detailOpen} title={detail?.name} maxW="max-w-4xl">
 	{#if detail}
 		{@const qty = totalQty(detail, layers)}
 		<!-- Modal supplies no padding of its own; every caller wraps its body. -->
@@ -506,7 +520,7 @@
 				<img
 					src={detail.image}
 					alt={detail.name}
-					class="h-40 w-40 shrink-0 self-start border border-border bg-white object-contain p-2"
+					class="h-72 w-72 shrink-0 self-start border border-border bg-white object-contain p-2 sm:h-80 sm:w-80"
 				/>
 			{/if}
 			<div class="min-w-0 flex-1">
@@ -572,51 +586,58 @@
 		<h4 class="mt-5 text-xs font-semibold uppercase tracking-wider text-text-muted">Where to buy</h4>
 		<div class="mt-2 divide-y divide-border border border-border">
 			{#each detail.sourcing?.vendors ?? [] as v (v.url)}
-				{@const cost = buyCost(v, qty)}
-				<div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 p-2 text-sm">
-					<span class="inline-flex items-center gap-2">
-						<a
-							href={v.affiliate_url ?? v.url}
-							target="_blank"
-							rel="noopener"
-							class="inline-flex items-center gap-1 font-medium text-primary hover:text-primary-hover"
-						>
-							{v.vendor ?? v.region} <ExternalLink size={12} />
-						</a>
-						<span class="text-xs text-text-muted">{v.region}</span>
-						{#if v.affiliate_url}
+				{#if v.vendor === 'basically'}
+					<!-- in-house part, not shipping yet — no link out, no price to show -->
+					<div class="p-2 text-sm italic text-text-muted/70">Coming soon to basically</div>
+				{:else}
+					{@const cost = buyCost(v, qty)}
+					<div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 p-2 text-sm">
+						<span class="inline-flex items-center gap-2">
 							<a
-								href={v.url}
+								href={v.affiliate_url ?? v.url}
 								target="_blank"
 								rel="noopener"
-								class="text-xs text-text-muted underline decoration-dotted underline-offset-2 hover:text-text"
-								title="The same listing, without the referral tag">Not affiliate</a
+								class="inline-flex items-center gap-1 font-medium text-primary hover:text-primary-hover"
 							>
-						{/if}
-					</span>
-					<span class="tabular-nums text-text-muted">
-						{#if fmtPrice(v)}
-							{fmtPrice(v)}{v.pack_qty && v.pack_qty > 1 ? ` for ${v.pack_qty}` : ''}
-							{#if cost != null && v.pack_qty && qty != null}
-								· buy <span class="text-text">{packsNeeded(v, qty)}</span> =
-								<span class="font-semibold text-text">${cost.toFixed(2)}</span>
+								{v.vendor ?? v.region} <ExternalLink size={12} />
+							</a>
+							<span class="text-xs text-text-muted">{v.region}</span>
+							{#if v.affiliate_url}
+								<a
+									href={v.url}
+									target="_blank"
+									rel="noopener"
+									class="text-xs text-text-muted underline decoration-dotted underline-offset-2 hover:text-text"
+									title="The same listing, without the referral tag">Not affiliate</a
+								>
 							{/if}
-						{:else}
-							no price recorded
-						{/if}
-						{#if v.as_of}<span class="ml-2 text-xs">as of {v.as_of}</span>{/if}
-					</span>
-					{#if v.note}<span class="w-full text-xs text-text-muted">{v.note}</span>{/if}
-				</div>
+						</span>
+						<span class="tabular-nums text-text-muted">
+							{#if fmtPrice(v)}
+								{fmtPrice(v)}{v.pack_qty && v.pack_qty > 1 ? ` for ${v.pack_qty}` : ''}
+								{#if cost != null && v.pack_qty && qty != null}
+									· buy <span class="text-text">{packsNeeded(v, qty)}</span> =
+									<span class="font-semibold text-text">${cost.toFixed(2)}</span>
+								{/if}
+							{:else}
+								no price recorded
+							{/if}
+							{#if v.as_of}<span class="ml-2 text-xs">as of {v.as_of}</span>{/if}
+						</span>
+						{#if v.note}<span class="w-full text-xs text-text-muted">{v.note}</span>{/if}
+					</div>
+				{/if}
 			{:else}
 				<p class="p-2 text-sm text-text-muted">No source picked yet.</p>
 			{/each}
 		</div>
 
-		<label class="mt-4 flex cursor-pointer items-center gap-2 text-sm text-text">
-			<input type="checkbox" class="setup-toggle h-4 w-4" bind:checked={selected[detail.id]} />
-			Include in the Amazon cart
-		</label>
+		{#if bestUsVendor(detail)}
+			<label class="mt-4 flex cursor-pointer items-center gap-2 text-sm text-text">
+				<input type="checkbox" class="setup-toggle h-4 w-4" bind:checked={selected[detail.id]} />
+				Include in the Amazon cart
+			</label>
+		{/if}
 		</div>
 	{/if}
 </Modal>
@@ -656,14 +677,18 @@
 	}
 
 	/* thumbnails are small enough that the part is hard to make out, so hovering
-	   one blows it up beside the row. Pointer-events stay off so the preview never
-	   swallows a click meant for the row. */
+	   one blows it up beside the row. It takes pointer events (rather than
+	   passing them through) so that moving the cursor onto the enlarged image
+	   itself still counts as hovering — :hover cascades up to .hw-thumb from
+	   any descendant the pointer is actually over, so the preview only closes
+	   once the cursor leaves the image too, not the instant it crosses off the
+	   64px thumbnail underneath it. */
 	.hw-zoom {
 		position: absolute;
 		left: calc(100% + 0.5rem);
 		top: 50%;
-		width: 17rem;
-		height: 17rem;
+		width: 28rem;
+		height: 28rem;
 		/* the reset's img{max-width:100%} would clamp this to the 64px thumb box */
 		max-width: none;
 		padding: 0.5rem;
@@ -683,6 +708,7 @@
 	@media (hover: hover) {
 		.hw-thumb:hover .hw-zoom {
 			opacity: 1;
+			pointer-events: auto;
 			transform: translateY(-50%) scale(1);
 		}
 	}
