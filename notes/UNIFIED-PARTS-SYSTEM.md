@@ -661,7 +661,19 @@ end on printed parts and everything else is enrichment.
    (generate `_data/parts.yml` or fetch published JSON); assembly-scoped
    `parts_needed`; extend `validate_frontmatter.py` into the id +
    staleness linter; structured `applies_to`.
-9. **STL bucket** — §7. Orthogonal; slot in whenever.
+9. **STL bucket** — §7. Done: artifacts are content-addressed in the Space
+   and the site links to them.
+
+   **Ordering constraint — do not migrate git history to LFS before step 1.**
+   Historical part revisions are not stored; they are *reconstructed* from
+   git history (`archive_versions()` runs `git show <commit>~1:<path>` to
+   recover pre-change geometry). After an LFS migration `git show` returns
+   pointer text, the `is_lfs_pointer()` guard fires, and the revision
+   silently falls back to the *current* geometry — wrong data, no error.
+   Once each revision pins its own `stl_hash` (step 1), the bucket is
+   authoritative and git history stops being load-bearing; the migration is
+   then safe. If moving sooner, run `filament.py --force` first so every
+   revision still discoverable in history gets archived to the bucket.
 10. **Sheet retirement** — stamp each tab superseded with a link as its
     domain migrates (extrusion-tab pattern). Optionally add a one-way
     lockfile→sheet export for spreadsheet lovers; never authoritative again.
