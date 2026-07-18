@@ -119,14 +119,13 @@
 								</div>
 								<p class="mt-0.5 text-xs text-text-muted">{h.description}</p>
 								{#if h.attributes?.length}
-									<!-- specs that pin down which variant to buy, kept as quiet inline text -->
-									<p class="mt-1 text-xs text-text-muted">
-										{#each h.attributes as a, i (a.label)}<span
-												class="whitespace-nowrap"
-												>{a.label}
-												<span class="text-text">{a.value}</span></span
-											>{#if i < h.attributes.length - 1}<span class="px-1.5 opacity-40">·</span>{/if}{/each}
-									</p>
+									<!-- specs that pin down which variant to buy. flex-wrap rather than
+									     inline text: each spec stays whole, the row wraps between them. -->
+									<div class="mt-1 flex flex-wrap gap-x-3 gap-y-0.5 text-xs text-text-muted">
+										{#each h.attributes as a (a.label)}
+											<span>{a.label} <span class="text-text">{a.value}</span></span>
+										{/each}
+									</div>
 								{/if}
 							</div>
 						</div>
