@@ -452,10 +452,20 @@
       "size": 16981355,
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/35a9efac799c48e4097ce49ed162217ea964c5b4b5a373d7b3d4bf99e683f030.zip"
     },
+    "slicer/images/hardware/ctrl-board-basically.png": {
+      "sha256": "f7caadca07d5a0dc6894895209da6f1a7f4c865a245ee095fce358902c85ff42",
+      "size": 1963918,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/f7caadca07d5a0dc6894895209da6f1a7f4c865a245ee095fce358902c85ff42.png"
+    },
     "slicer/images/hardware/hsi-m3-long.png": {
       "sha256": "ae73fe6bb2304afb8bb591904eb363febfdc98ccde7dd6dbda9dd5ae9cb3151a",
       "size": 38160,
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/ae73fe6bb2304afb8bb591904eb363febfdc98ccde7dd6dbda9dd5ae9cb3151a.png"
+    },
+    "slicer/images/hardware/layer-adapter-board-basically.png": {
+      "sha256": "1838b0588731b2d835ae5f9885f4e486324b89370ab3ea5df086540deb539c75",
+      "size": 1219369,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/1838b0588731b2d835ae5f9885f4e486324b89370ab3ea5df086540deb539c75.png"
     }
   }
 }
