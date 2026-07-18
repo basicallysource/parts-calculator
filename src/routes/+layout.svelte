@@ -9,6 +9,7 @@
 		{ href: '/', label: '3D printed parts' },
 		{ href: '/framing', label: 'Aluminium framing' },
 		{ href: '/lasercut', label: 'Laser cut parts' },
+		{ href: '/hardware', label: 'Hardware' },
 		{ href: '/assembly', label: 'Machine assembly' }
 	];
 

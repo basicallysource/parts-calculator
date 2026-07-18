@@ -6,6 +6,8 @@
 		getAssembly,
 		getHardware,
 		getPart,
+		lineQty,
+		resolveHardwareTotals,
 		type AssemblyLine,
 		type Hardware
 	} from '$lib/filament';
@@ -17,38 +19,12 @@
 	// the chute core is the first branch carrying real hardware via `requires`.
 	const layers = $derived(layerStore.sizes.length);
 
-	// Total layer count n includes the top and bottom interface levels; only
-	// n−2 distribution layers sit between them.
-	const lineQty = (line: AssemblyLine, layers: number): number =>
-		line.qty === 'per-layer'
-			? layers
-			: line.qty === 'middle-layers'
-				? Math.max(0, layers - 2)
-				: line.qty;
-
-	/** Sum every `requires` of every printed part reachable from an assembly,
-	 *  multiplied down the tree — the resolver from the design doc, restricted
-	 *  to the hardware group. */
-	function tallyHardware(id: string, mult: number, layers: number, acc: Map<string, number>) {
-		for (const line of getAssembly(id)?.lines ?? []) {
-			const q = lineQty(line, layers) * mult;
-			if (line.assembly) tallyHardware(line.assembly, q, layers, acc);
-			else if (line.part) {
-				for (const r of getPart(line.part)?.requires ?? []) {
-					acc.set(r.part, (acc.get(r.part) ?? 0) + r.qty * q);
-				}
-			}
-		}
-	}
-
 	type HardwareTotal = { hw: Hardware; qty: number };
-	const hardwareTotals: HardwareTotal[] = $derived.by(() => {
-		const acc = new Map<string, number>();
-		tallyHardware('machine', 1, layers, acc);
-		return [...acc.entries()]
+	const hardwareTotals: HardwareTotal[] = $derived.by(() =>
+		[...resolveHardwareTotals('machine', layers).entries()]
 			.map(([id, qty]) => ({ hw: getHardware(id)!, qty }))
-			.filter((t) => t.hw);
-	});
+			.filter((t) => t.hw)
+	);
 
 	const fmtUsd = (n: number) => `$${n.toFixed(2)}`;
 </script>
@@ -188,8 +164,8 @@
 						<span class="text-xs text-text-muted"
 							>({Math.max(0, layers - 2)} middle layer{Math.max(0, layers - 2) === 1 ? '' : 's'} + 2 chutes in the bottom interface)</span>
 					</div>
-					{#each t.hw.sourcing?.vendors ?? [] as v (v.url)}
-						{@const packs = Math.ceil(t.qty / v.pack_qty)}
+					{#each (t.hw.sourcing?.vendors ?? []).filter((v) => v.price != null && v.pack_qty) as v (v.url)}
+						{@const packs = Math.ceil(t.qty / v.pack_qty!)}
 						<div class="mt-2 flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-xs">
 							<a
 								href={v.url}
@@ -200,7 +176,7 @@
 								{v.vendor ?? v.region} <ExternalLink size={11} />
 							</a>
 							<span class="tabular-nums text-text-muted">
-								{packs} × {v.pack_qty}-pack = <span class="font-semibold text-text">{fmtUsd(packs * v.price)}</span>
+								{packs} × {v.pack_qty}-pack = <span class="font-semibold text-text">{fmtUsd(packs * v.price!)}</span>
 								{#if v.note}<span> · {v.note}</span>{/if}
 							</span>
 						</div>

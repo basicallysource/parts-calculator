@@ -56,22 +56,29 @@ export type Vendor = {
 	region: string;
 	vendor?: string;
 	url: string;
-	price: number;
-	pack_qty: number;
-	as_of: string;
+	price?: number;
+	currency?: string; // absent = USD
+	pack_qty?: number;
+	as_of?: string;
 	note?: string;
 };
 
-/** A COTS (off-the-shelf) part: no STL, carries sourcing instead. */
+/** A COTS (off-the-shelf) part: no STL, carries sourcing instead.
+ *  sheet_qty/sheet_qty_text are transitional hand counts from the BOM sheet,
+ *  kept until each part is placed as requires/lines in the assembly tree. */
 export type Hardware = {
 	id: string;
 	kind: 'cots';
-	cots?: { type: string; size: string; variant: string } | null;
+	cots?: { type: string; size?: string; variant?: string } | null;
 	name: string;
+	category?: string | null;
 	description: string;
+	note?: string | null;
 	created_at: string;
 	updated_at: string;
 	attributes: { label: string; value: string }[];
+	sheet_qty?: { per_machine?: number; per_layer?: number } | null;
+	sheet_qty_text?: string | null;
 	sourcing?: { vendors: Vendor[] } | null;
 	image: string | null; // content-addressed bucket URL
 };
@@ -175,6 +182,34 @@ export function getPart(id: string): Part | undefined {
 }
 export function getHardware(id: string): Hardware | undefined {
 	return hardwareById.get(id);
+}
+
+/** Resolve an assembly line's quantity. Total layer count n includes the top
+ *  and bottom interface levels; 'middle-layers' is the n−2 between them. */
+export function lineQty(line: AssemblyLine, layers: number): number {
+	if (line.qty === 'per-layer') return layers;
+	if (line.qty === 'middle-layers') return Math.max(0, layers - 2);
+	return line.qty;
+}
+
+/** Sum every `requires` of every printed part reachable from an assembly,
+ *  multiplied down the tree — the design doc's resolver, restricted to the
+ *  hardware group. Returns hardware id -> total count. */
+export function resolveHardwareTotals(root: string, layers: number): Map<string, number> {
+	const acc = new Map<string, number>();
+	const walk = (id: string, mult: number) => {
+		for (const line of assemblyById.get(id)?.lines ?? []) {
+			const q = lineQty(line, layers) * mult;
+			if (line.assembly) walk(line.assembly, q);
+			else if (line.part) {
+				for (const r of partById.get(line.part)?.requires ?? []) {
+					acc.set(r.part, (acc.get(r.part) ?? 0) + r.qty * q);
+				}
+			}
+		}
+	};
+	walk(root, 1);
+	return acc;
 }
 
 export function categoryMultiplier(categoryId: string, layers: number): number {
