@@ -4328,18 +4328,36 @@
 			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/bf2464997d1ba0ff22e86b57e94e2477ceb7220e49e8474c265f5e509b42cc22.jpg"
 		},
 		{
-			"id": "caster-wheel-m10",
+			"id": "foot-connector-2020-m6",
 			"kind": "cots",
 			"cots": {
-				"type": "wheel"
+				"type": "extrusion-fitting",
+				"size": "M6"
 			},
-			"name": "Caster wheels with M10 screw mount",
-			"category": "Pulleys",
+			"name": "2020 M6 foot connector",
+			"category": "Wheels",
 			"description": "It needs to move...",
-			"note": null,
+			"note": "Sold in packs of 4; the machine needs 6, so buy two packs.",
 			"created_at": "2026-07-18",
 			"updated_at": "2026-07-18",
-			"attributes": [],
+			"attributes": [
+				{
+					"label": "Fits",
+					"value": "2020 extrusion, 6 mm slot"
+				},
+				{
+					"label": "Thread",
+					"value": "M6 \u00d7 1.0"
+				},
+				{
+					"label": "Material",
+					"value": "Aluminum alloy, powder coated"
+				},
+				{
+					"label": "Includes",
+					"value": "Bolts and nuts"
+				}
+			],
 			"sheet_qty": {
 				"per_machine": 6
 			},
@@ -4349,14 +4367,63 @@
 					{
 						"region": "US",
 						"vendor": "Amazon",
-						"url": "https://www.amazon.com/dp/B0FWRTKGG7",
-						"price": 28.99,
-						"pack_qty": 12,
-						"as_of": "2026-04-16"
+						"url": "https://www.amazon.com/dp/B0GGH9CVZN",
+						"price": 12.99,
+						"pack_qty": 4,
+						"as_of": "2026-07-18"
 					}
 				]
 			},
-			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/5f4ebfc3683af414026ee2f8fb20655a2323679964c419bf9e990e46e786e8d3.jpg"
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/865e0c41426542c2661389baa53f30f439e8add28b8aa8c8e6b6117b6cb1c0a0.jpg"
+		},
+		{
+			"id": "caster-wheel-m6",
+			"kind": "cots",
+			"cots": {
+				"type": "wheel",
+				"size": "M6"
+			},
+			"name": "Swivel stem caster, M6 \u00d7 15 mm",
+			"category": "Wheels",
+			"description": "Screws into the 2020 foot connector so the machine can roll.",
+			"note": "Sold in packs of 4; the machine needs 6, so buy two packs. Get the 2.0 inch M6-1.0x15mm variant with brakes.",
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Thread",
+					"value": "M6 \u00d7 1.0, 15 mm stem"
+				},
+				{
+					"label": "Wheel",
+					"value": "2 in (50 mm) TPR, swivel with brake"
+				},
+				{
+					"label": "Load",
+					"value": "300 lb per caster (2 in)"
+				},
+				{
+					"label": "Brand",
+					"value": "YEWEKE"
+				}
+			],
+			"sheet_qty": {
+				"per_machine": 6
+			},
+			"sheet_qty_text": null,
+			"sourcing": {
+				"vendors": [
+					{
+						"region": "US",
+						"vendor": "Amazon",
+						"url": "https://www.amazon.com/dp/B09D421G9V",
+						"price": 16.99,
+						"pack_qty": 4,
+						"as_of": "2026-07-18"
+					}
+				]
+			},
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/700ae42a92605d1c848ca7b2b210e4fb4c4be2942abe08ce712e891af3b72abf.jpg"
 		},
 		{
 			"id": "motor-nema17",
