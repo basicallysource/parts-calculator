@@ -2822,6 +2822,9 @@
             "affiliate_url": "https://www.amazon.com/dp/B0DHV8ZF4R?tag=sorterv2-20"
           }
         ]
+      },
+      "sheet_qty": {
+        "per_machine": 1
       }
     },
     {
