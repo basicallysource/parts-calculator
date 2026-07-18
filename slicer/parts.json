@@ -2346,19 +2346,59 @@
       }
     },
     {
-      "id": "wifi-usb-module",
+      "id": "wifi-module-opi5",
       "kind": "cots",
       "cots": {
         "type": "wifi"
       },
-      "name": "USB WiFi 6 Module (or custom M-Key Wifi module YMMV)",
+      "name": "Orange Pi 5 WiFi 6 + Bluetooth module",
       "category": "Computer",
-      "description": "WiFi for Orange Pi 5 (optional) (M.2 slot is for a NVME SSD or custom M-Key Wifi module)",
+      "description": "WiFi and Bluetooth for the Orange Pi. Optional.",
       "created_at": "2026-07-18",
       "updated_at": "2026-07-18",
       "sheet_qty": {
         "per_machine": 1
-      }
+      },
+      "attributes": [
+        {
+          "label": "Chip",
+          "value": "AP6275P"
+        },
+        {
+          "label": "WiFi",
+          "value": "Wi-Fi 6, dual-band 2.4 / 5 GHz, 2T2R"
+        },
+        {
+          "label": "Bluetooth",
+          "value": "5.3"
+        },
+        {
+          "label": "Size",
+          "value": "22 × 30 mm"
+        },
+        {
+          "label": "Fits",
+          "value": "Orange Pi 5 only (not 5 Plus / 5B)"
+        },
+        {
+          "label": "Includes",
+          "value": "Antennas"
+        }
+      ],
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/dp/B0BZQ39CY7",
+            "affiliate_url": "https://www.amazon.com/dp/B0BZQ39CY7?tag=sorterv2-20",
+            "price": 23.99,
+            "pack_qty": 1,
+            "as_of": "2026-07-18"
+          }
+        ]
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/8ab3a641760510a72976b5466efdd9c21b8a507d917bd5a9ada48aed97c98766.jpg"
     },
     {
       "id": "usb-hub-powered-24v",
