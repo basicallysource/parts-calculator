@@ -4561,10 +4561,15 @@
 			"name": "Lazy Susan",
 			"category": "Bearings",
 			"description": "Main chute bearing",
-			"note": "Must select 8\"/200mm variant, specially for Aliexpress",
+			"note": null,
 			"created_at": "2026-07-18",
 			"updated_at": "2026-07-18",
-			"attributes": [],
+			"attributes": [
+				{
+					"label": "Size",
+					"value": "8\" / 200 mm"
+				}
+			],
 			"sheet_qty": {
 				"per_machine": 1
 			},

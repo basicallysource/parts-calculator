@@ -118,6 +118,16 @@
 									</span>
 								</div>
 								<p class="mt-0.5 text-xs text-text-muted">{h.description}</p>
+								{#if h.attributes?.length}
+									<!-- specs that pin down which variant to buy, kept as quiet inline text -->
+									<p class="mt-1 text-xs text-text-muted">
+										{#each h.attributes as a, i (a.label)}<span
+												class="whitespace-nowrap"
+												>{a.label}
+												<span class="text-text">{a.value}</span></span
+											>{#if i < h.attributes.length - 1}<span class="px-1.5 opacity-40">·</span>{/if}{/each}
+									</p>
+								{/if}
 							</div>
 						</div>
 						{#if h.note}
@@ -176,4 +186,11 @@
 			</div>
 		</section>
 	{/each}
+
+	<!-- Affiliate disclosure. Required because the vendor links carry a referral
+	     tag; kept to one muted line at the foot of the page. -->
+	<p class="mt-4 border-t border-border pt-3 text-[11px] text-text-muted">
+		Amazon links are affiliate links. The “plain” link beside each one is the same listing
+		without the tag.
+	</p>
 </div>

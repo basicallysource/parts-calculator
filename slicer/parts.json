@@ -2240,7 +2240,6 @@
       "name": "Lazy Susan",
       "category": "Bearings",
       "description": "Main chute bearing",
-      "note": "Must select 8\"/200mm variant, specially for Aliexpress",
       "created_at": "2026-07-18",
       "updated_at": "2026-07-18",
       "sheet_qty": {
@@ -2266,7 +2265,13 @@
             "as_of": "2026-04-16"
           }
         ]
-      }
+      },
+      "attributes": [
+        {
+          "label": "Size",
+          "value": "8\" / 200 mm"
+        }
+      ]
     },
     {
       "id": "sbc-orange-pi-5",
