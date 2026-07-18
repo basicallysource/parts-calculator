@@ -5310,6 +5310,67 @@
 			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/784f9a5733e4ad3815cb8a22b27b7a6610357277e1846a7f1be2e5843ab63e31.jpg"
 		},
 		{
+			"id": "ctrl-board-basically",
+			"kind": "cots",
+			"cots": {
+				"type": "custom-pcb"
+			},
+			"name": "basically Embedded Control Board",
+			"category": "Custom PCBs",
+			"description": "In-house distribution/feeder control board: Pico, stepper drivers, servo and LED outputs. 1 per machine.",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Version",
+					"value": "1.3"
+				}
+			],
+			"sheet_qty": {
+				"per_machine": 1
+			},
+			"sheet_qty_text": null,
+			"sourcing": {
+				"vendors": [
+					{
+						"region": "US",
+						"vendor": "basically",
+						"url": "https://basically.website/shop"
+					}
+				]
+			},
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/f7caadca07d5a0dc6894895209da6f1a7f4c865a245ee095fce358902c85ff42.png"
+		},
+		{
+			"id": "layer-adapter-board-basically",
+			"kind": "cots",
+			"cots": {
+				"type": "custom-pcb"
+			},
+			"name": "basically Layer Adapter Board",
+			"category": "Custom PCBs",
+			"description": "In-house adapter board that breaks out the control board's ribbon connectors for one distribution layer. 1 per layer.",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [],
+			"sheet_qty": {
+				"per_layer": 1
+			},
+			"sheet_qty_text": null,
+			"sourcing": {
+				"vendors": [
+					{
+						"region": "US",
+						"vendor": "basically",
+						"url": "https://basically.website/shop"
+					}
+				]
+			},
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/1838b0588731b2d835ae5f9885f4e486324b89370ab3ea5df086540deb539c75.png"
+		},
+		{
 			"id": "led-cob-50mm-24v",
 			"kind": "cots",
 			"cots": {
