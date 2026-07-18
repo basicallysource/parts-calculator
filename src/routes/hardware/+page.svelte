@@ -73,6 +73,10 @@
 			and pack-quantity math. Imported from the Sorter V2 BOM sheet; screws and extrusion live on
 			their own tabs.
 		</p>
+		<p class="mt-2 max-w-3xl text-xs text-text-muted">
+			Amazon links are affiliate links — buying through them supports the project at no extra
+			cost to you. Every one has a “plain” link next to it with the referral tag stripped.
+		</p>
 	</header>
 
 	<div class="mb-5">
@@ -143,17 +147,31 @@
 								{#each h.sourcing.vendors as v (v.url)}
 									{@const cost = buyCost(v, qty)}
 									<div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-0.5 py-0.5 text-xs">
-										<a
-											href={v.url}
-											target="_blank"
-											rel="noopener"
-											class="inline-flex items-center gap-1 font-medium text-primary hover:text-primary-hover"
-											title={v.note ?? v.as_of ? `${v.note ?? ''}${v.note && v.as_of ? ' · ' : ''}${v.as_of ? `price as of ${v.as_of}` : ''}` : undefined}
-										>
-											{v.vendor ?? v.region}
-											<span class="font-normal text-text-muted">({v.region})</span>
-											<ExternalLink size={11} />
-										</a>
+										<span class="inline-flex items-center gap-1">
+											<a
+												href={v.affiliate_url ?? v.url}
+												target="_blank"
+												rel="noopener"
+												class="inline-flex items-center gap-1 font-medium text-primary hover:text-primary-hover"
+												title={v.note ?? v.as_of ? `${v.note ?? ''}${v.note && v.as_of ? ' · ' : ''}${v.as_of ? `price as of ${v.as_of}` : ''}` : undefined}
+											>
+												{v.vendor ?? v.region}
+												<span class="font-normal text-text-muted">({v.region})</span>
+												<ExternalLink size={11} />
+											</a>
+											{#if v.affiliate_url}
+												<!-- the same listing without the referral tag, for anyone who prefers it -->
+												<a
+													href={v.url}
+													target="_blank"
+													rel="noopener"
+													class="text-text-muted underline decoration-dotted underline-offset-2 hover:text-text"
+													title="Same listing without the affiliate tag"
+												>
+													plain
+												</a>
+											{/if}
+										</span>
 										<span class="tabular-nums text-text-muted">
 											{#if fmtPrice(v)}
 												{fmtPrice(v)}{v.pack_qty && v.pack_qty > 1 ? ` / ${v.pack_qty}` : ''}

@@ -55,7 +55,8 @@ export type Requirement = { part: string; qty: number };
 export type Vendor = {
 	region: string;
 	vendor?: string;
-	url: string;
+	url: string; // the plain listing, no referral tag
+	affiliate_url?: string; // same listing with the project's Amazon tag
 	price?: number;
 	currency?: string; // absent = USD
 	pack_qty?: number;
