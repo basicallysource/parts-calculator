@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { ExternalLink, ImageOff } from 'lucide-svelte';
-	import Callout from '$lib/components/Callout.svelte';
 	import LayerControl from '$lib/components/LayerControl.svelte';
 	import { HARDWARE, resolveHardwareTotals, type Hardware, type Vendor } from '$lib/filament';
 	import { layerStore } from '$lib/layers.svelte';
@@ -68,23 +67,7 @@
 <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
 	<header class="mb-5">
 		<h1 class="text-2xl font-bold text-text">Hardware</h1>
-		<p class="mt-1 max-w-3xl text-sm text-text-muted">
-			Everything you buy off the shelf — cameras, motors, bearings, electronics — with sources
-			and pack-quantity math. Imported from the Sorter V2 BOM sheet; screws and extrusion live on
-			their own tabs.
-		</p>
-		<p class="mt-2 max-w-3xl text-xs text-text-muted">
-			Amazon links are affiliate links — buying through them supports the project at no extra
-			cost to you. Every one has a “plain” link next to it with the referral tag stripped.
-		</p>
 	</header>
-
-	<div class="mb-5">
-		<Callout variant="info" title="Quantities are still hand-counted">
-			These counts come straight from the BOM spreadsheet. As parts get placed into the machine
-			assembly tree they switch to being computed from it, like the heat inserts already are.
-		</Callout>
-	</div>
 
 	<div class="mb-6"><LayerControl /></div>
 

@@ -5222,7 +5222,7 @@
 			"name": "MG995 Servo",
 			"category": "Per layer",
 			"description": "Standard Servo for flap (serial upgrade see note)",
-			"note": "Serial upgrade details tbd. See https://discord.com/channels/1430279849171222682/1437436041685631129/1456688787257163860",
+			"note": null,
 			"created_at": "2026-07-18",
 			"updated_at": "2026-07-18",
 			"attributes": [],
