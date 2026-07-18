@@ -5171,7 +5171,9 @@
 			"created_at": "2026-07-18",
 			"updated_at": "2026-07-18",
 			"attributes": [],
-			"sheet_qty": null,
+			"sheet_qty": {
+				"per_machine": 1
+			},
 			"sheet_qty_text": null,
 			"sourcing": {
 				"vendors": [
