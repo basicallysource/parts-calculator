@@ -352,6 +352,8 @@
 <Modal bind:open={detailOpen} title={detail?.name}>
 	{#if detail}
 		{@const qty = totalQty(detail, layers)}
+		<!-- Modal supplies no padding of its own; every caller wraps its body. -->
+		<div class="p-4">
 		<div class="flex flex-col gap-4 sm:flex-row">
 			{#if detail.image}
 				<img
@@ -440,5 +442,6 @@
 			<input type="checkbox" class="setup-toggle h-4 w-4" bind:checked={selected[detail.id]} />
 			Include in the Amazon cart
 		</label>
+		</div>
 	{/if}
 </Modal>
