@@ -4224,7 +4224,7 @@
 			"updated_at": "2026-07-18",
 			"attributes": [],
 			"sheet_qty": {
-				"per_machine": 3
+				"per_machine": 2
 			},
 			"sheet_qty_text": null,
 			"sourcing": {
@@ -4324,7 +4324,7 @@
 			"name": "2020 M6 foot connector",
 			"category": "Wheels",
 			"description": "It needs to move...",
-			"note": "Sold in packs of 4; the machine needs 6, so buy two packs.",
+			"note": null,
 			"created_at": "2026-07-18",
 			"updated_at": "2026-07-18",
 			"attributes": [
@@ -4374,7 +4374,7 @@
 			"name": "Swivel stem caster, M6 \u00d7 15 mm",
 			"category": "Wheels",
 			"description": "Screws into the 2020 foot connector so the machine can roll.",
-			"note": "Sold in packs of 4; the machine needs 6, so buy two packs. Get the 2.0 inch M6-1.0x15mm variant with brakes.",
+			"note": null,
 			"created_at": "2026-07-18",
 			"updated_at": "2026-07-18",
 			"attributes": [
@@ -4600,7 +4600,7 @@
 			"name": "Orange Pi 5",
 			"category": "Computer",
 			"description": "Host computer (optional, see note)",
-			"note": "Optional if bring your own computer. Needs to be powerful enough to run three small CV models in parallel at ~30fps. Benchmark details: https://docs.basically.website/device-benchmarking",
+			"note": null,
 			"created_at": "2026-07-18",
 			"updated_at": "2026-07-18",
 			"attributes": [],
@@ -4891,7 +4891,7 @@
 			"name": "24v PSU >= 300w (see note)",
 			"category": "Electronics",
 			"description": "Power supply",
-			"note": "Totally not locked down. Only proceed if you know what you're doing. Min. wattage untested so 300w to be safe",
+			"note": null,
 			"created_at": "2026-07-18",
 			"updated_at": "2026-07-18",
 			"attributes": [],
