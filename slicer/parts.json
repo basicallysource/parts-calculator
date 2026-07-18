@@ -1,5 +1,5 @@
 {
-  "_comment": "Source-of-truth manifest. filament.py slices each STL once and writes ../src/lib/data/parts.generated.json + thumbnails + STL copies. Per part: id, name, category, description (short, shown in app), internal_notes (extended, agent-only, NOT emitted to the app), version, created_at, updated_at, stl, quantity (per ONE instance of its category), color, optional. attributes (optional list of {label,value} shown in the app), versions (optional archetype history: list of {version,date,message,commit}; commit ties to a real git commit, null = pending an upcoming clean commit). low_tolerance (optional bool: part has little tolerance for dimensional error - a tight/precise fit - so a test print is worth doing) + low_tolerance_note (the specifics, shown in the app). color is one of {\"role\":\"<roleid>\"} (user-picked), {\"fixed\":\"<lego-id>\"}, {\"split\":[{\"color\":\"<lego-id>\",\"qty\":N},...]} (sums to quantity), or {\"any\":true}, or {\"by_section\":{\"<sectionid>\":<colorspec>,...}} (per-section color when a part lives in multiple sections). Machine = 1 of each non-scaling category + N of each scaling category. See ../notes/TERMINOLOGY.md. SCHEMA V2 (unified parts system, see ../notes/UNIFIED-PARTS-SYSTEM.md, incremental): a part may carry kind ('printed' when absent | 'cots'); cots parts have cots {type,size,variant}, image (slicer-relative path, uploaded to the bucket by sync_bucket.py and served from there), sourcing {vendors:[{region,vendor,url,price,pack_qty,as_of,note?}]}, and no stl/color/quantities. A printed part may carry requires [{part,qty}] = hardware committed to that single physical part (heat inserts, press-fit bearings); qty scales with the part automatically. An assembly may carry lines [{part|assembly, qty}] (qty is a number, or 'per-layer' = multiplied by the total layer count, or 'middle-layers' = layer count minus 2, the layers that sit between the top and bottom interfaces) and status 'stub' (placeholder, nothing inside yet) or 'partial' (some lines filled in) — these form the experimental machine tree rooted at the 'machine' assembly.",
+  "_comment": "Source-of-truth manifest. filament.py slices each STL once and writes ../src/lib/data/parts.generated.json + thumbnails + STL copies. Per part: id, name, category, description (short, shown in app), internal_notes (extended, agent-only, NOT emitted to the app), version, created_at, updated_at, stl, quantity (per ONE instance of its category), color, optional. attributes (optional list of {label,value} shown in the app), versions (optional archetype history: list of {version,date,message,commit}; commit ties to a real git commit, null = pending an upcoming clean commit). low_tolerance (optional bool: part has little tolerance for dimensional error - a tight/precise fit - so a test print is worth doing) + low_tolerance_note (the specifics, shown in the app). color is one of {\"role\":\"<roleid>\"} (user-picked), {\"fixed\":\"<lego-id>\"}, {\"split\":[{\"color\":\"<lego-id>\",\"qty\":N},...]} (sums to quantity), or {\"any\":true}, or {\"by_section\":{\"<sectionid>\":<colorspec>,...}} (per-section color when a part lives in multiple sections). Machine = 1 of each non-scaling category + N of each scaling category. See ../notes/TERMINOLOGY.md. SCHEMA V2 (unified parts system, see ../notes/UNIFIED-PARTS-SYSTEM.md, incremental): a part may carry kind ('printed' when absent | 'cots'); cots parts have cots {type,size?,variant?}, category (display grouping on the hardware tab), note (builder-critical caveat from the BOM sheet), image (slicer-relative path, uploaded to the bucket by sync_bucket.py and served from there) OR image_url (an already-uploaded content-addressed bucket URL; BOM product images never touch git), sourcing {vendors:[{region,vendor,url,price,currency?,pack_qty?,as_of?,note?}]} (price is USD unless currency says otherwise), and no stl/color/quantities. sheet_qty {per_machine|per_layer} / sheet_qty_text are TRANSITIONAL hand counts carried over from the BOM sheet; they die once these parts are placed as requires/lines in the tree. A printed part may carry requires [{part,qty}] = hardware committed to that single physical part (heat inserts, press-fit bearings); qty scales with the part automatically. An assembly may carry lines [{part|assembly, qty}] (qty is a number, or 'per-layer' = multiplied by the total layer count, or 'middle-layers' = layer count minus 2, the layers that sit between the top and bottom interfaces) and status 'stub' (placeholder, nothing inside yet) or 'partial' (some lines filled in) — these form the experimental machine tree rooted at the 'machine' assembly.",
   "sections": [
     {
       "id": "feeder",
@@ -1831,6 +1831,7 @@
         "variant": "long"
       },
       "name": "Ruthex M3 heat insert (long)",
+      "category": "Heat inserts",
       "description": "ruthex RX-M3x5.7 brass heat-set threaded insert. The default M3 insert anywhere one is called for.",
       "internal_notes": "First COTS part in the manifest (unified-parts-system MVP). 'Long' = ruthex's standard M3 (5.7 mm), vs the M3S short (4 mm) used only on the servo adapter. BOM sheet says the machine needs ~235 across machine+layers; the chute core alone takes 18 (4 PCB + 4 bearing race + 4 funnel slides + 4 layer connector + 2 arms).",
       "created_at": "2026-07-18",
@@ -1861,6 +1862,1040 @@
             "pack_qty": 300,
             "as_of": "2026-07-18",
             "note": "unconfirmed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cam-imx415",
+      "kind": "cots",
+      "cots": {
+        "type": "camera"
+      },
+      "name": "IMX415 4k Camera Module",
+      "category": "Cameras",
+      "description": "Classification top camera",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 1
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/7470d70e089ce5cc7a8cffef0465c105131b5fe4257beef1de377d9b827d8910.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://amzn.to/4dyTdtA",
+            "price": 89.0,
+            "pack_qty": 1,
+            "as_of": "2026-04-16"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cam-classification-bottom",
+      "kind": "cots",
+      "cots": {
+        "type": "camera"
+      },
+      "name": "Classification bottom camera (TBD)",
+      "category": "Cameras",
+      "description": "Classification bottom camera",
+      "note": "Not locked in or being used on any of the dev machines right now",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18"
+    },
+    {
+      "id": "cam-ov9732",
+      "kind": "cots",
+      "cots": {
+        "type": "camera"
+      },
+      "name": "OV9732 720p Camera Module",
+      "category": "Cameras",
+      "description": "C-Channel and carousel drop plate detection cameras",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 3
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/8f536228e5a4502ecd89039d0cbf93c16f9d5a1043fd303cd7c417789334753f.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://amzn.to/4veEZ7p",
+            "price": 29.99,
+            "pack_qty": 3,
+            "as_of": "2026-04-16"
+          },
+          {
+            "region": "EU",
+            "vendor": "AliExpress",
+            "url": "https://fr.aliexpress.com/item/1005008513009673.html",
+            "price": 32.0,
+            "currency": "EUR",
+            "as_of": "2026-04-30"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pulley-20t-5mm",
+      "kind": "cots",
+      "cots": {
+        "type": "pulley"
+      },
+      "name": "Timing Pulley - 20T - 5mm bore - 10mm belt",
+      "category": "Pulleys",
+      "description": "Interface between stepper shaft and carousel",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 1
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/09b4a00b5e93b27eee1185390cf1f70a9e5f70b80b6f0b2631f7c1d5dbcff373.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/dp/B07H25RMJG",
+            "price": 6.99,
+            "pack_qty": 5,
+            "as_of": "2026-04-16"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pulley-20t-8mm",
+      "kind": "cots",
+      "cots": {
+        "type": "pulley"
+      },
+      "name": "Timing Pulley - 20T 8mm shaft - 10mm belt",
+      "category": "Pulleys",
+      "description": "Interface between stepper shaft and chute gear",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 1
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/bf2464997d1ba0ff22e86b57e94e2477ceb7220e49e8474c265f5e509b42cc22.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://amzn.to/4tzhGnj",
+            "price": 9.99,
+            "pack_qty": 5,
+            "as_of": "2026-04-16"
+          }
+        ]
+      }
+    },
+    {
+      "id": "caster-wheel-m10",
+      "kind": "cots",
+      "cots": {
+        "type": "wheel"
+      },
+      "name": "Caster wheels with M10 screw mount",
+      "category": "Pulleys",
+      "description": "It needs to move...",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 6
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/5f4ebfc3683af414026ee2f8fb20655a2323679964c419bf9e990e46e786e8d3.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/dp/B0FWRTKGG7",
+            "price": 28.99,
+            "pack_qty": 12,
+            "as_of": "2026-04-16"
+          }
+        ]
+      }
+    },
+    {
+      "id": "motor-nema17",
+      "kind": "cots",
+      "cots": {
+        "type": "stepper-motor"
+      },
+      "name": "Nema 17 Stepper Motor",
+      "category": "Motors",
+      "description": "C-Channel and carousel drive motors",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 4
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/578841523909d67aa0f1711197935d36bcb2f6673d37f8395efc0644f49a6f9b.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://amzn.to/4ceG5rm",
+            "price": 10.99,
+            "pack_qty": 3,
+            "as_of": "2026-04-16"
+          },
+          {
+            "region": "EU",
+            "vendor": "StepperOnline",
+            "url": "https://www.omc-stepperonline.com/3-pcs-e-series-nema-17-bipolar-42ncm-59-49oz-in-1-5a-42x42x38mm-4-wires-w-1m-cable-connector-3-17he15-1504s"
+          }
+        ]
+      }
+    },
+    {
+      "id": "motor-nema23",
+      "kind": "cots",
+      "cots": {
+        "type": "stepper-motor"
+      },
+      "name": "Nema 23",
+      "category": "Motors",
+      "description": "Chute drive motor",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 1
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/e8eac018a9a8a77a14db0de260beb4cff737bd37a33fd1f16af32e277025e453.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/dp/B091C37FJ2",
+            "price": 25.99,
+            "pack_qty": 1,
+            "as_of": "2026-04-16"
+          },
+          {
+            "region": "EU",
+            "vendor": "StepperOnline",
+            "url": "https://www.omc-stepperonline.com/nema-23-bipolar-1-8deg-0-6nm-85oz-in-0-88a-6-6v-57x57x41mm-4-wires-23hs16-0884s"
+          }
+        ]
+      }
+    },
+    {
+      "id": "brg-6806-2rs",
+      "kind": "cots",
+      "cots": {
+        "type": "bearing"
+      },
+      "name": "6806-2RS - 30mm ID - 42mm OD - 7mm",
+      "category": "Bearings",
+      "description": "Bearings for c-channel rotors",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 3
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/b7aac380cc216efdc18d1f61e5a9b70b63a35d37b3417fe118a7c7af2d10da96.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/dp/B082PXK5K9?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_5&th=1",
+            "price": 16.19,
+            "pack_qty": 10,
+            "as_of": "2026-04-16"
+          }
+        ]
+      }
+    },
+    {
+      "id": "brg-608-2rs",
+      "kind": "cots",
+      "cots": {
+        "type": "bearing"
+      },
+      "name": "608 2RS",
+      "category": "Bearings",
+      "description": "Bearings for c-channel idler, chute idler, carousel arms",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 8
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/e11bf4434f281628218a4867af0033d0daf845e26e88bc208f973d5a0b7f5b9b.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/dp/B09PKD8QZZ",
+            "price": 6.99,
+            "pack_qty": 20,
+            "as_of": "2026-04-16"
+          }
+        ]
+      }
+    },
+    {
+      "id": "brg-lazy-susan",
+      "kind": "cots",
+      "cots": {
+        "type": "bearing"
+      },
+      "name": "Lazy Susan",
+      "category": "Bearings",
+      "description": "Main chute bearing",
+      "note": "Must select 8\"/200mm variant, specially for Aliexpress",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 1
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/8d3232c97b1f885364c542ed400a855bcbf8af8d7c3a37ee281e60516e9be8db.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://amzn.to/3Q65Qm8",
+            "price": 17.99,
+            "pack_qty": 1,
+            "as_of": "2026-04-16"
+          },
+          {
+            "region": "EU",
+            "vendor": "AliExpress",
+            "url": "https://www.aliexpress.us/item/3256807110215562.html?gatewayAdapt=glo2usa4itemAdapt",
+            "price": 11.31,
+            "as_of": "2026-04-16"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sbc-orange-pi-5",
+      "kind": "cots",
+      "cots": {
+        "type": "computer"
+      },
+      "name": "Orange Pi 5",
+      "category": "Computer",
+      "description": "Host computer (optional, see note)",
+      "note": "Optional if bring your own computer. Needs to be powerful enough to run three small CV models in parallel at ~30fps. Benchmark details: https://docs.basically.website/device-benchmarking",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 1
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/51ca8492b4994e553fc1e451494ce18f0993c653f35d1db90adf388f33fafd36.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/dp/B0BN17BRYY",
+            "price": 195.99,
+            "pack_qty": 1,
+            "as_of": "2026-04-16"
+          }
+        ]
+      }
+    },
+    {
+      "id": "microsd-32gb",
+      "kind": "cots",
+      "cots": {
+        "type": "storage"
+      },
+      "name": "32gb+ Micro SD Card",
+      "category": "Computer",
+      "description": "MicroSD card for Orange Pi",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 1
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/18128a75110ff786fbcdca9be2d093b22d955ebf9f81d6c695a930f20f7149a2.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/Amazon-Basics-microSDXC-Memory-Adapter/dp/B08TJTB8XS",
+            "price": 33.24,
+            "pack_qty": 2,
+            "as_of": "2026-04-16"
+          }
+        ]
+      }
+    },
+    {
+      "id": "wifi-usb-module",
+      "kind": "cots",
+      "cots": {
+        "type": "wifi"
+      },
+      "name": "USB WiFi 6 Module (or custom M-Key Wifi module YMMV)",
+      "category": "Computer",
+      "description": "WiFi for Orange Pi 5 (optional) (M.2 slot is for a NVME SSD or custom M-Key Wifi module)",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 1
+      }
+    },
+    {
+      "id": "usb-hub-powered-24v",
+      "kind": "cots",
+      "cots": {
+        "type": "usb-hub"
+      },
+      "name": "Powered USB Hub - 24v - 4 ports",
+      "category": "Computer",
+      "description": "Powered USB Hub(s) for webcams and Picos (see note)",
+      "note": "Can we use unpowered hub? is this reliable? if so then we can get something with 7 ports for less money. additionally if you want to just plug two things in, there are cheaper usb hubs with their own wall wart: https://www.amazon.com/dp/B07V6MXF3C",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 2
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/e327e62a3fb80763bd0f10599ad46db6a8ca432253078fee88d84aa9888b0d5c.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/Waveshare-Compatible-Windows-Wall-Mount-Driver-Free/dp/B0D97V3N3R",
+            "price": 27.99,
+            "pack_qty": 1,
+            "as_of": "2026-04-16"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cable-micro-usb",
+      "kind": "cots",
+      "cots": {
+        "type": "cable"
+      },
+      "name": "Micro USB Data Cable",
+      "category": "Computer",
+      "description": "Connect Picos to host",
+      "note": "USB Cables totally vary in quality. Ensure it supports data",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 2
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/b15f19a1ef56e6c710c09e105e6b8cbeabda0b39368aeff99bc2e11669b0a5f8.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/dp/B072J1BSV6",
+            "price": 9.44,
+            "pack_qty": 3,
+            "as_of": "2026-04-16"
+          },
+          {
+            "region": "EU",
+            "vendor": "Amazon FR",
+            "url": "https://www.amazon.fr/Chargeur-Charge-Rapide-Android-Samsung/dp/B0C6HYYTMM",
+            "price": 7.0,
+            "currency": "EUR",
+            "as_of": "2026-04-16"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cable-usb-c-1m",
+      "kind": "cots",
+      "cots": {
+        "type": "cable"
+      },
+      "name": "USB C Data Cable - >=1m",
+      "category": "Computer",
+      "description": "Connect classification chamber camera to host (note)",
+      "note": "I'm almost sure the one that comes with the IMX 4k camera module is not long enough but I can't find it anymore. Need double check",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 1
+      }
+    },
+    {
+      "id": "drv-pca9685",
+      "kind": "cots",
+      "cots": {
+        "type": "driver-board"
+      },
+      "name": "PCA 16 Channel 12-Bit PWM Servo Motor Driver IIC Module",
+      "category": "Electronics",
+      "description": "Driver for the servos (Not needed for Basically Board v1.0 or newer.)",
+      "note": "***VERY IMPORTANT*** Not needed with latest Basically Board v1.0 or newer. For older boards, modifications to the PCA board are necessary. See: https://docs.google.com/document/d/16lYSzO20PJOO-aiw8lv3WWaXwBrEL7mdCXNbYGW2aeQ/edit?tab=t.0",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 1
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/68892aab4352a861a9fd8d24d2de46f315a3d21e555e957fa7e521af074d7d2c.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/dp/B07BRS249H",
+            "price": 13.99,
+            "pack_qty": 2,
+            "as_of": "2026-04-16"
+          },
+          {
+            "region": "CN",
+            "vendor": "AliExpress",
+            "url": "https://www.aliexpress.com/item/1005005201765346.html",
+            "price": 3.54,
+            "currency": "EUR",
+            "as_of": "2026-04-25"
+          }
+        ]
+      }
+    },
+    {
+      "id": "drv-tmc2209",
+      "kind": "cots",
+      "cots": {
+        "type": "stepper-driver"
+      },
+      "name": "TMC2209 Stepper Motor Driver Modules",
+      "category": "Electronics",
+      "description": "Driver for the all steppers",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 5
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/4eb0a0fc4354607264fdc3dcb81f0a2837c48142b18f547ea94ad5ced5196490.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://amzn.to/4bYfj7C",
+            "price": 26.99,
+            "pack_qty": 5,
+            "as_of": "2026-04-16"
+          },
+          {
+            "region": "CN",
+            "vendor": "AliExpress",
+            "url": "https://www.aliexpress.com/item/4000382753452.html",
+            "price": 16.45,
+            "currency": "EUR",
+            "as_of": "2026-04-25"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mcu-rpi-pico",
+      "kind": "cots",
+      "cots": {
+        "type": "mcu"
+      },
+      "name": "Raspberry Pi Pico",
+      "category": "Electronics",
+      "description": "Embedded MCUs for controlling motors (Only 1 needed for Basically Board v1.0 or newer.)",
+      "note": "Possibly only need one. Will know by May",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 1
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/35bf81d20d6e4760955e0394a118c465bcae2f5d0bf3a06d8f639e15552d1769.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/dp/B0BDLHMQ9C",
+            "price": 14.59,
+            "pack_qty": 2,
+            "as_of": "2026-04-16"
+          }
+        ]
+      }
+    },
+    {
+      "id": "header-pins-254",
+      "kind": "cots",
+      "cots": {
+        "type": "headers"
+      },
+      "name": "2.54mm header pins",
+      "category": "Electronics",
+      "description": "Pico Headers",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 20
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/2f61f803bd8318e6b934e405d6063689fcabc5425c7c8aaacc6b862c95d40050.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/Straight-Breakaway-Connector-Breadboard-Electronic/dp/B0FRZW75VS",
+            "price": 5.89,
+            "as_of": "2026-04-16"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cable-idc-2x8-long",
+      "kind": "cots",
+      "cots": {
+        "type": "cable"
+      },
+      "name": "IDC ribbon cable, 2x8 (16-pin), 2.54mm pitch - 1m to 1.5m length",
+      "category": "Electronics",
+      "description": "Cable from distribution board to chute",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 1
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/74cf23b456b9fe16a238498c06c429730c3253046fc5d5991995ad526ce7b94f.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://a.co/d/0cCwQhmh",
+            "price": 9.99,
+            "pack_qty": 1,
+            "as_of": "2026-04-16"
+          }
+        ]
+      }
+    },
+    {
+      "id": "psu-24v-350w",
+      "kind": "cots",
+      "cots": {
+        "type": "psu"
+      },
+      "name": "24v PSU >= 300w (see note)",
+      "category": "Electronics",
+      "description": "Power supply",
+      "note": "Totally not locked down. Only proceed if you know what you're doing. Min. wattage untested so 300w to be safe",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 1
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/72bba2c3919b12f5bfc2cb5bbfc3ad38257fee4d09e3395db3a016e5fb47b196.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/dp/B013ETVO12",
+            "price": 27.35,
+            "pack_qty": 1,
+            "note": "sheet's link was broken/truncated; relinked to the LRS-350-24 listing"
+          }
+        ]
+      }
+    },
+    {
+      "id": "psu-switch-fused",
+      "kind": "cots",
+      "cots": {
+        "type": "switch"
+      },
+      "name": "PSU on/off switch with fuse (TBD)",
+      "category": "Electronics",
+      "description": "Power supply on/off switch with fuse",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18"
+    },
+    {
+      "id": "wire-leds",
+      "kind": "cots",
+      "cots": {
+        "type": "wire"
+      },
+      "name": "Wire for LEDs (TBD)",
+      "category": "Electronics",
+      "description": "Wire for LEDs",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18"
+    },
+    {
+      "id": "conn-jst-vh-2pin",
+      "kind": "cots",
+      "cots": {
+        "type": "connector"
+      },
+      "name": "JST VH 3.96 mm Pitch 2 Pin",
+      "category": "Connectors & terminals",
+      "description": "Connect PSU and LEDs to main board",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 6
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/1ba539c2ef6748e20d2ca6df6ec64019c372084c70946d90afe6ade14526d59e.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/dp/B089QRPTYS",
+            "price": 10.99,
+            "pack_qty": 50,
+            "as_of": "2026-04-16"
+          }
+        ]
+      }
+    },
+    {
+      "id": "conn-dupont-endstop",
+      "kind": "cots",
+      "cots": {
+        "type": "connector"
+      },
+      "name": "Dupont connector or pre-crimped wire",
+      "category": "Connectors & terminals",
+      "description": "Wire mechanical endstop",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18"
+    },
+    {
+      "id": "standoff-m3-10mm",
+      "kind": "cots",
+      "cots": {
+        "type": "standoff"
+      },
+      "name": "Standoff - M3 - 10mm",
+      "category": "Connectors & terminals",
+      "description": "Mount main board",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 8
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/49ce8284dc28ede2c118a7903c079d6107fbdb80fd0ea8f84396ec6bca5054cb.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/Black-Nylon-Standoff-Spacers-Screws/dp/B0F297R23T",
+            "price": 8.29,
+            "pack_qty": 30,
+            "as_of": "2026-04-16"
+          }
+        ]
+      }
+    },
+    {
+      "id": "led-cob-50mm-24v",
+      "kind": "cots",
+      "cots": {
+        "type": "led"
+      },
+      "name": "50mm LED COB - 24v",
+      "category": "Lighting",
+      "description": "Lighting for the C-channels and carousel drop zone",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 3
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/f772d260f547832360f41707bdb5d1ec1f45978d0badb36f7fedc694147a7d4d.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://amzn.to/41fFCjF",
+            "price": 7.99,
+            "pack_qty": 1,
+            "as_of": "2026-04-16"
+          }
+        ]
+      }
+    },
+    {
+      "id": "endstop-optical",
+      "kind": "cots",
+      "cots": {
+        "type": "endstop"
+      },
+      "name": "Optical Endstop, \"Optical Limit Switch Endstop with Cable for Ramps\"",
+      "category": "Endstops",
+      "description": "Homing sensor for carousel",
+      "note": "Needs new US source",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 1
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/2c38bafc6b6b364e14504493e323646b416211eebfff1c627b11e1b422717982.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/dp/B0719K9Z9R",
+            "price": 8.99,
+            "pack_qty": 6,
+            "as_of": "2026-03-31"
+          },
+          {
+            "region": "CN",
+            "vendor": "AliExpress",
+            "url": "https://www.aliexpress.com/item/1005010519284536.html",
+            "price": 2.38,
+            "currency": "EUR",
+            "as_of": "2026-04-25"
+          }
+        ]
+      }
+    },
+    {
+      "id": "endstop-mechanical",
+      "kind": "cots",
+      "cots": {
+        "type": "endstop"
+      },
+      "name": "Mechanical Endstop, \"Micro Limit Switch Short Hinge Roller Lever Arm Switch for Arduino V-155-1C25\"",
+      "category": "Endstops",
+      "description": "Endstop for chute",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 1
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/8fb04d71f715fd2565956ed1e61510fb91b4c4f679d3df8d921bce273453e784.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/dp/B07NVDXGPS",
+            "price": 7.99,
+            "pack_qty": 6,
+            "as_of": "2026-04-16"
+          },
+          {
+            "region": "CN",
+            "vendor": "AliExpress",
+            "url": "https://www.aliexpress.com/item/1005008242738110.html",
+            "price": 0.54,
+            "currency": "EUR",
+            "as_of": "2026-04-25"
+          }
+        ]
+      }
+    },
+    {
+      "id": "led-strip-24v",
+      "kind": "cots",
+      "cots": {
+        "type": "led-strip"
+      },
+      "name": "White/daylight LED strip - 24v",
+      "category": "Lighting",
+      "description": "Lighting for classification chamber",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty_text": "40 cm (sold as 5 m roll)",
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/961391ece43df1628e5a153d3a7ba42b865868e70ace71fde7b0f951c30104eb.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/dp/B0DHV8ZF4R",
+            "price": 9.99,
+            "as_of": "2026-04-16"
+          }
+        ]
+      }
+    },
+    {
+      "id": "acrylic-3mm-clear",
+      "kind": "cots",
+      "cots": {
+        "type": "stock"
+      },
+      "name": "1/8\" or 3mm clear acrylic",
+      "category": "Stock",
+      "description": "To cut four clear carousel tray, 90mm x 94mm each",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty_text": "four 90×94 mm trays",
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/3f55ac03a2d196c65c22ebc2446acfe44683b98524b808d51f317970b696e241.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/dp/B0BYSCZKPP",
+            "price": 14.29,
+            "as_of": "2026-04-16"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ender-wheels",
+      "kind": "cots",
+      "cots": {
+        "type": "wheel"
+      },
+      "name": "Ender wheels",
+      "category": "Per layer",
+      "description": "Wheels to align chute",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_layer": 6
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/59dbdf973a805fc414979f3c222ba13362601af8f7e7626230eb471e2b93e9ad.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/Redrex-Printer-Plastic-Bearing-Tarantula/dp/B07Q5WN3GK/ref=sr_1_5?crid=1X0WW4AHSHES1&dib=eyJ2IjoiMSJ9.ro589gxabelJ1tGj99LkQvJFj8wfEOgZTiZUfRzMAzhZ-l_ahnJhjWtg8kAWPDtN0oTxDUefvQ5fdG4iOcvHVaSzL1xwOxAZy25JhX7yuRGoiT4JE6mqMNntiYuMFScoAhX7jEdyu8NrLKk4G91UanT2VuCDvoQoFjQktJqVecLhhjeLgdJBwi4T2dVRw_tTBpi8sIOuB0G6dYaMvrGZz4Rn9bjSdr3pFjIdvYoaYDIedLiqNanem9SdiOH1gGmChfKlKDro-cFWW7WfZPeBIXTWEaAuDlu2gocnTs3vJyE.6krH_gLYmet5RpVQMecfI99raH8YSq_xOEKM9wlGaVg&dib_tag=se&keywords=ender+wheels&qid=1776360828&s=industrial&sprefix=ender+wheel%2Cindustrial%2C103&sr=1-5",
+            "price": 8.99,
+            "pack_qty": 10,
+            "as_of": "2026-04-16"
+          },
+          {
+            "region": "CN",
+            "vendor": "AliExpress",
+            "url": "https://www.aliexpress.com/item/1005007025834805.html"
+          }
+        ]
+      }
+    },
+    {
+      "id": "brg-6704-2rs",
+      "kind": "cots",
+      "cots": {
+        "type": "bearing"
+      },
+      "name": "6704-2RS - 20mm ID - 27mm OD - 4mm",
+      "category": "Per layer",
+      "description": "Bearings for chute flap",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_layer": 2
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/7394a4c9c385fa9e16eb09525cf41b38f8fbc7d647e12ab7cc4b77f0d7709484.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/dp/B082PXK5K9",
+            "price": 11.66,
+            "pack_qty": 4,
+            "as_of": "2026-04-16"
+          },
+          {
+            "region": "CN",
+            "vendor": "AliExpress",
+            "url": "https://www.aliexpress.com/item/1005009552884836.html"
+          },
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://a.co/d/02MIrMC5",
+            "price": 13.69,
+            "pack_qty": 10,
+            "as_of": "2026-06-28",
+            "note": "second source; sheet flags this link as possibly wrong"
+          }
+        ]
+      }
+    },
+    {
+      "id": "servo-mg995",
+      "kind": "cots",
+      "cots": {
+        "type": "servo"
+      },
+      "name": "MG995 Servo",
+      "category": "Per layer",
+      "description": "Standard Servo for flap (serial upgrade see note)",
+      "note": "Serial upgrade details tbd. See https://discord.com/channels/1430279849171222682/1437436041685631129/1456688787257163860",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_layer": 1
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/8a8b0ae4bdd9679526adf05de4341c528c21cbf42a48491e11fe467c86567589.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/dp/B07NQJ1VZ2",
+            "price": 17.98,
+            "pack_qty": 4,
+            "as_of": "2026-04-16"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cable-idc-2x8-short",
+      "kind": "cots",
+      "cots": {
+        "type": "cable"
+      },
+      "name": "IDC ribbon cable, 2x8 (16-pin), 2.54mm pitch - >250mm length",
+      "category": "Per layer",
+      "description": "Cable between layer and layer below",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_layer": 1
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/784f9a5733e4ad3815cb8a22b27b7a6610357277e1846a7f1be2e5843ab63e31.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/Antrader-16-Pin-Connector-Ribbon-Sockets/dp/B07FZWH9S6",
+            "price": 7.99,
+            "pack_qty": 6,
+            "as_of": "2026-04-16"
           }
         ]
       }
