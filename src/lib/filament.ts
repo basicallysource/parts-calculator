@@ -26,7 +26,50 @@ export type Section = {
 	experimental_note?: string | null;
 };
 export type ColorRoleDef = { id: string; name: string; default: string };
-export type Assembly = { id: string; name: string; description: string };
+
+/** One BOM line of an assembly: a child part or sub-assembly with a quantity.
+ *  qty 'per-layer' multiplies by the configured layer count. */
+export type AssemblyLine = { part?: string; assembly?: string; qty: number | 'per-layer' };
+
+/** Assemblies double as (a) legacy flat groupings the parts list rolls up under
+ *  and (b) nodes of the experimental machine tree (when they carry `lines`).
+ *  status: 'stub' = placeholder with nothing inside yet, 'partial' = some lines
+ *  filled in but not everything the real assembly contains. */
+export type Assembly = {
+	id: string;
+	name: string;
+	description: string;
+	status?: 'stub' | 'partial';
+	lines?: AssemblyLine[];
+};
+
+/** Hardware committed to a single physical part (heat inserts, press-fit
+ *  bearings). Scales automatically with the part count. */
+export type Requirement = { part: string; qty: number };
+
+export type Vendor = {
+	region: string;
+	vendor?: string;
+	url: string;
+	price: number;
+	pack_qty: number;
+	as_of: string;
+	note?: string;
+};
+
+/** A COTS (off-the-shelf) part: no STL, carries sourcing instead. */
+export type Hardware = {
+	id: string;
+	kind: 'cots';
+	cots?: { type: string; size: string; variant: string } | null;
+	name: string;
+	description: string;
+	created_at: string;
+	updated_at: string;
+	attributes: { label: string; value: string }[];
+	sourcing?: { vendors: Vendor[] } | null;
+	image: string | null; // content-addressed bucket URL
+};
 
 /** A part's color is exactly one of these shapes. `by_section` lets a part that
  *  lives in multiple sections resolve a different color per section. */
@@ -84,6 +127,7 @@ export type Part = {
 	// how the per-layer ('layer') quantity scales: every layer, all but the bottom,
 	// or the bottom layer only (for bottom-layer-swapped parts like the foot cover)
 	layer_scope?: 'all' | 'non-bottom' | 'bottom-only';
+	requires?: Requirement[]; // hardware committed to this physical part
 	stl: string;
 	render: string;
 };
@@ -113,10 +157,20 @@ export const SECTIONS = raw.sections as Section[];
 export const COLOR_ROLES = raw.color_roles as ColorRoleDef[];
 export const ASSEMBLIES = (raw.assemblies ?? []) as Assembly[];
 export const PARTS = raw.parts as unknown as Part[];
+export const HARDWARE = ((raw as Record<string, unknown>).hardware ?? []) as Hardware[];
 export const SPOOL_G = 1000;
 
 const sectionById = new Map(SECTIONS.map((s) => [s.id, s]));
 const assemblyById = new Map(ASSEMBLIES.map((a) => [a.id, a]));
+const partById = new Map(PARTS.map((p) => [p.id, p]));
+const hardwareById = new Map(HARDWARE.map((h) => [h.id, h]));
+
+export function getPart(id: string): Part | undefined {
+	return partById.get(id);
+}
+export function getHardware(id: string): Hardware | undefined {
+	return hardwareById.get(id);
+}
 
 export function categoryMultiplier(categoryId: string, layers: number): number {
 	return sectionById.get(categoryId)?.scales_with_layers ? layers : 1;

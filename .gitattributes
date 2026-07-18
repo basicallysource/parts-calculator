@@ -1,3 +1,9 @@
 # STLs/zips are committed as normal Git objects (NOT LFS) so Vercel serves the
 # real files — Vercel does not materialize Git LFS objects on deploy, which broke
 # the 3D previews and downloads. They're small enough (~tens of MB) for plain git.
+#
+# Hardware/product images are the exception: the site only ever reads their
+# BUCKET url (sync_bucket.py uploads them content-addressed; filament.py bakes
+# the URL into the generated JSON), so the deploy never needs the bytes and LFS
+# pointers are harmless. LFS here is the archival copy.
+slicer/images/** filter=lfs diff=lfs merge=lfs -text
