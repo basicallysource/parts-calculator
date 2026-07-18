@@ -163,7 +163,7 @@
 		{
 			"id": "machine",
 			"name": "Sorter V2",
-			"description": "The whole machine: feeder on top, interface, N distribution layers, and the bottom interface.",
+			"description": "The whole machine: feeder on top, interface, the distribution layers between the interfaces, and the bottom interface.",
 			"status": "partial",
 			"lines": [
 				{
@@ -176,7 +176,7 @@
 				},
 				{
 					"assembly": "layer",
-					"qty": "per-layer"
+					"qty": "middle-layers"
 				},
 				{
 					"assembly": "bottom-interface",
@@ -199,7 +199,7 @@
 		{
 			"id": "layer",
 			"name": "Distribution layer",
-			"description": "One distribution layer: frame, chute, funnels, bins.",
+			"description": "One distribution layer between the interfaces: frame, chute, funnels, bins.",
 			"status": "partial",
 			"lines": [
 				{
