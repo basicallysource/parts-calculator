@@ -545,12 +545,20 @@ def main():
             "kind": "cots",
             "cots": p.get("cots"),
             "name": p["name"],
+            "category": p.get("category"),
             "description": p.get("description", ""),
+            "note": p.get("note"),
             "created_at": p.get("created_at", ""),
             "updated_at": p.get("updated_at", p.get("created_at", "")),
             "attributes": p.get("attributes", []),
+            "sheet_qty": p.get("sheet_qty"),
+            "sheet_qty_text": p.get("sheet_qty_text"),
             "sourcing": p.get("sourcing"),
-            "image": artifact_url(os.path.join(HERE, img), prefix="img") if img else None,
+            # image: repo file -> content-addressed bucket URL; image_url:
+            # already-on-the-bucket URL authored directly (BOM product images
+            # deliberately never touch git)
+            "image": artifact_url(os.path.join(HERE, img), prefix="img") if img
+                     else p.get("image_url"),
         })
 
     # bundle every STL into one downloadable zip (built before the data dict so
