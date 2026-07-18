@@ -1,9 +1,21 @@
 <script lang="ts">
-	import { ExternalLink, ImageOff, ShoppingCart } from 'lucide-svelte';
+	import { ChevronDown, ChevronRight, ExternalLink, ImageOff, ShoppingCart, Zap } from 'lucide-svelte';
+	import Badge from '$lib/components/Badge.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 	import LayerControl from '$lib/components/LayerControl.svelte';
 	import Modal from '$lib/components/Modal.svelte';
-	import { HARDWARE, resolveHardwareTotals, type Hardware, type Vendor } from '$lib/filament';
+	import {
+		assembliesContaining,
+		getHardware,
+		getPart,
+		HARDWARE,
+		JOIN_LABELS,
+		lineQty,
+		resolveHardwareTotals,
+		type Assembly,
+		type Hardware,
+		type Vendor
+	} from '$lib/filament';
 	import { layerStore } from '$lib/layers.svelte';
 
 	// Every off-the-shelf part from the BOM sheet, in the unified data format.
@@ -33,6 +45,62 @@
 		if (h.sheet_qty?.per_layer != null) return h.sheet_qty.per_layer * layers;
 		return null;
 	}
+
+	// ------------------------------------------------------------------ joints
+	// A part that gets soldered/crimped/glued to something else says so here, but
+	// the fact lives on the assembly that joins them, not on the part — see
+	// `joining` in $lib/filament. This page just reads it back out.
+	const jointsOf = (h: Hardware) => assembliesContaining(h.id).filter((a) => a.joining?.length);
+
+	/** The other members of an assembly, resolved to a display name and quantity. */
+	function siblings(asm: Assembly, selfId: string) {
+		return (asm.lines ?? [])
+			.filter((l) => l.part && l.part !== selfId)
+			.map((l) => {
+				const id = l.part!;
+				return {
+					id,
+					name: getHardware(id)?.name ?? getPart(id)?.name ?? id,
+					qty: lineQty(l, layers)
+				};
+			});
+	}
+
+	// Hardware joined into one unit collapses to a single rollup row, the same
+	// shape the printed-parts list uses for its assemblies: what you build as one
+	// thing reads as one thing. Expanding reveals the members underneath.
+	type Block = { kind: 'item'; hw: Hardware } | { kind: 'assembly'; asm: Assembly; items: Hardware[] };
+	function groupBlocks(items: Hardware[]): Block[] {
+		const blocks: Block[] = [];
+		const claimed = new Set<string>();
+		for (const h of items) {
+			if (claimed.has(h.id)) continue;
+			const asm = jointsOf(h)[0];
+			if (!asm) {
+				blocks.push({ kind: 'item', hw: h });
+				continue;
+			}
+			// members that live in this same category; the rollup lands where the
+			// first one would have been, so category order is otherwise untouched
+			const members = items.filter((m) => (asm.lines ?? []).some((l) => l.part === m.id));
+			members.forEach((m) => claimed.add(m.id));
+			blocks.push({ kind: 'assembly', asm, items: members });
+		}
+		return blocks;
+	}
+
+	let expandedAsm = $state<Record<string, boolean>>({});
+	const asmAllOn = (items: Hardware[]) => items.every((h) => selected[h.id]);
+	const asmSomeOn = (items: Hardware[]) => items.some((h) => selected[h.id]);
+	const setAsm = (items: Hardware[], on: boolean) => {
+		for (const h of items) selected[h.id] = on;
+	};
+	/** What the whole joined unit costs at the cheapest US vendor for each member. */
+	const asmCost = (items: Hardware[]) =>
+		items.reduce((sum, h) => {
+			const v = bestUsVendor(h);
+			return sum + (v ? (buyCost(v, totalQty(h, layers)) ?? 0) : 0);
+		}, 0);
 
 	const fmtPrice = (v: Vendor) =>
 		v.price == null ? null : v.currency === 'EUR' ? `€${v.price.toFixed(2)}` : `$${v.price.toFixed(2)}`;
@@ -132,6 +200,115 @@
 
 <svelte:head><title>Sorter Parts Calculator — Hardware</title></svelte:head>
 
+<!-- One off-the-shelf part. Rendered standalone, or nested under the rollup row
+     of the assembly it's joined into. -->
+{#snippet hwRow(h: Hardware)}
+	{@const qty = totalQty(h, layers)}
+	<div
+		class="hw-row setup-card-shell flex cursor-pointer items-start gap-3 border p-3 {selected[h.id]
+			? 'border-primary/60'
+			: ''}"
+		role="button"
+		tabindex="0"
+		title="View {h.name} details"
+		onclick={(e) => rowClickToOpen(e, h)}
+		onkeydown={(e) => {
+			if (e.key === 'Enter' || e.key === ' ') {
+				e.preventDefault();
+				openDetail(h);
+			}
+		}}
+	>
+		<!-- the checkbox owns selection; its label keeps the hit target generous
+		     without making the whole row a toggle -->
+		<label class="mt-0.5 shrink-0 cursor-pointer p-0.5">
+			<input
+				type="checkbox"
+				class="setup-toggle h-4 w-4"
+				bind:checked={selected[h.id]}
+				aria-label="Select {h.name}"
+			/>
+		</label>
+		{#if h.image}
+			<span class="hw-thumb relative shrink-0">
+				<img src={h.image} alt={h.name} class="h-16 w-16 border border-border bg-white object-contain p-1" />
+				<!-- hover preview; decorative, the thumbnail already carries the alt -->
+				<img src={h.image} alt="" aria-hidden="true" class="hw-zoom" />
+			</span>
+		{:else}
+			<div
+				class="flex h-16 w-16 shrink-0 items-center justify-center border border-border bg-[var(--color-bg)] text-text-muted"
+			>
+				<ImageOff size={18} />
+			</div>
+		{/if}
+
+		<div class="min-w-0 flex-1">
+			<div class="flex items-start justify-between gap-3">
+				<h3 class="text-sm font-semibold text-text">{h.name}</h3>
+				<span class="shrink-0 text-right text-xs tabular-nums text-text-muted">
+					{#if h.sheet_qty_text}
+						{h.sheet_qty_text}
+					{:else if h.sheet_qty?.per_layer != null}
+						<span class="font-semibold text-text">{qty}</span> ({h.sheet_qty.per_layer}/layer)
+					{:else if qty != null}
+						<span class="font-semibold text-text">×{qty}</span>
+					{:else}
+						qty TBD
+					{/if}
+				</span>
+			</div>
+			<p class="mt-0.5 text-xs text-text-muted">{h.description}</p>
+			{#if h.attributes?.length}
+				<!-- specs that pin down which variant to buy. flex-wrap rather than
+				     inline text: each spec stays whole, the row wraps between them. -->
+				<div class="mt-1 flex flex-wrap gap-x-3 gap-y-0.5 text-xs text-text-muted">
+					{#each h.attributes as a (a.label)}
+						<span>{a.label} <span class="text-text">{a.value}</span></span>
+					{/each}
+				</div>
+			{/if}
+			{#if h.note}
+				<p class="mt-1 text-xs text-warning-dark">{h.note}</p>
+			{/if}
+
+			<div class="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-0.5">
+				{#if h.sourcing?.vendors?.length}
+					{#each h.sourcing.vendors as v (v.url)}
+						{@const cost = buyCost(v, qty)}
+						<span class="inline-flex items-center gap-1 text-xs">
+							<a
+								href={v.affiliate_url ?? v.url}
+								target="_blank"
+								rel="noopener"
+								class="inline-flex items-center gap-1 font-medium text-primary hover:text-primary-hover"
+								title={v.as_of ? `price as of ${v.as_of}` : undefined}
+							>
+								{v.vendor ?? v.region}
+								<span class="font-normal text-text-muted">({v.region})</span>
+								<ExternalLink size={11} />
+							</a>
+							<!-- the untagged link lives on the detail modal, to keep rows terse -->
+							<span class="tabular-nums text-text-muted">
+								{#if fmtPrice(v)}
+									{fmtPrice(v)}{v.pack_qty && v.pack_qty > 1 ? ` / ${v.pack_qty}` : ''}
+									{#if cost != null && v.pack_qty && cost !== v.price}
+										→ <span class="font-semibold text-text">${cost.toFixed(2)}</span>
+									{/if}
+								{:else}
+									no price
+								{/if}
+							</span>
+						</span>
+					{/each}
+				{:else}
+					<span class="text-xs text-text-muted">No source picked yet.</span>
+				{/if}
+			</div>
+		</div>
+	</div>
+{/snippet}
+
 <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
 	<header class="mb-4">
 		<h1 class="text-2xl font-bold text-text">Hardware</h1>
@@ -167,117 +344,84 @@
 				<section class="mb-6">
 					<h2 class="mb-2 text-xs font-semibold uppercase tracking-wider text-text-muted">{cat}</h2>
 					<div class="flex flex-col gap-2">
-						{#each items as h (h.id)}
-							{@const qty = totalQty(h, layers)}
-							<div
-								class="hw-row setup-card-shell flex cursor-pointer items-start gap-3 border p-3 {selected[
-									h.id
-								]
-									? 'border-primary/60'
-									: ''}"
-								role="button"
-								tabindex="0"
-								title="View {h.name} details"
-								onclick={(e) => rowClickToOpen(e, h)}
-								onkeydown={(e) => {
-									if (e.key === 'Enter' || e.key === ' ') {
-										e.preventDefault();
-										openDetail(h);
-									}
-								}}
-							>
-								<!-- the checkbox owns selection; its label keeps the hit target generous
-								     without making the whole row a toggle -->
-								<label class="mt-0.5 shrink-0 cursor-pointer p-0.5">
-									<input
-										type="checkbox"
-										class="setup-toggle h-4 w-4"
-										bind:checked={selected[h.id]}
-										aria-label="Select {h.name}"
-									/>
-								</label>
-								{#if h.image}
-									<span class="hw-thumb relative shrink-0">
-										<img
-											src={h.image}
-											alt={h.name}
-											class="h-16 w-16 border border-border bg-white object-contain p-1"
-										/>
-										<!-- hover preview; decorative, the thumbnail already carries the alt -->
-										<img src={h.image} alt="" aria-hidden="true" class="hw-zoom" />
-									</span>
-								{:else}
+						{#each groupBlocks(items) as block (block.kind === 'item' ? block.hw.id : block.asm.id)}
+							{#if block.kind === 'assembly'}
+								{@const open = expandedAsm[block.asm.id]}
+								{@const allOn = asmAllOn(block.items)}
+								<div class="flex flex-col">
+									<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 									<div
-										class="flex h-16 w-16 shrink-0 items-center justify-center border border-border bg-[var(--color-bg)] text-text-muted"
+										class="hw-row setup-card-shell flex cursor-pointer items-center gap-3 border p-3 {allOn
+											? 'border-primary/60'
+											: ''}"
+										role="button"
+										tabindex="0"
+										title={block.asm.description}
+										onclick={(e) => {
+											if ((e.target as HTMLElement).closest('button, a, input, label')) return;
+											expandedAsm[block.asm.id] = !open;
+										}}
+										onkeydown={(e) => {
+											if (e.key === 'Enter' || e.key === ' ') {
+												e.preventDefault();
+												expandedAsm[block.asm.id] = !open;
+											}
+										}}
 									>
-										<ImageOff size={18} />
-									</div>
-								{/if}
-
-								<div class="min-w-0 flex-1">
-									<div class="flex items-start justify-between gap-3">
-										<h3 class="text-sm font-semibold text-text">{h.name}</h3>
-										<span class="shrink-0 text-right text-xs tabular-nums text-text-muted">
-											{#if h.sheet_qty_text}
-												{h.sheet_qty_text}
-											{:else if h.sheet_qty?.per_layer != null}
-												<span class="font-semibold text-text">{qty}</span> ({h.sheet_qty.per_layer}/layer)
-											{:else if qty != null}
-												<span class="font-semibold text-text">×{qty}</span>
-											{:else}
-												qty TBD
-											{/if}
+										<label class="shrink-0 cursor-pointer p-0.5">
+											<input
+												type="checkbox"
+												class="setup-toggle h-4 w-4"
+												checked={allOn}
+												indeterminate={!allOn && asmSomeOn(block.items)}
+												onchange={() => setAsm(block.items, !allOn)}
+												aria-label="Select every part in {block.asm.name}"
+											/>
+										</label>
+										<!-- fanned thumbnails, same cue the printed-parts rollup uses -->
+										<span class="hw-fan shrink-0">
+											{#each block.items.slice(0, 3) as m, i (m.id)}
+												{#if m.image}
+													<img src={m.image} alt={m.name} style="z-index:{3 - i}" />
+												{/if}
+											{/each}
 										</span>
+										<div class="min-w-0 flex-1">
+											<div class="flex flex-wrap items-center gap-1.5">
+												{#if open}<ChevronDown size={15} class="text-text-muted" />{:else}<ChevronRight
+														size={15}
+														class="text-text-muted"
+													/>{/if}
+												<h3 class="text-sm font-semibold text-text">{block.asm.name}</h3>
+												<Badge variant="info">Assembly</Badge>
+												{#each block.asm.joining ?? [] as j (j.method)}
+													<Badge variant="warning" title={j.note}>
+														<Zap size={10} />{JOIN_LABELS[j.method]}
+													</Badge>
+												{/each}
+											</div>
+											<p class="mt-0.5 text-xs text-text-muted">
+												{block.items.length} parts · click to {open ? 'collapse' : 'expand'}
+											</p>
+										</div>
+										{#if asmCost(block.items) > 0}
+											<span class="shrink-0 text-right text-xs tabular-nums text-text-muted">
+												<span class="font-semibold text-text">${asmCost(block.items).toFixed(2)}</span>
+												combined
+											</span>
+										{/if}
 									</div>
-									<p class="mt-0.5 text-xs text-text-muted">{h.description}</p>
-									{#if h.attributes?.length}
-										<!-- specs that pin down which variant to buy. flex-wrap rather than
-										     inline text: each spec stays whole, the row wraps between them. -->
-										<div class="mt-1 flex flex-wrap gap-x-3 gap-y-0.5 text-xs text-text-muted">
-											{#each h.attributes as a (a.label)}
-												<span>{a.label} <span class="text-text">{a.value}</span></span>
+									{#if open}
+										<div class="hw-children mt-2 flex flex-col gap-2 pl-6">
+											{#each block.items as m (m.id)}
+												{@render hwRow(m)}
 											{/each}
 										</div>
 									{/if}
-									{#if h.note}
-										<p class="mt-1 text-xs text-warning-dark">{h.note}</p>
-									{/if}
-
-									<div class="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-0.5">
-										{#if h.sourcing?.vendors?.length}
-											{#each h.sourcing.vendors as v (v.url)}
-												{@const cost = buyCost(v, qty)}
-												<span class="inline-flex items-center gap-1 text-xs">
-													<a
-														href={v.affiliate_url ?? v.url}
-														target="_blank"
-														rel="noopener"
-														class="inline-flex items-center gap-1 font-medium text-primary hover:text-primary-hover"
-														title={v.as_of ? `price as of ${v.as_of}` : undefined}
-													>
-														{v.vendor ?? v.region}
-														<span class="font-normal text-text-muted">({v.region})</span>
-														<ExternalLink size={11} />
-													</a>
-													<!-- the untagged link lives on the detail modal, to keep rows terse -->
-													<span class="tabular-nums text-text-muted">
-														{#if fmtPrice(v)}
-															{fmtPrice(v)}{v.pack_qty && v.pack_qty > 1 ? ` / ${v.pack_qty}` : ''}
-															{#if cost != null && v.pack_qty && cost !== v.price}
-																→ <span class="font-semibold text-text">${cost.toFixed(2)}</span>
-															{/if}
-														{:else}
-															no price
-														{/if}
-													</span>
-												</span>
-											{/each}
-										{:else}
-											<span class="text-xs text-text-muted">No source picked yet.</span>
-										{/if}
-									</div>
 								</div>
-							</div>
+							{:else}
+								{@render hwRow(block.hw)}
+							{/if}
 						{/each}
 					</div>
 				</section>
@@ -290,6 +434,7 @@
 				“Not affiliate” link to the same listing without the referral tag.
 			</p>
 		</div>
+
 
 		<!-- RIGHT: cart builder -->
 		<aside class="setup-card-shell border p-4 lg:sticky lg:top-4">
@@ -396,6 +541,34 @@
 			</div>
 		</div>
 
+		{#each jointsOf(detail) as asm (asm.id)}
+			<h4 class="mt-5 text-xs font-semibold uppercase tracking-wider text-text-muted">
+				Goes together with
+			</h4>
+			<div class="mt-2 border border-border p-3">
+				<div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+					<span class="text-sm font-semibold text-text">{asm.name}</span>
+					{#each asm.joining ?? [] as j (j.method)}
+						<Badge variant="warning"><Zap size={10} />{JOIN_LABELS[j.method]}</Badge>
+					{/each}
+				</div>
+				<p class="mt-1 text-xs text-text-muted">{asm.description}</p>
+				<ul class="mt-2 space-y-0.5 text-sm text-text">
+					{#each siblings(asm, detail.id) as s (s.id)}
+						<li class="tabular-nums">
+							<span class="text-text-muted">×{s.qty}</span>
+							{s.name}
+						</li>
+					{/each}
+				</ul>
+				{#each asm.joining ?? [] as j (j.method)}
+					{#if j.note}
+						<p class="mt-2 text-xs text-warning-dark">{j.note}</p>
+					{/if}
+				{/each}
+			</div>
+		{/each}
+
 		<h4 class="mt-5 text-xs font-semibold uppercase tracking-wider text-text-muted">Where to buy</h4>
 		<div class="mt-2 divide-y divide-border border border-border">
 			{#each detail.sourcing?.vendors ?? [] as v (v.url)}
@@ -455,6 +628,31 @@
 	}
 	.hw-row:hover {
 		background: color-mix(in oklab, var(--color-bg) 55%, transparent);
+	}
+
+	/* the rollup row stands in for several parts, so its thumbnails overlap into a
+	   small fan — the same "this is more than one thing" cue the printed list uses */
+	.hw-fan {
+		display: inline-flex;
+	}
+	.hw-fan :global(img) {
+		position: relative;
+		width: 2.75rem;
+		height: 2.75rem;
+		object-fit: contain;
+		padding: 0.125rem;
+		background: #fff;
+		border: 1px solid var(--color-border);
+	}
+	.hw-fan :global(img + img) {
+		margin-left: -1rem;
+	}
+
+	/* members sit on a tint and indent under the rollup, so an expanded assembly
+	   still reads as one block rather than loose rows in the category */
+	.hw-children {
+		border-left: 2px solid var(--color-border);
+		margin-left: 0.75rem;
 	}
 
 	/* thumbnails are small enough that the part is hard to make out, so hovering
