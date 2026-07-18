@@ -11,6 +11,20 @@
 			rel="stylesheet"
 		/>
 		<title>Sorter Parts Calculator</title>
+
+		<!-- Google tag (gtag.js). Lives here rather than in a component because
+		     app.html is the shell every route renders through, so it loads once
+		     per visit instead of per navigation. -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9JH1HYGWG"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+
+			gtag('config', 'G-F9JH1HYGWG');
+		</script>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
