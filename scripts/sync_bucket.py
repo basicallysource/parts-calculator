@@ -45,9 +45,15 @@ SOURCES = [
     ("static/stl/versions", "*.stl", "stl"),
     ("static/plates", "*.3mf", "plate"),
     ("static/stl", "all-parts.zip", "bundle"),
+    # COTS/hardware product images: shown inline by the site, archived via LFS.
+    ("slicer/images", "*.png", "img"),
 ]
 
-CONTENT_TYPES = {".stl": "model/stl", ".3mf": "model/3mf", ".zip": "application/zip"}
+CONTENT_TYPES = {".stl": "model/stl", ".3mf": "model/3mf", ".zip": "application/zip",
+                 ".png": "image/png"}
+
+# Images render in <img> tags; everything else is a download.
+INLINE_SUFFIXES = {".png"}
 
 MANIFEST = REPO / "slicer" / "artifacts.json"
 CREDS_FILE = Path.home() / ".config" / "do-spaces" / "sorter-v2-parts.env"
@@ -201,7 +207,12 @@ def main() -> None:
                 "ACL": "public-read",
                 "ContentType": CONTENT_TYPES.get(Path(f["name"]).suffix, "application/octet-stream"),
                 # So a browser download lands as "chute-core.stl", not a hash.
-                "ContentDisposition": f'attachment; filename="{f["name"]}"',
+                # Images stay inline so <img> and open-in-tab both behave.
+                "ContentDisposition": (
+                    f'inline; filename="{f["name"]}"'
+                    if Path(f["name"]).suffix in INLINE_SUFFIXES
+                    else f'attachment; filename="{f["name"]}"'
+                ),
                 "CacheControl": "public, max-age=31536000, immutable",
             },
         )

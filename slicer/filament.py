@@ -464,7 +464,8 @@ def main():
     zip_members = []
     failed = []
     forced_support = []
-    for p in manifest["parts"]:
+    printed = [p for p in manifest["parts"] if p.get("kind", "printed") == "printed"]
+    for p in printed:
         stl_abs = os.path.join(HERE, p["stl"])
         if not os.path.exists(stl_abs):
             print(f"  ! missing STL, skipping: {p['stl']}")
@@ -521,14 +522,36 @@ def main():
             "low_tolerance": p.get("low_tolerance", False),
             "low_tolerance_note": p.get("low_tolerance_note"),
             "layer_scope": p.get("layer_scope", "all"),
+            "requires": p.get("requires", []),
             "stl": artifact_url(stl_abs),
             "render": f"/renders/{p['id']}.png",
         })
         sup = " +support" if info["support_used"] else ""
         print(f"  {p['name']:<26} {info['grams']:7.1f} g/ea{sup}")
 
-    archive_versions({p["id"]: p for p in manifest["parts"]}, out_parts,
+    archive_versions({p["id"]: p for p in printed}, out_parts,
                      profiles, hexmap, role_defaults, args.force)
+
+    # COTS hardware (kind: "cots") is passed through, not sliced. Product images
+    # live in slicer/images/ and are served content-addressed from the bucket,
+    # same as STLs -- the deploy only ever sees the URL.
+    hardware = []
+    for p in manifest["parts"]:
+        if p.get("kind", "printed") != "cots":
+            continue
+        img = p.get("image")
+        hardware.append({
+            "id": p["id"],
+            "kind": "cots",
+            "cots": p.get("cots"),
+            "name": p["name"],
+            "description": p.get("description", ""),
+            "created_at": p.get("created_at", ""),
+            "updated_at": p.get("updated_at", p.get("created_at", "")),
+            "attributes": p.get("attributes", []),
+            "sourcing": p.get("sourcing"),
+            "image": artifact_url(os.path.join(HERE, img), prefix="img") if img else None,
+        })
 
     # bundle every STL into one downloadable zip (built before the data dict so
     # its content-addressed URL can go into settings)
@@ -551,6 +574,7 @@ def main():
         "color_roles": manifest["color_roles"],
         "assemblies": manifest.get("assemblies", []),
         "parts": out_parts,
+        "hardware": hardware,
     }
     json.dump(data, open(DATA_OUT, "w"), indent="\t")
 

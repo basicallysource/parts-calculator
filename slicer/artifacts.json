@@ -451,6 +451,11 @@
       "sha256": "35a9efac799c48e4097ce49ed162217ea964c5b4b5a373d7b3d4bf99e683f030",
       "size": 16981355,
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/35a9efac799c48e4097ce49ed162217ea964c5b4b5a373d7b3d4bf99e683f030.zip"
+    },
+    "slicer/images/hardware/hsi-m3-long.png": {
+      "sha256": "ae73fe6bb2304afb8bb591904eb363febfdc98ccde7dd6dbda9dd5ae9cb3151a",
+      "size": 38160,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/ae73fe6bb2304afb8bb591904eb363febfdc98ccde7dd6dbda9dd5ae9cb3151a.png"
     }
   }
 }

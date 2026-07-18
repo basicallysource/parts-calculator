@@ -1,5 +1,5 @@
 {
-  "_comment": "Source-of-truth manifest. filament.py slices each STL once and writes ../src/lib/data/parts.generated.json + thumbnails + STL copies. Per part: id, name, category, description (short, shown in app), internal_notes (extended, agent-only, NOT emitted to the app), version, created_at, updated_at, stl, quantity (per ONE instance of its category), color, optional. attributes (optional list of {label,value} shown in the app), versions (optional archetype history: list of {version,date,message,commit}; commit ties to a real git commit, null = pending an upcoming clean commit). low_tolerance (optional bool: part has little tolerance for dimensional error - a tight/precise fit - so a test print is worth doing) + low_tolerance_note (the specifics, shown in the app). color is one of {\"role\":\"<roleid>\"} (user-picked), {\"fixed\":\"<lego-id>\"}, {\"split\":[{\"color\":\"<lego-id>\",\"qty\":N},...]} (sums to quantity), or {\"any\":true}, or {\"by_section\":{\"<sectionid>\":<colorspec>,...}} (per-section color when a part lives in multiple sections). Machine = 1 of each non-scaling category + N of each scaling category. See ../notes/TERMINOLOGY.md.",
+  "_comment": "Source-of-truth manifest. filament.py slices each STL once and writes ../src/lib/data/parts.generated.json + thumbnails + STL copies. Per part: id, name, category, description (short, shown in app), internal_notes (extended, agent-only, NOT emitted to the app), version, created_at, updated_at, stl, quantity (per ONE instance of its category), color, optional. attributes (optional list of {label,value} shown in the app), versions (optional archetype history: list of {version,date,message,commit}; commit ties to a real git commit, null = pending an upcoming clean commit). low_tolerance (optional bool: part has little tolerance for dimensional error - a tight/precise fit - so a test print is worth doing) + low_tolerance_note (the specifics, shown in the app). color is one of {\"role\":\"<roleid>\"} (user-picked), {\"fixed\":\"<lego-id>\"}, {\"split\":[{\"color\":\"<lego-id>\",\"qty\":N},...]} (sums to quantity), or {\"any\":true}, or {\"by_section\":{\"<sectionid>\":<colorspec>,...}} (per-section color when a part lives in multiple sections). Machine = 1 of each non-scaling category + N of each scaling category. See ../notes/TERMINOLOGY.md. SCHEMA V2 (unified parts system, see ../notes/UNIFIED-PARTS-SYSTEM.md, incremental): a part may carry kind ('printed' when absent | 'cots'); cots parts have cots {type,size,variant}, image (slicer-relative path, uploaded to the bucket by sync_bucket.py and served from there), sourcing {vendors:[{region,vendor,url,price,pack_qty,as_of,note?}]}, and no stl/color/quantities. A printed part may carry requires [{part,qty}] = hardware committed to that single physical part (heat inserts, press-fit bearings); qty scales with the part automatically. An assembly may carry lines [{part|assembly, qty}] (qty is a number, or 'per-layer' = multiplied by the layer count) and status 'stub' (placeholder, nothing inside yet) or 'partial' (some lines filled in) — these form the experimental machine tree rooted at the 'machine' assembly.",
   "sections": [
     {
       "id": "feeder",
@@ -334,6 +334,9 @@
       },
       "optional": false,
       "support": false,
+      "requires": [
+        { "part": "hsi-m3-long", "qty": 18 }
+      ],
       "source": "1_chute_core - core (2).stl"
     },
     {
@@ -1818,6 +1821,49 @@
       },
       "optional": false,
       "support": false
+    },
+    {
+      "id": "hsi-m3-long",
+      "kind": "cots",
+      "cots": {
+        "type": "heat-insert",
+        "size": "M3",
+        "variant": "long"
+      },
+      "name": "M3 heat-set insert (long)",
+      "description": "ruthex RX-M3x5.7 brass heat-set threaded insert. The default M3 insert anywhere one is called for.",
+      "internal_notes": "First COTS part in the manifest (unified-parts-system MVP). 'Long' = ruthex's standard M3 (5.7 mm), vs the M3S short (4 mm) used only on the servo adapter. BOM sheet says the machine needs ~235 across machine+layers; the chute core alone takes 18 (4 PCB + 4 bearing race + 4 funnel slides + 4 layer connector + 2 arms).",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "image": "images/hardware/hsi-m3-long.png",
+      "attributes": [
+        { "label": "Type", "value": "Heat-set threaded insert" },
+        { "label": "Thread", "value": "M3" },
+        { "label": "Variant", "value": "Long (5.7 mm)" },
+        { "label": "Material", "value": "Brass" },
+        { "label": "Model", "value": "ruthex RX-M3x5.7" }
+      ],
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon (ruthex)",
+            "url": "https://www.amazon.com/ruthex-M3-Threaded-Inserts-RX-M3x5-7/dp/B08BCRZZS3",
+            "price": 9.99,
+            "pack_qty": 100,
+            "as_of": "2026-07-18"
+          },
+          {
+            "region": "CN",
+            "vendor": "AliExpress",
+            "url": "https://www.aliexpress.us/item/3256806651793931.html",
+            "price": 27.99,
+            "pack_qty": 300,
+            "as_of": "2026-07-18",
+            "note": "unconfirmed"
+          }
+        ]
+      }
     }
   ],
   "assemblies": [
@@ -1890,6 +1936,71 @@
       "id": "camera-extension",
       "name": "Camera extension",
       "description": "Classification-channel camera extension for the Innomaker 4K camera module: the 50 mm extension tube and its mount. 1 per machine."
+    },
+    {
+      "id": "machine",
+      "name": "Sorter V2",
+      "description": "The whole machine: feeder on top, interface, N distribution layers, and the bottom interface.",
+      "status": "partial",
+      "lines": [
+        { "assembly": "feeder", "qty": 1 },
+        { "assembly": "interface", "qty": 1 },
+        { "assembly": "layer", "qty": "per-layer" },
+        { "assembly": "bottom-interface", "qty": 1 }
+      ]
+    },
+    {
+      "id": "feeder",
+      "name": "Feeder",
+      "description": "Feeder + classification channel. Everything above the interface.",
+      "status": "stub"
+    },
+    {
+      "id": "interface",
+      "name": "Interface",
+      "description": "The interface between the feeder and the distribution layers.",
+      "status": "stub"
+    },
+    {
+      "id": "layer",
+      "name": "Distribution layer",
+      "description": "One distribution layer: frame, chute, funnels, bins.",
+      "status": "partial",
+      "lines": [
+        { "assembly": "chute", "qty": 1 }
+      ]
+    },
+    {
+      "id": "bottom-interface",
+      "name": "Bottom interface",
+      "description": "The bottom interface / lazy Susan level. Carries two chutes.",
+      "status": "partial",
+      "lines": [
+        { "assembly": "chute", "qty": 2 }
+      ]
+    },
+    {
+      "id": "chute",
+      "name": "Chute",
+      "description": "One chute: the core plus its door module, connectors, and PCB.",
+      "status": "partial",
+      "lines": [
+        { "part": "chute-core", "qty": 1 },
+        { "assembly": "door-module", "qty": 1 },
+        { "assembly": "chute-pcb", "qty": 1 }
+      ]
+    },
+    {
+      "id": "door-module",
+      "name": "Door module",
+      "description": "The chute's door: flap, servo, bearings, and their hardware.",
+      "status": "stub"
+    },
+    {
+      "id": "chute-pcb",
+      "name": "Chute PCB",
+      "description": "The chute's control PCB and its hardware.",
+      "status": "stub"
     }
   ]
 }
