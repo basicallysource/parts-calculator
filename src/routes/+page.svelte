@@ -615,7 +615,7 @@
 					{#if zipping}<Loader size={15} class="animate-spin" />{:else}<Download size={15} />{/if}
 					Download selected ({selectedParts.length})
 				</button>
-				<a class="setup-button-secondary inline-flex h-10 items-center justify-center gap-2 px-4 text-sm font-semibold" href="/stl/all-parts.zip" download>
+				<a class="setup-button-secondary inline-flex h-10 items-center justify-center gap-2 px-4 text-sm font-semibold" href={SETTINGS.all_parts_zip ?? '/stl/all-parts.zip'} download>
 					<Download size={15} /> Download all ({PARTS.length})
 				</a>
 			</div>

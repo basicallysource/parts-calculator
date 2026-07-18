@@ -99,6 +99,7 @@ export type Settings = {
 	density_g_cm3: number;
 	cost_per_kg: number;
 	commit_base_url?: string; // e.g. https://github.com/owner/repo/commit/
+	all_parts_zip?: string; // content-addressed bucket URL for the every-part bundle
 };
 
 /** Full URL for a version's commit, or null when the commit isn't known yet. */

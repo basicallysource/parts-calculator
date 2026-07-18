@@ -1,0 +1,53 @@
+name: Sync artifacts to Spaces
+
+# Uploads STLs/3MFs to the content-addressed bucket whenever they change on
+# main, and commits the refreshed slicer/artifacts.json manifest back.
+# Uploads are idempotent (hash-addressed + head-check), so re-runs are cheap.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'slicer/parts/**'
+      - 'static/stl/versions/**'
+      - 'static/plates/**'
+      - 'scripts/sync_bucket.py'
+  workflow_dispatch:
+
+concurrency:
+  group: sync-bucket
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: pip install boto3
+
+      - name: Upload new artifacts
+        env:
+          DO_SPACES_KEY: ${{ secrets.DO_SPACES_KEY }}
+          DO_SPACES_SECRET: ${{ secrets.DO_SPACES_SECRET }}
+        run: python scripts/sync_bucket.py
+
+      - name: Commit manifest if changed
+        run: |
+          if git diff --quiet slicer/artifacts.json; then
+            echo "manifest unchanged"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add slicer/artifacts.json
+          git commit -m "Update artifact manifest [skip ci]"
+          git push

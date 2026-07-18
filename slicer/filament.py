@@ -31,6 +31,13 @@ import zipfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 
+# Large binaries are served from the content-addressed bucket, not from the
+# repo. artifact_url() derives the URL from the file's own hash, so it is
+# correct before any upload has happened -- scripts/sync_bucket.py only has to
+# make sure the bytes are there. See notes/UNIFIED-PARTS-SYSTEM.md section 7.
+sys.path.insert(0, os.path.join(REPO, "scripts"))
+from sync_bucket import artifact_url  # noqa: E402
+
 # ---------------------------------------------------------------- config knobs
 ORCA = "/Applications/OrcaSlicer.app/Contents/MacOS/OrcaSlicer"
 PROFILES = "/Applications/OrcaSlicer.app/Contents/Resources/profiles/BBL"
@@ -161,7 +168,7 @@ def archive_versions(parts_by_id, out_parts, profiles, hexmap, role_defaults, fo
                     render(tmp, png, default_hex(p, role_defaults, hexmap))
                 except Exception as e:
                     print(f"  ! version render failed for {vid}: {e}")
-            v["stl"] = f"/stl/versions/{vid}.stl"
+            v["stl"] = artifact_url(tmp)
             v["render"] = f"/renders/versions/{vid}.png"
             v["grams"] = info["grams"] if info else None
             archived += 1
@@ -514,7 +521,7 @@ def main():
             "low_tolerance": p.get("low_tolerance", False),
             "low_tolerance_note": p.get("low_tolerance_note"),
             "layer_scope": p.get("layer_scope", "all"),
-            "stl": f"/stl/{stl_name}",
+            "stl": artifact_url(stl_abs),
             "render": f"/renders/{p['id']}.png",
         })
         sup = " +support" if info["support_used"] else ""
@@ -522,6 +529,13 @@ def main():
 
     archive_versions({p["id"]: p for p in manifest["parts"]}, out_parts,
                      profiles, hexmap, role_defaults, args.force)
+
+    # bundle every STL into one downloadable zip (built before the data dict so
+    # its content-addressed URL can go into settings)
+    zip_path = os.path.join(STL_OUT, "all-parts.zip")
+    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
+        for src, name in zip_members:
+            zf.write(src, name)
 
     data = {
         "settings": {
@@ -531,6 +545,7 @@ def main():
             "support_threshold_deg": int(SUPPORT_THRESHOLD),
             "density_g_cm3": density, "cost_per_kg": cost_per_kg,
             "commit_base_url": git_commit_base_url(),
+            "all_parts_zip": artifact_url(zip_path, prefix="bundle"),
         },
         "sections": manifest["sections"],
         "color_roles": manifest["color_roles"],
@@ -538,12 +553,6 @@ def main():
         "parts": out_parts,
     }
     json.dump(data, open(DATA_OUT, "w"), indent="\t")
-
-    # bundle every STL into one downloadable zip the site serves
-    zip_path = os.path.join(STL_OUT, "all-parts.zip")
-    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
-        for src, name in zip_members:
-            zf.write(src, name)
 
     print(f"\nwrote {DATA_OUT}")
     print(f"  {len(out_parts)} parts · thumbnails -> static/renders · STLs -> static/stl")
@@ -590,7 +599,7 @@ def process_plates(manifest):
             parts.append({"name": pretty.replace("_", " ").strip(), "count": c,
                           "part_id": src_to_id.get(nm)})
         parts.sort(key=lambda x: -x["count"])
-        out.append({"id": pid, "name": base, "download": f"/plates/{pid}.3mf",
+        out.append({"id": pid, "name": base, "download": artifact_url(f, prefix="plate"),
                     "thumbs": thumbs, "parts": parts})
     json.dump(out, open(PLATES_DATA, "w"), indent="\t")
     print(f"  {len(out)} build plate(s) -> static/plates + plates.generated.json")

@@ -2,7 +2,7 @@
 	{
 		"id": "90-deg-brackets",
 		"name": "90-deg-brackets",
-		"download": "/plates/90-deg-brackets.3mf",
+		"download": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/6aab6886d1d32a693710441da6c2d80190fcbea9f5a690a08fbe2beec36b9941.3mf",
 		"thumbs": [
 			"/plate-thumbs/90-deg-brackets-1.png"
 		],
@@ -17,7 +17,7 @@
 	{
 		"id": "chute-core-and-funnel-brackets",
 		"name": "chute-core-and-funnel-brackets",
-		"download": "/plates/chute-core-and-funnel-brackets.3mf",
+		"download": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/3605074a7ee51919737ed2a9b6cb0d522919e776e8e8ecf2944f4fe7aa7e3ae4.3mf",
 		"thumbs": [
 			"/plate-thumbs/chute-core-and-funnel-brackets-1.png",
 			"/plate-thumbs/chute-core-and-funnel-brackets-2.png",
@@ -44,7 +44,7 @@
 	{
 		"id": "external-brackets",
 		"name": "external-brackets",
-		"download": "/plates/external-brackets.3mf",
+		"download": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/4a28da2e33e12340c3621421365add2fed8c1a65d235f8afb93ebfc2d8203ff0.3mf",
 		"thumbs": [
 			"/plate-thumbs/external-brackets-1.png"
 		],
