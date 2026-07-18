@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ExternalLink, ImageOff, ShoppingCart } from 'lucide-svelte';
 	import LayerControl from '$lib/components/LayerControl.svelte';
+	import Modal from '$lib/components/Modal.svelte';
 	import { HARDWARE, resolveHardwareTotals, type Hardware, type Vendor } from '$lib/filament';
 	import { layerStore } from '$lib/layers.svelte';
 
@@ -64,6 +65,20 @@
 	const setAll = (on: boolean) => {
 		selected = on ? Object.fromEntries(HARDWARE.map((h) => [h.id, true])) : {};
 	};
+
+	// ------------------------------------------------------------ detail modal
+	let detail = $state<Hardware | null>(null);
+	let detailOpen = $state(false);
+	function openDetail(h: Hardware) {
+		detail = h;
+		detailOpen = true;
+	}
+	// A click anywhere on a row opens its detail modal — except on the row's own
+	// interactive controls, so ticking the checkbox or following a link doesn't.
+	function rowClickToOpen(e: MouseEvent, h: Hardware) {
+		if ((e.target as HTMLElement).closest('button, a, input, label')) return;
+		openDetail(h);
+	}
 
 	const selectedTotal = $derived.by(() =>
 		selectedList.reduce((sum, h) => sum + (buyCost(bestUsVendor(h)!, totalQty(h, layers)) ?? 0), 0)
@@ -147,19 +162,33 @@
 					<div class="flex flex-col gap-2">
 						{#each items as h (h.id)}
 							{@const qty = totalQty(h, layers)}
-							<label
+							<div
 								class="setup-card-shell flex cursor-pointer items-start gap-3 border p-3 transition-colors {selected[
 									h.id
 								]
 									? 'border-primary/60'
 									: ''}"
+								role="button"
+								tabindex="0"
+								title="View {h.name} details"
+								onclick={(e) => rowClickToOpen(e, h)}
+								onkeydown={(e) => {
+									if (e.key === 'Enter' || e.key === ' ') {
+										e.preventDefault();
+										openDetail(h);
+									}
+								}}
 							>
-								<input
-									type="checkbox"
-									class="setup-toggle mt-0.5 h-4 w-4 shrink-0"
-									bind:checked={selected[h.id]}
-									aria-label="Select {h.name}"
-								/>
+								<!-- the checkbox owns selection; its label keeps the hit target generous
+								     without making the whole row a toggle -->
+								<label class="mt-0.5 shrink-0 cursor-pointer p-0.5">
+									<input
+										type="checkbox"
+										class="setup-toggle h-4 w-4"
+										bind:checked={selected[h.id]}
+										aria-label="Select {h.name}"
+									/>
+								</label>
 								{#if h.image}
 									<img
 										src={h.image}
@@ -246,7 +275,7 @@
 										{/if}
 									</div>
 								</div>
-							</label>
+							</div>
 						{/each}
 					</div>
 				</section>
@@ -319,3 +348,97 @@
 		</aside>
 	</div>
 </div>
+
+<Modal bind:open={detailOpen} title={detail?.name}>
+	{#if detail}
+		{@const qty = totalQty(detail, layers)}
+		<div class="flex flex-col gap-4 sm:flex-row">
+			{#if detail.image}
+				<img
+					src={detail.image}
+					alt={detail.name}
+					class="h-40 w-40 shrink-0 self-start border border-border bg-white object-contain p-2"
+				/>
+			{/if}
+			<div class="min-w-0 flex-1">
+				<p class="text-sm text-text-muted">{detail.description}</p>
+				{#if detail.note}
+					<p class="mt-2 border border-warning/50 bg-warning/[0.08] p-2 text-sm text-warning-dark">
+						{detail.note}
+					</p>
+				{/if}
+
+				<dl class="mt-3 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+					<dt class="text-text-muted">Needed</dt>
+					<dd class="text-text">
+						{#if detail.sheet_qty_text}
+							{detail.sheet_qty_text}
+						{:else if qty != null}
+							{qty}
+							{#if detail.sheet_qty?.per_layer != null}
+								<span class="text-text-muted"
+									>({detail.sheet_qty.per_layer} per layer × {layers} layers)</span
+								>
+							{/if}
+						{:else}
+							not settled yet
+						{/if}
+					</dd>
+					{#each detail.attributes ?? [] as a (a.label)}
+						<dt class="text-text-muted">{a.label}</dt>
+						<dd class="text-text">{a.value}</dd>
+					{/each}
+				</dl>
+			</div>
+		</div>
+
+		<h4 class="mt-5 text-xs font-semibold uppercase tracking-wider text-text-muted">Where to buy</h4>
+		<div class="mt-2 divide-y divide-border border border-border">
+			{#each detail.sourcing?.vendors ?? [] as v (v.url)}
+				{@const cost = buyCost(v, qty)}
+				<div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 p-2 text-sm">
+					<span class="inline-flex items-center gap-2">
+						<a
+							href={v.affiliate_url ?? v.url}
+							target="_blank"
+							rel="noopener"
+							class="inline-flex items-center gap-1 font-medium text-primary hover:text-primary-hover"
+						>
+							{v.vendor ?? v.region} <ExternalLink size={12} />
+						</a>
+						<span class="text-xs text-text-muted">{v.region}</span>
+						{#if v.affiliate_url}
+							<a
+								href={v.url}
+								target="_blank"
+								rel="noopener"
+								class="text-xs text-text-muted underline decoration-dotted underline-offset-2 hover:text-text"
+								title="Same listing without the affiliate tag">plain</a
+							>
+						{/if}
+					</span>
+					<span class="tabular-nums text-text-muted">
+						{#if fmtPrice(v)}
+							{fmtPrice(v)}{v.pack_qty && v.pack_qty > 1 ? ` for ${v.pack_qty}` : ''}
+							{#if cost != null && v.pack_qty && qty != null}
+								· buy <span class="text-text">{packsNeeded(v, qty)}</span> =
+								<span class="font-semibold text-text">${cost.toFixed(2)}</span>
+							{/if}
+						{:else}
+							no price recorded
+						{/if}
+						{#if v.as_of}<span class="ml-2 text-xs">as of {v.as_of}</span>{/if}
+					</span>
+					{#if v.note}<span class="w-full text-xs text-text-muted">{v.note}</span>{/if}
+				</div>
+			{:else}
+				<p class="p-2 text-sm text-text-muted">No source picked yet.</p>
+			{/each}
+		</div>
+
+		<label class="mt-4 flex cursor-pointer items-center gap-2 text-sm text-text">
+			<input type="checkbox" class="setup-toggle h-4 w-4" bind:checked={selected[detail.id]} />
+			Include in the Amazon cart
+		</label>
+	{/if}
+</Modal>
