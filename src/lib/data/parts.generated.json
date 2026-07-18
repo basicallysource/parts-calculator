@@ -4179,6 +4179,167 @@
 			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/ae73fe6bb2304afb8bb591904eb363febfdc98ccde7dd6dbda9dd5ae9cb3151a.png"
 		},
 		{
+			"id": "hsi-m5-long",
+			"kind": "cots",
+			"cots": {
+				"type": "heat-insert",
+				"size": "M5",
+				"variant": "long"
+			},
+			"name": "Ruthex M5 heat insert (long)",
+			"category": "Heat inserts",
+			"description": "The default M5 insert anywhere one is called for.",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Type",
+					"value": "Heat-set threaded insert"
+				},
+				{
+					"label": "Thread",
+					"value": "M5"
+				},
+				{
+					"label": "Variant",
+					"value": "Long (9.5 mm)"
+				},
+				{
+					"label": "Material",
+					"value": "Brass"
+				},
+				{
+					"label": "Model",
+					"value": "ruthex RX-M5x9.5"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"sourcing": {
+				"vendors": [
+					{
+						"region": "US",
+						"vendor": "Amazon",
+						"url": "https://www.amazon.com/dp/B07YSVXWS8",
+						"affiliate_url": "https://www.amazon.com/dp/B07YSVXWS8?tag=sorterv2-20",
+						"price": 9.99,
+						"pack_qty": 50,
+						"as_of": "2026-07-18"
+					}
+				]
+			},
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/796e90762460d89234187db02ff76383bac2099041d80a1e95866eaa65e157f8.jpg"
+		},
+		{
+			"id": "hsi-m4",
+			"kind": "cots",
+			"cots": {
+				"type": "heat-insert",
+				"size": "M4"
+			},
+			"name": "Ruthex M4 heat insert",
+			"category": "Heat inserts",
+			"description": "Lazy Susan mount only.",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Type",
+					"value": "Heat-set threaded insert"
+				},
+				{
+					"label": "Thread",
+					"value": "M4"
+				},
+				{
+					"label": "Length",
+					"value": "8.1 mm"
+				},
+				{
+					"label": "Material",
+					"value": "Brass"
+				},
+				{
+					"label": "Model",
+					"value": "ruthex RX-M4x8.1"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"sourcing": {
+				"vendors": [
+					{
+						"region": "US",
+						"vendor": "Amazon",
+						"url": "https://www.amazon.com/dp/B07YSV66Y5",
+						"affiliate_url": "https://www.amazon.com/dp/B07YSV66Y5?tag=sorterv2-20",
+						"price": 9.99,
+						"pack_qty": 50,
+						"as_of": "2026-07-18"
+					}
+				]
+			},
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/abb5a013d071379a34f8b65345b483627803f247627d4ef0a5d5816c5eff0d49.jpg"
+		},
+		{
+			"id": "tnut-m5-2020",
+			"kind": "cots",
+			"cots": {
+				"type": "t-nut",
+				"size": "M5"
+			},
+			"name": "M5 roll-in T-nut, 2020",
+			"category": "Fasteners",
+			"description": "Every button-head M5 screw that goes into extrusion lands in one of these.",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Thread",
+					"value": "M5"
+				},
+				{
+					"label": "Fits",
+					"value": "2020 extrusion, 6 mm slot"
+				},
+				{
+					"label": "Type",
+					"value": "Spring-loaded, roll-in"
+				},
+				{
+					"label": "Material",
+					"value": "Carbon steel"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"sourcing": {
+				"vendors": [
+					{
+						"region": "US",
+						"vendor": "Amazon",
+						"url": "https://www.amazon.com/dp/B0DX7B5ZNN",
+						"affiliate_url": "https://www.amazon.com/dp/B0DX7B5ZNN?tag=sorterv2-20",
+						"price": 9.99,
+						"pack_qty": 100,
+						"as_of": "2026-07-18"
+					},
+					{
+						"region": "US",
+						"vendor": "Zyltech",
+						"url": "https://www.zyltech.com/100x-zyltech-spring-loaded-t-nuts-for-2020-aluminum-extrusion-m4-or-m5/",
+						"price": 12.95,
+						"pack_qty": 100,
+						"as_of": "2026-07-18"
+					}
+				]
+			},
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/3d0256ddc8a45d2b0df7bc3719b4bbc57c4c41a7031f5d3ed9fc9b0fd06ab9fb.jpg"
+		},
+		{
 			"id": "cam-imx415",
 			"kind": "cots",
 			"cots": {

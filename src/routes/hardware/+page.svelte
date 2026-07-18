@@ -190,11 +190,15 @@
 									/>
 								</label>
 								{#if h.image}
-									<img
-										src={h.image}
-										alt={h.name}
-										class="h-16 w-16 shrink-0 border border-border bg-white object-contain p-1"
-									/>
+									<span class="hw-thumb relative shrink-0">
+										<img
+											src={h.image}
+											alt={h.name}
+											class="h-16 w-16 border border-border bg-white object-contain p-1"
+										/>
+										<!-- hover preview; decorative, the thumbnail already carries the alt -->
+										<img src={h.image} alt="" aria-hidden="true" class="hw-zoom" />
+									</span>
 								{:else}
 									<div
 										class="flex h-16 w-16 shrink-0 items-center justify-center border border-border bg-[var(--color-bg)] text-text-muted"
@@ -444,5 +448,37 @@
 	}
 	.hw-row:hover {
 		background: color-mix(in oklab, var(--color-bg) 55%, transparent);
+	}
+
+	/* thumbnails are small enough that the part is hard to make out, so hovering
+	   one blows it up beside the row. Pointer-events stay off so the preview never
+	   swallows a click meant for the row. */
+	.hw-zoom {
+		position: absolute;
+		left: calc(100% + 0.5rem);
+		top: 50%;
+		width: 17rem;
+		height: 17rem;
+		/* the reset's img{max-width:100%} would clamp this to the 64px thumb box */
+		max-width: none;
+		padding: 0.5rem;
+		object-fit: contain;
+		background: #fff;
+		border: 1px solid var(--color-border);
+		box-shadow: 0 12px 32px rgb(0 0 0 / 0.22);
+		opacity: 0;
+		pointer-events: none;
+		transform: translateY(-50%) scale(0.97);
+		transition:
+			opacity 120ms ease,
+			transform 120ms ease;
+		z-index: 40;
+	}
+	/* hover-capable pointers only, so a tap on touch doesn't leave it stuck open */
+	@media (hover: hover) {
+		.hw-thumb:hover .hw-zoom {
+			opacity: 1;
+			transform: translateY(-50%) scale(1);
+		}
 	}
 </style>
