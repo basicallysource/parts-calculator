@@ -2179,7 +2179,7 @@
       "cots": {
         "type": "bearing"
       },
-      "name": "6806-2RS - 30mm ID - 42mm OD - 7mm",
+      "name": "6806-2RS bearing",
       "category": "Bearings",
       "description": "Bearings for c-channel rotors",
       "created_at": "2026-07-18",
@@ -2193,14 +2193,28 @@
           {
             "region": "US",
             "vendor": "Amazon",
-            "url": "https://www.amazon.com/dp/B082PXK5K9?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_5&th=1",
+            "url": "https://www.amazon.com/dp/B082PXK5K9",
             "price": 16.19,
             "pack_qty": 10,
             "as_of": "2026-04-16",
-            "affiliate_url": "https://www.amazon.com/dp/B082PXK5K9?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_5&th=1&tag=sorterv2-20"
+            "affiliate_url": "https://www.amazon.com/dp/B082PXK5K9?tag=sorterv2-20"
           }
         ]
-      }
+      },
+      "attributes": [
+        {
+          "label": "Size",
+          "value": "30 × 42 × 7 mm (ID × OD × W)"
+        },
+        {
+          "label": "Seal",
+          "value": "Double rubber (2RS)"
+        },
+        {
+          "label": "Material",
+          "value": "Chrome steel"
+        }
+      ]
     },
     {
       "id": "brg-608-2rs",
@@ -2808,7 +2822,7 @@
       "cots": {
         "type": "bearing"
       },
-      "name": "6704-2RS - 20mm ID - 27mm OD - 4mm",
+      "name": "6704-2RS bearing",
       "category": "Per layer",
       "description": "Bearings for chute flap",
       "created_at": "2026-07-18",
@@ -2816,35 +2830,48 @@
       "sheet_qty": {
         "per_layer": 2
       },
-      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/7394a4c9c385fa9e16eb09525cf41b38f8fbc7d647e12ab7cc4b77f0d7709484.jpg",
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/9b0d3f8350970397ac0590b4d8ff0317cca9d4322bf23ecdfa386619e565d4fe.jpg",
       "sourcing": {
         "vendors": [
           {
             "region": "US",
             "vendor": "Amazon",
-            "url": "https://www.amazon.com/dp/B082PXK5K9",
-            "price": 11.66,
-            "pack_qty": 4,
-            "as_of": "2026-04-16",
-            "affiliate_url": "https://www.amazon.com/dp/B082PXK5K9?tag=sorterv2-20"
+            "url": "https://www.amazon.com/dp/B0CNX57Z8R",
+            "affiliate_url": "https://www.amazon.com/dp/B0CNX57Z8R?tag=sorterv2-20",
+            "price": 15.89,
+            "pack_qty": 10,
+            "as_of": "2026-07-18"
+          },
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/dp/B0CRBBY1GC",
+            "affiliate_url": "https://www.amazon.com/dp/B0CRBBY1GC?tag=sorterv2-20",
+            "price": 13.69,
+            "pack_qty": 10,
+            "as_of": "2026-06-28"
           },
           {
             "region": "CN",
             "vendor": "AliExpress",
             "url": "https://www.aliexpress.com/item/1005009552884836.html"
-          },
-          {
-            "region": "US",
-            "vendor": "Amazon",
-            "url": "https://a.co/d/02MIrMC5",
-            "price": 13.69,
-            "pack_qty": 10,
-            "as_of": "2026-06-28",
-            "note": "second source; sheet flags this link as possibly wrong",
-            "affiliate_url": "https://a.co/d/02MIrMC5?tag=sorterv2-20"
           }
         ]
-      }
+      },
+      "attributes": [
+        {
+          "label": "Size",
+          "value": "20 × 27 × 4 mm (ID × OD × W)"
+        },
+        {
+          "label": "Seal",
+          "value": "Double rubber (2RS)"
+        },
+        {
+          "label": "Material",
+          "value": "Chrome steel"
+        }
+      ]
     },
     {
       "id": "servo-mg995",
