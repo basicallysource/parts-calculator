@@ -66,7 +66,6 @@
 				{/if}
 				<div class="min-w-0 flex-1">
 					<div class="truncate text-xs font-semibold text-text">{hw.name}</div>
-					<div class="text-[11px] text-text-muted">pressed into this part — scales with it</div>
 				</div>
 				<div class="text-right text-xs tabular-nums text-text">
 					<div class="font-semibold">×{req.qty} each</div>
