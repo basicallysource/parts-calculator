@@ -4489,6 +4489,38 @@
 			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/e8eac018a9a8a77a14db0de260beb4cff737bd37a33fd1f16af32e277025e453.jpg"
 		},
 		{
+			"id": "servo-mg995",
+			"kind": "cots",
+			"cots": {
+				"type": "servo"
+			},
+			"name": "MG995 Servo",
+			"category": "Motors",
+			"description": "Standard Servo for flap (serial upgrade see note)",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [],
+			"sheet_qty": {
+				"per_layer": 1
+			},
+			"sheet_qty_text": null,
+			"sourcing": {
+				"vendors": [
+					{
+						"region": "US",
+						"vendor": "Amazon",
+						"url": "https://www.amazon.com/dp/B07NQJ1VZ2",
+						"price": 17.98,
+						"pack_qty": 4,
+						"as_of": "2026-04-16",
+						"affiliate_url": "https://www.amazon.com/dp/B07NQJ1VZ2?tag=sorterv2-20"
+					}
+				]
+			},
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/8a8b0ae4bdd9679526adf05de4341c528c21cbf42a48491e11fe467c86567589.jpg"
+		},
+		{
 			"id": "brg-6806-2rs",
 			"kind": "cots",
 			"cots": {
@@ -4564,6 +4596,65 @@
 				]
 			},
 			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/e11bf4434f281628218a4867af0033d0daf845e26e88bc208f973d5a0b7f5b9b.jpg"
+		},
+		{
+			"id": "brg-6704-2rs",
+			"kind": "cots",
+			"cots": {
+				"type": "bearing"
+			},
+			"name": "6704-2RS bearing",
+			"category": "Bearings",
+			"description": "Bearings for chute flap",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Size",
+					"value": "20 \u00d7 27 \u00d7 4 mm (ID \u00d7 OD \u00d7 W)"
+				},
+				{
+					"label": "Seal",
+					"value": "Double rubber (2RS)"
+				},
+				{
+					"label": "Material",
+					"value": "Chrome steel"
+				}
+			],
+			"sheet_qty": {
+				"per_layer": 2
+			},
+			"sheet_qty_text": null,
+			"sourcing": {
+				"vendors": [
+					{
+						"region": "US",
+						"vendor": "Amazon",
+						"url": "https://www.amazon.com/dp/B0CNX57Z8R",
+						"affiliate_url": "https://www.amazon.com/dp/B0CNX57Z8R?tag=sorterv2-20",
+						"price": 15.89,
+						"pack_qty": 10,
+						"as_of": "2026-07-18"
+					},
+					{
+						"region": "US",
+						"vendor": "Amazon",
+						"url": "https://www.amazon.com/dp/B0CRBBY1GC",
+						"affiliate_url": "https://www.amazon.com/dp/B0CRBBY1GC?tag=sorterv2-20",
+						"price": 13.69,
+						"pack_qty": 10,
+						"as_of": "2026-06-28"
+					},
+					{
+						"region": "CN",
+						"vendor": "AliExpress",
+						"url": "https://www.aliexpress.com/item/1005009552884836.html"
+					}
+				]
+			},
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/9b0d3f8350970397ac0590b4d8ff0317cca9d4322bf23ecdfa386619e565d4fe.jpg"
 		},
 		{
 			"id": "brg-lazy-susan",
@@ -4906,6 +4997,38 @@
 			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/2f61f803bd8318e6b934e405d6063689fcabc5425c7c8aaacc6b862c95d40050.jpg"
 		},
 		{
+			"id": "standoff-m3-10mm",
+			"kind": "cots",
+			"cots": {
+				"type": "standoff"
+			},
+			"name": "Standoff - M3 - 10mm",
+			"category": "Electronics",
+			"description": "Mount main board",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [],
+			"sheet_qty": {
+				"per_machine": 8
+			},
+			"sheet_qty_text": null,
+			"sourcing": {
+				"vendors": [
+					{
+						"region": "US",
+						"vendor": "Amazon",
+						"url": "https://www.amazon.com/Black-Nylon-Standoff-Spacers-Screws/dp/B0F297R23T",
+						"price": 8.29,
+						"pack_qty": 30,
+						"as_of": "2026-04-16",
+						"affiliate_url": "https://www.amazon.com/Black-Nylon-Standoff-Spacers-Screws/dp/B0F297R23T?tag=sorterv2-20"
+					}
+				]
+			},
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/49ce8284dc28ede2c118a7903c079d6107fbdb80fd0ea8f84396ec6bca5054cb.jpg"
+		},
+		{
 			"id": "cable-idc-2x8-long",
 			"kind": "cots",
 			"cots": {
@@ -4955,14 +5078,124 @@
 			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/69b3da40ac51375f2b998afe1fec97e5faad1adfb0cd9b0a1fbce205a76f9179.jpg"
 		},
 		{
-			"id": "psu-24v-350w",
+			"id": "cable-idc-2x8-short",
 			"kind": "cots",
 			"cots": {
-				"type": "psu"
+				"type": "cable"
 			},
-			"name": "24 V PSU, 350 W (Mean Well LRS-350-24)",
+			"name": "IDC ribbon cable, 16-pin (2\u00d78), 30 cm",
 			"category": "Electronics",
-			"description": "Power supply",
+			"description": "Cable between layer and layer below",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Pins",
+					"value": "16 (2\u00d78), female-to-female FC"
+				},
+				{
+					"label": "Pitch",
+					"value": "2.54 mm"
+				},
+				{
+					"label": "Length",
+					"value": "30 cm"
+				},
+				{
+					"label": "Brand",
+					"value": "Antrader"
+				}
+			],
+			"sheet_qty": {
+				"per_layer": 1
+			},
+			"sheet_qty_text": null,
+			"sourcing": {
+				"vendors": [
+					{
+						"region": "US",
+						"vendor": "Amazon",
+						"url": "https://www.amazon.com/dp/B07FZWH9S6",
+						"price": 7.99,
+						"pack_qty": 6,
+						"as_of": "2026-07-18",
+						"affiliate_url": "https://www.amazon.com/dp/B07FZWH9S6?tag=sorterv2-20"
+					}
+				]
+			},
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/784f9a5733e4ad3815cb8a22b27b7a6610357277e1846a7f1be2e5843ab63e31.jpg"
+		},
+		{
+			"id": "led-cob-50mm-24v",
+			"kind": "cots",
+			"cots": {
+				"type": "led"
+			},
+			"name": "50mm LED COB - 24v",
+			"category": "Wire harness",
+			"description": "Lighting for the C-channels and carousel drop zone",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [],
+			"sheet_qty": {
+				"per_machine": 3
+			},
+			"sheet_qty_text": null,
+			"sourcing": {
+				"vendors": [
+					{
+						"region": "US",
+						"vendor": "Amazon",
+						"url": "https://amzn.to/41fFCjF",
+						"price": 7.99,
+						"pack_qty": 1,
+						"as_of": "2026-04-16",
+						"affiliate_url": "https://amzn.to/41fFCjF?tag=sorterv2-20"
+					}
+				]
+			},
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/f772d260f547832360f41707bdb5d1ec1f45978d0badb36f7fedc694147a7d4d.jpg"
+		},
+		{
+			"id": "led-strip-24v",
+			"kind": "cots",
+			"cots": {
+				"type": "led-strip"
+			},
+			"name": "White/daylight LED strip - 24v",
+			"category": "Wire harness",
+			"description": "Lighting for classification chamber",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [],
+			"sheet_qty": null,
+			"sheet_qty_text": "40 cm (sold as 5 m roll)",
+			"sourcing": {
+				"vendors": [
+					{
+						"region": "US",
+						"vendor": "Amazon",
+						"url": "https://www.amazon.com/dp/B0DHV8ZF4R",
+						"price": 9.99,
+						"as_of": "2026-04-16",
+						"affiliate_url": "https://www.amazon.com/dp/B0DHV8ZF4R?tag=sorterv2-20"
+					}
+				]
+			},
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/961391ece43df1628e5a153d3a7ba42b865868e70ace71fde7b0f951c30104eb.jpg"
+		},
+		{
+			"id": "endstop-mechanical",
+			"kind": "cots",
+			"cots": {
+				"type": "endstop"
+			},
+			"name": "Mechanical Endstop, \"Micro Limit Switch Short Hinge Roller Lever Arm Switch for Arduino V-155-1C25\"",
+			"category": "Wire harness",
+			"description": "Endstop for chute",
 			"note": null,
 			"created_at": "2026-07-18",
 			"updated_at": "2026-07-18",
@@ -4976,15 +5209,23 @@
 					{
 						"region": "US",
 						"vendor": "Amazon",
-						"url": "https://www.amazon.com/dp/B013ETVO12",
-						"price": 27.35,
-						"pack_qty": 1,
-						"note": "sheet's link was broken/truncated; relinked to the LRS-350-24 listing",
-						"affiliate_url": "https://www.amazon.com/dp/B013ETVO12?tag=sorterv2-20"
+						"url": "https://www.amazon.com/dp/B07NVDXGPS",
+						"price": 7.99,
+						"pack_qty": 6,
+						"as_of": "2026-04-16",
+						"affiliate_url": "https://www.amazon.com/dp/B07NVDXGPS?tag=sorterv2-20"
+					},
+					{
+						"region": "CN",
+						"vendor": "AliExpress",
+						"url": "https://www.aliexpress.com/item/1005008242738110.html",
+						"price": 0.54,
+						"currency": "EUR",
+						"as_of": "2026-04-25"
 					}
 				]
 			},
-			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/72bba2c3919b12f5bfc2cb5bbfc3ad38257fee4d09e3395db3a016e5fb47b196.jpg"
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/8fb04d71f715fd2565956ed1e61510fb91b4c4f679d3df8d921bce273453e784.jpg"
 		},
 		{
 			"id": "buck-24v-5v-usbc",
@@ -4993,7 +5234,7 @@
 				"type": "converter"
 			},
 			"name": "24 V \u2192 5 V USB-C buck converter",
-			"category": "Electronics",
+			"category": "Wire harness",
 			"description": "Powers the Orange Pi from the 24 V PSU.",
 			"note": null,
 			"created_at": "2026-07-18",
@@ -5036,13 +5277,45 @@
 			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/1a5bf367214fa603d33eb785fe23e65887d114006c0e95c996dfc35c1befa8f1.jpg"
 		},
 		{
+			"id": "psu-24v-350w",
+			"kind": "cots",
+			"cots": {
+				"type": "psu"
+			},
+			"name": "24 V PSU, 350 W (Mean Well LRS-350-24)",
+			"category": "Power supply",
+			"description": "Power supply",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [],
+			"sheet_qty": {
+				"per_machine": 1
+			},
+			"sheet_qty_text": null,
+			"sourcing": {
+				"vendors": [
+					{
+						"region": "US",
+						"vendor": "Amazon",
+						"url": "https://www.amazon.com/dp/B013ETVO12",
+						"price": 27.35,
+						"pack_qty": 1,
+						"note": "sheet's link was broken/truncated; relinked to the LRS-350-24 listing",
+						"affiliate_url": "https://www.amazon.com/dp/B013ETVO12?tag=sorterv2-20"
+					}
+				]
+			},
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/72bba2c3919b12f5bfc2cb5bbfc3ad38257fee4d09e3395db3a016e5fb47b196.jpg"
+		},
+		{
 			"id": "psu-switch-fused",
 			"kind": "cots",
 			"cots": {
 				"type": "switch"
 			},
 			"name": "IEC C14 inlet, switch + 10 A fuse",
-			"category": "Electronics",
+			"category": "Power supply",
 			"description": "Mains inlet for the PSU: switched, fused, pre-wired.",
 			"note": null,
 			"created_at": "2026-07-18",
@@ -5087,279 +5360,6 @@
 				]
 			},
 			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/b507a8b8e3f9fd8df63c5c66596bd8ba129158e6c1f56f35ef0173bca1174308.jpg"
-		},
-		{
-			"id": "standoff-m3-10mm",
-			"kind": "cots",
-			"cots": {
-				"type": "standoff"
-			},
-			"name": "Standoff - M3 - 10mm",
-			"category": "Electronics",
-			"description": "Mount main board",
-			"note": null,
-			"created_at": "2026-07-18",
-			"updated_at": "2026-07-18",
-			"attributes": [],
-			"sheet_qty": {
-				"per_machine": 8
-			},
-			"sheet_qty_text": null,
-			"sourcing": {
-				"vendors": [
-					{
-						"region": "US",
-						"vendor": "Amazon",
-						"url": "https://www.amazon.com/Black-Nylon-Standoff-Spacers-Screws/dp/B0F297R23T",
-						"price": 8.29,
-						"pack_qty": 30,
-						"as_of": "2026-04-16",
-						"affiliate_url": "https://www.amazon.com/Black-Nylon-Standoff-Spacers-Screws/dp/B0F297R23T?tag=sorterv2-20"
-					}
-				]
-			},
-			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/49ce8284dc28ede2c118a7903c079d6107fbdb80fd0ea8f84396ec6bca5054cb.jpg"
-		},
-		{
-			"id": "led-cob-50mm-24v",
-			"kind": "cots",
-			"cots": {
-				"type": "led"
-			},
-			"name": "50mm LED COB - 24v",
-			"category": "Lighting",
-			"description": "Lighting for the C-channels and carousel drop zone",
-			"note": null,
-			"created_at": "2026-07-18",
-			"updated_at": "2026-07-18",
-			"attributes": [],
-			"sheet_qty": {
-				"per_machine": 3
-			},
-			"sheet_qty_text": null,
-			"sourcing": {
-				"vendors": [
-					{
-						"region": "US",
-						"vendor": "Amazon",
-						"url": "https://amzn.to/41fFCjF",
-						"price": 7.99,
-						"pack_qty": 1,
-						"as_of": "2026-04-16",
-						"affiliate_url": "https://amzn.to/41fFCjF?tag=sorterv2-20"
-					}
-				]
-			},
-			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/f772d260f547832360f41707bdb5d1ec1f45978d0badb36f7fedc694147a7d4d.jpg"
-		},
-		{
-			"id": "endstop-mechanical",
-			"kind": "cots",
-			"cots": {
-				"type": "endstop"
-			},
-			"name": "Mechanical Endstop, \"Micro Limit Switch Short Hinge Roller Lever Arm Switch for Arduino V-155-1C25\"",
-			"category": "Endstops",
-			"description": "Endstop for chute",
-			"note": null,
-			"created_at": "2026-07-18",
-			"updated_at": "2026-07-18",
-			"attributes": [],
-			"sheet_qty": {
-				"per_machine": 1
-			},
-			"sheet_qty_text": null,
-			"sourcing": {
-				"vendors": [
-					{
-						"region": "US",
-						"vendor": "Amazon",
-						"url": "https://www.amazon.com/dp/B07NVDXGPS",
-						"price": 7.99,
-						"pack_qty": 6,
-						"as_of": "2026-04-16",
-						"affiliate_url": "https://www.amazon.com/dp/B07NVDXGPS?tag=sorterv2-20"
-					},
-					{
-						"region": "CN",
-						"vendor": "AliExpress",
-						"url": "https://www.aliexpress.com/item/1005008242738110.html",
-						"price": 0.54,
-						"currency": "EUR",
-						"as_of": "2026-04-25"
-					}
-				]
-			},
-			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/8fb04d71f715fd2565956ed1e61510fb91b4c4f679d3df8d921bce273453e784.jpg"
-		},
-		{
-			"id": "led-strip-24v",
-			"kind": "cots",
-			"cots": {
-				"type": "led-strip"
-			},
-			"name": "White/daylight LED strip - 24v",
-			"category": "Lighting",
-			"description": "Lighting for classification chamber",
-			"note": null,
-			"created_at": "2026-07-18",
-			"updated_at": "2026-07-18",
-			"attributes": [],
-			"sheet_qty": null,
-			"sheet_qty_text": "40 cm (sold as 5 m roll)",
-			"sourcing": {
-				"vendors": [
-					{
-						"region": "US",
-						"vendor": "Amazon",
-						"url": "https://www.amazon.com/dp/B0DHV8ZF4R",
-						"price": 9.99,
-						"as_of": "2026-04-16",
-						"affiliate_url": "https://www.amazon.com/dp/B0DHV8ZF4R?tag=sorterv2-20"
-					}
-				]
-			},
-			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/961391ece43df1628e5a153d3a7ba42b865868e70ace71fde7b0f951c30104eb.jpg"
-		},
-		{
-			"id": "brg-6704-2rs",
-			"kind": "cots",
-			"cots": {
-				"type": "bearing"
-			},
-			"name": "6704-2RS bearing",
-			"category": "Per layer",
-			"description": "Bearings for chute flap",
-			"note": null,
-			"created_at": "2026-07-18",
-			"updated_at": "2026-07-18",
-			"attributes": [
-				{
-					"label": "Size",
-					"value": "20 \u00d7 27 \u00d7 4 mm (ID \u00d7 OD \u00d7 W)"
-				},
-				{
-					"label": "Seal",
-					"value": "Double rubber (2RS)"
-				},
-				{
-					"label": "Material",
-					"value": "Chrome steel"
-				}
-			],
-			"sheet_qty": {
-				"per_layer": 2
-			},
-			"sheet_qty_text": null,
-			"sourcing": {
-				"vendors": [
-					{
-						"region": "US",
-						"vendor": "Amazon",
-						"url": "https://www.amazon.com/dp/B0CNX57Z8R",
-						"affiliate_url": "https://www.amazon.com/dp/B0CNX57Z8R?tag=sorterv2-20",
-						"price": 15.89,
-						"pack_qty": 10,
-						"as_of": "2026-07-18"
-					},
-					{
-						"region": "US",
-						"vendor": "Amazon",
-						"url": "https://www.amazon.com/dp/B0CRBBY1GC",
-						"affiliate_url": "https://www.amazon.com/dp/B0CRBBY1GC?tag=sorterv2-20",
-						"price": 13.69,
-						"pack_qty": 10,
-						"as_of": "2026-06-28"
-					},
-					{
-						"region": "CN",
-						"vendor": "AliExpress",
-						"url": "https://www.aliexpress.com/item/1005009552884836.html"
-					}
-				]
-			},
-			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/9b0d3f8350970397ac0590b4d8ff0317cca9d4322bf23ecdfa386619e565d4fe.jpg"
-		},
-		{
-			"id": "servo-mg995",
-			"kind": "cots",
-			"cots": {
-				"type": "servo"
-			},
-			"name": "MG995 Servo",
-			"category": "Per layer",
-			"description": "Standard Servo for flap (serial upgrade see note)",
-			"note": null,
-			"created_at": "2026-07-18",
-			"updated_at": "2026-07-18",
-			"attributes": [],
-			"sheet_qty": {
-				"per_layer": 1
-			},
-			"sheet_qty_text": null,
-			"sourcing": {
-				"vendors": [
-					{
-						"region": "US",
-						"vendor": "Amazon",
-						"url": "https://www.amazon.com/dp/B07NQJ1VZ2",
-						"price": 17.98,
-						"pack_qty": 4,
-						"as_of": "2026-04-16",
-						"affiliate_url": "https://www.amazon.com/dp/B07NQJ1VZ2?tag=sorterv2-20"
-					}
-				]
-			},
-			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/8a8b0ae4bdd9679526adf05de4341c528c21cbf42a48491e11fe467c86567589.jpg"
-		},
-		{
-			"id": "cable-idc-2x8-short",
-			"kind": "cots",
-			"cots": {
-				"type": "cable"
-			},
-			"name": "IDC ribbon cable, 16-pin (2\u00d78), 30 cm",
-			"category": "Per layer",
-			"description": "Cable between layer and layer below",
-			"note": null,
-			"created_at": "2026-07-18",
-			"updated_at": "2026-07-18",
-			"attributes": [
-				{
-					"label": "Pins",
-					"value": "16 (2\u00d78), female-to-female FC"
-				},
-				{
-					"label": "Pitch",
-					"value": "2.54 mm"
-				},
-				{
-					"label": "Length",
-					"value": "30 cm"
-				},
-				{
-					"label": "Brand",
-					"value": "Antrader"
-				}
-			],
-			"sheet_qty": {
-				"per_layer": 1
-			},
-			"sheet_qty_text": null,
-			"sourcing": {
-				"vendors": [
-					{
-						"region": "US",
-						"vendor": "Amazon",
-						"url": "https://www.amazon.com/dp/B07FZWH9S6",
-						"price": 7.99,
-						"pack_qty": 6,
-						"as_of": "2026-07-18",
-						"affiliate_url": "https://www.amazon.com/dp/B07FZWH9S6?tag=sorterv2-20"
-					}
-				]
-			},
-			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/784f9a5733e4ad3815cb8a22b27b7a6610357277e1846a7f1be2e5843ab63e31.jpg"
 		}
 	]
 }
