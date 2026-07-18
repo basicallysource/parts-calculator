@@ -248,16 +248,7 @@
 														<span class="font-normal text-text-muted">({v.region})</span>
 														<ExternalLink size={11} />
 													</a>
-													{#if v.affiliate_url}
-														<!-- the same listing without the referral tag -->
-														<a
-															href={v.url}
-															target="_blank"
-															rel="noopener"
-															class="text-text-muted underline decoration-dotted underline-offset-2 hover:text-text"
-															title="Same listing without the affiliate tag">plain</a
-														>
-													{/if}
+													<!-- the untagged link lives on the detail modal, to keep rows terse -->
 													<span class="tabular-nums text-text-muted">
 														{#if fmtPrice(v)}
 															{fmtPrice(v)}{v.pack_qty && v.pack_qty > 1 ? ` / ${v.pack_qty}` : ''}
@@ -284,8 +275,8 @@
 			<!-- Affiliate disclosure. Required because the vendor links and the cart
 			     carry a referral tag; kept to one muted line at the foot of the page. -->
 			<p class="mt-4 border-t border-border pt-3 text-[11px] text-text-muted">
-				Amazon links are affiliate links. The “plain” link beside each one is the same listing
-				without the tag.
+				As an Amazon Associate we earn from qualifying purchases. Open any part for a
+				“Not affiliate” link to the same listing without the referral tag.
 			</p>
 		</div>
 
@@ -415,7 +406,7 @@
 								target="_blank"
 								rel="noopener"
 								class="text-xs text-text-muted underline decoration-dotted underline-offset-2 hover:text-text"
-								title="Same listing without the affiliate tag">plain</a
+								title="The same listing, without the referral tag">Not affiliate</a
 							>
 						{/if}
 					</span>
