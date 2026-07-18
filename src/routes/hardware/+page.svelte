@@ -163,7 +163,7 @@
 						{#each items as h (h.id)}
 							{@const qty = totalQty(h, layers)}
 							<div
-								class="setup-card-shell flex cursor-pointer items-start gap-3 border p-3 transition-colors {selected[
+								class="hw-row setup-card-shell flex cursor-pointer items-start gap-3 border p-3 {selected[
 									h.id
 								]
 									? 'border-primary/60'
@@ -445,3 +445,13 @@
 		</div>
 	{/if}
 </Modal>
+
+<style>
+	/* same hover as the 3D parts rows — the whole row is clickable, so it says so */
+	.hw-row {
+		transition: background-color 120ms;
+	}
+	.hw-row:hover {
+		background: color-mix(in oklab, var(--color-bg) 55%, transparent);
+	}
+</style>
