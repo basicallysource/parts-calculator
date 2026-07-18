@@ -5,12 +5,13 @@
 
 	let { children } = $props();
 
+	// /assembly is live but unlisted while the machine tree is still mostly stubs —
+	// reachable by URL, just not advertised. Add it back here when it's worth showing.
 	const tabs = [
 		{ href: '/', label: '3D printed parts' },
 		{ href: '/framing', label: 'Aluminium framing' },
 		{ href: '/lasercut', label: 'Laser cut parts' },
-		{ href: '/hardware', label: 'Hardware' },
-		{ href: '/assembly', label: 'Machine assembly' }
+		{ href: '/hardware', label: 'Hardware' }
 	];
 
 	const isActive = (href: string) =>
