@@ -4,6 +4,11 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+	// Vite doesn't read PORT on its own. Honour it when set so a supervising
+	// tool can assign a free port; fall back to Vite's default otherwise.
+	server: process.env.PORT
+		? { port: Number(process.env.PORT), strictPort: true }
+		: undefined,
 	plugins: [
 		tailwindcss(),
 		sveltekit({
