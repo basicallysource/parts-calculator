@@ -5172,7 +5172,7 @@
 			"updated_at": "2026-07-18",
 			"attributes": [],
 			"sheet_qty": null,
-			"sheet_qty_text": "40 cm (sold as 5 m roll)",
+			"sheet_qty_text": null,
 			"sourcing": {
 				"vendors": [
 					{
