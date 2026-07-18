@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { ExternalLink, ImageOff, ShoppingCart } from 'lucide-svelte';
+	import Callout from '$lib/components/Callout.svelte';
 	import LayerControl from '$lib/components/LayerControl.svelte';
 	import Modal from '$lib/components/Modal.svelte';
 	import { HARDWARE, resolveHardwareTotals, type Hardware, type Vendor } from '$lib/filament';
@@ -132,9 +133,15 @@
 <svelte:head><title>Sorter Parts Calculator — Hardware</title></svelte:head>
 
 <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
-	<header class="mb-5">
+	<header class="mb-4">
 		<h1 class="text-2xl font-bold text-text">Hardware</h1>
 	</header>
+
+	<div class="mb-5">
+		<Callout variant="warning" title="Work in progress">
+			This list is incomplete and several quantities are unconfirmed.
+		</Callout>
+	</div>
 
 	<div class="mb-6"><LayerControl /></div>
 
