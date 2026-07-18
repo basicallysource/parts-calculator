@@ -28,8 +28,13 @@ export type Section = {
 export type ColorRoleDef = { id: string; name: string; default: string };
 
 /** One BOM line of an assembly: a child part or sub-assembly with a quantity.
- *  qty 'per-layer' multiplies by the configured layer count. */
-export type AssemblyLine = { part?: string; assembly?: string; qty: number | 'per-layer' };
+ *  qty 'per-layer' multiplies by the total configured layer count;
+ *  'middle-layers' by (count − 2) — the layers between the two interfaces. */
+export type AssemblyLine = {
+	part?: string;
+	assembly?: string;
+	qty: number | 'per-layer' | 'middle-layers';
+};
 
 /** Assemblies double as (a) legacy flat groupings the parts list rolls up under
  *  and (b) nodes of the experimental machine tree (when they carry `lines`).

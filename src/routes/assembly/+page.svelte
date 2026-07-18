@@ -17,8 +17,14 @@
 	// the chute core is the first branch carrying real hardware via `requires`.
 	const layers = $derived(layerStore.sizes.length);
 
+	// Total layer count n includes the top and bottom interface levels; only
+	// n−2 distribution layers sit between them.
 	const lineQty = (line: AssemblyLine, layers: number): number =>
-		line.qty === 'per-layer' ? layers : line.qty;
+		line.qty === 'per-layer'
+			? layers
+			: line.qty === 'middle-layers'
+				? Math.max(0, layers - 2)
+				: line.qty;
 
 	/** Sum every `requires` of every printed part reachable from an assembly,
 	 *  multiplied down the tree — the resolver from the design doc, restricted
@@ -71,14 +77,16 @@
 	{/each}
 {/snippet}
 
-{#snippet node(id: string, qty: number | 'per-layer', mult: number, depth: number)}
+{#snippet node(id: string, qty: AssemblyLine['qty'], mult: number, depth: number)}
 	{@const asm = getAssembly(id)}
 	{#if asm}
 		<div class="border-l-2 border-border {depth > 0 ? 'ml-4 pl-4' : 'pl-4'} py-2">
 			<div class="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
 				<span class="text-sm font-semibold text-text">{asm.name}</span>
 				<span class="text-xs tabular-nums text-text-muted">
-					{#if qty === 'per-layer'}×{layers} (1 per layer){:else if qty !== 1}×{qty}{/if}
+					{#if qty === 'per-layer'}×{layers} (1 per layer)
+					{:else if qty === 'middle-layers'}×{Math.max(0, layers - 2)} (layers between the interfaces)
+					{:else if qty !== 1}×{qty}{/if}
 				</span>
 				{#if asm.status === 'stub'}
 					<span class="border border-border px-1.5 py-px text-[10px] font-semibold uppercase tracking-wider text-text-muted"
@@ -178,7 +186,8 @@
 					{/if}
 					<div class="mt-3 border-t border-border pt-2 text-sm text-text">
 						<span class="font-semibold tabular-nums">{t.qty}</span> needed
-						<span class="text-xs text-text-muted">({layers} layers + bottom interface)</span>
+						<span class="text-xs text-text-muted"
+							>({Math.max(0, layers - 2)} middle layer{Math.max(0, layers - 2) === 1 ? '' : 's'} + 2 chutes in the bottom interface)</span>
 					</div>
 					{#each t.hw.sourcing?.vendors ?? [] as v (v.url)}
 						{@const packs = Math.ceil(t.qty / v.pack_qty)}
