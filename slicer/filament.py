@@ -539,6 +539,11 @@ def main():
     for p in manifest["parts"]:
         if p.get("kind", "printed") != "cots":
             continue
+        # attribute labels are display keys; duplicates read as a contradiction
+        labels = [a["label"] for a in p.get("attributes", [])]
+        dupes = {l for l in labels if labels.count(l) > 1}
+        if dupes:
+            raise SystemExit(f"{p['id']}: duplicate attribute label(s) {sorted(dupes)}")
         img = p.get("image")
         hardware.append({
             "id": p["id"],
@@ -553,6 +558,8 @@ def main():
             "attributes": p.get("attributes", []),
             "sheet_qty": p.get("sheet_qty"),
             "sheet_qty_text": p.get("sheet_qty_text"),
+            # stock material: lines count cut pieces, this converts to lengths to buy
+            "stock": p.get("stock"),
             "sourcing": p.get("sourcing"),
             # image: repo file -> content-addressed bucket URL; image_url:
             # already-on-the-bucket URL authored directly (BOM product images

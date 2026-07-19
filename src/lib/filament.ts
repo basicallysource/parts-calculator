@@ -40,7 +40,7 @@ export type AssemblyLine = {
  *  the assembly — not to either member, the same rule the screws follow: a Pico
  *  isn't "a part that requires soldering", it's a part that gets soldered *to
  *  headers*. Buying either one alone implies no iron. */
-export type JoinMethod = 'solder' | 'crimp' | 'glue' | 'press';
+export type JoinMethod = 'solder' | 'crimp' | 'glue' | 'press' | 'self-tap' | 'friction';
 export type Joining = { method: JoinMethod; note?: string };
 
 /** Human labels for the join methods, for badges and prose. */
@@ -48,7 +48,11 @@ export const JOIN_LABELS: Record<JoinMethod, string> = {
 	solder: 'Soldering',
 	crimp: 'Crimping',
 	glue: 'Gluing',
-	press: 'Press fit'
+	press: 'Press fit',
+	// a screw cutting its own thread in printed plastic — no insert, no nut
+	'self-tap': 'Self-tapping',
+	// held by clamping force alone, e.g. a screw jammed in an extrusion slot
+	friction: 'Friction'
 };
 
 /** Assemblies double as (a) legacy flat groupings the parts list rolls up under
@@ -80,6 +84,16 @@ export type Vendor = {
 	note?: string;
 };
 
+/** Stock material — bought as a length and cut down. Assembly lines count the
+ *  *pieces* a build consumes; `pieces_per_unit` converts that to lengths to buy. */
+export type Stock = {
+	unit_length_mm: number;
+	cut_length_mm: number;
+	pieces_per_unit: number;
+	unit_label: string; // "4 ft (1.22 m) length"
+	piece_label: string; // "~1 ft (305 mm) piece"
+};
+
 /** A COTS (off-the-shelf) part: no STL, carries sourcing instead.
  *  sheet_qty/sheet_qty_text are transitional hand counts from the BOM sheet,
  *  kept until each part is placed as requires/lines in the assembly tree. */
@@ -96,6 +110,7 @@ export type Hardware = {
 	attributes: { label: string; value: string }[];
 	sheet_qty?: { per_machine?: number; per_layer?: number } | null;
 	sheet_qty_text?: string | null;
+	stock?: Stock | null; // set when the part is cut from a bought length
 	sourcing?: { vendors: Vendor[] } | null;
 	image: string | null; // content-addressed bucket URL
 };
