@@ -5,6 +5,7 @@
 	import LayerControl from '$lib/components/LayerControl.svelte';
 	import PartDetailModal from '$lib/components/PartDetailModal.svelte';
 	import HardwareDetailModal from '$lib/components/HardwareDetailModal.svelte';
+	import { colorStore } from '$lib/colors.svelte';
 	import {
 		getAssembly,
 		getHardware,
@@ -317,7 +318,7 @@
 	</div>
 </div>
 
-<PartDetailModal bind:open={partOpen} part={partModal} />
+<PartDetailModal bind:open={partOpen} part={partModal} roleColors={colorStore.roles} />
 <HardwareDetailModal bind:open={hwOpen} hardware={hwModal} {layers} />
 
 <style>
