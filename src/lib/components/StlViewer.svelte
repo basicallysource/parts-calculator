@@ -22,7 +22,11 @@
 
 		const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 5000);
 		const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-		renderer.setPixelRatio(window.devicePixelRatio);
+		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+		// buffer is sized via setSize(…, false); pin the element to its box via CSS
+		renderer.domElement.style.display = 'block';
+		renderer.domElement.style.width = '100%';
+		renderer.domElement.style.height = '100%';
 		el.appendChild(renderer.domElement);
 
 		scene.add(new THREE.HemisphereLight(0xffffff, 0x666666, 1.1));
