@@ -365,7 +365,7 @@
 
 	<div class="mb-6"><LayerControl /></div>
 
-	<div class="grid items-start gap-6 lg:grid-cols-[1fr_320px]">
+	<div class="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
 		<!-- LEFT: one vertical list, grouped by category -->
 		<div>
 			<!-- the icons encode head shape + thread size; say so once, here -->
@@ -646,6 +646,14 @@
 			opacity: 1;
 			pointer-events: auto;
 			transform: translateY(-50%) scale(1);
+		}
+	}
+	/* On a narrow screen there is nowhere to put a 28rem preview, and being
+	   absolutely positioned it still stretched the page's scroll width. The row
+	   is tappable and the modal shows the image full size, so it just goes. */
+	@media (max-width: 767px) {
+		.hw-zoom {
+			display: none;
 		}
 	}
 </style>
