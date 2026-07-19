@@ -1,11 +1,13 @@
 <script lang="ts">
-	import { ExternalLink, ShoppingCart } from 'lucide-svelte';
+	import { ExternalLink, ShoppingCart, Zap } from 'lucide-svelte';
+	import Badge from '$lib/components/Badge.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 	import LayerControl from '$lib/components/LayerControl.svelte';
 	import {
 		getAssembly,
 		getHardware,
 		getPart,
+		JOIN_LABELS,
 		lineQty,
 		resolveHardwareTotals,
 		type AssemblyLine,
@@ -52,6 +54,21 @@
 	{/each}
 {/snippet}
 
+<!-- One off-the-shelf line of an assembly: the screws, nuts and bought components
+     that belong to the joint rather than to either part it holds together. -->
+{#snippet hardwareRow(hw: Hardware, each: number, total: number)}
+	<div class="ml-4 mt-2 flex items-center gap-3 border border-border bg-[var(--color-bg)] p-2">
+		{#if hw.image}
+			<img src={hw.image} alt={hw.name} class="h-8 w-8 shrink-0 object-contain" />
+		{/if}
+		<div class="min-w-0 flex-1 truncate text-xs font-semibold text-text">{hw.name}</div>
+		<div class="text-right text-xs tabular-nums text-text">
+			<div class="font-semibold">×{each}</div>
+			{#if total !== each}<div class="text-text-muted">{total} total</div>{/if}
+		</div>
+	</div>
+{/snippet}
+
 {#snippet node(id: string, qty: AssemblyLine['qty'], mult: number, depth: number)}
 	{@const asm = getAssembly(id)}
 	{#if asm}
@@ -74,9 +91,22 @@
 			{#if asm.description}
 				<p class="mt-0.5 max-w-2xl text-xs text-text-muted">{asm.description}</p>
 			{/if}
+			<!-- how these lines become one unit — soldered, self-tapped, friction-held -->
+			{#each asm.joining ?? [] as j (j.method)}
+				<div class="mt-1 flex max-w-2xl flex-wrap items-baseline gap-x-2">
+					<Badge variant="warning"><Zap size={10} />{JOIN_LABELS[j.method]}</Badge>
+					{#if j.note}<span class="text-xs text-text-muted">{j.note}</span>{/if}
+				</div>
+			{/each}
 			{#each asm.lines ?? [] as line (line.part ?? line.assembly)}
 				{#if line.assembly}
 					{@render node(line.assembly, line.qty, lineQty(line, layers) * mult, depth + 1)}
+				{:else if line.part && getHardware(line.part)}
+					{@render hardwareRow(
+						getHardware(line.part)!,
+						lineQty(line, layers),
+						lineQty(line, layers) * mult
+					)}
 				{:else if line.part}
 					{@const part = getPart(line.part)}
 					{#if part}
@@ -153,7 +183,7 @@
 					</div>
 					{#if t.hw.attributes.length}
 						<dl class="mt-2 grid grid-cols-[auto_1fr] gap-x-4 gap-y-0.5 text-xs text-text-muted">
-							{#each t.hw.attributes as a (a.label)}
+							{#each t.hw.attributes as a}
 								<dt>{a.label}</dt>
 								<dd class="text-text">{a.value}</dd>
 							{/each}
@@ -161,8 +191,7 @@
 					{/if}
 					<div class="mt-3 border-t border-border pt-2 text-sm text-text">
 						<span class="font-semibold tabular-nums">{t.qty}</span> needed
-						<span class="text-xs text-text-muted"
-							>({Math.max(0, layers - 2)} middle layer{Math.max(0, layers - 2) === 1 ? '' : 's'} + 2 chutes in the bottom interface)</span>
+						<span class="text-xs text-text-muted">across every branch below</span>
 					</div>
 					{#each (t.hw.sourcing?.vendors ?? []).filter((v) => v.price != null && v.pack_qty) as v (v.url)}
 						{@const packs = Math.ceil(t.qty / v.pack_qty!)}
@@ -181,10 +210,10 @@
 							</span>
 						</div>
 					{/each}
-					{#if t.hw.sourcing?.vendors?.length}
+					{#if t.hw.sourcing?.vendors?.length && t.hw.sourcing.vendors[0].as_of}
 						<p class="mt-1.5 text-[10px] text-text-muted">
-							Prices as of {t.hw.sourcing.vendors[0].as_of}. This subtree only — the full machine
-							uses more (BOM says ~235 across everything).
+							Prices as of {t.hw.sourcing.vendors[0].as_of}. Counts cover only the branches that
+							have been filled in — the tree is still mostly partial.
 						</p>
 					{/if}
 				</div>
