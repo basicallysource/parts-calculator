@@ -6,6 +6,7 @@
 	import {
 		getAssembly,
 		getHardware,
+		getLasercut,
 		getPart,
 		hardwareImage,
 		JOIN_LABELS,
@@ -104,6 +105,20 @@
 			{#each asm.lines ?? [] as line (line.part ?? line.assembly)}
 				{#if line.assembly}
 					{@render node(line.assembly, line.qty, lineQty(line, layers) * mult, depth + 1)}
+				{:else if line.part && getLasercut(line.part)}
+					{@const lc = getLasercut(line.part)!}
+					<div class="ml-4 mt-2 flex items-center gap-3 border border-border bg-surface p-3">
+						<img src={lc.preview} alt={lc.name} class="h-12 w-12 shrink-0 object-contain" />
+						<div class="min-w-0 flex-1">
+							<div class="flex flex-wrap items-baseline gap-x-2">
+								<span class="text-sm font-semibold text-text">{lc.name}</span>
+								<span class="border border-border px-1.5 py-px text-[10px] font-semibold uppercase tracking-wider text-text-muted"
+									>laser cut</span>
+							</div>
+							<div class="text-xs text-text-muted">{lc.thicknessIn} plywood · {lc.widthMm}×{lc.heightMm} mm</div>
+						</div>
+						<div class="text-right text-xs font-semibold tabular-nums text-text">×{lineQty(line, layers)}</div>
+					</div>
 				{:else if line.part && getHardware(line.part)}
 					{@render hardwareRow(
 						getHardware(line.part)!,
