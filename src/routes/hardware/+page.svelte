@@ -59,9 +59,13 @@
 		sheet: 'Hand count carried over from the BOM sheet — not yet placed in the assembly tree'
 	};
 
-	/** Stock material is counted in cut pieces; this is how many lengths to buy. */
-	const stockUnits = (h: Hardware, qty: number) =>
-		h.stock ? Math.ceil(qty / h.stock.pieces_per_unit) : null;
+	/** Quantity in the units a vendor actually sells. Stock material is tallied in
+	 *  cut pieces but bought as whole lengths, so four 1 ft pieces is one rod —
+	 *  every price and pack calculation has to go through here. */
+	function buyUnits(h: Hardware, qty: number | null): number | null {
+		if (qty == null) return null;
+		return h.stock ? Math.ceil(qty / h.stock.pieces_per_unit) : qty;
+	}
 
 	// ------------------------------------------------------------------ joints
 	// A part that gets soldered/crimped/glued to something else says so here, but
@@ -127,7 +131,7 @@
 	const asmCost = (items: Hardware[]) =>
 		items.reduce((sum, h) => {
 			const v = bestUsVendor(h);
-			return sum + (v ? (buyCost(v, totalQty(h, layers)) ?? 0) : 0);
+			return sum + (v ? (buyCost(v, buyUnits(h, totalQty(h, layers))) ?? 0) : 0);
 		}, 0);
 
 	const fmtPrice = (v: Vendor) =>
@@ -181,7 +185,10 @@
 	}
 
 	const selectedTotal = $derived.by(() =>
-		selectedList.reduce((sum, h) => sum + (buyCost(bestUsVendor(h)!, totalQty(h, layers)) ?? 0), 0)
+		selectedList.reduce(
+			(sum, h) => sum + (buyCost(bestUsVendor(h)!, buyUnits(h, totalQty(h, layers))) ?? 0),
+			0
+		)
 	);
 
 	// ------------------------------------------------------------ amazon cart
@@ -207,14 +214,20 @@
 			}
 			const asin = asinOf(v.url);
 			if (!asin) {
-				excluded.push({ h, why: 'source is a short link with no ASIN' });
+				// no ASIN means either a non-Amazon retailer or a short link that hides it
+				excluded.push({
+					h,
+					why: /(^|\.)amazon\./.test(new URL(v.url).hostname)
+						? 'source is a short link with no ASIN'
+						: `sold by ${v.vendor ?? 'another retailer'}, not Amazon`
+				});
 				continue;
 			}
 			if (qty == null) {
 				excluded.push({ h, why: 'quantity not settled' });
 				continue;
 			}
-			lines.push({ h, asin, packs: packsNeeded(v, qty) });
+			lines.push({ h, asin, packs: packsNeeded(v, buyUnits(h, qty)!) });
 		}
 		const batches: string[] = [];
 		for (let i = 0; i < lines.length; i += CART_BATCH) {
@@ -306,7 +319,7 @@
 							<span class="text-warning-dark" title={QTY_TITLE.sheet}>*</span>
 						{/if}
 						{#if h.stock}
-							<div>buy {stockUnits(h, qty)} × {h.stock.unit_label}</div>
+							<div>buy {buyUnits(h, qty)} × {h.stock.unit_label}</div>
 						{:else if src === 'sheet' && h.sheet_qty?.per_layer != null}
 							<div>({h.sheet_qty.per_layer}/layer)</div>
 						{/if}
@@ -334,7 +347,7 @@
 							<!-- in-house part, not shipping yet — no link out, no price to show -->
 							<span class="text-xs italic text-text-muted/70">Coming soon to basically</span>
 						{:else}
-							{@const cost = buyCost(v, qty)}
+							{@const cost = buyCost(v, buyUnits(h, qty))}
 							<span class="inline-flex items-center gap-1 text-xs">
 								<a
 									href={v.affiliate_url ?? v.url}
@@ -604,7 +617,7 @@
 					{#if detail.stock}
 						<dt class="text-text-muted">Buy</dt>
 						<dd class="text-text">
-							{qty != null ? stockUnits(detail, qty) : 1} × {detail.stock.unit_label}
+							{buyUnits(detail, qty) ?? 1} × {detail.stock.unit_label}
 						</dd>
 					{/if}
 					{#each detail.attributes ?? [] as a}
@@ -650,7 +663,7 @@
 					<!-- in-house part, not shipping yet — no link out, no price to show -->
 					<div class="p-2 text-sm italic text-text-muted/70">Coming soon to basically</div>
 				{:else}
-					{@const cost = buyCost(v, qty)}
+					{@const cost = buyCost(v, buyUnits(detail, qty))}
 					<div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 p-2 text-sm">
 						<span class="inline-flex items-center gap-2">
 							<a
@@ -676,7 +689,7 @@
 							{#if fmtPrice(v)}
 								{fmtPrice(v)}{v.pack_qty && v.pack_qty > 1 ? ` for ${v.pack_qty}` : ''}
 								{#if cost != null && v.pack_qty && qty != null}
-									· buy <span class="text-text">{packsNeeded(v, qty)}</span> =
+									· buy <span class="text-text">{packsNeeded(v, buyUnits(detail, qty)!)}</span> =
 									<span class="font-semibold text-text">${cost.toFixed(2)}</span>
 								{/if}
 							{:else}

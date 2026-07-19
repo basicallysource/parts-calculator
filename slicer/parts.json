@@ -767,10 +767,24 @@
       "id": "cable-clamp-outer",
       "name": "Cable clamp (outer)",
       "description": "Outer half of the ribbon cable clamp. White.",
-      "internal_notes": "1 per interface. White. Pairs with the inner clamp (cable-clamp assembly).",
-      "version": "1",
+      "internal_notes": "1 per interface. White. Pairs with the inner clamp (cable-clamp assembly). v2 (2026-07-18): enlarged the M3 nut pocket so the nut seats — it did not fit in v1.",
+      "version": "2",
       "created_at": "2026-06-27",
-      "updated_at": "2026-06-27",
+      "updated_at": "2026-07-18",
+      "versions": [
+        {
+          "version": "1",
+          "date": "2026-06-27",
+          "message": "Initial version.",
+          "commit": "be3f4cd"
+        },
+        {
+          "version": "2",
+          "date": "2026-07-18",
+          "message": "Enlarged the M3 nut pocket. The v1 pocket was undersized and the nut would not seat in it.",
+          "commit": null
+        }
+      ],
       "quantities": {
         "interface": 1
       },
@@ -781,9 +795,7 @@
       },
       "optional": false,
       "support": true,
-      "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/63d9095d8167813360e7753c/e/279fa8866ec0d8c56c8226cf",
-      "suspicious": true,
-      "suspicious_note": "The M3 nut does not fit into the hole."
+      "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/63d9095d8167813360e7753c/e/279fa8866ec0d8c56c8226cf"
     },
     {
       "id": "interface-spur-gear",
@@ -2546,9 +2558,23 @@
         },
         {
           "label": "Material",
-          "value": "Steel"
+          "value": "Cold-rolled plain low-carbon steel"
         }
-      ]
+      ],
+      "image": "images/hardware/rod-steel-3-8.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Home Depot",
+            "url": "https://www.homedepot.com/p/Everbilt-3-8-in-x-4-ft-Plain-Steel-Solid-Round-Rod-0008/332734010",
+            "price": 12.46,
+            "pack_qty": 1,
+            "as_of": "2026-07-18",
+            "note": "Everbilt 0008, cold-rolled plain low-carbon steel. Same listing carries 1/3/4/6 ft lengths."
+          }
+        ]
+      }
     },
     {
       "id": "hsi-m3-long",
