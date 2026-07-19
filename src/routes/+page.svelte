@@ -36,13 +36,13 @@
 	import { onMount } from 'svelte';
 	import { loadConfig, saveConfig, clearConfig } from '$lib/config';
 	import { layerStore, addLayer as addLayerStore, removeLayerAt, setSize, setSizes } from '$lib/layers.svelte';
+	import { colorStore, defaultRoleColors, resetRoleColors } from '$lib/colors.svelte';
 	import Popover from '$lib/components/Popover.svelte';
 	import Badge from '$lib/components/Badge.svelte';
 	import { Download, Package, ZoomIn, Loader, Info, Plus, X, RotateCcw, Clock, Layers3, ExternalLink, AlertTriangle, History, ChevronRight, ChevronDown } from 'lucide-svelte';
 
 	// ---- defaults (also used by "reset to default") -----------------------------
 	const defaultFunnelSizes = (): ('third' | 'half')[] => ['third', 'third', 'half'];
-	const defaultRoleColors = () => Object.fromEntries(COLOR_ROLES.map((r) => [r.id, r.default]));
 	const defaultSelected = () =>
 		Object.fromEntries(PARTS.map((p) => [p.id, !('bins' in p.quantities)]));
 	// only parts that *opt into* support (support_intentional) expose the toggle; they
@@ -60,7 +60,8 @@
 	function removeLayer(i: number) {
 		removeLayerAt(i);
 	}
-	let roleColors = $state<Record<string, string>>(defaultRoleColors());
+	// colours live in the shared store so the assembly tab sees the same choices
+	const roleColors = $derived(colorStore.roles);
 	let selected = $state<Record<string, boolean>>(defaultSelected());
 	let surplus = $state(15);
 	let printBins = $state(false); // top-level: print bins or not (auto-selects the right bins)
@@ -81,7 +82,7 @@
 	onMount(() => {
 		const c = loadConfig();
 		if (c) {
-			if (c.roleColors) roleColors = { ...roleColors, ...c.roleColors };
+			// roleColors is not read here — colors.svelte owns it (and migrates the old blob)
 			if (typeof c.printBins === 'boolean') printBins = c.printBins;
 			if (typeof c.surplus === 'number') surplus = c.surplus;
 			if (c.selected) selected = { ...selected, ...c.selected };
@@ -90,12 +91,12 @@
 		configLoaded = true;
 	});
 	$effect(() => {
-		const snapshot = { roleColors, printBins, surplus, selected, inclSupport };
+		const snapshot = { printBins, surplus, selected, inclSupport };
 		if (configLoaded) saveConfig($state.snapshot(snapshot));
 	});
 	function resetToDefaults() {
 		setSizes(defaultFunnelSizes());
-		roleColors = defaultRoleColors();
+		resetRoleColors();
 		selected = defaultSelected();
 		inclSupport = defaultInclSupport();
 		surplus = 15;
@@ -322,7 +323,7 @@
 			</div>
 			<div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
 				{#each COLOR_ROLES as role (role.id)}
-					<ColorPicker bind:value={roleColors[role.id]} label={role.name} />
+					<ColorPicker bind:value={colorStore.roles[role.id]} label={role.name} />
 				{/each}
 			</div>
 		</div>

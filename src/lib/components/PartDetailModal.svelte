@@ -19,8 +19,8 @@
 
 	// The 3D-printed part detail popup: 3D viewer, specs, download, build plates and
 	// version history. Shared by the parts dashboard and the assembly tab so both open
-	// the exact same view. `roleColors` only seeds the default preview colour — pages
-	// without a colour config (the assembly tab) can omit it.
+	// the exact same view. `roleColors` seeds the default preview colour; both pass it
+	// from the shared colour store, so a part opens in the colour you chose.
 	let {
 		open = $bindable(false),
 		part,
