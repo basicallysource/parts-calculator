@@ -2537,7 +2537,6 @@
       "description": "Bought as a length and cut down. One 4 ft rod yields all four ~1 ft pieces the two overhead camera arms hang from.",
       "created_at": "2026-07-18",
       "updated_at": "2026-07-18",
-      "note": "The metric equivalent is 10 mm rod, and 3/8 in is 9.53 mm — check the printed mount's bore before ordering the metric size.",
       "stock": {
         "unit_length_mm": 1220,
         "cut_length_mm": 305,
@@ -2738,6 +2737,36 @@
       "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/abb5a013d071379a34f8b65345b483627803f247627d4ef0a5d5816c5eff0d49.jpg"
     },
     {
+      "id": "standoff-m3-10mm",
+      "kind": "cots",
+      "cots": {
+        "type": "standoff"
+      },
+      "name": "Standoff - M3 - 10mm",
+      "category": "Standoffs",
+      "description": "Stands the control board and the Orange Pi off their brackets.",
+      "created_at": "2026-07-18",
+      "updated_at": "2026-07-18",
+      "sheet_qty": {
+        "per_machine": 8
+      },
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/49ce8284dc28ede2c118a7903c079d6107fbdb80fd0ea8f84396ec6bca5054cb.jpg",
+      "sourcing": {
+        "vendors": [
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/Black-Nylon-Standoff-Spacers-Screws/dp/B0F297R23T",
+            "price": 8.29,
+            "pack_qty": 30,
+            "as_of": "2026-04-16",
+            "affiliate_url": "https://www.amazon.com/Black-Nylon-Standoff-Spacers-Screws/dp/B0F297R23T?tag=sorterv2-20"
+          }
+        ]
+      },
+      "note": "Length is the BOM sheet's 10 mm and has not been confirmed against the board mounts."
+    },
+    {
       "id": "tnut-m5-2020",
       "kind": "cots",
       "cots": {
@@ -2745,7 +2774,7 @@
         "size": "M5"
       },
       "name": "M5 roll-in T-nut, 2020",
-      "category": "Fasteners",
+      "category": "Nuts",
       "description": "Every button-head M5 screw that goes into extrusion lands in one of these.",
       "created_at": "2026-07-18",
       "updated_at": "2026-07-18",
@@ -3374,7 +3403,7 @@
       "created_at": "2026-07-18",
       "updated_at": "2026-07-18",
       "sheet_qty": {
-        "per_machine": 2
+        "per_machine": 1
       },
       "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/e327e62a3fb80763bd0f10599ad46db6a8ca432253078fee88d84aa9888b0d5c.jpg",
       "sourcing": {
@@ -3404,7 +3433,7 @@
       "created_at": "2026-07-18",
       "updated_at": "2026-07-18",
       "sheet_qty": {
-        "per_machine": 2
+        "per_machine": 1
       },
       "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/b15f19a1ef56e6c710c09e105e6b8cbeabda0b39368aeff99bc2e11669b0a5f8.jpg",
       "sourcing": {
@@ -3522,36 +3551,6 @@
           }
         ]
       }
-    },
-    {
-      "id": "standoff-m3-10mm",
-      "kind": "cots",
-      "cots": {
-        "type": "standoff"
-      },
-      "name": "Standoff - M3 - 10mm",
-      "category": "Electronics",
-      "description": "Mount main board",
-      "created_at": "2026-07-18",
-      "updated_at": "2026-07-18",
-      "sheet_qty": {
-        "per_machine": 8
-      },
-      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/49ce8284dc28ede2c118a7903c079d6107fbdb80fd0ea8f84396ec6bca5054cb.jpg",
-      "sourcing": {
-        "vendors": [
-          {
-            "region": "US",
-            "vendor": "Amazon",
-            "url": "https://www.amazon.com/Black-Nylon-Standoff-Spacers-Screws/dp/B0F297R23T",
-            "price": 8.29,
-            "pack_qty": 30,
-            "as_of": "2026-04-16",
-            "affiliate_url": "https://www.amazon.com/Black-Nylon-Standoff-Spacers-Screws/dp/B0F297R23T?tag=sorterv2-20"
-          }
-        ]
-      },
-      "note": "Length is the BOM sheet's 10 mm and has not been confirmed against the board mounts."
     },
     {
       "id": "cable-idc-2x8-long",
@@ -3763,9 +3762,9 @@
       "cots": {
         "type": "endstop"
       },
-      "name": "Mechanical Endstop, \"Micro Limit Switch Short Hinge Roller Lever Arm Switch for Arduino V-155-1C25\"",
+      "name": "Roller lever limit switch (V-155-1C25)",
       "category": "Wire harness",
-      "description": "Endstop for chute",
+      "description": "Hinged roller-lever microswitch. Senses the chute at its home position.",
       "created_at": "2026-07-18",
       "updated_at": "2026-07-18",
       "sheet_qty": {
