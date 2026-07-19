@@ -11,7 +11,7 @@
 		"density_g_cm3": 1.32,
 		"cost_per_kg": 24.99,
 		"commit_base_url": "https://github.com/basicallysource/filament-calculator/commit/",
-		"all_parts_zip": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/9987e2d556e3b6732d9cb10c0a49ff164f1cbc5cb0069c35602a7ce49a743f5d.zip"
+		"all_parts_zip": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/354413907a1e5887ea03b94c91756c0c0b340a73f5c6983717f6f8ea13429f5f.zip"
 	},
 	"sections": [
 		{
@@ -2479,7 +2479,7 @@
 					"date": "2026-06-27",
 					"message": "Initial version.",
 					"commit": null,
-					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/7ad7f153a1d90ca041c0c506ed1997d812ffb8d61f41265aac35f87d0fcc45ff.stl",
+					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a77f4963aada127b93e60161a8aa83685a03ce6f3beb318c270627f7641927af.stl",
 					"render": "/renders/cable-clamp-inner.png",
 					"grams": 6.45
 				}
@@ -2502,7 +2502,7 @@
 			"low_tolerance_note": null,
 			"layer_scope": "all",
 			"requires": [],
-			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/7ad7f153a1d90ca041c0c506ed1997d812ffb8d61f41265aac35f87d0fcc45ff.stl",
+			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a77f4963aada127b93e60161a8aa83685a03ce6f3beb318c270627f7641927af.stl",
 			"render": "/renders/cable-clamp-inner.png"
 		},
 		{
@@ -2515,39 +2515,48 @@
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Outer half of the ribbon cable clamp. White.",
-			"version": "1",
+			"version": "2",
 			"created_at": "2026-06-27",
-			"updated_at": "2026-06-27",
+			"updated_at": "2026-07-18",
 			"versions": [
 				{
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
+					"commit": "be3f4cd",
+					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/dd778421784bf38babc9ccde0f1007ce61e7e2c575718a933e62aadfedd55484.stl",
+					"render": "/renders/cable-clamp-outer.png",
+					"grams": 19.76
+				},
+				{
+					"version": "2",
+					"date": "2026-07-18",
+					"message": "Enlarged the M3 nut pocket. The v1 pocket was undersized and the nut would not seat in it.",
 					"commit": null,
-					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/34485f41055e82d098984ed49824fd0f93f471dac62ea86e6b83cf87482bf9fd.stl",
+					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/dd778421784bf38babc9ccde0f1007ce61e7e2c575718a933e62aadfedd55484.stl",
 					"render": "/renders/cable-clamp-outer.png",
 					"grams": 19.76
 				}
 			],
 			"attributes": [],
 			"grams": 19.76,
-			"support_grams": 6.89,
+			"support_grams": 6.9,
 			"support_used": true,
 			"support_intentional": true,
-			"print_seconds": 3551,
+			"print_seconds": 3550,
 			"color": {
 				"role": "chute-core"
 			},
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/63d9095d8167813360e7753c/e/279fa8866ec0d8c56c8226cf",
 			"info": null,
-			"suspicious": true,
-			"suspicious_note": "The M3 nut does not fit into the hole.",
+			"suspicious": false,
+			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
 			"requires": [],
-			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/34485f41055e82d098984ed49824fd0f93f471dac62ea86e6b83cf87482bf9fd.stl",
+			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/dd778421784bf38babc9ccde0f1007ce61e7e2c575718a933e62aadfedd55484.stl",
 			"render": "/renders/cable-clamp-outer.png"
 		},
 		{
@@ -5738,7 +5747,7 @@
 				},
 				{
 					"label": "Material",
-					"value": "Steel"
+					"value": "Cold-rolled plain low-carbon steel"
 				}
 			],
 			"sheet_qty": null,
@@ -5750,8 +5759,20 @@
 				"unit_label": "4 ft (1.22 m) length",
 				"piece_label": "~1 ft (305 mm) piece"
 			},
-			"sourcing": null,
-			"image": null
+			"sourcing": {
+				"vendors": [
+					{
+						"region": "US",
+						"vendor": "Home Depot",
+						"url": "https://www.homedepot.com/p/Everbilt-3-8-in-x-4-ft-Plain-Steel-Solid-Round-Rod-0008/332734010",
+						"price": 12.46,
+						"pack_qty": 1,
+						"as_of": "2026-07-18",
+						"note": "Everbilt 0008, cold-rolled plain low-carbon steel. Same listing carries 1/3/4/6 ft lengths."
+					}
+				]
+			},
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/b0c74a7fb6f0be515fc6bad42d5a927e2330e887b8e74129f2906fde6610a0eb.jpg"
 		},
 		{
 			"id": "hsi-m3-long",
