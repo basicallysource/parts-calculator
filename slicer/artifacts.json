@@ -273,14 +273,14 @@
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/287f8f9936b958f15dc9acd832f6320cbc4fcfb9ee0f7cd73ea67d9953d16961.stl"
     },
     "slicer/parts/interface/cable-clamp-inner.stl": {
-      "sha256": "7ad7f153a1d90ca041c0c506ed1997d812ffb8d61f41265aac35f87d0fcc45ff",
+      "sha256": "a77f4963aada127b93e60161a8aa83685a03ce6f3beb318c270627f7641927af",
       "size": 628534,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/7ad7f153a1d90ca041c0c506ed1997d812ffb8d61f41265aac35f87d0fcc45ff.stl"
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a77f4963aada127b93e60161a8aa83685a03ce6f3beb318c270627f7641927af.stl"
     },
     "slicer/parts/interface/cable-clamp-outer.stl": {
-      "sha256": "34485f41055e82d098984ed49824fd0f93f471dac62ea86e6b83cf87482bf9fd",
+      "sha256": "dd778421784bf38babc9ccde0f1007ce61e7e2c575718a933e62aadfedd55484",
       "size": 398484,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/34485f41055e82d098984ed49824fd0f93f471dac62ea86e6b83cf87482bf9fd.stl"
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/dd778421784bf38babc9ccde0f1007ce61e7e2c575718a933e62aadfedd55484.stl"
     },
     "slicer/parts/interface/chute-stepper-support-block.stl": {
       "sha256": "106dec95fef16977ebef133766df63d301b98885ac8a4bf9bf718e3eda72ac7f",
@@ -422,6 +422,11 @@
       "size": 174884,
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/cdfc42cbc5c9285089498ebd013c8ee05fa48ad7adcf12c43eb2d1396ef2d231.stl"
     },
+    "static/stl/versions/cable-clamp-outer-v1.stl": {
+      "sha256": "34485f41055e82d098984ed49824fd0f93f471dac62ea86e6b83cf87482bf9fd",
+      "size": 398484,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/34485f41055e82d098984ed49824fd0f93f471dac62ea86e6b83cf87482bf9fd.stl"
+    },
     "static/stl/versions/interface-big-spacer-v1.stl": {
       "sha256": "8ca345012b63e33064706c787705fa3d3f39229891319935beb58eeede6d1a14",
       "size": 173684,
@@ -448,9 +453,9 @@
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/4a28da2e33e12340c3621421365add2fed8c1a65d235f8afb93ebfc2d8203ff0.3mf"
     },
     "static/stl/all-parts.zip": {
-      "sha256": "9987e2d556e3b6732d9cb10c0a49ff164f1cbc5cb0069c35602a7ce49a743f5d",
-      "size": 16981357,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/9987e2d556e3b6732d9cb10c0a49ff164f1cbc5cb0069c35602a7ce49a743f5d.zip"
+      "sha256": "354413907a1e5887ea03b94c91756c0c0b340a73f5c6983717f6f8ea13429f5f",
+      "size": 16981344,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/354413907a1e5887ea03b94c91756c0c0b340a73f5c6983717f6f8ea13429f5f.zip"
     },
     "slicer/images/hardware/ctrl-board-basically.png": {
       "sha256": "f7caadca07d5a0dc6894895209da6f1a7f4c865a245ee095fce358902c85ff42",
@@ -491,6 +496,11 @@
       "sha256": "b0c74a7fb6f0be515fc6bad42d5a927e2330e887b8e74129f2906fde6610a0eb",
       "size": 13685,
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/b0c74a7fb6f0be515fc6bad42d5a927e2330e887b8e74129f2906fde6610a0eb.jpg"
+    },
+    "slicer/images/hardware/scr-m5-35-fhcs.jpg": {
+      "sha256": "cb2fdd72471816cef2a69bdd7775a1863cf4dea2d72a15a68a73deebb276164f",
+      "size": 51389,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/cb2fdd72471816cef2a69bdd7775a1863cf4dea2d72a15a68a73deebb276164f.jpg"
     }
   }
 }
