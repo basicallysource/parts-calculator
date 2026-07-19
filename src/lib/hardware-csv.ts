@@ -4,19 +4,10 @@
  * The point is that the file stands on its own: someone should be able to hand
  * it to an assistant and ask "which screw multipacks cover 90% of this?" and
  * have every fact needed to answer — thread, length, head type, counts, pack
- * sizes, prices, and where each item is used. So it carries the detail the
- * page shows, not just id and quantity.
+ * sizes, prices, and where each item is used.
  */
-import {
-	hardwareLengthLabel,
-	usagePaths,
-	type Hardware,
-	type Vendor
-} from '$lib/filament';
-
-/** The machine this list was resolved for. Only the release is fixed today;
- *  configuration (layer count) is the part that actually varies. */
-export type ExportSpec = { release: string; layers: number; date: string };
+import { csvText, preamble, type ExportSpec } from '$lib/csv';
+import { usagePaths, type Hardware, type Vendor } from '$lib/filament';
 
 const COLUMNS = [
 	'id',
@@ -44,13 +35,6 @@ const COLUMNS = [
 	'used_in'
 ] as const;
 
-/** RFC 4180: quote everything with a comma, quote, or newline; double inner quotes. */
-function cell(v: unknown): string {
-	if (v == null) return '';
-	const s = String(v);
-	return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
-}
-
 /** Where an item lives, as a readable path — "machine > feeder > c-channel",
  *  with the printed part named when the hardware is committed to one. */
 function usedIn(h: Hardware, layers: number): string {
@@ -62,10 +46,10 @@ function usedIn(h: Hardware, layers: number): string {
 		.join(' | ');
 }
 
-export function toCsv(
+export function hardwareCsv(
 	items: Hardware[],
+	spec: ExportSpec,
 	opts: {
-		layers: number;
 		qty: (h: Hardware) => number | null;
 		qtySource: (h: Hardware) => string | null;
 		buyUnits: (h: Hardware, qty: number | null) => number | null;
@@ -77,8 +61,8 @@ export function toCsv(
 		const qty = opts.qty(h);
 		const units = opts.buyUnits(h, qty);
 		const v = opts.vendor(h) ?? h.sourcing?.vendors?.[0] ?? null;
-		// only meaningful when the listing actually sells in packs; otherwise the
-		// buyer is counting individual pieces and "1 pack" would be a lie
+		// packs only mean something when the listing actually sells in packs;
+		// otherwise the buyer counts individual pieces and "1 pack" would be a lie
 		const packs = v?.pack_qty && units != null ? opts.packs(v, units) : null;
 		const cost = v?.price != null && packs != null ? +(packs * v.price).toFixed(2) : null;
 		return [
@@ -104,24 +88,13 @@ export function toCsv(
 			h.description,
 			h.note,
 			(h.attributes ?? []).map((a) => `${a.label}: ${a.value}`).join('; '),
-			usedIn(h, opts.layers)
-		].map(cell);
+			usedIn(h, spec.layers)
+		];
 	});
-	return [COLUMNS.join(','), ...rows.map((r) => r.join(','))].join('\n') + '\n';
-}
-
-/** Self-describing filename: what machine, what configuration, what day. */
-export function csvFilename(spec: ExportSpec): string {
-	return `sorter-${spec.release}-hardware-${spec.layers}-layer-${spec.date}.csv`;
-}
-
-/** A header the reader (human or otherwise) can orient from before the table. */
-export function csvPreamble(spec: ExportSpec, count: number): string {
 	return (
-		`# Sorter ${spec.release} — hardware list\n` +
-		`# Configuration: ${spec.layers} distribution layers\n` +
-		`# Generated: ${spec.date} from parts-calculator.basically.website\n` +
-		`# Items: ${count}. Quantities marked qty_source=tree are summed from the\n` +
-		`# machine assembly tree; sheet means a hand count not yet placed in it.\n`
+		preamble(spec, 'hardware list', [
+			`# Items: ${items.length}. Quantities marked qty_source=tree are summed from the`,
+			'# machine assembly tree; sheet means a hand count not yet placed in it.'
+		]) + csvText(COLUMNS, rows)
 	);
 }

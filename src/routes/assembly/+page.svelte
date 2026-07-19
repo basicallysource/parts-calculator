@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ExternalLink, ShoppingCart, Zap } from 'lucide-svelte';
+	import { Download, ExternalLink, ShoppingCart, Zap } from 'lucide-svelte';
 	import Badge from '$lib/components/Badge.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 	import LayerControl from '$lib/components/LayerControl.svelte';
@@ -17,6 +17,8 @@
 	} from '$lib/filament';
 	import { layerStore } from '$lib/layers.svelte';
 	import { page } from '$app/state';
+	import { assemblyCsv } from '$lib/parts-csv';
+	import { download, exportSpec, filename } from '$lib/csv';
 
 	// Experimental view of the unified parts system (notes/UNIFIED-PARTS-SYSTEM.md):
 	// the machine as a recursive assembly tree whose lines reference printed parts,
@@ -54,6 +56,13 @@
 	);
 
 	const fmtUsd = (n: number) => `$${n.toFixed(2)}`;
+
+	// The whole tree flattened, one row per node, with STL/DXF links on anything
+	// downloadable — an indented BOM that survives being sorted or filtered.
+	function downloadCsv() {
+		const spec = exportSpec(layers);
+		download(filename(spec, 'assembly-tree'), assemblyCsv('machine', spec, location.origin));
+	}
 </script>
 
 <svelte:head><title>Sorter Parts Calculator — Machine assembly</title></svelte:head>
@@ -205,9 +214,18 @@
 
 	<div class="grid items-start gap-6 lg:grid-cols-[1fr_minmax(280px,360px)]">
 		<section class="setup-card-shell border p-4">
-			<h2 class="mb-3 text-xs font-semibold uppercase tracking-wider text-text-muted">
-				Assembly tree
-			</h2>
+			<div class="mb-3 flex items-center justify-between gap-3">
+				<h2 class="text-xs font-semibold uppercase tracking-wider text-text-muted">
+					Assembly tree
+				</h2>
+				<button
+					class="inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary-hover"
+					onclick={downloadCsv}
+					title="Download the whole tree as CSV, with STL links"
+				>
+					<Download size={13} /> CSV
+				</button>
+			</div>
 			{@render node('machine', 1, 1, 0)}
 		</section>
 
