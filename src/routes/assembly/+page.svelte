@@ -93,7 +93,7 @@
      that belong to the joint rather than to either part it holds together. -->
 {#snippet hardwareRow(hw: Hardware, each: number, total: number)}
 	{@const img = hardwareImage(hw)}
-	<div class="ml-4 mt-2 flex items-center gap-3 border border-border bg-[var(--color-bg)] p-2">
+	<div class="ml-1.5 mt-2 flex items-center gap-3 border border-border bg-[var(--color-bg)] p-2 sm:ml-4">
 		{#if img}
 			<img src={img.src} alt={hw.name} class="h-8 w-8 shrink-0 object-contain" />
 		{/if}
@@ -110,7 +110,7 @@
 	{#if asm}
 		<div
 			id="asm-{asm.id}"
-			class="border-l-2 {depth > 0 ? 'ml-4 pl-4' : 'pl-4'} py-2 {focus === asm.id
+			class="border-l-2 {depth > 0 ? 'ml-1.5 pl-2 sm:ml-4 sm:pl-4' : 'pl-2 sm:pl-4'} py-2 {focus === asm.id
 				? 'border-primary bg-primary/[0.06]'
 				: 'border-border'}"
 		>
@@ -146,7 +146,7 @@
 					{@render node(line.assembly, line.qty, lineQty(line, layers) * mult, depth + 1)}
 				{:else if line.part && getLasercut(line.part)}
 					{@const lc = getLasercut(line.part)!}
-					<div class="ml-4 mt-2 flex items-center gap-3 border border-border bg-surface p-3">
+					<div class="ml-1.5 mt-2 flex items-center gap-3 border border-border bg-surface p-2 sm:ml-4 sm:p-3">
 						<img src={lc.preview} alt={lc.name} class="h-12 w-12 shrink-0 object-contain" />
 						<div class="min-w-0 flex-1">
 							<div class="flex flex-wrap items-baseline gap-x-2">
@@ -168,7 +168,7 @@
 					{@const part = getPart(line.part)}
 					{#if part}
 						{@const total = lineQty(line, layers) * mult}
-						<div class="ml-4 mt-2 border border-border bg-surface p-3">
+						<div class="ml-1.5 mt-2 border border-border bg-surface p-2 sm:ml-4 sm:p-3">
 							<div class="flex items-center gap-3">
 								<img src={part.render} alt={part.name} class="h-12 w-12 shrink-0 object-contain" />
 								<div class="min-w-0 flex-1">
@@ -212,8 +212,8 @@
 
 	<div class="mb-6"><LayerControl /></div>
 
-	<div class="grid items-start gap-6 lg:grid-cols-[1fr_minmax(280px,360px)]">
-		<section class="setup-card-shell border p-4">
+	<div class="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)]">
+		<section class="setup-card-shell min-w-0 border p-2 sm:p-4">
 			<div class="mb-3 flex items-center justify-between gap-3">
 				<h2 class="text-xs font-semibold uppercase tracking-wider text-text-muted">
 					Assembly tree
@@ -230,7 +230,7 @@
 			{@render node('machine', 1, 1, 0)}
 		</section>
 
-		<aside class="setup-card-shell border p-4">
+		<aside class="setup-card-shell min-w-0 border p-3 sm:p-4">
 			<h2 class="mb-3 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-text-muted">
 				<ShoppingCart size={13} /> Hardware to buy
 			</h2>

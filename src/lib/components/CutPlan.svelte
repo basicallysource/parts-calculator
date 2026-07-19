@@ -182,8 +182,10 @@
 		<p class="mb-2 text-xs text-text-muted">
 			Untick a piece or edit its quantity to plan a partial cut — the summary and cut sheet below update to match.
 		</p>
-		<div class="setup-card-shell border">
-			<table class="w-full text-sm">
+		<!-- the piece table has more columns than a phone can hold; it scrolls
+		     inside its own card rather than dragging the whole page sideways -->
+		<div class="setup-card-shell overflow-x-auto border">
+			<table class="w-full min-w-[34rem] text-sm">
 				<thead>
 					<tr class="border-b border-border text-left text-xs uppercase tracking-wider text-text-muted">
 						<th class="w-8 px-3 py-2"></th>
