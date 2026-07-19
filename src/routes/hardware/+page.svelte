@@ -19,8 +19,8 @@
 	import { layerStore } from '$lib/layers.svelte';
 
 	// Every off-the-shelf part from the BOM sheet, in the unified data format.
-	// Quantities are still the sheet's hand counts (sheet_qty) — they become
-	// derived from the assembly tree as parts get placed there.
+	// Quantities come from the assembly tree wherever a part has been placed in
+	// it; the sheet's hand counts (sheet_qty) are the fallback for the rest.
 	const layers = $derived(layerStore.sizes.length);
 
 	// categories in manifest order, preserving first-seen order
@@ -46,11 +46,33 @@
 		return null;
 	}
 
+	/** Where a count came from — a hand count carries much less confidence than one
+	 *  summed out of the tree, and the difference is worth showing. */
+	function qtySource(h: Hardware): 'tree' | 'sheet' | null {
+		if (treeTotals.has(h.id)) return 'tree';
+		return h.sheet_qty?.per_machine != null || h.sheet_qty?.per_layer != null ? 'sheet' : null;
+	}
+	const QTY_TITLE = {
+		tree: 'Counted from the assembly tree',
+		sheet: 'Hand count carried over from the BOM sheet — not yet placed in the assembly tree'
+	};
+
+	/** Stock material is counted in cut pieces; this is how many lengths to buy. */
+	const stockUnits = (h: Hardware, qty: number) =>
+		h.stock ? Math.ceil(qty / h.stock.pieces_per_unit) : null;
+
 	// ------------------------------------------------------------------ joints
 	// A part that gets soldered/crimped/glued to something else says so here, but
 	// the fact lives on the assembly that joins them, not on the part — see
 	// `joining` in $lib/filament. This page just reads it back out.
 	const jointsOf = (h: Hardware) => assembliesContaining(h.id).filter((a) => a.joining?.length);
+
+	/** An assembly with nothing but bought parts in it — no printed members, no
+	 *  sub-assemblies. This page is a shopping list, so only those are ITS kind of
+	 *  assembly: buy the pieces, join them, done. A light post is three printed
+	 *  parts and some screws; it belongs on the parts tab, not here. */
+	const isAllHardware = (a: Assembly) =>
+		!!a.lines?.length && a.lines.every((l) => l.part != null && getHardware(l.part) != null);
 
 	/** The other members of an assembly, resolved to a display name and quantity. */
 	function siblings(asm: Assembly, selfId: string) {
@@ -66,22 +88,26 @@
 			});
 	}
 
-	// Hardware joined into one unit collapses to a single rollup row, the same
-	// shape the printed-parts list uses for its assemblies: what you build as one
-	// thing reads as one thing. Expanding reveals the members underneath.
+	// Bought parts that are joined into one unit collapse to a single rollup row —
+	// a Pico and its header pins are one purchase and one soldering job. Only
+	// all-hardware assemblies qualify (see isAllHardware): a screw that self-taps
+	// into a printed bracket is joined to plastic, not to other hardware, so it
+	// stays its own row and explains itself on its detail modal instead.
 	type Block = { kind: 'item'; hw: Hardware } | { kind: 'assembly'; asm: Assembly; items: Hardware[] };
 	function groupBlocks(items: Hardware[]): Block[] {
 		const blocks: Block[] = [];
 		const claimed = new Set<string>();
 		for (const h of items) {
 			if (claimed.has(h.id)) continue;
-			const asm = jointsOf(h)[0];
+			// members that live in this same category; the rollup lands where the
+			// first one would have been, so category order is otherwise untouched
+			const asm = jointsOf(h)
+				.filter(isAllHardware)
+				.find((a) => items.filter((m) => (a.lines ?? []).some((l) => l.part === m.id)).length > 1);
 			if (!asm) {
 				blocks.push({ kind: 'item', hw: h });
 				continue;
 			}
-			// members that live in this same category; the rollup lands where the
-			// first one would have been, so category order is otherwise untouched
 			const members = items.filter((m) => (asm.lines ?? []).some((l) => l.part === m.id));
 			members.forEach((m) => claimed.add(m.id));
 			blocks.push({ kind: 'assembly', asm, items: members });
@@ -207,6 +233,7 @@
      of the assembly it's joined into. -->
 {#snippet hwRow(h: Hardware)}
 	{@const qty = totalQty(h, layers)}
+	{@const src = qtySource(h)}
 	<div
 		class="hw-row setup-card-shell flex cursor-pointer items-start gap-3 border p-3 {selected[h.id]
 			? 'border-primary/60'
@@ -255,15 +282,25 @@
 		<div class="min-w-0 flex-1">
 			<div class="flex items-start justify-between gap-3">
 				<h3 class="text-sm font-semibold text-text">{h.name}</h3>
-				<span class="shrink-0 text-right text-xs tabular-nums text-text-muted">
+				<span
+					class="shrink-0 text-right text-xs tabular-nums text-text-muted"
+					title={src ? QTY_TITLE[src] : undefined}
+				>
 					{#if h.sheet_qty_text}
 						{h.sheet_qty_text}
-					{:else if h.sheet_qty?.per_layer != null}
-						<span class="font-semibold text-text">{qty}</span> ({h.sheet_qty.per_layer}/layer)
-					{:else if qty != null}
-						<span class="font-semibold text-text">×{qty}</span>
-					{:else}
+					{:else if qty == null}
 						qty TBD
+					{:else}
+						<span class="font-semibold text-text">×{qty}</span>
+						{#if h.stock}<span>&nbsp;pieces</span>{/if}
+						{#if src === 'sheet'}
+							<span class="text-warning-dark" title={QTY_TITLE.sheet}>*</span>
+						{/if}
+						{#if h.stock}
+							<div>buy {stockUnits(h, qty)} × {h.stock.unit_label}</div>
+						{:else if src === 'sheet' && h.sheet_qty?.per_layer != null}
+							<div>({h.sheet_qty.per_layer}/layer)</div>
+						{/if}
 					{/if}
 				</span>
 			</div>
@@ -272,7 +309,7 @@
 				<!-- specs that pin down which variant to buy. flex-wrap rather than
 				     inline text: each spec stays whole, the row wraps between them. -->
 				<div class="mt-1 flex flex-wrap gap-x-3 gap-y-0.5 text-xs text-text-muted">
-					{#each h.attributes as a (a.label)}
+					{#each h.attributes as a}
 						<span>{a.label} <span class="text-text">{a.value}</span></span>
 					{/each}
 				</div>
@@ -330,7 +367,9 @@
 
 	<div class="mb-5">
 		<Callout variant="warning" title="Work in progress">
-			This list is incomplete and several quantities are unconfirmed.
+			This list is incomplete and several quantities are unconfirmed. Counts without a
+			<span class="text-warning-dark">*</span> are summed from the assembly tree; starred ones are
+			hand counts carried over from the BOM sheet, waiting to be placed in the tree.
 		</Callout>
 	</div>
 
@@ -536,18 +575,28 @@
 					<dd class="text-text">
 						{#if detail.sheet_qty_text}
 							{detail.sheet_qty_text}
-						{:else if qty != null}
-							{qty}
-							{#if detail.sheet_qty?.per_layer != null}
-								<span class="text-text-muted"
-									>({detail.sheet_qty.per_layer} per layer × {layers} layers)</span
-								>
-							{/if}
-						{:else}
+						{:else if qty == null}
 							not settled yet
+						{:else}
+							{qty}{#if detail.stock}&nbsp;{detail.stock.piece_label}s{/if}
+							{#if qtySource(detail) === 'tree'}
+								<span class="text-text-muted">— summed from the assembly tree</span>
+							{:else}
+								<span class="text-warning-dark">
+									— hand count from the BOM sheet, not placed in the assembly tree yet
+									{#if detail.sheet_qty?.per_layer != null}({detail.sheet_qty.per_layer} per layer
+										× {layers} layers){/if}
+								</span>
+							{/if}
 						{/if}
 					</dd>
-					{#each detail.attributes ?? [] as a (a.label)}
+					{#if detail.stock}
+						<dt class="text-text-muted">Buy</dt>
+						<dd class="text-text">
+							{qty != null ? stockUnits(detail, qty) : 1} × {detail.stock.unit_label}
+						</dd>
+					{/if}
+					{#each detail.attributes ?? [] as a}
 						<dt class="text-text-muted">{a.label}</dt>
 						<dd class="text-text">{a.value}</dd>
 					{/each}
