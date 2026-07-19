@@ -16,12 +16,35 @@
 		type Hardware
 	} from '$lib/filament';
 	import { layerStore } from '$lib/layers.svelte';
+	import { page } from '$app/state';
 
 	// Experimental view of the unified parts system (notes/UNIFIED-PARTS-SYSTEM.md):
 	// the machine as a recursive assembly tree whose lines reference printed parts,
 	// sub-assemblies, and (eventually) all the COTS hardware. Most nodes are stubs;
 	// the chute core is the first branch carrying real hardware via `requires`.
 	const layers = $derived(layerStore.sizes.length);
+
+	// ?focus=<assembly id> — the hardware page links here to answer "where does
+	// this screw actually go?". Read in an effect rather than derived: the site is
+	// prerendered, so query params don't exist until the page is in a browser.
+	let focus = $state<string | null>(null);
+	$effect(() => {
+		const target = page.url.searchParams.get('focus');
+		focus = target;
+		if (!target) return;
+		// Part renders load after first paint and shift everything down, so one
+		// scroll lands short. Re-aim a few times while the layout settles.
+		const aim = () => document.getElementById(`asm-${target}`)?.scrollIntoView({ block: 'center' });
+		const timers = [0, 120, 400, 900].map((t) => setTimeout(aim, t));
+		return () => timers.forEach(clearTimeout);
+	});
+
+	// What the badges mean. The tree records that a node is incomplete but not
+	// which pieces are missing, so the tooltip says exactly that much and no more.
+	const STATUS_NOTE = {
+		stub: 'Placeholder — nothing has been recorded inside this assembly yet. What it actually contains is not captured anywhere in the data.',
+		partial: 'Some of this assembly is recorded, but not all of it. The parts and hardware shown are real; the list is known to be missing pieces, and the data does not say which.'
+	};
 
 	type HardwareTotal = { hw: Hardware; qty: number };
 	const hardwareTotals: HardwareTotal[] = $derived.by(() =>
@@ -76,7 +99,12 @@
 {#snippet node(id: string, qty: AssemblyLine['qty'], mult: number, depth: number)}
 	{@const asm = getAssembly(id)}
 	{#if asm}
-		<div class="border-l-2 border-border {depth > 0 ? 'ml-4 pl-4' : 'pl-4'} py-2">
+		<div
+			id="asm-{asm.id}"
+			class="border-l-2 {depth > 0 ? 'ml-4 pl-4' : 'pl-4'} py-2 {focus === asm.id
+				? 'border-primary bg-primary/[0.06]'
+				: 'border-border'}"
+		>
 			<div class="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
 				<span class="text-sm font-semibold text-text">{asm.name}</span>
 				<span class="text-xs tabular-nums text-text-muted">
@@ -85,11 +113,13 @@
 					{:else if qty !== 1}×{qty}{/if}
 				</span>
 				{#if asm.status === 'stub'}
-					<span class="border border-border px-1.5 py-px text-[10px] font-semibold uppercase tracking-wider text-text-muted"
-						>stub — not yet detailed</span>
+					<span
+						class="cursor-help border border-border px-1.5 py-px text-[10px] font-semibold uppercase tracking-wider text-text-muted"
+						title={STATUS_NOTE.stub}>stub — not yet detailed</span>
 				{:else if asm.status === 'partial'}
-					<span class="border border-warning/50 bg-warning/[0.08] px-1.5 py-px text-[10px] font-semibold uppercase tracking-wider text-warning-dark"
-						>partial</span>
+					<span
+						class="cursor-help border border-warning/50 bg-warning/[0.08] px-1.5 py-px text-[10px] font-semibold uppercase tracking-wider text-warning-dark"
+						title={STATUS_NOTE.partial}>partial</span>
 				{/if}
 			</div>
 			{#if asm.description}
