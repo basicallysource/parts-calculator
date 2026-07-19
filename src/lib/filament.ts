@@ -282,6 +282,43 @@ export function hardwareLengthLabel(h: Hardware): string | null {
 	return mm ? `${mm}mm` : null;
 }
 
+/** One hop on the way down to a piece of hardware. `via` names the printed part
+ *  the hardware is committed to, when it arrived through a part's `requires`
+ *  rather than as a line of the assembly itself. */
+export type TreeStep = { assembly: Assembly; qty: number };
+export type UsagePath = { steps: TreeStep[]; via: Part | null; qty: number };
+
+/** Every route from the machine root down to a piece of hardware, so a builder
+ *  can answer "where does this actually go?" — and walk up from there. Depth is
+ *  bounded by the tree (cycle-checked at author time), so this stays cheap. */
+export function usagePaths(hardwareId: string, layers: number): UsagePath[] {
+	const found: UsagePath[] = [];
+	const walk = (id: string, trail: TreeStep[], mult: number) => {
+		const asm = assemblyById.get(id);
+		if (!asm) return;
+		for (const line of asm.lines ?? []) {
+			const q = lineQty(line, layers) * mult;
+			if (line.assembly) {
+				walk(line.assembly, [...trail, { assembly: asm, qty: mult }], q);
+			} else if (line.part === hardwareId) {
+				found.push({ steps: [...trail, { assembly: asm, qty: mult }], via: null, qty: q });
+			} else if (line.part) {
+				const part = partById.get(line.part);
+				for (const r of part?.requires ?? []) {
+					if (r.part !== hardwareId) continue;
+					found.push({
+						steps: [...trail, { assembly: asm, qty: mult }],
+						via: part ?? null,
+						qty: r.qty * q
+					});
+				}
+			}
+		}
+	};
+	walk('machine', [], 1);
+	return found.sort((a, b) => b.qty - a.qty);
+}
+
 /** Laser-cut sheet parts still live in their own module (design doc §5.5 folds
  *  them into the manifest later), but assembly lines may already reference one
  *  by id — the plywood top plate bolts to the interface brackets. */

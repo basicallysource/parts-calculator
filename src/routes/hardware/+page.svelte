@@ -12,6 +12,7 @@
 		HARDWARE,
 		hardwareImage,
 		SIZE_COLORS,
+		usagePaths,
 		hardwareLengthLabel,
 		JOIN_LABELS,
 		lineQty,
@@ -21,6 +22,8 @@
 		type Vendor
 	} from '$lib/filament';
 	import { layerStore } from '$lib/layers.svelte';
+	import { csvFilename, csvPreamble, toCsv } from '$lib/hardware-csv';
+	import { ArrowUpRight, Download } from 'lucide-svelte';
 
 	// Every off-the-shelf part from the BOM sheet, in the unified data format.
 	// Quantities come from the assembly tree wherever a part has been placed in
@@ -165,7 +168,7 @@
 	// priced US vendor is buyable — "select all" and the total only ever touch
 	// those, so an in-house part with no source yet can't end up selected.
 	let selected = $state<Record<string, boolean>>({});
-	const buyable = $derived(HARDWARE.filter((h) => bestUsVendor(h)));
+	const buyable = $derived(HARDWARE);
 	const selectedList = $derived(buyable.filter((h) => selected[h.id]));
 	const allSelected = $derived(buyable.every((h) => selected[h.id]));
 	const setAll = (on: boolean) => {
@@ -188,10 +191,55 @@
 
 	const selectedTotal = $derived.by(() =>
 		selectedList.reduce(
-			(sum, h) => sum + (buyCost(bestUsVendor(h)!, buyUnits(h, totalQty(h, layers))) ?? 0),
+			// an item with no priced source contributes nothing rather than throwing —
+			// every item is selectable now, sourced or not
+			(sum, h) => {
+				const v = bestUsVendor(h);
+				return sum + (v ? (buyCost(v, buyUnits(h, totalQty(h, layers))) ?? 0) : 0);
+			},
 			0
 		)
 	);
+
+	// -------------------------------------------------------------- csv export
+	// The file has to stand alone: someone should be able to hand it to an
+	// assistant and ask "which multipacks cover 90% of this?" without the page.
+	const RELEASE = '2.0';
+	// the builder's own date, not UTC — this lands in the filename they'll read
+	const today = () => {
+		const d = new Date();
+		return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+	};
+
+	function downloadCsv() {
+		const spec = { release: RELEASE, layers, date: today() };
+		const items = selectedList.length ? selectedList : HARDWARE;
+		const body =
+			csvPreamble(spec, items.length) +
+			toCsv(items, {
+				layers,
+				qty: (h) => totalQty(h, layers),
+				qtySource,
+				buyUnits,
+				vendor: bestUsVendor,
+				packs: packsNeeded
+			});
+		const url = URL.createObjectURL(new Blob([body], { type: 'text/csv;charset=utf-8' }));
+		const a = document.createElement('a');
+		a.href = url;
+		a.download = csvFilename(spec);
+		a.click();
+		URL.revokeObjectURL(url);
+	}
+
+	// ------------------------------------------------------- where it goes
+	// The modal answers "where does this live?" one level at a time: start at the
+	// paths down to the item, then walk up through the assemblies that contain it.
+	let focusAsm = $state<string | null>(null);
+	const detailPaths = $derived(detail ? usagePaths(detail.id, layers) : []);
+	function assemblyHref(id: string) {
+		return `/assembly?focus=${encodeURIComponent(id)}`;
+	}
 
 	// ------------------------------------------------------------ amazon cart
 	// Amazon's Associates add-to-cart URL takes ASIN/quantity pairs directly, so a
@@ -269,21 +317,16 @@
 		}}
 	>
 		<!-- the checkbox owns selection; its label keeps the hit target generous
-		     without making the whole row a toggle. Nothing to buy yet (no US
-		     vendor) means nothing to add to a cart, so the row gets a same-sized
-		     blank spacer instead, keeping every row's thumbnail aligned. -->
-		{#if bestUsVendor(h)}
-			<label class="mt-0.5 shrink-0 cursor-pointer p-0.5">
-				<input
-					type="checkbox"
-					class="setup-toggle h-4 w-4"
-					bind:checked={selected[h.id]}
-					aria-label="Select {h.name}"
-				/>
-			</label>
-		{:else}
-			<span class="mt-0.5 h-4 w-4 shrink-0 p-0.5" aria-hidden="true"></span>
-		{/if}
+		     without making the whole row a toggle. Every item is selectable, sourced
+		     or not — an unsourced part still belongs in the exported list. -->
+		<label class="mt-0.5 shrink-0 cursor-pointer p-0.5">
+			<input
+				type="checkbox"
+				class="setup-toggle h-4 w-4"
+				bind:checked={selected[h.id]}
+				aria-label="Select {h.name}"
+			/>
+		</label>
 		{#if img}
 			<span class="hw-thumb relative shrink-0">
 				<img src={img.src} alt={h.name} class="h-16 w-16 border border-border bg-white object-contain p-1" />
@@ -318,9 +361,6 @@
 						qty TBD
 					{:else}
 						<span class="font-semibold text-text">×{buyUnits(h, qty)}</span>
-												{#if src === 'sheet'}
-							<span class="qty-src" title={QTY_TITLE.sheet}>BOM sheet</span>
-						{/if}
 						{#if h.stock}
 							<div>{h.stock.unit_label}</div>
 						{:else if src === 'sheet' && h.sheet_qty?.per_layer != null}
@@ -392,9 +432,8 @@
 
 	<div class="mb-5">
 		<Callout variant="warning" title="Work in progress">
-			This list is incomplete and several quantities are unconfirmed. Counts are summed from
-			the assembly tree, except the ones tagged <span class="qty-src">BOM sheet</span> — those are
-			hand counts waiting to be placed in the tree.
+			This list is incomplete and several quantities are unconfirmed. Open any item to see
+			where its count comes from and where it goes on the machine.
 		</Callout>
 	</div>
 
@@ -423,6 +462,13 @@
 					{selectedList.length}/{buyable.length} selected ·
 					<button class="text-primary hover:text-primary-hover" onclick={() => setAll(!allSelected)}>
 						{allSelected ? 'deselect all' : 'select all'}
+					</button>
+					<button
+						class="ml-3 inline-flex items-center gap-1 text-primary hover:text-primary-hover"
+						onclick={downloadCsv}
+						title="Download {selectedList.length ? 'the selected items' : 'the whole list'} as CSV"
+					>
+						<Download size={13} /> CSV
 					</button>
 				</span>
 			</div>
@@ -640,6 +686,58 @@
 			</div>
 		</div>
 
+		{#if detailPaths.length}
+			<h4 class="mt-5 text-xs font-semibold uppercase tracking-wider text-text-muted">
+				Where it goes
+			</h4>
+			<div class="mt-2 space-y-2">
+				{#each detailPaths as path, pi (pi)}
+					{@const inner = path.steps[path.steps.length - 1].assembly}
+					<div class="border border-border p-3">
+						<div class="flex items-start justify-between gap-3">
+							<div class="min-w-0">
+								<!-- innermost first: the assembly you'd actually be holding -->
+								<div class="flex flex-wrap items-baseline gap-x-1.5">
+									<span class="text-sm font-semibold text-text">{inner.name}</span>
+									{#if path.via}
+										<span class="text-xs text-text-muted">in the {path.via.name}</span>
+									{/if}
+									<span class="text-xs tabular-nums text-text-muted">· {path.qty} here</span>
+								</div>
+								<!-- then the walk up, outermost last -->
+								<div class="mt-1 flex flex-wrap items-center gap-x-1 text-xs text-text-muted">
+									{#each path.steps as step, si (si)}
+										{#if si > 0}<span aria-hidden="true">›</span>{/if}
+										<a
+											href={assemblyHref(step.assembly.id)}
+											class="hover:text-primary hover:underline"
+											title="Show {step.assembly.name} on the assembly tree"
+										>{step.assembly.name}</a>
+									{/each}
+								</div>
+							</div>
+							<a
+								href={assemblyHref(inner.id)}
+								class="inline-flex shrink-0 items-center gap-1 text-xs font-medium text-primary hover:text-primary-hover"
+								title="Open {inner.name} on the assembly tree"
+							>
+								Go to <ArrowUpRight size={12} />
+							</a>
+						</div>
+					</div>
+				{/each}
+			</div>
+		{/if}
+
+		<!-- how the count was arrived at: jargon the list itself shouldn't carry -->
+		<p class="mt-3 text-xs {qtySource(detail) === 'sheet' ? 'text-warning-dark' : 'text-text-muted'}">
+			{qtySource(detail) === 'sheet'
+				? 'This count is a hand count carried over from the BOM spreadsheet — it has not been placed in the assembly tree yet, so it may not match the machine.'
+				: qtySource(detail) === 'tree'
+					? 'This count is summed from the machine assembly tree.'
+					: 'No count settled for this item yet.'}
+		</p>
+
 		{#each jointsOf(detail) as asm (asm.id)}
 			<h4 class="mt-5 text-xs font-semibold uppercase tracking-wider text-text-muted">
 				Goes together with
@@ -759,19 +857,6 @@
 	.hw-children {
 		border-left: 2px solid var(--color-border);
 		margin-left: 0.75rem;
-	}
-
-	/* A count that still comes from the spreadsheet says so in words. An asterisk
-	   pointing at a callout three screens up explains nothing. */
-	.qty-src {
-		padding: 0 0.2rem;
-		font-size: 9px;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.04em;
-		color: var(--color-warning-dark);
-		border: 1px solid color-mix(in oklab, var(--color-warning) 50%, transparent);
-		background: color-mix(in oklab, var(--color-warning) 8%, transparent);
 	}
 
 	/* One family photo covers every length in the family, so the length rides in
