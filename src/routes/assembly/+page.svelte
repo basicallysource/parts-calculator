@@ -7,6 +7,7 @@
 		getAssembly,
 		getHardware,
 		getPart,
+		hardwareImage,
 		JOIN_LABELS,
 		lineQty,
 		resolveHardwareTotals,
@@ -38,9 +39,10 @@
 	{#each part?.requires ?? [] as req (req.part)}
 		{@const hw = getHardware(req.part)}
 		{#if hw}
+			{@const img = hardwareImage(hw)}
 			<div class="mt-2 flex items-center gap-3 border border-border bg-[var(--color-bg)] p-2">
-				{#if hw.image}
-					<img src={hw.image} alt={hw.name} class="h-10 w-10 shrink-0 object-contain" />
+				{#if img}
+					<img src={img.src} alt={hw.name} class="h-10 w-10 shrink-0 object-contain" />
 				{/if}
 				<div class="min-w-0 flex-1">
 					<div class="truncate text-xs font-semibold text-text">{hw.name}</div>
@@ -57,9 +59,10 @@
 <!-- One off-the-shelf line of an assembly: the screws, nuts and bought components
      that belong to the joint rather than to either part it holds together. -->
 {#snippet hardwareRow(hw: Hardware, each: number, total: number)}
+	{@const img = hardwareImage(hw)}
 	<div class="ml-4 mt-2 flex items-center gap-3 border border-border bg-[var(--color-bg)] p-2">
-		{#if hw.image}
-			<img src={hw.image} alt={hw.name} class="h-8 w-8 shrink-0 object-contain" />
+		{#if img}
+			<img src={img.src} alt={hw.name} class="h-8 w-8 shrink-0 object-contain" />
 		{/if}
 		<div class="min-w-0 flex-1 truncate text-xs font-semibold text-text">{hw.name}</div>
 		<div class="text-right text-xs tabular-nums text-text">
@@ -171,10 +174,11 @@
 				<p class="text-sm text-text-muted">Nothing yet.</p>
 			{/if}
 			{#each hardwareTotals as t (t.hw.id)}
+				{@const img = hardwareImage(t.hw)}
 				<div class="border border-border bg-[var(--color-bg)] p-3">
 					<div class="flex items-start gap-3">
-						{#if t.hw.image}
-							<img src={t.hw.image} alt={t.hw.name} class="h-14 w-14 shrink-0 object-contain" />
+						{#if img}
+							<img src={img.src} alt={t.hw.name} class="h-14 w-14 shrink-0 object-contain" />
 						{/if}
 						<div class="min-w-0">
 							<div class="text-sm font-semibold text-text">{t.hw.name}</div>
