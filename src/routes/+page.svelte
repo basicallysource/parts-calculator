@@ -188,8 +188,7 @@
 					const id = primaryColorId(p, roleColors);
 					return id ? (getBambuColor(id)?.name ?? id) : 'any';
 				},
-				onshape: (p) => partOnshape(p).version ?? partOnshape(p).doc,
-				origin: location.origin
+				onshape: (p) => partOnshape(p).version ?? partOnshape(p).doc
 			})
 		);
 	}
@@ -459,9 +458,13 @@
 						<button
 							class="ml-3 inline-flex items-center gap-1 text-primary hover:text-primary-hover"
 							onclick={downloadCsv}
-							title="Download {selectedParts.length ? 'the selected parts' : 'every part'} as CSV"
+							title="Exports exactly what you have set up here: {selectedParts.length ||
+								PARTS.length} parts, {layers} layers, your colours, and your support choices."
 						>
 							<Download size={13} /> CSV
+							<span class="font-normal text-text-muted"
+								>· {selectedParts.length ? `${selectedParts.length} selected` : `all ${PARTS.length}`}, {layers}
+								layers</span>
 						</button>
 					</span>
 				{/if}

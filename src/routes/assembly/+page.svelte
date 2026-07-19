@@ -61,7 +61,7 @@
 	// downloadable — an indented BOM that survives being sorted or filtered.
 	function downloadCsv() {
 		const spec = exportSpec(layers);
-		download(filename(spec, 'assembly-tree'), assemblyCsv('machine', spec, location.origin));
+		download(filename(spec, 'assembly-tree'), assemblyCsv('machine', spec));
 	}
 </script>
 
@@ -221,9 +221,10 @@
 				<button
 					class="inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary-hover"
 					onclick={downloadCsv}
-					title="Download the whole tree as CSV, with STL links"
+					title="Exports the tree as configured here: {layers} layers, with every quantity multiplied down and STL links included."
 				>
 					<Download size={13} /> CSV
+					<span class="font-normal text-text-muted">· {layers} layers</span>
 				</button>
 			</div>
 			{@render node('machine', 1, 1, 0)}

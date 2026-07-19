@@ -13,6 +13,10 @@ export type ExportSpec = { release: string; layers: number; date: string };
 
 export const RELEASE = '2.0';
 
+/** Where the site lives. Exports get absolute URLs against this rather than
+ *  whatever host produced them, so a file made on localhost still resolves. */
+export const SITE_URL = 'https://parts-calculator.basically.website';
+
 /** The builder's own date, not UTC — this lands in a filename they'll read. */
 export function today(): string {
 	const d = new Date();
@@ -41,7 +45,7 @@ export function preamble(spec: ExportSpec, title: string, extra: string[] = []):
 		[
 			`# Sorter ${spec.release} — ${title}`,
 			`# Configuration: ${spec.layers} distribution layers`,
-			`# Generated: ${spec.date} from parts-calculator.basically.website`,
+			`# Generated: ${spec.date} from ${SITE_URL}`,
 			...extra
 		].join('\n') + '\n'
 	);
