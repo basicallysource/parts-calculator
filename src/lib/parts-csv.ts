@@ -4,7 +4,7 @@
  * so the file is enough to actually print or cut from — the STL links are
  * content-addressed and permanent, so they don't rot.
  */
-import { csvText, preamble, type ExportSpec } from '$lib/csv';
+import { csvText, preamble, SITE_URL, type ExportSpec } from '$lib/csv';
 import {
 	getAssembly,
 	getHardware,
@@ -18,9 +18,10 @@ import {
 } from '$lib/filament';
 import type { Bin } from '$lib/cutplan';
 
-/** Site-relative asset paths are useless in a file that travels; make them whole. */
-function absolute(url: string, origin: string): string {
-	return url.startsWith('/') ? origin + url : url;
+/** Site-relative asset paths are useless in a file that travels; make them whole.
+ *  Against the published site, not the host that generated the file. */
+function absolute(url: string): string {
+	return url.startsWith('/') ? SITE_URL + url : url;
 }
 
 // ------------------------------------------------------------ printed parts
@@ -54,7 +55,6 @@ export function partsCsv(
 		grams: (p: Part) => number; // per unit, honouring the support toggle
 		color: (p: Part) => string;
 		onshape: (p: Part) => string | null;
-		origin: string; // renders are served by the site; the file needs absolute URLs
 	}
 ): string {
 	const rows = parts.map((p) => {
@@ -86,7 +86,7 @@ export function partsCsv(
 			p.low_tolerance ? 'yes' : 'no',
 			notes || p.description,
 			p.stl,
-			absolute(p.render, opts.origin),
+			absolute(p.render),
 			opts.onshape(p)
 		];
 	});
@@ -122,7 +122,7 @@ type TreeRow = unknown[];
 /** Walk the tree depth-first, one row per node, quantities multiplied down.
  *  Reads like an indented BOM: the `path` column carries the ancestry so the
  *  file survives being sorted or filtered. */
-export function assemblyCsv(root: string, spec: ExportSpec, origin = ''): string {
+export function assemblyCsv(root: string, spec: ExportSpec): string {
 	const rows: TreeRow[] = [];
 	const walk = (id: string, trail: string[], mult: number, depth: number) => {
 		const asm = getAssembly(id);
@@ -165,7 +165,7 @@ export function assemblyCsv(root: string, spec: ExportSpec, origin = ''): string
 				'',
 				'',
 				part ? +part.grams.toFixed(1) : '',
-				part?.stl ?? (lc ? absolute(lc.dxf, origin) : ''),
+				part?.stl ?? (lc ? absolute(lc.dxf) : ''),
 				hw?.description ?? part?.description ?? lc?.description ?? ''
 			]);
 			// hardware committed to the printed part itself (inserts, bearings)

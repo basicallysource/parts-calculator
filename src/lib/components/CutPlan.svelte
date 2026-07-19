@@ -283,9 +283,13 @@
 			<button
 				class="inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary-hover"
 				onclick={downloadCsv}
-				title="Download the cut list and bar plan as CSV"
+				title="Exports this exact plan: {anyModified
+					? 'your edited quantities'
+					: 'the default quantities'} at {n} layers, {stock} mm bars, {kerf} mm kerf."
 			>
 				<Download size={13} /> CSV
+				<span class="font-normal text-text-muted"
+					>· {anyModified ? 'your edits' : `${n} layers`}, {bins.length} bars</span>
 			</button>
 		</div>
 		<div class="grid grid-cols-2 gap-2 sm:grid-cols-4">

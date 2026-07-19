@@ -454,9 +454,13 @@
 					<button
 						class="ml-3 inline-flex items-center gap-1 text-primary hover:text-primary-hover"
 						onclick={downloadCsv}
-						title="Download {selectedList.length ? 'the selected items' : 'the whole list'} as CSV"
+						title="Exports exactly what you have set up here: {selectedList.length ||
+							HARDWARE.length} items at {layers} layers, with quantities resolved for that build."
 					>
 						<Download size={13} /> CSV
+						<span class="font-normal text-text-muted"
+							>· {selectedList.length ? `${selectedList.length} selected` : `all ${HARDWARE.length}`}, {layers}
+							layers</span>
 					</button>
 				</span>
 			</div>
