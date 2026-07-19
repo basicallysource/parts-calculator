@@ -486,6 +486,11 @@
       "sha256": "580ba61e9d9a2275717f9c9741502e966f45c4382616993365b4d1cb9720d0c0",
       "size": 38189,
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/580ba61e9d9a2275717f9c9741502e966f45c4382616993365b4d1cb9720d0c0.jpg"
+    },
+    "slicer/images/hardware/rod-steel-3-8.jpg": {
+      "sha256": "b0c74a7fb6f0be515fc6bad42d5a927e2330e887b8e74129f2906fde6610a0eb",
+      "size": 13685,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/b0c74a7fb6f0be515fc6bad42d5a927e2330e887b8e74129f2906fde6610a0eb.jpg"
     }
   }
 }
