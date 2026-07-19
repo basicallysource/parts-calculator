@@ -11,7 +11,7 @@
 		"density_g_cm3": 1.32,
 		"cost_per_kg": 24.99,
 		"commit_base_url": "https://github.com/basicallysource/filament-calculator/commit/",
-		"all_parts_zip": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/35a9efac799c48e4097ce49ed162217ea964c5b4b5a373d7b3d4bf99e683f030.zip"
+		"all_parts_zip": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/9987e2d556e3b6732d9cb10c0a49ff164f1cbc5cb0069c35602a7ce49a743f5d.zip"
 	},
 	"sections": [
 		{
@@ -93,22 +93,128 @@
 		{
 			"id": "light-post",
 			"name": "Light post",
-			"description": "The feeder light post: post, cap, and cap adapter. 2 per machine."
+			"description": "The feeder light post: post, cap, and cap adapter. 2 per machine. Bolts to a C-channel NEMA bracket.",
+			"status": "partial",
+			"joining": [
+				{
+					"method": "self-tap",
+					"note": "The two M3\u00d720 countersunk screws that join the post to the NEMA bracket thread straight into the printed post \u2014 no insert, no nut."
+				}
+			],
+			"lines": [
+				{
+					"part": "light-post",
+					"qty": 1
+				},
+				{
+					"part": "light-post-cap",
+					"qty": 1
+				},
+				{
+					"part": "light-post-cap-adapter",
+					"qty": 1
+				},
+				{
+					"part": "scr-m3-12-cs",
+					"qty": 3
+				},
+				{
+					"part": "scr-m3-20-cs",
+					"qty": 2
+				}
+			]
 		},
 		{
 			"id": "external-bracket",
 			"name": "External distribution-frame bracket",
-			"description": "Three parts that bolt together into one external bracket. 6 per distribution frame (per layer), plus a set per interface."
+			"description": "Three parts that bolt together into one external bracket. 6 per distribution frame (per layer), plus a set per interface.",
+			"status": "partial",
+			"joining": [
+				{
+					"method": "self-tap",
+					"note": "All four M5\u00d716 are designed to self-tap: 2 hold the side to the bottom vertical, 2 hold the assembly to the vertical extrusion. No nuts and no inserts anywhere in this bracket."
+				}
+			],
+			"lines": [
+				{
+					"part": "ext-bracket-left",
+					"qty": 1
+				},
+				{
+					"part": "ext-bracket-bottom-vertical",
+					"qty": 1
+				},
+				{
+					"part": "ext-bracket-cover",
+					"qty": 1
+				},
+				{
+					"part": "scr-m5-16-shcs",
+					"qty": 4
+				}
+			]
 		},
 		{
 			"id": "fixed-upper-section",
 			"name": "Fixed upper section",
-			"description": "The interface's fixed upper section: the upper-fixed-section plate, its ribs (5 plain + 1 with the limit-switch gap), and the big spacer. 1 per interface."
+			"description": "The interface's fixed upper section: the upper-fixed-section plate, its ribs (5 plain + 1 with the limit-switch gap), and the big spacer. 1 per interface. Each rib takes 3 M5\u00d716 \u2014 2 into the plate, 1 into the extrusion.",
+			"status": "partial",
+			"joining": [
+				{
+					"method": "self-tap",
+					"note": "2 of each rib's 3 M5\u00d716 thread straight into the printed upper fixed section \u2014 no insert, no nut."
+				},
+				{
+					"method": "friction",
+					"note": "The third M5\u00d716 per rib holds into the aluminum extrusion by friction alone \u2014 no T-nut behind it."
+				}
+			],
+			"lines": [
+				{
+					"part": "interface-upper-fixed-section",
+					"qty": 1
+				},
+				{
+					"part": "interface-rib",
+					"qty": 5
+				},
+				{
+					"part": "interface-rib-switch",
+					"qty": 1
+				},
+				{
+					"part": "interface-big-spacer",
+					"qty": 1
+				},
+				{
+					"part": "scr-m5-16-shcs",
+					"qty": 18
+				}
+			]
 		},
 		{
 			"id": "cable-clamp",
 			"name": "Cable clamp",
-			"description": "Inner + outer ribbon cable clamp; the two halves go together. White."
+			"description": "Inner + outer ribbon cable clamp; the two halves clamp together around the cable and the pair bolts to the top interface chute mount.",
+			"status": "partial",
+			"lines": [
+				{
+					"part": "cable-clamp-inner",
+					"qty": 1
+				},
+				{
+					"part": "cable-clamp-outer",
+					"qty": 1
+				},
+				{
+					"part": "scr-m3-35-bhcs",
+					"qty": 1
+				},
+				{
+					"part": "nut-m3",
+					"qty": 1
+				}
+			]
 		},
 		{
 			"id": "classification-chamber",
@@ -118,47 +224,254 @@
 		{
 			"id": "chute-bearing",
 			"name": "Chute bearing assembly",
-			"description": "Left + right bearing holders and the race between them."
+			"description": "The flap's bearing assembly: left + right bearing holders, the race between them, and the covers. Carries 10 M3 inserts and the two flap bearings.",
+			"status": "partial",
+			"lines": [
+				{
+					"part": "bearing-race",
+					"qty": 1
+				},
+				{
+					"part": "bearing-holder-left",
+					"qty": 1
+				},
+				{
+					"part": "bearing-holder-right",
+					"qty": 1
+				},
+				{
+					"part": "bearing-cover-covered",
+					"qty": 1
+				},
+				{
+					"part": "bearing-cover-servo",
+					"qty": 1
+				},
+				{
+					"part": "brg-6704-2rs",
+					"qty": 2
+				},
+				{
+					"part": "scr-m3-8-cs",
+					"qty": 6
+				}
+			]
 		},
 		{
 			"id": "servo-adapter",
 			"name": "Servo adapter (MG995)",
-			"description": "MG995 servo adapter: servo side + flap side."
+			"description": "MG995 servo adapter: servo side + flap side.",
+			"status": "partial",
+			"lines": [
+				{
+					"part": "servo-adapter-servo-side",
+					"qty": 1
+				},
+				{
+					"part": "servo-adapter-flap-side",
+					"qty": 1
+				}
+			]
 		},
 		{
 			"id": "servo-bracket",
-			"name": "Servo bracket (MG995)",
-			"description": "MG995 servo bracket: lower arm, side arm, cover, housing."
+			"name": "Servo assembly (MG995)",
+			"description": "The MG995 servo in its bracket: lower arm, side arm, cover, housing. Bolts to the chute core's two arm inserts as a unit.",
+			"status": "partial",
+			"lines": [
+				{
+					"part": "servo-bracket-lower-arm",
+					"qty": 1
+				},
+				{
+					"part": "servo-bracket-side-arm",
+					"qty": 1
+				},
+				{
+					"part": "servo-bracket-cover",
+					"qty": 1
+				},
+				{
+					"part": "servo-bracket-housing",
+					"qty": 1
+				},
+				{
+					"part": "servo-mg995",
+					"qty": 1
+				},
+				{
+					"part": "scr-m3-12-cs",
+					"qty": 4
+				},
+				{
+					"part": "scr-m3-8-cs",
+					"qty": 2
+				}
+			]
 		},
 		{
 			"id": "camera-mount",
 			"name": "Overhead camera mount",
-			"description": "Camera mount for the C-channels. 2 per machine (each: parts 6/37/37b + 2\u00d7 rod-to-C-channel mount)."
+			"description": "Camera mount for the C-channels. 2 per machine, each hanging off two ~1 ft steel rods.",
+			"status": "partial",
+			"lines": [
+				{
+					"part": "camera-mount-part-6",
+					"qty": 1
+				},
+				{
+					"part": "camera-mount-part-37",
+					"qty": 1
+				},
+				{
+					"part": "camera-mount-part-37b",
+					"qty": 1
+				},
+				{
+					"part": "camera-mount-rod-mount",
+					"qty": 2
+				},
+				{
+					"part": "rod-steel-3-8",
+					"qty": 2
+				},
+				{
+					"part": "scr-m3-8-cs",
+					"qty": 2
+				},
+				{
+					"part": "nut-m3",
+					"qty": 2
+				}
+			]
 		},
 		{
 			"id": "layer-connector",
 			"name": "Layer connector",
-			"description": "Pair of connectors. 1 of each per layer + 1 of each per bottom interface."
+			"description": "Pair of connectors. 1 of each per layer + 1 of each per bottom interface.",
+			"status": "partial",
+			"lines": [
+				{
+					"part": "layer-connector-1",
+					"qty": 1
+				},
+				{
+					"part": "layer-connector-2",
+					"qty": 1
+				}
+			]
 		},
 		{
 			"id": "limit-switch",
-			"name": "Limit switch",
-			"description": "Interface limit switch: printed dowel pin, housing, and hammer."
+			"name": "Chute limit switch",
+			"description": "Interface limit switch: printed dowel pin, housing, hammer, and the switch itself. Bolts to the interface frame as a unit.",
+			"status": "partial",
+			"lines": [
+				{
+					"part": "limit-switch-dowel-pin",
+					"qty": 1
+				},
+				{
+					"part": "limit-switch-housing",
+					"qty": 1
+				},
+				{
+					"part": "limit-switch-hammer",
+					"qty": 1
+				},
+				{
+					"part": "endstop-mechanical",
+					"qty": 1
+				},
+				{
+					"part": "scr-m3-12-bhcs",
+					"qty": 2
+				}
+			]
 		},
 		{
 			"id": "cable-cage",
 			"name": "Cable cage",
-			"description": "Two cable cage brackets and the outer ribbon cable clamp."
+			"description": "Six cable cage brackets (5 regular + 1 cable mount) stacked with the ribbon cable clamp. Also sandwiches the laser-cut cage top and bottom plates, which are not in the parts registry yet.",
+			"status": "partial",
+			"lines": [
+				{
+					"part": "interface-cage-bracket",
+					"qty": 5
+				},
+				{
+					"part": "interface-cage-bracket-cable",
+					"qty": 1
+				},
+				{
+					"part": "ribbon-cable-clamp",
+					"qty": 1
+				},
+				{
+					"part": "scr-m5-35-fhcs",
+					"qty": 6
+				},
+				{
+					"part": "nut-m5",
+					"qty": 6
+				},
+				{
+					"part": "scr-m3-tbd",
+					"qty": 1
+				}
+			]
 		},
 		{
 			"id": "meanwell-psu-box",
 			"name": "Meanwell 24V PSU box",
-			"description": "Enclosure for the Meanwell 24V power supply: back mount, connections plate, and cap."
+			"description": "Enclosure for the Meanwell 24V power supply: back mount, connections plate, and cap, screwed to the supply's own case.",
+			"status": "partial",
+			"lines": [
+				{
+					"part": "meanwell-psu-back-mount",
+					"qty": 1
+				},
+				{
+					"part": "meanwell-psu-connections",
+					"qty": 1
+				},
+				{
+					"part": "meanwell-psu-cap",
+					"qty": 1
+				},
+				{
+					"part": "psu-24v-350w",
+					"qty": 1
+				},
+				{
+					"part": "scr-m4-6-cs",
+					"qty": 4
+				}
+			]
 		},
 		{
 			"id": "camera-extension",
 			"name": "Camera extension",
-			"description": "Classification-channel camera extension for the Innomaker 4K camera module: the 50 mm extension tube and its mount. 1 per machine."
+			"description": "Classification-channel camera extension for the 4K camera module: the 50 mm extension tube, its mount, and the camera. 1 per machine.",
+			"status": "partial",
+			"lines": [
+				{
+					"part": "camera-extension",
+					"qty": 1
+				},
+				{
+					"part": "camera-extension-mount",
+					"qty": 1
+				},
+				{
+					"part": "cam-imx415",
+					"qty": 1
+				},
+				{
+					"part": "scr-m3-tbd",
+					"qty": 8
+				}
+			]
 		},
 		{
 			"id": "pico-headers",
@@ -203,6 +516,10 @@
 				{
 					"assembly": "bottom-interface",
 					"qty": 1
+				},
+				{
+					"assembly": "electronics",
+					"qty": 1
 				}
 			]
 		},
@@ -210,23 +527,147 @@
 			"id": "feeder",
 			"name": "Feeder",
 			"description": "Feeder + classification channel. Everything above the interface.",
-			"status": "stub"
+			"status": "partial",
+			"lines": [
+				{
+					"assembly": "c-channel",
+					"qty": 4
+				},
+				{
+					"part": "rotor-faceted",
+					"qty": 3
+				},
+				{
+					"assembly": "classification-chamber",
+					"qty": 1
+				},
+				{
+					"assembly": "camera-extension",
+					"qty": 1
+				},
+				{
+					"assembly": "light-post",
+					"qty": 2
+				},
+				{
+					"assembly": "camera-mount",
+					"qty": 2
+				}
+			]
 		},
 		{
 			"id": "interface",
 			"name": "Interface",
-			"description": "The interface between the feeder and the distribution layers.",
-			"status": "stub"
+			"description": "The interface between the feeder and the distribution layers. Its lazy Susan sandwiches the upper fixed section and the chute mount, 4 M4 screws a side.",
+			"status": "partial",
+			"lines": [
+				{
+					"assembly": "interface-bracket-mount",
+					"qty": 6
+				},
+				{
+					"assembly": "external-bracket",
+					"qty": 6
+				},
+				{
+					"assembly": "fixed-upper-section",
+					"qty": 1
+				},
+				{
+					"assembly": "cable-cage",
+					"qty": 1
+				},
+				{
+					"part": "scr-m5-30-shcs",
+					"qty": 6
+				},
+				{
+					"assembly": "cable-clamp",
+					"qty": 1
+				},
+				{
+					"part": "scr-m3-12-bhcs",
+					"qty": 2
+				},
+				{
+					"assembly": "limit-switch",
+					"qty": 1
+				},
+				{
+					"part": "scr-m5-20-shcs",
+					"qty": 2
+				},
+				{
+					"part": "tnut-m5-2020",
+					"qty": 2
+				},
+				{
+					"assembly": "interface-nema23-mount",
+					"qty": 1
+				},
+				{
+					"assembly": "interface-spur-gear-drive",
+					"qty": 1
+				},
+				{
+					"assembly": "interface-chute-drive",
+					"qty": 1
+				},
+				{
+					"part": "top-interface-split-spur-gear-2",
+					"qty": 1
+				},
+				{
+					"part": "chute-stepper-support-block",
+					"qty": 1
+				},
+				{
+					"part": "scr-m5-shcs-tbd",
+					"qty": 2
+				},
+				{
+					"assembly": "layer-connector",
+					"qty": 1
+				},
+				{
+					"part": "brg-lazy-susan",
+					"qty": 1
+				},
+				{
+					"part": "scr-m4-12-cs",
+					"qty": 8
+				}
+			]
 		},
 		{
 			"id": "layer",
 			"name": "Distribution layer",
-			"description": "One distribution layer between the interfaces: frame, chute, funnels, bins.",
+			"description": "One distribution layer between the interfaces: frame, chute, bin brackets, funnels, bins. Each bin bracket takes 2 M5\u00d716 into a T-nut.",
 			"status": "partial",
 			"lines": [
 				{
+					"assembly": "layer-frame",
+					"qty": 1
+				},
+				{
 					"assembly": "chute",
 					"qty": 1
+				},
+				{
+					"part": "bin-retainer-left",
+					"qty": 6
+				},
+				{
+					"part": "bin-retainer-right",
+					"qty": 6
+				},
+				{
+					"part": "scr-m5-16-shcs",
+					"qty": 24
+				},
+				{
+					"part": "tnut-m5-2020",
+					"qty": 24
 				}
 			]
 		},
@@ -237,6 +678,14 @@
 			"status": "partial",
 			"lines": [
 				{
+					"assembly": "layer-frame",
+					"qty": 1
+				},
+				{
+					"assembly": "lazy-susan",
+					"qty": 1
+				},
+				{
 					"assembly": "chute",
 					"qty": 2
 				}
@@ -245,7 +694,7 @@
 		{
 			"id": "chute",
 			"name": "Chute",
-			"description": "One chute: the core plus its door module, connectors, and PCB.",
+			"description": "One chute: the core plus its door module, funnel brackets, connectors, and PCB. Every screw here lands in one of the chute core's 18 M3 inserts.",
 			"status": "partial",
 			"lines": [
 				{
@@ -253,26 +702,338 @@
 					"qty": 1
 				},
 				{
-					"assembly": "door-module",
+					"assembly": "flap-module",
+					"qty": 1
+				},
+				{
+					"part": "funnel-bracket-left",
+					"qty": 1
+				},
+				{
+					"part": "funnel-bracket-right",
+					"qty": 1
+				},
+				{
+					"assembly": "layer-connector",
 					"qty": 1
 				},
 				{
 					"assembly": "chute-pcb",
 					"qty": 1
+				},
+				{
+					"part": "scr-m3-12-cs",
+					"qty": 6
+				},
+				{
+					"part": "scr-m3-8-cs",
+					"qty": 8
 				}
 			]
 		},
 		{
-			"id": "door-module",
-			"name": "Door module",
-			"description": "The chute's door: flap, servo, bearings, and their hardware.",
-			"status": "stub"
+			"id": "flap-module",
+			"name": "Flap module",
+			"description": "The chute's flap: the door itself, the bearing assembly it swings on, and the servo that drives it.",
+			"status": "partial",
+			"lines": [
+				{
+					"part": "chute-door",
+					"qty": 1
+				},
+				{
+					"assembly": "chute-bearing",
+					"qty": 1
+				},
+				{
+					"assembly": "servo-adapter",
+					"qty": 1
+				},
+				{
+					"assembly": "servo-bracket",
+					"qty": 1
+				}
+			]
 		},
 		{
 			"id": "chute-pcb",
 			"name": "Chute PCB",
-			"description": "The chute's control PCB and its hardware.",
-			"status": "stub"
+			"description": "The layer adapter board, screwed onto the chute core's four PCB inserts.",
+			"status": "partial",
+			"lines": [
+				{
+					"part": "layer-adapter-board-basically",
+					"qty": 1
+				},
+				{
+					"part": "scr-m3-6-bhcs",
+					"qty": 4
+				}
+			]
+		},
+		{
+			"id": "c-channel",
+			"name": "C-channel drive",
+			"description": "One C-channel drive unit: stator, NEMA bracket, output gear, gear train and stepper. 4 per machine \u2014 3 in the feeder plus the classification channel's. The rotor differs by location (faceted in the feeder, finned in the classification chamber), so it is not part of this node.",
+			"status": "partial",
+			"lines": [
+				{
+					"part": "stator",
+					"qty": 1
+				},
+				{
+					"part": "nema-bracket",
+					"qty": 1
+				},
+				{
+					"part": "output-gear",
+					"qty": 1
+				},
+				{
+					"part": "idler-gear",
+					"qty": 1
+				},
+				{
+					"part": "input-gear",
+					"qty": 1
+				},
+				{
+					"part": "motor-nema17",
+					"qty": 1
+				},
+				{
+					"part": "scr-m3-16-shcs",
+					"qty": 3
+				},
+				{
+					"part": "scr-m3-12-cs",
+					"qty": 3
+				},
+				{
+					"part": "scr-m3-8-cs",
+					"qty": 5
+				}
+			]
+		},
+		{
+			"id": "interface-nema23-mount",
+			"name": "Interface NEMA 23 mount",
+			"description": "The NEMA 23 stepper on its interface bracket. 1 per interface.",
+			"status": "partial",
+			"lines": [
+				{
+					"part": "interface-nema23-bracket",
+					"qty": 1
+				},
+				{
+					"part": "motor-nema23",
+					"qty": 1
+				},
+				{
+					"part": "scr-m5-12-shcs",
+					"qty": 4
+				}
+			]
+		},
+		{
+			"id": "interface-spur-gear-drive",
+			"name": "Interface spur gear drive",
+			"description": "The interface spur gear with its 8 mm bore timing pulley. 1 per interface.",
+			"status": "partial",
+			"lines": [
+				{
+					"part": "interface-spur-gear",
+					"qty": 1
+				},
+				{
+					"part": "pulley-20t-8mm",
+					"qty": 1
+				},
+				{
+					"part": "scr-m3-8-cs",
+					"qty": 5
+				}
+			]
+		},
+		{
+			"id": "interface-chute-drive",
+			"name": "Interface chute gear + mount",
+			"description": "The chute gear screwed down onto the top interface chute mount \u2014 two sections of the split spur gear that become one turning unit.",
+			"status": "partial",
+			"lines": [
+				{
+					"part": "top-interface-split-spur-gear-1",
+					"qty": 1
+				},
+				{
+					"part": "top-interface-split-spur-gear-3",
+					"qty": 1
+				},
+				{
+					"part": "scr-m3-12-cs",
+					"qty": 5
+				}
+			]
+		},
+		{
+			"id": "layer-frame",
+			"name": "Distribution frame",
+			"description": "The frame of one distribution layer: six external brackets, the crossbeams between them, and the 90\u00b0 brackets.",
+			"status": "partial",
+			"lines": [
+				{
+					"assembly": "external-bracket",
+					"qty": 6
+				},
+				{
+					"part": "frame-crossbeam",
+					"qty": 6
+				},
+				{
+					"part": "frame-90deg-bracket",
+					"qty": 12
+				}
+			]
+		},
+		{
+			"id": "ctrl-board-mount",
+			"name": "Control board mount",
+			"description": "The basically Embedded Control Board standing off its bracket. The printed bracket is not in the parts registry yet.",
+			"status": "stub",
+			"lines": [
+				{
+					"part": "ctrl-board-basically",
+					"qty": 1
+				},
+				{
+					"part": "scr-m3-tbd",
+					"qty": 4
+				},
+				{
+					"part": "hsi-m3-long",
+					"qty": 4
+				},
+				{
+					"part": "standoff-m3-10mm",
+					"qty": 4
+				}
+			]
+		},
+		{
+			"id": "orange-pi-mount",
+			"name": "Orange Pi mount",
+			"description": "The Orange Pi 5 standing off its bracket. The printed bracket is not in the parts registry yet.",
+			"status": "stub",
+			"lines": [
+				{
+					"part": "sbc-orange-pi-5",
+					"qty": 1
+				},
+				{
+					"part": "scr-m3-tbd",
+					"qty": 4
+				},
+				{
+					"part": "hsi-m3-long",
+					"qty": 4
+				},
+				{
+					"part": "standoff-m3-10mm",
+					"qty": 4
+				}
+			]
+		},
+		{
+			"id": "electronics",
+			"name": "Electronics",
+			"description": "The three boxes that bolt to the frame: the PSU, the control board, and the Orange Pi. Each takes 2 M5 socket heads of a length nobody has measured yet.",
+			"status": "partial",
+			"lines": [
+				{
+					"assembly": "meanwell-psu-box",
+					"qty": 1
+				},
+				{
+					"assembly": "ctrl-board-mount",
+					"qty": 1
+				},
+				{
+					"assembly": "orange-pi-mount",
+					"qty": 1
+				},
+				{
+					"part": "scr-m5-shcs-tbd",
+					"qty": 6
+				}
+			]
+		},
+		{
+			"id": "interface-bracket-mount",
+			"name": "Interface bracket",
+			"description": "One interface bracket with its spacer, bolted onto its vertical extrusion. 6 per interface.",
+			"status": "partial",
+			"lines": [
+				{
+					"part": "interface-bracket",
+					"qty": 1
+				},
+				{
+					"part": "interface-spacer",
+					"qty": 1
+				},
+				{
+					"part": "scr-m5-20-shcs",
+					"qty": 4
+				},
+				{
+					"part": "tnut-m5-2020",
+					"qty": 4
+				}
+			]
+		},
+		{
+			"id": "lazy-susan",
+			"name": "Bottom lazy Susan",
+			"description": "The bottom interface's lazy Susan: the static half, the chute mount that spins on it, the extrusion mounts, and the bearing itself. Bolted through 4 M4 screws a side, same as the top interface's.",
+			"status": "partial",
+			"lines": [
+				{
+					"part": "ls-mount-to-chute",
+					"qty": 1
+				},
+				{
+					"part": "ls-bottom-static",
+					"qty": 1
+				},
+				{
+					"part": "ls-washer",
+					"qty": 1
+				},
+				{
+					"part": "ls-mount-to-extrusion",
+					"qty": 3
+				},
+				{
+					"part": "ls-hold-in-place",
+					"qty": 3
+				},
+				{
+					"part": "brg-lazy-susan",
+					"qty": 1
+				},
+				{
+					"part": "scr-m4-12-cs",
+					"qty": 8
+				},
+				{
+					"part": "scr-m5-16-shcs",
+					"qty": 3
+				},
+				{
+					"part": "tnut-m5-2020",
+					"qty": 3
+				}
+			]
 		}
 	],
 	"parts": [
@@ -387,7 +1148,7 @@
 			"id": "output-gear",
 			"name": "Output gear (130T)",
 			"quantities": {
-				"feeder": 4,
+				"feeder": 3,
 				"classification-channel": 1
 			},
 			"assembly": null,
@@ -425,7 +1186,12 @@
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
-			"requires": [],
+			"requires": [
+				{
+					"part": "brg-6806-2rs",
+					"qty": 1
+				}
+			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/69ae2f998fe3caef3e9ea75c7b3081203ff7b2e690b8ef56e7c4b4380f19b0aa.stl",
 			"render": "/renders/output-gear.png"
 		},
@@ -748,7 +1514,12 @@
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
-			"requires": [],
+			"requires": [
+				{
+					"part": "hsi-m5-long",
+					"qty": 3
+				}
+			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/db2c0ecf58184c752a8d66035b2620a3d1570343167b8b2b7f3b7eedd402c58f.stl",
 			"render": "/renders/interface-bracket.png"
 		},
@@ -1068,7 +1839,12 @@
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
-			"requires": [],
+			"requires": [
+				{
+					"part": "hsi-m4",
+					"qty": 4
+				}
+			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/b63cc59f19780e07ce70f28ed4c6b6e90d6c1e6d469ff8692803ad97815ebfe6.stl",
 			"render": "/renders/ls-mount-to-chute.png"
 		},
@@ -1113,7 +1889,12 @@
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
-			"requires": [],
+			"requires": [
+				{
+					"part": "hsi-m4",
+					"qty": 4
+				}
+			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/d658c97bd1516b3c61f37028761b46b9be1aa1f6cd26f9057fd9c45691f54488.stl",
 			"render": "/renders/ls-bottom-static.png"
 		},
@@ -1486,7 +2267,12 @@
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
-			"requires": [],
+			"requires": [
+				{
+					"part": "hsi-m4",
+					"qty": 4
+				}
+			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/47d71e76dcfa387953add0876f279b8a8f26dd836d1d06d362f2d8e5477455ea.stl",
 			"render": "/renders/interface-upper-fixed-section.png"
 		},
@@ -1858,7 +2644,12 @@
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
-			"requires": [],
+			"requires": [
+				{
+					"part": "hsi-m5-long",
+					"qty": 5
+				}
+			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/69a9a1dd8c741866e723d8fd5a32baa78b233538a1341bf50eb0f2425a38d82a.stl",
 			"render": "/renders/interface-nema23-bracket.png"
 		},
@@ -1948,7 +2739,12 @@
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
-			"requires": [],
+			"requires": [
+				{
+					"part": "hsi-m3-long",
+					"qty": 1
+				}
+			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/081da7a95e53340f4f27219a224c0015905f176707c84f82c2f69bd72da85530.stl",
 			"render": "/renders/interface-cage-bracket-cable.png"
 		},
@@ -2128,7 +2924,16 @@
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
-			"requires": [],
+			"requires": [
+				{
+					"part": "hsi-m4",
+					"qty": 4
+				},
+				{
+					"part": "hsi-m3-long",
+					"qty": 9
+				}
+			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/11f50ca23d809c133d2f409908e19b0e6c277e995a6d06e1c11da81bfe5dd6e1.stl",
 			"render": "/renders/top-interface-split-spur-gear-3.png"
 		},
@@ -2218,7 +3023,12 @@
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
-			"requires": [],
+			"requires": [
+				{
+					"part": "hsi-m3-long",
+					"qty": 2
+				}
+			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/5e22431ac91aad0af6d5878d2cc6fb2ae7dd9c45196dae25d9e2f997b6e3c540.stl",
 			"render": "/renders/limit-switch-housing.png"
 		},
@@ -2353,7 +3163,12 @@
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
-			"requires": [],
+			"requires": [
+				{
+					"part": "brg-608-2rs",
+					"qty": 1
+				}
+			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/dd13e9269f08d3d9a698e043e446abb968ae998435ef7b552325f0b7db629eeb.stl",
 			"render": "/renders/idler-gear.png"
 		},
@@ -2538,15 +3353,15 @@
 			"render": "/renders/funnel-bracket-right.png"
 		},
 		{
-			"id": "door-module",
-			"name": "Door module",
+			"id": "bearing-race",
+			"name": "Bearing race",
 			"quantities": {
 				"chute": 1
 			},
 			"assembly": "chute-bearing",
 			"variant_group": null,
 			"variant_name": null,
-			"description": "Door module (part of the chute bearing assembly).",
+			"description": "The race between the two chute bearing holders.",
 			"version": "1",
 			"created_at": "2026-06-27",
 			"updated_at": "2026-06-27",
@@ -2557,7 +3372,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/b832b7eab72a8392c80d35ebd67bb7cb6326bbc5c82a8592688ccda82fe315b3.stl",
-					"render": "/renders/door-module.png",
+					"render": "/renders/bearing-race.png",
 					"grams": 20.13
 				}
 			],
@@ -2578,9 +3393,14 @@
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
-			"requires": [],
+			"requires": [
+				{
+					"part": "hsi-m3-long",
+					"qty": 4
+				}
+			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/b832b7eab72a8392c80d35ebd67bb7cb6326bbc5c82a8592688ccda82fe315b3.stl",
-			"render": "/renders/door-module.png"
+			"render": "/renders/bearing-race.png"
 		},
 		{
 			"id": "bearing-holder-left",
@@ -2623,7 +3443,12 @@
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
-			"requires": [],
+			"requires": [
+				{
+					"part": "hsi-m3-long",
+					"qty": 3
+				}
+			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/f0cc0eb5d575fc3d79cdea59caa0fcc6f7732c336a6830a186ffce51ef267a68.stl",
 			"render": "/renders/bearing-holder-left.png"
 		},
@@ -2668,7 +3493,12 @@
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
-			"requires": [],
+			"requires": [
+				{
+					"part": "hsi-m3-long",
+					"qty": 3
+				}
+			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/9577bfc4f70bca72fe7c45d1c88a82df0ef14d712c67a395003c0deb9c89895b.stl",
 			"render": "/renders/bearing-holder-right.png"
 		},
@@ -4139,6 +4969,740 @@
 	],
 	"hardware": [
 		{
+			"id": "scr-m3-tbd",
+			"kind": "cots",
+			"cots": {
+				"type": "screw",
+				"size": "M3"
+			},
+			"name": "M3 screw \u2014 type and length TBD",
+			"category": "Screws",
+			"description": "Placeholder for the M3s whose head type and length nobody has written down yet: the cable-mount cage bracket, the camera extension, and the two board mounts.",
+			"note": "Neither the head type nor the length is recorded \u2014 measure before ordering.",
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Thread",
+					"value": "M3"
+				},
+				{
+					"label": "Head",
+					"value": "Unknown"
+				},
+				{
+					"label": "Length",
+					"value": "Unknown"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"stock": null,
+			"sourcing": null,
+			"image": null
+		},
+		{
+			"id": "scr-m3-8-cs",
+			"kind": "cots",
+			"cots": {
+				"type": "screw",
+				"size": "M3",
+				"variant": "countersunk"
+			},
+			"name": "M3 \u00d7 8 mm countersunk",
+			"category": "Screws",
+			"description": "The workhorse M3 screw \u2014 used all over the machine wherever a flush head is wanted.",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Thread",
+					"value": "M3"
+				},
+				{
+					"label": "Length",
+					"value": "8 mm"
+				},
+				{
+					"label": "Head",
+					"value": "Countersunk (flat) socket"
+				},
+				{
+					"label": "Material",
+					"value": "Stainless steel"
+				},
+				{
+					"label": "Finish",
+					"value": "Silver"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"stock": null,
+			"sourcing": {
+				"vendors": [
+					{
+						"region": "US",
+						"vendor": "Amazon",
+						"url": "https://www.amazon.com/DTGN-M3-0-5-Socket-Stainless-Countersunk/dp/B0CQ4XMVLZ",
+						"affiliate_url": "https://www.amazon.com/DTGN-M3-0-5-Socket-Stainless-Countersunk/dp/B0CQ4XMVLZ?tag=sorterv2-20",
+						"as_of": "2026-07-18"
+					}
+				]
+			},
+			"image": null
+		},
+		{
+			"id": "scr-m3-12-cs",
+			"kind": "cots",
+			"cots": {
+				"type": "screw",
+				"size": "M3",
+				"variant": "countersunk"
+			},
+			"name": "M3 \u00d7 12 mm countersunk",
+			"category": "Screws",
+			"description": "The long M3 countersunk. Used all over the machine.",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Thread",
+					"value": "M3"
+				},
+				{
+					"label": "Length",
+					"value": "12 mm"
+				},
+				{
+					"label": "Head",
+					"value": "Countersunk (flat) socket"
+				},
+				{
+					"label": "Material",
+					"value": "Stainless steel"
+				},
+				{
+					"label": "Finish",
+					"value": "Silver"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"stock": null,
+			"sourcing": {
+				"vendors": [
+					{
+						"region": "US",
+						"vendor": "Amazon",
+						"url": "https://www.amazon.com/DTGN-M3-0-5-Socket-Stainless-Countersunk/dp/B0CQ4W72GZ",
+						"affiliate_url": "https://www.amazon.com/DTGN-M3-0-5-Socket-Stainless-Countersunk/dp/B0CQ4W72GZ?tag=sorterv2-20",
+						"as_of": "2026-07-18"
+					}
+				]
+			},
+			"image": null
+		},
+		{
+			"id": "scr-m3-20-cs",
+			"kind": "cots",
+			"cots": {
+				"type": "screw",
+				"size": "M3",
+				"variant": "countersunk"
+			},
+			"name": "M3 \u00d7 20 mm countersunk",
+			"category": "Screws",
+			"description": "Joins the C-channel light post to the NEMA bracket. Threads straight into the printed post \u2014 no insert, no nut.",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Thread",
+					"value": "M3"
+				},
+				{
+					"label": "Length",
+					"value": "20 mm"
+				},
+				{
+					"label": "Head",
+					"value": "Countersunk (flat) socket"
+				},
+				{
+					"label": "Material",
+					"value": "Stainless steel"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"stock": null,
+			"sourcing": {
+				"vendors": [
+					{
+						"region": "US",
+						"vendor": "Amazon",
+						"url": "https://www.amazon.com/Kozelo-50Pcs-Socket-Screws-Countersunk/dp/B0GDZJTX3K",
+						"affiliate_url": "https://www.amazon.com/Kozelo-50Pcs-Socket-Screws-Countersunk/dp/B0GDZJTX3K?tag=sorterv2-20",
+						"as_of": "2026-07-18",
+						"pack_qty": 50
+					}
+				]
+			},
+			"image": null
+		},
+		{
+			"id": "scr-m3-16-shcs",
+			"kind": "cots",
+			"cots": {
+				"type": "screw",
+				"size": "M3",
+				"variant": "socket"
+			},
+			"name": "M3 \u00d7 16 mm socket head",
+			"category": "Screws",
+			"description": "Bolts the NEMA 17 stepper to the NEMA bracket. 3 per C-channel.",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Thread",
+					"value": "M3"
+				},
+				{
+					"label": "Length",
+					"value": "16 mm"
+				},
+				{
+					"label": "Head",
+					"value": "Socket head cap"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"stock": null,
+			"sourcing": null,
+			"image": null
+		},
+		{
+			"id": "scr-m3-6-bhcs",
+			"kind": "cots",
+			"cots": {
+				"type": "screw",
+				"size": "M3",
+				"variant": "button"
+			},
+			"name": "M3 \u00d7 6 mm button head",
+			"category": "Screws",
+			"description": "Holds the layer adapter board down on the chute core's heat inserts.",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Thread",
+					"value": "M3"
+				},
+				{
+					"label": "Length",
+					"value": "6 mm"
+				},
+				{
+					"label": "Head",
+					"value": "Button head socket"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"stock": null,
+			"sourcing": null,
+			"image": null
+		},
+		{
+			"id": "scr-m3-12-bhcs",
+			"kind": "cots",
+			"cots": {
+				"type": "screw",
+				"size": "M3",
+				"variant": "button"
+			},
+			"name": "M3 \u00d7 12 mm button head",
+			"category": "Screws",
+			"description": "Mounts the cable clamp to the interface, and the limit switch to its housing.",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Thread",
+					"value": "M3"
+				},
+				{
+					"label": "Length",
+					"value": "12 mm"
+				},
+				{
+					"label": "Head",
+					"value": "Button head socket"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"stock": null,
+			"sourcing": null,
+			"image": null
+		},
+		{
+			"id": "scr-m3-35-bhcs",
+			"kind": "cots",
+			"cots": {
+				"type": "screw",
+				"size": "M3",
+				"variant": "button"
+			},
+			"name": "M3 \u00d7 35 mm button head",
+			"category": "Screws",
+			"description": "The single long screw that clamps the two cable-clamp halves together.",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Thread",
+					"value": "M3"
+				},
+				{
+					"label": "Length",
+					"value": "35 mm"
+				},
+				{
+					"label": "Head",
+					"value": "Button head socket"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"stock": null,
+			"sourcing": null,
+			"image": null
+		},
+		{
+			"id": "scr-m4-6-cs",
+			"kind": "cots",
+			"cots": {
+				"type": "screw",
+				"size": "M4",
+				"variant": "countersunk"
+			},
+			"name": "M4 \u00d7 6 mm countersunk",
+			"category": "Screws",
+			"description": "Fastens the printed PSU housing to the power supply's own case threads.",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Thread",
+					"value": "M4"
+				},
+				{
+					"label": "Length",
+					"value": "6 mm"
+				},
+				{
+					"label": "Head",
+					"value": "Countersunk (flat) socket"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"stock": null,
+			"sourcing": null,
+			"image": null
+		},
+		{
+			"id": "scr-m4-12-cs",
+			"kind": "cots",
+			"cots": {
+				"type": "screw",
+				"size": "M4",
+				"variant": "countersunk"
+			},
+			"name": "M4 \u00d7 12 mm countersunk",
+			"category": "Screws",
+			"description": "Bolts each lazy Susan together \u2014 4 a side, through the M4 inserts in the static half and the chute mount. 2 lazy Susans per machine.",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Thread",
+					"value": "M4"
+				},
+				{
+					"label": "Length",
+					"value": "12 mm"
+				},
+				{
+					"label": "Head",
+					"value": "Countersunk (flat) socket"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"stock": null,
+			"sourcing": null,
+			"image": null
+		},
+		{
+			"id": "scr-m5-12-shcs",
+			"kind": "cots",
+			"cots": {
+				"type": "screw",
+				"size": "M5",
+				"variant": "socket"
+			},
+			"name": "M5 \u00d7 12 mm socket head",
+			"category": "Screws",
+			"description": "Holds the NEMA 23 stepper onto the interface bracket.",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Thread",
+					"value": "M5"
+				},
+				{
+					"label": "Length",
+					"value": "12 mm"
+				},
+				{
+					"label": "Head",
+					"value": "Socket head cap"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"stock": null,
+			"sourcing": null,
+			"image": null
+		},
+		{
+			"id": "scr-m5-16-shcs",
+			"kind": "cots",
+			"cots": {
+				"type": "screw",
+				"size": "M5",
+				"variant": "socket"
+			},
+			"name": "M5 \u00d7 16 mm socket head",
+			"category": "Screws",
+			"description": "The most-used M5 in the machine: every external bracket, every bin bracket, every interface rib, every lazy Susan extrusion mount.",
+			"note": "Designed to self-tap into printed plastic wherever it lands in an external bracket or the upper fixed section \u2014 no nut and no insert there.",
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Thread",
+					"value": "M5"
+				},
+				{
+					"label": "Length",
+					"value": "16 mm"
+				},
+				{
+					"label": "Head",
+					"value": "Socket head cap"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"stock": null,
+			"sourcing": null,
+			"image": null
+		},
+		{
+			"id": "scr-m5-20-shcs",
+			"kind": "cots",
+			"cots": {
+				"type": "screw",
+				"size": "M5",
+				"variant": "socket"
+			},
+			"name": "M5 \u00d7 20 mm socket head",
+			"category": "Screws",
+			"description": "Mounts the chute limit switch assembly to the interface frame, into T-nuts.",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Thread",
+					"value": "M5"
+				},
+				{
+					"label": "Length",
+					"value": "20 mm"
+				},
+				{
+					"label": "Head",
+					"value": "Socket head cap"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"stock": null,
+			"sourcing": null,
+			"image": null
+		},
+		{
+			"id": "scr-m5-30-shcs",
+			"kind": "cots",
+			"cots": {
+				"type": "screw",
+				"size": "M5",
+				"variant": "socket"
+			},
+			"name": "M5 \u00d7 30 mm socket head",
+			"category": "Screws",
+			"description": "Attaches the cable cage to the six interface brackets.",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Thread",
+					"value": "M5"
+				},
+				{
+					"label": "Length",
+					"value": "30 mm"
+				},
+				{
+					"label": "Head",
+					"value": "Socket head cap"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"stock": null,
+			"sourcing": null,
+			"image": null
+		},
+		{
+			"id": "scr-m5-35-fhcs",
+			"kind": "cots",
+			"cots": {
+				"type": "screw",
+				"size": "M5",
+				"variant": "flat-hex"
+			},
+			"name": "M5 \u00d7 35 mm flat head",
+			"category": "Screws",
+			"description": "The long screws that stack the cable cage together. Clearly a different screw from the rest of the M5s.",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Thread",
+					"value": "M5"
+				},
+				{
+					"label": "Length",
+					"value": "35 mm"
+				},
+				{
+					"label": "Head",
+					"value": "Flat head hex socket cap"
+				},
+				{
+					"label": "Material",
+					"value": "304 stainless steel 18-8"
+				},
+				{
+					"label": "Threading",
+					"value": "Fully machine thread"
+				},
+				{
+					"label": "Finish",
+					"value": "Bright"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"stock": null,
+			"sourcing": {
+				"vendors": [
+					{
+						"region": "US",
+						"vendor": "Amazon",
+						"url": "https://www.amazon.com/dp/B0CTBG7GY9",
+						"affiliate_url": "https://www.amazon.com/dp/B0CTBG7GY9?tag=sorterv2-20",
+						"as_of": "2026-07-18",
+						"pack_qty": 20
+					}
+				]
+			},
+			"image": null
+		},
+		{
+			"id": "scr-m5-shcs-tbd",
+			"kind": "cots",
+			"cots": {
+				"type": "screw",
+				"size": "M5",
+				"variant": "socket"
+			},
+			"name": "M5 socket head \u2014 length TBD",
+			"category": "Screws",
+			"description": "Placeholder for the three electronics mounts that bolt to the frame. The length has not been measured yet.",
+			"note": "Length unknown \u2014 measure one on the machine before ordering. Six are used: PSU box, control board mount, Orange Pi mount.",
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Thread",
+					"value": "M5"
+				},
+				{
+					"label": "Length",
+					"value": "0 mm"
+				},
+				{
+					"label": "Head",
+					"value": "Socket head cap"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"stock": null,
+			"sourcing": null,
+			"image": null
+		},
+		{
+			"id": "nut-m3",
+			"kind": "cots",
+			"cots": {
+				"type": "nut",
+				"size": "M3"
+			},
+			"name": "M3 nut",
+			"category": "Nuts",
+			"description": "Plain M3 hex nut. Backs the camera-arm screws and the cable clamp's long screw.",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Thread",
+					"value": "M3"
+				},
+				{
+					"label": "Type",
+					"value": "Hex"
+				},
+				{
+					"label": "Material",
+					"value": "Stainless steel"
+				},
+				{
+					"label": "Finish",
+					"value": "Silver"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"stock": null,
+			"sourcing": null,
+			"image": null
+		},
+		{
+			"id": "nut-m5",
+			"kind": "cots",
+			"cots": {
+				"type": "nut",
+				"size": "M5"
+			},
+			"name": "M5 nut",
+			"category": "Nuts",
+			"description": "Plain M5 hex nut. Holds the cable cage's six long screws on.",
+			"note": null,
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Thread",
+					"value": "M5"
+				},
+				{
+					"label": "Type",
+					"value": "Hex"
+				},
+				{
+					"label": "Material",
+					"value": "Stainless steel"
+				},
+				{
+					"label": "Finish",
+					"value": "Silver"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"stock": null,
+			"sourcing": null,
+			"image": null
+		},
+		{
+			"id": "rod-steel-3-8",
+			"kind": "cots",
+			"cots": {
+				"type": "stock-material",
+				"size": "3/8 in"
+			},
+			"name": "Steel rod, 3/8 in \u2014 4 ft stock",
+			"category": "Stock material",
+			"description": "Bought as a length and cut down. One 4 ft rod yields all four ~1 ft pieces the two overhead camera arms hang from.",
+			"note": "The metric equivalent is 10 mm rod, and 3/8 in is 9.53 mm \u2014 check the printed mount's bore before ordering the metric size.",
+			"created_at": "2026-07-18",
+			"updated_at": "2026-07-18",
+			"attributes": [
+				{
+					"label": "Diameter",
+					"value": "3/8 in (9.53 mm) \u00b7 10 mm in metric"
+				},
+				{
+					"label": "Buy",
+					"value": "One 4 ft (1.22 m) length, or longer"
+				},
+				{
+					"label": "Cut into",
+					"value": "4 \u00d7 ~1 ft (305 mm)"
+				},
+				{
+					"label": "Material",
+					"value": "Steel"
+				}
+			],
+			"sheet_qty": null,
+			"sheet_qty_text": null,
+			"stock": {
+				"unit_length_mm": 1220,
+				"cut_length_mm": 305,
+				"pieces_per_unit": 4,
+				"unit_label": "4 ft (1.22 m) length",
+				"piece_label": "~1 ft (305 mm) piece"
+			},
+			"sourcing": null,
+			"image": null
+		},
+		{
 			"id": "hsi-m3-long",
 			"kind": "cots",
 			"cots": {
@@ -4176,6 +5740,7 @@
 			],
 			"sheet_qty": null,
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -4238,6 +5803,7 @@
 			],
 			"sheet_qty": null,
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -4290,6 +5856,7 @@
 			],
 			"sheet_qty": null,
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -4338,6 +5905,7 @@
 			],
 			"sheet_qty": null,
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -4378,6 +5946,7 @@
 				"per_machine": 1
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -4410,6 +5979,7 @@
 				"per_machine": 2
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -4434,38 +6004,6 @@
 			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/8f536228e5a4502ecd89039d0cbf93c16f9d5a1043fd303cd7c417789334753f.jpg"
 		},
 		{
-			"id": "pulley-20t-5mm",
-			"kind": "cots",
-			"cots": {
-				"type": "pulley"
-			},
-			"name": "Timing Pulley - 20T - 5mm bore - 10mm belt",
-			"category": "Pulleys",
-			"description": "Interface between stepper shaft and carousel",
-			"note": null,
-			"created_at": "2026-07-18",
-			"updated_at": "2026-07-18",
-			"attributes": [],
-			"sheet_qty": {
-				"per_machine": 1
-			},
-			"sheet_qty_text": null,
-			"sourcing": {
-				"vendors": [
-					{
-						"region": "US",
-						"vendor": "Amazon",
-						"url": "https://www.amazon.com/dp/B07H25RMJG",
-						"price": 6.99,
-						"pack_qty": 5,
-						"as_of": "2026-04-16",
-						"affiliate_url": "https://www.amazon.com/dp/B07H25RMJG?tag=sorterv2-20"
-					}
-				]
-			},
-			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/09b4a00b5e93b27eee1185390cf1f70a9e5f70b80b6f0b2631f7c1d5dbcff373.jpg"
-		},
-		{
 			"id": "pulley-20t-8mm",
 			"kind": "cots",
 			"cots": {
@@ -4482,6 +6020,7 @@
 				"per_machine": 1
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -4532,6 +6071,7 @@
 				"per_machine": 6
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -4582,6 +6122,7 @@
 				"per_machine": 6
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -4614,6 +6155,7 @@
 				"per_machine": 4
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -4651,6 +6193,7 @@
 				"per_machine": 1
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -4688,6 +6231,7 @@
 				"per_layer": 1
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -4733,6 +6277,7 @@
 				"per_machine": 3
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -4765,6 +6310,7 @@
 				"per_machine": 8
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -4810,6 +6356,7 @@
 				"per_layer": 2
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -4861,6 +6408,7 @@
 				"per_machine": 1
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -4900,6 +6448,7 @@
 				"per_machine": 1
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -4932,6 +6481,7 @@
 				"per_machine": 1
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -4989,6 +6539,7 @@
 				"per_machine": 1
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -5021,6 +6572,7 @@
 				"per_machine": 2
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -5053,6 +6605,7 @@
 				"per_machine": 2
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -5093,6 +6646,7 @@
 				"per_machine": 5
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -5133,6 +6687,7 @@
 				"per_machine": 1
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -5165,6 +6720,7 @@
 				"per_machine": 20
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -5188,7 +6744,7 @@
 			"name": "Standoff - M3 - 10mm",
 			"category": "Electronics",
 			"description": "Mount main board",
-			"note": null,
+			"note": "Length is the BOM sheet's 10 mm and has not been confirmed against the board mounts.",
 			"created_at": "2026-07-18",
 			"updated_at": "2026-07-18",
 			"attributes": [],
@@ -5196,6 +6752,7 @@
 				"per_machine": 8
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -5245,6 +6802,7 @@
 				"per_machine": 1
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -5294,6 +6852,7 @@
 				"per_layer": 1
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -5331,6 +6890,7 @@
 				"per_machine": 1
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -5359,6 +6919,7 @@
 				"per_layer": 1
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -5387,6 +6948,7 @@
 				"per_machine": 3
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -5419,6 +6981,7 @@
 				"per_machine": 1
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -5450,6 +7013,7 @@
 				"per_machine": 1
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -5507,6 +7071,7 @@
 				"per_machine": 1
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -5539,6 +7104,7 @@
 				"per_machine": 1
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
@@ -5592,6 +7158,7 @@
 				"per_machine": 1
 			},
 			"sheet_qty_text": null,
+			"stock": null,
 			"sourcing": {
 				"vendors": [
 					{
