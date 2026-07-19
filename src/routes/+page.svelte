@@ -30,7 +30,7 @@
 	import { download, exportSpec, filename } from '$lib/csv';
 	import ColorPicker from '$lib/components/ColorPicker.svelte';
 	import Modal from '$lib/components/Modal.svelte';
-	import StlViewer from '$lib/components/StlViewer.svelte';
+	import PartDetailModal from '$lib/components/PartDetailModal.svelte';
 	import BuildPlates from '$lib/components/BuildPlates.svelte';
 	import { zipSync } from 'fflate';
 	import { onMount } from 'svelte';
@@ -38,8 +38,6 @@
 	import { layerStore, addLayer as addLayerStore, removeLayerAt, setSize, setSizes } from '$lib/layers.svelte';
 	import Popover from '$lib/components/Popover.svelte';
 	import Badge from '$lib/components/Badge.svelte';
-	import Callout from '$lib/components/Callout.svelte';
-	import DownloadButton from '$lib/components/DownloadButton.svelte';
 	import { Download, Package, ZoomIn, Loader, Info, Plus, X, RotateCcw, Clock, Layers3, ExternalLink, AlertTriangle, History, ChevronRight, ChevronDown } from 'lucide-svelte';
 
 	// ---- defaults (also used by "reset to default") -----------------------------
@@ -114,9 +112,6 @@
 	}
 	let viewerOpen = $state(false);
 	let viewerPart = $state<Part | null>(null);
-	let viewerColorId = $state('ash-gray');
-	// which version of the part the detail modal is previewing (null = current/newest)
-	let viewerVersion = $state<import('$lib/filament').PartVersion | null>(null);
 
 	// the per-layer size drives both the funnel and the bin set for that layer
 	function variantCount(id: string): number | null {
@@ -252,8 +247,6 @@
 
 	function openViewer(p: Part) {
 		viewerPart = p;
-		viewerColorId = primaryColorId(p, roleColors) ?? 'ash-gray';
-		viewerVersion = p.versions?.[p.versions.length - 1] ?? null; // newest by default
 		viewerOpen = true;
 	}
 	// A click anywhere on a part row opens its detail modal — except on the row's
@@ -661,100 +654,7 @@
 	</footer>
 </div>
 
-<Modal bind:open={viewerOpen} title={viewerPart?.name} bodyScroll={false}>
-	{#if viewerPart}
-		{@const vers = [...(viewerPart.versions ?? [])].reverse()}
-		{@const active = viewerVersion ?? viewerPart.versions?.[viewerPart.versions.length - 1] ?? null}
-		{@const activeStl = active?.stl ?? viewerPart.stl}
-		{@const isCurrent = !active || active.version === viewerPart.version}
-		{@const os = partOnshape(viewerPart)}
-		{@const pid = viewerPart.id}
-		{@const plates = platesForPart(pid)}
-		<div class="shrink-0">
-			{#key activeStl}
-				<StlViewer url={activeStl} color={getBambuColor(viewerColorId).hex} />
-			{/key}
-		</div>
-		<!-- details scroll independently of the pinned 3D viewer (which owns wheel = zoom) -->
-		<div class="min-h-0 flex-1 overflow-y-auto">
-		<div class="grid gap-4 px-4 py-3 sm:grid-cols-[1fr_auto]">
-			<div class="min-w-0 space-y-2 text-sm">
-				{#if viewerPart.description}<p class="text-text-muted">{viewerPart.description}</p>{/if}
-				{#if viewerPart.attributes?.length}
-					<div class="flex flex-wrap gap-1.5">
-						{#each viewerPart.attributes as a}<span class="border border-border bg-[var(--color-bg)] px-1.5 py-0.5 text-xs text-text-muted">{a.label}: <span class="text-text">{a.value}</span></span>{/each}
-					</div>
-				{/if}
-				<dl class="grid max-w-sm grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-xs text-text-muted">
-					<dt>Version</dt><dd class="text-text">v{active?.version ?? viewerPart.version}{isCurrent ? ' (current)' : ''}</dd>
-					<dt>{isCurrent ? 'Updated' : 'Dated'}</dt><dd class="text-text">{fmtDate(active?.date ?? viewerPart.updated_at)}</dd>
-					{#if active?.grams != null}<dt>Filament</dt><dd class="text-text">{active.grams.toFixed(0)} g</dd>{/if}
-					<dt>Print time</dt><dd class="text-text">{duration(viewerPart.print_seconds)}</dd>
-				</dl>
-				{#if viewerPart.suspicious}
-					<Callout variant="warning" title="Suspect">{viewerPart.suspicious_note ?? 'This part may still change or have an issue. Hold off printing it until this clears.'}</Callout>
-				{/if}
-				{#if viewerPart.low_tolerance}
-					<Callout variant="info" title="Low tolerance — test print suggested">{viewerPart.low_tolerance_note ?? 'This part has little room for dimensional error. Print one first and confirm the fit before committing to the full set.'}</Callout>
-				{/if}
-				<div class="flex flex-wrap items-center gap-3 pt-1">
-					<DownloadButton href={activeStl} size="md" label={isCurrent ? 'Download STL' : `Download STL (v${active?.version})`} />
-					{#if os.version}<a href={os.version} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 text-xs text-primary hover:text-primary-hover">OnShape <ExternalLink size={11} /></a>{/if}
-				</div>
-				{#if plates.length}
-					<div class="pt-1">
-						<div class="mb-1.5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-text-muted"><Layers3 size={12} /> On build plates</div>
-						<div class="flex gap-2 overflow-x-auto pb-1">
-							{#each plates as pl (pl.id)}
-								<div class="flex w-56 shrink-0 flex-col border border-border bg-[var(--color-bg)] p-2">
-									<div class="mb-1.5 flex gap-1 overflow-x-auto">
-										{#each pl.thumbs as t}<img src={t} alt="{pl.name} preview" class="h-20 w-20 shrink-0 border border-border bg-[var(--color-surface)] object-contain" />{/each}
-									</div>
-									<div class="mb-2 flex flex-wrap gap-1">
-										{#each pl.parts as pp}<span class="border px-1 py-0.5 text-[11px] {pp.part_id === pid ? 'border-primary bg-primary/10 text-primary' : 'border-border text-text-muted'}">{pp.count}× {pp.name}</span>{/each}
-									</div>
-									<div class="mt-auto flex items-center gap-2">
-										<span class="min-w-0 flex-1 truncate text-xs font-medium text-text" title={pl.name}>{pl.name}</span>
-										<button type="button" class="shrink-0 text-xs text-primary hover:text-primary-hover" onclick={() => { viewerOpen = false; openPlatesModal(pid); }}>view</button>
-										<DownloadButton href={pl.download} size="sm" label="3mf" title="Download {pl.name}.3mf" />
-									</div>
-								</div>
-							{/each}
-						</div>
-					</div>
-				{/if}
-			</div>
-			<div class="w-44 shrink-0">
-				<ColorPicker bind:value={viewerColorId} label="Preview color" />
-			</div>
-		</div>
-		{#if vers.length > 1}
-			<div class="border-t border-border px-4 py-3">
-				<h3 class="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-text-muted"><History size={12} /> Version history</h3>
-				<div class="flex gap-2 overflow-x-auto pb-1">
-					{#each vers as v (v.version)}
-						{@const sel = active?.version === v.version}
-						<button type="button" onclick={() => (viewerVersion = v)} class="flex w-32 shrink-0 flex-col border {sel ? 'border-primary ring-1 ring-primary' : 'border-border hover:border-primary/60'} bg-[var(--color-bg)] p-1.5 text-left" aria-pressed={sel}>
-							<span class="mb-1 flex h-20 items-center justify-center border border-border bg-[var(--color-bg)]">
-								{#if v.render}<img src={v.render} alt="v{v.version} preview" class="h-full w-full object-contain" />{:else}<span class="text-xs text-text-muted">no preview</span>{/if}
-							</span>
-							<span class="flex items-center gap-1 text-xs font-semibold text-text">v{v.version}{#if v.version === viewerPart.version}<span class="text-[10px] font-normal text-text-muted">current</span>{/if}</span>
-							<span class="text-[11px] text-text-muted">{fmtDate(v.date)}{#if v.grams != null} · {v.grams.toFixed(0)} g{/if}</span>
-						</button>
-					{/each}
-				</div>
-				{#if active}
-					<div class="mt-2 border-t border-border pt-2 text-sm">
-						<div class="font-medium text-text">v{active.version} · {fmtDate(active.date)}</div>
-						<p class="mt-0.5 text-text-muted">{active.message}</p>
-						{#if !isCurrent}<p class="mt-1 text-xs italic text-text-muted/70">Viewing an older version for reference. Build from the current version unless you specifically need this one.</p>{/if}
-					</div>
-				{/if}
-			</div>
-		{/if}
-		</div>
-	{/if}
-</Modal>
+<PartDetailModal bind:open={viewerOpen} part={viewerPart} {roleColors} />
 
 <Modal bind:open={platesModalOpen} title="Build plates · {partsById.get(platesModalPartId ?? '')?.name ?? ''}">
 	<div class="p-4">

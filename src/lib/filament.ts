@@ -367,6 +367,73 @@ export function resolveHardwareTotals(root: string, layers: number): Map<string,
 	return acc;
 }
 
+// ---------------------------------------------------------------- hardware pricing
+// Shared by the hardware page, the assembly tab, and the hardware detail modal so
+// the list, the cart, and the popup all price a part the same way. Kept here rather
+// than duplicated per page — the sourcing math is the same wherever a part is shown.
+
+/** Machine total for a part: tree-derived when placed, else the BOM sheet count.
+ *  `treeTotals` is the resolver output for the machine at the current layer count. */
+export function hardwareTotalQty(
+	h: Hardware,
+	treeTotals: Map<string, number>,
+	layers: number
+): number | null {
+	const fromTree = treeTotals.get(h.id);
+	if (fromTree != null) return fromTree;
+	if (h.sheet_qty?.per_machine != null) return h.sheet_qty.per_machine;
+	if (h.sheet_qty?.per_layer != null) return h.sheet_qty.per_layer * layers;
+	return null;
+}
+
+/** Where a count came from — a hand count carries much less confidence than one
+ *  summed out of the tree, and the difference is worth showing. */
+export function hardwareQtySource(
+	h: Hardware,
+	treeTotals: Map<string, number>
+): 'tree' | 'sheet' | null {
+	if (treeTotals.has(h.id)) return 'tree';
+	return h.sheet_qty?.per_machine != null || h.sheet_qty?.per_layer != null ? 'sheet' : null;
+}
+
+/** Quantity in the units a vendor actually sells. Stock material is tallied in
+ *  cut pieces but bought as whole lengths, so four 1 ft pieces is one rod —
+ *  every price and pack calculation has to go through here. */
+export function buyUnits(h: Hardware, qty: number | null): number | null {
+	if (qty == null) return null;
+	return h.stock ? Math.ceil(qty / h.stock.pieces_per_unit) : qty;
+}
+
+/** Listings to buy — Amazon counts packs, not units. */
+export function packsNeeded(v: Vendor, qty: number): number {
+	return v.pack_qty ? Math.ceil(qty / v.pack_qty) : 1;
+}
+
+/** Buy cost at a vendor for a total quantity (pack math), USD vendors only. */
+export function buyCost(v: Vendor, qty: number | null): number | null {
+	if (v.price == null || v.currency === 'EUR') return null;
+	if (qty == null) return null;
+	return packsNeeded(v, qty) * v.price;
+}
+
+/** Cheapest US vendor with a price, which is what the cart and totals use. */
+export function bestUsVendor(h: Hardware): Vendor | null {
+	const priced = (h.sourcing?.vendors ?? []).filter(
+		(v) => v.region === 'US' && v.price != null && v.currency !== 'EUR'
+	);
+	if (!priced.length) return null;
+	return priced.reduce((a, b) => (a.price! <= b.price! ? a : b));
+}
+
+/** Vendor price formatted in its own currency, or null when none is recorded. */
+export function fmtPrice(v: Vendor): string | null {
+	return v.price == null
+		? null
+		: v.currency === 'EUR'
+			? `€${v.price.toFixed(2)}`
+			: `$${v.price.toFixed(2)}`;
+}
+
 export function categoryMultiplier(categoryId: string, layers: number): number {
 	return sectionById.get(categoryId)?.scales_with_layers ? layers : 1;
 }

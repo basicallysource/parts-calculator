@@ -3,6 +3,8 @@
 	import Badge from '$lib/components/Badge.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 	import LayerControl from '$lib/components/LayerControl.svelte';
+	import PartDetailModal from '$lib/components/PartDetailModal.svelte';
+	import HardwareDetailModal from '$lib/components/HardwareDetailModal.svelte';
 	import {
 		getAssembly,
 		getHardware,
@@ -13,7 +15,8 @@
 		lineQty,
 		resolveHardwareTotals,
 		type AssemblyLine,
-		type Hardware
+		type Hardware,
+		type Part
 	} from '$lib/filament';
 	import { layerStore } from '$lib/layers.svelte';
 	import { page } from '$app/state';
@@ -57,6 +60,22 @@
 
 	const fmtUsd = (n: number) => `$${n.toFixed(2)}`;
 
+	// Clicking a thumbnail in the tree opens the same detail view the other tabs use:
+	// printed parts get the parts-dashboard modal (3D viewer, versions, plates);
+	// off-the-shelf items get the hardware modal (specs, where it goes, sourcing).
+	let partOpen = $state(false);
+	let partModal = $state<Part | null>(null);
+	function openPart(p: Part) {
+		partModal = p;
+		partOpen = true;
+	}
+	let hwOpen = $state(false);
+	let hwModal = $state<Hardware | null>(null);
+	function openHardware(h: Hardware) {
+		hwModal = h;
+		hwOpen = true;
+	}
+
 	// The whole tree flattened, one row per node, with STL/DXF links on anything
 	// downloadable — an indented BOM that survives being sorted or filtered.
 	function downloadCsv() {
@@ -75,7 +94,9 @@
 			{@const img = hardwareImage(hw)}
 			<div class="mt-2 flex items-center gap-3 border border-border bg-[var(--color-bg)] p-2">
 				{#if img}
-					<img src={img.src} alt={hw.name} class="h-10 w-10 shrink-0 object-contain" />
+					<button type="button" class="asm-thumb shrink-0" title="View {hw.name} details" onclick={() => openHardware(hw)}>
+						<img src={img.src} alt={hw.name} class="h-10 w-10 object-contain" />
+					</button>
 				{/if}
 				<div class="min-w-0 flex-1">
 					<div class="truncate text-xs font-semibold text-text">{hw.name}</div>
@@ -95,7 +116,9 @@
 	{@const img = hardwareImage(hw)}
 	<div class="ml-4 mt-2 flex items-center gap-3 border border-border bg-[var(--color-bg)] p-2">
 		{#if img}
-			<img src={img.src} alt={hw.name} class="h-8 w-8 shrink-0 object-contain" />
+			<button type="button" class="asm-thumb shrink-0" title="View {hw.name} details" onclick={() => openHardware(hw)}>
+				<img src={img.src} alt={hw.name} class="h-8 w-8 object-contain" />
+			</button>
 		{/if}
 		<div class="min-w-0 flex-1 truncate text-xs font-semibold text-text">{hw.name}</div>
 		<div class="text-right text-xs tabular-nums text-text">
@@ -170,7 +193,9 @@
 						{@const total = lineQty(line, layers) * mult}
 						<div class="ml-4 mt-2 border border-border bg-surface p-3">
 							<div class="flex items-center gap-3">
-								<img src={part.render} alt={part.name} class="h-12 w-12 shrink-0 object-contain" />
+								<button type="button" class="asm-thumb shrink-0" title="View {part.name} details" onclick={() => openPart(part)}>
+									<img src={part.render} alt={part.name} class="h-12 w-12 object-contain" />
+								</button>
 								<div class="min-w-0 flex-1">
 									<div class="flex flex-wrap items-baseline gap-x-2">
 										<span class="text-sm font-semibold text-text">{part.name}</span>
@@ -242,7 +267,9 @@
 				<div class="border border-border bg-[var(--color-bg)] p-3">
 					<div class="flex items-start gap-3">
 						{#if img}
-							<img src={img.src} alt={t.hw.name} class="h-14 w-14 shrink-0 object-contain" />
+							<button type="button" class="asm-thumb shrink-0" title="View {t.hw.name} details" onclick={() => openHardware(t.hw)}>
+								<img src={img.src} alt={t.hw.name} class="h-14 w-14 object-contain" />
+							</button>
 						{/if}
 						<div class="min-w-0">
 							<div class="text-sm font-semibold text-text">{t.hw.name}</div>
@@ -289,3 +316,21 @@
 		</aside>
 	</div>
 </div>
+
+<PartDetailModal bind:open={partOpen} part={partModal} />
+<HardwareDetailModal bind:open={hwOpen} hardware={hwModal} {layers} />
+
+<style>
+	/* Tree thumbnails open a detail view on click, so they carry the same click cue
+	   as the parts/hardware lists: a primary-tinted ring on hover/focus. */
+	.asm-thumb {
+		display: block;
+		cursor: pointer;
+		transition: box-shadow 120ms ease;
+	}
+	.asm-thumb:hover,
+	.asm-thumb:focus-visible {
+		outline: none;
+		box-shadow: 0 0 0 2px var(--color-primary);
+	}
+</style>

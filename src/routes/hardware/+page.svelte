@@ -4,27 +4,30 @@
 	import HardwareIcon from '$lib/components/HardwareIcon.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 	import LayerControl from '$lib/components/LayerControl.svelte';
-	import Modal from '$lib/components/Modal.svelte';
+	import HardwareDetailModal from '$lib/components/HardwareDetailModal.svelte';
 	import {
 		assembliesContaining,
+		bestUsVendor,
+		buyCost,
+		buyUnits,
 		getHardware,
-		getPart,
 		HARDWARE,
 		hardwareImage,
-		SIZE_COLORS,
-		usagePaths,
 		hardwareLengthLabel,
+		hardwareQtySource,
+		hardwareTotalQty,
 		JOIN_LABELS,
-		lineQty,
+		packsNeeded,
 		resolveHardwareTotals,
+		SIZE_COLORS,
+		fmtPrice,
 		type Assembly,
-		type Hardware,
-		type Vendor
+		type Hardware
 	} from '$lib/filament';
 	import { layerStore } from '$lib/layers.svelte';
 	import { hardwareCsv } from '$lib/hardware-csv';
 	import { download, exportSpec, filename } from '$lib/csv';
-	import { ArrowUpRight, Download } from 'lucide-svelte';
+	import { Download } from 'lucide-svelte';
 
 	// Every off-the-shelf part from the BOM sheet, in the unified data format.
 	// Quantities come from the assembly tree wherever a part has been placed in
@@ -45,33 +48,15 @@
 	// parts already placed in the assembly tree get their count computed from it
 	const treeTotals = $derived(resolveHardwareTotals('machine', layers));
 
-	/** Machine total for a part: tree-derived when placed, else the sheet count. */
-	function totalQty(h: Hardware, layers: number): number | null {
-		const fromTree = treeTotals.get(h.id);
-		if (fromTree != null) return fromTree;
-		if (h.sheet_qty?.per_machine != null) return h.sheet_qty.per_machine;
-		if (h.sheet_qty?.per_layer != null) return h.sheet_qty.per_layer * layers;
-		return null;
-	}
-
-	/** Where a count came from — a hand count carries much less confidence than one
-	 *  summed out of the tree, and the difference is worth showing. */
-	function qtySource(h: Hardware): 'tree' | 'sheet' | null {
-		if (treeTotals.has(h.id)) return 'tree';
-		return h.sheet_qty?.per_machine != null || h.sheet_qty?.per_layer != null ? 'sheet' : null;
-	}
+	// Sourcing/quantity math (totals, pricing, pack counts) lives in $lib/filament so
+	// the list, the cart, and the detail modal all price a part identically. These two
+	// wrappers just bind the shared resolvers to this page's live `treeTotals`.
+	const totalQty = (h: Hardware, l: number) => hardwareTotalQty(h, treeTotals, l);
+	const qtySource = (h: Hardware) => hardwareQtySource(h, treeTotals);
 	const QTY_TITLE = {
 		tree: 'Counted from the assembly tree',
 		sheet: 'Hand count carried over from the BOM sheet — not yet placed in the assembly tree'
 	};
-
-	/** Quantity in the units a vendor actually sells. Stock material is tallied in
-	 *  cut pieces but bought as whole lengths, so four 1 ft pieces is one rod —
-	 *  every price and pack calculation has to go through here. */
-	function buyUnits(h: Hardware, qty: number | null): number | null {
-		if (qty == null) return null;
-		return h.stock ? Math.ceil(qty / h.stock.pieces_per_unit) : qty;
-	}
 
 	// ------------------------------------------------------------------ joints
 	// A part that gets soldered/crimped/glued to something else says so here, but
@@ -85,20 +70,6 @@
 	 *  parts and some screws; it belongs on the parts tab, not here. */
 	const isAllHardware = (a: Assembly) =>
 		!!a.lines?.length && a.lines.every((l) => l.part != null && getHardware(l.part) != null);
-
-	/** The other members of an assembly, resolved to a display name and quantity. */
-	function siblings(asm: Assembly, selfId: string) {
-		return (asm.lines ?? [])
-			.filter((l) => l.part && l.part !== selfId)
-			.map((l) => {
-				const id = l.part!;
-				return {
-					id,
-					name: getHardware(id)?.name ?? getPart(id)?.name ?? id,
-					qty: lineQty(l, layers)
-				};
-			});
-	}
 
 	// Bought parts that are joined into one unit collapse to a single rollup row —
 	// a Pico and its header pins are one purchase and one soldering job. Only
@@ -139,30 +110,6 @@
 			const v = bestUsVendor(h);
 			return sum + (v ? (buyCost(v, buyUnits(h, totalQty(h, layers))) ?? 0) : 0);
 		}, 0);
-
-	const fmtPrice = (v: Vendor) =>
-		v.price == null ? null : v.currency === 'EUR' ? `€${v.price.toFixed(2)}` : `$${v.price.toFixed(2)}`;
-
-	/** Buy cost at a vendor for a total quantity (pack math), USD vendors only. */
-	function buyCost(v: Vendor, qty: number | null): number | null {
-		if (v.price == null || v.currency === 'EUR') return null;
-		if (qty == null) return null;
-		return packsNeeded(v, qty) * v.price;
-	}
-
-	/** Listings to buy — Amazon counts packs, not units. */
-	function packsNeeded(v: Vendor, qty: number): number {
-		return v.pack_qty ? Math.ceil(qty / v.pack_qty) : 1;
-	}
-
-	/** Cheapest US vendor with a price, which is what the cart and totals use. */
-	function bestUsVendor(h: Hardware): Vendor | null {
-		const priced = (h.sourcing?.vendors ?? []).filter(
-			(v) => v.region === 'US' && v.price != null && v.currency !== 'EUR'
-		);
-		if (!priced.length) return null;
-		return priced.reduce((a, b) => (a.price! <= b.price! ? a : b));
-	}
 
 	// ---------------------------------------------------------------- selection
 	// Everything starts unselected; the cart is opt-in. Only hardware with a
@@ -218,15 +165,6 @@
 				packs: packsNeeded
 			})
 		);
-	}
-
-	// ------------------------------------------------------- where it goes
-	// The modal answers "where does this live?" one level at a time: start at the
-	// paths down to the item, then walk up through the assemblies that contain it.
-	let focusAsm = $state<string | null>(null);
-	const detailPaths = $derived(detail ? usagePaths(detail.id, layers) : []);
-	function assemblyHref(id: string) {
-		return `/assembly?focus=${encodeURIComponent(id)}`;
 	}
 
 	// ------------------------------------------------------------ amazon cart
@@ -622,200 +560,7 @@
 	</div>
 </div>
 
-<Modal bind:open={detailOpen} title={detail?.name} maxW="max-w-4xl">
-	{#if detail}
-		{@const qty = totalQty(detail, layers)}
-		{@const dimg = hardwareImage(detail)}
-		<!-- Modal supplies no padding of its own; every caller wraps its body. -->
-		<div class="p-4">
-		<div class="flex flex-col gap-4 sm:flex-row">
-			{#if dimg}
-				<img
-					src={dimg.src}
-					alt={detail.name}
-					class="h-72 w-72 shrink-0 self-start border border-border bg-white object-contain p-2 sm:h-80 sm:w-80"
-				/>
-			{/if}
-			<div class="min-w-0 flex-1">
-				<p class="text-sm text-text-muted">{detail.description}</p>
-				{#if detail.note}
-					<p class="mt-2 border border-warning/50 bg-warning/[0.08] p-2 text-sm text-warning-dark">
-						{detail.note}
-					</p>
-				{/if}
-
-				<dl class="mt-3 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
-					<dt class="text-text-muted">Needed</dt>
-					<dd class="text-text">
-						{#if detail.sheet_qty_text}
-							{detail.sheet_qty_text}
-						{:else if qty == null}
-							not settled yet
-						{:else}
-							{buyUnits(detail, qty)}{#if detail.stock}&nbsp;×&nbsp;{detail.stock.unit_label}{/if}
-							{#if qtySource(detail) === 'tree'}
-								<span class="text-text-muted">— summed from the assembly tree</span>
-							{:else}
-								<span class="text-warning-dark">
-									— hand count from the BOM sheet, not placed in the assembly tree yet
-									{#if detail.sheet_qty?.per_layer != null}({detail.sheet_qty.per_layer} per layer
-										× {layers} layers){/if}
-								</span>
-							{/if}
-						{/if}
-					</dd>
-					{#if detail.stock}
-						<dt class="text-text-muted">Cut into</dt>
-						<dd class="text-text">
-							{qty} × {detail.stock.piece_label}
-						</dd>
-					{/if}
-					{#each detail.attributes ?? [] as a}
-						<dt class="text-text-muted">{a.label}</dt>
-						<dd class="text-text">{a.value}</dd>
-					{/each}
-				</dl>
-			</div>
-		</div>
-
-		{#if detailPaths.length}
-			<h4 class="mt-5 text-xs font-semibold uppercase tracking-wider text-text-muted">
-				Where it goes
-			</h4>
-			<div class="mt-2 space-y-2">
-				{#each detailPaths as path, pi (pi)}
-					{@const inner = path.steps[path.steps.length - 1].assembly}
-					<div class="border border-border p-3">
-						<div class="flex items-start justify-between gap-3">
-							<div class="min-w-0">
-								<!-- innermost first: the assembly you'd actually be holding -->
-								<div class="flex flex-wrap items-baseline gap-x-1.5">
-									<span class="text-sm font-semibold text-text">{inner.name}</span>
-									{#if path.via}
-										<span class="text-xs text-text-muted">in the {path.via.name}</span>
-									{/if}
-									<span class="text-xs tabular-nums text-text-muted">· {path.qty} here</span>
-								</div>
-								<!-- then the walk up, outermost last -->
-								<div class="mt-1 flex flex-wrap items-center gap-x-1 text-xs text-text-muted">
-									{#each path.steps as step, si (si)}
-										{#if si > 0}<span aria-hidden="true">›</span>{/if}
-										<a
-											href={assemblyHref(step.assembly.id)}
-											class="hover:text-primary hover:underline"
-											title="Show {step.assembly.name} on the assembly tree"
-										>{step.assembly.name}</a>
-									{/each}
-								</div>
-							</div>
-							<a
-								href={assemblyHref(inner.id)}
-								class="inline-flex shrink-0 items-center gap-1 text-xs font-medium text-primary hover:text-primary-hover"
-								title="Open {inner.name} on the assembly tree"
-							>
-								Go to <ArrowUpRight size={12} />
-							</a>
-						</div>
-					</div>
-				{/each}
-			</div>
-		{/if}
-
-		<!-- how the count was arrived at: jargon the list itself shouldn't carry -->
-		<p class="mt-3 text-xs {qtySource(detail) === 'sheet' ? 'text-warning-dark' : 'text-text-muted'}">
-			{qtySource(detail) === 'sheet'
-				? 'This count is a hand count carried over from the BOM spreadsheet — it has not been placed in the assembly tree yet, so it may not match the machine.'
-				: qtySource(detail) === 'tree'
-					? 'This count is summed from the machine assembly tree.'
-					: 'No count settled for this item yet.'}
-		</p>
-
-		{#each jointsOf(detail) as asm (asm.id)}
-			<h4 class="mt-5 text-xs font-semibold uppercase tracking-wider text-text-muted">
-				Goes together with
-			</h4>
-			<div class="mt-2 border border-border p-3">
-				<div class="flex flex-wrap items-center gap-x-2 gap-y-1">
-					<span class="text-sm font-semibold text-text">{asm.name}</span>
-					{#each asm.joining ?? [] as j (j.method)}
-						<Badge variant="warning"><Zap size={10} />{JOIN_LABELS[j.method]}</Badge>
-					{/each}
-				</div>
-				<p class="mt-1 text-xs text-text-muted">{asm.description}</p>
-				<ul class="mt-2 space-y-0.5 text-sm text-text">
-					{#each siblings(asm, detail.id) as s (s.id)}
-						<li class="tabular-nums">
-							<span class="text-text-muted">×{s.qty}</span>
-							{s.name}
-						</li>
-					{/each}
-				</ul>
-				{#each asm.joining ?? [] as j (j.method)}
-					{#if j.note}
-						<p class="mt-2 text-xs text-warning-dark">{j.note}</p>
-					{/if}
-				{/each}
-			</div>
-		{/each}
-
-		<h4 class="mt-5 text-xs font-semibold uppercase tracking-wider text-text-muted">Where to buy</h4>
-		<div class="mt-2 divide-y divide-border border border-border">
-			{#each detail.sourcing?.vendors ?? [] as v (v.url)}
-				{#if v.vendor === 'basically'}
-					<!-- in-house part, not shipping yet — no link out, no price to show -->
-					<div class="p-2 text-sm italic text-text-muted/70">Coming soon to basically</div>
-				{:else}
-					{@const cost = buyCost(v, buyUnits(detail, qty))}
-					<div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 p-2 text-sm">
-						<span class="inline-flex items-center gap-2">
-							<a
-								href={v.affiliate_url ?? v.url}
-								target="_blank"
-								rel="noopener"
-								class="inline-flex items-center gap-1 font-medium text-primary hover:text-primary-hover"
-							>
-								{v.vendor ?? v.region} <ExternalLink size={12} />
-							</a>
-							<span class="text-xs text-text-muted">{v.region}</span>
-							{#if v.affiliate_url}
-								<a
-									href={v.url}
-									target="_blank"
-									rel="noopener"
-									class="text-xs text-text-muted underline decoration-dotted underline-offset-2 hover:text-text"
-									title="The same listing, without the referral tag">Not affiliate</a
-								>
-							{/if}
-						</span>
-						<span class="tabular-nums text-text-muted">
-							{#if fmtPrice(v)}
-								{fmtPrice(v)}{v.pack_qty && v.pack_qty > 1 ? ` for ${v.pack_qty}` : ''}
-								{#if cost != null && v.pack_qty && qty != null}
-									· buy <span class="text-text">{packsNeeded(v, buyUnits(detail, qty)!)}</span> =
-									<span class="font-semibold text-text">${cost.toFixed(2)}</span>
-								{/if}
-							{:else}
-								no price recorded
-							{/if}
-							{#if v.as_of}<span class="ml-2 text-xs">as of {v.as_of}</span>{/if}
-						</span>
-						{#if v.note}<span class="w-full text-xs text-text-muted">{v.note}</span>{/if}
-					</div>
-				{/if}
-			{:else}
-				<p class="p-2 text-sm text-text-muted">No source picked yet.</p>
-			{/each}
-		</div>
-
-		{#if bestUsVendor(detail)}
-			<label class="mt-4 flex cursor-pointer items-center gap-2 text-sm text-text">
-				<input type="checkbox" class="setup-toggle h-4 w-4" bind:checked={selected[detail.id]} />
-				Include in the Amazon cart
-			</label>
-		{/if}
-		</div>
-	{/if}
-</Modal>
+<HardwareDetailModal bind:open={detailOpen} hardware={detail} {layers} showCart bind:selected />
 
 <style>
 	/* same hover as the 3D parts rows — the whole row is clickable, so it says so */
