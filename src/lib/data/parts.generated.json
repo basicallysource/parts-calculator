@@ -158,6 +158,10 @@
 				{
 					"part": "scr-m3-20-cs",
 					"qty": 2
+				},
+				{
+					"part": "led-cob-50mm-24v",
+					"qty": 1
 				}
 			]
 		},
@@ -595,7 +599,7 @@
 		{
 			"id": "interface",
 			"name": "Interface",
-			"description": "The interface between the feeder and the distribution layers. Its lazy Susan sandwiches the upper fixed section and the chute mount, 4 M4 screws a side.",
+			"description": "The interface between the feeder and the distribution layers. Its lazy Susan sandwiches the upper fixed section and the chute mount, 4 M4 screws a side, and the plywood top plate bolts down onto the six brackets' inserts.",
 			"status": "partial",
 			"lines": [
 				{
@@ -673,6 +677,14 @@
 				{
 					"part": "scr-m4-12-cs",
 					"qty": 8
+				},
+				{
+					"part": "top-plate",
+					"qty": 1
+				},
+				{
+					"part": "scr-m5-35-fhcs",
+					"qty": 6
 				}
 			]
 		},
@@ -2524,15 +2536,15 @@
 					"date": "2026-06-27",
 					"message": "Initial version.",
 					"commit": "be3f4cd",
-					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/dd778421784bf38babc9ccde0f1007ce61e7e2c575718a933e62aadfedd55484.stl",
-					"render": "/renders/cable-clamp-outer.png",
+					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/34485f41055e82d098984ed49824fd0f93f471dac62ea86e6b83cf87482bf9fd.stl",
+					"render": "/renders/versions/cable-clamp-outer-v1.png",
 					"grams": 19.76
 				},
 				{
 					"version": "2",
 					"date": "2026-07-18",
 					"message": "Enlarged the M3 nut pocket. The v1 pocket was undersized and the nut would not seat in it.",
-					"commit": null,
+					"commit": "6c565d4",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/dd778421784bf38babc9ccde0f1007ce61e7e2c575718a933e62aadfedd55484.stl",
 					"render": "/renders/cable-clamp-outer.png",
 					"grams": 19.76
@@ -5559,12 +5571,12 @@
 			"cots": {
 				"type": "screw",
 				"size": "M5",
-				"variant": "countersunk",
+				"variant": "flat",
 				"length_mm": 35
 			},
 			"name": "M5 \u00d7 35 mm flat head",
 			"category": "Screws",
-			"description": "The long screws that stack the cable cage together. Clearly a different screw from the rest of the M5s.",
+			"description": "The long screws that stack the cable cage together, and that bolt the plywood top plate down onto the interface brackets.",
 			"note": null,
 			"created_at": "2026-07-18",
 			"updated_at": "2026-07-18",
@@ -5579,7 +5591,7 @@
 				},
 				{
 					"label": "Head",
-					"value": "Flat head hex socket cap"
+					"value": "Flat (pancake) head, hex socket"
 				},
 				{
 					"label": "Material",
@@ -5605,11 +5617,12 @@
 						"url": "https://www.amazon.com/dp/B0CTBG7GY9",
 						"affiliate_url": "https://www.amazon.com/dp/B0CTBG7GY9?tag=sorterv2-20",
 						"as_of": "2026-07-18",
-						"pack_qty": 20
+						"pack_qty": 20,
+						"price": 5.99
 					}
 				]
 			},
-			"image": null
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/cb2fdd72471816cef2a69bdd7775a1863cf4dea2d72a15a68a73deebb276164f.jpg"
 		},
 		{
 			"id": "scr-m5-shcs-tbd",
@@ -5632,7 +5645,7 @@
 				},
 				{
 					"label": "Length",
-					"value": "0 mm"
+					"value": "Unknown"
 				},
 				{
 					"label": "Head",
@@ -7011,14 +7024,12 @@
 			},
 			"name": "50mm LED COB - 24v",
 			"category": "Wire harness",
-			"description": "Lighting for the C-channels and carousel drop zone",
+			"description": "Lights the feeder C-channels. One per light post.",
 			"note": null,
 			"created_at": "2026-07-18",
 			"updated_at": "2026-07-18",
 			"attributes": [],
-			"sheet_qty": {
-				"per_machine": 3
-			},
+			"sheet_qty": null,
 			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": {
