@@ -434,10 +434,12 @@
 		</tr>
 	{/snippet}
 
-	<div class="grid gap-6 lg:grid-cols-[1fr_340px]">
+	<!-- min-w-0: a grid item defaults to min-width:auto, so the parts table would
+	     push its own track wider than the page on a phone -->
+	<div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
 		<!-- LEFT: parts by section -->
-		<div>
-			<div class="mb-3 flex items-center justify-between border-b border-border">
+		<div class="min-w-0">
+			<div class="mb-3 flex flex-wrap items-center justify-between gap-x-3 gap-y-1 border-b border-border">
 				<div class="flex gap-1">
 					<button class="border-b-2 px-3 py-2 text-sm font-semibold {activeTab === 'parts' ? 'border-text text-text' : 'border-transparent text-text-muted hover:text-text'}" onclick={() => (activeTab = 'parts')}>Parts</button>
 					<button class="border-b-2 px-3 py-2 text-sm font-semibold {activeTab === 'plates' ? 'border-text text-text' : 'border-transparent text-text-muted hover:text-text'}" onclick={() => (activeTab = 'plates')}>Build plates{PLATES.length ? ` (${PLATES.length})` : ''}</button>
@@ -482,6 +484,9 @@
 						{/if}
 						<span class="pl-sec-total">{grams(selectedGrams)}</span>
 					</h3>
+					<!-- a long part name can push the table past a phone's width; it
+					     scrolls within the section rather than moving the whole page -->
+					<div class="pl-scroll">
 					<table class="pl-tbl">
 						<thead>
 							<tr>
@@ -550,6 +555,7 @@
 							{/each}
 						</tbody>
 					</table>
+					</div>
 				</section>
 			{/each}
 			{:else}
@@ -699,6 +705,44 @@
 	.pl-kid { background: color-mix(in oklab, var(--color-bg) 50%, transparent); }
 	.pl-kid > td:first-child { padding-left: 2.5rem; }
 	.pl-kid .pl-name { color: color-mix(in oklab, var(--color-text) 88%, transparent); }
+
+	/* The table is the page's spine and stays a table; if a long name pushes it
+	   past a narrow screen it scrolls here, never dragging the page with it. */
+	.pl-scroll { overflow-x: auto; }
+
+	/* ---- phones -------------------------------------------------------------
+	   The parts table is the page's spine, so it stays a table rather than
+	   collapsing into cards — but 1.25rem gutters and a per-unit column don't
+	   fit 375px. Tighten the padding, shrink the thumbnail, and drop "each":
+	   the total is the number people act on, and each is still in the modal. */
+	@media (max-width: 640px) {
+		/* auto layout hands the slack to whichever column has the widest content —
+		   here the thumbnail — and squeezes the names. Fixed layout honours these
+		   widths instead, so the name gets everything left over. */
+		.pl-tbl { table-layout: fixed; }
+		.pl-tbl thead th,
+		.pl-row > td { padding-right: 0.5rem; }
+		.pl-tbl thead th:first-child,
+		.pl-row > td:first-child { padding-left: 0.5rem; }
+		.pl-kid > td:first-child { padding-left: 1.25rem; }
+		.pl-c-each { display: none; }
+		.pl-c-check { width: 1.75rem; }
+		.pl-c-thumb { width: 2.75rem; }
+		.pl-c-thumb img { width: 2.25rem; height: 2.25rem; }
+		/* the rollup's fan of three thumbnails has nowhere to go in a phone's thumb
+		   column — it spilled over the name. One stands in; the badge and the
+		   "3 parts" line already say it's an assembly. */
+		.pl-fan .pl-thumb + .pl-thumb { display: none; }
+		.pl-c-name { width: auto; }
+		.pl-c-total { width: 3.5rem; }
+		.pl-c-dl { width: 1.5rem; }
+		.pl-sec { margin-bottom: 1.75rem; }
+		/* long unbroken part names would otherwise force the column wider */
+		.pl-name,
+		.pl-meta { overflow-wrap: anywhere; font-size: 0.875rem; }
+		.pl-name { font-size: 0.9375rem; gap: 0.375rem; }
+		.pl-row > td { padding-top: 0.625rem; padding-bottom: 0.625rem; }
+	}
 
 	.pl-c-check { width: 2rem; }
 	.pl-c-thumb { width: 3.5rem; }
