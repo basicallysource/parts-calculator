@@ -47,13 +47,14 @@ SOURCES = [
     ("static/stl", "all-parts.zip", "bundle"),
     # COTS/hardware product images: shown inline by the site, archived via LFS.
     ("slicer/images", "*.png", "img"),
+    ("slicer/images", "*.jpg", "img"),
 ]
 
 CONTENT_TYPES = {".stl": "model/stl", ".3mf": "model/3mf", ".zip": "application/zip",
-                 ".png": "image/png"}
+                 ".png": "image/png", ".jpg": "image/jpeg"}
 
 # Images render in <img> tags; everything else is a download.
-INLINE_SUFFIXES = {".png"}
+INLINE_SUFFIXES = {".png", ".jpg"}
 
 MANIFEST = REPO / "slicer" / "artifacts.json"
 CREDS_FILE = Path.home() / ".config" / "do-spaces" / "sorter-v2-parts.env"

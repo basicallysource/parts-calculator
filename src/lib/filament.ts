@@ -84,6 +84,18 @@ export type Vendor = {
 	note?: string;
 };
 
+/** A group of hardware that looks alike, sharing one product photo. `match` is
+ *  any subset of a part's `cots` block, so a family can be drawn as broadly as
+ *  "every screw" or as narrowly as "M3 countersunk" — the most specific match
+ *  wins. A photo of an M3 countersunk screw is a photo of an M5 one; what
+ *  differs is the length, which the row labels over the image. */
+export type Family = {
+	id: string;
+	name: string;
+	match: Record<string, string | number>;
+	image: string | null;
+};
+
 /** Stock material — bought as a length and cut down. Assembly lines count the
  *  *pieces* a build consumes; `pieces_per_unit` converts that to lengths to buy. */
 export type Stock = {
@@ -100,7 +112,7 @@ export type Stock = {
 export type Hardware = {
 	id: string;
 	kind: 'cots';
-	cots?: { type: string; size?: string; variant?: string } | null;
+	cots?: { type: string; size?: string; variant?: string; length_mm?: number } | null;
 	name: string;
 	category?: string | null;
 	description: string;
@@ -202,6 +214,7 @@ export const COLOR_ROLES = raw.color_roles as ColorRoleDef[];
 export const ASSEMBLIES = (raw.assemblies ?? []) as Assembly[];
 export const PARTS = raw.parts as unknown as Part[];
 export const HARDWARE = ((raw as Record<string, unknown>).hardware ?? []) as Hardware[];
+export const FAMILIES = ((raw as Record<string, unknown>).families ?? []) as Family[];
 export const SPOOL_G = 1000;
 
 const sectionById = new Map(SECTIONS.map((s) => [s.id, s]));
@@ -226,6 +239,35 @@ for (const a of ASSEMBLIES) {
 /** Assemblies this part or hardware item is a member of. */
 export function assembliesContaining(id: string): Assembly[] {
 	return assembliesByMember.get(id) ?? [];
+}
+
+/** The narrowest family this part falls into, if any. Specificity is just how
+ *  many `cots` keys the family pins, so "M3 countersunk" beats "any screw". */
+export function familyFor(h: Hardware): Family | undefined {
+	const cots = (h.cots ?? {}) as Record<string, string | number | undefined>;
+	let best: Family | undefined;
+	for (const f of FAMILIES) {
+		const keys = Object.keys(f.match);
+		if (!keys.every((k) => cots[k] === f.match[k])) continue;
+		if (!best || keys.length > Object.keys(best.match).length) best = f;
+	}
+	return best;
+}
+
+/** What to show for a hardware item: its own photo if it has one, else its
+ *  family's. A family photo stands for several lengths, so callers pair it with
+ *  the length label — see `hardwareLengthLabel`. */
+export function hardwareImage(h: Hardware): { src: string; shared: boolean } | null {
+	if (h.image) return { src: h.image, shared: false };
+	const fam = familyFor(h);
+	return fam?.image ? { src: fam.image, shared: true } : null;
+}
+
+/** The one thing a shared family photo can't show. Null when there's no length
+ *  to state (a nut, an insert) or it isn't known yet. */
+export function hardwareLengthLabel(h: Hardware): string | null {
+	const mm = h.cots?.length_mm;
+	return mm ? `${mm}mm` : null;
 }
 
 export function getPart(id: string): Part | undefined {

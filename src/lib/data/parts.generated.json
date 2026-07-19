@@ -89,6 +89,43 @@
 			"default": "ivory-white"
 		}
 	],
+	"families": [
+		{
+			"id": "screw-countersunk",
+			"name": "Countersunk (flat head) socket screw",
+			"match": {
+				"type": "screw",
+				"variant": "countersunk"
+			},
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/faf0edbe33245eec7dff8e0f365b0c006ad6991b7372217c447dfe53928228a4.jpg"
+		},
+		{
+			"id": "screw-socket",
+			"name": "Socket head cap screw",
+			"match": {
+				"type": "screw",
+				"variant": "socket"
+			},
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/580ba61e9d9a2275717f9c9741502e966f45c4382616993365b4d1cb9720d0c0.jpg"
+		},
+		{
+			"id": "screw-button",
+			"name": "Button head socket screw",
+			"match": {
+				"type": "screw",
+				"variant": "button"
+			},
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/350b2785fbe0a6ada9e624dfd4457a2a2309857171c78515560cb5c3f3faf445.jpg"
+		},
+		{
+			"id": "nut",
+			"name": "Hex nut",
+			"match": {
+				"type": "nut"
+			},
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/3731dab3df874778f0dd2d4a36771a2e3266dfae609cab95ce5bf1abe3f177fb.jpg"
+		}
+	],
 	"assemblies": [
 		{
 			"id": "light-post",
@@ -5007,7 +5044,8 @@
 			"cots": {
 				"type": "screw",
 				"size": "M3",
-				"variant": "countersunk"
+				"variant": "countersunk",
+				"length_mm": 8
 			},
 			"name": "M3 \u00d7 8 mm countersunk",
 			"category": "Screws",
@@ -5059,7 +5097,8 @@
 			"cots": {
 				"type": "screw",
 				"size": "M3",
-				"variant": "countersunk"
+				"variant": "countersunk",
+				"length_mm": 12
 			},
 			"name": "M3 \u00d7 12 mm countersunk",
 			"category": "Screws",
@@ -5111,7 +5150,8 @@
 			"cots": {
 				"type": "screw",
 				"size": "M3",
-				"variant": "countersunk"
+				"variant": "countersunk",
+				"length_mm": 20
 			},
 			"name": "M3 \u00d7 20 mm countersunk",
 			"category": "Screws",
@@ -5160,7 +5200,8 @@
 			"cots": {
 				"type": "screw",
 				"size": "M3",
-				"variant": "socket"
+				"variant": "socket",
+				"length_mm": 16
 			},
 			"name": "M3 \u00d7 16 mm socket head",
 			"category": "Screws",
@@ -5194,7 +5235,8 @@
 			"cots": {
 				"type": "screw",
 				"size": "M3",
-				"variant": "button"
+				"variant": "button",
+				"length_mm": 6
 			},
 			"name": "M3 \u00d7 6 mm button head",
 			"category": "Screws",
@@ -5228,7 +5270,8 @@
 			"cots": {
 				"type": "screw",
 				"size": "M3",
-				"variant": "button"
+				"variant": "button",
+				"length_mm": 12
 			},
 			"name": "M3 \u00d7 12 mm button head",
 			"category": "Screws",
@@ -5262,7 +5305,8 @@
 			"cots": {
 				"type": "screw",
 				"size": "M3",
-				"variant": "button"
+				"variant": "button",
+				"length_mm": 35
 			},
 			"name": "M3 \u00d7 35 mm button head",
 			"category": "Screws",
@@ -5296,7 +5340,8 @@
 			"cots": {
 				"type": "screw",
 				"size": "M4",
-				"variant": "countersunk"
+				"variant": "countersunk",
+				"length_mm": 6
 			},
 			"name": "M4 \u00d7 6 mm countersunk",
 			"category": "Screws",
@@ -5330,7 +5375,8 @@
 			"cots": {
 				"type": "screw",
 				"size": "M4",
-				"variant": "countersunk"
+				"variant": "countersunk",
+				"length_mm": 12
 			},
 			"name": "M4 \u00d7 12 mm countersunk",
 			"category": "Screws",
@@ -5364,7 +5410,8 @@
 			"cots": {
 				"type": "screw",
 				"size": "M5",
-				"variant": "socket"
+				"variant": "socket",
+				"length_mm": 12
 			},
 			"name": "M5 \u00d7 12 mm socket head",
 			"category": "Screws",
@@ -5398,7 +5445,8 @@
 			"cots": {
 				"type": "screw",
 				"size": "M5",
-				"variant": "socket"
+				"variant": "socket",
+				"length_mm": 16
 			},
 			"name": "M5 \u00d7 16 mm socket head",
 			"category": "Screws",
@@ -5432,7 +5480,8 @@
 			"cots": {
 				"type": "screw",
 				"size": "M5",
-				"variant": "socket"
+				"variant": "socket",
+				"length_mm": 20
 			},
 			"name": "M5 \u00d7 20 mm socket head",
 			"category": "Screws",
@@ -5466,7 +5515,8 @@
 			"cots": {
 				"type": "screw",
 				"size": "M5",
-				"variant": "socket"
+				"variant": "socket",
+				"length_mm": 30
 			},
 			"name": "M5 \u00d7 30 mm socket head",
 			"category": "Screws",
@@ -5500,7 +5550,8 @@
 			"cots": {
 				"type": "screw",
 				"size": "M5",
-				"variant": "flat-hex"
+				"variant": "countersunk",
+				"length_mm": 35
 			},
 			"name": "M5 \u00d7 35 mm flat head",
 			"category": "Screws",

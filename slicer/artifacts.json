@@ -448,9 +448,9 @@
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/4a28da2e33e12340c3621421365add2fed8c1a65d235f8afb93ebfc2d8203ff0.3mf"
     },
     "static/stl/all-parts.zip": {
-      "sha256": "35a9efac799c48e4097ce49ed162217ea964c5b4b5a373d7b3d4bf99e683f030",
-      "size": 16981355,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/35a9efac799c48e4097ce49ed162217ea964c5b4b5a373d7b3d4bf99e683f030.zip"
+      "sha256": "9987e2d556e3b6732d9cb10c0a49ff164f1cbc5cb0069c35602a7ce49a743f5d",
+      "size": 16981357,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/9987e2d556e3b6732d9cb10c0a49ff164f1cbc5cb0069c35602a7ce49a743f5d.zip"
     },
     "slicer/images/hardware/ctrl-board-basically.png": {
       "sha256": "f7caadca07d5a0dc6894895209da6f1a7f4c865a245ee095fce358902c85ff42",
@@ -466,6 +466,26 @@
       "sha256": "1838b0588731b2d835ae5f9885f4e486324b89370ab3ea5df086540deb539c75",
       "size": 1219369,
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/1838b0588731b2d835ae5f9885f4e486324b89370ab3ea5df086540deb539c75.png"
+    },
+    "slicer/images/hardware/family/nut.jpg": {
+      "sha256": "3731dab3df874778f0dd2d4a36771a2e3266dfae609cab95ce5bf1abe3f177fb",
+      "size": 28752,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/3731dab3df874778f0dd2d4a36771a2e3266dfae609cab95ce5bf1abe3f177fb.jpg"
+    },
+    "slicer/images/hardware/family/screw-button.jpg": {
+      "sha256": "350b2785fbe0a6ada9e624dfd4457a2a2309857171c78515560cb5c3f3faf445",
+      "size": 36581,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/350b2785fbe0a6ada9e624dfd4457a2a2309857171c78515560cb5c3f3faf445.jpg"
+    },
+    "slicer/images/hardware/family/screw-countersunk.jpg": {
+      "sha256": "faf0edbe33245eec7dff8e0f365b0c006ad6991b7372217c447dfe53928228a4",
+      "size": 52117,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/faf0edbe33245eec7dff8e0f365b0c006ad6991b7372217c447dfe53928228a4.jpg"
+    },
+    "slicer/images/hardware/family/screw-socket.jpg": {
+      "sha256": "580ba61e9d9a2275717f9c9741502e966f45c4382616993365b4d1cb9720d0c0",
+      "size": 38189,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/580ba61e9d9a2275717f9c9741502e966f45c4382616993365b4d1cb9720d0c0.jpg"
     }
   }
 }
