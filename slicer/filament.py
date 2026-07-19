@@ -568,6 +568,21 @@ def main():
                      else p.get("image_url"),
         })
 
+    # Hardware families: one product photo shared by every cots part whose `cots`
+    # block matches. The image goes to the bucket like any other, content-addressed.
+    families = []
+    for f in manifest.get("families", []):
+        img = f.get("image")
+        if img and not os.path.exists(os.path.join(HERE, img)):
+            raise SystemExit(f"family {f['id']}: missing image {img}")
+        families.append({
+            "id": f["id"],
+            "name": f["name"],
+            "match": f.get("match", {}),
+            "image": artifact_url(os.path.join(HERE, img), prefix="img") if img
+                     else f.get("image_url"),
+        })
+
     # bundle every STL into one downloadable zip (built before the data dict so
     # its content-addressed URL can go into settings)
     zip_path = os.path.join(STL_OUT, "all-parts.zip")
@@ -587,6 +602,7 @@ def main():
         },
         "sections": manifest["sections"],
         "color_roles": manifest["color_roles"],
+        "families": families,
         "assemblies": manifest.get("assemblies", []),
         "parts": out_parts,
         "hardware": hardware,
