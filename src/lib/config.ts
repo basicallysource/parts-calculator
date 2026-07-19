@@ -6,9 +6,11 @@ import { browser } from '$app/environment';
 
 export const CONFIG_KEY = 'sorter-filament-config-v1';
 
-// Note: layer configuration lives in layers.svelte.ts (shared across tabs), not here.
+// Note: state shared across tabs lives in its own store, not here — layer
+// configuration in layers.svelte.ts, filament colours in colors.svelte.ts.
+// (`roleColors` was stored here until the assembly tab needed it too; that
+// store still migrates the old key out of this blob.)
 export type StoredConfig = {
-	roleColors: Record<string, string>;
 	printBins: boolean;
 	surplus: number;
 	selected: Record<string, boolean>;
