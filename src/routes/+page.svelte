@@ -26,6 +26,8 @@
 		type Part
 	} from '$lib/filament';
 	import { getBambuColor } from '$lib/bambu-colors';
+	import { partsCsv } from '$lib/parts-csv';
+	import { download, exportSpec, filename } from '$lib/csv';
 	import ColorPicker from '$lib/components/ColorPicker.svelte';
 	import Modal from '$lib/components/Modal.svelte';
 	import StlViewer from '$lib/components/StlViewer.svelte';
@@ -171,6 +173,26 @@
 	);
 
 	const selectedParts = $derived(PARTS.filter((p) => isIncluded(p.id)));
+
+	// CSV of what's selected: quantities, real sliced weights, resolved colours,
+	// and the permanent STL link, so the file is enough to print from.
+	function downloadCsv() {
+		const spec = exportSpec(layers);
+		const parts = selectedParts.length ? selectedParts : PARTS;
+		download(
+			filename(spec, 'printed-parts'),
+			partsCsv(parts, spec, {
+				qty: (p) => machineQty(p, layers),
+				grams: (p) => effectiveGrams(p, supportOn(p.id)),
+				color: (p) => {
+					const id = primaryColorId(p, roleColors);
+					return id ? (getBambuColor(id)?.name ?? id) : 'any';
+				},
+				onshape: (p) => partOnshape(p).version ?? partOnshape(p).doc,
+				origin: location.origin
+			})
+		);
+	}
 	const allSelected = $derived(PARTS.every((p) => selected[p.id]));
 
 	const prettyPattern = SETTINGS.infill_pattern.replace('adaptivecubic', 'adaptive cubic');
@@ -433,6 +455,13 @@
 						{selectedParts.length}/{PARTS.length} selected ·
 						<button class="text-primary hover:text-primary-hover" onclick={() => setAll(!allSelected)}>
 							{allSelected ? 'deselect all' : 'select all'}
+						</button>
+						<button
+							class="ml-3 inline-flex items-center gap-1 text-primary hover:text-primary-hover"
+							onclick={downloadCsv}
+							title="Download {selectedParts.length ? 'the selected parts' : 'every part'} as CSV"
+						>
+							<Download size={13} /> CSV
 						</button>
 					</span>
 				{/if}

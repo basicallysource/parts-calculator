@@ -22,7 +22,8 @@
 		type Vendor
 	} from '$lib/filament';
 	import { layerStore } from '$lib/layers.svelte';
-	import { csvFilename, csvPreamble, toCsv } from '$lib/hardware-csv';
+	import { hardwareCsv } from '$lib/hardware-csv';
+	import { download, exportSpec, filename } from '$lib/csv';
 	import { ArrowUpRight, Download } from 'lucide-svelte';
 
 	// Every off-the-shelf part from the BOM sheet, in the unified data format.
@@ -204,32 +205,19 @@
 	// -------------------------------------------------------------- csv export
 	// The file has to stand alone: someone should be able to hand it to an
 	// assistant and ask "which multipacks cover 90% of this?" without the page.
-	const RELEASE = '2.0';
-	// the builder's own date, not UTC — this lands in the filename they'll read
-	const today = () => {
-		const d = new Date();
-		return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-	};
-
 	function downloadCsv() {
-		const spec = { release: RELEASE, layers, date: today() };
+		const spec = exportSpec(layers);
 		const items = selectedList.length ? selectedList : HARDWARE;
-		const body =
-			csvPreamble(spec, items.length) +
-			toCsv(items, {
-				layers,
+		download(
+			filename(spec, 'hardware'),
+			hardwareCsv(items, spec, {
 				qty: (h) => totalQty(h, layers),
 				qtySource,
 				buyUnits,
 				vendor: bestUsVendor,
 				packs: packsNeeded
-			});
-		const url = URL.createObjectURL(new Blob([body], { type: 'text/csv;charset=utf-8' }));
-		const a = document.createElement('a');
-		a.href = url;
-		a.download = csvFilename(spec);
-		a.click();
-		URL.revokeObjectURL(url);
+			})
+		);
 	}
 
 	// ------------------------------------------------------- where it goes

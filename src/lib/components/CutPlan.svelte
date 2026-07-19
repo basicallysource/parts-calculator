@@ -1,9 +1,11 @@
 <script lang="ts">
-	import { Info } from 'lucide-svelte';
+	import { Download, Info } from 'lucide-svelte';
 	import { FRAMING_PIECES, STOCK_MM, CLEARANCE_MM } from '$lib/framing';
 	import { layerStore } from '$lib/layers.svelte';
 	import { ftin, expand, packOptimal, packBundle, planGroups } from '$lib/cutplan';
 	import Popover from '$lib/components/Popover.svelte';
+	import { framingCsv } from '$lib/parts-csv';
+	import { download, exportSpec, filename } from '$lib/csv';
 
 	let stock = $state(STOCK_MM);
 	let kerf = $state(3);
@@ -38,6 +40,13 @@
 		}).filter((p) => p.defaultQty > 0)
 	);
 	const anyModified = $derived(pieces.some((p) => p.modified));
+
+	// Cut list plus the bar-by-bar plan, exported as the page currently has it —
+	// the user's own quantity and selection overrides, not the defaults.
+	function downloadCsv() {
+		const spec = exportSpec(n);
+		download(filename(spec, 'framing'), framingCsv(activePieces, bins, spec, stock, kerf));
+	}
 	// only selected pieces with a positive quantity feed the cut plan
 	const activePieces = $derived(pieces.filter((p) => p.selected && p.qty > 0));
 
@@ -269,7 +278,16 @@
 
 	<!-- summary -->
 	<div>
-		<h3 class="mb-2 text-sm font-semibold text-text">Summary</h3>
+		<div class="mb-2 flex items-center justify-between gap-3">
+			<h3 class="text-sm font-semibold text-text">Summary</h3>
+			<button
+				class="inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary-hover"
+				onclick={downloadCsv}
+				title="Download the cut list and bar plan as CSV"
+			>
+				<Download size={13} /> CSV
+			</button>
+		</div>
 		<div class="grid grid-cols-2 gap-2 sm:grid-cols-4">
 			{#each metrics as m (m.k)}
 				<div class="setup-card-shell border p-3">
