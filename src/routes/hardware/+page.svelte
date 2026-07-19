@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ChevronDown, ChevronRight, ExternalLink, ImageOff, ShoppingCart, Zap } from 'lucide-svelte';
 	import Badge from '$lib/components/Badge.svelte';
+	import HardwareIcon from '$lib/components/HardwareIcon.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 	import LayerControl from '$lib/components/LayerControl.svelte';
 	import Modal from '$lib/components/Modal.svelte';
@@ -10,6 +11,7 @@
 		getPart,
 		HARDWARE,
 		hardwareImage,
+		SIZE_COLORS,
 		hardwareLengthLabel,
 		JOIN_LABELS,
 		lineQty,
@@ -303,7 +305,9 @@
 
 		<div class="min-w-0 flex-1">
 			<div class="flex items-start justify-between gap-3">
-				<h3 class="text-sm font-semibold text-text">{h.name}</h3>
+				<h3 class="flex items-center gap-1.5 text-sm font-semibold text-text">
+						<HardwareIcon hw={h} />{h.name}
+					</h3>
 				<span
 					class="shrink-0 text-right text-xs tabular-nums text-text-muted"
 					title={src ? QTY_TITLE[src] : undefined}
@@ -313,13 +317,12 @@
 					{:else if qty == null}
 						qty TBD
 					{:else}
-						<span class="font-semibold text-text">×{qty}</span>
-						{#if h.stock}<span>&nbsp;pieces</span>{/if}
-						{#if src === 'sheet'}
-							<span class="text-warning-dark" title={QTY_TITLE.sheet}>*</span>
+						<span class="font-semibold text-text">×{buyUnits(h, qty)}</span>
+												{#if src === 'sheet'}
+							<span class="qty-src" title={QTY_TITLE.sheet}>BOM sheet</span>
 						{/if}
 						{#if h.stock}
-							<div>buy {buyUnits(h, qty)} × {h.stock.unit_label}</div>
+							<div>{h.stock.unit_label}</div>
 						{:else if src === 'sheet' && h.sheet_qty?.per_layer != null}
 							<div>({h.sheet_qty.per_layer}/layer)</div>
 						{/if}
@@ -389,9 +392,9 @@
 
 	<div class="mb-5">
 		<Callout variant="warning" title="Work in progress">
-			This list is incomplete and several quantities are unconfirmed. Counts without a
-			<span class="text-warning-dark">*</span> are summed from the assembly tree; starred ones are
-			hand counts carried over from the BOM sheet, waiting to be placed in the tree.
+			This list is incomplete and several quantities are unconfirmed. Counts are summed from
+			the assembly tree, except the ones tagged <span class="qty-src">BOM sheet</span> — those are
+			hand counts waiting to be placed in the tree.
 		</Callout>
 	</div>
 
@@ -400,6 +403,15 @@
 	<div class="grid items-start gap-6 lg:grid-cols-[1fr_320px]">
 		<!-- LEFT: one vertical list, grouped by category -->
 		<div>
+			<!-- the icons encode head shape + thread size; say so once, here -->
+			<div class="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-text-muted">
+				<span>Icon shows head shape; colour is thread size:</span>
+				{#each Object.entries(SIZE_COLORS) as [sz, c] (sz)}
+					<span class="inline-flex items-center gap-1">
+						<span class="inline-block h-2.5 w-2.5" style="background:{c}"></span>{sz}
+					</span>
+				{/each}
+			</div>
 			<div class="mb-3 flex flex-wrap items-center justify-between gap-2 border-b border-border pb-2">
 				<span class="text-xs font-semibold uppercase tracking-wider text-text-muted">
 					Rough US total <span class="font-bold normal-case tracking-normal text-text"
@@ -602,7 +614,7 @@
 						{:else if qty == null}
 							not settled yet
 						{:else}
-							{qty}{#if detail.stock}&nbsp;{detail.stock.piece_label}s{/if}
+							{buyUnits(detail, qty)}{#if detail.stock}&nbsp;×&nbsp;{detail.stock.unit_label}{/if}
 							{#if qtySource(detail) === 'tree'}
 								<span class="text-text-muted">— summed from the assembly tree</span>
 							{:else}
@@ -615,9 +627,9 @@
 						{/if}
 					</dd>
 					{#if detail.stock}
-						<dt class="text-text-muted">Buy</dt>
+						<dt class="text-text-muted">Cut into</dt>
 						<dd class="text-text">
-							{buyUnits(detail, qty) ?? 1} × {detail.stock.unit_label}
+							{qty} × {detail.stock.piece_label}
 						</dd>
 					{/if}
 					{#each detail.attributes ?? [] as a}
@@ -747,6 +759,19 @@
 	.hw-children {
 		border-left: 2px solid var(--color-border);
 		margin-left: 0.75rem;
+	}
+
+	/* A count that still comes from the spreadsheet says so in words. An asterisk
+	   pointing at a callout three screens up explains nothing. */
+	.qty-src {
+		padding: 0 0.2rem;
+		font-size: 9px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		color: var(--color-warning-dark);
+		border: 1px solid color-mix(in oklab, var(--color-warning) 50%, transparent);
+		background: color-mix(in oklab, var(--color-warning) 8%, transparent);
 	}
 
 	/* One family photo covers every length in the family, so the length rides in

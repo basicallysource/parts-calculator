@@ -3,6 +3,7 @@
  * (slicer/filament.py) — this module only multiplies by quantities and groups
  * by color. No estimation happens here.
  */
+import { LASER_CUT_PARTS, type LaserCutPart } from './lasercut';
 import raw from '$lib/data/parts.generated.json';
 import platesRaw from '$lib/data/plates.generated.json';
 import { getBambuColor, type BambuColor } from '$lib/bambu-colors';
@@ -94,6 +95,16 @@ export type Family = {
 	name: string;
 	match: Record<string, string | number>;
 	image: string | null;
+};
+
+/** Thread size gets a colour so an M3 and an M5 don't read alike in a product
+ *  photo, where they look near identical. Deliberately a small fixed set — if a
+ *  size isn't here it simply gets no icon rather than an invented colour. */
+export const SIZE_COLORS: Record<string, string> = {
+	M3: '#2f6fd0', // blue
+	M4: '#b8791b', // amber
+	M5: '#7a4ec2', // violet
+	M6: '#2c8a6b' // green
 };
 
 /** Stock material — bought as a length and cut down. Assembly lines count the
@@ -221,6 +232,7 @@ const sectionById = new Map(SECTIONS.map((s) => [s.id, s]));
 const assemblyById = new Map(ASSEMBLIES.map((a) => [a.id, a]));
 const partById = new Map(PARTS.map((p) => [p.id, p]));
 const hardwareById = new Map(HARDWARE.map((h) => [h.id, h]));
+const lasercutById = new Map(LASER_CUT_PARTS.map((p) => [p.id, p]));
 
 // Reverse index: which assemblies list a given part/hardware id as a member.
 // Lets a flat view (the hardware page) surface the joint a part belongs to
@@ -268,6 +280,13 @@ export function hardwareImage(h: Hardware): { src: string; shared: boolean } | n
 export function hardwareLengthLabel(h: Hardware): string | null {
 	const mm = h.cots?.length_mm;
 	return mm ? `${mm}mm` : null;
+}
+
+/** Laser-cut sheet parts still live in their own module (design doc §5.5 folds
+ *  them into the manifest later), but assembly lines may already reference one
+ *  by id — the plywood top plate bolts to the interface brackets. */
+export function getLasercut(id: string): LaserCutPart | undefined {
+	return lasercutById.get(id);
 }
 
 export function getPart(id: string): Part | undefined {
