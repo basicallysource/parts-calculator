@@ -1,5 +1,13 @@
 <script lang="ts">
-	import { ChevronDown, ChevronRight, ExternalLink, ImageOff, ShoppingCart, Zap } from 'lucide-svelte';
+	import {
+		Blocks,
+		ChevronDown,
+		ChevronRight,
+		ExternalLink,
+		ImageOff,
+		ShoppingCart,
+		Zap
+	} from 'lucide-svelte';
 	import Badge from '$lib/components/Badge.svelte';
 	import HardwareIcon from '$lib/components/HardwareIcon.svelte';
 	import Callout from '$lib/components/Callout.svelte';
@@ -20,6 +28,7 @@
 		packsNeeded,
 		resolveHardwareTotals,
 		SIZE_COLORS,
+		usagePaths,
 		fmtPrice,
 		type Assembly,
 		type Hardware
@@ -53,6 +62,16 @@
 	// wrappers just bind the shared resolvers to this page's live `treeTotals`.
 	const totalQty = (h: Hardware, l: number) => hardwareTotalQty(h, treeTotals, l);
 	const qtySource = (h: Hardware) => hardwareQtySource(h, treeTotals);
+
+	/** How many distinct places on the machine an item lands in — the same paths
+	 *  the detail modal lists under "Where it goes". Walked once for the whole
+	 *  list rather than per row, since each call re-walks the tree from the root. */
+	const placementCount = $derived.by(() => {
+		const by = new Map<string, number>();
+		for (const h of HARDWARE) by.set(h.id, usagePaths(h.id, layers).length);
+		return by;
+	});
+
 	const QTY_TITLE = {
 		tree: 'Counted from the assembly tree',
 		sheet: 'Hand count carried over from the BOM sheet — not yet placed in the assembly tree'
@@ -227,6 +246,7 @@
 	{@const src = qtySource(h)}
 	{@const img = hardwareImage(h)}
 	{@const lengthLabel = hardwareLengthLabel(h)}
+	{@const spots = placementCount.get(h.id) ?? 0}
 	<div
 		class="hw-row setup-card-shell flex cursor-pointer items-start gap-3 border p-3 {selected[h.id]
 			? 'border-primary/60'
@@ -276,6 +296,17 @@
 			<div class="flex items-start justify-between gap-3">
 				<h3 class="flex items-center gap-1.5 text-sm font-semibold text-text">
 						<HardwareIcon hw={h} />{h.name}
+						<!-- Placed in the assembly tree, so the modal can say where it goes.
+						     A quiet mark rather than a badge: it holds for most rows, and the
+						     row's own content is what people are scanning for. -->
+						{#if spots > 0}
+							<span
+								class="shrink-0 text-text-muted"
+								title="Placed in the assembly — {spots} {spots === 1 ? 'spot' : 'spots'} on the machine"
+							>
+								<Blocks size={12} />
+							</span>
+						{/if}
 					</h3>
 				<span
 					class="shrink-0 text-right text-xs tabular-nums text-text-muted"
