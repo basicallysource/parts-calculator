@@ -9,6 +9,8 @@
 		getHardware,
 		getPart,
 		HARDWARE,
+		hardwareImage,
+		hardwareLengthLabel,
 		JOIN_LABELS,
 		lineQty,
 		resolveHardwareTotals,
@@ -234,6 +236,8 @@
 {#snippet hwRow(h: Hardware)}
 	{@const qty = totalQty(h, layers)}
 	{@const src = qtySource(h)}
+	{@const img = hardwareImage(h)}
+	{@const lengthLabel = hardwareLengthLabel(h)}
 	<div
 		class="hw-row setup-card-shell flex cursor-pointer items-start gap-3 border p-3 {selected[h.id]
 			? 'border-primary/60'
@@ -265,11 +269,16 @@
 		{:else}
 			<span class="mt-0.5 h-4 w-4 shrink-0 p-0.5" aria-hidden="true"></span>
 		{/if}
-		{#if h.image}
+		{#if img}
 			<span class="hw-thumb relative shrink-0">
-				<img src={h.image} alt={h.name} class="h-16 w-16 border border-border bg-white object-contain p-1" />
+				<img src={img.src} alt={h.name} class="h-16 w-16 border border-border bg-white object-contain p-1" />
+				<!-- A family photo stands in for every length in its family, so the
+				     length — the only thing it can't show — is stamped on the corner. -->
+				{#if img.shared && lengthLabel}
+					<span class="hw-len">{lengthLabel}</span>
+				{/if}
 				<!-- hover preview; decorative, the thumbnail already carries the alt -->
-				<img src={h.image} alt="" aria-hidden="true" class="hw-zoom" />
+				<img src={img.src} alt="" aria-hidden="true" class="hw-zoom" />
 			</span>
 		{:else}
 			<div
@@ -434,8 +443,9 @@
 										<!-- fanned thumbnails, same cue the printed-parts rollup uses -->
 										<span class="hw-fan shrink-0">
 											{#each block.items.slice(0, 3) as m, i (m.id)}
-												{#if m.image}
-													<img src={m.image} alt={m.name} style="z-index:{3 - i}" />
+												{@const mi = hardwareImage(m)}
+												{#if mi}
+													<img src={mi.src} alt={m.name} style="z-index:{3 - i}" />
 												{/if}
 											{/each}
 										</span>
@@ -552,12 +562,13 @@
 <Modal bind:open={detailOpen} title={detail?.name} maxW="max-w-4xl">
 	{#if detail}
 		{@const qty = totalQty(detail, layers)}
+		{@const dimg = hardwareImage(detail)}
 		<!-- Modal supplies no padding of its own; every caller wraps its body. -->
 		<div class="p-4">
 		<div class="flex flex-col gap-4 sm:flex-row">
-			{#if detail.image}
+			{#if dimg}
 				<img
-					src={detail.image}
+					src={dimg.src}
 					alt={detail.name}
 					class="h-72 w-72 shrink-0 self-start border border-border bg-white object-contain p-2 sm:h-80 sm:w-80"
 				/>
@@ -723,6 +734,22 @@
 	.hw-children {
 		border-left: 2px solid var(--color-border);
 		margin-left: 0.75rem;
+	}
+
+	/* One family photo covers every length in the family, so the length rides in
+	   the thumbnail's corner. Small and quiet — the row states it in full below. */
+	.hw-len {
+		position: absolute;
+		right: -1px;
+		bottom: -1px;
+		padding: 0 0.2rem;
+		font-size: 9px;
+		font-weight: 600;
+		line-height: 1.35;
+		font-variant-numeric: tabular-nums;
+		color: var(--color-text);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
 	}
 
 	/* thumbnails are small enough that the part is hard to make out, so hovering
