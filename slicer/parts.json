@@ -261,7 +261,9 @@
         "role": "feeder"
       },
       "optional": false,
-      "support": false
+      "support": false,
+      "suspicious": true,
+      "suspicious_note": "The dovetail that seats it onto the stator is a tight fit — it can be hard to get on."
     },
     {
       "id": "classification-dome",
@@ -4172,12 +4174,12 @@
           "qty": 2
         },
         {
-          "part": "scr-m3-8-cs",
-          "qty": 2
+          "part": "scr-m3-12-cs",
+          "qty": 3
         },
         {
           "part": "nut-m3",
-          "qty": 2
+          "qty": 3
         }
       ]
     },
@@ -4618,7 +4620,7 @@
     {
       "id": "c-channel",
       "name": "C-channel drive",
-      "description": "One C-channel drive unit: stator, NEMA bracket, output gear, gear train and stepper. 4 per machine — 3 in the feeder plus the classification channel's. The rotor differs by location (faceted in the feeder, finned in the classification chamber), so it is not part of this node.",
+      "description": "One C-channel drive unit: stator, NEMA bracket, output gear, gear train and stepper. 4 per machine — 3 in the feeder plus the classification channel's. Screw joints: 4 M3×12 countersunk hold the NEMA bracket to the stator; 3 M3×16 socket heads hold the stepper to the NEMA bracket; 5 M3×8 countersunk attach the output gear to the rotor (the light post's 2 screws into the NEMA bracket live on the light-post assembly). The rotor differs by location (faceted in the feeder, finned in the classification chamber), so it is not part of this node.",
       "status": "partial",
       "lines": [
         {
@@ -4651,7 +4653,7 @@
         },
         {
           "part": "scr-m3-12-cs",
-          "qty": 3
+          "qty": 4
         },
         {
           "part": "scr-m3-8-cs",
