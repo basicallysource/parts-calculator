@@ -23,7 +23,8 @@
 		partOnshape,
 		PLATES,
 		platesForPart,
-		type Part
+		type Part,
+		type PartVersion
 	} from '$lib/filament';
 	import { getBambuColor } from '$lib/bambu-colors';
 	import { partsCsv } from '$lib/parts-csv';
@@ -40,6 +41,9 @@
 	import Popover from '$lib/components/Popover.svelte';
 	import Badge from '$lib/components/Badge.svelte';
 	import { Download, Package, ZoomIn, Loader, Info, Plus, X, RotateCcw, Clock, Layers3, ExternalLink, AlertTriangle, History, ChevronRight, ChevronDown } from 'lucide-svelte';
+	import { page } from '$app/state';
+	import { replaceState } from '$app/navigation';
+	import { browser } from '$app/environment';
 
 	// ---- defaults (also used by "reset to default") -----------------------------
 	const defaultFunnelSizes = (): ('third' | 'half')[] => ['third', 'third', 'half'];
@@ -89,6 +93,47 @@
 			if (c.inclSupport) inclSupport = { ...inclSupport, ...c.inclSupport };
 		}
 		configLoaded = true;
+
+		// deep link: open a part's detail modal (with an optional preview colour and
+		// version) straight from the URL, so a view can be shared. Query params only
+		// exist in the browser — the site is prerendered — hence reading here.
+		const sp = page.url.searchParams;
+		const pid = sp.get('part');
+		const p = pid ? partsById.get(pid) : undefined;
+		if (p) {
+			const c = sp.get('color');
+			const v = sp.get('v');
+			openViewer(p, {
+				color: c && getBambuColor(c).id === c ? c : undefined,
+				version: v ? p.versions?.find((x) => String(x.version) === v) : undefined
+			});
+		}
+		urlReady = true;
+	});
+
+	// Mirror the open part + its preview colour/version into the URL so the current
+	// view is a shareable link. Colour and version are only written when they differ
+	// from the part's defaults, keeping shared links clean. This is deliberately not
+	// persisted to localStorage — it's about sharing a link, not restoring a session.
+	$effect(() => {
+		if (!browser || !urlReady) return;
+		const params = new URLSearchParams(page.url.search);
+		if (viewerOpen && viewerPart) {
+			params.set('part', viewerPart.id);
+			const defColor = primaryColorId(viewerPart, roleColors) ?? 'ash-gray';
+			if (viewerColor && viewerColor !== defColor) params.set('color', viewerColor);
+			else params.delete('color');
+			const newest = viewerPart.versions?.[viewerPart.versions.length - 1]?.version;
+			if (viewerVersion && viewerVersion.version !== newest) params.set('v', String(viewerVersion.version));
+			else params.delete('v');
+		} else {
+			params.delete('part');
+			params.delete('color');
+			params.delete('v');
+		}
+		const qs = params.toString();
+		const target = qs ? `${location.pathname}?${qs}` : location.pathname;
+		if (target !== location.pathname + location.search) replaceState(target, {});
 	});
 	$effect(() => {
 		const snapshot = { printBins, surplus, selected, inclSupport };
@@ -113,6 +158,14 @@
 	}
 	let viewerOpen = $state(false);
 	let viewerPart = $state<Part | null>(null);
+	// the detail modal is controlled here so its state can be mirrored into the URL
+	// (making a specific part / preview colour / version a shareable link). Seeded on
+	// open; the modal binds and writes back to these.
+	let viewerColor = $state('ash-gray');
+	let viewerVersion = $state<PartVersion | null>(null);
+	// gate URL writes until the initial deep-link read has run (see onMount), so we
+	// never clobber ?part=… before we've had a chance to open it
+	let urlReady = $state(false);
 
 	// the per-layer size drives both the funnel and the bin set for that layer
 	function variantCount(id: string): number | null {
@@ -246,8 +299,10 @@
 		for (const p of parts) if (!('bins' in p.quantities)) selected[p.id] = v;
 	}
 
-	function openViewer(p: Part) {
+	function openViewer(p: Part, seed?: { color?: string; version?: PartVersion | null }) {
 		viewerPart = p;
+		viewerColor = seed?.color ?? primaryColorId(p, roleColors) ?? 'ash-gray';
+		viewerVersion = seed?.version ?? p.versions?.[p.versions.length - 1] ?? null;
 		viewerOpen = true;
 	}
 	// A click anywhere on a part row opens its detail modal — except on the row's
@@ -661,7 +716,7 @@
 	</footer>
 </div>
 
-<PartDetailModal bind:open={viewerOpen} part={viewerPart} {roleColors} />
+<PartDetailModal bind:open={viewerOpen} part={viewerPart} bind:colorId={viewerColor} bind:version={viewerVersion} />
 
 <Modal bind:open={platesModalOpen} title="Build plates · {partsById.get(platesModalPartId ?? '')?.name ?? ''}">
 	<div class="p-4">
