@@ -1,11 +1,15 @@
 <script lang="ts">
+	import Seo from '$lib/components/Seo.svelte';
 	import ExtrusionScene from '$lib/components/ExtrusionScene.svelte';
 	import LayerControl from '$lib/components/LayerControl.svelte';
 	import CutPlan from '$lib/components/CutPlan.svelte';
 	import Figure from '$lib/components/Figure.svelte';
 </script>
 
-<svelte:head><title>Sorter Parts Calculator — Aluminium framing</title></svelte:head>
+<Seo
+	title="Aluminium framing"
+	description="Aluminium extrusion cut list for the Sorter V2 frame — every T-slot length and quantity, with an optimised cutting plan."
+/>
 
 <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
 	<header class="mb-5">

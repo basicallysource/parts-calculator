@@ -5,6 +5,7 @@
 	import LayerControl from '$lib/components/LayerControl.svelte';
 	import PartDetailModal from '$lib/components/PartDetailModal.svelte';
 	import HardwareDetailModal from '$lib/components/HardwareDetailModal.svelte';
+	import Seo from '$lib/components/Seo.svelte';
 	import { colorStore } from '$lib/colors.svelte';
 	import {
 		getAssembly,
@@ -92,7 +93,10 @@
 	}
 </script>
 
-<svelte:head><title>Sorter Parts Calculator — Machine assembly</title></svelte:head>
+<Seo
+	title="Machine assembly"
+	description="The Sorter V2 machine as a recursive assembly tree — printed parts, sub-assemblies and hardware, layer by layer."
+/>
 
 {#snippet requiresRows(partId: string, mult: number)}
 	{@const part = getPart(partId)}

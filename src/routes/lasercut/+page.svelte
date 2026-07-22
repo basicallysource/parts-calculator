@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Box, ExternalLink, Hammer, Zap } from 'lucide-svelte';
+	import Seo from '$lib/components/Seo.svelte';
 	import DownloadButton from '$lib/components/DownloadButton.svelte';
 	import Modal from '$lib/components/Modal.svelte';
 	import HandCutTopPlateGuide from '$lib/components/HandCutTopPlateGuide.svelte';
@@ -25,7 +26,10 @@
 	let guideOpen = $state(false);
 </script>
 
-<svelte:head><title>Sorter Parts Calculator — Laser cut parts</title></svelte:head>
+<Seo
+	title="Laser cut parts"
+	description="Laser-cut parts for the Sorter V2 build — DXF downloads with a material and quantity breakdown."
+/>
 
 <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
 	<header class="mb-5">
