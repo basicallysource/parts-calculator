@@ -33,6 +33,7 @@
 	import Modal from '$lib/components/Modal.svelte';
 	import PartDetailModal from '$lib/components/PartDetailModal.svelte';
 	import BuildPlates from '$lib/components/BuildPlates.svelte';
+	import Seo from '$lib/components/Seo.svelte';
 	import { zipSync } from 'fflate';
 	import { onMount } from 'svelte';
 	import { loadConfig, saveConfig, clearConfig } from '$lib/config';
@@ -331,6 +332,8 @@
 		}
 	}
 </script>
+
+<Seo />
 
 <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
 	<header class="mb-5">
