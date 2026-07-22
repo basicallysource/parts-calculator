@@ -11,7 +11,6 @@
 		fmtDate,
 		partOnshape,
 		platesForPart,
-		primaryColorId,
 		type Part,
 		type PartVersion
 	} from '$lib/filament';
@@ -19,32 +18,21 @@
 
 	// The 3D-printed part detail popup: 3D viewer, specs, download, build plates and
 	// version history. Shared by the parts dashboard and the assembly tab so both open
-	// the exact same view. `roleColors` seeds the default preview colour; both pass it
-	// from the shared colour store, so a part opens in the colour you chose.
+	// the exact same view. `colorId` (preview colour) and `version` (previewed
+	// revision) are controlled by the opener: whoever sets `part` seeds them to match.
+	// The parts dashboard binds them to the URL so a part view is a shareable link;
+	// the assembly tab just seeds them once on open.
 	let {
 		open = $bindable(false),
 		part,
-		roleColors = {}
+		colorId = $bindable('ash-gray'),
+		version = $bindable<PartVersion | null>(null)
 	}: {
 		open?: boolean;
 		part: Part | null;
-		roleColors?: Record<string, string>;
+		colorId?: string;
+		version?: PartVersion | null;
 	} = $props();
-
-	let colorId = $state('ash-gray');
-	// which version the modal is previewing (null = current/newest)
-	let version = $state<PartVersion | null>(null);
-
-	// Re-seed colour and version whenever a different part is shown, so opening a new
-	// part never inherits the last one's preview colour or selected revision.
-	let shownId: string | null = null;
-	$effect(() => {
-		if (part && part.id !== shownId) {
-			shownId = part.id;
-			colorId = primaryColorId(part, roleColors) ?? 'ash-gray';
-			version = part.versions?.[part.versions.length - 1] ?? null;
-		}
-	});
 
 	// A part's own build-plate popup, opened from the "view" link on a plate card.
 	let platesOpen = $state(false);

@@ -14,10 +14,12 @@
 		hardwareImage,
 		JOIN_LABELS,
 		lineQty,
+		primaryColorId,
 		resolveHardwareTotals,
 		type AssemblyLine,
 		type Hardware,
-		type Part
+		type Part,
+		type PartVersion
 	} from '$lib/filament';
 	import { layerStore } from '$lib/layers.svelte';
 	import { page } from '$app/state';
@@ -66,8 +68,13 @@
 	// off-the-shelf items get the hardware modal (specs, where it goes, sourcing).
 	let partOpen = $state(false);
 	let partModal = $state<Part | null>(null);
+	// the modal is controlled: seed its preview colour + newest version on open
+	let partColor = $state('ash-gray');
+	let partVersion = $state<PartVersion | null>(null);
 	function openPart(p: Part) {
 		partModal = p;
+		partColor = primaryColorId(p, colorStore.roles) ?? 'ash-gray';
+		partVersion = p.versions?.[p.versions.length - 1] ?? null;
 		partOpen = true;
 	}
 	let hwOpen = $state(false);
@@ -318,7 +325,7 @@
 	</div>
 </div>
 
-<PartDetailModal bind:open={partOpen} part={partModal} roleColors={colorStore.roles} />
+<PartDetailModal bind:open={partOpen} part={partModal} bind:colorId={partColor} bind:version={partVersion} />
 <HardwareDetailModal bind:open={hwOpen} hardware={hwModal} {layers} />
 
 <style>

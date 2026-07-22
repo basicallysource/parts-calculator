@@ -10,9 +10,13 @@
 	let status = $state<'loading' | 'ready' | 'error'>('loading');
 	let material: THREE.MeshStandardMaterial | undefined;
 
-	// re-tint live when the color prop changes
+	// re-tint live when the color prop changes. Read `color` unconditionally first:
+	// on the initial run `material` is still undefined (the STL loads async), so a
+	// `material?.…` expression would short-circuit before ever reading `color`,
+	// leaving it untracked — the effect would then never re-run on a colour change.
 	$effect(() => {
-		material?.color.set(color);
+		const next = color;
+		material?.color.set(next);
 	});
 
 	onMount(() => {
