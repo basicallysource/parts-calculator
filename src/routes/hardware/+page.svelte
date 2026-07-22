@@ -8,6 +8,7 @@
 		ShoppingCart,
 		Zap
 	} from 'lucide-svelte';
+	import Seo from '$lib/components/Seo.svelte';
 	import Badge from '$lib/components/Badge.svelte';
 	import HardwareIcon from '$lib/components/HardwareIcon.svelte';
 	import Callout from '$lib/components/Callout.svelte';
@@ -237,7 +238,10 @@
 	});
 </script>
 
-<svelte:head><title>Sorter Parts Calculator — Hardware</title></svelte:head>
+<Seo
+	title="Hardware"
+	description="Off-the-shelf hardware for the Sorter V2 — screws, bearings, motors and where each one goes, with sourcing links."
+/>
 
 <!-- One off-the-shelf part. Rendered standalone, or nested under the rollup row
      of the assembly it's joined into. -->
