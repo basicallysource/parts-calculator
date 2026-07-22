@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Local data-generation step for the Sorter filament calculator.
+Local data-generation step for the Sorter parts calculator.
 
 This runs on YOUR machine (needs OrcaSlicer installed) -- never on Vercel.
 For every part in parts.json it:

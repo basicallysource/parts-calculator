@@ -1,4 +1,4 @@
-# Sorter v2 — Filament Calculator
+# Sorter v2 — Parts Calculator
 
 A small web tool for the [Sorter](https://basically.website) build. Pick your
 **frame** and **core** colors and a **layer count**, and it tells you exactly how
