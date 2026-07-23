@@ -10,9 +10,10 @@ export const DEFAULT_DESCRIPTION =
 	'Configure a Sorter V2 build and get exactly what to print and buy: ' +
 	'per-colour filament quantities from real sliced weights, plus downloadable STLs.';
 
-// Placeholder hero card. Swap for a dedicated 1200×630 image when one exists;
-// the per-part pages already carry the part's own render as their og:image.
-export const DEFAULT_OG_IMAGE = '/renders/classification-dome.png';
+// No default og:image on purpose. A generic hero card gives every shared link
+// the same misleading picture, so pages without a meaningful image of their own
+// ship a text-only card. Only pages that pass an explicit `image` (the per-part
+// pages, which carry the part's own render) get an image preview.
 
 /** Absolutise a site-relative path; pass through an already-absolute URL. */
 export function absUrl(pathOrUrl: string): string {
