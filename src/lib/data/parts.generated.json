@@ -10,7 +10,7 @@
 		"support_threshold_deg": 10,
 		"density_g_cm3": 1.32,
 		"cost_per_kg": 24.99,
-		"commit_base_url": "https://github.com/basicallysource/filament-calculator/commit/",
+		"commit_base_url": "https://github.com/basicallysource/parts-calculator/commit/",
 		"all_parts_zip": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/354413907a1e5887ea03b94c91756c0c0b340a73f5c6983717f6f8ea13429f5f.zip"
 	},
 	"sections": [
@@ -3339,6 +3339,7 @@
 					"date": "2026-06-27",
 					"message": "Initial version.",
 					"commit": null,
+					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/353adf90e6a8a99bed6f90a5/e/f48c6c2ac5f2133685e12202",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/ced3172731e0c2a64920edb072501efadf3c57325bf200fcb14bba0048dabff9.stl",
 					"render": "/renders/funnel-bracket-left.png",
 					"grams": 28.75
@@ -3384,6 +3385,7 @@
 					"date": "2026-06-27",
 					"message": "Initial version.",
 					"commit": null,
+					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/353adf90e6a8a99bed6f90a5/e/f48c6c2ac5f2133685e12202",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/f7932bce6ef7eddb1be6c64a738b41b6573d67bdadb40d6febf131e0a21ccb31.stl",
 					"render": "/renders/funnel-bracket-right.png",
 					"grams": 28.75
@@ -4503,6 +4505,7 @@
 					"date": "2026-06-29",
 					"message": "Initial version.",
 					"commit": null,
+					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/353adf90e6a8a99bed6f90a5/e/8f720225506283b24c872672",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/287f8f9936b958f15dc9acd832f6320cbc4fcfb9ee0f7cd73ea67d9953d16961.stl",
 					"render": "/renders/funnel-third.png",
 					"grams": 216.27
@@ -4548,6 +4551,7 @@
 					"date": "2026-06-29",
 					"message": "Initial version.",
 					"commit": null,
+					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/353adf90e6a8a99bed6f90a5/e/8f720225506283b24c872672",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/533487b3dadbdf8ec33af0d9d5185c2d978325e03b13c56a2121135a16c69a53.stl",
 					"render": "/renders/funnel-half.png",
 					"grams": 158.23

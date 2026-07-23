@@ -1169,7 +1169,8 @@
       },
       "optional": false,
       "support": false,
-      "source": "snap_in_funnel_bracket - left_funnel_slide.stl"
+      "source": "snap_in_funnel_bracket - left_funnel_slide.stl",
+      "onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/353adf90e6a8a99bed6f90a5/e/f48c6c2ac5f2133685e12202"
     },
     {
       "id": "funnel-bracket-right",
@@ -1189,7 +1190,8 @@
       },
       "optional": false,
       "support": false,
-      "source": "snap_in_funnel_bracket - right_funnel_slide.stl"
+      "source": "snap_in_funnel_bracket - right_funnel_slide.stl",
+      "onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/353adf90e6a8a99bed6f90a5/e/f48c6c2ac5f2133685e12202"
     },
     {
       "id": "bearing-race",
@@ -1700,7 +1702,8 @@
       "color": {
         "role": "funnel"
       },
-      "optional": false
+      "optional": false,
+      "onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/353adf90e6a8a99bed6f90a5/e/8f720225506283b24c872672"
     },
     {
       "id": "funnel-half",
@@ -1720,7 +1723,8 @@
       "color": {
         "role": "funnel"
       },
-      "optional": false
+      "optional": false,
+      "onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/353adf90e6a8a99bed6f90a5/e/8f720225506283b24c872672"
     },
     {
       "id": "bin-half-left",
