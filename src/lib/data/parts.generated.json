@@ -4369,6 +4369,7 @@
 					"date": "2026-06-27",
 					"message": "Initial version.",
 					"commit": null,
+					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/765c27a61823977392947be1/e/c56e3247bb7cfbe93ba7ad08",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/c85e30f35445117061a4c7871f7823171bd503fbcd94ea77b53f405a5626ee1c.stl",
 					"render": "/renders/layer-connector-1.png",
 					"grams": 12.31
@@ -4415,6 +4416,7 @@
 					"date": "2026-06-27",
 					"message": "Initial version.",
 					"commit": null,
+					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/765c27a61823977392947be1/e/c56e3247bb7cfbe93ba7ad08",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/1df17cf7ff0fe530545b45dd107822db2a796f870de67aaa8769663a4eb941f2.stl",
 					"render": "/renders/layer-connector-2.png",
 					"grams": 12.3

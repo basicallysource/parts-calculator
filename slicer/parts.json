@@ -1642,7 +1642,8 @@
       "color": {
         "role": "chute-core"
       },
-      "optional": false
+      "optional": false,
+      "onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/765c27a61823977392947be1/e/c56e3247bb7cfbe93ba7ad08"
     },
     {
       "id": "layer-connector-2",
@@ -1661,7 +1662,8 @@
       "color": {
         "role": "chute-core"
       },
-      "optional": false
+      "optional": false,
+      "onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/765c27a61823977392947be1/e/c56e3247bb7cfbe93ba7ad08"
     },
     {
       "id": "chute-stepper-support-block",
