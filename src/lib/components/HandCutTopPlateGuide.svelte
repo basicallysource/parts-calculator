@@ -2,7 +2,6 @@
 	// Step-by-step guide for cutting the top plate with a jigsaw, a drill and a
 	// tape measure. All geometry comes from $lib/handcut (derived from the DXF).
 	// SVG diagrams are drawn in plate mm (y flipped for SVG) so they stay honest.
-	import Callout from '$lib/components/Callout.svelte';
 	import {
 		HEX,
 		RECT,
@@ -74,11 +73,26 @@
 </script>
 
 <div class="space-y-6 p-4 text-sm text-text">
-	<Callout variant="warning" title="Untested method">
-		This guide is AI-generated from the part's DXF. Every dimension is taken straight from the CAD
-		geometry, but nobody has actually cut a plate this way yet — treat it as a solid starting point,
-		not a proven recipe, and sanity-check measurements against the DXF as you go.
-	</Callout>
+	<!-- worked example -->
+	<figure class="m-0">
+		<div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
+			<img
+				src="/examples/handcut-top-plate-1.jpg"
+				alt="A hand-cut hexagonal top plate with the interface assembly mounted, laid on gravel"
+				class="w-full border border-border"
+				loading="lazy"
+			/>
+			<img
+				src="/examples/handcut-top-plate-2.jpg"
+				alt="The same hand-cut hexagonal top plate, showing the drilled hole pattern and center opening"
+				class="w-full border border-border"
+				loading="lazy"
+			/>
+		</div>
+		<figcaption class="mt-2 text-xs text-text-muted">
+			Example courtesy of zed0 in the basically Discord
+		</figcaption>
+	</figure>
 
 	<!-- intro + unit toggle -->
 	<div class="flex flex-wrap items-start justify-between gap-3">
