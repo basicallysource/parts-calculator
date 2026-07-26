@@ -19,7 +19,8 @@
 		type HoleGroup
 	} from '$lib/handcut';
 
-	let units = $state<Units>('in');
+	// `units` is bindable so the parent can mirror it into the URL (?units=mm).
+	let { units = $bindable('in') }: { units?: Units } = $props();
 	const L = (mm: number) => fmtLen(mm, units);
 	const bit = (d: number) => bitLabel(d, units);
 
@@ -75,14 +76,22 @@
 <div class="space-y-6 p-4 text-sm text-text">
 	<!-- worked example -->
 	<figure class="m-0">
-		<img
-			src="/examples/handcut-top-plate-1.jpg"
-			alt="A hand-cut hexagonal top plate with the interface assembly mounted, laid on gravel"
-			class="w-full border border-border"
-			loading="lazy"
-		/>
+		<div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
+			<img
+				src="/examples/handcut-top-plate-1.jpg"
+				alt="A hand-cut hexagonal top plate with the drilled hole pattern and center opening"
+				class="w-full border border-border"
+				loading="lazy"
+			/>
+			<img
+				src="/examples/handcut-top-plate-2.jpg"
+				alt="The same hand-cut top plate with the interface assembly mounted"
+				class="w-full border border-border"
+				loading="lazy"
+			/>
+		</div>
 		<figcaption class="mt-2 text-xs text-text-muted">
-			Example courtesy of zed0 in the basically Discord
+			A hand-cut top plate — drilled and profiled, then with the interface assembly mounted.
 		</figcaption>
 	</figure>
 
