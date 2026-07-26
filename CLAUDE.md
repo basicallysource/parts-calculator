@@ -16,6 +16,12 @@ build. Two halves:
 - **`src/`** — the app. Reads generated JSON, does all math in the browser.
   Fully static.
 
+## Deploying
+
+**Pushing/merging to `main` auto-deploys** (Vercel builds `main` on every
+push). There is no separate deploy step — a commit that lands on `main` is
+live. Treat every push to `main` as a production release.
+
 ## Hard rules
 
 **Never hand-edit generated files.** `src/lib/data/parts.generated.json`,
