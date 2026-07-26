@@ -6,6 +6,11 @@
 	import HandCutTopPlateGuide from '$lib/components/HandCutTopPlateGuide.svelte';
 	import { LASER_CUT_PARTS, type LaserCutPart } from '$lib/lasercut';
 	import { fmtDate } from '$lib/filament';
+	import { type Units } from '$lib/handcut';
+	import { page } from '$app/state';
+	import { replaceState } from '$app/navigation';
+	import { browser } from '$app/environment';
+	import { onMount } from 'svelte';
 
 	// group by assembly (parts without one stand alone), preserving list order
 	const groups: { assembly?: string; parts: LaserCutPart[] }[] = [];
@@ -24,6 +29,37 @@
 		Object.fromEntries(LASER_CUT_PARTS.map((p) => [p.id, 'laser' as Mode]))
 	);
 	let guideOpen = $state(false);
+
+	// Deep-link the hand-cut guide: `?guide=top-plate` opens the modal and
+	// `?units=mm` (default is inches) picks the unit, so a specific view is a
+	// shareable link. Query params only exist in the browser — the site is
+	// prerendered — so we read them on mount and mirror state back in an effect.
+	let units = $state<Units>('in');
+	let urlReady = $state(false);
+
+	onMount(() => {
+		const sp = page.url.searchParams;
+		if (sp.get('guide') === 'top-plate') guideOpen = true;
+		const u = sp.get('units');
+		if (u === 'mm' || u === 'in') units = u;
+		urlReady = true;
+	});
+
+	$effect(() => {
+		if (!browser || !urlReady) return;
+		const params = new URLSearchParams(page.url.search);
+		if (guideOpen) {
+			params.set('guide', 'top-plate');
+			if (units !== 'in') params.set('units', units);
+			else params.delete('units');
+		} else {
+			params.delete('guide');
+			params.delete('units');
+		}
+		const qs = params.toString();
+		const target = qs ? `${location.pathname}?${qs}` : location.pathname;
+		if (target !== location.pathname + location.search) replaceState(target, {});
+	});
 </script>
 
 <Seo
@@ -140,5 +176,5 @@
 </div>
 
 <Modal bind:open={guideOpen} title="Cutting the top plate by hand" maxW="max-w-4xl">
-	<HandCutTopPlateGuide />
+	<HandCutTopPlateGuide bind:units />
 </Modal>
