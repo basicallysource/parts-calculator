@@ -91,7 +91,7 @@
 			/>
 		</div>
 		<figcaption class="mt-2 text-xs text-text-muted">
-			A hand-cut top plate — drilled and profiled, then with the interface assembly mounted.
+			Example courtesy of zed0 in the basically Discord
 		</figcaption>
 	</figure>
 
