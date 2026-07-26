@@ -38,6 +38,10 @@
 	import { hardwareCsv } from '$lib/hardware-csv';
 	import { download, exportSpec, filename } from '$lib/csv';
 	import { Download } from 'lucide-svelte';
+	import { page } from '$app/state';
+	import { replaceState } from '$app/navigation';
+	import { browser } from '$app/environment';
+	import { onMount } from 'svelte';
 
 	// Every off-the-shelf part from the BOM sheet, in the unified data format.
 	// Quantities come from the assembly tree wherever a part has been placed in
@@ -144,12 +148,34 @@
 	};
 
 	// ------------------------------------------------------------ detail modal
+	// Deep-link the open item: `?hw=<id>` opens its detail modal, so a specific
+	// part's view is a shareable link. Query params only exist in the browser —
+	// the site is prerendered — so we read them on mount and mirror state back
+	// in an effect, same pattern as the parts and laser-cut pages.
 	let detail = $state<Hardware | null>(null);
 	let detailOpen = $state(false);
+	let urlReady = $state(false);
 	function openDetail(h: Hardware) {
 		detail = h;
 		detailOpen = true;
 	}
+
+	onMount(() => {
+		const id = page.url.searchParams.get('hw');
+		const h = id ? getHardware(id) : undefined;
+		if (h) openDetail(h);
+		urlReady = true;
+	});
+
+	$effect(() => {
+		if (!browser || !urlReady) return;
+		const params = new URLSearchParams(page.url.search);
+		if (detailOpen && detail) params.set('hw', detail.id);
+		else params.delete('hw');
+		const qs = params.toString();
+		const target = qs ? `${location.pathname}?${qs}` : location.pathname;
+		if (target !== location.pathname + location.search) replaceState(target, {});
+	});
 	// A click anywhere on a row opens its detail modal — except on the row's own
 	// interactive controls, so ticking the checkbox or following a link doesn't.
 	function rowClickToOpen(e: MouseEvent, h: Hardware) {
