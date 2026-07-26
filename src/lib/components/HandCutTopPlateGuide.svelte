@@ -75,20 +75,12 @@
 <div class="space-y-6 p-4 text-sm text-text">
 	<!-- worked example -->
 	<figure class="m-0">
-		<div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
-			<img
-				src="/examples/handcut-top-plate-1.jpg"
-				alt="A hand-cut hexagonal top plate with the interface assembly mounted, laid on gravel"
-				class="w-full border border-border"
-				loading="lazy"
-			/>
-			<img
-				src="/examples/handcut-top-plate-2.jpg"
-				alt="The same hand-cut hexagonal top plate, showing the drilled hole pattern and center opening"
-				class="w-full border border-border"
-				loading="lazy"
-			/>
-		</div>
+		<img
+			src="/examples/handcut-top-plate-1.jpg"
+			alt="A hand-cut hexagonal top plate with the interface assembly mounted, laid on gravel"
+			class="w-full border border-border"
+			loading="lazy"
+		/>
 		<figcaption class="mt-2 text-xs text-text-muted">
 			Example courtesy of zed0 in the basically Discord
 		</figcaption>
