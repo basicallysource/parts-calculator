@@ -513,6 +513,35 @@ function colorUnits(
 	return [{ colorId: null, count: catQty }];
 }
 
+/** Machine-wide per-color breakdown, summed across every section the part
+ *  appears in. A part whose color is `split`, or `by_section` with different
+ *  colors per section, yields several entries — the stator is 3 charcoal in the
+ *  feeder and 1 ash gray in the classification channel. Everything else yields
+ *  one. `sections` names only the sections contributing THAT color.
+ *
+ *  Zero-count entries (a section whose multiplier is 0 at this layer count) are
+ *  dropped unless they're all that's left, so a part never vanishes entirely. */
+export function machineColorUnits(
+	part: Part,
+	layers: number,
+	roleColors: Record<string, string>
+): { colorId: string | null; count: number; sections: string[] }[] {
+	const acc = new Map<string, { colorId: string | null; count: number; sections: string[] }>();
+	for (const [cat, qty] of Object.entries(part.quantities)) {
+		const mult = effectiveMult(part, cat, layers);
+		for (const u of colorUnits(part, qty, roleColors, cat)) {
+			const key = u.colorId ?? '__any__';
+			const e = acc.get(key) ?? { colorId: u.colorId, count: 0, sections: [] };
+			e.count += u.count * mult;
+			if (!e.sections.includes(cat)) e.sections.push(cat);
+			acc.set(key, e);
+		}
+	}
+	const units = [...acc.values()];
+	const live = units.filter((u) => u.count > 0);
+	return live.length ? live : units.slice(0, 1);
+}
+
 /** The part's primary resolved color id (for the 3D preview default). */
 export function primaryColorId(part: Part, roleColors: Record<string, string>): string | null {
 	const c = resolveColor(part.color);

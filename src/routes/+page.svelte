@@ -10,6 +10,7 @@
 		getAssembly,
 		partSwatches,
 		primaryColorId,
+		machineColorUnits,
 		effectiveGrams,
 		displayCount,
 		machineQty,
@@ -232,12 +233,13 @@
 		download(
 			filename(spec, 'printed-parts'),
 			partsCsv(parts, spec, {
-				qty: (p) => machineQty(p, layers),
 				grams: (p) => effectiveGrams(p, supportOn(p.id)),
-				color: (p) => {
-					const id = primaryColorId(p, roleColors);
-					return id ? (getBambuColor(id)?.name ?? id) : 'any';
-				},
+				colors: (p) =>
+					machineColorUnits(p, layers, roleColors).map((u) => ({
+						name: u.colorId ? (getBambuColor(u.colorId)?.name ?? u.colorId) : 'any',
+						qty: u.count,
+						sections: u.sections
+					})),
 				onshape: (p) => partOnshape(p).version ?? partOnshape(p).doc
 			})
 		);
