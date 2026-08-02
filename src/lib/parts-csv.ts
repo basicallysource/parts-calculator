@@ -47,39 +47,40 @@ const PART_COLUMNS = [
 	'onshape'
 ] as const;
 
+/** A part is one row PER COLOR, not one row per part: the stator is printed 3×
+ *  charcoal and 1× ash gray, and a single collapsed row would silently drop the
+ *  gray one. Single-color parts — nearly all of them — are still one row. `id`
+ *  is therefore not unique; the color column is what separates the rows, and
+ *  summing qty/grams over the file still gives the right machine totals. */
 export function partsCsv(
 	parts: Part[],
 	spec: ExportSpec,
 	opts: {
-		qty: (p: Part) => number;
 		grams: (p: Part) => number; // per unit, honouring the support toggle
-		color: (p: Part) => string;
+		colors: (p: Part) => { name: string; qty: number; sections: string[] }[];
 		onshape: (p: Part) => string | null;
 	}
 ): string {
-	const rows = parts.map((p) => {
-		const qty = opts.qty(p);
+	const sectionName = (id: string) => SECTIONS.find((s) => s.id === id)?.name ?? id;
+	const rows = parts.flatMap((p) => {
 		const each = opts.grams(p);
-		const sections = Object.keys(p.quantities)
-			.map((id) => SECTIONS.find((s) => s.id === id)?.name ?? id)
-			.join('; ');
 		const notes = [
 			p.low_tolerance ? `Low tolerance: ${p.low_tolerance_note ?? 'test print recommended'}` : '',
 			p.suspicious ? `Check: ${p.suspicious_note ?? 'flagged as suspicious'}` : ''
 		]
 			.filter(Boolean)
 			.join(' | ');
-		return [
+		return opts.colors(p).map((c) => [
 			p.id,
 			p.name,
-			sections,
-			qty,
+			c.sections.map(sectionName).join('; '),
+			c.qty,
 			+each.toFixed(1),
-			+(each * qty).toFixed(1),
+			+(each * c.qty).toFixed(1),
 			+p.support_grams.toFixed(1),
 			p.support_intentional ? 'yes' : 'no',
 			Math.round(p.print_seconds / 60),
-			opts.color(p),
+			c.name,
 			p.version,
 			p.updated_at,
 			p.optional ? 'yes' : 'no',
@@ -88,12 +89,17 @@ export function partsCsv(
 			p.stl,
 			absolute(p.render),
 			opts.onshape(p)
-		];
+		]);
 	});
 	const totalG = rows.reduce((s, r) => s + (r[5] as number), 0);
+	const split = rows.length - parts.length;
 	return (
 		preamble(spec, 'printed parts', [
 			`# Parts: ${parts.length}. Total filament: ${(totalG / 1000).toFixed(2)} kg.`,
+			`# Rows: ${rows.length}` +
+				(split > 0
+					? ` — ${split} extra because a part printed in more than one color gets a row per color.`
+					: '.'),
 			'# grams come from real slicer output, never estimated from volume.',
 			'# stl_url is content-addressed and permanent.'
 		]) + csvText(PART_COLUMNS, rows)
