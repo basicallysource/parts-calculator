@@ -484,7 +484,7 @@ def main():
     failed = []
     forced_support = []
     printed = [p for p in manifest["parts"] if p.get("kind", "printed") == "printed"]
-    for p in printed:
+    for i, p in enumerate(printed, 1):
         stl_abs = os.path.join(HERE, p["stl"])
         if not os.path.exists(stl_abs):
             print(f"  ! missing STL, skipping: {p['stl']}")
@@ -546,7 +546,9 @@ def main():
             "render": f"/renders/{p['id']}.png",
         })
         sup = " +support" if info["support_used"] else ""
-        print(f"  {p['name']:<26} {info['grams']:7.1f} g/ea{sup}")
+        # [n/total] makes mid-run CI log pings read as real progress
+        print(f"  [{i}/{len(printed)}] {p['name']:<26} {info['grams']:7.1f} g/ea{sup}",
+              flush=True)
 
     archive_versions({p["id"]: p for p in printed}, out_parts,
                      profiles, hexmap, role_defaults, args.force)
