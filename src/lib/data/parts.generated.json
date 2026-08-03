@@ -1761,7 +1761,8 @@
 			"id": "frame-crossbeam",
 			"name": "Frame crossbeam",
 			"quantities": {
-				"layer": 6
+				"layer": 6,
+				"interface": 6
 			},
 			"assembly": null,
 			"variant_group": null,
@@ -1806,7 +1807,8 @@
 			"id": "frame-90deg-bracket",
 			"name": "Frame 90\u00b0 bracket",
 			"quantities": {
-				"layer": 12
+				"layer": 12,
+				"interface": 12
 			},
 			"assembly": null,
 			"variant_group": null,
