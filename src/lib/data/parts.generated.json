@@ -1108,15 +1108,15 @@
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/323b2d1f94a5440119359498de7c7f706d4b32f4c54bec45e88b94c53064279b.stl",
 					"render": "/renders/stator.png",
-					"grams": 175.75
+					"grams": 175.52
 				}
 			],
 			"attributes": [],
-			"grams": 175.75,
-			"support_grams": 23.07,
+			"grams": 175.52,
+			"support_grams": 23.42,
 			"support_used": true,
 			"support_intentional": true,
-			"print_seconds": 16023,
+			"print_seconds": 16014,
 			"color": {
 				"by_section": {
 					"feeder": {
@@ -1646,7 +1646,7 @@
 			"support_grams": 9.29,
 			"support_used": true,
 			"support_intentional": false,
-			"print_seconds": 23628,
+			"print_seconds": 23591,
 			"color": {
 				"role": "chute-core"
 			},
@@ -2547,15 +2547,15 @@
 					"commit": "6c565d4",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/dd778421784bf38babc9ccde0f1007ce61e7e2c575718a933e62aadfedd55484.stl",
 					"render": "/renders/cable-clamp-outer.png",
-					"grams": 19.77
+					"grams": 19.76
 				}
 			],
 			"attributes": [],
-			"grams": 19.77,
-			"support_grams": 6.9,
+			"grams": 19.76,
+			"support_grams": 6.97,
 			"support_used": true,
 			"support_intentional": true,
-			"print_seconds": 3549,
+			"print_seconds": 3555,
 			"color": {
 				"role": "chute-core"
 			},
