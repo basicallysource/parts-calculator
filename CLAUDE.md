@@ -10,9 +10,16 @@ the BOM spreadsheet).
 A SvelteKit static site that tells you what to print/buy for a Sorter V2
 build. Two halves:
 
-- **`slicer/`** — local Python (needs OrcaSlicer). Slices every part, reads
-  the slicer's real `used_g`, renders thumbnails, writes the site's data.
-  **Never runs on Vercel.**
+- **`slicer/`** — Python + OrcaSlicer. Slices every part, reads the
+  slicer's real `used_g`, renders thumbnails, writes the site's data.
+  **Never runs on Vercel.** Runs locally on the Mac *or* in CI:
+  `.github/workflows/regen-parts.yml` re-runs it (pinned Linux AppImage,
+  headless) on any PR/push touching slicer inputs and commits the
+  regenerated outputs back to the branch — so agents/bots can change parts
+  data with no local slicer, and Vercel previews show the branch's own
+  correct data. CI is the canonical slicer environment; slice results are
+  memoized per (STL bytes + settings), so warm runs only re-slice what
+  changed.
 - **`src/`** — the app. Reads generated JSON, does all math in the browser.
   Fully static.
 
