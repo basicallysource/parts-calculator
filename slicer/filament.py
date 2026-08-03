@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 """
-Local data-generation step for the Sorter parts calculator.
+Data-generation step for the Sorter parts calculator.
 
-This runs on YOUR machine (needs OrcaSlicer installed) -- never on Vercel.
+Runs anywhere OrcaSlicer is installed -- locally on a Mac, or headlessly in
+CI (.github/workflows/regen-parts.yml drives it with a pinned Linux
+AppImage via ORCA_BIN/ORCA_PROFILES and commits the outputs back, so PRs
+that touch parts get correct data without a local slicer). Never on Vercel.
 For every part in parts.json it:
   - slices the STL headlessly with OrcaSlicer using Spencer's settings
   - reads the SLICER'S OWN gram number (used_g) -- not an estimate

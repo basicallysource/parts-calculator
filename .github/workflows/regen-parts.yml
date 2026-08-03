@@ -111,7 +111,8 @@ jobs:
           if ldd "$real_bin" | grep "not found"; then
             sudo apt-get update -q
             sudo apt-get install -y -q libwebkit2gtk-4.1-0 libgstreamer1.0-0 \
-              libgstreamer-plugins-base1.0-0 libegl1 libopengl0 libfuse2
+              libgstreamer-plugins-base1.0-0 libegl1 libopengl0 libglu1-mesa \
+              libsoup-3.0-0 libsecret-1-0 libfuse2
             ldd "$real_bin" | grep "not found" && exit 1 || true
           fi
           xvfb-run -a "$ORCA_BIN" --help > /tmp/orca-smoke.log 2>&1 \
