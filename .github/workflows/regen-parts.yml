@@ -44,10 +44,14 @@ on:
       - 'scripts/sync_bucket.py'
       - '.github/workflows/regen-parts.yml'
   schedule:
-    # Weekly no-op run: keeps the slice-memo cache from being evicted (7-day
-    # LRU) and fails loudly if the pipeline has drifted (a clean tree should
-    # regenerate byte-identically).
-    - cron: '17 6 * * 1'
+    # Twice-weekly no-op run: keeps the slice-memo cache from being evicted
+    # (7-day LRU -- weekly would race the expiry) and fails loudly if the
+    # pipeline has drifted (a clean tree should regenerate byte-identically).
+    # Known benign wobble if the cache IS ever cold: Orca's auto-support is
+    # slightly nondeterministic, so support-enabled parts can move ~0.2 g
+    # between cold slices. The memo cache pins values; a drift failure here
+    # most likely means the cache was evicted, not that data is wrong.
+    - cron: '17 6 * * 1,4'
   workflow_dispatch:
 
 concurrency:
