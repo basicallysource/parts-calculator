@@ -102,6 +102,22 @@ jobs:
           echo "ORCA_BIN=$ORCA_BIN" >> "$GITHUB_ENV"
           echo "ORCA_PROFILES=$ORCA_PROFILES" >> "$GITHUB_ENV"
 
+      - name: Smoke-test OrcaSlicer
+        # The AppImage links GUI libraries the runner image may not ship.
+        # Diagnose with ldd, install the known-needed set, and refuse to
+        # continue unless the binary actually starts.
+        run: |
+          real_bin=$(find ~/orca -type f -name orca-slicer | head -1)
+          if ldd "$real_bin" | grep "not found"; then
+            sudo apt-get update -q
+            sudo apt-get install -y -q libwebkit2gtk-4.1-0 libgstreamer1.0-0 \
+              libgstreamer-plugins-base1.0-0 libegl1 libopengl0 libfuse2
+            ldd "$real_bin" | grep "not found" && exit 1 || true
+          fi
+          xvfb-run -a "$ORCA_BIN" --help > /tmp/orca-smoke.log 2>&1 \
+            || { echo "orca failed to start (rc=$?):"; cat /tmp/orca-smoke.log; exit 1; }
+          head -3 /tmp/orca-smoke.log
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -111,19 +127,19 @@ jobs:
       - run: pip install -r slicer/requirements.txt
 
       # Only the slice memos (a few hundred bytes per part), not the 3MFs --
-      # the memo alone is what makes a warm run skip re-slicing.
+      # the memo alone is what makes a warm run skip re-slicing. Failure
+      # markers are deliberately NOT cached: a transient CI failure must not
+      # be memoized as "this part can't slice".
       - name: Restore slice memo cache
         uses: actions/cache@v4
         with:
-          path: |
-            slicer/build/cache/*/info.json
-            slicer/build/cache/*/failed
-          key: slice-memos-${{ github.run_id }}
-          restore-keys: slice-memos-
+          path: slicer/build/cache/*/info.json
+          key: slice-memos-v1-${{ github.run_id }}
+          restore-keys: slice-memos-v1-
 
       - name: Regenerate
         run: |
-          xvfb-run -a python slicer/filament.py
+          xvfb-run -a python slicer/filament.py --strict
 
       - name: Upload artifacts to bucket
         # Content-addressed + head-checked, so uploading from a PR branch is

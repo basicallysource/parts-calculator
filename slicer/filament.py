@@ -320,6 +320,12 @@ def slice_part(stl_abs, profiles, support=False, force=False):
     with open(os.path.join(cdir, "slice.log"), "w") as log:
         rc = subprocess.run(cmd, stdout=log, stderr=subprocess.STDOUT).returncode
     if rc != 0 or not os.path.exists(threemf):
+        try:
+            last = open(os.path.join(cdir, "slice.log")).readlines()[-3:]
+            print(f"  ! slicer rc={rc} for {os.path.basename(stl_abs)}: "
+                  + " | ".join(l.strip() for l in last if l.strip()))
+        except OSError:
+            pass
         open(fail_path, "w").close()   # cache the failure
         return None                    # caller decides whether to fall back / report
 
@@ -453,6 +459,9 @@ def read_triangles(path):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--force", action="store_true", help="re-slice + re-render everything")
+    ap.add_argument("--strict", action="store_true",
+                    help="exit nonzero if any part fails to slice (CI uses this "
+                         "so broken output can never be committed)")
     args = ap.parse_args()
 
     manifest = json.load(open(os.path.join(HERE, "parts.json")))
@@ -631,6 +640,10 @@ def main():
         print(f"  ! {len(failed)} part(s) FAILED to slice: {', '.join(failed)}")
 
     process_plates(manifest)
+
+    if args.strict and (failed or not out_parts):
+        sys.exit(f"strict mode: {len(failed)} part(s) failed, "
+                 f"{len(out_parts)} produced -- refusing to bless this output")
 
 
 def process_plates(manifest):
