@@ -29,6 +29,28 @@ build. Two halves:
 push). There is no separate deploy step — a commit that lands on `main` is
 live. Treat every push to `main` as a production release.
 
+## PR previews — when they are actually valid
+
+Every branch gets a Vercel preview. **If the PR touched anything under
+`slicer/`, that preview is wrong until CI's regen commit lands**: the app
+reads the committed `parts.generated.json`, not `parts.json`, so a changed
+part shows its old grams and old thumbnail, and a new part is missing.
+
+Budget **~2 minutes** from push to a correct preview for a parts change
+(~25 s Vercel on stale data → ~70 s regen → ~25 s Vercel on correct data).
+A slicer-settings change re-slices all 84 parts: ~7.5 min. A PR touching
+nothing under `slicer/` skips regen entirely: ~25 s. Full table with the
+per-part cost is in [README.md](README.md#how-long-until-the-preview-is-right).
+
+Do not report a preview as ready — or screenshot it — on the first green
+Vercel check. CI moves the branch head underneath you. Wait for the `regen`
+check to succeed, *then* the Vercel deployment on the resulting head SHA.
+Do not wait on "all checks green": a commit-back can park a duplicate,
+never-executed run in `action_required` on the PR forever.
+
+Sharing a preview *link* early is fine — the URL is stable per branch and
+self-corrects once the second build lands.
+
 ## Hard rules
 
 **Never hand-edit generated files.** `src/lib/data/parts.generated.json`,
@@ -115,9 +137,7 @@ the site wants them at build time.
 
 ## Known stale docs
 
-`README.md` contradicts itself and reality in two places, pending a pass:
-it says STLs "go to Git LFS automatically" (they do not — see
-`.gitattributes`), and it references `slicer/PARTS_CONTEXT.md`, which does
-not exist (terminology lives in `notes/TERMINOLOGY.md`). Its section list
-(`feeder`, `interface-top`, `interface-bottom`, `layer`) is also outdated —
-there are 9 sections in `slicer/parts.json`.
+`README.md`'s three known errors were fixed when CI slicing landed: the
+bogus "STLs go to Git LFS automatically" line, the reference to
+`slicer/PARTS_CONTEXT.md` (terminology lives in `notes/TERMINOLOGY.md`),
+and the 4-item section list (there are 9 sections in `slicer/parts.json`).
