@@ -453,9 +453,9 @@
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/4a28da2e33e12340c3621421365add2fed8c1a65d235f8afb93ebfc2d8203ff0.3mf"
     },
     "static/stl/all-parts.zip": {
-      "sha256": "354413907a1e5887ea03b94c91756c0c0b340a73f5c6983717f6f8ea13429f5f",
+      "sha256": "c4e920ca1b7a15eb2c52fdc11efe35eee468d78519ee03ae312cef44ba14b5ed",
       "size": 16981344,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/354413907a1e5887ea03b94c91756c0c0b340a73f5c6983717f6f8ea13429f5f.zip"
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/c4e920ca1b7a15eb2c52fdc11efe35eee468d78519ee03ae312cef44ba14b5ed.zip"
     },
     "slicer/images/hardware/ctrl-board-basically.png": {
       "sha256": "f7caadca07d5a0dc6894895209da6f1a7f4c865a245ee095fce358902c85ff42",

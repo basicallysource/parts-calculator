@@ -39,8 +39,12 @@ sys.path.insert(0, os.path.join(REPO, "scripts"))
 from sync_bucket import artifact_url  # noqa: E402
 
 # ---------------------------------------------------------------- config knobs
-ORCA = "/Applications/OrcaSlicer.app/Contents/MacOS/OrcaSlicer"
-PROFILES = "/Applications/OrcaSlicer.app/Contents/Resources/profiles/BBL"
+# Overridable so CI can point at an extracted Linux AppImage. Grams depend on
+# the slicer version -- keep CI pinned to the same OrcaSlicer release as local.
+ORCA = os.environ.get(
+    "ORCA_BIN", "/Applications/OrcaSlicer.app/Contents/MacOS/OrcaSlicer")
+PROFILES = os.environ.get(
+    "ORCA_PROFILES", "/Applications/OrcaSlicer.app/Contents/Resources/profiles/BBL")
 
 PRINTER = "Bambu Lab A1 0.4 nozzle"      # printer choice barely affects grams
 PROCESS = "0.20mm Standard @BBL A1"
@@ -321,6 +325,9 @@ def slice_part(stl_abs, profiles, support=False, force=False):
 
     info = parse_3mf(threemf)
     json.dump(info, open(info_path, "w"), indent=1)
+    # Not persisted (set after the dump): marks a real re-slice, i.e. this
+    # geometry/settings combo was new -- callers use it to refresh the render.
+    info["fresh"] = True
     return info
 
 
@@ -483,7 +490,7 @@ def main():
             continue
 
         png = os.path.join(RENDERS_OUT, p["id"] + ".png")
-        if args.force or not os.path.exists(png):
+        if args.force or info.get("fresh") or not os.path.exists(png):
             try:
                 render(stl_abs, png, default_hex(p, role_defaults, hexmap))
             except Exception as e:
@@ -585,10 +592,16 @@ def main():
 
     # bundle every STL into one downloadable zip (built before the data dict so
     # its content-addressed URL can go into settings)
+    # Deterministic zip: fixed timestamps + sorted members, so the bytes (and
+    # therefore the content-addressed URL) depend only on the STLs. zf.write()
+    # would embed file mtimes, which a fresh CI checkout changes every run.
     zip_path = os.path.join(STL_OUT, "all-parts.zip")
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
-        for src, name in zip_members:
-            zf.write(src, name)
+        for src, name in sorted(zip_members, key=lambda t: t[1]):
+            zi = zipfile.ZipInfo(name, date_time=(2020, 1, 1, 0, 0, 0))
+            zi.compress_type = zipfile.ZIP_DEFLATED
+            zi.external_attr = 0o644 << 16
+            zf.writestr(zi, open(src, "rb").read())
 
     data = {
         "settings": {
