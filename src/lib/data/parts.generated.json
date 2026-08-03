@@ -4757,7 +4757,7 @@
 			"low_tolerance_note": null,
 			"layer_scope": "all",
 			"requires": [],
-			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8237c2a114d13e5cc95580b92dd4182c5bbf3b957c63bef7b5245cb288bea1bb.stl",
+			"stl": "/stl/bin-third-center.stl",
 			"render": "/renders/bin-third-center.png"
 		},
 		{
