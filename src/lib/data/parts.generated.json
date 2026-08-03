@@ -11,7 +11,7 @@
 		"density_g_cm3": 1.32,
 		"cost_per_kg": 24.99,
 		"commit_base_url": "https://github.com/basicallysource/parts-calculator/commit/",
-		"all_parts_zip": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/c4e920ca1b7a15eb2c52fdc11efe35eee468d78519ee03ae312cef44ba14b5ed.zip"
+		"all_parts_zip": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/19ef8e777985d798b651db4b0cd3f4dbbfd916bc3b58be0fd1a9356c2b40437b.zip"
 	},
 	"sections": [
 		{
@@ -4734,17 +4734,17 @@
 					"date": "2026-06-29",
 					"message": "Initial version.",
 					"commit": null,
-					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8237c2a114d13e5cc95580b92dd4182c5bbf3b957c63bef7b5245cb288bea1bb.stl",
+					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/fed14b1e49786ffb30ee6214fd9a25f026d46cd3beed08363c05416fe59c557b.stl",
 					"render": "/renders/bin-third-center.png",
-					"grams": 112.24
+					"grams": 111.76
 				}
 			],
 			"attributes": [],
-			"grams": 112.24,
-			"support_grams": 2.48,
+			"grams": 111.76,
+			"support_grams": 2.11,
 			"support_used": true,
 			"support_intentional": false,
-			"print_seconds": 11682,
+			"print_seconds": 11947,
 			"color": {
 				"role": "bin"
 			},
@@ -4757,7 +4757,7 @@
 			"low_tolerance_note": null,
 			"layer_scope": "all",
 			"requires": [],
-			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8237c2a114d13e5cc95580b92dd4182c5bbf3b957c63bef7b5245cb288bea1bb.stl",
+			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/fed14b1e49786ffb30ee6214fd9a25f026d46cd3beed08363c05416fe59c557b.stl",
 			"render": "/renders/bin-third-center.png"
 		},
 		{

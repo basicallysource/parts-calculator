@@ -23,9 +23,9 @@
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/54704393c3e0786bb69eed1596296519d032aea277b00ffed1335347d03a8dc6.stl"
     },
     "slicer/parts/bins/bin-third-center.stl": {
-      "sha256": "8237c2a114d13e5cc95580b92dd4182c5bbf3b957c63bef7b5245cb288bea1bb",
-      "size": 6084,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8237c2a114d13e5cc95580b92dd4182c5bbf3b957c63bef7b5245cb288bea1bb.stl"
+      "sha256": "fed14b1e49786ffb30ee6214fd9a25f026d46cd3beed08363c05416fe59c557b",
+      "size": 13484,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/fed14b1e49786ffb30ee6214fd9a25f026d46cd3beed08363c05416fe59c557b.stl"
     },
     "slicer/parts/bins/bin-third-left.stl": {
       "sha256": "16b47a00d4e464e08ad4f5fd66ab9dac33889d1dd84641fa9db99025d8dd08b5",
@@ -453,9 +453,9 @@
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/4a28da2e33e12340c3621421365add2fed8c1a65d235f8afb93ebfc2d8203ff0.3mf"
     },
     "static/stl/all-parts.zip": {
-      "sha256": "c4e920ca1b7a15eb2c52fdc11efe35eee468d78519ee03ae312cef44ba14b5ed",
-      "size": 16981344,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/c4e920ca1b7a15eb2c52fdc11efe35eee468d78519ee03ae312cef44ba14b5ed.zip"
+      "sha256": "19ef8e777985d798b651db4b0cd3f4dbbfd916bc3b58be0fd1a9356c2b40437b",
+      "size": 16982762,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/19ef8e777985d798b651db4b0cd3f4dbbfd916bc3b58be0fd1a9356c2b40437b.zip"
     },
     "slicer/images/hardware/ctrl-board-basically.png": {
       "sha256": "13047c3c7a3729d5d7a3de8eeb943ed3864632652b4269c31751512f2e1ee0bd",
