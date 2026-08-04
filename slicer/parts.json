@@ -2442,7 +2442,7 @@
           }
         ]
       },
-      "image": "images/hardware/scr-m5-35-fhcs.jpg"
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/cb2fdd72471816cef2a69bdd7775a1863cf4dea2d72a15a68a73deebb276164f.jpg"
     },
     {
       "id": "scr-m5-shcs-tbd",
@@ -2572,7 +2572,7 @@
           "value": "Cold-rolled plain low-carbon steel"
         }
       ],
-      "image": "images/hardware/rod-steel-3-8.jpg",
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/b0c74a7fb6f0be515fc6bad42d5a927e2330e887b8e74129f2906fde6610a0eb.jpg",
       "sourcing": {
         "vendors": [
           {
@@ -2601,7 +2601,7 @@
       "internal_notes": "First COTS part in the manifest (unified-parts-system MVP). 'Long' = ruthex's standard M3 (5.7 mm), vs the M3S short (4 mm) used only on the servo adapter. BOM sheet says the machine needs ~235 across machine+layers; the chute core alone takes 18 (4 PCB + 4 bearing race + 4 funnel slides + 4 layer connector + 2 arms).",
       "created_at": "2026-07-18",
       "updated_at": "2026-07-18",
-      "image": "images/hardware/hsi-m3-long.png",
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/ae73fe6bb2304afb8bb591904eb363febfdc98ccde7dd6dbda9dd5ae9cb3151a.png",
       "attributes": [
         {
           "label": "Type",
@@ -3670,7 +3670,7 @@
       "sheet_qty": {
         "per_machine": 1
       },
-      "image": "images/hardware/ctrl-board-basically.png",
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/f7caadca07d5a0dc6894895209da6f1a7f4c865a245ee095fce358902c85ff42.png",
       "attributes": [
         {
           "label": "Version",
@@ -3701,7 +3701,7 @@
       "sheet_qty": {
         "per_layer": 1
       },
-      "image": "images/hardware/layer-adapter-board-basically.png",
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/1838b0588731b2d835ae5f9885f4e486324b89370ab3ea5df086540deb539c75.png",
       "sourcing": {
         "vendors": [
           {
@@ -4898,7 +4898,7 @@
         "type": "screw",
         "variant": "countersunk"
       },
-      "image": "images/hardware/family/screw-countersunk.jpg",
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/faf0edbe33245eec7dff8e0f365b0c006ad6991b7372217c447dfe53928228a4.jpg",
       "image_credit": "DTGN M3 flat head listing (amazon.com/dp/B0CQ4XMVLZ), cropped"
     },
     {
@@ -4908,7 +4908,7 @@
         "type": "screw",
         "variant": "socket"
       },
-      "image": "images/hardware/family/screw-socket.jpg",
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/580ba61e9d9a2275717f9c9741502e966f45c4382616993365b4d1cb9720d0c0.jpg",
       "image_credit": "uxcell M3 socket head listing (amazon.com/dp/B01MCW5GM3), cropped"
     },
     {
@@ -4918,7 +4918,7 @@
         "type": "screw",
         "variant": "button"
       },
-      "image": "images/hardware/family/screw-button.jpg",
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/350b2785fbe0a6ada9e624dfd4457a2a2309857171c78515560cb5c3f3faf445.jpg",
       "image_credit": "uxcell M3 button head listing (amazon.com/dp/B06VWBPXSV), cropped"
     },
     {
@@ -4927,7 +4927,7 @@
       "match": {
         "type": "nut"
       },
-      "image": "images/hardware/family/nut.jpg",
+      "image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/3731dab3df874778f0dd2d4a36771a2e3266dfae609cab95ce5bf1abe3f177fb.jpg",
       "image_credit": "uxcell M3 hex nut listing (amazon.com/dp/B07H3T4859), cropped"
     }
   ]

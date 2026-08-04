@@ -84,6 +84,42 @@ Uploads are idempotent — the key IS the content hash, and the script
 head-checks before writing, so re-runs upload nothing and identical bytes
 are never stored twice.
 
+### Someone sent you a product image. What to do with it
+
+Upload it, get a URL back, put the URL in `slicer/parts.json`:
+
+```bash
+python scripts/sync_bucket.py --upload ~/Downloads/new-board.png
+```
+
+That prints the line to paste:
+
+```
+"image_url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/<hash>.png"
+```
+
+Set it on the part (or family) in `slicer/parts.json`. That is the whole
+workflow. The file stays wherever it was — **never copy it into the repo.**
+
+Images are not committed, in any form. There is no repo-file path any more:
+`filament.py` hard-fails on an `image:` key and tells you to use `image_url`,
+and `slicer/images/` is gitignored so the old habit can't come back.
+
+Why it's this strict: images used to be LFS-tracked, a CI job checked out
+without `lfs: true`, and the 130-byte pointer stubs got hashed into the URLs
+and uploaded as the images. Every URL returned 200 with
+`Content-Type: image/png` and rendered broken on production.
+
+Because the bucket is content-addressed, **a wrong image URL is never a 404** —
+it's a 200 serving the wrong bytes, which no build or type check can see.
+`scripts/check_image_urls.py` fetches each URL and checks the magic bytes. It
+runs in `regen-parts.yml` before the commit-back, and takes a file argument so
+you can check your edit without invoking the slicer:
+
+```bash
+python scripts/check_image_urls.py slicer/parts.json
+```
+
 ### The caching invariant — do not break this
 
 Objects are served `public, max-age=31536000, immutable`. That is safe
