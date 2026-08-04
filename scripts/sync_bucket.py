@@ -14,6 +14,10 @@ Credentials, in order of precedence:
 Usage:
   python scripts/sync_bucket.py --dry-run     # show what would upload
   python scripts/sync_bucket.py               # upload missing, write manifest
+  python scripts/sync_bucket.py --upload a.png b.jpg
+                                              # put product images on the bucket
+                                              # and print the image_url to paste
+                                              # into slicer/parts.json
 """
 
 from __future__ import annotations
@@ -45,9 +49,9 @@ SOURCES = [
     ("static/stl/versions", "*.stl", "stl"),
     ("static/plates", "*.3mf", "plate"),
     ("static/stl", "all-parts.zip", "bundle"),
-    # COTS/hardware product images: shown inline by the site, archived via LFS.
-    ("slicer/images", "*.png", "img"),
-    ("slicer/images", "*.jpg", "img"),
+    # COTS/hardware product images are deliberately absent: they never enter
+    # git. `--upload <file>` puts one on the bucket and prints the image_url to
+    # paste into parts.json.
 ]
 
 CONTENT_TYPES = {".stl": "model/stl", ".3mf": "model/3mf", ".zip": "application/zip",
@@ -85,7 +89,18 @@ def load_credentials() -> tuple[str, str]:
 def sha256(path: Path) -> str:
     h = hashlib.sha256()
     with path.open("rb") as f:
+        first = True
         for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            # An unmaterialized LFS file hashes and uploads perfectly happily --
+            # it is just 130 bytes of pointer text. The result is a valid-looking
+            # content-addressed URL serving a stub, which the browser renders as
+            # a broken image. Fail loudly instead of publishing the stub.
+            if first and chunk[:40].startswith(b"version https://git-lfs"):
+                sys.exit(
+                    f"{path} is an unmaterialized Git LFS pointer, not real content.\n"
+                    "Run `git lfs pull` (or check out with lfs: true in CI) and retry."
+                )
+            first = False
             h.update(chunk)
     return h.hexdigest()
 
@@ -125,6 +140,55 @@ def set_cors(s3) -> None:
     )
 
 
+def upload_args(name: str) -> dict:
+    """ExtraArgs for a public, permanently-cached, content-addressed object."""
+    return {
+        "ACL": "public-read",
+        "ContentType": CONTENT_TYPES.get(Path(name).suffix, "application/octet-stream"),
+        # So a browser download lands as "chute-core.stl", not a hash.
+        # Images stay inline so <img> and open-in-tab both behave.
+        "ContentDisposition": (
+            f'inline; filename="{name}"'
+            if Path(name).suffix in INLINE_SUFFIXES
+            else f'attachment; filename="{name}"'
+        ),
+        "CacheControl": "public, max-age=31536000, immutable",
+    }
+
+
+def s3_client():
+    import boto3
+
+    key, secret = load_credentials()
+    return boto3.client(
+        "s3", region_name=REGION, endpoint_url=ENDPOINT,
+        aws_access_key_id=key, aws_secret_access_key=secret,
+    )
+
+
+def upload_loose(paths: list[str], prefix: str = "img") -> None:
+    """Put image files on the bucket and print the image_url for each.
+
+    This is how a product image gets onto the site: someone hands you a photo,
+    you upload it, you paste the printed line into slicer/parts.json. The file
+    itself is never copied into the repo.
+    """
+    s3 = s3_client()
+    for raw in paths:
+        p = Path(raw).resolve()
+        if not p.is_file():
+            sys.exit(f"not a file: {p}")
+        # sha256() refuses LFS pointers, so a stub can't be published here either.
+        key = f"{prefix}/{sha256(p)}{p.suffix}"
+        try:
+            s3.head_object(Bucket=BUCKET, Key=key)
+            print(f"  already on the bucket  {p.name}")
+        except Exception:
+            s3.upload_file(str(p), BUCKET, key, ExtraArgs=upload_args(p.name))
+            print(f"  uploaded  {p.name}  ({p.stat().st_size / 1e6:.1f} MB)")
+        print(f'    "image_url": "{PUBLIC_BASE}/{key}"')
+
+
 def collect() -> list[dict]:
     """Every syncable file, with its hash and object key."""
     found = []
@@ -150,17 +214,18 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="report only, upload nothing")
     ap.add_argument("--set-cors", action="store_true", help="apply the CORS policy and exit")
+    ap.add_argument("--upload", nargs="+", metavar="FILE",
+                    help="put product image(s) on the bucket and print the image_url "
+                         "to paste into slicer/parts.json; the file is never copied "
+                         "into the repo")
     args = ap.parse_args()
 
-    if args.set_cors:
-        import boto3
+    if args.upload:
+        upload_loose(args.upload)
+        return
 
-        key, secret = load_credentials()
-        s3 = boto3.client(
-            "s3", region_name=REGION, endpoint_url=ENDPOINT,
-            aws_access_key_id=key, aws_secret_access_key=secret,
-        )
-        set_cors(s3)
+    if args.set_cors:
+        set_cors(s3_client())
         print(f"CORS applied to {BUCKET}")
         return
 
@@ -201,21 +266,7 @@ def main() -> None:
             continue
 
         s3.upload_file(
-            str(REPO / f["path"]),
-            BUCKET,
-            f["key"],
-            ExtraArgs={
-                "ACL": "public-read",
-                "ContentType": CONTENT_TYPES.get(Path(f["name"]).suffix, "application/octet-stream"),
-                # So a browser download lands as "chute-core.stl", not a hash.
-                # Images stay inline so <img> and open-in-tab both behave.
-                "ContentDisposition": (
-                    f'inline; filename="{f["name"]}"'
-                    if Path(f["name"]).suffix in INLINE_SUFFIXES
-                    else f'attachment; filename="{f["name"]}"'
-                ),
-                "CacheControl": "public, max-age=31536000, immutable",
-            },
+            str(REPO / f["path"]), BUCKET, f["key"], ExtraArgs=upload_args(f["name"])
         )
         print(f"  uploaded {f['name']:<44} {f['size']/1e6:6.1f} MB")
         uploaded += 1

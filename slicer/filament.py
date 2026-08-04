@@ -554,8 +554,7 @@ def main():
                      profiles, hexmap, role_defaults, args.force)
 
     # COTS hardware (kind: "cots") is passed through, not sliced. Product images
-    # live in slicer/images/ and are served content-addressed from the bucket,
-    # same as STLs -- the deploy only ever sees the URL.
+    # are pinned bucket URLs authored in parts.json; they never live in the repo.
     hardware = []
     for p in manifest["parts"]:
         if p.get("kind", "printed") != "cots":
@@ -565,7 +564,10 @@ def main():
         dupes = {l for l in labels if labels.count(l) > 1}
         if dupes:
             raise SystemExit(f"{p['id']}: duplicate attribute label(s) {sorted(dupes)}")
-        img = p.get("image")
+        if p.get("image"):
+            raise SystemExit(
+                f"{p['id']}: 'image' (a repo file path) is no longer supported -- "
+                "images live only on the bucket. Use 'image_url'.")
         hardware.append({
             "id": p["id"],
             "kind": "cots",
@@ -582,26 +584,24 @@ def main():
             # stock material: lines count cut pieces, this converts to lengths to buy
             "stock": p.get("stock"),
             "sourcing": p.get("sourcing"),
-            # image: repo file -> content-addressed bucket URL; image_url:
-            # already-on-the-bucket URL authored directly (BOM product images
-            # deliberately never touch git)
-            "image": artifact_url(os.path.join(HERE, img), prefix="img") if img
-                     else p.get("image_url"),
+            # Product images live only on the bucket, authored as a pinned URL.
+            # They deliberately never touch git.
+            "image": p.get("image_url"),
         })
 
     # Hardware families: one product photo shared by every cots part whose `cots`
-    # block matches. The image goes to the bucket like any other, content-addressed.
+    # block matches. Like all product images, it is a pinned bucket URL.
     families = []
     for f in manifest.get("families", []):
-        img = f.get("image")
-        if img and not os.path.exists(os.path.join(HERE, img)):
-            raise SystemExit(f"family {f['id']}: missing image {img}")
+        if f.get("image"):
+            raise SystemExit(
+                f"family {f['id']}: 'image' (a repo file path) is no longer "
+                "supported -- images live only on the bucket. Use 'image_url'.")
         families.append({
             "id": f["id"],
             "name": f["name"],
             "match": f.get("match", {}),
-            "image": artifact_url(os.path.join(HERE, img), prefix="img") if img
-                     else f.get("image_url"),
+            "image": f.get("image_url"),
         })
 
     # bundle every STL into one downloadable zip (built before the data dict so

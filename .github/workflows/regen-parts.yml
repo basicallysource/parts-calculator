@@ -25,7 +25,6 @@ on:
       - 'slicer/parts.json'
       - 'slicer/parts/**'
       - 'slicer/plates/**'
-      - 'slicer/images/**'
       - 'slicer/filament.py'
       - 'slicer/requirements.txt'
       - 'src/lib/bambu-colors.ts'
@@ -37,7 +36,6 @@ on:
       - 'slicer/parts.json'
       - 'slicer/parts/**'
       - 'slicer/plates/**'
-      - 'slicer/images/**'
       - 'slicer/filament.py'
       - 'slicer/requirements.txt'
       - 'src/lib/bambu-colors.ts'
@@ -159,6 +157,13 @@ jobs:
             exit 0
           fi
           python scripts/sync_bucket.py
+
+      - name: Verify product images actually resolve
+        # Runs BEFORE the commit-back so broken image URLs can never reach main.
+        # The bucket is content-addressed, so a wrong URL is a 200 serving the
+        # wrong bytes, not a 404 -- nothing else we run would notice.
+        run: |
+          python scripts/check_image_urls.py
 
       - name: Commit regenerated data
         run: |

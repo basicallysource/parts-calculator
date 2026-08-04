@@ -34,3 +34,9 @@ slicer/*.log
 
 # raw STL drop zone (sort into slicer/parts/ before committing)
 slicer/inbox/
+
+# Product images never enter git. Upload them and reference the URL:
+#   python scripts/sync_bucket.py --upload <file>   -> paste the image_url
+# This used to be an LFS directory; pointer stubs got published as the images
+# and broke every hardware photo on the site. See CLAUDE.md.
+slicer/images/
