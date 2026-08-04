@@ -456,51 +456,6 @@
       "sha256": "c4e920ca1b7a15eb2c52fdc11efe35eee468d78519ee03ae312cef44ba14b5ed",
       "size": 16981344,
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/c4e920ca1b7a15eb2c52fdc11efe35eee468d78519ee03ae312cef44ba14b5ed.zip"
-    },
-    "slicer/images/hardware/ctrl-board-basically.png": {
-      "sha256": "13047c3c7a3729d5d7a3de8eeb943ed3864632652b4269c31751512f2e1ee0bd",
-      "size": 132,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/13047c3c7a3729d5d7a3de8eeb943ed3864632652b4269c31751512f2e1ee0bd.png"
-    },
-    "slicer/images/hardware/hsi-m3-long.png": {
-      "sha256": "ae7e2db78364ef629d123e28a02a304f6ea7f56e6bde93d0088f90c112dc09d9",
-      "size": 130,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/ae7e2db78364ef629d123e28a02a304f6ea7f56e6bde93d0088f90c112dc09d9.png"
-    },
-    "slicer/images/hardware/layer-adapter-board-basically.png": {
-      "sha256": "0926ef3d928e2e9b4e51877d45df4a4ba2379de35c762fdceafc55bf0cb6bb68",
-      "size": 132,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/0926ef3d928e2e9b4e51877d45df4a4ba2379de35c762fdceafc55bf0cb6bb68.png"
-    },
-    "slicer/images/hardware/family/nut.jpg": {
-      "sha256": "7474880a17b077bc5ad66f32d9faae205a02de12df069830544f191437549742",
-      "size": 130,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/7474880a17b077bc5ad66f32d9faae205a02de12df069830544f191437549742.jpg"
-    },
-    "slicer/images/hardware/family/screw-button.jpg": {
-      "sha256": "65924d598242b746098c5a92e29cb13d8eb1a68b5760446ddf33418b8fe84c80",
-      "size": 130,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/65924d598242b746098c5a92e29cb13d8eb1a68b5760446ddf33418b8fe84c80.jpg"
-    },
-    "slicer/images/hardware/family/screw-countersunk.jpg": {
-      "sha256": "bfb3c4ac73ee83dac0200a2d836d1739d980f96a43628c62530da782ce66766b",
-      "size": 130,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/bfb3c4ac73ee83dac0200a2d836d1739d980f96a43628c62530da782ce66766b.jpg"
-    },
-    "slicer/images/hardware/family/screw-socket.jpg": {
-      "sha256": "99420167ffaaa753fccaf712c0cd37e18665411769ad909b24ceae4d26e0c41f",
-      "size": 130,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/99420167ffaaa753fccaf712c0cd37e18665411769ad909b24ceae4d26e0c41f.jpg"
-    },
-    "slicer/images/hardware/rod-steel-3-8.jpg": {
-      "sha256": "fa1c2f44515444baf64bc512f3fce419491d55b44f0d836dd0e8679a168fdffc",
-      "size": 130,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/fa1c2f44515444baf64bc512f3fce419491d55b44f0d836dd0e8679a168fdffc.jpg"
-    },
-    "slicer/images/hardware/scr-m5-35-fhcs.jpg": {
-      "sha256": "d6f27d32516192b1d392e00ea380e4dc56cd33337c987ad17c4884ae5b002d79",
-      "size": 130,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/d6f27d32516192b1d392e00ea380e4dc56cd33337c987ad17c4884ae5b002d79.jpg"
     }
   }
 }
