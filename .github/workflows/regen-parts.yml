@@ -183,4 +183,14 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Regenerate part data (CI slicer, Orca $ORCA_VERSION)"
-          git push
+          # sync-bucket.yml pushes its own manifest commit to the same branch, so
+          # a plain push loses that race and throws away a correct regeneration
+          # (it happened: the image fix regenerated fine, then failed to land).
+          # Rebase and retry rather than making the caller re-run the whole job.
+          for attempt in 1 2 3; do
+            git push && exit 0
+            echo "push rejected (attempt $attempt) -- rebasing onto the new head"
+            git pull --rebase --autostash
+          done
+          echo "::error::could not push regenerated data after 3 attempts"
+          exit 1
