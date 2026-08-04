@@ -97,7 +97,7 @@
 				"type": "screw",
 				"variant": "countersunk"
 			},
-			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/bfb3c4ac73ee83dac0200a2d836d1739d980f96a43628c62530da782ce66766b.jpg"
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/faf0edbe33245eec7dff8e0f365b0c006ad6991b7372217c447dfe53928228a4.jpg"
 		},
 		{
 			"id": "screw-socket",
@@ -106,7 +106,7 @@
 				"type": "screw",
 				"variant": "socket"
 			},
-			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/99420167ffaaa753fccaf712c0cd37e18665411769ad909b24ceae4d26e0c41f.jpg"
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/580ba61e9d9a2275717f9c9741502e966f45c4382616993365b4d1cb9720d0c0.jpg"
 		},
 		{
 			"id": "screw-button",
@@ -115,7 +115,7 @@
 				"type": "screw",
 				"variant": "button"
 			},
-			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/65924d598242b746098c5a92e29cb13d8eb1a68b5760446ddf33418b8fe84c80.jpg"
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/350b2785fbe0a6ada9e624dfd4457a2a2309857171c78515560cb5c3f3faf445.jpg"
 		},
 		{
 			"id": "nut",
@@ -123,7 +123,7 @@
 			"match": {
 				"type": "nut"
 			},
-			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/7474880a17b077bc5ad66f32d9faae205a02de12df069830544f191437549742.jpg"
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/3731dab3df874778f0dd2d4a36771a2e3266dfae609cab95ce5bf1abe3f177fb.jpg"
 		}
 	],
 	"assemblies": [
@@ -5630,7 +5630,7 @@
 					}
 				]
 			},
-			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/d6f27d32516192b1d392e00ea380e4dc56cd33337c987ad17c4884ae5b002d79.jpg"
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/cb2fdd72471816cef2a69bdd7775a1863cf4dea2d72a15a68a73deebb276164f.jpg"
 		},
 		{
 			"id": "scr-m5-shcs-tbd",
@@ -5793,7 +5793,7 @@
 					}
 				]
 			},
-			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/fa1c2f44515444baf64bc512f3fce419491d55b44f0d836dd0e8679a168fdffc.jpg"
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/b0c74a7fb6f0be515fc6bad42d5a927e2330e887b8e74129f2906fde6610a0eb.jpg"
 		},
 		{
 			"id": "hsi-m3-long",
@@ -5856,7 +5856,7 @@
 					}
 				]
 			},
-			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/ae7e2db78364ef629d123e28a02a304f6ea7f56e6bde93d0088f90c112dc09d9.png"
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/ae73fe6bb2304afb8bb591904eb363febfdc98ccde7dd6dbda9dd5ae9cb3151a.png"
 		},
 		{
 			"id": "hsi-m5-long",
@@ -6993,7 +6993,7 @@
 					}
 				]
 			},
-			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/13047c3c7a3729d5d7a3de8eeb943ed3864632652b4269c31751512f2e1ee0bd.png"
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/f7caadca07d5a0dc6894895209da6f1a7f4c865a245ee095fce358902c85ff42.png"
 		},
 		{
 			"id": "layer-adapter-board-basically",
@@ -7022,7 +7022,7 @@
 					}
 				]
 			},
-			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/0926ef3d928e2e9b4e51877d45df4a4ba2379de35c762fdceafc55bf0cb6bb68.png"
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/1838b0588731b2d835ae5f9885f4e486324b89370ab3ea5df086540deb539c75.png"
 		},
 		{
 			"id": "led-cob-50mm-24v",
