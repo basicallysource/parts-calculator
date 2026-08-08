@@ -7,6 +7,7 @@
 	import Modal from '$lib/components/Modal.svelte';
 	import { getBambuColor } from '$lib/bambu-colors';
 	import { SITE_URL } from '$lib/seo';
+	import { copyText } from '$lib/clipboard';
 	import { duration, fmtDate, partOnshape, platesForPart, type Part, type PartVersion } from '$lib/filament';
 	import { ExternalLink, History, Layers3, Share2, Check } from 'lucide-svelte';
 
@@ -40,32 +41,6 @@
 			copied = true;
 			clearTimeout(copyTimer);
 			copyTimer = setTimeout(() => (copied = false), 1800);
-		}
-	}
-	// Prefer the async Clipboard API; fall back to the legacy execCommand path when
-	// it's unavailable or blocked (older browsers, insecure contexts) so the button
-	// still copies rather than silently doing nothing.
-	async function copyText(text: string): Promise<boolean> {
-		try {
-			if (navigator.clipboard?.writeText) {
-				await navigator.clipboard.writeText(text);
-				return true;
-			}
-		} catch {
-			/* fall through to the legacy path */
-		}
-		try {
-			const ta = document.createElement('textarea');
-			ta.value = text;
-			ta.style.position = 'fixed';
-			ta.style.opacity = '0';
-			document.body.appendChild(ta);
-			ta.select();
-			const ok = document.execCommand('copy');
-			ta.remove();
-			return ok;
-		} catch {
-			return false;
 		}
 	}
 </script>
