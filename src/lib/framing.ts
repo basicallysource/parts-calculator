@@ -24,6 +24,11 @@ export type FramingPiece = {
 	from: string; // human note on where the quantity comes from
 	badge: string; // marker colour for this piece (from the shop paint key)
 	optional?: boolean; // not part of the standard build — starts off, excluded from the family render
+	// Why this piece can come out at zero for some layer counts. A piece with
+	// this note stays in the table at ×0 instead of vanishing, because a piece
+	// that is simply absent reads as a missing part rather than a deliberate one
+	// (people have hit this with C at 1 and 2 layers).
+	zeroNote?: string;
 	qtyFor: (n: number) => number;
 };
 
@@ -41,8 +46,10 @@ export const FRAMING_PIECES: FramingPiece[] = [
 		cadLen: 160,
 		len: 160 - CLEARANCE_MM,
 		category: 'per-layer',
-		from: 'top N−2 layers (bottom 2 joined into feet)',
+		from: '6 per layer, above the bottom 2',
 		badge: '#ffffff',
+		zeroNote:
+			'The bottom two layers do not use C. One foot extension (D) spans both of them in place of a C on each, so C is only cut from 3 layers up.',
 		qtyFor: (n) => 6 * Math.max(0, n - 2)
 	},
 	// ---- interface (one set per machine) ----
@@ -52,8 +59,19 @@ export const FRAMING_PIECES: FramingPiece[] = [
 	{ letter: 'H', name: 'Interface spoke (short)', cadLen: 158, len: 158, category: 'interface', from: 'per machine · same as spoke B', badge: '#d63b2f', qtyFor: () => 6 },
 	// optional — 10.5″ (267 mm), 3 per machine when enabled
 	{ letter: 'I', name: 'Bulk bucket support', cadLen: 267, len: 267, category: 'interface', from: 'per machine · optional', badge: '#7c8330', optional: true, qtyFor: () => 3 },
-	// ---- feet (bottom 2 layers span into one piece) ----
-	{ letter: 'D', name: 'Foot extension', cadLen: 1.5 * 160, len: 1.5 * (160 - CLEARANCE_MM), category: 'feet', from: '1.5 × C · bottom 2 layers joined', badge: '#1f3a93', qtyFor: (n) => (n >= 2 ? 6 : 0) }
+	// ---- feet (bottom 2 layers span into one piece, in place of a C each) ----
+	{
+		letter: 'D',
+		name: 'Foot extension',
+		cadLen: 1.5 * 160,
+		len: 1.5 * (160 - CLEARANCE_MM),
+		category: 'feet',
+		from: 'replaces C on the bottom 2 layers · 1.5 × C',
+		badge: '#1f3a93',
+		zeroNote:
+			'A foot extension joins the bottom two layers into one piece, so it is only cut from 2 layers up.',
+		qtyFor: (n) => (n >= 2 ? 6 : 0)
+	}
 ];
 
 export type LengthGroup = {

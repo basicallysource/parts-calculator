@@ -31,7 +31,7 @@
 					src="/extrusion-explainer.png"
 					alt="Extrusion assembly explainer"
 					title="Extrusion assembly explainer"
-					caption="The foot extensions (D) aren't in the CAD yet."
+					caption="The foot extensions (D) aren't in the CAD yet. On a build they replace the C supports on the bottom two layers, one D spanning both."
 					imgClass="max-h-[32vh]"
 				/>
 			{/snippet}
