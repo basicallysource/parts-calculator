@@ -4,6 +4,7 @@
 	import { layerStore } from '$lib/layers.svelte';
 	import { ftin, expand, packOptimal, packBundle, planGroups } from '$lib/cutplan';
 	import Popover from '$lib/components/Popover.svelte';
+	import Callout from '$lib/components/Callout.svelte';
 	import { framingCsv } from '$lib/parts-csv';
 	import { download, exportSpec, filename } from '$lib/csv';
 
@@ -322,6 +323,27 @@
 		</div>
 	</div>
 
+	<!-- notes: sat at the very bottom of the page, under the cut sheet, where
+	     nobody read them. They matter before you start cutting, so they go here -->
+	<Callout variant="info" title="Notes">
+		<ul class="list-disc space-y-2 pl-4 leading-relaxed">
+			<li>
+				<b class="text-text">D stands in for C at the bottom.</b> Every layer above the bottom two
+				gets 6 layer supports (<b class="text-text">C</b>, {lenC} mm). The bottom two share 6 foot
+				extensions (<b class="text-text">D</b>, {lenD} mm), one spanning both, in place of a C on
+				each. So a 1 or 2 layer build has no C in the list at all, and that is not a missing piece.
+			</li>
+			<li>
+				Pieces that share a cut length stack together at the saw — mark and cut the top bar, the rest
+				follow: <b class="text-text">A &amp; G</b> = 320 mm, <b class="text-text">B &amp; H</b> = 158 mm.
+			</li>
+			<li>
+				Where the cut length is under the CAD length, the piece is trimmed {CLEARANCE_MM} mm for
+				tolerance (see the <b class="text-text">Cut length</b> note above).
+			</li>
+		</ul>
+	</Callout>
+
 	<!-- cut sheet -->
 	<div>
 		<h3 class="mb-2 text-sm font-semibold text-text">Cut sheet</h3>
@@ -401,24 +423,4 @@
 		{/if}
 	</div>
 
-	<!-- notes -->
-	<div>
-		<h3 class="mb-2 text-sm font-semibold text-text">Notes</h3>
-		<ul class="space-y-2 text-sm leading-relaxed text-text-muted">
-			<li>
-				Pieces that share a cut length stack together at the saw — mark and cut the top bar, the rest
-				follow: <b class="text-text">A &amp; G</b> = 320 mm, <b class="text-text">B &amp; H</b> = 158 mm.
-			</li>
-			<li>
-				Where the cut length is under the CAD length, the piece is trimmed {CLEARANCE_MM} mm for
-				tolerance (see the <b class="text-text">Cut length</b> note above).
-			</li>
-			<li>
-				<b class="text-text">D stands in for C at the bottom.</b> Every layer above the bottom two
-				gets 6 layer supports (<b class="text-text">C</b>, {lenC} mm). The bottom two share 6 foot
-				extensions (<b class="text-text">D</b>, {lenD} mm), one spanning both, in place of a C on
-				each. So a 1 or 2 layer build has no C in the list at all, and that is not a missing piece.
-			</li>
-		</ul>
-	</div>
 </div>
