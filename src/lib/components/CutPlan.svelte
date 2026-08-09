@@ -7,6 +7,10 @@
 	import { framingCsv } from '$lib/parts-csv';
 	import { download, exportSpec, filename } from '$lib/csv';
 
+	// lengths quoted in the C/D note below, read off the pieces themselves
+	const lenC = FRAMING_PIECES.find((p) => p.letter === 'C')?.len ?? 0;
+	const lenD = FRAMING_PIECES.find((p) => p.letter === 'D')?.len ?? 0;
+
 	let stock = $state(STOCK_MM);
 	let kerf = $state(3);
 	let mode = $state<'opt' | 'bun'>('opt');
@@ -35,9 +39,15 @@
 				modified: selected !== defaultSelected || qty !== defaultQty,
 				cat: p.category,
 				from: p.from,
-				badge: p.badge
+				badge: p.badge,
+				zeroNote: p.zeroNote
 			};
-		}).filter((p) => p.defaultQty > 0)
+		})
+			// A piece that drops to zero at this layer count stays listed, at ×0, when
+			// it carries a note explaining why. Vanishing from the table reads as a
+			// missing part instead of a deliberate one. C at 1 and 2 layers is the
+			// one people keep hitting.
+			.filter((p) => p.defaultQty > 0 || !!p.zeroNote)
 	);
 	const anyModified = $derived(pieces.some((p) => p.modified));
 
@@ -220,7 +230,7 @@
 											<Popover
 												width="w-72"
 												label="Why the feet span two layers"
-												text="The bottom two layers share one continuous length of extrusion that spans both — instead of a separate support per layer — so the wheels can sustain more force."
+												text="The bottom two layers share one continuous length of extrusion (D) that spans both, instead of a separate layer support (C) on each, so the wheels can sustain more force. That is why C is not in the list until 3 layers."
 											/>
 										{/if}
 									</span>
@@ -246,6 +256,12 @@
 								{p.name}
 								{#if p.optional}
 									<span class="ml-1.5 inline-block bg-[var(--color-bg)] px-1.5 py-0.5 align-middle text-[10px] font-semibold uppercase tracking-wider text-text-muted">optional</span>
+								{/if}
+								{#if p.defaultQty === 0}
+									<span class="ml-1.5 inline-block bg-[var(--color-bg)] px-1.5 py-0.5 align-middle text-[10px] font-semibold uppercase tracking-wider text-text-muted">none at {n} layer{n === 1 ? '' : 's'}</span>
+									{#if p.zeroNote}
+										<div class="mt-0.5 max-w-[22rem] text-xs leading-snug text-text-muted">{p.zeroNote}</div>
+									{/if}
 								{/if}
 							</td>
 							<td class="whitespace-nowrap px-2 py-2 text-right font-mono tabular-nums text-text-muted">{p.cadLen} mm</td>
@@ -396,6 +412,12 @@
 			<li>
 				Where the cut length is under the CAD length, the piece is trimmed {CLEARANCE_MM} mm for
 				tolerance (see the <b class="text-text">Cut length</b> note above).
+			</li>
+			<li>
+				<b class="text-text">D stands in for C at the bottom.</b> Every layer above the bottom two
+				gets 6 layer supports (<b class="text-text">C</b>, {lenC} mm). The bottom two share 6 foot
+				extensions (<b class="text-text">D</b>, {lenD} mm), one spanning both, in place of a C on
+				each. So a 1 or 2 layer build has no C in the list at all, and that is not a missing piece.
 			</li>
 		</ul>
 	</div>
