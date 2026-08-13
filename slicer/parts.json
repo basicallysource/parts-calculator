@@ -2824,6 +2824,15 @@
             "price": 12.95,
             "pack_qty": 100,
             "as_of": "2026-07-18"
+          },
+          {
+            "region": "US",
+            "vendor": "Amazon",
+            "url": "https://www.amazon.com/dp/B07VHNGBWJ",
+            "affiliate_url": "https://www.amazon.com/dp/B07VHNGBWJ?tag=sorterv2-20",
+            "price": 14.23,
+            "pack_qty": 100,
+            "as_of": "2026-08-13"
           }
         ]
       },
