@@ -1378,6 +1378,12 @@
       },
       "assembly": "servo-bracket",
       "stl": "parts/chute/servo-bracket-housing.stl",
+      "requires": [
+        {
+          "part": "hsi-m3-long",
+          "qty": 6
+        }
+      ],
       "color": {
         "role": "chute-core"
       },
