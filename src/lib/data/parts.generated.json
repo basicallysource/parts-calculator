@@ -3830,7 +3830,12 @@
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
-			"requires": [],
+			"requires": [
+				{
+					"part": "hsi-m3-long",
+					"qty": 6
+				}
+			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/e03d031e35f6aeed0303564b228866ca783be596e98f0d52fc0aff8bf41d6bd9.stl",
 			"render": "/renders/servo-bracket-housing.png"
 		},
