@@ -837,7 +837,13 @@
         "role": "frame"
       },
       "optional": false,
-      "support": false
+      "support": false,
+      "requires": [
+        {
+          "part": "brg-608-2rs",
+          "qty": 1
+        }
+      ]
     },
     {
       "id": "interface-nema23-bracket",
@@ -4455,6 +4461,10 @@
         },
         {
           "assembly": "interface-nema23-mount",
+          "qty": 1
+        },
+        {
+          "part": "interface-idler-gear",
           "qty": 1
         },
         {
