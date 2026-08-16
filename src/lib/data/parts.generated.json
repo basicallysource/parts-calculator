@@ -647,6 +647,10 @@
 					"qty": 1
 				},
 				{
+					"part": "interface-idler-gear",
+					"qty": 1
+				},
+				{
 					"assembly": "interface-spur-gear-drive",
 					"qty": 1
 				},
@@ -2659,7 +2663,12 @@
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
-			"requires": [],
+			"requires": [
+				{
+					"part": "brg-608-2rs",
+					"qty": 1
+				}
+			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/86b04df825b6c019f6be0a8894bbbd05a42e6abab86d2694e4a99f5284b6c4d9.stl",
 			"render": "/renders/interface-idler-gear.png"
 		},
