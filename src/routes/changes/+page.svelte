@@ -2,8 +2,10 @@
 	import { ArrowLeft, Box, Boxes, Layers3 } from 'lucide-svelte';
 	import Badge from '$lib/components/Badge.svelte';
 	import PriorityBadge from '$lib/components/PriorityBadge.svelte';
+	import Modal from '$lib/components/Modal.svelte';
+	import PartDetailModal from '$lib/components/PartDetailModal.svelte';
 	import Seo from '$lib/components/Seo.svelte';
-	import { ASSEMBLIES, CHANGES, HARDWARE, PARTS, SECTIONS, hardwareImage, type ChangeTargetKind, type Part, type PlannedChange } from '$lib/filament';
+	import { ASSEMBLIES, CHANGES, HARDWARE, PARTS, SECTIONS, hardwareImage, type ChangeTargetKind, type Part, type PartVersion, type PlannedChange } from '$lib/filament';
 	import { LASER_CUT_PARTS } from '$lib/lasercut';
 
 	const partNames = new Map(PARTS.map((part) => [part.id, part.name]));
@@ -38,6 +40,25 @@
 	const targetLabels: Record<ChangeTargetKind, string> = {
 		parts: 'Parts', assemblies: 'Assembly', sections: 'Section', lasercut: 'Laser cut', hardware: 'Hardware'
 	};
+
+	let modelOpen = $state(false);
+	let modelPart = $state<Part | null>(null);
+	let modelColor = $state('ash-gray');
+	let modelVersion = $state<PartVersion | null>(null);
+	function openModel(part: Part) {
+		modelPart = part;
+		modelVersion = part.versions?.[part.versions.length - 1] ?? null;
+		modelOpen = true;
+	}
+
+	let imageOpen = $state(false);
+	let imageSrc = $state('');
+	let imageAlt = $state('');
+	function openImage(src: string, alt: string) {
+		imageSrc = src;
+		imageAlt = alt;
+		imageOpen = true;
+	}
 </script>
 
 <Seo title="Intended Changes — Sorter Parts Calculator" description="Planned improvements to Sorter V2 parts and assemblies, ordered by priority." />
@@ -46,7 +67,7 @@
 	<a href="/" class="mb-5 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary-hover"><ArrowLeft size={15} /> Printed parts</a>
 	<div class="mb-6">
 		<h1 class="text-3xl font-bold tracking-tight text-text">Intended Changes</h1>
-		<p class="mt-2 max-w-3xl text-sm text-text-muted">Known fixes and planned improvements. P0 comes first, followed by P1 and P2; P3 is a nice-to-have rather than Subject to Change. Click any part thumbnail to inspect its current interactive 3D model.</p>
+		<p class="mt-2 max-w-3xl text-sm text-text-muted">Known fixes and planned improvements. P0 is reserved for broken features; higher numbers are progressively lower priority, with P4 used for nice-to-have improvements. Click any part thumbnail to inspect its current interactive 3D model.</p>
 	</div>
 
 	<div class="overflow-x-auto border border-border bg-surface">
@@ -73,7 +94,7 @@
 							<p class="mt-1 text-xs leading-relaxed text-text-muted">{change.description}</p>
 							{#if change.images?.length}
 								<div class="mt-2 flex gap-2 overflow-x-auto">
-									{#each change.images as image}<figure class="w-40 shrink-0"><img src={image.url} alt={image.alt} class="h-24 w-40 border border-border bg-white object-contain" />{#if image.caption}<figcaption class="mt-0.5 truncate text-[10px] text-text-muted">{image.caption}</figcaption>{/if}</figure>{/each}
+									{#each change.images as image}<figure class="w-40 shrink-0"><button type="button" class="block cursor-zoom-in" title="Open full-size image" onclick={() => openImage(image.url, image.alt)}><img src={image.url} alt={image.alt} class="h-24 w-40 border border-border bg-white object-contain hover:border-primary" /></button>{#if image.caption}<figcaption class="mt-0.5 truncate text-[10px] text-text-muted">{image.caption}</figcaption>{/if}</figure>{/each}
 								</div>
 							{/if}
 							<div class="mt-2 flex flex-wrap gap-x-3 gap-y-1">
@@ -91,18 +112,18 @@
 						<td class="px-3 py-3">
 							<div class="flex flex-wrap gap-2">
 								{#each models as part (part.id)}
-									<a href="/part/{part.id}" class="group w-20" title="Open current 3D model for {part.name}">
+									<button type="button" class="group w-20 cursor-pointer text-left" title="Open current 3D model for {part.name}" onclick={() => openModel(part)}>
 										<span class="flex h-14 w-20 items-center justify-center overflow-hidden border border-border bg-[var(--color-bg)] group-hover:border-primary">
 											<img src={part.render} alt={part.name} class="h-full w-full object-contain transition-transform group-hover:scale-105" />
 										</span>
 										<span class="mt-1 block truncate text-[10px] leading-tight text-text-muted group-hover:text-primary">{part.name}</span>
-									</a>
+									</button>
 								{/each}
 								{#each laserTargets as part (part.id)}
-									<a href="/lasercut#laser-{part.id}" class="group w-20" title="Open {part.name}">
+									<button type="button" class="group w-20 cursor-zoom-in text-left" title="Open large preview of {part.name}" onclick={() => openImage(part.preview, part.name)}>
 										<span class="flex h-14 w-20 items-center justify-center overflow-hidden border border-border bg-white group-hover:border-primary"><img src={part.preview} alt={part.name} class="h-full w-full object-contain transition-transform group-hover:scale-105" /></span>
 										<span class="mt-1 block truncate text-[10px] leading-tight text-text-muted group-hover:text-primary">{part.name}</span>
-									</a>
+									</button>
 								{/each}
 								{#each hardwareTargets as part (part.id)}
 									{@const image = hardwareImage(part)}
@@ -120,3 +141,11 @@
 		</table>
 	</div>
 </main>
+
+<PartDetailModal bind:open={modelOpen} part={modelPart} bind:colorId={modelColor} bind:version={modelVersion} />
+
+<Modal bind:open={imageOpen} title={imageAlt} maxW="max-w-6xl">
+	<div class="flex min-h-0 items-center justify-center bg-white p-4">
+		<img src={imageSrc} alt={imageAlt} class="max-h-[78vh] max-w-full object-contain" />
+	</div>
+</Modal>

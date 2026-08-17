@@ -11,7 +11,7 @@
 
 {#each changes as change (change.id)}
 	{@const isBroken = change.condition === 'broken'}
-	{@const isNiceToHave = change.priority === 'P3'}
+	{@const isNiceToHave = Number(change.priority.slice(1)) >= 4}
 	<Popover width="w-80" label={isNiceToHave ? `Possible improvement for ${name}` : isBroken ? `Broken feature on ${name}` : `Why ${name} is subject to change`}>
 		{#snippet trigger({ toggle, open })}
 			<PriorityBadge as="button" priority={change.priority} class={isBroken ? 'uppercase tracking-wide' : ''} onclick={toggle} aria-expanded={open}>
@@ -22,7 +22,7 @@
 			<AlertTriangle size={14} class="mt-0.5 shrink-0 {isBroken ? 'text-danger' : 'text-warning-dark'}" />
 			<div>
 				<b class="text-text">{isBroken ? 'This design has a broken feature that is intended to be fixed.' : isNiceToHave ? 'The current design is usable; this improvement would be nice to have.' : 'Works now, but is intended to be replaced shortly with an improvement.'}</b>
-				<p class="mt-1"><b>{change.priority}</b> priority — {isBroken && change.priority === 'P0' ? 'highest priority.' : change.priority === 'P1' ? 'planned change.' : change.priority === 'P3' ? 'nice-to-have improvement.' : 'lower priority.'}</p>
+				<p class="mt-1"><b>{change.priority}</b> priority — {isBroken && change.priority === 'P0' ? 'highest priority.' : isNiceToHave ? 'nice-to-have improvement.' : 'planned change.'}</p>
 			</div>
 		</div>
 		<div class="mt-2 border-t border-border pt-2 text-text">
