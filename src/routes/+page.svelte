@@ -2,6 +2,8 @@
 	import {
 		PARTS,
 		SECTIONS,
+		ASSEMBLIES,
+		CHANGES,
 		COLOR_ROLES,
 		SETTINGS,
 		STORE_URL,
@@ -42,6 +44,7 @@
 	import { colorStore, defaultRoleColors, resetRoleColors } from '$lib/colors.svelte';
 	import Popover from '$lib/components/Popover.svelte';
 	import Badge from '$lib/components/Badge.svelte';
+	import ChangeStatus from '$lib/components/ChangeStatus.svelte';
 	import { Download, Package, ZoomIn, Loader, Info, Plus, X, RotateCcw, Clock, Layers3, ExternalLink, AlertTriangle, History, ChevronRight, ChevronDown } from 'lucide-svelte';
 	import { page } from '$app/state';
 	import { replaceState } from '$app/navigation';
@@ -261,11 +264,13 @@
 	}
 
 	type Block = { kind: 'part'; part: Part } | { kind: 'assembly'; id: string; parts: Part[] };
-	function groupBlocks(parts: Part[]): Block[] {
+	function groupBlocks(parts: Part[], sectionId: string): Block[] {
 		const blocks: Block[] = [];
+		const represented = new Set<string>();
 		let cur: { kind: 'assembly'; id: string; parts: Part[] } | null = null;
 		for (const p of parts) {
 			if (p.assembly) {
+				represented.add(p.assembly);
 				if (!cur || cur.id !== p.assembly) {
 					cur = { kind: 'assembly', id: p.assembly, parts: [] };
 					blocks.push(cur);
@@ -274,6 +279,11 @@
 			} else {
 				cur = null;
 				blocks.push({ kind: 'part', part: p });
+			}
+		}
+		for (const assembly of ASSEMBLIES) {
+			if (assembly.section === sectionId && assembly.status === 'stub' && !represented.has(assembly.id)) {
+				blocks.push({ kind: 'assembly', id: assembly.id, parts: [] });
 			}
 		}
 		return blocks;
@@ -468,7 +478,7 @@
 					{p.name}
 					{#if p.optional}<Badge variant="warning">Optional</Badge>{/if}
 					{#if p.support_intentional}<Badge variant="info" title="Printed with support material — included in this part's grams">Supports</Badge>{/if}
-						{#if platesForPart(p.id).length}<button type="button" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" onclick={() => openPlatesModal(p.id)} title="Show plates with this part"><Layers3 size={11} /> {platesForPart(p.id).length} plate{platesForPart(p.id).length === 1 ? '' : 's'}</button>{/if}{#if os.version}<a href={os.version} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" title="Open the exact OnShape version this STL came from">OnShape <ExternalLink size={11} /></a>{/if}{#if p.info}<Popover width="w-64" label="About {p.name}" text={p.info} />{/if}{#if p.suspicious}<Popover width="w-72" label="Why {p.name} is flagged">{#snippet trigger({ toggle, open })}<Badge as="button" variant="warning" onclick={toggle} aria-expanded={open}><AlertTriangle size={11} /> Suspect</Badge>{/snippet}<b class="text-text">Subject to change.</b> This part may still change or have an issue. Unless it's critical, hold off printing it until this warning clears.{#if p.suspicious_note}<span class="mt-2 block border-t border-border pt-2 text-text">{p.suspicious_note}</span>{/if}</Popover>{/if}{#if p.low_tolerance}<Popover width="w-72" label="Fit notes for {p.name}">{#snippet trigger({ toggle, open })}<Badge as="button" variant="warning" onclick={toggle} aria-expanded={open}><AlertTriangle size={11} /> Tight fit</Badge>{/snippet}<b class="text-text">Low tolerance.</b> This part has little room for dimensional error, so a test print is worth doing before you commit to the full set.{#if p.low_tolerance_note}<span class="mt-2 block border-t border-border pt-2 text-text">{p.low_tolerance_note}</span>{/if}</Popover>{/if}{#if p.attributes?.length}{#each p.attributes as a}<span class="border border-border bg-[var(--color-bg)] px-1 text-xs text-text-muted" title={a.label}>{a.label}: <span class="text-text">{a.value}</span></span>{/each}{/if}{#if p.versions && p.versions.length > 1}<Popover width="w-80" label="Version history for {p.name}">{#snippet trigger({ toggle, open })}<button type="button" onclick={toggle} aria-expanded={open} class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" title="Version history"><History size={11} /> v{p.version} · {p.versions?.length ?? 0} versions</button>{/snippet}<b class="text-text">Version history</b><ul class="mt-1 space-y-2">{#each [...(p.versions ?? [])].reverse() as v}<li class="border-t border-border pt-2 first:border-t-0 first:pt-0"><div class="flex items-center gap-1.5 text-text"><b>v{v.version}</b><span class="text-text-muted">· {fmtDate(v.date)}</span>{#if commitUrl(v.commit)}<a href={commitUrl(v.commit)} target="_blank" rel="noopener" class="ml-auto inline-flex items-center gap-0.5 text-primary hover:text-primary-hover">{v.commit} <ExternalLink size={10} /></a>{:else}<span class="ml-auto italic text-text-muted/70">uncommitted</span>{/if}</div><div class="mt-0.5">{v.message}</div>{#if v.onshape_version}<div class="mt-1"><a href={v.onshape_version} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 text-primary hover:text-primary-hover">OnShape <ExternalLink size={10} /></a></div>{/if}</li>{/each}</ul></Popover>{/if}
+						{#if platesForPart(p.id).length}<button type="button" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" onclick={() => openPlatesModal(p.id)} title="Show plates with this part"><Layers3 size={11} /> {platesForPart(p.id).length} plate{platesForPart(p.id).length === 1 ? '' : 's'}</button>{/if}{#if os.version}<a href={os.version} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" title="Open the exact OnShape version this STL came from">OnShape <ExternalLink size={11} /></a>{/if}{#if p.info}<Popover width="w-64" label="About {p.name}" text={p.info} />{/if}<ChangeStatus kind="parts" id={p.id} name={p.name} />{#if p.low_tolerance}<Popover width="w-72" label="Fit notes for {p.name}">{#snippet trigger({ toggle, open })}<Badge as="button" variant="warning" onclick={toggle} aria-expanded={open}><AlertTriangle size={11} /> Tight fit</Badge>{/snippet}<b class="text-text">Low tolerance.</b> This part has little room for dimensional error, so a test print is worth doing before you commit to the full set.{#if p.low_tolerance_note}<span class="mt-2 block border-t border-border pt-2 text-text">{p.low_tolerance_note}</span>{/if}</Popover>{/if}{#if p.attributes?.length}{#each p.attributes as a}<span class="border border-border bg-[var(--color-bg)] px-1 text-xs text-text-muted" title={a.label}>{a.label}: <span class="text-text">{a.value}</span></span>{/each}{/if}{#if p.versions && p.versions.length > 1}<Popover width="w-80" label="Version history for {p.name}">{#snippet trigger({ toggle, open })}<button type="button" onclick={toggle} aria-expanded={open} class="inline-flex items-center gap-0.5 border border-border px-1 text-xs text-text-muted hover:border-primary hover:text-primary" title="Version history"><History size={11} /> v{p.version} · {p.versions?.length ?? 0} versions</button>{/snippet}<b class="text-text">Version history</b><ul class="mt-1 space-y-2">{#each [...(p.versions ?? [])].reverse() as v}<li class="border-t border-border pt-2 first:border-t-0 first:pt-0"><div class="flex items-center gap-1.5 text-text"><b>v{v.version}</b><span class="text-text-muted">· {fmtDate(v.date)}</span>{#if commitUrl(v.commit)}<a href={commitUrl(v.commit)} target="_blank" rel="noopener" class="ml-auto inline-flex items-center gap-0.5 text-primary hover:text-primary-hover">{v.commit} <ExternalLink size={10} /></a>{:else}<span class="ml-auto italic text-text-muted/70">uncommitted</span>{/if}</div><div class="mt-0.5">{v.message}</div>{#if v.onshape_version}<div class="mt-1"><a href={v.onshape_version} target="_blank" rel="noopener" class="inline-flex items-center gap-0.5 text-primary hover:text-primary-hover">OnShape <ExternalLink size={10} /></a></div>{/if}</li>{/each}</ul></Popover>{/if}
 				</span>
 				<span class="pl-meta">
 					{#each sw as s}
@@ -527,8 +537,12 @@
 			</div>
 
 			{#if activeTab === 'parts'}
+				<a href="/changes" class="mb-4 flex items-center justify-between gap-4 border border-warning/60 bg-warning/[0.08] px-4 py-3 text-sm text-text transition-colors hover:bg-warning/[0.14]">
+					<span><b>Changes are intended for some parts.</b> Review what is planned before printing.</span>
+					<span class="shrink-0 font-semibold text-primary">View {CHANGES.length} changes →</span>
+				</a>
 				{#each sectionRows as { section, parts, mult, selectedGrams } (section.id)}
-				<section class="pl-sec">
+				<section class="pl-sec" id="section-{section.id}">
 					<h3 class="pl-sec-hd">
 						{section.name}
 						{#if section.scales_with_layers}
@@ -543,6 +557,7 @@
 								{#if section.experimental_note}<span class="mt-2 block border-t border-border pt-2 text-text">{section.experimental_note}</span>{/if}
 							</Popover>
 						{/if}
+						<ChangeStatus kind="sections" id={section.id} name={section.name} />
 						<span class="pl-sec-total">{grams(selectedGrams)}</span>
 					</h3>
 					<!-- a long part name can push the table past a phone's width; it
@@ -560,27 +575,29 @@
 							</tr>
 						</thead>
 						<tbody>
-							{#each groupBlocks(parts) as block}
+							{#each groupBlocks(parts, section.id) as block}
 								{#if block.kind === 'assembly'}
 									{@const a = getAssembly(block.id)}
 									{@const k = asmKey(section.id, block.id)}
 									{@const open = expandedAsm[k]}
 									{@const allOn = asmAllOn(block.parts)}
 									<!-- svelte-ignore a11y_no_noninteractive_element_interactions a11y_click_events_have_key_events -->
-									<tr class="pl-row" onclick={() => toggleAsm(k)} title={a?.description}>
+									<tr class="pl-row" id="assembly-{block.id}" onclick={() => toggleAsm(k)} title={a?.description}>
 										<td class="pl-c-check">
-											<input
+										<input
 												class="setup-toggle h-4 w-4"
 												type="checkbox"
 												checked={allOn}
 												indeterminate={!allOn && asmSomeOn(block.parts)}
 												onclick={(e) => e.stopPropagation()}
 												onchange={() => setAsm(block.parts, !allOn)}
-												aria-label="Select every part in {a?.name}"
+											aria-label="Select every part in {a?.name}"
+											disabled={!block.parts.length}
 											/>
 										</td>
 										<td class="pl-c-thumb">
-											<span class="pl-fan">
+										<span class="pl-fan">
+											{#if !block.parts.length}<span class="pl-thumb flex items-center justify-center text-text-muted"><Clock size={20} /></span>{/if}
 												{#each block.parts.slice(0, 3) as bp, i (bp.id)}
 													<span class="pl-thumb" style="z-index:{3 - i}"><img src={bp.render} alt={bp.name} /></span>
 												{/each}
@@ -591,18 +608,20 @@
 												{#if open}<ChevronDown size={15} class="text-text-muted" />{:else}<ChevronRight size={15} class="text-text-muted" />{/if}
 												{a?.name}
 												<Badge variant="info">Assembly</Badge>
+												{#if a?.status === 'stub'}<Badge variant="neutral">Coming soon</Badge>{/if}
+												{#if a}<ChangeStatus kind="assemblies" id={a.id} name={a.name} />{/if}
 											</span>
-											<span class="pl-meta">{block.parts.length} parts · click to {open ? 'collapse' : 'expand'}</span>
+										<span class="pl-meta">{block.parts.length ? `${block.parts.length} parts · click to ${open ? 'collapse' : 'expand'}` : 'Parts and print details coming soon'}</span>
 										</td>
-										<td class="pl-c-each">{block.parts.length} parts</td>
-										<td class="pl-c-total">{grams(asmGrams(block.parts, section.id))}</td>
+									<td class="pl-c-each">{block.parts.length ? `${block.parts.length} parts` : '—'}</td>
+									<td class="pl-c-total">{block.parts.length ? grams(asmGrams(block.parts, section.id)) : '—'}</td>
 										<td class="pl-c-dl">
-											<button
+										{#if block.parts.length}<button
 												type="button"
 												class="pl-dl"
 												onclick={(e) => { e.stopPropagation(); downloadZip(block.parts, `${block.id}.zip`); }}
 												title="Download every STL in {a?.name}"
-											><Download size={16} /></button>
+										><Download size={16} /></button>{/if}
 										</td>
 									</tr>
 									{#if open}

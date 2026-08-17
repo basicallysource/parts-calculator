@@ -462,12 +462,61 @@ def read_triangles(path):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--force", action="store_true", help="re-slice + re-render everything")
+    ap.add_argument("--metadata-only", action="store_true",
+                    help="refresh authored metadata in existing generated JSON without slicing")
     ap.add_argument("--strict", action="store_true",
                     help="exit nonzero if any part fails to slice (CI uses this "
                          "so broken output can never be committed)")
     args = ap.parse_args()
 
     manifest = json.load(open(os.path.join(HERE, "parts.json")))
+    if args.metadata_only:
+        if not os.path.exists(DATA_OUT):
+            sys.exit("--metadata-only needs an existing parts.generated.json")
+        data = json.load(open(DATA_OUT))
+        authored = {p["id"]: p for p in manifest["parts"]
+                    if p.get("kind", "printed") == "printed"}
+        refreshed = []
+        for old in data["parts"]:
+            source = authored.get(old["id"])
+            if not source:
+                refreshed.append(old)
+                continue
+            # Keep this in the same key order and with the same defaults as the full
+            # generator so a metadata refresh produces a focused, reviewable diff.
+            refreshed.append({
+                "id": source["id"], "name": source["name"],
+                **({"aliases": source["aliases"]} if source.get("aliases") else {}),
+                "quantities": source.get("quantities", {}),
+                "assembly": source.get("assembly"),
+                "variant_group": source.get("variant_group"),
+                "variant_name": source.get("variant_name"),
+                "description": source.get("description", ""),
+                "version": source.get("version", ""),
+                "created_at": source.get("created_at", source.get("date_added", "")),
+                "updated_at": source.get("updated_at", source.get("created_at", source.get("date_added", ""))),
+                "versions": old.get("versions", normalize_versions(source)),
+                "attributes": source.get("attributes", []),
+                "grams": old["grams"], "support_grams": old["support_grams"],
+                "support_used": old["support_used"],
+                "support_intentional": bool(source.get("support", False)),
+                "print_seconds": old["print_seconds"],
+                "color": source.get("color", {"any": True}),
+                "optional": source.get("optional", False),
+                "onshape": source.get("onshape"), "info": source.get("info"),
+                "low_tolerance": source.get("low_tolerance", False),
+                "low_tolerance_note": source.get("low_tolerance_note"),
+                "layer_scope": source.get("layer_scope", "all"),
+                "requires": source.get("requires", []),
+                "stl": old["stl"], "render": old["render"],
+            })
+        data["parts"] = refreshed
+        data["sections"] = manifest["sections"]
+        data["changes"] = manifest.get("changes", [])
+        data["assemblies"] = manifest.get("assemblies", [])
+        json.dump(data, open(DATA_OUT, "w"), indent="\t")
+        print(f"refreshed authored metadata in {DATA_OUT}")
+        return
     profiles, density, cost_per_kg = build_profiles()
     hexmap = lego_hex_map()
     role_defaults = {r["id"]: r["default"] for r in manifest["color_roles"]}
@@ -515,6 +564,7 @@ def main():
         out_parts.append({
             "id": p["id"],
             "name": p["name"],
+            **({"aliases": p["aliases"]} if p.get("aliases") else {}),
             "quantities": p.get("quantities", {}),
             "assembly": p.get("assembly"),
             "variant_group": p.get("variant_group"),
@@ -536,8 +586,6 @@ def main():
             "optional": p.get("optional", False),
             "onshape": p.get("onshape"),
             "info": p.get("info"),
-            "suspicious": p.get("suspicious", False),
-            "suspicious_note": p.get("suspicious_note"),
             "low_tolerance": p.get("low_tolerance", False),
             "low_tolerance_note": p.get("low_tolerance_note"),
             "layer_scope": p.get("layer_scope", "all"),
@@ -628,6 +676,7 @@ def main():
             "all_parts_zip": artifact_url(zip_path, prefix="bundle"),
         },
         "sections": manifest["sections"],
+        "changes": manifest.get("changes", []),
         "color_roles": manifest["color_roles"],
         "families": families,
         "assemblies": manifest.get("assemblies", []),

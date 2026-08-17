@@ -26,6 +26,16 @@ export type Section = {
 	experimental?: boolean; // early / subject to heavy change — surfaced with a warning
 	experimental_note?: string | null;
 };
+export type ChangePriority = 'P0' | 'P1' | 'P2';
+export type ChangeTargetKind = 'parts' | 'assemblies' | 'sections';
+export type PlannedChange = {
+	id: string;
+	name: string;
+	priority: ChangePriority;
+	description: string;
+	condition?: 'working' | 'broken';
+	targets: Partial<Record<ChangeTargetKind, string[]>>;
+};
 export type ColorRoleDef = { id: string; name: string; default: string };
 
 /** One BOM line of an assembly: a child part or sub-assembly with a quantity.
@@ -64,6 +74,7 @@ export type Assembly = {
 	id: string;
 	name: string;
 	description: string;
+	section?: string; // places an empty/stub assembly in the legacy section list
 	status?: 'stub' | 'partial';
 	joining?: Joining[]; // work needed to make these lines into one unit
 	lines?: AssemblyLine[];
@@ -168,6 +179,7 @@ export type PartVersion = {
 export type Part = {
 	id: string;
 	name: string;
+	aliases?: string[]; // alternate shop/CAD names; canonical id and display name stay stable
 	quantities: Record<string, number>; // category id -> count per ONE instance of that category
 	assembly: string | null;
 	variant_group?: string | null; // parts in a group are alternatives chosen per layer
@@ -187,8 +199,6 @@ export type Part = {
 	optional: boolean;
 	onshape?: string | null; // link to the source Onshape document, if known
 	info?: string | null; // short note surfaced as an inline info popover
-	suspicious?: boolean; // flagged as subject-to-change / possibly problematic
-	suspicious_note?: string | null; // optional specifics for the suspicious warning
 	low_tolerance?: boolean; // tight/precise fit — little tolerance for dimensional error, so a test print is worth doing
 	low_tolerance_note?: string | null; // optional specifics for the low-tolerance warning
 	// how the per-layer ('layer') quantity scales: every layer, all but the bottom,
@@ -221,6 +231,10 @@ export function commitUrl(commit: string | null | undefined): string | null {
 
 export const SETTINGS = raw.settings as Settings;
 export const SECTIONS = raw.sections as Section[];
+export const CHANGES = ((raw as Record<string, unknown>).changes ?? []) as PlannedChange[];
+export function plannedChangesFor(kind: ChangeTargetKind, id: string): PlannedChange[] {
+	return CHANGES.filter((change) => change.targets[kind]?.includes(id));
+}
 export const COLOR_ROLES = raw.color_roles as ColorRoleDef[];
 export const ASSEMBLIES = (raw.assemblies ?? []) as Assembly[];
 export const PARTS = raw.parts as unknown as Part[];
