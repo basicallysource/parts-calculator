@@ -105,6 +105,17 @@
 			}
 		},
 		{
+			"id": "retain-camera-led-strips",
+			"name": "Mechanically retain the camera LED strips",
+			"priority": "P2",
+			"description": "Update the Camera & LED insert so the LED strips are mechanically retained instead of depending on their adhesive. Integrated clips would be a good approach.",
+			"targets": {
+				"parts": [
+					"camera-led-insert"
+				]
+			}
+		},
+		{
 			"id": "improve-meanwell-housing",
 			"name": "Secure the Mean Well 24V PSU box cap",
 			"priority": "P0",
