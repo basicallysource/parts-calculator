@@ -1,7 +1,7 @@
 <script lang="ts">
 	import './layout.css';
 	import { page } from '$app/stores';
-	import { ExternalLink, Menu, X } from 'lucide-svelte';
+	import { Menu, X } from 'lucide-svelte';
 
 	let { children } = $props();
 
@@ -72,15 +72,6 @@
 			{/each}
 		</nav>
 
-		<!-- external tool: visually separated from the in-app tabs -->
-		<a
-			href="https://bin-gen.basically.website/"
-			target="_blank"
-			rel="noopener"
-			class="ml-auto hidden shrink-0 items-center gap-1.5 border border-border bg-[var(--color-bg)] px-3 py-1.5 text-sm text-text-muted transition-colors hover:border-primary hover:text-primary sm:inline-flex"
-		>
-			Laser Cut Bin Generator <ExternalLink size={13} />
-		</a>
 	</div>
 
 	{#if menuOpen}
@@ -107,15 +98,6 @@
 					{tab.label}
 				</a>
 			{/each}
-			<a
-				href="https://bin-gen.basically.website/"
-				target="_blank"
-				rel="noopener"
-				onclick={() => (menuOpen = false)}
-				class="flex items-center gap-1.5 border-t border-border px-4 py-3 text-sm text-text-muted"
-			>
-				Laser Cut Bin Generator <ExternalLink size={13} />
-			</a>
 		</nav>
 	{/if}
 </header>

@@ -53,7 +53,7 @@
     {
       "id": "replace-c-channel-supports",
       "name": "Replace prototype C-channel supports",
-      "priority": "P0",
+      "priority": "P1",
       "description": "Replace the current C-channel legs, feet, and leg extensions. These prototype parts work, but they are unstable and will be replaced with improved designs.",
       "targets": {
         "parts": ["leg", "foot", "leg-extension"]
@@ -63,6 +63,7 @@
       "id": "widen-output-guide",
       "name": "Widen the C-channel output guide",
       "priority": "P0",
+      "condition": "broken",
       "description": "Update the output guide so large pieces that are still within specification can pass through the C-channel exit.",
       "targets": {
         "parts": ["output-guide"]
@@ -71,7 +72,7 @@
     {
       "id": "improve-camera-extension",
       "name": "Make the camera extension official",
-      "priority": "P0",
+      "priority": "P1",
       "description": "The camera extension was a prototype and needs to be made official. The finished design should also force the camera into the correct orientation.",
       "targets": {
         "parts": ["camera-led-insert", "camera-extension", "camera-extension-mount"],
@@ -82,6 +83,7 @@
       "id": "improve-meanwell-housing",
       "name": "Secure the Mean Well 24V PSU box cap",
       "priority": "P0",
+      "condition": "broken",
       "description": "Improve the Mean Well 24V enclosure because the current cap can pop off too easily. Redesign the cap retention so it locks securely in place.",
       "targets": {
         "parts": ["meanwell-psu-back-mount", "meanwell-psu-connections", "meanwell-psu-cap"],
@@ -99,11 +101,20 @@
       }
     },
     {
-      "id": "fix-interface-bracket-clearance",
-      "name": "Redesign the interface bracket",
-      "priority": "P2",
+      "id": "fix-interface-bracket-fit",
+      "name": "Fix the interface bracket fit",
+      "priority": "P0",
       "condition": "broken",
-      "description": "Redesign the interface bracket: its tolerance around the top aluminum spoke is very tight, the screws for the vertical aluminum extrusion are very difficult to install, and the entire part is unnecessarily bulky.",
+      "description": "Fix the interface bracket's too-tight tolerance around the top aluminum spoke.",
+      "targets": {
+        "parts": ["interface-bracket"]
+      }
+    },
+    {
+      "id": "improve-interface-bracket-design",
+      "name": "Improve the interface bracket design",
+      "priority": "P2",
+      "description": "Make the screws for the vertical aluminum extrusion easier to install and remove the interface bracket's unnecessary bulk.",
       "targets": {
         "parts": ["interface-bracket"]
       }

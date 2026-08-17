@@ -68,13 +68,18 @@
 />
 
 <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
-	<header class="mb-5">
-		<h1 class="text-2xl font-bold text-text">Laser cut parts</h1>
-		<p class="mt-1 text-sm text-text-muted">
-			Flat plywood parts, cut from the DXFs below. Thicknesses are quoted in the imperial size the
-			sheet is sold as, with the nearest full-mm equivalent the CAD expects. No laser? The top
-			plate has a “by hand” view; the cable cage parts are getting 3D-printable options.
-		</p>
+	<header class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+		<div class="max-w-4xl">
+			<h1 class="text-2xl font-bold text-text">Laser cut parts</h1>
+			<p class="mt-1 text-sm text-text-muted">
+				Flat plywood parts, cut from the DXFs below. Thicknesses are quoted in the imperial size the
+				sheet is sold as, with the nearest full-mm equivalent the CAD expects. No laser? The top
+				plate has a “by hand” view; the cable cage parts are getting 3D-printable options.
+			</p>
+		</div>
+		<a href="https://bin-gen.basically.website/" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center gap-1.5 border border-border bg-surface px-3 py-2 text-sm font-semibold text-text-muted transition-colors hover:border-primary hover:text-primary">
+			Laser Cut Bin Generator <ExternalLink size={13} />
+		</a>
 	</header>
 
 	{#each groups as group (group.parts[0].id)}

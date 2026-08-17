@@ -26,7 +26,7 @@ export type Section = {
 	experimental?: boolean; // early / subject to heavy change — surfaced with a warning
 	experimental_note?: string | null;
 };
-export type ChangePriority = 'P0' | 'P1' | 'P2' | 'P3';
+export type ChangePriority = `P${number}`;
 export type ChangeTargetKind = 'parts' | 'assemblies' | 'sections';
 export type PlannedChange = {
 	id: string;

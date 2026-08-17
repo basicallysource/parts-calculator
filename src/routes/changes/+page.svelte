@@ -1,13 +1,18 @@
 <script lang="ts">
 	import { ArrowLeft, Box, Boxes, Layers3 } from 'lucide-svelte';
 	import Badge from '$lib/components/Badge.svelte';
+	import PriorityBadge from '$lib/components/PriorityBadge.svelte';
 	import Seo from '$lib/components/Seo.svelte';
 	import { ASSEMBLIES, CHANGES, PARTS, SECTIONS, type ChangeTargetKind, type Part, type PlannedChange } from '$lib/filament';
 
 	const partNames = new Map(PARTS.map((part) => [part.id, part.name]));
 	const assemblyNames = new Map(ASSEMBLIES.map((assembly) => [assembly.id, assembly.name]));
 	const sectionNames = new Map(SECTIONS.map((section) => [section.id, section.name]));
-	const ordered = [...CHANGES].sort((a, b) => a.priority.localeCompare(b.priority));
+	const ordered = [...CHANGES].sort((a, b) => {
+		const priority = a.priority.localeCompare(b.priority);
+		if (priority) return priority;
+		return Number(b.condition === 'broken') - Number(a.condition === 'broken');
+	});
 
 	function targetName(kind: ChangeTargetKind, id: string): string {
 		return (kind === 'parts' ? partNames : kind === 'assemblies' ? assemblyNames : sectionNames).get(id) ?? id;
@@ -52,7 +57,7 @@
 					{@const models = modelsFor(change)}
 					<tr id={change.id} class="scroll-mt-6 border-b border-border align-top last:border-b-0 hover:bg-primary/[0.025]">
 						<td class="px-3 py-3">
-							<Badge variant={change.priority === 'P0' ? 'danger' : 'warning'}>{change.priority}</Badge>
+							<PriorityBadge priority={change.priority} />
 							{#if change.condition === 'broken'}<div class="mt-1 text-[10px] font-semibold uppercase leading-tight tracking-wide text-danger">Broken feature</div>{/if}
 						</td>
 						<td class="px-3 py-3">
