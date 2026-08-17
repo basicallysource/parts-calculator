@@ -51,19 +51,28 @@
   ],
   "changes": [
     {
-      "id": "improve-c-channel-supports",
-      "name": "Improve C-channel legs and output guide",
+      "id": "replace-c-channel-supports",
+      "name": "Replace prototype C-channel supports",
       "priority": "P0",
-      "description": "Replace the current C-channel legs, feet, leg extensions, and output guide with improved designs.",
+      "description": "Replace the current C-channel legs, feet, and leg extensions. These prototype parts work, but they are unstable and will be replaced with improved designs.",
       "targets": {
-        "parts": ["leg", "foot", "leg-extension", "output-guide"]
+        "parts": ["leg", "foot", "leg-extension"]
+      }
+    },
+    {
+      "id": "widen-output-guide",
+      "name": "Widen the C-channel output guide",
+      "priority": "P0",
+      "description": "Update the output guide so large pieces that are still within specification can pass through the C-channel exit.",
+      "targets": {
+        "parts": ["output-guide"]
       }
     },
     {
       "id": "improve-camera-extension",
-      "name": "Improve classification camera extension",
+      "name": "Make the camera extension official",
       "priority": "P0",
-      "description": "Replace the current camera extension and camera LED insert pieces with improved designs.",
+      "description": "The camera extension was a prototype and needs to be made official. The finished design should also force the camera into the correct orientation.",
       "targets": {
         "parts": ["camera-led-insert", "camera-extension", "camera-extension-mount"],
         "assemblies": ["camera-extension"]
@@ -71,9 +80,9 @@
     },
     {
       "id": "improve-meanwell-housing",
-      "name": "Improve Mean Well 24V assembly",
+      "name": "Secure the Mean Well 24V PSU box cap",
       "priority": "P0",
-      "description": "Replace the complete Mean Well 24V enclosure assembly and its printed parts with an improved design.",
+      "description": "Improve the Mean Well 24V enclosure because the current cap can pop off too easily. Redesign the cap retention so it locks securely in place.",
       "targets": {
         "parts": ["meanwell-psu-back-mount", "meanwell-psu-connections", "meanwell-psu-cap"],
         "assemblies": ["meanwell-psu-box"]

@@ -582,7 +582,7 @@
 									{@const open = expandedAsm[k]}
 									{@const allOn = asmAllOn(block.parts)}
 									<!-- svelte-ignore a11y_no_noninteractive_element_interactions a11y_click_events_have_key_events -->
-									<tr class="pl-row" id="assembly-{block.id}" onclick={() => toggleAsm(k)} title={a?.description}>
+									<tr class="pl-row" id="assembly-{block.id}" onclick={() => toggleAsm(k)}>
 										<td class="pl-c-check">
 										<input
 												class="setup-toggle h-4 w-4"
