@@ -874,15 +874,7 @@
 					"qty": 2
 				},
 				{
-					"assembly": "interface-nema23-mount",
-					"qty": 1
-				},
-				{
-					"part": "interface-idler-gear",
-					"qty": 1
-				},
-				{
-					"assembly": "interface-spur-gear-drive",
+					"assembly": "chute-stepper-gearing",
 					"qty": 1
 				},
 				{
@@ -1100,8 +1092,36 @@
 			]
 		},
 		{
+			"id": "chute-stepper-gearing",
+			"name": "Chute Stepper Gearing",
+			"description": "The printed drive and idler gearing that transfers motion from the NEMA 23 chute stepper.",
+			"status": "partial",
+			"lines": [
+				{
+					"part": "interface-nema23-bracket",
+					"qty": 1
+				},
+				{
+					"part": "interface-spur-gear",
+					"qty": 1
+				},
+				{
+					"part": "interface-idler-gear",
+					"qty": 1
+				},
+				{
+					"part": "chute-stepper-idler-bearing-retainer-outer",
+					"qty": 1
+				},
+				{
+					"part": "chute-stepper-idler-bearing-retainer-inner",
+					"qty": 1
+				}
+			]
+		},
+		{
 			"id": "interface-nema23-mount",
-			"name": "Interface NEMA 23 mount",
+			"name": "Chute stepper NEMA 23 mount",
 			"description": "The NEMA 23 stepper on its interface bracket. 1 per interface.",
 			"status": "partial",
 			"lines": [
@@ -1121,8 +1141,8 @@
 		},
 		{
 			"id": "interface-spur-gear-drive",
-			"name": "Interface spur gear drive",
-			"description": "The interface spur gear with its 8 mm bore timing pulley. 1 per interface.",
+			"name": "Chute stepper drive gear",
+			"description": "The chute stepper drive gear with its 8 mm bore timing pulley. 1 per interface.",
 			"status": "partial",
 			"lines": [
 				{
@@ -2790,15 +2810,19 @@
 		},
 		{
 			"id": "interface-spur-gear",
-			"name": "Interface spur gear (2M 25T)",
+			"name": "Chute stepper drive gear (2M 25T)",
+			"aliases": [
+				"Interface spur gear",
+				"Interface spur gear (2M 25T)"
+			],
 			"quantities": {
 				"interface": 1
 			},
-			"assembly": null,
+			"assembly": "chute-stepper-gearing",
 			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
-			"description": "Interface spur gear, 2M 25T. 1 needed.",
+			"description": "Drive gear for the chute stepper, 2M 25T. 1 needed.",
 			"version": "1",
 			"created_at": "2026-06-27",
 			"updated_at": "2026-06-27",
@@ -2834,15 +2858,19 @@
 		},
 		{
 			"id": "interface-idler-gear",
-			"name": "Interface idler gear (2M 25T)",
+			"name": "Chute stepper idler gear (2M 25T)",
+			"aliases": [
+				"Interface idler gear",
+				"Interface idler gear (2M 25T)"
+			],
 			"quantities": {
 				"interface": 1
 			},
-			"assembly": null,
+			"assembly": "chute-stepper-gearing",
 			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
-			"description": "Interface idler gear, 2M 25T. 1 needed.",
+			"description": "Idler gear for the chute stepper, 2M 25T. 1 needed.",
 			"version": "1",
 			"created_at": "2026-06-27",
 			"updated_at": "2026-06-27",
@@ -2883,15 +2911,18 @@
 		},
 		{
 			"id": "interface-nema23-bracket",
-			"name": "Interface NEMA 23 bracket",
+			"name": "Chute Stepper NEMA 23 Bracket",
+			"aliases": [
+				"Interface NEMA 23 bracket"
+			],
 			"quantities": {
 				"interface": 1
 			},
-			"assembly": null,
+			"assembly": "chute-stepper-gearing",
 			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
-			"description": "NEMA 23 motor bracket on the interface. 1 needed.",
+			"description": "NEMA 23 motor bracket for the chute stepper. 1 needed.",
 			"version": "1",
 			"created_at": "2026-06-27",
 			"updated_at": "2026-06-27",
