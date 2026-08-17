@@ -156,6 +156,22 @@
       }
     },
     {
+      "id": "split-top-plate-puzzle",
+      "name": "Split the top plate into a supported puzzle",
+      "priority": "P2",
+      "description": "Divide the top plate into interlocking puzzle-like sections around a single inner structural support ring, so the plate can be made in smaller pieces while keeping primary support around the center.",
+      "images": [
+        {
+          "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/5900431388c04c4a076abfa0ae88cafed9b221d91aefacec6d463706963cf111.png",
+          "alt": "Seven-piece top plate concept with a single structural inner ring",
+          "caption": "Seven-piece top plate concept"
+        }
+      ],
+      "targets": {
+        "lasercut": ["top-plate"]
+      }
+    },
+    {
       "id": "secure-classification-chamber-rotation",
       "name": "Keep the classification chamber aligned",
       "priority": "P3",

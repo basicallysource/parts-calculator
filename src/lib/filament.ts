@@ -27,13 +27,14 @@ export type Section = {
 	experimental_note?: string | null;
 };
 export type ChangePriority = `P${number}`;
-export type ChangeTargetKind = 'parts' | 'assemblies' | 'sections';
+export type ChangeTargetKind = 'parts' | 'assemblies' | 'sections' | 'lasercut' | 'hardware';
 export type PlannedChange = {
 	id: string;
 	name: string;
 	priority: ChangePriority;
 	description: string;
 	condition?: 'working' | 'broken';
+	images?: { url: string; alt: string; caption?: string }[];
 	targets: Partial<Record<ChangeTargetKind, string[]>>;
 };
 export type ColorRoleDef = { id: string; name: string; default: string };

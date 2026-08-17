@@ -4,6 +4,7 @@
 	import DownloadButton from '$lib/components/DownloadButton.svelte';
 	import Modal from '$lib/components/Modal.svelte';
 	import HandCutTopPlateGuide from '$lib/components/HandCutTopPlateGuide.svelte';
+	import ChangeStatus from '$lib/components/ChangeStatus.svelte';
 	import { LASER_CUT_PARTS, type LaserCutPart } from '$lib/lasercut';
 	import { fmtDate } from '$lib/filament';
 	import { type Units } from '$lib/handcut';
@@ -91,7 +92,7 @@
 			{/if}
 			<div class="grid gap-4 sm:grid-cols-2">
 				{#each group.parts as p (p.id)}
-					<div class="setup-card-shell flex flex-col border">
+					<div class="setup-card-shell flex scroll-mt-6 flex-col border" id="laser-{p.id}">
 						<div class="flex items-center justify-center border-b border-border bg-[var(--color-bg)] p-4">
 							<img src={p.preview} alt="{p.name} outline" class="h-48 w-auto max-w-full" />
 						</div>
@@ -124,7 +125,7 @@
 						</div>
 						<div class="flex flex-1 flex-col gap-2 px-4 py-3">
 							<div class="flex items-baseline justify-between gap-2">
-								<h3 class="text-sm font-semibold text-text">{p.name}</h3>
+								<div class="flex flex-wrap items-center gap-1"><h3 class="text-sm font-semibold text-text">{p.name}</h3><ChangeStatus kind="lasercut" id={p.id} name={p.name} /></div>
 								<span class="text-xs text-text-muted">{p.qty} needed</span>
 							</div>
 							{#if mode[p.id] === 'laser'}

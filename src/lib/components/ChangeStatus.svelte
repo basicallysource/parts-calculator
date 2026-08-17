@@ -29,6 +29,16 @@
 			<PriorityBadge priority={change.priority} />
 			<a class="ml-1 font-semibold text-primary hover:text-primary-hover" href="/changes#{change.id}">{change.name}</a>
 			<p class="mt-1">{change.description}</p>
+			{#if change.images?.length}
+				<div class="mt-2 space-y-1.5">
+					{#each change.images as image}
+						<figure>
+							<img src={image.url} alt={image.alt} class="max-h-44 w-full border border-border bg-white object-contain" />
+							{#if image.caption}<figcaption class="mt-1 text-[10px] text-text-muted">{image.caption}</figcaption>{/if}
+						</figure>
+					{/each}
+				</div>
+			{/if}
 		</div>
 	</Popover>
 {/each}

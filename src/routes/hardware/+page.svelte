@@ -14,6 +14,7 @@
 	import Callout from '$lib/components/Callout.svelte';
 	import LayerControl from '$lib/components/LayerControl.svelte';
 	import HardwareDetailModal from '$lib/components/HardwareDetailModal.svelte';
+	import ChangeStatus from '$lib/components/ChangeStatus.svelte';
 	import {
 		assembliesContaining,
 		bestUsVendor,
@@ -278,6 +279,7 @@
 	{@const lengthLabel = hardwareLengthLabel(h)}
 	{@const spots = placementCount.get(h.id) ?? 0}
 	<div
+		id="hardware-{h.id}"
 		class="hw-row setup-card-shell flex cursor-pointer items-start gap-3 border p-3 {selected[h.id]
 			? 'border-primary/60'
 			: ''}"
@@ -324,6 +326,7 @@
 
 		<div class="min-w-0 flex-1">
 			<div class="flex items-start justify-between gap-3">
+				<div class="flex flex-wrap items-center gap-1.5">
 				<h3 class="flex items-center gap-1.5 text-sm font-semibold text-text">
 						<HardwareIcon hw={h} />{h.name}
 						<!-- Placed in the assembly tree, so the modal can say where it goes.
@@ -338,6 +341,8 @@
 							</span>
 						{/if}
 					</h3>
+					<ChangeStatus kind="hardware" id={h.id} name={h.name} />
+				</div>
 				<span
 					class="shrink-0 text-right text-xs tabular-nums text-text-muted"
 					title={src ? QTY_TITLE[src] : undefined}
