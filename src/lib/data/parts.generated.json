@@ -214,6 +214,38 @@
 			}
 		}
 	],
+	"folders": [
+		{
+			"id": "lazy-susan-extrusion-mounts",
+			"name": "Lazy Susan extrusion mounts",
+			"description": "Extrusion mount and hold-in-place prints for the bottom lazy Susan."
+		},
+		{
+			"id": "bin-retainers",
+			"name": "Bin retainers",
+			"description": "Left and right printed bin retainers."
+		},
+		{
+			"id": "funnel-brackets",
+			"name": "Funnel brackets",
+			"description": "Left and right funnel-bracket prints."
+		},
+		{
+			"id": "bearing-covers",
+			"name": "Bearing covers",
+			"description": "Covered-side and servo-side chute bearing covers."
+		},
+		{
+			"id": "layer-connectors",
+			"name": "Layer connectors",
+			"description": "Printed layer-connector parts grouped for easier browsing."
+		},
+		{
+			"id": "printed-bins",
+			"name": "Printed Bins",
+			"description": "All printable bin variants."
+		}
+	],
 	"color_roles": [
 		{
 			"id": "frame",
@@ -7376,38 +7408,6 @@
 				]
 			},
 			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/b507a8b8e3f9fd8df63c5c66596bd8ba129158e6c1f56f35ef0173bca1174308.jpg"
-		}
-	],
-	"folders": [
-		{
-			"id": "lazy-susan-extrusion-mounts",
-			"name": "Lazy Susan extrusion mounts",
-			"description": "Extrusion mount and hold-in-place prints for the bottom lazy Susan."
-		},
-		{
-			"id": "bin-retainers",
-			"name": "Bin retainers",
-			"description": "Left and right printed bin retainers."
-		},
-		{
-			"id": "funnel-brackets",
-			"name": "Funnel brackets",
-			"description": "Left and right funnel-bracket prints."
-		},
-		{
-			"id": "bearing-covers",
-			"name": "Bearing covers",
-			"description": "Covered-side and servo-side chute bearing covers."
-		},
-		{
-			"id": "layer-connectors",
-			"name": "Layer connectors",
-			"description": "Printed layer-connector parts grouped for easier browsing."
-		},
-		{
-			"id": "printed-bins",
-			"name": "Printed Bins",
-			"description": "All printable bin variants."
 		}
 	]
 }
