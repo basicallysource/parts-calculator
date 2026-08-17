@@ -197,8 +197,8 @@
 			"priority": "P3",
 			"description": "The classification chamber can rotate out of place too easily. Even passing pieces can push it out of alignment, which shifts the camera detection zones. A more secure rotational lock would be a useful improvement.",
 			"targets": {
-				"assemblies": [
-					"classification-chamber"
+				"parts": [
+					"classification-dome"
 				]
 			}
 		},
@@ -1266,6 +1266,7 @@
 				"classification-channel": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Feeder stator. 4 required: 1 gray + 3 black.",
@@ -1316,6 +1317,7 @@
 				"feeder": 3
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Faceted rotor. 3 required: 2 white + 1 gray.",
@@ -1369,6 +1371,7 @@
 				"classification-channel": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Output gear, 130 teeth. One per C-channel (4 total).",
@@ -1418,6 +1421,7 @@
 				"classification-channel": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "NEMA motor bracket. One per C-channel (4 total).",
@@ -1468,6 +1472,7 @@
 				"feeder": 2
 			},
 			"assembly": "light-post",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Light post on the C-channel feeder. 2 total.",
@@ -1511,6 +1516,7 @@
 				"feeder": 2
 			},
 			"assembly": "light-post",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Light post cap. 2 total (C-channels 2 & 3). White.",
@@ -1554,6 +1560,7 @@
 				"feeder": 2
 			},
 			"assembly": "light-post",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Adapts the light post cap to the C-channel. 2 per machine.",
@@ -1597,6 +1604,7 @@
 				"feeder": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bulk cap. Sits on top of the first C-channel.",
@@ -1640,6 +1648,7 @@
 				"classification-channel": 1
 			},
 			"assembly": "classification-chamber",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Large classification-channel dome (~full bed). White.",
@@ -1683,6 +1692,7 @@
 				"interface": 6
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Interface bracket. Pairs with the spacer; 6 on the interface.",
@@ -1731,6 +1741,7 @@
 				"interface": 6
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Interface spacer. Pairs with the bracket; 6 on the interface.",
@@ -1774,6 +1785,7 @@
 				"chute": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "The chute core. 1 per machine.",
@@ -1822,6 +1834,7 @@
 				"layer": 6
 			},
 			"assembly": null,
+			"folder": "bin-retainers",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bin retainer, left. Optional.",
@@ -1865,6 +1878,7 @@
 				"layer": 6
 			},
 			"assembly": null,
+			"folder": "bin-retainers",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bin retainer, right. Optional.",
@@ -1909,6 +1923,7 @@
 				"interface": 6
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Distribution frame crossbeam. One between each of the 6 frame sections.",
@@ -1953,6 +1968,7 @@
 				"interface": 12
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Distribution frame 90\u00b0 bracket. Two per frame section.",
@@ -2000,6 +2016,7 @@
 				"lazy-susan": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bottom lazy Susan adapter that connects to the chute. White.",
@@ -2052,6 +2069,7 @@
 				"lazy-susan": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bottom lazy Susan static base.",
@@ -2100,6 +2118,7 @@
 				"lazy-susan": 3
 			},
 			"assembly": null,
+			"folder": "lazy-susan-extrusion-mounts",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bottom lazy Susan mount to the external extrusion.",
@@ -2143,6 +2162,7 @@
 				"lazy-susan": 3
 			},
 			"assembly": null,
+			"folder": "lazy-susan-extrusion-mounts",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bottom lazy Susan hold-in-place. Optional.",
@@ -2186,6 +2206,7 @@
 				"lazy-susan": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bottom lazy Susan washer.",
@@ -2230,6 +2251,7 @@
 				"interface": 6
 			},
 			"assembly": "external-bracket",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Part of the external distribution-frame bracket (3-part assembly).",
@@ -2274,6 +2296,7 @@
 				"interface": 6
 			},
 			"assembly": "external-bracket",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Part of the external distribution-frame bracket (3-part assembly).",
@@ -2318,6 +2341,7 @@
 				"interface": 6
 			},
 			"assembly": "external-bracket",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Part of the external distribution-frame bracket (3-part assembly).",
@@ -2361,6 +2385,7 @@
 				"layer": 6
 			},
 			"assembly": "external-bracket",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bottom-layer replacement for the external bracket bottom vertical + cover.",
@@ -2407,6 +2432,7 @@
 				"interface": 1
 			},
 			"assembly": "fixed-upper-section",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Interface upper fixed section. 1 needed.",
@@ -2465,6 +2491,7 @@
 				"interface": 5
 			},
 			"assembly": "fixed-upper-section",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Ribbed interface piece. 5 needed.",
@@ -2509,6 +2536,7 @@
 				"interface": 1
 			},
 			"assembly": "fixed-upper-section",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Interface rib with the opening for the limit switch. 1 needed.",
@@ -2553,6 +2581,7 @@
 				"interface": 1
 			},
 			"assembly": "fixed-upper-section",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Interface big spacer. 1 needed.",
@@ -2606,6 +2635,7 @@
 				"interface": 1
 			},
 			"assembly": "cable-clamp",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Inner half of the ribbon cable clamp. White.",
@@ -2649,6 +2679,7 @@
 				"interface": 1
 			},
 			"assembly": "cable-clamp",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Outer half of the ribbon cable clamp. White.",
@@ -2701,6 +2732,7 @@
 				"interface": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Interface spur gear, 2M 25T. 1 needed.",
@@ -2744,6 +2776,7 @@
 				"interface": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Interface idler gear, 2M 25T. 1 needed.",
@@ -2792,6 +2825,7 @@
 				"interface": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "NEMA 23 motor bracket on the interface. 1 needed.",
@@ -2840,6 +2874,7 @@
 				"interface": 5
 			},
 			"assembly": "cable-cage",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Interface cable cage bracket (regular). 5 needed.",
@@ -2883,6 +2918,7 @@
 				"interface": 1
 			},
 			"assembly": "cable-cage",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Cable cage bracket with the cable mount. 1 needed.",
@@ -2931,6 +2967,7 @@
 				"interface": 1
 			},
 			"assembly": "cable-cage",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Outer ribbon cable clamp, paired with the cable cage brackets.",
@@ -2974,6 +3011,7 @@
 				"interface": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Section 1 of 3 of the top interface split spur gear (Spur 2M 120T).",
@@ -3017,6 +3055,7 @@
 				"interface": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Section 2 of 3 of the top interface split spur gear (Spur 2M 120T).",
@@ -3063,6 +3102,7 @@
 				"interface": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Section 3 of 3 of the top interface split spur gear (Spur 2M 120T).",
@@ -3115,6 +3155,7 @@
 				"interface": 1
 			},
 			"assembly": "limit-switch",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Printed dowel pin for the interface limit switch.",
@@ -3158,6 +3199,7 @@
 				"interface": 1
 			},
 			"assembly": "limit-switch",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Housing for the interface limit switch.",
@@ -3206,6 +3248,7 @@
 				"interface": 1
 			},
 			"assembly": "limit-switch",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Hammer/stop for the interface limit switch.",
@@ -3249,6 +3292,7 @@
 				"classification-channel": 1
 			},
 			"assembly": "classification-chamber",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Finned rotor on the classification chamber. White. 1 needed.",
@@ -3292,6 +3336,7 @@
 				"feeder": 4
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "C-channel idler gear, 24 teeth. One per C-channel (4 total).",
@@ -3340,6 +3385,7 @@
 				"feeder": 4
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "C-channel input/drive gear (12T) with vertical screw hole. One per C-channel (4 total).",
@@ -3383,6 +3429,7 @@
 				"feeder": 2
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Output guide. 2 needed. Black.",
@@ -3426,6 +3473,7 @@
 				"chute": 1
 			},
 			"assembly": null,
+			"folder": "funnel-brackets",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Funnel bracket, left. 2 funnel brackets total.",
@@ -3470,6 +3518,7 @@
 				"chute": 1
 			},
 			"assembly": null,
+			"folder": "funnel-brackets",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Funnel bracket, right. 2 funnel brackets total.",
@@ -3514,6 +3563,7 @@
 				"chute": 1
 			},
 			"assembly": "chute-bearing",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "The race between the two chute bearing holders.",
@@ -3562,6 +3612,7 @@
 				"chute": 1
 			},
 			"assembly": "chute-bearing",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bearing holder, left.",
@@ -3610,6 +3661,7 @@
 				"chute": 1
 			},
 			"assembly": "chute-bearing",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bearing holder, right.",
@@ -3658,6 +3710,7 @@
 				"chute": 1
 			},
 			"assembly": "servo-adapter",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "MG995 servo adapter, servo side.",
@@ -3701,6 +3754,7 @@
 				"chute": 1
 			},
 			"assembly": "servo-adapter",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "MG995 servo adapter, flap side.",
@@ -3744,6 +3798,7 @@
 				"chute": 1
 			},
 			"assembly": "servo-bracket",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "MG995 servo bracket, lower arm.",
@@ -3787,6 +3842,7 @@
 				"chute": 1
 			},
 			"assembly": "servo-bracket",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "MG995 servo bracket, side arm.",
@@ -3830,6 +3886,7 @@
 				"chute": 1
 			},
 			"assembly": "servo-bracket",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "MG995 servo bracket, cover.",
@@ -3873,6 +3930,7 @@
 				"chute": 1
 			},
 			"assembly": "servo-bracket",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "MG995 servo bracket, housing.",
@@ -3921,6 +3979,7 @@
 				"feeder": 9
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "C-channel leg. 9 in the feeder.",
@@ -3964,6 +4023,7 @@
 				"feeder": 9
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "C-channel foot. 9 in the feeder.",
@@ -4007,6 +4067,7 @@
 				"chute": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "The chute door / flap. 1 per machine.",
@@ -4050,6 +4111,7 @@
 				"feeder": 9
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "C-channel leg extension. 9 in the feeder.",
@@ -4093,6 +4155,7 @@
 				"feeder": 2
 			},
 			"assembly": "camera-mount",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Camera mount part 6. 2 per machine.",
@@ -4136,6 +4199,7 @@
 				"feeder": 2
 			},
 			"assembly": "camera-mount",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Camera mount part 37. 2 per machine.",
@@ -4179,6 +4243,7 @@
 				"feeder": 2
 			},
 			"assembly": "camera-mount",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Camera mount part 37 (second). 2 per machine.",
@@ -4222,6 +4287,7 @@
 				"feeder": 4
 			},
 			"assembly": "camera-mount",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Rod-to-C-channel mount (Part 33). 2 per camera mount, 4 total.",
@@ -4265,6 +4331,7 @@
 				"classification-channel": 1
 			},
 			"assembly": "classification-chamber",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "C-channel camera & LED light insert. White.",
@@ -4308,6 +4375,7 @@
 				"classification-channel": 1
 			},
 			"assembly": "camera-extension",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Camera extension tube for the classification channel. 1 needed.",
@@ -4362,6 +4430,7 @@
 				"classification-channel": 1
 			},
 			"assembly": "camera-extension",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Clamp/mount ring that fixes the camera to the extension. 1 needed.",
@@ -4416,7 +4485,8 @@
 				"chute": 1,
 				"interface": 1
 			},
-			"assembly": "layer-connector",
+			"assembly": null,
+			"folder": "layer-connectors",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Layer connector. 1 per layer + 1 per bottom interface.",
@@ -4461,7 +4531,8 @@
 				"chute": 1,
 				"interface": 1
 			},
-			"assembly": "layer-connector",
+			"assembly": null,
+			"folder": "layer-connectors",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Layer connector. 1 per layer + 1 per bottom interface.",
@@ -4506,6 +4577,7 @@
 				"interface": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Support block for the chute stepper.",
@@ -4549,6 +4621,7 @@
 				"funnel": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": "funnel",
 			"variant_name": "Third size",
 			"description": "Third size funnel. Per layer (choose size per layer).",
@@ -4593,6 +4666,7 @@
 				"funnel": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": "funnel",
 			"variant_name": "Half size",
 			"description": "Half size funnel. Per layer (choose size per layer).",
@@ -4637,6 +4711,7 @@
 				"bins": 6
 			},
 			"assembly": null,
+			"folder": "printed-bins",
 			"variant_group": "bin",
 			"variant_name": "Half",
 			"description": "Bin (half, left). Half bins: 6 per layer of that size.",
@@ -4680,6 +4755,7 @@
 				"bins": 6
 			},
 			"assembly": null,
+			"folder": "printed-bins",
 			"variant_group": "bin",
 			"variant_name": "Half",
 			"description": "Bin (half, right). Half bins: 6 per layer of that size.",
@@ -4723,6 +4799,7 @@
 				"bins": 6
 			},
 			"assembly": null,
+			"folder": "printed-bins",
 			"variant_group": "bin",
 			"variant_name": "Third",
 			"description": "Bin (third, left). Third bins: 6 per layer of that size.",
@@ -4766,6 +4843,7 @@
 				"bins": 6
 			},
 			"assembly": null,
+			"folder": "printed-bins",
 			"variant_group": "bin",
 			"variant_name": "Third",
 			"description": "Bin (third, center). Third bins: 6 per layer of that size.",
@@ -4809,6 +4887,7 @@
 				"bins": 6
 			},
 			"assembly": null,
+			"folder": "printed-bins",
 			"variant_group": "bin",
 			"variant_name": "Third",
 			"description": "Bin (third, right-back). Third bins: 6 per layer of that size.",
@@ -4851,7 +4930,8 @@
 			"quantities": {
 				"chute": 1
 			},
-			"assembly": "chute-bearing",
+			"assembly": null,
+			"folder": "bearing-covers",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Chute bearing cover. 1 per machine.",
@@ -4894,7 +4974,8 @@
 			"quantities": {
 				"chute": 1
 			},
-			"assembly": "chute-bearing",
+			"assembly": null,
+			"folder": "bearing-covers",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Chute bearing cover. 1 per machine.",
@@ -4938,6 +5019,7 @@
 				"electronics": 1
 			},
 			"assembly": "meanwell-psu-box",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Back mount that holds the Meanwell 24V PSU.",
@@ -4981,6 +5063,7 @@
 				"electronics": 1
 			},
 			"assembly": "meanwell-psu-box",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Connections plate for the Meanwell 24V PSU box.",
@@ -5024,6 +5107,7 @@
 				"electronics": 1
 			},
 			"assembly": "meanwell-psu-box",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Cap for the Meanwell 24V PSU box.",
@@ -7292,6 +7376,38 @@
 				]
 			},
 			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/b507a8b8e3f9fd8df63c5c66596bd8ba129158e6c1f56f35ef0173bca1174308.jpg"
+		}
+	],
+	"folders": [
+		{
+			"id": "lazy-susan-extrusion-mounts",
+			"name": "Lazy Susan extrusion mounts",
+			"description": "Extrusion mount and hold-in-place prints for the bottom lazy Susan."
+		},
+		{
+			"id": "bin-retainers",
+			"name": "Bin retainers",
+			"description": "Left and right printed bin retainers."
+		},
+		{
+			"id": "funnel-brackets",
+			"name": "Funnel brackets",
+			"description": "Left and right funnel-bracket prints."
+		},
+		{
+			"id": "bearing-covers",
+			"name": "Bearing covers",
+			"description": "Covered-side and servo-side chute bearing covers."
+		},
+		{
+			"id": "layer-connectors",
+			"name": "Layer connectors",
+			"description": "Printed layer-connector parts grouped for easier browsing."
+		},
+		{
+			"id": "printed-bins",
+			"name": "Printed Bins",
+			"description": "All printable bin variants."
 		}
 	]
 }

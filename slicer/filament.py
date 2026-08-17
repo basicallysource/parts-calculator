@@ -489,6 +489,7 @@ def main():
                 **({"aliases": source["aliases"]} if source.get("aliases") else {}),
                 "quantities": source.get("quantities", {}),
                 "assembly": source.get("assembly"),
+                "folder": source.get("folder"),
                 "variant_group": source.get("variant_group"),
                 "variant_name": source.get("variant_name"),
                 "description": source.get("description", ""),
@@ -513,6 +514,7 @@ def main():
         data["parts"] = refreshed
         data["sections"] = manifest["sections"]
         data["changes"] = manifest.get("changes", [])
+        data["folders"] = manifest.get("folders", [])
         data["assemblies"] = manifest.get("assemblies", [])
         json.dump(data, open(DATA_OUT, "w"), indent="\t")
         print(f"refreshed authored metadata in {DATA_OUT}")
@@ -567,6 +569,7 @@ def main():
             **({"aliases": p["aliases"]} if p.get("aliases") else {}),
             "quantities": p.get("quantities", {}),
             "assembly": p.get("assembly"),
+            "folder": p.get("folder"),
             "variant_group": p.get("variant_group"),
             "variant_name": p.get("variant_name"),
             "description": p.get("description", ""),
@@ -677,6 +680,7 @@ def main():
         },
         "sections": manifest["sections"],
         "changes": manifest.get("changes", []),
+        "folders": manifest.get("folders", []),
         "color_roles": manifest["color_roles"],
         "families": families,
         "assemblies": manifest.get("assemblies", []),

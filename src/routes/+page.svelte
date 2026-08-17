@@ -10,6 +10,7 @@
 		categoryMultiplier,
 		sectionQty,
 		getAssembly,
+		getFolder,
 		partSwatches,
 		primaryColorId,
 		machineColorUnits,
@@ -264,16 +265,20 @@
 		selected = Object.fromEntries(PARTS.map((p) => [p.id, v]));
 	}
 
-	type Block = { kind: 'part'; part: Part } | { kind: 'assembly'; id: string; parts: Part[] };
+	type Block =
+		| { kind: 'part'; part: Part }
+		| { kind: 'group'; groupKind: 'assembly' | 'folder'; id: string; parts: Part[] };
 	function groupBlocks(parts: Part[], sectionId: string): Block[] {
 		const blocks: Block[] = [];
 		const represented = new Set<string>();
-		let cur: { kind: 'assembly'; id: string; parts: Part[] } | null = null;
+		let cur: Extract<Block, { kind: 'group' }> | null = null;
 		for (const p of parts) {
-			if (p.assembly) {
-				represented.add(p.assembly);
-				if (!cur || cur.id !== p.assembly) {
-					cur = { kind: 'assembly', id: p.assembly, parts: [] };
+			const groupKind = p.folder ? 'folder' : p.assembly ? 'assembly' : null;
+			const groupId = p.folder ?? p.assembly;
+			if (groupKind && groupId) {
+				if (groupKind === 'assembly') represented.add(groupId);
+				if (!cur || cur.id !== groupId || cur.groupKind !== groupKind) {
+					cur = { kind: 'group', groupKind, id: groupId, parts: [] };
 					blocks.push(cur);
 				}
 				cur.parts.push(p);
@@ -284,7 +289,7 @@
 		}
 		for (const assembly of ASSEMBLIES) {
 			if (assembly.section === sectionId && assembly.status === 'stub' && !represented.has(assembly.id)) {
-				blocks.push({ kind: 'assembly', id: assembly.id, parts: [] });
+				blocks.push({ kind: 'group', groupKind: 'assembly', id: assembly.id, parts: [] });
 			}
 		}
 		return blocks;
@@ -577,9 +582,11 @@
 						</thead>
 						<tbody>
 							{#each groupBlocks(parts, section.id) as block}
-								{#if block.kind === 'assembly'}
+								{#if block.kind === 'group'}
 									{@const a = getAssembly(block.id)}
-									{@const k = asmKey(section.id, block.id)}
+									{@const folder = getFolder(block.id)}
+									{@const group = block.groupKind === 'folder' ? folder : a}
+									{@const k = asmKey(section.id, `${block.groupKind}:${block.id}`)}
 									{@const open = expandedAsm[k]}
 									{@const allOn = asmAllOn(block.parts)}
 									<!-- svelte-ignore a11y_no_noninteractive_element_interactions a11y_click_events_have_key_events -->
@@ -592,7 +599,7 @@
 												indeterminate={!allOn && asmSomeOn(block.parts)}
 												onclick={(e) => e.stopPropagation()}
 												onchange={() => setAsm(block.parts, !allOn)}
-											aria-label="Select every part in {a?.name}"
+											aria-label="Select every part in {group?.name}"
 											disabled={!block.parts.length}
 											/>
 										</td>
@@ -607,10 +614,10 @@
 										<td class="pl-c-name">
 											<span class="pl-name">
 												{#if open}<ChevronDown size={15} class="text-text-muted" />{:else}<ChevronRight size={15} class="text-text-muted" />{/if}
-												{a?.name}
-												<Badge variant="info">Assembly</Badge>
-												{#if a?.status === 'stub'}<Badge variant="neutral">Coming soon</Badge>{/if}
-												{#if a}<ChangeStatus kind="assemblies" id={a.id} name={a.name} />{/if}
+												{group?.name}
+												<Badge variant={block.groupKind === 'folder' ? 'neutral' : 'info'}>{block.groupKind === 'folder' ? 'Folder' : 'Assembly'}</Badge>
+												{#if block.groupKind === 'assembly' && a?.status === 'stub'}<Badge variant="neutral">Coming soon</Badge>{/if}
+												{#if block.groupKind === 'assembly' && a}<ChangeStatus kind="assemblies" id={a.id} name={a.name} />{/if}
 											</span>
 										<span class="pl-meta">{block.parts.length ? `${block.parts.length} parts · click to ${open ? 'collapse' : 'expand'}` : 'Parts and print details coming soon'}</span>
 										</td>
@@ -621,7 +628,7 @@
 												type="button"
 												class="pl-dl"
 												onclick={(e) => { e.stopPropagation(); downloadZip(block.parts, `${block.id}.zip`); }}
-												title="Download every STL in {a?.name}"
+												title="Download every STL in {group?.name}"
 										><Download size={16} /></button>{/if}
 										</td>
 									</tr>
