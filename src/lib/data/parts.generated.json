@@ -62,6 +62,126 @@
 			"experimental_note": "The electronics are early and changing a lot. Only build these if you have the experience to adapt as the design moves."
 		}
 	],
+	"changes": [
+		{
+			"id": "improve-c-channel-supports",
+			"name": "Improve C-channel legs and output guide",
+			"priority": "P0",
+			"description": "Replace the current C-channel legs, feet, leg extensions, and output guide with improved designs.",
+			"targets": {
+				"parts": [
+					"leg",
+					"foot",
+					"leg-extension",
+					"output-guide"
+				]
+			}
+		},
+		{
+			"id": "improve-camera-extension",
+			"name": "Improve classification camera extension",
+			"priority": "P0",
+			"description": "Replace the current camera extension and camera LED insert pieces with improved designs.",
+			"targets": {
+				"parts": [
+					"camera-led-insert",
+					"camera-extension",
+					"camera-extension-mount"
+				],
+				"assemblies": [
+					"camera-extension"
+				]
+			}
+		},
+		{
+			"id": "improve-meanwell-housing",
+			"name": "Improve Mean Well 24V assembly",
+			"priority": "P0",
+			"description": "Replace the complete Mean Well 24V enclosure assembly and its printed parts with an improved design.",
+			"targets": {
+				"parts": [
+					"meanwell-psu-back-mount",
+					"meanwell-psu-connections",
+					"meanwell-psu-cap"
+				],
+				"assemblies": [
+					"meanwell-psu-box"
+				]
+			}
+		},
+		{
+			"id": "fix-bulk-cap-dovetail",
+			"name": "Fix bulk cap dovetail",
+			"priority": "P0",
+			"condition": "broken",
+			"description": "Fix the dovetail that seats the bulk cap onto the stator; the current fit is too tight and can be hard to assemble.",
+			"targets": {
+				"parts": [
+					"bulk-cap"
+				]
+			}
+		},
+		{
+			"id": "fix-interface-bracket-clearance",
+			"name": "Redesign the interface bracket",
+			"priority": "P2",
+			"condition": "broken",
+			"description": "Redesign the interface bracket: its tolerance around the top aluminum spoke is very tight, the screws for the vertical aluminum extrusion are very difficult to install, and the entire part is unnecessarily bulky.",
+			"targets": {
+				"parts": [
+					"interface-bracket"
+				]
+			}
+		},
+		{
+			"id": "reverse-chute-door",
+			"name": "Reverse chute door",
+			"priority": "P1",
+			"description": "Move the chute door to the other side so the flap closes the open funnel hole. This affects the chute as a whole and all of its parts.",
+			"targets": {
+				"sections": [
+					"chute"
+				]
+			}
+		},
+		{
+			"id": "snap-on-bin-retainers",
+			"name": "Make bin retainers snap on",
+			"priority": "P1",
+			"description": "Redesign the left and right bin retainers to snap on and remove their screen holes. Each retainer currently uses two screws, two nuts, and two washers, so this could eliminate roughly 200 purchased pieces from a machine build.",
+			"targets": {
+				"parts": [
+					"bin-retainer-left",
+					"bin-retainer-right"
+				]
+			}
+		},
+		{
+			"id": "lock-overhead-camera-mount",
+			"name": "Lock the overhead camera mount",
+			"priority": "P2",
+			"description": "It would be ideal to lock the overhead camera mount in place completely.",
+			"targets": {
+				"assemblies": [
+					"camera-mount"
+				]
+			}
+		},
+		{
+			"id": "upgrade-interface-lazy-susan-fasteners",
+			"name": "Upgrade interface lazy-Susan fasteners to M5",
+			"priority": "P2",
+			"description": "Update the four printed parts in the top and bottom interface lazy-Susan joints from M4 to M5 countersunk screws and matching M5 heat-set inserts. The upper interface holes are currently too close together and should be corrected as part of the change.",
+			"targets": {
+				"parts": [
+					"interface-upper-fixed-section",
+					"top-interface-split-spur-gear-3",
+					"ls-mount-to-chute",
+					"ls-bottom-static"
+				]
+			}
+		}
+	],
 	"color_roles": [
 		{
 			"id": "frame",
@@ -7140,126 +7260,6 @@
 				]
 			},
 			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/b507a8b8e3f9fd8df63c5c66596bd8ba129158e6c1f56f35ef0173bca1174308.jpg"
-		}
-	],
-	"changes": [
-		{
-			"id": "improve-c-channel-supports",
-			"name": "Improve C-channel legs and output guide",
-			"priority": "P0",
-			"description": "Replace the current C-channel legs, feet, leg extensions, and output guide with improved designs.",
-			"targets": {
-				"parts": [
-					"leg",
-					"foot",
-					"leg-extension",
-					"output-guide"
-				]
-			}
-		},
-		{
-			"id": "improve-camera-extension",
-			"name": "Improve classification camera extension",
-			"priority": "P0",
-			"description": "Replace the current camera extension and camera LED insert pieces with improved designs.",
-			"targets": {
-				"parts": [
-					"camera-led-insert",
-					"camera-extension",
-					"camera-extension-mount"
-				],
-				"assemblies": [
-					"camera-extension"
-				]
-			}
-		},
-		{
-			"id": "improve-meanwell-housing",
-			"name": "Improve Mean Well 24V assembly",
-			"priority": "P0",
-			"description": "Replace the complete Mean Well 24V enclosure assembly and its printed parts with an improved design.",
-			"targets": {
-				"parts": [
-					"meanwell-psu-back-mount",
-					"meanwell-psu-connections",
-					"meanwell-psu-cap"
-				],
-				"assemblies": [
-					"meanwell-psu-box"
-				]
-			}
-		},
-		{
-			"id": "fix-bulk-cap-dovetail",
-			"name": "Fix bulk cap dovetail",
-			"priority": "P0",
-			"condition": "broken",
-			"description": "Fix the dovetail that seats the bulk cap onto the stator; the current fit is too tight and can be hard to assemble.",
-			"targets": {
-				"parts": [
-					"bulk-cap"
-				]
-			}
-		},
-		{
-			"id": "fix-interface-bracket-clearance",
-			"name": "Redesign the interface bracket",
-			"priority": "P2",
-			"condition": "broken",
-			"description": "Redesign the interface bracket: its tolerance around the top aluminum spoke is very tight, the screws for the vertical aluminum extrusion are very difficult to install, and the entire part is unnecessarily bulky.",
-			"targets": {
-				"parts": [
-					"interface-bracket"
-				]
-			}
-		},
-		{
-			"id": "reverse-chute-door",
-			"name": "Reverse chute door",
-			"priority": "P1",
-			"description": "Move the chute door to the other side so the flap closes the open funnel hole. This affects the chute as a whole and all of its parts.",
-			"targets": {
-				"sections": [
-					"chute"
-				]
-			}
-		},
-		{
-			"id": "snap-on-bin-retainers",
-			"name": "Make bin retainers snap on",
-			"priority": "P1",
-			"description": "Redesign the left and right bin retainers to snap on and remove their screen holes. Each retainer currently uses two screws, two nuts, and two washers, so this could eliminate roughly 200 purchased pieces from a machine build.",
-			"targets": {
-				"parts": [
-					"bin-retainer-left",
-					"bin-retainer-right"
-				]
-			}
-		},
-		{
-			"id": "lock-overhead-camera-mount",
-			"name": "Lock the overhead camera mount",
-			"priority": "P2",
-			"description": "It would be ideal to lock the overhead camera mount in place completely.",
-			"targets": {
-				"assemblies": [
-					"camera-mount"
-				]
-			}
-		},
-		{
-			"id": "upgrade-interface-lazy-susan-fasteners",
-			"name": "Upgrade interface lazy-Susan fasteners to M5",
-			"priority": "P2",
-			"description": "Update the four printed parts in the top and bottom interface lazy-Susan joints from M4 to M5 countersunk screws and matching M5 heat-set inserts. The upper interface holes are currently too close together and should be corrected as part of the change.",
-			"targets": {
-				"parts": [
-					"interface-upper-fixed-section",
-					"top-interface-split-spur-gear-3",
-					"ls-mount-to-chute",
-					"ls-bottom-static"
-				]
-			}
 		}
 	]
 }
