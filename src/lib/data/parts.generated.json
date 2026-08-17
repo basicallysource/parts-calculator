@@ -11,7 +11,7 @@
 		"density_g_cm3": 1.32,
 		"cost_per_kg": 24.99,
 		"commit_base_url": "https://github.com/basicallysource/parts-calculator/commit/",
-		"all_parts_zip": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/c4e920ca1b7a15eb2c52fdc11efe35eee468d78519ee03ae312cef44ba14b5ed.zip"
+		"all_parts_zip": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/a585426771851cffa7a25d97a609e32bd3b2a2d8b766b4699000e9694af41848.zip"
 	},
 	"sections": [
 		{
@@ -2960,6 +2960,102 @@
 			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/69a9a1dd8c741866e723d8fd5a32baa78b233538a1341bf50eb0f2425a38d82a.stl",
 			"render": "/renders/interface-nema23-bracket.png"
+		},
+		{
+			"id": "chute-stepper-idler-bearing-retainer-outer",
+			"name": "Chute Stepper Idler Gear Bearing Retainer \u2014 Outer",
+			"aliases": [
+				"Idler Gear Bearing Retainer - Outer",
+				"idler bearing retainer"
+			],
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": "chute-stepper-gearing",
+			"folder": null,
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Outer bearing-retainer ring for the chute stepper idler gear.",
+			"version": "1",
+			"created_at": "2026-08-17",
+			"updated_at": "2026-08-17",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-08-17",
+					"message": "Initial version.",
+					"commit": null,
+					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/00180b3aaeab6c4e0222c4accfc69172ea358c68c1a07427324ba22e57795a23.stl",
+					"render": "/renders/chute-stepper-idler-bearing-retainer-outer.png",
+					"grams": 1.43
+				}
+			],
+			"attributes": [],
+			"grams": 1.43,
+			"support_grams": 0.0,
+			"support_used": false,
+			"support_intentional": false,
+			"print_seconds": 610,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/v/884bb3e1425379c7d601ef73/e/89995b8a04a440a3b561d7df",
+			"info": null,
+			"low_tolerance": false,
+			"low_tolerance_note": null,
+			"layer_scope": "all",
+			"requires": [],
+			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/00180b3aaeab6c4e0222c4accfc69172ea358c68c1a07427324ba22e57795a23.stl",
+			"render": "/renders/chute-stepper-idler-bearing-retainer-outer.png"
+		},
+		{
+			"id": "chute-stepper-idler-bearing-retainer-inner",
+			"name": "Chute Stepper Idler Gear Bearing Retainer \u2014 Inner",
+			"aliases": [
+				"Idler Gear Bearing Retainer - Inner",
+				"idler gear cap"
+			],
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": "chute-stepper-gearing",
+			"folder": null,
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Inner bearing-retainer cap for the chute stepper idler gear.",
+			"version": "1",
+			"created_at": "2026-08-17",
+			"updated_at": "2026-08-17",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-08-17",
+					"message": "Initial version.",
+					"commit": null,
+					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/6157c7c623581c40285ecf8703c915aa95d921369000f5e68e25ccd2989073f4.stl",
+					"render": "/renders/chute-stepper-idler-bearing-retainer-inner.png",
+					"grams": 0.26
+				}
+			],
+			"attributes": [],
+			"grams": 0.26,
+			"support_grams": 0.0,
+			"support_used": false,
+			"support_intentional": false,
+			"print_seconds": 445,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/v/884bb3e1425379c7d601ef73/e/89995b8a04a440a3b561d7df",
+			"info": null,
+			"low_tolerance": false,
+			"low_tolerance_note": null,
+			"layer_scope": "all",
+			"requires": [],
+			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/6157c7c623581c40285ecf8703c915aa95d921369000f5e68e25ccd2989073f4.stl",
+			"render": "/renders/chute-stepper-idler-bearing-retainer-inner.png"
 		},
 		{
 			"id": "interface-cage-bracket",
