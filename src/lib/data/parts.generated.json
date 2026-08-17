@@ -64,24 +64,34 @@
 	],
 	"changes": [
 		{
-			"id": "improve-c-channel-supports",
-			"name": "Improve C-channel legs and output guide",
+			"id": "replace-c-channel-supports",
+			"name": "Replace prototype C-channel supports",
 			"priority": "P0",
-			"description": "Replace the current C-channel legs, feet, leg extensions, and output guide with improved designs.",
+			"description": "Replace the current C-channel legs, feet, and leg extensions. These prototype parts work, but they are unstable and will be replaced with improved designs.",
 			"targets": {
 				"parts": [
 					"leg",
 					"foot",
-					"leg-extension",
+					"leg-extension"
+				]
+			}
+		},
+		{
+			"id": "widen-output-guide",
+			"name": "Widen the C-channel output guide",
+			"priority": "P0",
+			"description": "Update the output guide so large pieces that are still within specification can pass through the C-channel exit.",
+			"targets": {
+				"parts": [
 					"output-guide"
 				]
 			}
 		},
 		{
 			"id": "improve-camera-extension",
-			"name": "Improve classification camera extension",
+			"name": "Make the camera extension official",
 			"priority": "P0",
-			"description": "Replace the current camera extension and camera LED insert pieces with improved designs.",
+			"description": "The camera extension was a prototype and needs to be made official. The finished design should also force the camera into the correct orientation.",
 			"targets": {
 				"parts": [
 					"camera-led-insert",
@@ -95,9 +105,9 @@
 		},
 		{
 			"id": "improve-meanwell-housing",
-			"name": "Improve Mean Well 24V assembly",
+			"name": "Secure the Mean Well 24V PSU box cap",
 			"priority": "P0",
-			"description": "Replace the complete Mean Well 24V enclosure assembly and its printed parts with an improved design.",
+			"description": "Improve the Mean Well 24V enclosure because the current cap can pop off too easily. Redesign the cap retention so it locks securely in place.",
 			"targets": {
 				"parts": [
 					"meanwell-psu-back-mount",
@@ -178,6 +188,28 @@
 					"top-interface-split-spur-gear-3",
 					"ls-mount-to-chute",
 					"ls-bottom-static"
+				]
+			}
+		},
+		{
+			"id": "secure-classification-chamber-rotation",
+			"name": "Keep the classification chamber aligned",
+			"priority": "P3",
+			"description": "The classification chamber can rotate out of place too easily. Even passing pieces can push it out of alignment, which shifts the camera detection zones. A more secure rotational lock would be a useful improvement.",
+			"targets": {
+				"assemblies": [
+					"classification-chamber"
+				]
+			}
+		},
+		{
+			"id": "retain-interface-spacer",
+			"name": "Keep the interface spacer in its slot",
+			"priority": "P3",
+			"description": "The interface spacer falls off the aluminum profile it slots into too easily. Improve its retention so it stays seated during handling and assembly.",
+			"targets": {
+				"parts": [
+					"interface-spacer"
 				]
 			}
 		}
@@ -7260,136 +7292,6 @@
 				]
 			},
 			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/b507a8b8e3f9fd8df63c5c66596bd8ba129158e6c1f56f35ef0173bca1174308.jpg"
-		}
-	],
-	"changes": [
-		{
-			"id": "replace-c-channel-supports",
-			"name": "Replace prototype C-channel supports",
-			"priority": "P0",
-			"description": "Replace the current C-channel legs, feet, and leg extensions. These prototype parts work, but they are unstable and will be replaced with improved designs.",
-			"targets": {
-				"parts": [
-					"leg",
-					"foot",
-					"leg-extension"
-				]
-			}
-		},
-		{
-			"id": "widen-output-guide",
-			"name": "Widen the C-channel output guide",
-			"priority": "P0",
-			"description": "Update the output guide so large pieces that are still within specification can pass through the C-channel exit.",
-			"targets": {
-				"parts": [
-					"output-guide"
-				]
-			}
-		},
-		{
-			"id": "improve-camera-extension",
-			"name": "Make the camera extension official",
-			"priority": "P0",
-			"description": "The camera extension was a prototype and needs to be made official. The finished design should also force the camera into the correct orientation.",
-			"targets": {
-				"parts": [
-					"camera-led-insert",
-					"camera-extension",
-					"camera-extension-mount"
-				],
-				"assemblies": [
-					"camera-extension"
-				]
-			}
-		},
-		{
-			"id": "improve-meanwell-housing",
-			"name": "Secure the Mean Well 24V PSU box cap",
-			"priority": "P0",
-			"description": "Improve the Mean Well 24V enclosure because the current cap can pop off too easily. Redesign the cap retention so it locks securely in place.",
-			"targets": {
-				"parts": [
-					"meanwell-psu-back-mount",
-					"meanwell-psu-connections",
-					"meanwell-psu-cap"
-				],
-				"assemblies": [
-					"meanwell-psu-box"
-				]
-			}
-		},
-		{
-			"id": "fix-bulk-cap-dovetail",
-			"name": "Fix bulk cap dovetail",
-			"priority": "P0",
-			"condition": "broken",
-			"description": "Fix the dovetail that seats the bulk cap onto the stator; the current fit is too tight and can be hard to assemble.",
-			"targets": {
-				"parts": [
-					"bulk-cap"
-				]
-			}
-		},
-		{
-			"id": "fix-interface-bracket-clearance",
-			"name": "Redesign the interface bracket",
-			"priority": "P2",
-			"condition": "broken",
-			"description": "Redesign the interface bracket: its tolerance around the top aluminum spoke is very tight, the screws for the vertical aluminum extrusion are very difficult to install, and the entire part is unnecessarily bulky.",
-			"targets": {
-				"parts": [
-					"interface-bracket"
-				]
-			}
-		},
-		{
-			"id": "reverse-chute-door",
-			"name": "Reverse chute door",
-			"priority": "P1",
-			"description": "Move the chute door to the other side so the flap closes the open funnel hole. This affects the chute as a whole and all of its parts.",
-			"targets": {
-				"sections": [
-					"chute"
-				]
-			}
-		},
-		{
-			"id": "snap-on-bin-retainers",
-			"name": "Make bin retainers snap on",
-			"priority": "P1",
-			"description": "Redesign the left and right bin retainers to snap on and remove their screen holes. Each retainer currently uses two screws, two nuts, and two washers, so this could eliminate roughly 200 purchased pieces from a machine build.",
-			"targets": {
-				"parts": [
-					"bin-retainer-left",
-					"bin-retainer-right"
-				]
-			}
-		},
-		{
-			"id": "lock-overhead-camera-mount",
-			"name": "Lock the overhead camera mount",
-			"priority": "P2",
-			"description": "It would be ideal to lock the overhead camera mount in place completely.",
-			"targets": {
-				"assemblies": [
-					"camera-mount"
-				]
-			}
-		},
-		{
-			"id": "upgrade-interface-lazy-susan-fasteners",
-			"name": "Upgrade interface lazy-Susan fasteners to M5",
-			"priority": "P2",
-			"description": "Update the four printed parts in the top and bottom interface lazy-Susan joints from M4 to M5 countersunk screws and matching M5 heat-set inserts. The upper interface holes are currently too close together and should be corrected as part of the change.",
-			"targets": {
-				"parts": [
-					"interface-upper-fixed-section",
-					"top-interface-split-spur-gear-3",
-					"ls-mount-to-chute",
-					"ls-bottom-static"
-				]
-			}
 		}
 	]
 }

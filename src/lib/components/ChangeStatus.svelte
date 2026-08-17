@@ -8,20 +8,21 @@
 	const changes = $derived(plannedChangesFor(kind, id));
 	const priority = $derived(changes.map((change) => change.priority).sort()[0] ?? 'P2');
 	const hasBrokenFeature = $derived(changes.some((change) => change.condition === 'broken'));
+	const isNiceToHave = $derived(priority === 'P3');
 </script>
 
 {#if changes.length}
-<Popover width="w-80" label="Why {name} is subject to change">
+<Popover width="w-80" label={isNiceToHave ? `Possible improvement for ${name}` : `Why ${name} is subject to change`}>
 	{#snippet trigger({ toggle, open })}
 		<Badge as="button" variant="warning" onclick={toggle} aria-expanded={open}>
-			<RefreshCw size={11} /> Subject to Change · {priority}
+			<RefreshCw size={11} /> {isNiceToHave ? 'Nice to Improve' : 'Subject to Change'} · {priority}
 		</Badge>
 	{/snippet}
 	<div class="flex items-start gap-2">
 		<AlertTriangle size={14} class="mt-0.5 shrink-0 text-warning-dark" />
 		<div>
-			<b class="text-text">{hasBrokenFeature ? 'This design has a broken feature that is intended to be fixed.' : 'Works now, but is intended to be replaced shortly with an improvement.'}</b>
-			<p class="mt-1"><b>{priority}</b> priority — {priority === 'P0' ? 'do this before lower-priority changes.' : priority === 'P1' ? 'do this after P0 changes.' : 'lower priority.'}</p>
+			<b class="text-text">{hasBrokenFeature ? 'This design has a broken feature that is intended to be fixed.' : isNiceToHave ? 'The current design is usable; this improvement would be nice to have.' : 'Works now, but is intended to be replaced shortly with an improvement.'}</b>
+			<p class="mt-1"><b>{priority}</b> priority — {priority === 'P0' ? 'do this before lower-priority changes.' : priority === 'P1' ? 'do this after P0 changes.' : priority === 'P3' ? 'nice-to-have improvement.' : 'lower priority.'}</p>
 		</div>
 	</div>
 	{#each changes as change}

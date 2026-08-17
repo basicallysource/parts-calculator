@@ -538,7 +538,7 @@
 
 			{#if activeTab === 'parts'}
 				<a href="/changes" class="mb-4 flex items-center justify-between gap-4 border border-warning/60 bg-warning/[0.08] px-4 py-3 text-sm text-text transition-colors hover:bg-warning/[0.14]">
-					<span><b>Changes are intended for some parts.</b> Review what is planned before printing.</span>
+					<span><b>Changes and improvements are tracked for some parts.</b> Review what is planned before printing.</span>
 					<span class="shrink-0 font-semibold text-primary">View {CHANGES.length} changes →</span>
 				</a>
 				{#each sectionRows as { section, parts, mult, selectedGrams } (section.id)}

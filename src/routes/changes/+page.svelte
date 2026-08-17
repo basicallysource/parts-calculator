@@ -35,7 +35,7 @@
 	<a href="/" class="mb-5 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary-hover"><ArrowLeft size={15} /> Printed parts</a>
 	<div class="mb-6">
 		<h1 class="text-3xl font-bold tracking-tight text-text">Intended Changes</h1>
-		<p class="mt-2 max-w-3xl text-sm text-text-muted">Known fixes and planned improvements. P0 comes first, followed by P1 and P2. Click any part thumbnail to inspect its current interactive 3D model.</p>
+		<p class="mt-2 max-w-3xl text-sm text-text-muted">Known fixes and planned improvements. P0 comes first, followed by P1 and P2; P3 is a nice-to-have rather than Subject to Change. Click any part thumbnail to inspect its current interactive 3D model.</p>
 	</div>
 
 	<div class="overflow-x-auto border border-border bg-surface">
