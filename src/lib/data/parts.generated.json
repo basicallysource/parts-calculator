@@ -146,7 +146,7 @@
 		{
 			"id": "reverse-chute-door",
 			"name": "Reverse chute door",
-			"priority": "P1",
+			"priority": "P2",
 			"description": "Move the chute door to the other side so the flap closes the open funnel hole. This affects the chute as a whole and all of its parts.",
 			"targets": {
 				"sections": [

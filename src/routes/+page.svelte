@@ -45,6 +45,7 @@
 	import Popover from '$lib/components/Popover.svelte';
 	import Badge from '$lib/components/Badge.svelte';
 	import ChangeStatus from '$lib/components/ChangeStatus.svelte';
+	import MissingImage from '$lib/components/MissingImage.svelte';
 	import { Download, Package, ZoomIn, Loader, Info, Plus, X, RotateCcw, Clock, Layers3, ExternalLink, AlertTriangle, History, ChevronRight, ChevronDown } from 'lucide-svelte';
 	import { page } from '$app/state';
 	import { replaceState } from '$app/navigation';
@@ -597,7 +598,7 @@
 										</td>
 										<td class="pl-c-thumb">
 										<span class="pl-fan">
-											{#if !block.parts.length}<span class="pl-thumb flex items-center justify-center text-text-muted"><Clock size={20} /></span>{/if}
+											{#if !block.parts.length}<MissingImage class="pl-thumb" />{/if}
 												{#each block.parts.slice(0, 3) as bp, i (bp.id)}
 													<span class="pl-thumb" style="z-index:{3 - i}"><img src={bp.render} alt={bp.name} /></span>
 												{/each}

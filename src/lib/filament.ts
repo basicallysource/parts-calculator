@@ -232,12 +232,17 @@ export function commitUrl(commit: string | null | undefined): string | null {
 export const SETTINGS = raw.settings as Settings;
 export const SECTIONS = raw.sections as Section[];
 export const CHANGES = ((raw as Record<string, unknown>).changes ?? []) as PlannedChange[];
-export function plannedChangesFor(kind: ChangeTargetKind, id: string): PlannedChange[] {
-	return CHANGES.filter((change) => change.targets[kind]?.includes(id));
-}
 export const COLOR_ROLES = raw.color_roles as ColorRoleDef[];
 export const ASSEMBLIES = (raw.assemblies ?? []) as Assembly[];
 export const PARTS = raw.parts as unknown as Part[];
+export function plannedChangesFor(kind: ChangeTargetKind, id: string): PlannedChange[] {
+	return CHANGES.filter((change) => {
+		if (change.targets[kind]?.includes(id)) return true;
+		if (kind !== 'parts') return false;
+		const part = PARTS.find((candidate) => candidate.id === id);
+		return !!part && (change.targets.sections ?? []).some((section) => section in part.quantities);
+	});
+}
 export const HARDWARE = ((raw as Record<string, unknown>).hardware ?? []) as Hardware[];
 export const FAMILIES = ((raw as Record<string, unknown>).families ?? []) as Family[];
 export const SPOOL_G = 1000;
