@@ -197,3 +197,43 @@ body {
 .dark .setup-card-body {
 	background: #141311;
 }
+
+/* Print: the standalone hand-cut guide (/lasercut/top-plate-guide) should come
+   out as a clean workshop sheet. Drop the site nav and the on-screen toolbar,
+   let the diagrams' colours actually print, and keep each figure, table and
+   step from being split across a page break. */
+@media print {
+	body:has(.printable-guide) header {
+		display: none !important;
+	}
+
+	.print-hide {
+		display: none !important;
+	}
+
+	.printable-guide {
+		max-width: none;
+		margin: 0;
+		padding: 0;
+		color: #000;
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+
+	.printable-guide section,
+	.printable-guide figure,
+	.printable-guide svg,
+	.printable-guide table,
+	.printable-guide li {
+		break-inside: avoid;
+	}
+
+	.printable-guide h1,
+	.printable-guide h3 {
+		break-after: avoid;
+	}
+
+	@page {
+		margin: 14mm;
+	}
+}
