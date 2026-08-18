@@ -23,13 +23,19 @@
 	});
 
 	// Mirror the unit choice back into the URL so this page stays shareable.
+	// Only write when the URL would actually change: calling replaceState on the
+	// first run (before the router has finished initialising after hydration)
+	// throws and kills hydration — a dead page where the toggle does nothing and
+	// `?units=mm` never applies. The /lasercut modal deep-link guards it the same
+	// way, which is why that one works and this one didn't.
 	$effect(() => {
 		if (!browser || !urlReady) return;
 		const params = new URLSearchParams(page.url.search);
 		if (units !== 'in') params.set('units', units);
 		else params.delete('units');
 		const qs = params.toString();
-		replaceState(qs ? `?${qs}` : page.url.pathname, {});
+		const target = qs ? `${location.pathname}?${qs}` : location.pathname;
+		if (target !== location.pathname + location.search) replaceState(target, {});
 	});
 </script>
 
