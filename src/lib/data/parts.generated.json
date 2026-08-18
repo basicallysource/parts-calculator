@@ -5392,7 +5392,7 @@
 			"name": "M3 \u00d7 6 mm countersunk",
 			"category": "Screws",
 			"description": "Secures the limit switch hammer into the top interface chute mount from below, into the hammer's M3 insert.",
-			"note": null,
+			"note": "The \u00d71 is the top-interface count (limit-switch hammer). Screws used elsewhere on the machine aren't tallied here yet.",
 			"created_at": "2026-08-18",
 			"updated_at": "2026-08-18",
 			"attributes": [
@@ -5409,8 +5409,10 @@
 					"value": "Countersunk (flat) socket"
 				}
 			],
-			"sheet_qty": null,
-			"sheet_qty_text": "1 on the top interface (limit-switch hammer)",
+			"sheet_qty": {
+				"per_machine": 1
+			},
+			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
 			"image": null
@@ -5427,7 +5429,7 @@
 			"name": "M3 \u00d7 10 mm socket head",
 			"category": "Screws",
 			"description": "Fastens the outer cable clamp into the top interface chute mount, and the ribbon cable clamp to the cable cage bracket.",
-			"note": null,
+			"note": "The \u00d73 is the top-interface count (2 cable clamp, 1 ribbon clamp). Screws used elsewhere on the machine aren't tallied here yet.",
 			"created_at": "2026-08-18",
 			"updated_at": "2026-08-18",
 			"attributes": [
@@ -5444,8 +5446,10 @@
 					"value": "Socket head cap"
 				}
 			],
-			"sheet_qty": null,
-			"sheet_qty_text": "3 on the top interface (2 cable clamp, 1 ribbon clamp)",
+			"sheet_qty": {
+				"per_machine": 3
+			},
+			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
 			"image": null
@@ -6027,7 +6031,7 @@
 			"name": "M5 \u00d7 8 mm countersunk",
 			"category": "Screws",
 			"description": "Loosely fixes the limit-switch interface bracket's extrusion into the interface rib while aligning it, into a T-nut.",
-			"note": "A snug fit here, it barely reaches the T-nut. Opening the countersink a little and tightening firmly gets the head to sit flush.",
+			"note": "A snug fit here, it barely reaches the T-nut. Opening the countersink a little and tightening firmly gets the head to sit flush. The \u00d76 is the top-interface count (1 per interface bracket); screws used elsewhere on the machine aren't tallied here yet.",
 			"created_at": "2026-08-18",
 			"updated_at": "2026-08-18",
 			"attributes": [
@@ -6044,8 +6048,10 @@
 					"value": "Countersunk (flat) socket"
 				}
 			],
-			"sheet_qty": null,
-			"sheet_qty_text": "6 on the top interface (1 per interface bracket)",
+			"sheet_qty": {
+				"per_machine": 6
+			},
+			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
 			"image": null
@@ -6062,7 +6068,7 @@
 			"name": "M5 \u00d7 22 mm countersunk",
 			"category": "Screws",
 			"description": "Bolts the interface bracket assembly and all six interface brackets down through the laser-cut top plate (holes S2/S3, then I1\u2013I6 and O1\u2013O6).",
-			"note": "The top plate's laser-cut holes aren't countersunk, so where a flush head won't seat an M5 \u00d7 20 button head is used instead.",
+			"note": "The top plate's laser-cut holes aren't countersunk, so where a flush head won't seat an M5 \u00d7 20 button head is used instead. The \u00d714 is the top-interface count (2 to the top plate, 12 through the bracket holes); screws used elsewhere on the machine aren't tallied here yet.",
 			"created_at": "2026-08-18",
 			"updated_at": "2026-08-18",
 			"attributes": [
@@ -6079,8 +6085,10 @@
 					"value": "Countersunk (flat) socket"
 				}
 			],
-			"sheet_qty": null,
-			"sheet_qty_text": "14 on the top interface (2 to the top plate, 12 through the bracket holes)",
+			"sheet_qty": {
+				"per_machine": 14
+			},
+			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
 			"image": null
@@ -6129,7 +6137,7 @@
 			"name": "M3 \u00d7 15 mm washer",
 			"category": "Washers",
 			"description": "Sits under the M3 \u00d7 35 button screw that holds the interface idler gear onto the NEMA 23 bracket.",
-			"note": null,
+			"note": "The \u00d71 is the top-interface count (under the idler-gear screw). Washers used elsewhere on the machine aren't tallied here yet.",
 			"created_at": "2026-08-18",
 			"updated_at": "2026-08-18",
 			"attributes": [
@@ -6142,8 +6150,10 @@
 					"value": "15 mm"
 				}
 			],
-			"sheet_qty": null,
-			"sheet_qty_text": "1 on the top interface (under the idler-gear screw)",
+			"sheet_qty": {
+				"per_machine": 1
+			},
+			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
 			"image": null
