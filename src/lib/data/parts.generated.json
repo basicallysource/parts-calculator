@@ -1121,6 +1121,10 @@
 					"qty": 1
 				},
 				{
+					"part": "washer-m3-15",
+					"qty": 1
+				},
+				{
 					"part": "chute-stepper-idler-bearing-retainer-outer",
 					"qty": 1
 				},
