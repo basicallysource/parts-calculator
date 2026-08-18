@@ -147,7 +147,7 @@
     },
     {
       "id": "upgrade-interface-lazy-susan-fasteners",
-      "name": "Upgrade interface lazy-Susan fasteners to M5",
+      "name": "Update interface lazy-Susan fasteners to M5",
       "priority": "P3",
       "description": "Update the four printed parts in the top and bottom interface lazy-Susan joints from M4 to M5 countersunk screws and matching M5 heat-set inserts. The upper interface holes are currently too close together and should be corrected as part of the change.",
       "targets": {
