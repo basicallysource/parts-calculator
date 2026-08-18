@@ -100,16 +100,6 @@
       }
     },
     {
-      "id": "fix-bulk-cap-dovetail",
-      "name": "Fix bulk cap dovetail",
-      "priority": "P0",
-      "condition": "broken",
-      "description": "Fix the dovetail that seats the bulk cap onto the stator; the current fit is too tight and can be hard to assemble.",
-      "targets": {
-        "parts": ["bulk-cap"]
-      }
-    },
-    {
       "id": "fix-interface-bracket-fit",
       "name": "Fix the interface bracket fit",
       "priority": "P0",
@@ -157,7 +147,7 @@
     },
     {
       "id": "upgrade-interface-lazy-susan-fasteners",
-      "name": "Upgrade interface lazy-Susan fasteners to M5",
+      "name": "Update interface lazy-Susan fasteners to M5",
       "priority": "P3",
       "description": "Update the four printed parts in the top and bottom interface lazy-Susan joints from M4 to M5 countersunk screws and matching M5 heat-set inserts. The upper interface holes are currently too close together and should be corrected as part of the change.",
       "targets": {
@@ -429,11 +419,27 @@
     {
       "id": "bulk-cap",
       "name": "Bulk cap",
-      "description": "Bulk cap. Sits on top of the first C-channel.",
-      "internal_notes": "1 bulk cap, on top of the first C-channel. Color not critical; default black (follows feeder color). File: 'Bulk Cap B'. Distinct from the bulk bucket (separate bed-max optional part, not yet provided).",
-      "version": "1",
+      "description": "Bulk cap. Slides onto the stator at the top of the first C-channel.",
+      "internal_notes": "1 bulk cap, on top of the first C-channel. Color not critical; default black (follows feeder color). File: 'Bulk Cap B'. Distinct from the bulk bucket (separate bed-max optional part, not yet provided). v2 (2026-08-18): increased dovetail clearance so it slides onto the stator without the excessive force required by v1.",
+      "info": "To install, align the cap's dovetail with the matching guide on the stator and slide the cap fully into place. v2 adds clearance so it should seat without excessive force.",
+      "version": "2",
       "created_at": "2026-06-27",
-      "updated_at": "2026-06-27",
+      "updated_at": "2026-08-18",
+      "versions": [
+        {
+          "version": "1",
+          "date": "2026-06-27",
+          "message": "Initial version. The dovetail fit was too tight and could make the cap difficult to install on the stator.",
+          "commit": "0576613"
+        },
+        {
+          "version": "2",
+          "date": "2026-08-18",
+          "message": "Increased the dovetail clearance so the cap slides onto the stator more easily and seats without excessive force.",
+          "commit": "e25025e",
+          "onshape_version": "https://cad.onshape.com/documents/60aa51fc61d18f2155b99910/v/3101eccaa723ea34388cbee9/e/66109ce96b305bf318354f93"
+        }
+      ],
       "quantities": {
         "feeder": 1
       },
