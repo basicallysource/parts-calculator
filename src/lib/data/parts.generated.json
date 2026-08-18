@@ -11,7 +11,7 @@
 		"density_g_cm3": 1.32,
 		"cost_per_kg": 24.99,
 		"commit_base_url": "https://github.com/basicallysource/parts-calculator/commit/",
-		"all_parts_zip": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/c4e920ca1b7a15eb2c52fdc11efe35eee468d78519ee03ae312cef44ba14b5ed.zip"
+		"all_parts_zip": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/a585426771851cffa7a25d97a609e32bd3b2a2d8b766b4699000e9694af41848.zip"
 	},
 	"sections": [
 		{
@@ -51,7 +51,7 @@
 		},
 		{
 			"id": "bins",
-			"name": "Bins",
+			"name": "Printed Bins",
 			"scales_with_layers": true
 		},
 		{
@@ -60,6 +60,232 @@
 			"scales_with_layers": false,
 			"experimental": true,
 			"experimental_note": "The electronics are early and changing a lot. Only build these if you have the experience to adapt as the design moves."
+		}
+	],
+	"changes": [
+		{
+			"id": "replace-c-channel-supports",
+			"name": "Replace prototype C-channel supports",
+			"priority": "P2",
+			"description": "Replace the current C-channel legs, feet, and leg extensions. These prototype parts work, but they are unstable and will be replaced with improved designs.",
+			"targets": {
+				"parts": [
+					"leg",
+					"foot",
+					"leg-extension"
+				]
+			}
+		},
+		{
+			"id": "widen-output-guide",
+			"name": "Widen the C-channel output guide",
+			"priority": "P0",
+			"condition": "broken",
+			"description": "Update the output guide so large pieces that are still within specification can pass through the C-channel exit.",
+			"targets": {
+				"parts": [
+					"output-guide"
+				]
+			}
+		},
+		{
+			"id": "improve-camera-extension",
+			"name": "Make the camera extension official",
+			"priority": "P2",
+			"description": "The camera extension was a prototype and needs to be made official. The finished design should also force the camera into the correct orientation.",
+			"targets": {
+				"parts": [
+					"camera-led-insert",
+					"camera-extension",
+					"camera-extension-mount"
+				],
+				"assemblies": [
+					"camera-extension"
+				]
+			}
+		},
+		{
+			"id": "retain-camera-led-strips",
+			"name": "Mechanically retain the camera LED strips",
+			"priority": "P2",
+			"description": "Update the Camera & LED insert so the LED strips are mechanically retained instead of depending on their adhesive. Integrated clips would be a good approach.",
+			"targets": {
+				"parts": [
+					"camera-led-insert"
+				]
+			}
+		},
+		{
+			"id": "improve-meanwell-housing",
+			"name": "Secure the Mean Well 24V PSU box cap",
+			"priority": "P0",
+			"condition": "broken",
+			"description": "Improve the Mean Well 24V enclosure because the current cap can pop off too easily. Redesign the cap retention so it locks securely in place.",
+			"targets": {
+				"parts": [
+					"meanwell-psu-back-mount",
+					"meanwell-psu-connections",
+					"meanwell-psu-cap"
+				],
+				"assemblies": [
+					"meanwell-psu-box"
+				]
+			}
+		},
+		{
+			"id": "fix-bulk-cap-dovetail",
+			"name": "Fix bulk cap dovetail",
+			"priority": "P0",
+			"condition": "broken",
+			"description": "Fix the dovetail that seats the bulk cap onto the stator; the current fit is too tight and can be hard to assemble.",
+			"targets": {
+				"parts": [
+					"bulk-cap"
+				]
+			}
+		},
+		{
+			"id": "fix-interface-bracket-fit",
+			"name": "Fix the interface bracket fit",
+			"priority": "P0",
+			"condition": "broken",
+			"description": "Fix the interface bracket's too-tight tolerance around the top aluminum spoke.",
+			"targets": {
+				"parts": [
+					"interface-bracket"
+				]
+			}
+		},
+		{
+			"id": "improve-interface-bracket-design",
+			"name": "Improve the interface bracket design",
+			"priority": "P3",
+			"description": "Make the screws for the vertical aluminum extrusion easier to install and remove the interface bracket's unnecessary bulk.",
+			"targets": {
+				"parts": [
+					"interface-bracket"
+				]
+			}
+		},
+		{
+			"id": "reverse-chute-door",
+			"name": "Reverse chute door",
+			"priority": "P3",
+			"description": "Move the chute door to the other side so the flap closes the open funnel hole. This affects the chute as a whole and all of its parts.",
+			"targets": {
+				"sections": [
+					"chute"
+				]
+			}
+		},
+		{
+			"id": "snap-on-bin-retainers",
+			"name": "Make bin retainers snap on",
+			"priority": "P2",
+			"description": "Redesign the left and right bin retainers to snap on and remove their screen holes. Each retainer currently uses two screws, two nuts, and two washers, so this could eliminate roughly 200 purchased pieces from a machine build.",
+			"targets": {
+				"parts": [
+					"bin-retainer-left",
+					"bin-retainer-right"
+				]
+			}
+		},
+		{
+			"id": "lock-overhead-camera-mount",
+			"name": "Lock the overhead camera mount",
+			"priority": "P3",
+			"description": "It would be ideal to lock the overhead camera mount in place completely.",
+			"targets": {
+				"assemblies": [
+					"camera-mount"
+				]
+			}
+		},
+		{
+			"id": "upgrade-interface-lazy-susan-fasteners",
+			"name": "Upgrade interface lazy-Susan fasteners to M5",
+			"priority": "P3",
+			"description": "Update the four printed parts in the top and bottom interface lazy-Susan joints from M4 to M5 countersunk screws and matching M5 heat-set inserts. The upper interface holes are currently too close together and should be corrected as part of the change.",
+			"targets": {
+				"parts": [
+					"interface-upper-fixed-section",
+					"top-interface-split-spur-gear-3",
+					"ls-mount-to-chute",
+					"ls-bottom-static"
+				]
+			}
+		},
+		{
+			"id": "split-top-plate-puzzle",
+			"name": "Split the top plate into a supported puzzle",
+			"priority": "P3",
+			"description": "Divide the top plate into interlocking puzzle-like sections around a single inner structural support ring, so the plate can be made in smaller pieces while keeping primary support around the center.",
+			"images": [
+				{
+					"url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/5900431388c04c4a076abfa0ae88cafed9b221d91aefacec6d463706963cf111.png",
+					"alt": "Seven-piece top plate concept with a single structural inner ring",
+					"caption": "Seven-piece top plate concept"
+				}
+			],
+			"targets": {
+				"lasercut": [
+					"top-plate"
+				]
+			}
+		},
+		{
+			"id": "secure-classification-chamber-rotation",
+			"name": "Keep the classification chamber aligned",
+			"priority": "P4",
+			"description": "The classification chamber can rotate out of place too easily. Even passing pieces can push it out of alignment, which shifts the camera detection zones. A more secure rotational lock would be a useful improvement.",
+			"targets": {
+				"parts": [
+					"classification-dome"
+				]
+			}
+		},
+		{
+			"id": "retain-interface-spacer",
+			"name": "Keep the interface spacer in its slot",
+			"priority": "P4",
+			"description": "The interface spacer falls off the aluminum profile it slots into too easily. Improve its retention so it stays seated during handling and assembly.",
+			"targets": {
+				"parts": [
+					"interface-spacer"
+				]
+			}
+		}
+	],
+	"folders": [
+		{
+			"id": "lazy-susan-extrusion-mounts",
+			"name": "Lazy Susan extrusion mounts",
+			"description": "Extrusion mount and hold-in-place prints for the bottom lazy Susan."
+		},
+		{
+			"id": "bin-retainers",
+			"name": "Bin retainers",
+			"description": "Left and right printed bin retainers."
+		},
+		{
+			"id": "funnel-brackets",
+			"name": "Funnel brackets",
+			"description": "Left and right funnel-bracket prints."
+		},
+		{
+			"id": "bearing-covers",
+			"name": "Bearing covers",
+			"description": "Covered-side and servo-side chute bearing covers."
+		},
+		{
+			"id": "layer-connectors",
+			"name": "Layer connectors",
+			"description": "Printed layer-connector parts grouped for easier browsing."
+		},
+		{
+			"id": "printed-bins",
+			"name": "Printed Bins",
+			"description": "All printable bin variants."
 		}
 	],
 	"color_roles": [
@@ -463,6 +689,22 @@
 			]
 		},
 		{
+			"id": "orange-pi-5-housing",
+			"name": "Orange Pi 5 Housing",
+			"description": "Housing for the Orange Pi 5. Parts and print details are coming soon.",
+			"section": "electronics",
+			"status": "stub",
+			"lines": []
+		},
+		{
+			"id": "embedded-control-board-housing",
+			"name": "basically Embedded Control Board Housing",
+			"description": "Housing for the basically Embedded Control Board. Parts and print details are coming soon.",
+			"section": "electronics",
+			"status": "stub",
+			"lines": []
+		},
+		{
 			"id": "meanwell-psu-box",
 			"name": "Meanwell 24V PSU box",
 			"description": "Enclosure for the Meanwell 24V power supply: back mount, connections plate, and cap, screwed to the supply's own case.",
@@ -643,15 +885,7 @@
 					"qty": 2
 				},
 				{
-					"assembly": "interface-nema23-mount",
-					"qty": 1
-				},
-				{
-					"part": "interface-idler-gear",
-					"qty": 1
-				},
-				{
-					"assembly": "interface-spur-gear-drive",
+					"assembly": "chute-stepper-gearing",
 					"qty": 1
 				},
 				{
@@ -869,8 +1103,36 @@
 			]
 		},
 		{
+			"id": "chute-stepper-gearing",
+			"name": "Chute Stepper Gearing",
+			"description": "The printed drive and idler gearing that transfers motion from the NEMA 23 chute stepper.",
+			"status": "partial",
+			"lines": [
+				{
+					"part": "interface-nema23-bracket",
+					"qty": 1
+				},
+				{
+					"part": "interface-spur-gear",
+					"qty": 1
+				},
+				{
+					"part": "interface-idler-gear",
+					"qty": 1
+				},
+				{
+					"part": "chute-stepper-idler-bearing-retainer-outer",
+					"qty": 1
+				},
+				{
+					"part": "chute-stepper-idler-bearing-retainer-inner",
+					"qty": 1
+				}
+			]
+		},
+		{
 			"id": "interface-nema23-mount",
-			"name": "Interface NEMA 23 mount",
+			"name": "Chute stepper NEMA 23 mount",
 			"description": "The NEMA 23 stepper on its interface bracket. 1 per interface.",
 			"status": "partial",
 			"lines": [
@@ -890,8 +1152,8 @@
 		},
 		{
 			"id": "interface-spur-gear-drive",
-			"name": "Interface spur gear drive",
-			"description": "The interface spur gear with its 8 mm bore timing pulley. 1 per interface.",
+			"name": "Chute stepper drive gear",
+			"description": "The chute stepper drive gear with its 8 mm bore timing pulley. 1 per interface.",
 			"status": "partial",
 			"lines": [
 				{
@@ -1098,6 +1360,7 @@
 				"classification-channel": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Feeder stator. 4 required: 1 gray + 3 black.",
@@ -1134,8 +1397,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -1150,6 +1411,7 @@
 				"feeder": 3
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Faceted rotor. 3 required: 2 white + 1 gray.",
@@ -1188,8 +1450,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -1205,6 +1465,7 @@
 				"classification-channel": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Output gear, 130 teeth. One per C-channel (4 total).",
@@ -1234,8 +1495,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -1256,6 +1515,7 @@
 				"classification-channel": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "NEMA motor bracket. One per C-channel (4 total).",
@@ -1292,8 +1552,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -1308,6 +1566,7 @@
 				"feeder": 2
 			},
 			"assembly": "light-post",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Light post on the C-channel feeder. 2 total.",
@@ -1337,8 +1596,6 @@
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/60aa51fc61d18f2155b99910/w/b315cf3f14be460d78b1caa2/e/66109ce96b305bf318354f93",
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -1353,6 +1610,7 @@
 				"feeder": 2
 			},
 			"assembly": "light-post",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Light post cap. 2 total (C-channels 2 & 3). White.",
@@ -1382,8 +1640,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -1398,6 +1654,7 @@
 				"feeder": 2
 			},
 			"assembly": "light-post",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Adapts the light post cap to the C-channel. 2 per machine.",
@@ -1427,8 +1684,6 @@
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/60aa51fc61d18f2155b99910/w/b315cf3f14be460d78b1caa2/e/66109ce96b305bf318354f93",
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -1443,6 +1698,7 @@
 				"feeder": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bulk cap. Sits on top of the first C-channel.",
@@ -1472,8 +1728,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": true,
-			"suspicious_note": "The dovetail that seats it onto the stator is a tight fit \u2014 it can be hard to get on.",
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -1488,6 +1742,7 @@
 				"classification-channel": 1
 			},
 			"assembly": "classification-chamber",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Large classification-channel dome (~full bed). White.",
@@ -1517,8 +1772,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -1533,6 +1786,7 @@
 				"interface": 6
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Interface bracket. Pairs with the spacer; 6 on the interface.",
@@ -1562,8 +1816,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": true,
-			"suspicious_note": "The fit onto the interface spoke (long) is too tight \u2014 there's no clearance.",
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -1583,6 +1835,7 @@
 				"interface": 6
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Interface spacer. Pairs with the bracket; 6 on the interface.",
@@ -1612,8 +1865,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -1628,6 +1879,7 @@
 				"chute": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "The chute core. 1 per machine.",
@@ -1657,8 +1909,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -1678,6 +1928,7 @@
 				"layer": 6
 			},
 			"assembly": null,
+			"folder": "bin-retainers",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bin retainer, left. Optional.",
@@ -1707,8 +1958,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -1723,6 +1972,7 @@
 				"layer": 6
 			},
 			"assembly": null,
+			"folder": "bin-retainers",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bin retainer, right. Optional.",
@@ -1752,8 +2002,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -1769,6 +2017,7 @@
 				"interface": 6
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Distribution frame crossbeam. One between each of the 6 frame sections.",
@@ -1798,8 +2047,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -1815,6 +2062,7 @@
 				"interface": 12
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Distribution frame 90\u00b0 bracket. Two per frame section.",
@@ -1844,8 +2092,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -1856,10 +2102,15 @@
 		{
 			"id": "ls-mount-to-chute",
 			"name": "Lazy Susan \u2014 chute mount",
+			"aliases": [
+				"bottom interface lazy Susan chute mount",
+				"bottom interface chute mount"
+			],
 			"quantities": {
 				"lazy-susan": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bottom lazy Susan adapter that connects to the chute. White.",
@@ -1889,8 +2140,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -1906,10 +2155,15 @@
 		{
 			"id": "ls-bottom-static",
 			"name": "Lazy Susan \u2014 bottom static",
+			"aliases": [
+				"bottom interface lazy Susan fixed section",
+				"bottom interface fixed section"
+			],
 			"quantities": {
 				"lazy-susan": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bottom lazy Susan static base.",
@@ -1939,8 +2193,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -1960,6 +2212,7 @@
 				"lazy-susan": 3
 			},
 			"assembly": null,
+			"folder": "lazy-susan-extrusion-mounts",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bottom lazy Susan mount to the external extrusion.",
@@ -1989,8 +2242,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -2005,6 +2256,7 @@
 				"lazy-susan": 3
 			},
 			"assembly": null,
+			"folder": "lazy-susan-extrusion-mounts",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bottom lazy Susan hold-in-place. Optional.",
@@ -2034,8 +2286,6 @@
 			"optional": true,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -2050,6 +2300,7 @@
 				"lazy-susan": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bottom lazy Susan washer.",
@@ -2079,8 +2330,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -2096,6 +2345,7 @@
 				"interface": 6
 			},
 			"assembly": "external-bracket",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Part of the external distribution-frame bracket (3-part assembly).",
@@ -2125,8 +2375,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": true,
 			"low_tolerance_note": "A test print is suggested. This part is a tight fit around the 2020 aluminum profile, so print one first and confirm it seats properly before committing to the full set \u2014 dial in your printer and profile together.",
 			"layer_scope": "all",
@@ -2142,6 +2390,7 @@
 				"interface": 6
 			},
 			"assembly": "external-bracket",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Part of the external distribution-frame bracket (3-part assembly).",
@@ -2171,8 +2420,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "non-bottom",
@@ -2188,6 +2435,7 @@
 				"interface": 6
 			},
 			"assembly": "external-bracket",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Part of the external distribution-frame bracket (3-part assembly).",
@@ -2217,8 +2465,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "non-bottom",
@@ -2233,6 +2479,7 @@
 				"layer": 6
 			},
 			"assembly": "external-bracket",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bottom-layer replacement for the external bracket bottom vertical + cover.",
@@ -2262,8 +2509,6 @@
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/w/473cbfa6d8551e3b96a576e2/e/ee7cac13ee3ea67850bf1cf3",
 			"info": "For the bottom-most layer only. It is shorter than the standard bottom vertical + cover so the extrusion can pop out and the wheels mount to it.",
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "bottom-only",
@@ -2274,10 +2519,14 @@
 		{
 			"id": "interface-upper-fixed-section",
 			"name": "Interface upper fixed section",
+			"aliases": [
+				"fixed upper section"
+			],
 			"quantities": {
 				"interface": 1
 			},
 			"assembly": "fixed-upper-section",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Interface upper fixed section. 1 needed.",
@@ -2317,8 +2566,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": true,
-			"suspicious_note": "The lazy-Susan holes are slightly too close together. We intend to make them M5-compatible; they're currently M4.",
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -2338,6 +2585,7 @@
 				"interface": 5
 			},
 			"assembly": "fixed-upper-section",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Ribbed interface piece. 5 needed.",
@@ -2368,8 +2616,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -2384,6 +2630,7 @@
 				"interface": 1
 			},
 			"assembly": "fixed-upper-section",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Interface rib with the opening for the limit switch. 1 needed.",
@@ -2414,8 +2661,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -2430,6 +2675,7 @@
 				"interface": 1
 			},
 			"assembly": "fixed-upper-section",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Interface big spacer. 1 needed.",
@@ -2469,8 +2715,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -2485,6 +2729,7 @@
 				"interface": 1
 			},
 			"assembly": "cable-clamp",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Inner half of the ribbon cable clamp. White.",
@@ -2514,8 +2759,6 @@
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/63d9095d8167813360e7753c/e/279fa8866ec0d8c56c8226cf",
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -2530,6 +2773,7 @@
 				"interface": 1
 			},
 			"assembly": "cable-clamp",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Outer half of the ribbon cable clamp. White.",
@@ -2568,8 +2812,6 @@
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/63d9095d8167813360e7753c/e/279fa8866ec0d8c56c8226cf",
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -2579,14 +2821,19 @@
 		},
 		{
 			"id": "interface-spur-gear",
-			"name": "Interface spur gear (2M 25T)",
+			"name": "Chute stepper drive gear (2M 25T)",
+			"aliases": [
+				"Interface spur gear",
+				"Interface spur gear (2M 25T)"
+			],
 			"quantities": {
 				"interface": 1
 			},
-			"assembly": null,
+			"assembly": "chute-stepper-gearing",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
-			"description": "Interface spur gear, 2M 25T. 1 needed.",
+			"description": "Drive gear for the chute stepper, 2M 25T. 1 needed.",
 			"version": "1",
 			"created_at": "2026-06-27",
 			"updated_at": "2026-06-27",
@@ -2613,8 +2860,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -2624,14 +2869,19 @@
 		},
 		{
 			"id": "interface-idler-gear",
-			"name": "Interface idler gear (2M 25T)",
+			"name": "Chute stepper idler gear (2M 25T)",
+			"aliases": [
+				"Interface idler gear",
+				"Interface idler gear (2M 25T)"
+			],
 			"quantities": {
 				"interface": 1
 			},
-			"assembly": null,
+			"assembly": "chute-stepper-gearing",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
-			"description": "Interface idler gear, 2M 25T. 1 needed.",
+			"description": "Idler gear for the chute stepper, 2M 25T. 1 needed.",
 			"version": "1",
 			"created_at": "2026-06-27",
 			"updated_at": "2026-06-27",
@@ -2658,8 +2908,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -2674,14 +2922,18 @@
 		},
 		{
 			"id": "interface-nema23-bracket",
-			"name": "Interface NEMA 23 bracket",
+			"name": "Chute Stepper NEMA 23 Bracket",
+			"aliases": [
+				"Interface NEMA 23 bracket"
+			],
 			"quantities": {
 				"interface": 1
 			},
-			"assembly": null,
+			"assembly": "chute-stepper-gearing",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
-			"description": "NEMA 23 motor bracket on the interface. 1 needed.",
+			"description": "NEMA 23 motor bracket for the chute stepper. 1 needed.",
 			"version": "1",
 			"created_at": "2026-06-27",
 			"updated_at": "2026-06-27",
@@ -2708,8 +2960,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -2723,12 +2973,109 @@
 			"render": "/renders/interface-nema23-bracket.png"
 		},
 		{
+			"id": "chute-stepper-idler-bearing-retainer-outer",
+			"name": "Chute Stepper Idler Gear Bearing Retainer \u2014 Outer",
+			"aliases": [
+				"Idler Gear Bearing Retainer - Outer",
+				"idler bearing retainer"
+			],
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": "chute-stepper-gearing",
+			"folder": null,
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Outer bearing-retainer ring for the chute stepper idler gear.",
+			"version": "1",
+			"created_at": "2026-08-17",
+			"updated_at": "2026-08-17",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-08-17",
+					"message": "Initial version.",
+					"commit": null,
+					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/00180b3aaeab6c4e0222c4accfc69172ea358c68c1a07427324ba22e57795a23.stl",
+					"render": "/renders/chute-stepper-idler-bearing-retainer-outer.png",
+					"grams": 1.43
+				}
+			],
+			"attributes": [],
+			"grams": 1.43,
+			"support_grams": 0.0,
+			"support_used": false,
+			"support_intentional": false,
+			"print_seconds": 610,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/v/884bb3e1425379c7d601ef73/e/89995b8a04a440a3b561d7df",
+			"info": null,
+			"low_tolerance": false,
+			"low_tolerance_note": null,
+			"layer_scope": "all",
+			"requires": [],
+			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/00180b3aaeab6c4e0222c4accfc69172ea358c68c1a07427324ba22e57795a23.stl",
+			"render": "/renders/chute-stepper-idler-bearing-retainer-outer.png"
+		},
+		{
+			"id": "chute-stepper-idler-bearing-retainer-inner",
+			"name": "Chute Stepper Idler Gear Bearing Retainer \u2014 Inner",
+			"aliases": [
+				"Idler Gear Bearing Retainer - Inner",
+				"idler gear cap"
+			],
+			"quantities": {
+				"interface": 1
+			},
+			"assembly": "chute-stepper-gearing",
+			"folder": null,
+			"variant_group": null,
+			"variant_name": null,
+			"description": "Inner bearing-retainer cap for the chute stepper idler gear.",
+			"version": "1",
+			"created_at": "2026-08-17",
+			"updated_at": "2026-08-17",
+			"versions": [
+				{
+					"version": "1",
+					"date": "2026-08-17",
+					"message": "Initial version.",
+					"commit": null,
+					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/6157c7c623581c40285ecf8703c915aa95d921369000f5e68e25ccd2989073f4.stl",
+					"render": "/renders/chute-stepper-idler-bearing-retainer-inner.png",
+					"grams": 0.26
+				}
+			],
+			"attributes": [],
+			"grams": 0.26,
+			"support_grams": 0.0,
+			"support_used": false,
+			"support_intentional": false,
+			"print_seconds": 445,
+			"color": {
+				"role": "frame"
+			},
+			"optional": false,
+			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/v/884bb3e1425379c7d601ef73/e/89995b8a04a440a3b561d7df",
+			"info": null,
+			"low_tolerance": false,
+			"low_tolerance_note": null,
+			"layer_scope": "all",
+			"requires": [],
+			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/6157c7c623581c40285ecf8703c915aa95d921369000f5e68e25ccd2989073f4.stl",
+			"render": "/renders/chute-stepper-idler-bearing-retainer-inner.png"
+		},
+		{
 			"id": "interface-cage-bracket",
 			"name": "Cable cage bracket",
 			"quantities": {
 				"interface": 5
 			},
 			"assembly": "cable-cage",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Interface cable cage bracket (regular). 5 needed.",
@@ -2758,8 +3105,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -2774,6 +3119,7 @@
 				"interface": 1
 			},
 			"assembly": "cable-cage",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Cable cage bracket with the cable mount. 1 needed.",
@@ -2803,8 +3149,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -2824,6 +3168,7 @@
 				"interface": 1
 			},
 			"assembly": "cable-cage",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Outer ribbon cable clamp, paired with the cable cage brackets.",
@@ -2853,8 +3198,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -2869,6 +3212,7 @@
 				"interface": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Section 1 of 3 of the top interface split spur gear (Spur 2M 120T).",
@@ -2898,8 +3242,6 @@
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/12bfe1cca4fda5bc5763c0c9",
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -2914,6 +3256,7 @@
 				"interface": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Section 2 of 3 of the top interface split spur gear (Spur 2M 120T).",
@@ -2943,8 +3286,6 @@
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/12bfe1cca4fda5bc5763c0c9",
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -2955,10 +3296,14 @@
 		{
 			"id": "top-interface-split-spur-gear-3",
 			"name": "Top interface chute mount",
+			"aliases": [
+				"chute core mount"
+			],
 			"quantities": {
 				"interface": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Section 3 of 3 of the top interface split spur gear (Spur 2M 120T).",
@@ -2988,8 +3333,6 @@
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/12bfe1cca4fda5bc5763c0c9",
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3013,6 +3356,7 @@
 				"interface": 1
 			},
 			"assembly": "limit-switch",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Printed dowel pin for the interface limit switch.",
@@ -3042,8 +3386,6 @@
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/f23afbf63ca583eed726c9b4",
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3058,6 +3400,7 @@
 				"interface": 1
 			},
 			"assembly": "limit-switch",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Housing for the interface limit switch.",
@@ -3087,8 +3430,6 @@
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/70838d736e83bd9b6f0ccb7a",
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3108,6 +3449,7 @@
 				"interface": 1
 			},
 			"assembly": "limit-switch",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Hammer/stop for the interface limit switch.",
@@ -3137,8 +3479,6 @@
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/6952c4b6ff33a9eff9bf58c6/e/3c6d45d569e85f2df62b8449",
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3153,6 +3493,7 @@
 				"classification-channel": 1
 			},
 			"assembly": "classification-chamber",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Finned rotor on the classification chamber. White. 1 needed.",
@@ -3182,8 +3523,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3198,6 +3537,7 @@
 				"feeder": 4
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "C-channel idler gear, 24 teeth. One per C-channel (4 total).",
@@ -3227,8 +3567,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3248,6 +3586,7 @@
 				"feeder": 4
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "C-channel input/drive gear (12T) with vertical screw hole. One per C-channel (4 total).",
@@ -3277,8 +3616,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3293,6 +3630,7 @@
 				"feeder": 2
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Output guide. 2 needed. Black.",
@@ -3322,8 +3660,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3338,6 +3674,7 @@
 				"chute": 1
 			},
 			"assembly": null,
+			"folder": "funnel-brackets",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Funnel bracket, left. 2 funnel brackets total.",
@@ -3368,8 +3705,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3384,6 +3719,7 @@
 				"chute": 1
 			},
 			"assembly": null,
+			"folder": "funnel-brackets",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Funnel bracket, right. 2 funnel brackets total.",
@@ -3414,8 +3750,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3430,6 +3764,7 @@
 				"chute": 1
 			},
 			"assembly": "chute-bearing",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "The race between the two chute bearing holders.",
@@ -3459,8 +3794,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3480,6 +3813,7 @@
 				"chute": 1
 			},
 			"assembly": "chute-bearing",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bearing holder, left.",
@@ -3509,8 +3843,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3530,6 +3862,7 @@
 				"chute": 1
 			},
 			"assembly": "chute-bearing",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Bearing holder, right.",
@@ -3559,8 +3892,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3580,6 +3911,7 @@
 				"chute": 1
 			},
 			"assembly": "servo-adapter",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "MG995 servo adapter, servo side.",
@@ -3609,8 +3941,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3625,6 +3955,7 @@
 				"chute": 1
 			},
 			"assembly": "servo-adapter",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "MG995 servo adapter, flap side.",
@@ -3654,8 +3985,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3670,6 +3999,7 @@
 				"chute": 1
 			},
 			"assembly": "servo-bracket",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "MG995 servo bracket, lower arm.",
@@ -3699,8 +4029,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3715,6 +4043,7 @@
 				"chute": 1
 			},
 			"assembly": "servo-bracket",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "MG995 servo bracket, side arm.",
@@ -3744,8 +4073,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3760,6 +4087,7 @@
 				"chute": 1
 			},
 			"assembly": "servo-bracket",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "MG995 servo bracket, cover.",
@@ -3789,8 +4117,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3805,6 +4131,7 @@
 				"chute": 1
 			},
 			"assembly": "servo-bracket",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "MG995 servo bracket, housing.",
@@ -3834,8 +4161,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3855,6 +4180,7 @@
 				"feeder": 9
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "C-channel leg. 9 in the feeder.",
@@ -3884,8 +4210,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3900,6 +4224,7 @@
 				"feeder": 9
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "C-channel foot. 9 in the feeder.",
@@ -3929,8 +4254,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3945,6 +4268,7 @@
 				"chute": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "The chute door / flap. 1 per machine.",
@@ -3974,8 +4298,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -3990,6 +4312,7 @@
 				"feeder": 9
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "C-channel leg extension. 9 in the feeder.",
@@ -4019,8 +4342,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -4035,6 +4356,7 @@
 				"feeder": 2
 			},
 			"assembly": "camera-mount",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Camera mount part 6. 2 per machine.",
@@ -4064,8 +4386,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -4080,6 +4400,7 @@
 				"feeder": 2
 			},
 			"assembly": "camera-mount",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Camera mount part 37. 2 per machine.",
@@ -4109,8 +4430,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -4125,6 +4444,7 @@
 				"feeder": 2
 			},
 			"assembly": "camera-mount",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Camera mount part 37 (second). 2 per machine.",
@@ -4154,8 +4474,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -4170,6 +4488,7 @@
 				"feeder": 4
 			},
 			"assembly": "camera-mount",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Rod-to-C-channel mount (Part 33). 2 per camera mount, 4 total.",
@@ -4199,8 +4518,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -4215,6 +4532,7 @@
 				"classification-channel": 1
 			},
 			"assembly": "classification-chamber",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "C-channel camera & LED light insert. White.",
@@ -4244,8 +4562,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -4260,6 +4576,7 @@
 				"classification-channel": 1
 			},
 			"assembly": "camera-extension",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Camera extension tube for the classification channel. 1 needed.",
@@ -4273,7 +4590,7 @@
 					"message": "Initial version.",
 					"commit": "f1be906",
 					"onshape_doc": "https://cad.onshape.com/documents/249bded2198af476185014b6",
-					"onshape_version": "https://cad.onshape.com/documents/249bded2198af476185014b6/v/021402d3659fca34ef82486c/e/48c64d61f1276c46f515d6bd",
+					"onshape_version": "https://cad.onshape.com/documents/249bded2198af476185014b6/v/57d753798ce11a250478918d/e/48c64d61f1276c46f515d6bd",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/1253c651918595ba46bfc57401c0b2b6aeb2893649fa6c0d4b92c486943deee4.stl",
 					"render": "/renders/camera-extension.png",
 					"grams": 28.6
@@ -4300,8 +4617,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -4316,6 +4631,7 @@
 				"classification-channel": 1
 			},
 			"assembly": "camera-extension",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Clamp/mount ring that fixes the camera to the extension. 1 needed.",
@@ -4329,7 +4645,7 @@
 					"message": "Initial version.",
 					"commit": "f1be906",
 					"onshape_doc": "https://cad.onshape.com/documents/249bded2198af476185014b6",
-					"onshape_version": "https://cad.onshape.com/documents/249bded2198af476185014b6/v/021402d3659fca34ef82486c/e/48c64d61f1276c46f515d6bd",
+					"onshape_version": "https://cad.onshape.com/documents/249bded2198af476185014b6/v/57d753798ce11a250478918d/e/48c64d61f1276c46f515d6bd",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a69def7f420a0ac70bcc1be0827d5cb9e46b322ea5dfa09fa075f746b5b7f6c8.stl",
 					"render": "/renders/camera-extension-mount.png",
 					"grams": 7.58
@@ -4356,8 +4672,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -4372,7 +4686,8 @@
 				"chute": 1,
 				"interface": 1
 			},
-			"assembly": "layer-connector",
+			"assembly": null,
+			"folder": "layer-connectors",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Layer connector. 1 per layer + 1 per bottom interface.",
@@ -4403,8 +4718,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -4419,7 +4732,8 @@
 				"chute": 1,
 				"interface": 1
 			},
-			"assembly": "layer-connector",
+			"assembly": null,
+			"folder": "layer-connectors",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Layer connector. 1 per layer + 1 per bottom interface.",
@@ -4450,8 +4764,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -4466,6 +4778,7 @@
 				"interface": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Support block for the chute stepper.",
@@ -4495,8 +4808,6 @@
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/238eb36f4ee3382c5a50a32b/w/78eed8b37e676b442c6450e1/e/753de7ce802d72cd739d82e2",
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -4511,6 +4822,7 @@
 				"funnel": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": "funnel",
 			"variant_name": "Third size",
 			"description": "Third size funnel. Per layer (choose size per layer).",
@@ -4541,8 +4853,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -4557,6 +4867,7 @@
 				"funnel": 1
 			},
 			"assembly": null,
+			"folder": null,
 			"variant_group": "funnel",
 			"variant_name": "Half size",
 			"description": "Half size funnel. Per layer (choose size per layer).",
@@ -4587,8 +4898,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -4603,6 +4912,7 @@
 				"bins": 6
 			},
 			"assembly": null,
+			"folder": "printed-bins",
 			"variant_group": "bin",
 			"variant_name": "Half",
 			"description": "Bin (half, left). Half bins: 6 per layer of that size.",
@@ -4632,8 +4942,6 @@
 			"optional": true,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -4648,6 +4956,7 @@
 				"bins": 6
 			},
 			"assembly": null,
+			"folder": "printed-bins",
 			"variant_group": "bin",
 			"variant_name": "Half",
 			"description": "Bin (half, right). Half bins: 6 per layer of that size.",
@@ -4677,8 +4986,6 @@
 			"optional": true,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -4693,6 +5000,7 @@
 				"bins": 6
 			},
 			"assembly": null,
+			"folder": "printed-bins",
 			"variant_group": "bin",
 			"variant_name": "Third",
 			"description": "Bin (third, left). Third bins: 6 per layer of that size.",
@@ -4722,8 +5030,6 @@
 			"optional": true,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -4738,6 +5044,7 @@
 				"bins": 6
 			},
 			"assembly": null,
+			"folder": "printed-bins",
 			"variant_group": "bin",
 			"variant_name": "Third",
 			"description": "Bin (third, center). Third bins: 6 per layer of that size.",
@@ -4767,8 +5074,6 @@
 			"optional": true,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -4783,6 +5088,7 @@
 				"bins": 6
 			},
 			"assembly": null,
+			"folder": "printed-bins",
 			"variant_group": "bin",
 			"variant_name": "Third",
 			"description": "Bin (third, right-back). Third bins: 6 per layer of that size.",
@@ -4812,8 +5118,6 @@
 			"optional": true,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -4827,7 +5131,8 @@
 			"quantities": {
 				"chute": 1
 			},
-			"assembly": "chute-bearing",
+			"assembly": null,
+			"folder": "bearing-covers",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Chute bearing cover. 1 per machine.",
@@ -4857,8 +5162,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -4872,7 +5175,8 @@
 			"quantities": {
 				"chute": 1
 			},
-			"assembly": "chute-bearing",
+			"assembly": null,
+			"folder": "bearing-covers",
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Chute bearing cover. 1 per machine.",
@@ -4902,8 +5206,6 @@
 			"optional": false,
 			"onshape": null,
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -4918,6 +5220,7 @@
 				"electronics": 1
 			},
 			"assembly": "meanwell-psu-box",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Back mount that holds the Meanwell 24V PSU.",
@@ -4947,8 +5250,6 @@
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/ff3546ceb03f5fc907e6ed4c/w/76ea03e60d160b9d0990194d/e/b9f80b00e4dd34407e23b560",
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -4963,6 +5264,7 @@
 				"electronics": 1
 			},
 			"assembly": "meanwell-psu-box",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Connections plate for the Meanwell 24V PSU box.",
@@ -4992,8 +5294,6 @@
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/ff3546ceb03f5fc907e6ed4c/w/76ea03e60d160b9d0990194d/e/b9f80b00e4dd34407e23b560",
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -5008,6 +5308,7 @@
 				"electronics": 1
 			},
 			"assembly": "meanwell-psu-box",
+			"folder": null,
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Cap for the Meanwell 24V PSU box.",
@@ -5037,8 +5338,6 @@
 			"optional": false,
 			"onshape": "https://cad.onshape.com/documents/ff3546ceb03f5fc907e6ed4c/w/76ea03e60d160b9d0990194d/e/b9f80b00e4dd34407e23b560",
 			"info": null,
-			"suspicious": false,
-			"suspicious_note": null,
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",

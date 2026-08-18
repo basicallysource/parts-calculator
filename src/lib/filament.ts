@@ -26,7 +26,19 @@ export type Section = {
 	experimental?: boolean; // early / subject to heavy change — surfaced with a warning
 	experimental_note?: string | null;
 };
+export type ChangePriority = `P${number}`;
+export type ChangeTargetKind = 'parts' | 'assemblies' | 'sections' | 'lasercut' | 'hardware';
+export type PlannedChange = {
+	id: string;
+	name: string;
+	priority: ChangePriority;
+	description: string;
+	condition?: 'working' | 'broken';
+	images?: { url: string; alt: string; caption?: string }[];
+	targets: Partial<Record<ChangeTargetKind, string[]>>;
+};
 export type ColorRoleDef = { id: string; name: string; default: string };
+export type Folder = { id: string; name: string; description?: string };
 
 /** One BOM line of an assembly: a child part or sub-assembly with a quantity.
  *  qty 'per-layer' multiplies by the total configured layer count;
@@ -64,6 +76,7 @@ export type Assembly = {
 	id: string;
 	name: string;
 	description: string;
+	section?: string; // places an empty/stub assembly in the legacy section list
 	status?: 'stub' | 'partial';
 	joining?: Joining[]; // work needed to make these lines into one unit
 	lines?: AssemblyLine[];
@@ -168,8 +181,10 @@ export type PartVersion = {
 export type Part = {
 	id: string;
 	name: string;
+	aliases?: string[]; // alternate shop/CAD names; canonical id and display name stay stable
 	quantities: Record<string, number>; // category id -> count per ONE instance of that category
 	assembly: string | null;
+	folder?: string | null; // display-only collapsible grouping; carries no BOM semantics
 	variant_group?: string | null; // parts in a group are alternatives chosen per layer
 	variant_name?: string | null;
 	description: string;
@@ -187,8 +202,6 @@ export type Part = {
 	optional: boolean;
 	onshape?: string | null; // link to the source Onshape document, if known
 	info?: string | null; // short note surfaced as an inline info popover
-	suspicious?: boolean; // flagged as subject-to-change / possibly problematic
-	suspicious_note?: string | null; // optional specifics for the suspicious warning
 	low_tolerance?: boolean; // tight/precise fit — little tolerance for dimensional error, so a test print is worth doing
 	low_tolerance_note?: string | null; // optional specifics for the low-tolerance warning
 	// how the per-layer ('layer') quantity scales: every layer, all but the bottom,
@@ -221,15 +234,26 @@ export function commitUrl(commit: string | null | undefined): string | null {
 
 export const SETTINGS = raw.settings as Settings;
 export const SECTIONS = raw.sections as Section[];
+export const CHANGES = ((raw as Record<string, unknown>).changes ?? []) as PlannedChange[];
+export const FOLDERS = ((raw as Record<string, unknown>).folders ?? []) as Folder[];
 export const COLOR_ROLES = raw.color_roles as ColorRoleDef[];
 export const ASSEMBLIES = (raw.assemblies ?? []) as Assembly[];
 export const PARTS = raw.parts as unknown as Part[];
+export function plannedChangesFor(kind: ChangeTargetKind, id: string): PlannedChange[] {
+	return CHANGES.filter((change) => {
+		if (change.targets[kind]?.includes(id)) return true;
+		if (kind !== 'parts') return false;
+		const part = PARTS.find((candidate) => candidate.id === id);
+		return !!part && (change.targets.sections ?? []).some((section) => section in part.quantities);
+	});
+}
 export const HARDWARE = ((raw as Record<string, unknown>).hardware ?? []) as Hardware[];
 export const FAMILIES = ((raw as Record<string, unknown>).families ?? []) as Family[];
 export const SPOOL_G = 1000;
 
 const sectionById = new Map(SECTIONS.map((s) => [s.id, s]));
 const assemblyById = new Map(ASSEMBLIES.map((a) => [a.id, a]));
+const folderById = new Map(FOLDERS.map((folder) => [folder.id, folder]));
 const partById = new Map(PARTS.map((p) => [p.id, p]));
 const hardwareById = new Map(HARDWARE.map((h) => [h.id, h]));
 const lasercutById = new Map(LASER_CUT_PARTS.map((p) => [p.id, p]));
@@ -451,6 +475,10 @@ export function effectiveMult(part: Part, categoryId: string, layers: number): n
 
 export function getAssembly(id: string | null): Assembly | undefined {
 	return id ? assemblyById.get(id) : undefined;
+}
+
+export function getFolder(id: string | null): Folder | undefined {
+	return id ? folderById.get(id) : undefined;
 }
 
 /** The part's current OnShape links, taken from its latest version (a part-level

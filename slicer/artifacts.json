@@ -282,6 +282,16 @@
       "size": 398484,
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/dd778421784bf38babc9ccde0f1007ce61e7e2c575718a933e62aadfedd55484.stl"
     },
+    "slicer/parts/interface/chute-stepper-idler-bearing-retainer-inner.stl": {
+      "sha256": "6157c7c623581c40285ecf8703c915aa95d921369000f5e68e25ccd2989073f4",
+      "size": 86484,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/6157c7c623581c40285ecf8703c915aa95d921369000f5e68e25ccd2989073f4.stl"
+    },
+    "slicer/parts/interface/chute-stepper-idler-bearing-retainer-outer.stl": {
+      "sha256": "00180b3aaeab6c4e0222c4accfc69172ea358c68c1a07427324ba22e57795a23",
+      "size": 290084,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/00180b3aaeab6c4e0222c4accfc69172ea358c68c1a07427324ba22e57795a23.stl"
+    },
     "slicer/parts/interface/chute-stepper-support-block.stl": {
       "sha256": "106dec95fef16977ebef133766df63d301b98885ac8a4bf9bf718e3eda72ac7f",
       "size": 68284,
@@ -453,9 +463,9 @@
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/4a28da2e33e12340c3621421365add2fed8c1a65d235f8afb93ebfc2d8203ff0.3mf"
     },
     "static/stl/all-parts.zip": {
-      "sha256": "c4e920ca1b7a15eb2c52fdc11efe35eee468d78519ee03ae312cef44ba14b5ed",
-      "size": 16981344,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/c4e920ca1b7a15eb2c52fdc11efe35eee468d78519ee03ae312cef44ba14b5ed.zip"
+      "sha256": "a585426771851cffa7a25d97a609e32bd3b2a2d8b766b4699000e9694af41848",
+      "size": 17082945,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/a585426771851cffa7a25d97a609e32bd3b2a2d8b766b4699000e9694af41848.zip"
     }
   }
 }
