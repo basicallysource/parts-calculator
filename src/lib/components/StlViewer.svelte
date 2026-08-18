@@ -56,6 +56,12 @@
 		const rim = new THREE.DirectionalLight(0xffffff, 1.8);
 		rim.position.set(-0.4, 1.1, -1.5);
 		scene.add(rim);
+		// The model is freely rotatable, so it cannot rely on a conventional
+		// unlit "floor" side. A broad, cool fill from below keeps undersides and
+		// recessed bottom features readable without flattening the key light.
+		const underside = new THREE.DirectionalLight(0xcad8ee, 1.45);
+		underside.position.set(0.35, -1.5, -0.45);
+		scene.add(underside);
 
 		const controls = new OrbitControls(camera, renderer.domElement);
 		controls.enableDamping = true;
