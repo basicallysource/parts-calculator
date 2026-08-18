@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Box, ExternalLink, Hammer, Zap } from 'lucide-svelte';
+	import { Box, ExternalLink, Hammer, Printer, Zap } from 'lucide-svelte';
 	import Seo from '$lib/components/Seo.svelte';
 	import DownloadButton from '$lib/components/DownloadButton.svelte';
 	import Modal from '$lib/components/Modal.svelte';
@@ -182,5 +182,15 @@
 </div>
 
 <Modal bind:open={guideOpen} title="Cutting the top plate by hand" maxW="max-w-4xl">
+	<div class="flex justify-end border-b border-border px-4 py-2">
+		<a
+			href={`/lasercut/top-plate-guide${units === 'mm' ? '?units=mm' : ''}`}
+			target="_blank"
+			rel="noopener"
+			class="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
+		>
+			<Printer size={13} /> Printable version
+		</a>
+	</div>
 	<HandCutTopPlateGuide bind:units />
 </Modal>
