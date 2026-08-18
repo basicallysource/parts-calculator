@@ -14,6 +14,7 @@ import {
 	SECTIONS,
 	sectionQty,
 	effectiveMult,
+	plannedChangesFor,
 	type Part
 } from '$lib/filament';
 import type { Bin } from '$lib/cutplan';
@@ -66,7 +67,9 @@ export function partsCsv(
 		const each = opts.grams(p);
 		const notes = [
 			p.low_tolerance ? `Low tolerance: ${p.low_tolerance_note ?? 'test print recommended'}` : '',
-			p.suspicious ? `Check: ${p.suspicious_note ?? 'flagged as suspicious'}` : ''
+			...plannedChangesFor('parts', p.id).map((change) =>
+				`Subject to change ${change.priority}: ${change.name}`
+			)
 		]
 			.filter(Boolean)
 			.join(' | ');

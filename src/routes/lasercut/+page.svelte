@@ -4,6 +4,7 @@
 	import DownloadButton from '$lib/components/DownloadButton.svelte';
 	import Modal from '$lib/components/Modal.svelte';
 	import HandCutTopPlateGuide from '$lib/components/HandCutTopPlateGuide.svelte';
+	import ChangeStatus from '$lib/components/ChangeStatus.svelte';
 	import { LASER_CUT_PARTS, type LaserCutPart } from '$lib/lasercut';
 	import { fmtDate } from '$lib/filament';
 	import { type Units } from '$lib/handcut';
@@ -68,13 +69,18 @@
 />
 
 <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
-	<header class="mb-5">
-		<h1 class="text-2xl font-bold text-text">Laser cut parts</h1>
-		<p class="mt-1 text-sm text-text-muted">
-			Flat plywood parts, cut from the DXFs below. Thicknesses are quoted in the imperial size the
-			sheet is sold as, with the nearest full-mm equivalent the CAD expects. No laser? The top
-			plate has a “by hand” view; the cable cage parts are getting 3D-printable options.
-		</p>
+	<header class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+		<div class="max-w-4xl">
+			<h1 class="text-2xl font-bold text-text">Laser cut parts</h1>
+			<p class="mt-1 text-sm text-text-muted">
+				Flat plywood parts, cut from the DXFs below. Thicknesses are quoted in the imperial size the
+				sheet is sold as, with the nearest full-mm equivalent the CAD expects. No laser? The top
+				plate has a “by hand” view; the cable cage parts are getting 3D-printable options.
+			</p>
+		</div>
+		<a href="https://bin-gen.basically.website/" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center gap-1.5 border border-border bg-surface px-3 py-2 text-sm font-semibold text-text-muted transition-colors hover:border-primary hover:text-primary">
+			Laser Cut Bin Generator <ExternalLink size={13} />
+		</a>
 	</header>
 
 	{#each groups as group (group.parts[0].id)}
@@ -86,7 +92,7 @@
 			{/if}
 			<div class="grid gap-4 sm:grid-cols-2">
 				{#each group.parts as p (p.id)}
-					<div class="setup-card-shell flex flex-col border">
+					<div class="setup-card-shell flex scroll-mt-6 flex-col border" id="laser-{p.id}">
 						<div class="flex items-center justify-center border-b border-border bg-[var(--color-bg)] p-4">
 							<img src={p.preview} alt="{p.name} outline" class="h-48 w-auto max-w-full" />
 						</div>
@@ -119,7 +125,7 @@
 						</div>
 						<div class="flex flex-1 flex-col gap-2 px-4 py-3">
 							<div class="flex items-baseline justify-between gap-2">
-								<h3 class="text-sm font-semibold text-text">{p.name}</h3>
+								<div class="flex flex-wrap items-center gap-1"><h3 class="text-sm font-semibold text-text">{p.name}</h3><ChangeStatus kind="lasercut" id={p.id} name={p.name} /></div>
 								<span class="text-xs text-text-muted">{p.qty} needed</span>
 							</div>
 							{#if mode[p.id] === 'laser'}

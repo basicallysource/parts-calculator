@@ -3,6 +3,7 @@
 	import ColorPicker from '$lib/components/ColorPicker.svelte';
 	import DownloadButton from '$lib/components/DownloadButton.svelte';
 	import Callout from '$lib/components/Callout.svelte';
+	import ChangeStatus from '$lib/components/ChangeStatus.svelte';
 	import BuildPlates from '$lib/components/BuildPlates.svelte';
 	import Modal from '$lib/components/Modal.svelte';
 	import { getBambuColor } from '$lib/bambu-colors';
@@ -75,9 +76,7 @@
 					{#if active?.grams != null}<dt>Filament</dt><dd class="text-text">{active.grams.toFixed(0)} g</dd>{/if}
 					<dt>Print time</dt><dd class="text-text">{duration(part.print_seconds)}</dd>
 				</dl>
-				{#if part.suspicious}
-					<Callout variant="warning" title="Suspect">{part.suspicious_note ?? 'This part may still change or have an issue. Hold off printing it until this clears.'}</Callout>
-				{/if}
+				<div><ChangeStatus kind="parts" id={part.id} name={part.name} /></div>
 				{#if part.low_tolerance}
 					<Callout variant="info" title="Low tolerance — test print suggested">{part.low_tolerance_note ?? 'This part has little room for dimensional error. Print one first and confirm the fit before committing to the full set.'}</Callout>
 				{/if}
