@@ -5410,7 +5410,7 @@
 				}
 			],
 			"sheet_qty": null,
-			"sheet_qty_text": null,
+			"sheet_qty_text": "1 on the top interface (limit-switch hammer)",
 			"stock": null,
 			"sourcing": null,
 			"image": null
@@ -5445,7 +5445,7 @@
 				}
 			],
 			"sheet_qty": null,
-			"sheet_qty_text": null,
+			"sheet_qty_text": "3 on the top interface (2 cable clamp, 1 ribbon clamp)",
 			"stock": null,
 			"sourcing": null,
 			"image": null
@@ -6027,7 +6027,7 @@
 			"name": "M5 \u00d7 8 mm countersunk",
 			"category": "Screws",
 			"description": "Loosely fixes the limit-switch interface bracket's extrusion into the interface rib while aligning it, into a T-nut.",
-			"note": "A snug fit here \u2014 it barely reaches the T-nut. Opening the countersink a little and tightening firmly gets the head to sit flush.",
+			"note": "A snug fit here, it barely reaches the T-nut. Opening the countersink a little and tightening firmly gets the head to sit flush.",
 			"created_at": "2026-08-18",
 			"updated_at": "2026-08-18",
 			"attributes": [
@@ -6045,7 +6045,7 @@
 				}
 			],
 			"sheet_qty": null,
-			"sheet_qty_text": null,
+			"sheet_qty_text": "6 on the top interface (1 per interface bracket)",
 			"stock": null,
 			"sourcing": null,
 			"image": null
@@ -6080,7 +6080,7 @@
 				}
 			],
 			"sheet_qty": null,
-			"sheet_qty_text": null,
+			"sheet_qty_text": "14 on the top interface (2 to the top plate, 12 through the bracket holes)",
 			"stock": null,
 			"sourcing": null,
 			"image": null
@@ -6143,7 +6143,7 @@
 				}
 			],
 			"sheet_qty": null,
-			"sheet_qty_text": null,
+			"sheet_qty_text": "1 on the top interface (under the idler-gear screw)",
 			"stock": null,
 			"sourcing": null,
 			"image": null
