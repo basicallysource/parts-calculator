@@ -5792,7 +5792,7 @@
 			},
 			"name": "M5 \u00d7 16 mm socket/button head",
 			"category": "Screws",
-			"description": "The most-used M5 in the machine: every external bracket, every bin bracket, every interface rib, every lazy Susan extrusion mount, plus 36 per layer fastening the layer frames.",
+			"description": "The most-used M5 in the machine: every external bracket (the layer frames included), every bin bracket, every interface rib, every lazy Susan extrusion mount.",
 			"note": "Socket and button head are interchangeable here: both flat-bottomed, so either just clamps (team head convention, BOM thread 2026-08-15). Designed to self-tap into printed plastic wherever it lands in an external bracket or the upper fixed section \u2014 no nut and no insert there.",
 			"created_at": "2026-07-18",
 			"updated_at": "2026-08-18",
