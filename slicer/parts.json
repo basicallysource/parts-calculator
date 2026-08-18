@@ -2236,7 +2236,8 @@
           "label": "Head",
           "value": "Countersunk (flat) socket"
         }
-      ]
+      ],
+      "sheet_qty_text": "1 on the top interface (limit-switch hammer)"
     },
     {
       "id": "scr-m3-10-shcs",
@@ -2265,7 +2266,8 @@
           "label": "Head",
           "value": "Socket head cap"
         }
-      ]
+      ],
+      "sheet_qty_text": "3 on the top interface (2 cable clamp, 1 ribbon clamp)"
     },
     {
       "id": "scr-m3-8-cs",
@@ -2782,7 +2784,8 @@
           "value": "Countersunk (flat) socket"
         }
       ],
-      "note": "A snug fit here — it barely reaches the T-nut. Opening the countersink a little and tightening firmly gets the head to sit flush."
+      "note": "A snug fit here, it barely reaches the T-nut. Opening the countersink a little and tightening firmly gets the head to sit flush.",
+      "sheet_qty_text": "6 on the top interface (1 per interface bracket)"
     },
     {
       "id": "scr-m5-22-cs",
@@ -2812,7 +2815,8 @@
           "value": "Countersunk (flat) socket"
         }
       ],
-      "note": "The top plate's laser-cut holes aren't countersunk, so where a flush head won't seat an M5 × 20 button head is used instead."
+      "note": "The top plate's laser-cut holes aren't countersunk, so where a flush head won't seat an M5 × 20 button head is used instead.",
+      "sheet_qty_text": "14 on the top interface (2 to the top plate, 12 through the bracket holes)"
     },
     {
       "id": "scr-m5-shcs-tbd",
@@ -2864,7 +2868,8 @@
           "label": "Outer diameter",
           "value": "15 mm"
         }
-      ]
+      ],
+      "sheet_qty_text": "1 on the top interface (under the idler-gear screw)"
     },
     {
       "id": "nut-m3",
