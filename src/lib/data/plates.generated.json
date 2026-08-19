@@ -1,5 +1,30 @@
 [
 	{
+		"id": "3-bins",
+		"name": "3-bins",
+		"download": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/c6147c79afa98f0f566f9dbbc9818779472c9cf0c5d874b7570800b06c67686d.3mf",
+		"thumbs": [
+			"/plate-thumbs/3-bins-1.png"
+		],
+		"parts": [
+			{
+				"name": "bin-third-rightback",
+				"count": 1,
+				"part_id": "bin-third-rightback"
+			},
+			{
+				"name": "bin-third-center",
+				"count": 1,
+				"part_id": "bin-third-center"
+			},
+			{
+				"name": "bin-third-left",
+				"count": 1,
+				"part_id": "bin-third-left"
+			}
+		]
+	},
+	{
 		"id": "90-deg-brackets",
 		"name": "90-deg-brackets",
 		"download": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/6aab6886d1d32a693710441da6c2d80190fcbea9f5a690a08fbe2beec36b9941.3mf",
