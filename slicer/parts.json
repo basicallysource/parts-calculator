@@ -104,9 +104,23 @@
       "name": "Fix the interface bracket fit",
       "priority": "P0",
       "condition": "broken",
-      "description": "Fix the interface bracket's too-tight tolerance around the top aluminum spoke.",
+      "status": "complete",
+      "completed_at": "2026-08-18",
+      "description": "Added 0.2 mm clearance on every side of the horizontal aluminum spoke.",
       "targets": {
         "parts": ["interface-bracket"]
+      }
+    },
+    {
+      "id": "fix-bulk-cap-dovetail",
+      "name": "Fix bulk cap dovetail",
+      "priority": "P0",
+      "condition": "broken",
+      "status": "complete",
+      "completed_at": "2026-08-18",
+      "description": "Increased the dovetail clearance so the bulk cap slides onto the stator more easily and seats without excessive force.",
+      "targets": {
+        "parts": ["bulk-cap"]
       }
     },
     {
@@ -474,10 +488,26 @@
       "id": "interface-bracket",
       "name": "Interface bracket",
       "description": "Interface bracket. Pairs with the spacer; 6 on the interface.",
-      "internal_notes": "6 bracket+spacer pairs on the interface. Frame color. File: 000_interface_layer_assembly - top_bracket.",
-      "version": "1",
+      "internal_notes": "6 bracket+spacer pairs on the interface. Frame color. File: 000_interface_layer_assembly - top_bracket. v2 (2026-08-18): added 0.2 mm clearance on every side of the horizontal aluminum spoke.",
+      "info": "v2 adds 0.2 mm clearance on every side of the horizontal aluminum spoke so the bracket no longer fits too tightly.",
+      "version": "2",
       "created_at": "2026-06-27",
-      "updated_at": "2026-06-27",
+      "updated_at": "2026-08-18",
+      "versions": [
+        {
+          "version": "1",
+          "date": "2026-06-27",
+          "message": "Initial version. The fit around the horizontal aluminum spoke was too tight.",
+          "commit": "0576613"
+        },
+        {
+          "version": "2",
+          "date": "2026-08-18",
+          "message": "Added 0.2 mm clearance on every side of the horizontal aluminum spoke.",
+          "commit": null,
+          "onshape_version": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/v/f845b960415692451f2903b1/e/77f0be233cae0dcaf1c2a391"
+        }
+      ],
       "quantities": {
         "interface": 6
       },
