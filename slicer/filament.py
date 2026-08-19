@@ -459,6 +459,65 @@ def read_triangles(path):
 
 
 # ---------------------------------------------------------------- main
+def build_hardware(manifest):
+    """Build the generated COTS records without invoking the slicer."""
+    hardware = []
+    for p in manifest["parts"]:
+        if p.get("kind", "printed") != "cots":
+            continue
+        # attribute labels are display keys; duplicates read as a contradiction
+        labels = [a["label"] for a in p.get("attributes", [])]
+        dupes = {label for label in labels if labels.count(label) > 1}
+        if dupes:
+            raise SystemExit(f"{p['id']}: duplicate attribute label(s) {sorted(dupes)}")
+        if p.get("image"):
+            raise SystemExit(
+                f"{p['id']}: 'image' (a repo file path) is no longer supported -- "
+                "images live only on the bucket. Use 'image_url'.")
+        hardware.append({
+            "id": p["id"],
+            "kind": "cots",
+            "cots": p.get("cots"),
+            "name": p["name"],
+            "category": p.get("category"),
+            "description": p.get("description", ""),
+            "note": p.get("note"),
+            "created_at": p.get("created_at", ""),
+            "updated_at": p.get("updated_at", p.get("created_at", "")),
+            "attributes": p.get("attributes", []),
+            "sheet_qty": p.get("sheet_qty"),
+            "sheet_qty_text": p.get("sheet_qty_text"),
+            # stock material: lines count cut pieces, this converts to lengths to buy
+            "stock": p.get("stock"),
+            "sourcing": p.get("sourcing"),
+            # Marks a part that has an interchangeable alternative (socket vs
+            # button head, etc.): true for a bare "Alternative" tag, or a string
+            # naming the alternative. Renders the blue "A" badge in the app.
+            "alternative": p.get("alternative"),
+            # Product images live only on the bucket, authored as a pinned URL.
+            # They deliberately never touch git.
+            "image": p.get("image_url"),
+        })
+    return hardware
+
+
+def build_families(manifest):
+    """Build the generated shared-photo families without invoking the slicer."""
+    families = []
+    for f in manifest.get("families", []):
+        if f.get("image"):
+            raise SystemExit(
+                f"family {f['id']}: 'image' (a repo file path) is no longer "
+                "supported -- images live only on the bucket. Use 'image_url'.")
+        families.append({
+            "id": f["id"],
+            "name": f["name"],
+            "match": f.get("match", {}),
+            "image": f.get("image_url"),
+        })
+    return families
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--force", action="store_true", help="re-slice + re-render everything")
@@ -470,6 +529,10 @@ def main():
     args = ap.parse_args()
 
     manifest = json.load(open(os.path.join(HERE, "parts.json")))
+    part_ids = [part["id"] for part in manifest["parts"]]
+    duplicate_ids = sorted({part_id for part_id in part_ids if part_ids.count(part_id) > 1})
+    if duplicate_ids:
+        sys.exit(f"duplicate part id(s): {duplicate_ids}")
     if args.metadata_only:
         if not os.path.exists(DATA_OUT):
             sys.exit("--metadata-only needs an existing parts.generated.json")
@@ -516,6 +579,8 @@ def main():
         data["changes"] = manifest.get("changes", [])
         data["folders"] = manifest.get("folders", [])
         data["assemblies"] = manifest.get("assemblies", [])
+        data["hardware"] = build_hardware(manifest)
+        data["families"] = build_families(manifest)
         json.dump(data, open(DATA_OUT, "w"), indent="\t")
         print(f"refreshed authored metadata in {DATA_OUT}")
         return
@@ -606,54 +671,11 @@ def main():
 
     # COTS hardware (kind: "cots") is passed through, not sliced. Product images
     # are pinned bucket URLs authored in parts.json; they never live in the repo.
-    hardware = []
-    for p in manifest["parts"]:
-        if p.get("kind", "printed") != "cots":
-            continue
-        # attribute labels are display keys; duplicates read as a contradiction
-        labels = [a["label"] for a in p.get("attributes", [])]
-        dupes = {l for l in labels if labels.count(l) > 1}
-        if dupes:
-            raise SystemExit(f"{p['id']}: duplicate attribute label(s) {sorted(dupes)}")
-        if p.get("image"):
-            raise SystemExit(
-                f"{p['id']}: 'image' (a repo file path) is no longer supported -- "
-                "images live only on the bucket. Use 'image_url'.")
-        hardware.append({
-            "id": p["id"],
-            "kind": "cots",
-            "cots": p.get("cots"),
-            "name": p["name"],
-            "category": p.get("category"),
-            "description": p.get("description", ""),
-            "note": p.get("note"),
-            "created_at": p.get("created_at", ""),
-            "updated_at": p.get("updated_at", p.get("created_at", "")),
-            "attributes": p.get("attributes", []),
-            "sheet_qty": p.get("sheet_qty"),
-            "sheet_qty_text": p.get("sheet_qty_text"),
-            # stock material: lines count cut pieces, this converts to lengths to buy
-            "stock": p.get("stock"),
-            "sourcing": p.get("sourcing"),
-            # Product images live only on the bucket, authored as a pinned URL.
-            # They deliberately never touch git.
-            "image": p.get("image_url"),
-        })
+    hardware = build_hardware(manifest)
 
     # Hardware families: one product photo shared by every cots part whose `cots`
     # block matches. Like all product images, it is a pinned bucket URL.
-    families = []
-    for f in manifest.get("families", []):
-        if f.get("image"):
-            raise SystemExit(
-                f"family {f['id']}: 'image' (a repo file path) is no longer "
-                "supported -- images live only on the bucket. Use 'image_url'.")
-        families.append({
-            "id": f["id"],
-            "name": f["name"],
-            "match": f.get("match", {}),
-            "image": f.get("image_url"),
-        })
+    families = build_families(manifest)
 
     # bundle every STL into one downloadable zip (built before the data dict so
     # its content-addressed URL can go into settings)

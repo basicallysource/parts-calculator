@@ -34,6 +34,8 @@ export type PlannedChange = {
 	priority: ChangePriority;
 	description: string;
 	condition?: 'working' | 'broken';
+	status?: 'planned' | 'complete';
+	completed_at?: string;
 	images?: { url: string; alt: string; caption?: string }[];
 	targets: Partial<Record<ChangeTargetKind, string[]>>;
 };
@@ -149,6 +151,9 @@ export type Hardware = {
 	stock?: Stock | null; // set when the part is cut from a bought length
 	sourcing?: { vendors: Vendor[] } | null;
 	image: string | null; // content-addressed bucket URL
+	// Marks a part that has an interchangeable alternative (e.g. socket vs button
+	// head). `true` = a bare "Alternative" tag; a string names the alternative.
+	alternative?: string | boolean | null;
 };
 
 /** A part's color is exactly one of these shapes. `by_section` lets a part that
@@ -241,6 +246,7 @@ export const ASSEMBLIES = (raw.assemblies ?? []) as Assembly[];
 export const PARTS = raw.parts as unknown as Part[];
 export function plannedChangesFor(kind: ChangeTargetKind, id: string): PlannedChange[] {
 	return CHANGES.filter((change) => {
+		if (change.status === 'complete') return false;
 		if (change.targets[kind]?.includes(id)) return true;
 		if (kind !== 'parts') return false;
 		const part = PARTS.find((candidate) => candidate.id === id);

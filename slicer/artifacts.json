@@ -173,9 +173,9 @@
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/da4b3abd3db72070484178ef5aa1d0906397c6a310bdf0e22f724940bd62dba2.stl"
     },
     "slicer/parts/feeder/bulk-cap.stl": {
-      "sha256": "c7200a59ee437fb073d90f0fcaf96773cf1aad0e6fcd34f5a68beb8f4752497a",
-      "size": 396184,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/c7200a59ee437fb073d90f0fcaf96773cf1aad0e6fcd34f5a68beb8f4752497a.stl"
+      "sha256": "20223510233281bcdf32699903e054a22c0cffde8d6c4e7542f9ae8d1bd04a9f",
+      "size": 405984,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/20223510233281bcdf32699903e054a22c0cffde8d6c4e7542f9ae8d1bd04a9f.stl"
     },
     "slicer/parts/feeder/camera-mount-part-37.stl": {
       "sha256": "dd6a72f6ef324012529d0dd0f95b9e81b08fac5a95f0d1277917d4251742df78",
@@ -303,9 +303,9 @@
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/5fbb26d2e34975168e734a523dae50d691fcb5725427e1be1c6bc1c30e129643.stl"
     },
     "slicer/parts/interface/interface-bracket.stl": {
-      "sha256": "db2c0ecf58184c752a8d66035b2620a3d1570343167b8b2b7f3b7eedd402c58f",
+      "sha256": "5835878c9a32a19bf56b75463137639e6c4fc60615af07313086444697fc717f",
       "size": 756484,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/db2c0ecf58184c752a8d66035b2620a3d1570343167b8b2b7f3b7eedd402c58f.stl"
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/5835878c9a32a19bf56b75463137639e6c4fc60615af07313086444697fc717f.stl"
     },
     "slicer/parts/interface/interface-cage-bracket-cable.stl": {
       "sha256": "081da7a95e53340f4f27219a224c0015905f176707c84f82c2f69bd72da85530",
@@ -432,6 +432,11 @@
       "size": 174884,
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/cdfc42cbc5c9285089498ebd013c8ee05fa48ad7adcf12c43eb2d1396ef2d231.stl"
     },
+    "static/stl/versions/bulk-cap-v1.stl": {
+      "sha256": "c7200a59ee437fb073d90f0fcaf96773cf1aad0e6fcd34f5a68beb8f4752497a",
+      "size": 396184,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/c7200a59ee437fb073d90f0fcaf96773cf1aad0e6fcd34f5a68beb8f4752497a.stl"
+    },
     "static/stl/versions/cable-clamp-outer-v1.stl": {
       "sha256": "34485f41055e82d098984ed49824fd0f93f471dac62ea86e6b83cf87482bf9fd",
       "size": 398484,
@@ -442,10 +447,20 @@
       "size": 173684,
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8ca345012b63e33064706c787705fa3d3f39229891319935beb58eeede6d1a14.stl"
     },
+    "static/stl/versions/interface-bracket-v1.stl": {
+      "sha256": "db2c0ecf58184c752a8d66035b2620a3d1570343167b8b2b7f3b7eedd402c58f",
+      "size": 756484,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/db2c0ecf58184c752a8d66035b2620a3d1570343167b8b2b7f3b7eedd402c58f.stl"
+    },
     "static/stl/versions/interface-upper-fixed-section-v1.stl": {
       "sha256": "bf52ad8b7b81dc61a3ed69517953ad52139f8eec291920627e6ff71a3bc3e0fd",
       "size": 2454584,
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/bf52ad8b7b81dc61a3ed69517953ad52139f8eec291920627e6ff71a3bc3e0fd.stl"
+    },
+    "static/plates/3-bins.3mf": {
+      "sha256": "c6147c79afa98f0f566f9dbbc9818779472c9cf0c5d874b7570800b06c67686d",
+      "size": 43258,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/c6147c79afa98f0f566f9dbbc9818779472c9cf0c5d874b7570800b06c67686d.3mf"
     },
     "static/plates/90-deg-brackets.3mf": {
       "sha256": "6aab6886d1d32a693710441da6c2d80190fcbea9f5a690a08fbe2beec36b9941",
@@ -463,9 +478,9 @@
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/4a28da2e33e12340c3621421365add2fed8c1a65d235f8afb93ebfc2d8203ff0.3mf"
     },
     "static/stl/all-parts.zip": {
-      "sha256": "a585426771851cffa7a25d97a609e32bd3b2a2d8b766b4699000e9694af41848",
-      "size": 17082945,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/a585426771851cffa7a25d97a609e32bd3b2a2d8b766b4699000e9694af41848.zip"
+      "sha256": "b12f5f6485387ca7188204a55cba237ce07a5fa57626819f48c09129a98e4635",
+      "size": 17089189,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/b12f5f6485387ca7188204a55cba237ce07a5fa57626819f48c09129a98e4635.zip"
     }
   }
 }
