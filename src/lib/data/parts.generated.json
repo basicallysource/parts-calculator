@@ -6164,7 +6164,7 @@
 			},
 			"name": "M3 \u00d7 15 mm washer",
 			"category": "Washers",
-			"description": "Sits under the M3 \u00d7 35 button screw that holds the interface idler gear onto the NEMA 23 bracket.",
+			"description": "Flat/fender washer, 15 mm outer diameter. Sits under the M3 \u00d7 35 button screw that holds the interface idler gear onto the NEMA 23 bracket.",
 			"note": "The \u00d71 is the top-interface count (under the idler-gear screw). Washers used elsewhere on the machine aren't tallied here yet.",
 			"created_at": "2026-08-18",
 			"updated_at": "2026-08-18",
@@ -6176,6 +6176,18 @@
 				{
 					"label": "Outer diameter",
 					"value": "15 mm"
+				},
+				{
+					"label": "Type",
+					"value": "Flat / fender washer"
+				},
+				{
+					"label": "Material",
+					"value": "Stainless steel"
+				},
+				{
+					"label": "Finish",
+					"value": "Silver"
 				}
 			],
 			"sheet_qty": {
@@ -6184,7 +6196,7 @@
 			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
-			"image": null
+			"image": "https://m.media-amazon.com/images/I/61Fizm2iCGL._SL1500_.jpg"
 		},
 		{
 			"id": "nut-m3",
@@ -6259,47 +6271,6 @@
 			"stock": null,
 			"sourcing": null,
 			"image": null
-		},
-		{
-			"id": "washer-m3-15",
-			"kind": "cots",
-			"cots": {
-				"type": "washer",
-				"size": "M3"
-			},
-			"name": "M3 \u00d7 15 mm washer",
-			"category": "Washers",
-			"description": "Flat/fender washer, 15 mm outer diameter. Sits under the button-head screw that retains the idler gear on the interface NEMA 23 bracket.",
-			"note": null,
-			"created_at": "2026-08-18",
-			"updated_at": "2026-08-18",
-			"attributes": [
-				{
-					"label": "Thread",
-					"value": "M3"
-				},
-				{
-					"label": "Outer diameter",
-					"value": "15 mm"
-				},
-				{
-					"label": "Type",
-					"value": "Flat / fender washer"
-				},
-				{
-					"label": "Material",
-					"value": "Stainless steel"
-				},
-				{
-					"label": "Finish",
-					"value": "Silver"
-				}
-			],
-			"sheet_qty": null,
-			"sheet_qty_text": null,
-			"stock": null,
-			"sourcing": null,
-			"image": "https://m.media-amazon.com/images/I/61Fizm2iCGL._SL1500_.jpg"
 		},
 		{
 			"id": "rod-steel-3-8",
