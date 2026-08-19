@@ -470,6 +470,10 @@ def main():
     args = ap.parse_args()
 
     manifest = json.load(open(os.path.join(HERE, "parts.json")))
+    part_ids = [part["id"] for part in manifest["parts"]]
+    duplicate_ids = sorted({part_id for part_id in part_ids if part_ids.count(part_id) > 1})
+    if duplicate_ids:
+        sys.exit(f"duplicate part id(s): {duplicate_ids}")
     if args.metadata_only:
         if not os.path.exists(DATA_OUT):
             sys.exit("--metadata-only needs an existing parts.generated.json")
