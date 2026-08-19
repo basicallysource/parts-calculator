@@ -2058,6 +2058,7 @@
 					"date": "2026-06-27",
 					"message": "Initial version.",
 					"commit": null,
+					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/7279a42b05833c7b828efb0d/e/b0ee2e787191265cba1c1a31",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/45a69ae6847617b33b1aa45a379f0b413edba4d13203f4de40506a1f7cb80966.stl",
 					"render": "/renders/frame-crossbeam.png",
 					"grams": 86.17
@@ -2103,6 +2104,7 @@
 					"date": "2026-06-27",
 					"message": "Initial version.",
 					"commit": null,
+					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/7279a42b05833c7b828efb0d/e/b0ee2e787191265cba1c1a31",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/1081b927cfb55fab0a62b2b3fdee9a86b39960fc0c1ac4d6119c983e39a2b491.stl",
 					"render": "/renders/frame-90deg-bracket.png",
 					"grams": 13.62
@@ -2386,6 +2388,7 @@
 					"date": "2026-06-27",
 					"message": "Initial version.",
 					"commit": null,
+					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/7279a42b05833c7b828efb0d/e/b0ee2e787191265cba1c1a31",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/da4b3abd3db72070484178ef5aa1d0906397c6a310bdf0e22f724940bd62dba2.stl",
 					"render": "/renders/ext-bracket-left.png",
 					"grams": 48.52
@@ -2431,6 +2434,7 @@
 					"date": "2026-06-27",
 					"message": "Initial version.",
 					"commit": null,
+					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/7279a42b05833c7b828efb0d/e/b0ee2e787191265cba1c1a31",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/313397afb08fc1943f045905b96131f73f1dc70c05d59fd2583c77da38318c36.stl",
 					"render": "/renders/ext-bracket-bottom-vertical.png",
 					"grams": 50.62
@@ -2476,6 +2480,7 @@
 					"date": "2026-06-27",
 					"message": "Initial version.",
 					"commit": null,
+					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/7279a42b05833c7b828efb0d/e/b0ee2e787191265cba1c1a31",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/f99e33cea11551b8222feac91c28015488ff2c239e632f5098322e7ea10fc96c.stl",
 					"render": "/renders/ext-bracket-cover.png",
 					"grams": 12.45
