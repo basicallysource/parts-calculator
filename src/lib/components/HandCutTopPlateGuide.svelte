@@ -315,6 +315,17 @@
 			marked hole: for six evenly spaced holes, the neighbor-to-neighbor distance equals the radius.
 			Six steps should land you exactly back at the start — if they don't, re-scribe before punching.
 		</p>
+		<figure class="mt-3">
+			<img
+				src="https://img.basically.website/web/assembly/top-plate/handcut-layout-marked.57ec0d10558593fa.jpg"
+				alt="Black-painted plywood rectangle with the hexagonal top plate outline, center opening, cable holes, stepper holes, and two mounting-hole rings marked in white pencil"
+				class="w-full border border-border"
+				loading="lazy"
+			/>
+			<figcaption class="mt-1 text-xs text-text-muted">
+				All cut lines and hole centers marked while the panel is rectangular. This example is plywood painted black.
+			</figcaption>
+		</figure>
 	</section>
 
 	<!-- STEP 4: drill -->
@@ -329,6 +340,28 @@
 			(Two of the original slots are 18&nbsp;mm wide, so the {bit(CABLE_HOLE_D)} hole runs a hair
 			wider there; they only pass cables, it doesn't matter.)
 		</p>
+		<p class="mt-2 text-xs text-text-muted">
+			Keep the drill square to the panel surface so the holes do not leave at an angle.
+		</p>
+		<figure class="mt-3">
+			<div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
+				<img
+					src="https://img.basically.website/web/assembly/top-plate/handcut-drilling.2c55404e78214d33.jpg"
+					alt="A large hole being drilled square to the black-painted plywood top plate while the panel is still rectangular"
+					class="w-full border border-border"
+					loading="lazy"
+				/>
+				<img
+					src="https://img.basically.website/web/assembly/top-plate/handcut-holes-cut.a775177a326c6a6a.jpg"
+					alt="Black-painted plywood top plate with the center opening, cable holes, and small mounting holes cut before the corner waste is removed"
+					class="w-full border border-border"
+					loading="lazy"
+				/>
+			</div>
+			<figcaption class="mt-1 text-xs text-text-muted">
+				Drill every hole and cut the center opening before trimming the panel to its hexagonal outline.
+			</figcaption>
+		</figure>
 	</section>
 
 	<!-- STEP 5: center opening -->
