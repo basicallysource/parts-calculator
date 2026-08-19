@@ -457,6 +457,11 @@
       "size": 2454584,
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/bf52ad8b7b81dc61a3ed69517953ad52139f8eec291920627e6ff71a3bc3e0fd.stl"
     },
+    "static/plates/3-bins.3mf": {
+      "sha256": "c6147c79afa98f0f566f9dbbc9818779472c9cf0c5d874b7570800b06c67686d",
+      "size": 43258,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/c6147c79afa98f0f566f9dbbc9818779472c9cf0c5d874b7570800b06c67686d.3mf"
+    },
     "static/plates/90-deg-brackets.3mf": {
       "sha256": "6aab6886d1d32a693710441da6c2d80190fcbea9f5a690a08fbe2beec36b9941",
       "size": 722243,
