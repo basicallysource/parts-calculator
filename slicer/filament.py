@@ -490,6 +490,10 @@ def build_hardware(manifest):
             # stock material: lines count cut pieces, this converts to lengths to buy
             "stock": p.get("stock"),
             "sourcing": p.get("sourcing"),
+            # Marks a part interchangeable with another (socket vs button head,
+            # etc.): true for a bare "Interchangeable" tag, or a string naming
+            # what it swaps with. Renders the blue "i" badge in the app.
+            "interchangeable": p.get("interchangeable"),
             # Product images live only on the bucket, authored as a pinned URL.
             # They deliberately never touch git.
             "image": p.get("image_url"),
