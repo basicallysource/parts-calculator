@@ -20,6 +20,13 @@ export type LaserCutPart = {
 	dxf: string; // download path
 	preview: string; // SVG outline preview path
 	updated: string; // date of the DXF export (ISO)
+	// optional "by hand" (jigsaw + drill) route for people without a laser
+	handcut?: {
+		guide: 'top-plate' | 'cage-top' | 'cage-bottom'; // which guide component to open
+		blurb: string; // the "By hand" tab paragraph
+		stock: string; // stock size, shown on the tab
+		tools: string; // tools line, shown on the tab
+	};
 };
 
 export const LASER_CUT_PARTS: LaserCutPart[] = [
@@ -38,7 +45,14 @@ export const LASER_CUT_PARTS: LaserCutPart[] = [
 			'https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/v/3b8fafc8cab54b09332e14d2/e/80730ec6cc50aab029fb5397',
 		dxf: '/dxf/cable-cage-top.dxf',
 		preview: '/dxf-previews/cable-cage-top.svg',
-		updated: '2026-07-10'
+		updated: '2026-07-10',
+		handcut: {
+			guide: 'cage-top',
+			blurb:
+				'A regular hexagon, same outline as the bottom plate. Lays out from a rectangle with a tape measure: the centre is one big Ø177 mm drilled-and-jigsawed hole, six mounting holes sit on a 175 mm-radius bolt circle, and a small keyed notch is drilled at each end.',
+			stock: '325 × 375 mm rectangle (12 13/16″ × 14 3/4″)',
+			tools: 'jigsaw · drill · tape measure'
+		}
 	},
 	{
 		id: 'cable-cage-bottom',
@@ -54,7 +68,14 @@ export const LASER_CUT_PARTS: LaserCutPart[] = [
 			'https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/v/3b8fafc8cab54b09332e14d2/e/5faa32cf4604f648fd981991',
 		dxf: '/dxf/cable-cage-bottom.dxf',
 		preview: '/dxf-previews/cable-cage-bottom.svg',
-		updated: '2026-07-10'
+		updated: '2026-07-10',
+		handcut: {
+			guide: 'cage-bottom',
+			blurb:
+				'The same regular-hexagon outline as the top cage, but simpler: one big Ø177 mm centre hole and six Ø5.5 mm mounting holes on a 175 mm-radius bolt circle. No small holes, no notch.',
+			stock: '325 × 375 mm rectangle (12 13/16″ × 14 3/4″)',
+			tools: 'jigsaw · drill · tape measure'
+		}
 	},
 	{
 		id: 'top-plate',
@@ -70,6 +91,13 @@ export const LASER_CUT_PARTS: LaserCutPart[] = [
 			'https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/v/3b8fafc8cab54b09332e14d2/e/e6605a6f604d25617d91b7bc',
 		dxf: '/dxf/top-plate.dxf',
 		preview: '/dxf-previews/top-plate.svg',
-		updated: '2026-07-10'
+		updated: '2026-07-10',
+		handcut: {
+			guide: 'top-plate',
+			blurb:
+				'This plate is a regular hexagon — it can be laid out with a tape measure and cut accurately with just a jigsaw and a drill. The five cable slots become single 22 mm (7/8″) drill holes.',
+			stock: '672.4 × 776.4 mm rectangle (26 15/32″ × 30 9/16″)',
+			tools: 'jigsaw · drill · tape measure'
+		}
 	}
 ];
