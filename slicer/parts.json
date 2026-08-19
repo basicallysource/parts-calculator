@@ -628,7 +628,8 @@
         "role": "frame"
       },
       "optional": false,
-      "support": false
+      "support": false,
+      "onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/7279a42b05833c7b828efb0d/e/b0ee2e787191265cba1c1a31"
     },
     {
       "id": "frame-90deg-bracket",
@@ -649,7 +650,8 @@
         "role": "frame"
       },
       "optional": false,
-      "support": false
+      "support": false,
+      "onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/7279a42b05833c7b828efb0d/e/b0ee2e787191265cba1c1a31"
     },
     {
       "id": "ls-mount-to-chute",
@@ -783,7 +785,8 @@
       "optional": false,
       "support": false,
       "low_tolerance": true,
-      "low_tolerance_note": "A test print is suggested. This part is a tight fit around the 2020 aluminum profile, so print one first and confirm it seats properly before committing to the full set — dial in your printer and profile together."
+      "low_tolerance_note": "A test print is suggested. This part is a tight fit around the 2020 aluminum profile, so print one first and confirm it seats properly before committing to the full set — dial in your printer and profile together.",
+      "onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/7279a42b05833c7b828efb0d/e/b0ee2e787191265cba1c1a31"
     },
     {
       "id": "ext-bracket-bottom-vertical",
@@ -805,7 +808,8 @@
       },
       "optional": false,
       "support": false,
-      "layer_scope": "non-bottom"
+      "layer_scope": "non-bottom",
+      "onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/7279a42b05833c7b828efb0d/e/b0ee2e787191265cba1c1a31"
     },
     {
       "id": "ext-bracket-cover",
@@ -827,7 +831,8 @@
       },
       "optional": false,
       "support": false,
-      "layer_scope": "non-bottom"
+      "layer_scope": "non-bottom",
+      "onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/7279a42b05833c7b828efb0d/e/b0ee2e787191265cba1c1a31"
     },
     {
       "id": "ext-bracket-foot-cover",
