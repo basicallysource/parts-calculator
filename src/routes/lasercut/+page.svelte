@@ -4,6 +4,7 @@
 	import DownloadButton from '$lib/components/DownloadButton.svelte';
 	import Modal from '$lib/components/Modal.svelte';
 	import HandCutTopPlateGuide from '$lib/components/HandCutTopPlateGuide.svelte';
+	import HandCutCageGuide from '$lib/components/HandCutCageGuide.svelte';
 	import ChangeStatus from '$lib/components/ChangeStatus.svelte';
 	import { LASER_CUT_PARTS, type LaserCutPart } from '$lib/lasercut';
 	import { fmtDate } from '$lib/filament';
@@ -21,15 +22,20 @@
 		else groups.push({ assembly: p.assembly, parts: [p] });
 	}
 
-	// each card offers a second view besides the laser-cut files: the top plate
-	// can be cut by hand; the cable cage parts will get 3D-printable options,
-	// which aren't ready yet (their tab shows disabled as "Printed").
+	// each card offers a second view besides the laser-cut files: parts with a
+	// `handcut` config can be cut by hand (jigsaw + drill); parts without one
+	// show a disabled "3D Printed" tab as a placeholder.
 	type Mode = 'laser' | 'hand';
-	const handCutReady = (p: LaserCutPart) => p.id === 'top-plate';
+	const handCutReady = (p: LaserCutPart) => !!p.handcut;
 	let mode = $state<Record<string, Mode>>(
 		Object.fromEntries(LASER_CUT_PARTS.map((p) => [p.id, 'laser' as Mode]))
 	);
+	let guidePart = $state<LaserCutPart | null>(null);
 	let guideOpen = $state(false);
+	function openGuide(p: LaserCutPart) {
+		guidePart = p;
+		guideOpen = true;
+	}
 
 	// Deep-link the hand-cut guide: `?guide=top-plate` opens the modal and
 	// `?units=mm` (default is inches) picks the unit, so a specific view is a
@@ -40,7 +46,14 @@
 
 	onMount(() => {
 		const sp = page.url.searchParams;
-		if (sp.get('guide') === 'top-plate') guideOpen = true;
+		const g = sp.get('guide');
+		if (g) {
+			const p = LASER_CUT_PARTS.find((x) => x.handcut && x.id === g);
+			if (p) {
+				guidePart = p;
+				guideOpen = true;
+			}
+		}
 		const u = sp.get('units');
 		if (u === 'mm' || u === 'in') units = u;
 		urlReady = true;
@@ -49,8 +62,8 @@
 	$effect(() => {
 		if (!browser || !urlReady) return;
 		const params = new URLSearchParams(page.url.search);
-		if (guideOpen) {
-			params.set('guide', 'top-plate');
+		if (guideOpen && guidePart) {
+			params.set('guide', guidePart.id);
 			if (units !== 'in') params.set('units', units);
 			else params.delete('units');
 		} else {
@@ -75,7 +88,8 @@
 			<p class="mt-1 text-sm text-text-muted">
 				Flat plywood parts, cut from the DXFs below. Thicknesses are quoted in the imperial size the
 				sheet is sold as, with the nearest full-mm equivalent the CAD expects. No laser? The top
-				plate has a “by hand” view; the cable cage parts are getting 3D-printable options.
+				plate and both cable cage plates have a “by hand” view; 3D-printable cage options are still
+				to come.
 			</p>
 		</div>
 		<a href="https://bin-gen.basically.website/" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center gap-1.5 border border-border bg-surface px-3 py-2 text-sm font-semibold text-text-muted transition-colors hover:border-primary hover:text-primary">
@@ -151,23 +165,19 @@
 									</a>
 								</div>
 							{:else}
-								<p class="text-sm text-text-muted">
-									This plate is a regular hexagon — it can be laid out with a tape measure and cut
-									accurately with just a jigsaw and a drill. The five cable slots become single
-									22 mm (7/8″) drill holes.
-								</p>
+								<p class="text-sm text-text-muted">{p.handcut?.blurb}</p>
 								<dl class="grid max-w-sm grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-xs text-text-muted">
 									<dt>Thickness</dt>
 									<dd class="text-text">{p.thicknessIn} plywood ({p.thicknessMm} mm)</dd>
 									<dt>Stock</dt>
-									<dd class="text-text">672.4 × 776.4 mm rectangle (26 15/32″ × 30 9/16″)</dd>
+									<dd class="text-text">{p.handcut?.stock}</dd>
 									<dt>Tools</dt>
-									<dd class="text-text">jigsaw · drill · tape measure</dd>
+									<dd class="text-text">{p.handcut?.tools}</dd>
 								</dl>
 								<div class="mt-auto pt-1">
 									<button
 										class="setup-button-primary inline-flex h-9 items-center gap-1.5 px-3 text-sm font-medium"
-										onclick={() => (guideOpen = true)}
+										onclick={() => openGuide(p)}
 									>
 										<Hammer size={14} /> Open the step-by-step guide
 									</button>
@@ -181,16 +191,26 @@
 	{/each}
 </div>
 
-<Modal bind:open={guideOpen} title="Cutting the top plate by hand" maxW="max-w-4xl">
-	<div class="flex justify-end border-b border-border px-4 py-2">
-		<a
-			href={`/lasercut/top-plate-guide${units === 'mm' ? '?units=mm' : ''}`}
-			target="_blank"
-			rel="noopener"
-			class="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
-		>
-			<Printer size={13} /> Printable version
-		</a>
-	</div>
-	<HandCutTopPlateGuide bind:units />
+<Modal
+	bind:open={guideOpen}
+	title={guidePart ? `Cutting the ${guidePart.name.toLowerCase()} by hand` : ''}
+	maxW="max-w-4xl"
+>
+	{#if guidePart?.handcut?.guide === 'top-plate'}
+		<div class="flex justify-end border-b border-border px-4 py-2">
+			<a
+				href={`/lasercut/top-plate-guide${units === 'mm' ? '?units=mm' : ''}`}
+				target="_blank"
+				rel="noopener"
+				class="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
+			>
+				<Printer size={13} /> Printable version
+			</a>
+		</div>
+		<HandCutTopPlateGuide bind:units />
+	{:else if guidePart?.handcut?.guide === 'cage-top'}
+		<HandCutCageGuide variant="top" bind:units />
+	{:else if guidePart?.handcut?.guide === 'cage-bottom'}
+		<HandCutCageGuide variant="bottom" bind:units />
+	{/if}
 </Modal>
