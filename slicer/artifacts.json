@@ -303,9 +303,9 @@
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/5fbb26d2e34975168e734a523dae50d691fcb5725427e1be1c6bc1c30e129643.stl"
     },
     "slicer/parts/interface/interface-bracket.stl": {
-      "sha256": "db2c0ecf58184c752a8d66035b2620a3d1570343167b8b2b7f3b7eedd402c58f",
+      "sha256": "5835878c9a32a19bf56b75463137639e6c4fc60615af07313086444697fc717f",
       "size": 756484,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/db2c0ecf58184c752a8d66035b2620a3d1570343167b8b2b7f3b7eedd402c58f.stl"
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/5835878c9a32a19bf56b75463137639e6c4fc60615af07313086444697fc717f.stl"
     },
     "slicer/parts/interface/interface-cage-bracket-cable.stl": {
       "sha256": "081da7a95e53340f4f27219a224c0015905f176707c84f82c2f69bd72da85530",
@@ -447,6 +447,11 @@
       "size": 173684,
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8ca345012b63e33064706c787705fa3d3f39229891319935beb58eeede6d1a14.stl"
     },
+    "static/stl/versions/interface-bracket-v1.stl": {
+      "sha256": "db2c0ecf58184c752a8d66035b2620a3d1570343167b8b2b7f3b7eedd402c58f",
+      "size": 756484,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/db2c0ecf58184c752a8d66035b2620a3d1570343167b8b2b7f3b7eedd402c58f.stl"
+    },
     "static/stl/versions/interface-upper-fixed-section-v1.stl": {
       "sha256": "bf52ad8b7b81dc61a3ed69517953ad52139f8eec291920627e6ff71a3bc3e0fd",
       "size": 2454584,
@@ -468,9 +473,9 @@
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/4a28da2e33e12340c3621421365add2fed8c1a65d235f8afb93ebfc2d8203ff0.3mf"
     },
     "static/stl/all-parts.zip": {
-      "sha256": "b3e89bf44e0220079c1b1358894976d821906e0534719f6f3162de2b457745f6",
-      "size": 17087752,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/b3e89bf44e0220079c1b1358894976d821906e0534719f6f3162de2b457745f6.zip"
+      "sha256": "b12f5f6485387ca7188204a55cba237ce07a5fa57626819f48c09129a98e4635",
+      "size": 17089189,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/b12f5f6485387ca7188204a55cba237ce07a5fa57626819f48c09129a98e4635.zip"
     }
   }
 }
