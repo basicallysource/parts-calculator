@@ -2068,6 +2068,7 @@
       "folder": "printed-bins",
       "variant_group": "bin",
       "variant_name": "Third",
+      "source": "bin-third-left.stl",
       "stl": "parts/bins/bin-third-left.stl",
       "color": {
         "role": "bin"
@@ -2089,6 +2090,7 @@
       "folder": "printed-bins",
       "variant_group": "bin",
       "variant_name": "Third",
+      "source": "bin-third-center.stl",
       "stl": "parts/bins/bin-third-center.stl",
       "color": {
         "role": "bin"
@@ -2110,6 +2112,7 @@
       "folder": "printed-bins",
       "variant_group": "bin",
       "variant_name": "Third",
+      "source": "bin-third-rightback.stl",
       "stl": "parts/bins/bin-third-rightback.stl",
       "color": {
         "role": "bin"
