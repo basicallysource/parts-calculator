@@ -2,6 +2,7 @@
 	import PartDetail from '$lib/components/PartDetail.svelte';
 	import HardwareDetail from '$lib/components/HardwareDetail.svelte';
 	import Seo from '$lib/components/Seo.svelte';
+	import AlternativeBadge from '$lib/components/AlternativeBadge.svelte';
 	import { colorStore } from '$lib/colors.svelte';
 	import { layerStore } from '$lib/layers.svelte';
 	import {
@@ -74,7 +75,10 @@
 		<span class="text-text">{title}</span>
 	</nav>
 
-	<h1 class="mb-4 text-2xl font-bold text-text">{title}</h1>
+	<h1 class="mb-4 flex flex-wrap items-center gap-2 text-2xl font-bold text-text">
+		{title}
+		{#if hardware}<AlternativeBadge value={hardware.alternative} />{/if}
+	</h1>
 
 	<div class="setup-card-shell overflow-hidden border">
 		{#if hardware}
