@@ -151,9 +151,9 @@ export type Hardware = {
 	stock?: Stock | null; // set when the part is cut from a bought length
 	sourcing?: { vendors: Vendor[] } | null;
 	image: string | null; // content-addressed bucket URL
-	// Marks a part interchangeable with another (e.g. socket vs button head).
-	// `true` = a bare "Interchangeable" tag; a string names what it swaps with.
-	interchangeable?: string | boolean | null;
+	// Marks a part that has an interchangeable alternative (e.g. socket vs button
+	// head). `true` = a bare "Alternative" tag; a string names the alternative.
+	alternative?: string | boolean | null;
 };
 
 /** A part's color is exactly one of these shapes. `by_section` lets a part that

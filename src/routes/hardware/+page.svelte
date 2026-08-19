@@ -11,7 +11,7 @@
 	import Seo from '$lib/components/Seo.svelte';
 	import Badge from '$lib/components/Badge.svelte';
 	import HardwareIcon from '$lib/components/HardwareIcon.svelte';
-	import InterchangeableBadge from '$lib/components/InterchangeableBadge.svelte';
+	import AlternativeBadge from '$lib/components/AlternativeBadge.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 	import LayerControl from '$lib/components/LayerControl.svelte';
 	import HardwareDetailModal from '$lib/components/HardwareDetailModal.svelte';
@@ -330,7 +330,7 @@
 				<div class="flex flex-wrap items-center gap-1.5">
 				<h3 class="flex items-center gap-1.5 text-sm font-semibold text-text">
 						<HardwareIcon hw={h} />{h.name}
-							<InterchangeableBadge value={h.interchangeable} />
+							<AlternativeBadge value={h.alternative} />
 						<!-- Placed in the assembly tree, so the modal can say where it goes.
 						     A quiet mark rather than a badge: it holds for most rows, and the
 						     row's own content is what people are scanning for. -->
