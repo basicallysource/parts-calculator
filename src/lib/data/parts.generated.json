@@ -11,7 +11,7 @@
 		"density_g_cm3": 1.32,
 		"cost_per_kg": 24.99,
 		"commit_base_url": "https://github.com/basicallysource/parts-calculator/commit/",
-		"all_parts_zip": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/b3e89bf44e0220079c1b1358894976d821906e0534719f6f3162de2b457745f6.zip"
+		"all_parts_zip": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/b12f5f6485387ca7188204a55cba237ce07a5fa57626819f48c09129a98e4635.zip"
 	},
 	"sections": [
 		{
@@ -137,10 +137,26 @@
 			"name": "Fix the interface bracket fit",
 			"priority": "P0",
 			"condition": "broken",
-			"description": "Fix the interface bracket's too-tight tolerance around the top aluminum spoke.",
+			"status": "complete",
+			"completed_at": "2026-08-18",
+			"description": "Added 0.2 mm clearance on every side of the horizontal aluminum spoke.",
 			"targets": {
 				"parts": [
 					"interface-bracket"
+				]
+			}
+		},
+		{
+			"id": "fix-bulk-cap-dovetail",
+			"name": "Fix bulk cap dovetail",
+			"priority": "P0",
+			"condition": "broken",
+			"status": "complete",
+			"completed_at": "2026-08-18",
+			"description": "Increased the dovetail clearance so the bulk cap slides onto the stator more easily and seats without excessive force.",
+			"targets": {
+				"parts": [
+					"bulk-cap"
 				]
 			}
 		},
@@ -1792,32 +1808,42 @@
 			"variant_group": null,
 			"variant_name": null,
 			"description": "Interface bracket. Pairs with the spacer; 6 on the interface.",
-			"version": "1",
+			"version": "2",
 			"created_at": "2026-06-27",
-			"updated_at": "2026-06-27",
+			"updated_at": "2026-08-18",
 			"versions": [
 				{
 					"version": "1",
 					"date": "2026-06-27",
-					"message": "Initial version.",
-					"commit": null,
+					"message": "Initial version. The fit around the horizontal aluminum spoke was too tight.",
+					"commit": "0576613",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/db2c0ecf58184c752a8d66035b2620a3d1570343167b8b2b7f3b7eedd402c58f.stl",
-					"render": "/renders/interface-bracket.png",
+					"render": "/renders/versions/interface-bracket-v1.png",
 					"grams": 159.64
+				},
+				{
+					"version": "2",
+					"date": "2026-08-18",
+					"message": "Added 0.2 mm clearance on every side of the horizontal aluminum spoke.",
+					"commit": "77e46e5",
+					"onshape_version": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/v/f845b960415692451f2903b1/e/77f0be233cae0dcaf1c2a391",
+					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/5835878c9a32a19bf56b75463137639e6c4fc60615af07313086444697fc717f.stl",
+					"render": "/renders/interface-bracket.png",
+					"grams": 159.45
 				}
 			],
 			"attributes": [],
-			"grams": 159.64,
+			"grams": 159.45,
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 14641,
+			"print_seconds": 14632,
 			"color": {
 				"role": "frame"
 			},
 			"optional": false,
 			"onshape": null,
-			"info": null,
+			"info": "v2 adds 0.2 mm clearance on every side of the horizontal aluminum spoke so the bracket no longer fits too tightly.",
 			"low_tolerance": false,
 			"low_tolerance_note": null,
 			"layer_scope": "all",
@@ -1827,7 +1853,7 @@
 					"qty": 3
 				}
 			],
-			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/db2c0ecf58184c752a8d66035b2620a3d1570343167b8b2b7f3b7eedd402c58f.stl",
+			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/5835878c9a32a19bf56b75463137639e6c4fc60615af07313086444697fc717f.stl",
 			"render": "/renders/interface-bracket.png"
 		},
 		{
