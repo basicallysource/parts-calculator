@@ -10,12 +10,14 @@ For every part in parts.json it:
   - slices the STL headlessly with OrcaSlicer using Spencer's settings
   - reads the SLICER'S OWN gram number (used_g) -- not an estimate
   - renders a thumbnail
-  - copies the STL to ../static/stl/ so the site can serve it for download
 Then it writes ../src/lib/data/parts.generated.json, which the SvelteKit app
-reads to do all the color/layer math in the browser.
+reads to do all the color/layer math in the browser. Every STL/3MF/zip URL in
+the generated data is a content-addressed bucket URL (see scripts/
+sync_bucket.py, which uploads the bytes); no binary serving copies live in the
+repo.
 
-Commit the generated JSON, thumbnails, and static STL copies. Re-run this
-whenever a part STL changes or you add/remove parts.
+Commit the generated JSON and thumbnails. Re-run this whenever a part STL
+changes or you add/remove parts.
 
 Run:  /opt/homebrew/opt/python@3.11/libexec/bin/python filament.py [--force]
 See ../notes/TERMINOLOGY.md for terminology.
@@ -30,6 +32,7 @@ import shutil
 import struct
 import subprocess
 import sys
+import urllib.request
 import zipfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -40,7 +43,7 @@ REPO = os.path.dirname(HERE)
 # correct before any upload has happened -- scripts/sync_bucket.py only has to
 # make sure the bytes are there. See notes/UNIFIED-PARTS-SYSTEM.md section 7.
 sys.path.insert(0, os.path.join(REPO, "scripts"))
-from sync_bucket import artifact_url  # noqa: E402
+from sync_bucket import artifact_url, PUBLIC_BASE, sha256 as sha256_file  # noqa: E402
 
 # ---------------------------------------------------------------- config knobs
 # Overridable so CI can point at an extracted Linux AppImage. Grams depend on
@@ -68,13 +71,12 @@ CACHE = os.path.join(BUILD, "cache")
 PROFILE_DIR = os.path.join(BUILD, "profiles")
 DATA_OUT = os.path.join(REPO, "src", "lib", "data", "parts.generated.json")
 RENDERS_OUT = os.path.join(REPO, "static", "renders")
-STL_OUT = os.path.join(REPO, "static", "stl")
-# per-version archival: old STLs pulled from git so the app can preview/download them
-VERS_STL_OUT = os.path.join(STL_OUT, "versions")
 VERS_RENDERS_OUT = os.path.join(RENDERS_OUT, "versions")
+# The all-parts zip is staged under gitignored build/ for sync_bucket.py to
+# upload; the site links its content-addressed bucket URL (settings.all_parts_zip).
+BUNDLE_OUT = os.path.join(BUILD, "bundle")
 # build plates: pre-arranged .3mf files you drop in slicer/plates/ (auto-discovered)
 PLATES_SRC = os.path.join(HERE, "plates")
-PLATES_OUT = os.path.join(REPO, "static", "plates")
 PLATE_THUMB_OUT = os.path.join(REPO, "static", "plate-thumbs")
 PLATES_DATA = os.path.join(REPO, "src", "lib", "data", "plates.generated.json")
 
@@ -125,62 +127,62 @@ def normalize_versions(part):
     return [entry]
 
 
-def git_show_bytes(commit, repo_rel):
-    """Raw bytes of a file at a past commit, or None if it didn't exist there."""
-    r = subprocess.run(["git", "-C", REPO, "show", f"{commit}:{repo_rel}"],
-                       capture_output=True)
-    return r.stdout if r.returncode == 0 and r.stdout else None
+def fetch_artifact(sha, dest):
+    """Materialize a content-addressed bucket STL at dest, verifying the hash.
 
-
-def is_lfs_pointer(data):
-    return data is not None and data[:40].startswith(b"version https://git-lfs")
+    Skips the download when dest already holds the right bytes (the slice-memo
+    cache keeps these around between runs)."""
+    if os.path.exists(dest) and sha256_file(dest) == sha:
+        return
+    url = f"{PUBLIC_BASE}/stl/{sha}.stl"
+    with urllib.request.urlopen(url, timeout=60) as r, open(dest, "wb") as f:
+        shutil.copyfileobj(r, f)
+    got = sha256_file(dest)
+    if got != sha:
+        os.remove(dest)
+        raise RuntimeError(f"bucket object {url} hashed to {got}, expected {sha}")
 
 
 def archive_versions(parts_by_id, out_parts, profiles, hexmap, role_defaults, force):
-    """Give every part version a previewable/downloadable STL. A version's geometry
-    is the file state right *before* the next version's commit changed it (the newest
-    version is just the current working-tree file). That view sidesteps the git-LFS
-    era (old commits stored pointers, not meshes) since the un-LFS'd bytes live in the
-    later commit's parent. Versions whose geometry equals the current part reuse the
-    live asset; distinct old geometry is sliced + rendered under static/*/versions/."""
-    os.makedirs(VERS_STL_OUT, exist_ok=True)
+    """Give every part version a previewable/downloadable STL.
+
+    The newest version IS the current master file. Every superseded version
+    pins its exact geometry via `stl_hash` in parts.json (written by
+    stamp_versions.py at supersession time); the bytes are always already on
+    the content-addressed bucket, uploaded by the regen that ran while that
+    geometry was current. Git history is never consulted. A pre-pin-era
+    version with no stl_hash reuses the live asset, the same fallback it
+    always had."""
     os.makedirs(VERS_RENDERS_OUT, exist_ok=True)
+    os.makedirs(CACHE, exist_ok=True)
     archived = 0
     for out in out_parts:
         p = parts_by_id[out["id"]]
         versions = out.get("versions") or []
         stl_abs = os.path.join(HERE, p["stl"])
-        repo_rel = os.path.relpath(stl_abs, REPO)
-        current = open(stl_abs, "rb").read() if os.path.exists(stl_abs) else b""
+        current_sha = sha256_file(stl_abs) if os.path.exists(stl_abs) else None
         for i, v in enumerate(versions):
-            if i == len(versions) - 1:
-                data = current                      # newest version == working tree
-            else:
-                nxt = versions[i + 1].get("commit")  # state just before the next version
-                data = git_show_bytes(nxt + "~1", repo_rel) if nxt else None
-            if data is None or is_lfs_pointer(data) or data == current:
-                # current / unavailable geometry -> reuse the live part asset
+            pin = v.get("stl_hash")
+            if i == len(versions) - 1 or not pin or pin == current_sha:
+                # newest / unpinned / geometry unchanged -> the live part asset
                 if out.get("stl"):
                     v["stl"], v["render"], v["grams"] = out["stl"], out["render"], out["grams"]
                 continue
             vid = f"{out['id']}-v{v['version']}"
             tmp = os.path.join(CACHE, vid + ".stl")
-            os.makedirs(CACHE, exist_ok=True)
-            with open(tmp, "wb") as f:
-                f.write(data)
+            fetch_artifact(pin, tmp)
             info = slice_part(tmp, profiles, support=bool(p.get("support", False)), force=force)
-            shutil.copy(tmp, os.path.join(VERS_STL_OUT, vid + ".stl"))
             png = os.path.join(VERS_RENDERS_OUT, vid + ".png")
             if force or not os.path.exists(png):
                 try:
                     render(tmp, png, default_hex(p, role_defaults, hexmap))
                 except Exception as e:
                     print(f"  ! version render failed for {vid}: {e}")
-            v["stl"] = artifact_url(tmp)
+            v["stl"] = f"{PUBLIC_BASE}/stl/{pin}.stl"
             v["render"] = f"/renders/versions/{vid}.png"
             v["grams"] = info["grams"] if info else None
             archived += 1
-    print(f"  {archived} historical part version(s) archived -> static/*/versions")
+    print(f"  {archived} historical part version(s) resolved from pinned stl_hash")
 
 
 def git_commit_base_url():
@@ -607,7 +609,6 @@ def main():
     hexmap = lego_hex_map()
     role_defaults = {r["id"]: r["default"] for r in manifest["color_roles"]}
     os.makedirs(RENDERS_OUT, exist_ok=True)
-    os.makedirs(STL_OUT, exist_ok=True)
     os.makedirs(os.path.dirname(DATA_OUT), exist_ok=True)
 
     print(f"settings: {INFILL_DENSITY} {INFILL_PATTERN} | supports per-part "
@@ -643,9 +644,7 @@ def main():
             except Exception as e:
                 print(f"  ! render failed for {p['id']}: {e}")
 
-        stl_name = p["id"] + ".stl"
-        shutil.copy(stl_abs, os.path.join(STL_OUT, stl_name))
-        zip_members.append((stl_abs, stl_name))
+        zip_members.append((stl_abs, p["id"] + ".stl"))
 
         out_parts.append({
             "id": p["id"],
@@ -701,7 +700,8 @@ def main():
     # Deterministic zip: fixed timestamps + sorted members, so the bytes (and
     # therefore the content-addressed URL) depend only on the STLs. zf.write()
     # would embed file mtimes, which a fresh CI checkout changes every run.
-    zip_path = os.path.join(STL_OUT, "all-parts.zip")
+    os.makedirs(BUNDLE_OUT, exist_ok=True)
+    zip_path = os.path.join(BUNDLE_OUT, "all-parts.zip")
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
         for src, name in sorted(zip_members, key=lambda t: t[1]):
             zi = zipfile.ZipInfo(name, date_time=(2020, 1, 1, 0, 0, 0))
@@ -731,7 +731,7 @@ def main():
     json.dump(data, open(DATA_OUT, "w"), indent="\t")
 
     print(f"\nwrote {DATA_OUT}")
-    print(f"  {len(out_parts)} parts · thumbnails -> static/renders · STLs -> static/stl")
+    print(f"  {len(out_parts)} parts · thumbnails -> static/renders · STLs + bundle -> bucket")
     if forced_support:
         print(f"  ~ {len(forced_support)} part(s) needed support to slice (floating regions "
               f"in modeled orientation); sliced WITH support: {', '.join(forced_support)}")
@@ -746,20 +746,19 @@ def main():
 
 
 def process_plates(manifest):
-    """Auto-discover pre-arranged build plates (slicer/plates/*.3mf): copy each for
-    download, pull its embedded plate previews, and read the parts it contains
-    (cross-linked to manifest parts via each part's optional `source` filename)."""
+    """Auto-discover pre-arranged build plates (slicer/plates/*.3mf): pull each
+    one's embedded plate previews and read the parts it contains (cross-linked
+    to manifest parts via each part's optional `source` filename). Downloads are
+    the content-addressed bucket URL; sync_bucket.py uploads the bytes."""
     import re
     import glob
     import collections
-    os.makedirs(PLATES_OUT, exist_ok=True)
     os.makedirs(PLATE_THUMB_OUT, exist_ok=True)
     src_to_id = {p["source"]: p["id"] for p in manifest["parts"] if p.get("source")}
     out = []
     for f in sorted(glob.glob(os.path.join(PLATES_SRC, "*.3mf"))):
         base = os.path.splitext(os.path.basename(f))[0]
         pid = re.sub(r"[^a-z0-9]+", "-", base.lower()).strip("-")
-        shutil.copy(f, os.path.join(PLATES_OUT, pid + ".3mf"))
         thumbs = []
         with zipfile.ZipFile(f) as z:
             for name in sorted(n for n in z.namelist() if re.match(r"Metadata/plate_\d+\.png$", n)):
@@ -782,7 +781,7 @@ def process_plates(manifest):
         out.append({"id": pid, "name": base, "download": artifact_url(f, prefix="plate"),
                     "thumbs": thumbs, "parts": parts})
     json.dump(out, open(PLATES_DATA, "w"), indent="\t")
-    print(f"  {len(out)} build plate(s) -> static/plates + plates.generated.json")
+    print(f"  {len(out)} build plate(s) -> plates.generated.json (+ static/plate-thumbs)")
 
 
 if __name__ == "__main__":

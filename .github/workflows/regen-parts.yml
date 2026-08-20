@@ -73,9 +73,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
-          # Full history: archive_versions() reconstructs old part geometry
-          # via `git show <commit>~1:<path>`.
-          fetch-depth: 0
+          # Shallow is fine: old part geometry comes from the bucket via the
+          # stl_hash pins in parts.json, never from git history.
+          fetch-depth: 1
 
       - name: Cache OrcaSlicer ${{ env.ORCA_VERSION }}
         id: orca-cache
@@ -158,18 +158,21 @@ jobs:
           fi
           python scripts/sync_bucket.py
 
-      - name: Verify product images actually resolve
-        # Runs BEFORE the commit-back so broken image URLs can never reach main.
-        # The bucket is content-addressed, so a wrong URL is a 200 serving the
-        # wrong bytes, not a 404 -- nothing else we run would notice.
+      - name: Verify every bucket URL actually resolves
+        # Runs BEFORE the commit-back so broken asset URLs can never reach
+        # main. The bucket is content-addressed, so a wrong URL is a 200
+        # serving the wrong bytes, not a 404 -- nothing else we run would
+        # notice. With no binary serving copies in the repo, this is also what
+        # catches "generated data references bytes nobody uploaded" (e.g. a
+        # fork PR, which gets no bucket credentials).
         run: |
-          python scripts/check_image_urls.py
+          python scripts/check_bucket_urls.py
 
       - name: Commit regenerated data
         run: |
           git add src/lib/data/parts.generated.json \
                   src/lib/data/plates.generated.json \
-                  static/renders static/stl static/plates static/plate-thumbs \
+                  static/renders static/plate-thumbs \
                   slicer/artifacts.json
           if git diff --cached --quiet; then
             echo "outputs already up to date"
@@ -183,10 +186,9 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Regenerate part data (CI slicer, Orca $ORCA_VERSION)"
-          # sync-bucket.yml pushes its own manifest commit to the same branch, so
-          # a plain push loses that race and throws away a correct regeneration
-          # (it happened: the image fix regenerated fine, then failed to land).
-          # Rebase and retry rather than making the caller re-run the whole job.
+          # Rebase and retry on a rejected push (a human or another job may
+          # have landed on the branch mid-run) rather than making the caller
+          # re-run the whole job.
           for attempt in 1 2 3; do
             git push && exit 0
             echo "push rejected (attempt $attempt) -- rebasing onto the new head"
