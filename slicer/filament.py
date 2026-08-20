@@ -25,6 +25,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import shutil
 import struct
 import subprocess
@@ -518,6 +519,23 @@ def build_families(manifest):
     return families
 
 
+def check_hardware_refs(manifest, known_ids):
+    """Assembly descriptions and joining notes name fasteners as `[[hw:<id>]]` so
+    the app can draw the real head symbol and name instead of a bare "M5x16". A
+    typo'd id would otherwise reach the site as a raw token in the middle of a
+    sentence, so it fails here instead."""
+    bad = []
+    for asm in manifest.get("assemblies", []):
+        texts = [asm.get("description", "")]
+        texts += [j.get("note", "") or "" for j in asm.get("joining", []) or []]
+        for ref in re.findall(r"\[\[hw:([a-z0-9-]+)\]\]", " ".join(texts)):
+            if ref not in known_ids:
+                bad.append(f"{asm['id']}: [[hw:{ref}]]")
+    if bad:
+        sys.exit("assembly description references an unknown part id:\n  "
+                 + "\n  ".join(bad))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--force", action="store_true", help="re-slice + re-render everything")
@@ -533,6 +551,7 @@ def main():
     duplicate_ids = sorted({part_id for part_id in part_ids if part_ids.count(part_id) > 1})
     if duplicate_ids:
         sys.exit(f"duplicate part id(s): {duplicate_ids}")
+    check_hardware_refs(manifest, set(part_ids))
     if args.metadata_only:
         if not os.path.exists(DATA_OUT):
             sys.exit("--metadata-only needs an existing parts.generated.json")
