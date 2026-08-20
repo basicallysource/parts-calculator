@@ -5461,7 +5461,7 @@
 				"variant": "socket",
 				"length_mm": 10
 			},
-			"name": "M3 \u00d7 10 mm socket head",
+			"name": "M3 \u00d7 10 mm socket/button head",
 			"category": "Screws",
 			"description": "Fastens the outer cable clamp into the top interface chute mount, and the ribbon cable clamp to the cable cage bracket.",
 			"note": "The \u00d73 is the top-interface count (2 cable clamp, 1 ribbon clamp). Screws used elsewhere on the machine aren't tallied here yet.",
@@ -5487,8 +5487,8 @@
 			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
-			"alternative": null,
-			"image": null
+			"alternative": "Socket or button head",
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/26e52d7d5bcd22688d97056e2e0aa630548cd0f2924bb2e263d905318cf71548.png"
 		},
 		{
 			"id": "scr-m3-8-cs",
@@ -5682,8 +5682,8 @@
 			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
-			"alternative": null,
-			"image": null
+			"alternative": "Socket or button head",
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/26e52d7d5bcd22688d97056e2e0aa630548cd0f2924bb2e263d905318cf71548.png"
 		},
 		{
 			"id": "scr-m3-6-bhcs",
@@ -5718,8 +5718,8 @@
 			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
-			"alternative": null,
-			"image": null
+			"alternative": "Socket or button head",
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/26e52d7d5bcd22688d97056e2e0aa630548cd0f2924bb2e263d905318cf71548.png"
 		},
 		{
 			"id": "scr-m3-12-bhcs",
@@ -5754,8 +5754,8 @@
 			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
-			"alternative": null,
-			"image": null
+			"alternative": "Socket or button head",
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/26e52d7d5bcd22688d97056e2e0aa630548cd0f2924bb2e263d905318cf71548.png"
 		},
 		{
 			"id": "scr-m3-35-bhcs",
@@ -5790,8 +5790,8 @@
 			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
-			"alternative": null,
-			"image": null
+			"alternative": "Socket or button head",
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/26e52d7d5bcd22688d97056e2e0aa630548cd0f2924bb2e263d905318cf71548.png"
 		},
 		{
 			"id": "scr-m4-6-cs",
@@ -5898,8 +5898,8 @@
 			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
-			"alternative": null,
-			"image": null
+			"alternative": "Socket or button head",
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/26e52d7d5bcd22688d97056e2e0aa630548cd0f2924bb2e263d905318cf71548.png"
 		},
 		{
 			"id": "scr-m5-16-shcs",
@@ -5935,7 +5935,7 @@
 			"stock": null,
 			"sourcing": null,
 			"alternative": "Socket or button head",
-			"image": null
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/26e52d7d5bcd22688d97056e2e0aa630548cd0f2924bb2e263d905318cf71548.png"
 		},
 		{
 			"id": "scr-m5-20-shcs",
@@ -5970,8 +5970,8 @@
 			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
-			"alternative": null,
-			"image": null
+			"alternative": "Socket or button head",
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/26e52d7d5bcd22688d97056e2e0aa630548cd0f2924bb2e263d905318cf71548.png"
 		},
 		{
 			"id": "scr-m5-30-shcs",
@@ -6006,8 +6006,8 @@
 			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
-			"alternative": null,
-			"image": null
+			"alternative": "Socket or button head",
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/26e52d7d5bcd22688d97056e2e0aa630548cd0f2924bb2e263d905318cf71548.png"
 		},
 		{
 			"id": "scr-m5-35-fhcs",
@@ -6177,8 +6177,8 @@
 			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
-			"alternative": null,
-			"image": null
+			"alternative": "Socket or button head",
+			"image": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/26e52d7d5bcd22688d97056e2e0aa630548cd0f2924bb2e263d905318cf71548.png"
 		},
 		{
 			"id": "washer-m3-15",
