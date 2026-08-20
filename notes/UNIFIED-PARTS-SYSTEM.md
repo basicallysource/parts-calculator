@@ -599,16 +599,18 @@ stale. Two rules preserve this:
 Origin and CDN hostnames both serve the objects permanently, so switching
 between them is not a breaking change either.
 
-The one real dependency is bucket availability — which is why the Git LFS
-archival copy (below) exists.
+The one real dependency is bucket availability — which is why the masters
+stay committed in git as the archival copy.
 
-**Dual storage.** Git LFS holds the canonical archive (`slicer/parts/**`);
-the bucket is the serving layer. Vercel never needs the bytes at build time
-— it reads only the generated JSON — so LFS pointer files on the deploy are
-harmless. This is what makes "committed in git AND on the bucket" work
-without the two fighting. The old `static/stl/` copies (byte-identical
-duplicates whose only job was serving) are deleted once the site reads
-bucket URLs.
+**Dual storage (as built, 2026-08-20).** Plain git holds the canonical
+masters (`slicer/parts/**`, not LFS — see `.gitattributes` for why LFS is
+banned); the bucket is the serving layer. The site never reads repo binaries
+— every download URL in the generated JSON is a bucket URL, superseded
+version geometry is pinned by `stl_hash`, and the old `static/stl/` serving
+copies and the committed `all-parts.zip` are gone. The masters leave git too
+once uploads stop requiring bucket credentials (the asset-service plan);
+until then, committing the STL in the PR is what lets any agent author a
+part.
 
 ---
 

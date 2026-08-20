@@ -432,57 +432,32 @@
       "size": 174884,
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/cdfc42cbc5c9285089498ebd013c8ee05fa48ad7adcf12c43eb2d1396ef2d231.stl"
     },
-    "static/stl/versions/bulk-cap-v1.stl": {
-      "sha256": "c7200a59ee437fb073d90f0fcaf96773cf1aad0e6fcd34f5a68beb8f4752497a",
-      "size": 396184,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/c7200a59ee437fb073d90f0fcaf96773cf1aad0e6fcd34f5a68beb8f4752497a.stl"
-    },
-    "static/stl/versions/cable-clamp-outer-v1.stl": {
-      "sha256": "34485f41055e82d098984ed49824fd0f93f471dac62ea86e6b83cf87482bf9fd",
-      "size": 398484,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/34485f41055e82d098984ed49824fd0f93f471dac62ea86e6b83cf87482bf9fd.stl"
-    },
-    "static/stl/versions/interface-big-spacer-v1.stl": {
-      "sha256": "8ca345012b63e33064706c787705fa3d3f39229891319935beb58eeede6d1a14",
-      "size": 173684,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8ca345012b63e33064706c787705fa3d3f39229891319935beb58eeede6d1a14.stl"
-    },
-    "static/stl/versions/interface-bracket-v1.stl": {
-      "sha256": "db2c0ecf58184c752a8d66035b2620a3d1570343167b8b2b7f3b7eedd402c58f",
-      "size": 756484,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/db2c0ecf58184c752a8d66035b2620a3d1570343167b8b2b7f3b7eedd402c58f.stl"
-    },
-    "static/stl/versions/interface-upper-fixed-section-v1.stl": {
-      "sha256": "bf52ad8b7b81dc61a3ed69517953ad52139f8eec291920627e6ff71a3bc3e0fd",
-      "size": 2454584,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/bf52ad8b7b81dc61a3ed69517953ad52139f8eec291920627e6ff71a3bc3e0fd.stl"
-    },
-    "static/plates/3-bins.3mf": {
+    "slicer/plates/3-bins.3mf": {
       "sha256": "c6147c79afa98f0f566f9dbbc9818779472c9cf0c5d874b7570800b06c67686d",
       "size": 43258,
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/c6147c79afa98f0f566f9dbbc9818779472c9cf0c5d874b7570800b06c67686d.3mf"
     },
-    "static/plates/90-deg-brackets.3mf": {
+    "slicer/plates/90-deg-brackets.3mf": {
       "sha256": "6aab6886d1d32a693710441da6c2d80190fcbea9f5a690a08fbe2beec36b9941",
       "size": 722243,
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/6aab6886d1d32a693710441da6c2d80190fcbea9f5a690a08fbe2beec36b9941.3mf"
     },
-    "static/plates/chute-core-and-funnel-brackets.3mf": {
+    "slicer/plates/chute-core-and-funnel-brackets.3mf": {
       "sha256": "3605074a7ee51919737ed2a9b6cb0d522919e776e8e8ecf2944f4fe7aa7e3ae4",
       "size": 555954,
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/3605074a7ee51919737ed2a9b6cb0d522919e776e8e8ecf2944f4fe7aa7e3ae4.3mf"
     },
-    "static/plates/external-brackets-6.3mf": {
+    "slicer/plates/external-brackets-6.3mf": {
       "sha256": "64e17ce00e1f3f45ace0ebc81ac235a74d4828d4e87ea71a081cb1fe0e79b95f",
       "size": 1409674,
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/64e17ce00e1f3f45ace0ebc81ac235a74d4828d4e87ea71a081cb1fe0e79b95f.3mf"
     },
-    "static/plates/external-brackets.3mf": {
+    "slicer/plates/external-brackets.3mf": {
       "sha256": "4a28da2e33e12340c3621421365add2fed8c1a65d235f8afb93ebfc2d8203ff0",
       "size": 297441,
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/4a28da2e33e12340c3621421365add2fed8c1a65d235f8afb93ebfc2d8203ff0.3mf"
     },
-    "static/stl/all-parts.zip": {
+    "slicer/build/bundle/all-parts.zip": {
       "sha256": "b12f5f6485387ca7188204a55cba237ce07a5fa57626819f48c09129a98e4635",
       "size": 17089189,
       "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/bundle/b12f5f6485387ca7188204a55cba237ce07a5fa57626819f48c09129a98e4635.zip"
