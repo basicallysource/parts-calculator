@@ -1,10 +1,13 @@
 <script lang="ts">
 	import { BookOpen, Download, ExternalLink, ShoppingCart, Zap } from 'lucide-svelte';
+	import AlternativeBadge from '$lib/components/AlternativeBadge.svelte';
+	import AssemblyDescription from '$lib/components/AssemblyDescription.svelte';
 	import Badge from '$lib/components/Badge.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 	import LayerControl from '$lib/components/LayerControl.svelte';
 	import PartDetailModal from '$lib/components/PartDetailModal.svelte';
 	import HardwareDetailModal from '$lib/components/HardwareDetailModal.svelte';
+	import HardwareIcon from '$lib/components/HardwareIcon.svelte';
 	import Seo from '$lib/components/Seo.svelte';
 	import { colorStore } from '$lib/colors.svelte';
 	import {
@@ -112,7 +115,10 @@
 					</button>
 				{/if}
 				<div class="min-w-0 flex-1">
-					<div class="truncate text-xs font-semibold text-text">{hw.name}</div>
+					<div class="flex items-center gap-1.5 text-xs font-semibold text-text">
+						<HardwareIcon {hw} size={14} /><span class="truncate">{hw.name}</span>
+						<AlternativeBadge value={hw.alternative} size={14} />
+					</div>
 				</div>
 				<div class="text-right text-xs tabular-nums text-text">
 					<div class="font-semibold">×{req.qty} each</div>
@@ -133,7 +139,10 @@
 				<img src={img.src} alt={hw.name} class="h-8 w-8 object-contain" />
 			</button>
 		{/if}
-		<div class="min-w-0 flex-1 truncate text-xs font-semibold text-text">{hw.name}</div>
+		<div class="flex min-w-0 flex-1 items-center gap-1.5 text-xs font-semibold text-text">
+			<HardwareIcon {hw} size={14} /><span class="truncate">{hw.name}</span>
+			<AlternativeBadge value={hw.alternative} size={14} />
+		</div>
 		<div class="text-right text-xs tabular-nums text-text">
 			<div class="font-semibold">×{each}</div>
 			{#if total !== each}<div class="text-text-muted">{total} total</div>{/if}
@@ -168,7 +177,10 @@
 				{/if}
 			</div>
 			{#if asm.description}
-				<p class="mt-0.5 max-w-2xl text-xs text-text-muted">{asm.description}</p>
+				<AssemblyDescription
+					text={asm.description}
+					class="mt-0.5 max-w-2xl text-xs text-text-muted"
+				/>
 			{/if}
 			<!-- The docs site is where the step-by-step build lives; this node is only
 			     the bill of materials for it. Link out when a page exists. -->
@@ -186,7 +198,11 @@
 			{#each asm.joining ?? [] as j (j.method)}
 				<div class="mt-1 flex max-w-2xl flex-wrap items-baseline gap-x-2">
 					<Badge variant="warning"><Zap size={10} />{JOIN_LABELS[j.method]}</Badge>
-					{#if j.note}<span class="text-xs text-text-muted">{j.note}</span>{/if}
+					{#if j.note}<AssemblyDescription
+							text={j.note}
+							as="span"
+							class="text-xs text-text-muted"
+						/>{/if}
 				</div>
 			{/each}
 			<!-- Keyed by position as well as id: two lines can legitimately name the
@@ -300,7 +316,10 @@
 							</button>
 						{/if}
 						<div class="min-w-0">
-							<div class="text-sm font-semibold text-text">{t.hw.name}</div>
+							<div class="flex items-center gap-1.5 text-sm font-semibold text-text">
+								<HardwareIcon hw={t.hw} size={16} /><span class="truncate">{t.hw.name}</span>
+								<AlternativeBadge value={t.hw.alternative} size={16} />
+							</div>
 							<p class="mt-0.5 text-xs text-text-muted">{t.hw.description}</p>
 						</div>
 					</div>

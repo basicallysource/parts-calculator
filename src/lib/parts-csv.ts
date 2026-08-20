@@ -11,6 +11,7 @@ import {
 	getLasercut,
 	getPart,
 	lineQty,
+	plainDescription,
 	SECTIONS,
 	sectionQty,
 	effectiveMult,
@@ -149,7 +150,7 @@ export function assemblyCsv(root: string, spec: ExportSpec): string {
 			(asm.joining ?? []).map((j) => j.method).join('; '),
 			'',
 			'',
-			asm.description
+			plainDescription(asm.description)
 		]);
 		for (const line of asm.lines ?? []) {
 			const each = lineQty(line, spec.layers);
