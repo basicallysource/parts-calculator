@@ -1,4 +1,5 @@
 <script lang="ts">
+	import AssemblyDescription from '$lib/components/AssemblyDescription.svelte';
 	import Badge from '$lib/components/Badge.svelte';
 	import { copyText } from '$lib/clipboard';
 	import { SITE_URL } from '$lib/seo';
@@ -213,7 +214,7 @@
 						<Badge variant="warning"><Zap size={10} />{JOIN_LABELS[j.method]}</Badge>
 					{/each}
 				</div>
-				<p class="mt-1 text-xs text-text-muted">{asm.description}</p>
+				<AssemblyDescription text={asm.description} class="mt-1 text-xs text-text-muted" />
 				<ul class="mt-2 space-y-0.5 text-sm text-text">
 					{#each siblings(asm, h.id) as s (s.id)}
 						<li class="tabular-nums">
@@ -224,7 +225,7 @@
 				</ul>
 				{#each asm.joining ?? [] as j (j.method)}
 					{#if j.note}
-						<p class="mt-2 text-xs text-warning-dark">{j.note}</p>
+						<AssemblyDescription text={j.note} class="mt-2 text-xs text-warning-dark" />
 					{/if}
 				{/each}
 			</div>
