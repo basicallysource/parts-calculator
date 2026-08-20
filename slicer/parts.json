@@ -444,14 +444,14 @@
           "version": "1",
           "date": "2026-06-27",
           "message": "Initial version. The dovetail fit was too tight and could make the cap difficult to install on the stator.",
-          "commit": "0576613",
+          "commit": "da7a320",
           "stl_hash": "c7200a59ee437fb073d90f0fcaf96773cf1aad0e6fcd34f5a68beb8f4752497a"
         },
         {
           "version": "2",
           "date": "2026-08-18",
           "message": "Increased the dovetail clearance so the cap slides onto the stator more easily and seats without excessive force.",
-          "commit": "e4a76a4",
+          "commit": "dd00cf6",
           "onshape_version": "https://cad.onshape.com/documents/60aa51fc61d18f2155b99910/v/3101eccaa723ea34388cbee9/e/66109ce96b305bf318354f93"
         }
       ],
@@ -499,14 +499,14 @@
           "version": "1",
           "date": "2026-06-27",
           "message": "Initial version. The fit around the horizontal aluminum spoke was too tight.",
-          "commit": "0576613",
+          "commit": "da7a320",
           "stl_hash": "db2c0ecf58184c752a8d66035b2620a3d1570343167b8b2b7f3b7eedd402c58f"
         },
         {
           "version": "2",
           "date": "2026-08-18",
           "message": "Added 0.2 mm clearance on every side of the horizontal aluminum spoke.",
-          "commit": "5e4b6b6",
+          "commit": "6587b3f",
           "onshape_version": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/v/f845b960415692451f2903b1/e/77f0be233cae0dcaf1c2a391"
         }
       ],
@@ -872,14 +872,14 @@
           "version": "1",
           "date": "2026-06-27",
           "message": "Initial version.",
-          "commit": "be3f4cd",
+          "commit": "9b7998e",
           "stl_hash": "bf52ad8b7b81dc61a3ed69517953ad52139f8eec291920627e6ff71a3bc3e0fd"
         },
         {
           "version": "2",
           "date": "2026-07-08",
           "message": "Reshaped: now 35 mm tall (was 33 mm), with rib attachments.",
-          "commit": "f1be906",
+          "commit": "9f838a0",
           "onshape_version": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/v/3b8fafc8cab54b09332e14d2/e/8f693a0bd7ce7d62c0c00291"
         }
       ],
@@ -953,14 +953,14 @@
           "version": "1",
           "date": "2026-06-27",
           "message": "Initial version.",
-          "commit": "be3f4cd",
+          "commit": "9b7998e",
           "stl_hash": "8ca345012b63e33064706c787705fa3d3f39229891319935beb58eeede6d1a14"
         },
         {
           "version": "2",
           "date": "2026-07-08",
           "message": "Reshaped: now 1 mm thick (was 3 mm).",
-          "commit": "f1be906",
+          "commit": "9f838a0",
           "onshape_version": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/v/3b8fafc8cab54b09332e14d2/e/8f693a0bd7ce7d62c0c00291"
         }
       ],
@@ -1008,14 +1008,14 @@
           "version": "1",
           "date": "2026-06-27",
           "message": "Initial version.",
-          "commit": "be3f4cd",
+          "commit": "9b7998e",
           "stl_hash": "34485f41055e82d098984ed49824fd0f93f471dac62ea86e6b83cf87482bf9fd"
         },
         {
           "version": "2",
           "date": "2026-07-18",
           "message": "Enlarged the M3 nut pocket. The v1 pocket was undersized and the nut would not seat in it.",
-          "commit": "6c565d4"
+          "commit": "83950ac"
         }
       ],
       "quantities": {
@@ -1311,7 +1311,7 @@
           "version": "1",
           "date": "2026-07-03",
           "message": "Initial version.",
-          "commit": "f73766e"
+          "commit": "c74e408"
         }
       ],
       "quantities": {
@@ -1851,7 +1851,7 @@
           "version": "1",
           "date": "2026-07-08",
           "message": "Initial version.",
-          "commit": "f1be906",
+          "commit": "9f838a0",
           "onshape_doc": "https://cad.onshape.com/documents/249bded2198af476185014b6",
           "onshape_version": "https://cad.onshape.com/documents/249bded2198af476185014b6/v/57d753798ce11a250478918d/e/48c64d61f1276c46f515d6bd"
         }
@@ -1890,7 +1890,7 @@
           "version": "1",
           "date": "2026-07-08",
           "message": "Initial version.",
-          "commit": "f1be906",
+          "commit": "9f838a0",
           "onshape_doc": "https://cad.onshape.com/documents/249bded2198af476185014b6",
           "onshape_version": "https://cad.onshape.com/documents/249bded2198af476185014b6/v/57d753798ce11a250478918d/e/48c64d61f1276c46f515d6bd"
         }
