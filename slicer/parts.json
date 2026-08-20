@@ -4418,7 +4418,7 @@
       "joining": [
         {
           "method": "self-tap",
-          "note": "The two M3×20 countersunk screws that join the post to the NEMA bracket thread straight into the printed post — no insert, no nut."
+          "note": "The two [[hw:scr-m3-20-cs]] screws that join the post to the NEMA bracket thread straight into the printed post — no insert, no nut."
         }
       ],
       "lines": [
@@ -4457,7 +4457,7 @@
       "joining": [
         {
           "method": "self-tap",
-          "note": "All four M5×16 are designed to self-tap: 2 hold the side to the bottom vertical, 2 hold the assembly to the vertical extrusion. No nuts and no inserts anywhere in this bracket."
+          "note": "All four [[hw:scr-m5-16-shcs]] are designed to self-tap: 2 hold the side to the bottom vertical, 2 hold the assembly to the vertical extrusion. No nuts and no inserts anywhere in this bracket."
         }
       ],
       "lines": [
@@ -4482,13 +4482,13 @@
     {
       "id": "fixed-upper-section",
       "name": "Fixed upper section",
-      "description": "The interface's fixed upper section: the upper-fixed-section plate, its ribs (5 plain + 1 with the limit-switch gap), and the big spacer. 1 per interface. Each rib takes 2 M5×16 into the plate; the screw that ties it to its bracket's extrusion belongs to the interface above.",
+      "description": "The interface's fixed upper section: the upper-fixed-section plate, its ribs (5 plain + 1 with the limit-switch gap), and the big spacer. 1 per interface. Each rib takes 2 × [[hw:scr-m5-16-shcs]] into the plate; the screw that ties it to its bracket's extrusion belongs to the interface above.",
       "docs": "/hardware/assembly/distribution/top-interface/",
       "status": "partial",
       "joining": [
         {
           "method": "self-tap",
-          "note": "Both of each rib's M5×16 thread straight into the printed upper fixed section — no insert, no nut."
+          "note": "Both of each rib's [[hw:scr-m5-16-shcs]] thread straight into the printed upper fixed section — no insert, no nut."
         }
       ],
       "lines": [
@@ -4905,7 +4905,7 @@
     {
       "id": "interface",
       "name": "Interface",
-      "description": "The interface between the feeder and the distribution layers. Its lazy Susan sandwiches the upper fixed section and the chute mount, 4 M4 screws a side, and the plywood top plate bolts down onto the six brackets' inserts.",
+      "description": "The interface between the feeder and the distribution layers. Its lazy Susan sandwiches the upper fixed section and the chute mount, 4 × [[hw:scr-m4-12-cs]] a side, and the plywood top plate bolts down onto the six brackets' inserts.",
       "docs": "/hardware/assembly/distribution/top-interface/",
       "status": "partial",
       "lines": [
@@ -4998,7 +4998,7 @@
     {
       "id": "layer",
       "name": "Distribution layer",
-      "description": "One distribution layer between the interfaces: frame, chute, bin retainers, funnels, bins. Each bin retainer takes 2 M5×12 into a T-nut.",
+      "description": "One distribution layer between the interfaces: frame, chute, bin retainers, funnels, bins. Each bin retainer takes 2 × [[hw:scr-m5-12-shcs]] into a [[hw:tnut-m5-2020]].",
       "docs": "/hardware/assembly/distribution/bin-frame/regular-layers/",
       "status": "partial",
       "lines": [
@@ -5135,7 +5135,7 @@
     {
       "id": "c-channel",
       "name": "C-channel drive",
-      "description": "One C-channel drive unit: stator, NEMA bracket, output gear, gear train and stepper. 4 per machine — 3 in the feeder plus the classification channel's. Screw joints: 4 M3×12 countersunk hold the NEMA bracket to the stator; 3 M3×16 socket heads hold the stepper to the NEMA bracket; 5 M3×8 countersunk attach the output gear to the rotor (the light post's 2 screws into the NEMA bracket live on the light-post assembly). The rotor differs by location (faceted in the feeder, finned in the classification chamber), so it is not part of this node.",
+      "description": "One C-channel drive unit: stator, NEMA bracket, output gear, gear train and stepper. 4 per machine — 3 in the feeder plus the classification channel's. Screw joints: 4 × [[hw:scr-m3-12-cs]] hold the NEMA bracket to the stator; 3 × [[hw:scr-m3-16-shcs]] hold the stepper to the NEMA bracket; 5 × [[hw:scr-m3-8-cs]] attach the output gear to the rotor (the light post's 2 × [[hw:scr-m3-20-cs]] into the NEMA bracket live on the light-post assembly). The rotor differs by location (faceted in the feeder, finned in the classification chamber), so it is not part of this node.",
       "docs": "/hardware/assembly/feeder/c-channel/",
       "status": "partial",
       "lines": [
@@ -5345,7 +5345,7 @@
     {
       "id": "electronics",
       "name": "Electronics",
-      "description": "The three boxes that bolt to the frame: the PSU, the control board, and the Orange Pi. Each takes 2 M5 socket heads of a length nobody has measured yet.",
+      "description": "The three boxes that bolt to the frame: the PSU, the control board, and the Orange Pi. Each takes 2 × [[hw:scr-m5-shcs-tbd]] — nobody has measured the length yet.",
       "docs": "/hardware/electronics/",
       "status": "partial",
       "lines": [
@@ -5395,7 +5395,7 @@
     {
       "id": "lazy-susan",
       "name": "Bottom lazy Susan",
-      "description": "The bottom interface's lazy Susan: the static half, the chute mount that spins on it, the extrusion mounts, and the bearing itself. Bolted through 4 M4 screws a side, same as the top interface's.",
+      "description": "The bottom interface's lazy Susan: the static half, the chute mount that spins on it, the extrusion mounts, and the bearing itself. Bolted through 4 × [[hw:scr-m4-12-cs]] a side, same as the top interface's.",
       "docs": "/hardware/assembly/distribution/bin-frame/bottom-interface/",
       "status": "partial",
       "lines": [

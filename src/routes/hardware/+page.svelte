@@ -29,6 +29,7 @@
 		hardwareTotalQty,
 		JOIN_LABELS,
 		packsNeeded,
+		plainDescription,
 		resolveHardwareTotals,
 		SIZE_COLORS,
 		usagePaths,
@@ -488,7 +489,7 @@
 											: ''}"
 										role="button"
 										tabindex="0"
-										title={block.asm.description}
+										title={plainDescription(block.asm.description)}
 										onclick={(e) => {
 											if ((e.target as HTMLElement).closest('button, a, input, label')) return;
 											expandedAsm[block.asm.id] = !open;
@@ -528,7 +529,7 @@
 												<h3 class="text-sm font-semibold text-text">{block.asm.name}</h3>
 												<Badge variant="info">Assembly</Badge>
 												{#each block.asm.joining ?? [] as j (j.method)}
-													<Badge variant="warning" title={j.note}>
+													<Badge variant="warning" title={j.note ? plainDescription(j.note) : undefined}>
 														<Zap size={10} />{JOIN_LABELS[j.method]}
 													</Badge>
 												{/each}
