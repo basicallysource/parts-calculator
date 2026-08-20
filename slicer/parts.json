@@ -4451,7 +4451,8 @@
     {
       "id": "external-bracket",
       "name": "External distribution-frame bracket",
-      "description": "Three parts that bolt together into one external bracket. 6 per distribution frame (per layer), plus a set per interface.",
+      "description": "Three parts that bolt together into one external bracket. 6 per distribution frame (per layer), plus a set per interface. The cover clips on and takes no screws.",
+      "docs": "/hardware/assembly/distribution/external-bracket/",
       "status": "partial",
       "joining": [
         {
@@ -4481,16 +4482,13 @@
     {
       "id": "fixed-upper-section",
       "name": "Fixed upper section",
-      "description": "The interface's fixed upper section: the upper-fixed-section plate, its ribs (5 plain + 1 with the limit-switch gap), and the big spacer. 1 per interface. Each rib takes 3 M5×16 — 2 into the plate, 1 into the extrusion.",
+      "description": "The interface's fixed upper section: the upper-fixed-section plate, its ribs (5 plain + 1 with the limit-switch gap), and the big spacer. 1 per interface. Each rib takes 2 M5×16 into the plate; the screw that ties it to its bracket's extrusion belongs to the interface above.",
+      "docs": "/hardware/assembly/distribution/top-interface/",
       "status": "partial",
       "joining": [
         {
           "method": "self-tap",
-          "note": "2 of each rib's 3 M5×16 thread straight into the printed upper fixed section — no insert, no nut."
-        },
-        {
-          "method": "friction",
-          "note": "The third M5×16 per rib holds into the aluminum extrusion by friction alone — no T-nut behind it."
+          "note": "Both of each rib's M5×16 thread straight into the printed upper fixed section — no insert, no nut."
         }
       ],
       "lines": [
@@ -4512,7 +4510,7 @@
         },
         {
           "part": "scr-m5-16-shcs",
-          "qty": 18
+          "qty": 12
         }
       ]
     },
@@ -4520,6 +4518,7 @@
       "id": "cable-clamp",
       "name": "Cable clamp",
       "description": "Inner + outer ribbon cable clamp; the two halves clamp together around the cable and the pair bolts to the top interface chute mount.",
+      "docs": "/hardware/assembly/distribution/top-interface/",
       "status": "partial",
       "lines": [
         {
@@ -4543,7 +4542,8 @@
     {
       "id": "classification-chamber",
       "name": "Classification chamber",
-      "description": "The classification chamber: dome, cap, and finned rotor (lighting parts white)."
+      "description": "The classification chamber: the dome, the finned rotor, and the camera & LED insert. All three print white, so the chamber bounces light onto the part instead of absorbing it.",
+      "docs": "/hardware/assembly/feeder/classification-chamber/"
     },
     {
       "id": "chute-bearing",
@@ -4585,6 +4585,7 @@
       "id": "servo-adapter",
       "name": "Servo adapter (MG995)",
       "description": "MG995 servo adapter: servo side + flap side.",
+      "docs": "/hardware/assembly/distribution/chute/door-module/",
       "status": "partial",
       "lines": [
         {
@@ -4601,6 +4602,7 @@
       "id": "servo-bracket",
       "name": "Servo assembly (MG995)",
       "description": "The MG995 servo in its bracket: lower arm, side arm, cover, housing. Bolts to the chute core's two arm inserts as a unit.",
+      "docs": "/hardware/assembly/distribution/chute/mg995-servo/servo-mount/",
       "status": "partial",
       "lines": [
         {
@@ -4673,6 +4675,7 @@
       "id": "layer-connector",
       "name": "Layer connector",
       "description": "Pair of connectors. 1 of each per layer + 1 of each per bottom interface.",
+      "docs": "/hardware/assembly/distribution/chute/layer-connectors/",
       "status": "partial",
       "lines": [
         {
@@ -4689,6 +4692,7 @@
       "id": "limit-switch",
       "name": "Chute limit switch",
       "description": "Interface limit switch: printed dowel pin, housing, hammer, and the switch itself. Bolts to the interface frame as a unit.",
+      "docs": "/hardware/assembly/distribution/top-interface/",
       "status": "partial",
       "lines": [
         {
@@ -4717,6 +4721,7 @@
       "id": "cable-cage",
       "name": "Cable cage",
       "description": "Six cable cage brackets (5 regular + 1 cable mount) stacked with the ribbon cable clamp. Also sandwiches the laser-cut cage top and bottom plates, which are not in the parts registry yet.",
+      "docs": "/hardware/assembly/distribution/top-interface/",
       "status": "partial",
       "lines": [
         {
@@ -4839,6 +4844,7 @@
       "id": "machine",
       "name": "Sorter V2",
       "description": "The whole machine: feeder on top, interface, the distribution layers between the interfaces, and the bottom interface.",
+      "docs": "/hardware/assembly/",
       "status": "partial",
       "lines": [
         {
@@ -4867,6 +4873,7 @@
       "id": "feeder",
       "name": "Feeder",
       "description": "Feeder + classification channel. Everything above the interface.",
+      "docs": "/hardware/assembly/feeder/",
       "status": "partial",
       "lines": [
         {
@@ -4899,6 +4906,7 @@
       "id": "interface",
       "name": "Interface",
       "description": "The interface between the feeder and the distribution layers. Its lazy Susan sandwiches the upper fixed section and the chute mount, 4 M4 screws a side, and the plywood top plate bolts down onto the six brackets' inserts.",
+      "docs": "/hardware/assembly/distribution/top-interface/",
       "status": "partial",
       "lines": [
         {
@@ -4939,7 +4947,7 @@
         },
         {
           "part": "tnut-m5-2020",
-          "qty": 2
+          "qty": 8
         },
         {
           "assembly": "chute-stepper-gearing",
@@ -4980,13 +4988,18 @@
         {
           "part": "scr-m5-35-fhcs",
           "qty": 6
+        },
+        {
+          "part": "scr-m5-8-cs",
+          "qty": 6
         }
       ]
     },
     {
       "id": "layer",
       "name": "Distribution layer",
-      "description": "One distribution layer between the interfaces: frame, chute, bin brackets, funnels, bins. Each bin bracket takes 2 M5×16 into a T-nut.",
+      "description": "One distribution layer between the interfaces: frame, chute, bin retainers, funnels, bins. Each bin retainer takes 2 M5×12 into a T-nut.",
+      "docs": "/hardware/assembly/distribution/bin-frame/regular-layers/",
       "status": "partial",
       "lines": [
         {
@@ -5006,7 +5019,7 @@
           "qty": 6
         },
         {
-          "part": "scr-m5-16-shcs",
+          "part": "scr-m5-12-shcs",
           "qty": 24
         },
         {
@@ -5019,6 +5032,7 @@
       "id": "bottom-interface",
       "name": "Bottom interface",
       "description": "The bottom interface / lazy Susan level. Carries two chutes.",
+      "docs": "/hardware/assembly/distribution/bin-frame/bottom-interface/",
       "status": "partial",
       "lines": [
         {
@@ -5039,6 +5053,7 @@
       "id": "chute",
       "name": "Chute",
       "description": "One chute: the core plus its door module, funnel brackets, connectors, and PCB. Every screw here lands in one of the chute core's 18 M3 inserts.",
+      "docs": "/hardware/assembly/distribution/chute/chute-core/",
       "status": "partial",
       "lines": [
         {
@@ -5079,6 +5094,7 @@
       "id": "flap-module",
       "name": "Flap module",
       "description": "The chute's flap: the door itself, the bearing assembly it swings on, and the servo that drives it.",
+      "docs": "/hardware/assembly/distribution/chute/door-module/",
       "status": "partial",
       "lines": [
         {
@@ -5103,6 +5119,7 @@
       "id": "chute-pcb",
       "name": "Chute PCB",
       "description": "The layer adapter board, screwed onto the chute core's four PCB inserts.",
+      "docs": "/hardware/assembly/distribution/chute/pcb/",
       "status": "partial",
       "lines": [
         {
@@ -5119,6 +5136,7 @@
       "id": "c-channel",
       "name": "C-channel drive",
       "description": "One C-channel drive unit: stator, NEMA bracket, output gear, gear train and stepper. 4 per machine — 3 in the feeder plus the classification channel's. Screw joints: 4 M3×12 countersunk hold the NEMA bracket to the stator; 3 M3×16 socket heads hold the stepper to the NEMA bracket; 5 M3×8 countersunk attach the output gear to the rotor (the light post's 2 screws into the NEMA bracket live on the light-post assembly). The rotor differs by location (faceted in the feeder, finned in the classification chamber), so it is not part of this node.",
+      "docs": "/hardware/assembly/feeder/c-channel/",
       "status": "partial",
       "lines": [
         {
@@ -5163,6 +5181,7 @@
       "id": "chute-stepper-gearing",
       "name": "Chute Stepper Gearing",
       "description": "The printed drive and idler gearing that transfers motion from the NEMA 23 chute stepper.",
+      "docs": "/hardware/assembly/distribution/top-interface/",
       "status": "partial",
       "lines": [
         {
@@ -5195,6 +5214,7 @@
       "id": "interface-nema23-mount",
       "name": "Chute stepper NEMA 23 mount",
       "description": "The NEMA 23 stepper on its interface bracket. 1 per interface.",
+      "docs": "/hardware/assembly/distribution/top-interface/",
       "status": "partial",
       "lines": [
         {
@@ -5215,6 +5235,7 @@
       "id": "interface-spur-gear-drive",
       "name": "Chute stepper drive gear",
       "description": "The chute stepper drive gear with its 8 mm bore timing pulley. 1 per interface.",
+      "docs": "/hardware/assembly/distribution/top-interface/",
       "status": "partial",
       "lines": [
         {
@@ -5235,6 +5256,7 @@
       "id": "interface-chute-drive",
       "name": "Interface chute gear + mount",
       "description": "The chute gear screwed down onto the top interface chute mount — two sections of the split spur gear that become one turning unit.",
+      "docs": "/hardware/assembly/distribution/top-interface/",
       "status": "partial",
       "lines": [
         {
@@ -5254,7 +5276,8 @@
     {
       "id": "layer-frame",
       "name": "Distribution frame",
-      "description": "The frame of one distribution layer: six external brackets, the crossbeams between them, and the 90° brackets.",
+      "description": "The frame of one distribution layer: six external brackets, the crossbeams between them, and the 90° brackets. The aluminum extrusion it is built on is sized on the framing tab, not listed here.",
+      "docs": "/hardware/assembly/distribution/bin-frame/regular-layers/",
       "status": "partial",
       "lines": [
         {
@@ -5323,6 +5346,7 @@
       "id": "electronics",
       "name": "Electronics",
       "description": "The three boxes that bolt to the frame: the PSU, the control board, and the Orange Pi. Each takes 2 M5 socket heads of a length nobody has measured yet.",
+      "docs": "/hardware/electronics/",
       "status": "partial",
       "lines": [
         {
@@ -5347,6 +5371,7 @@
       "id": "interface-bracket-mount",
       "name": "Interface bracket",
       "description": "One interface bracket with its spacer, bolted onto its vertical extrusion. 6 per interface.",
+      "docs": "/hardware/assembly/distribution/top-interface/",
       "status": "partial",
       "lines": [
         {
@@ -5371,6 +5396,7 @@
       "id": "lazy-susan",
       "name": "Bottom lazy Susan",
       "description": "The bottom interface's lazy Susan: the static half, the chute mount that spins on it, the extrusion mounts, and the bearing itself. Bolted through 4 M4 screws a side, same as the top interface's.",
+      "docs": "/hardware/assembly/distribution/bin-frame/bottom-interface/",
       "status": "partial",
       "lines": [
         {

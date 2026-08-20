@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Download, ExternalLink, ShoppingCart, Zap } from 'lucide-svelte';
+	import { BookOpen, Download, ExternalLink, ShoppingCart, Zap } from 'lucide-svelte';
 	import Badge from '$lib/components/Badge.svelte';
 	import Callout from '$lib/components/Callout.svelte';
 	import LayerControl from '$lib/components/LayerControl.svelte';
@@ -8,6 +8,7 @@
 	import Seo from '$lib/components/Seo.svelte';
 	import { colorStore } from '$lib/colors.svelte';
 	import {
+		docsUrl,
 		getAssembly,
 		getHardware,
 		getLasercut,
@@ -169,6 +170,18 @@
 			{#if asm.description}
 				<p class="mt-0.5 max-w-2xl text-xs text-text-muted">{asm.description}</p>
 			{/if}
+			<!-- The docs site is where the step-by-step build lives; this node is only
+			     the bill of materials for it. Link out when a page exists. -->
+			{#if docsUrl(asm)}
+				<a
+					href={docsUrl(asm)}
+					target="_blank"
+					rel="noopener"
+					class="mt-1 inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary-hover"
+				>
+					<BookOpen size={11} /> Assembly guide <ExternalLink size={10} />
+				</a>
+			{/if}
 			<!-- how these lines become one unit — soldered, self-tapped, friction-held -->
 			{#each asm.joining ?? [] as j (j.method)}
 				<div class="mt-1 flex max-w-2xl flex-wrap items-baseline gap-x-2">
@@ -176,7 +189,10 @@
 					{#if j.note}<span class="text-xs text-text-muted">{j.note}</span>{/if}
 				</div>
 			{/each}
-			{#each asm.lines ?? [] as line (line.part ?? line.assembly)}
+			<!-- Keyed by position as well as id: two lines can legitimately name the
+			     same part, and a bare id key makes that a duplicate-key error that
+			     blanks the whole page on hydration. -->
+			{#each asm.lines ?? [] as line, i (`${line.part ?? line.assembly}-${i}`)}
 				{#if line.assembly}
 					{@render node(line.assembly, line.qty, lineQty(line, layers) * mult, depth + 1)}
 				{:else if line.part && getLasercut(line.part)}
