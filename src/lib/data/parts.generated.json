@@ -5461,7 +5461,7 @@
 				"variant": "socket",
 				"length_mm": 10
 			},
-			"name": "M3 \u00d7 10 mm socket head",
+			"name": "M3 \u00d7 10 mm socket/button head",
 			"category": "Screws",
 			"description": "Fastens the outer cable clamp into the top interface chute mount, and the ribbon cable clamp to the cable cage bracket.",
 			"note": "The \u00d73 is the top-interface count (2 cable clamp, 1 ribbon clamp). Screws used elsewhere on the machine aren't tallied here yet.",
@@ -5487,7 +5487,7 @@
 			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
-			"alternative": null,
+			"alternative": "Socket or button head",
 			"image": null
 		},
 		{
@@ -5682,7 +5682,7 @@
 			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
-			"alternative": null,
+			"alternative": "Socket or button head",
 			"image": null
 		},
 		{
@@ -5718,7 +5718,7 @@
 			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
-			"alternative": null,
+			"alternative": "Socket or button head",
 			"image": null
 		},
 		{
@@ -5754,7 +5754,7 @@
 			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
-			"alternative": null,
+			"alternative": "Socket or button head",
 			"image": null
 		},
 		{
@@ -5790,7 +5790,7 @@
 			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
-			"alternative": null,
+			"alternative": "Socket or button head",
 			"image": null
 		},
 		{
@@ -5898,7 +5898,7 @@
 			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
-			"alternative": null,
+			"alternative": "Socket or button head",
 			"image": null
 		},
 		{
@@ -5970,7 +5970,7 @@
 			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
-			"alternative": null,
+			"alternative": "Socket or button head",
 			"image": null
 		},
 		{
@@ -6006,7 +6006,7 @@
 			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
-			"alternative": null,
+			"alternative": "Socket or button head",
 			"image": null
 		},
 		{
@@ -6177,7 +6177,7 @@
 			"sheet_qty_text": null,
 			"stock": null,
 			"sourcing": null,
-			"alternative": null,
+			"alternative": "Socket or button head",
 			"image": null
 		},
 		{
