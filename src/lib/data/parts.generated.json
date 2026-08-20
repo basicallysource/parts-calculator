@@ -495,7 +495,7 @@
 		{
 			"id": "chute-bearing",
 			"name": "Chute bearing assembly",
-			"description": "The flap's bearing assembly: left + right bearing holders, the race between them, and the covers. Carries 10 M3 inserts and the two flap bearings.",
+			"description": "The flap's bearing assembly: left + right bearing holders, the race between them, and the covers. Carries 10 M3 inserts and the two flap bearings, one screw per insert: 6 M3 \u00d7 8 hold the covers to the holders (3 each), 4 hold the holders to the race (2 each).",
 			"status": "partial",
 			"lines": [
 				{
@@ -524,7 +524,7 @@
 				},
 				{
 					"part": "scr-m3-8-cs",
-					"qty": 6
+					"qty": 10
 				}
 			]
 		},
