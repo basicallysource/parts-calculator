@@ -4928,7 +4928,7 @@
         },
         {
           "part": "tnut-m5-2020",
-          "qty": 2
+          "qty": 8
         },
         {
           "assembly": "chute-stepper-gearing",
@@ -4972,10 +4972,6 @@
         },
         {
           "part": "scr-m5-8-cs",
-          "qty": 6
-        },
-        {
-          "part": "tnut-m5-2020",
           "qty": 6
         }
       ]

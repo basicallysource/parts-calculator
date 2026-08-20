@@ -189,7 +189,10 @@
 					{#if j.note}<span class="text-xs text-text-muted">{j.note}</span>{/if}
 				</div>
 			{/each}
-			{#each asm.lines ?? [] as line (line.part ?? line.assembly)}
+			<!-- Keyed by position as well as id: two lines can legitimately name the
+			     same part, and a bare id key makes that a duplicate-key error that
+			     blanks the whole page on hydration. -->
+			{#each asm.lines ?? [] as line, i (`${line.part ?? line.assembly}-${i}`)}
 				{#if line.assembly}
 					{@render node(line.assembly, line.qty, lineQty(line, layers) * mult, depth + 1)}
 				{:else if line.part && getLasercut(line.part)}
