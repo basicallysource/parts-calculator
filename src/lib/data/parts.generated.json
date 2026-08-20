@@ -1745,6 +1745,7 @@
 					"date": "2026-06-27",
 					"message": "Initial version. The dovetail fit was too tight and could make the cap difficult to install on the stator.",
 					"commit": "0576613",
+					"stl_hash": "c7200a59ee437fb073d90f0fcaf96773cf1aad0e6fcd34f5a68beb8f4752497a",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/c7200a59ee437fb073d90f0fcaf96773cf1aad0e6fcd34f5a68beb8f4752497a.stl",
 					"render": "/renders/versions/bulk-cap-v1.png",
 					"grams": 648.51
@@ -1843,6 +1844,7 @@
 					"date": "2026-06-27",
 					"message": "Initial version. The fit around the horizontal aluminum spoke was too tight.",
 					"commit": "0576613",
+					"stl_hash": "db2c0ecf58184c752a8d66035b2620a3d1570343167b8b2b7f3b7eedd402c58f",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/db2c0ecf58184c752a8d66035b2620a3d1570343167b8b2b7f3b7eedd402c58f.stl",
 					"render": "/renders/versions/interface-bracket-v1.png",
 					"grams": 159.64
@@ -2598,6 +2600,7 @@
 					"date": "2026-06-27",
 					"message": "Initial version.",
 					"commit": "be3f4cd",
+					"stl_hash": "bf52ad8b7b81dc61a3ed69517953ad52139f8eec291920627e6ff71a3bc3e0fd",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/bf52ad8b7b81dc61a3ed69517953ad52139f8eec291920627e6ff71a3bc3e0fd.stl",
 					"render": "/renders/versions/interface-upper-fixed-section-v1.png",
 					"grams": 153.65
@@ -2747,6 +2750,7 @@
 					"date": "2026-06-27",
 					"message": "Initial version.",
 					"commit": "be3f4cd",
+					"stl_hash": "8ca345012b63e33064706c787705fa3d3f39229891319935beb58eeede6d1a14",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8ca345012b63e33064706c787705fa3d3f39229891319935beb58eeede6d1a14.stl",
 					"render": "/renders/versions/interface-big-spacer-v1.png",
 					"grams": 22.19
@@ -2845,6 +2849,7 @@
 					"date": "2026-06-27",
 					"message": "Initial version.",
 					"commit": "be3f4cd",
+					"stl_hash": "34485f41055e82d098984ed49824fd0f93f471dac62ea86e6b83cf87482bf9fd",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/34485f41055e82d098984ed49824fd0f93f471dac62ea86e6b83cf87482bf9fd.stl",
 					"render": "/renders/versions/cable-clamp-outer-v1.png",
 					"grams": 19.77

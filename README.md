@@ -26,7 +26,6 @@ slicer/
   filament.py           # the local data-generation step
 src/lib/data/parts.generated.json   # GENERATED, committed — the app's input
 static/renders/*.png                # GENERATED, committed — thumbnails
-static/stl/*.stl, all-parts.zip     # GENERATED, committed — downloads
 ```
 
 ## Updating parts
@@ -97,6 +96,6 @@ STLs/3mfs are committed as normal Git objects (not LFS) so Vercel serves the rea
 ## Build plates
 
 Drop pre-arranged `.3mf` plates into `slicer/plates/` (auto-discovered). `filament.py`
-copies each to `static/plates/` for download, pulls its embedded plate previews, and
-reads the parts it contains. To cross-link a plate's parts to the catalog, set a part's
+pulls each one's embedded plate previews and reads the parts it contains; downloads
+are served from the content-addressed bucket. To cross-link a plate's parts to the catalog, set a part's
 `source` field in `parts.json` to the part's original filename as it appears in the 3mf.

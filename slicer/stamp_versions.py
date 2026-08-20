@@ -9,12 +9,21 @@ The workflow the version system assumes:
      stamps it onto the part's newest pending (null-commit) version.
   4. Commit the resulting parts.json (+ re-run filament.py) as a small "stamp" commit.
 
+Stamping also pins the SUPERSEDED version's geometry: the previous version's
+final bytes are whatever the STL was right before the stamped commit, so their
+sha256 is written onto that version as `stl_hash`. That hash is how
+filament.py's archive_versions() retrieves old geometry -- from the
+content-addressed bucket, never from git history. The bytes are guaranteed to
+be on the bucket already: they were the live master during the previous regen,
+and every regen uploads the masters content-addressed.
+
 Unchanged parts are left alone (their newest STL commit is already recorded), so
 this is safe to run repeatedly. Run:
   /opt/homebrew/opt/python@3.11/libexec/bin/python stamp_versions.py [--dry-run]
 """
 import argparse
 import collections
+import hashlib
 import json
 import os
 import subprocess
@@ -29,6 +38,15 @@ def stl_commits(stl_rel):
         ["git", "-C", HERE, "log", "--follow", "--format=%h", "--", stl_rel],
         capture_output=True, text=True).stdout
     return [h for h in out.splitlines() if h.strip()]
+
+
+def stl_hash_before(commit, stl_rel):
+    """sha256 of the STL's bytes just before `commit` changed it, or None."""
+    r = subprocess.run(["git", "-C", HERE, "show", f"{commit}~1:./{stl_rel}"],
+                       capture_output=True)
+    if r.returncode != 0 or not r.stdout:
+        return None
+    return hashlib.sha256(r.stdout).hexdigest()
 
 
 def main():
@@ -50,11 +68,22 @@ def main():
                                                     for u in used)), None)
         if not fresh:
             continue
-        # stamp the newest pending version
-        for v in reversed(versions):
+        # stamp the newest pending version, and pin the geometry the stamped
+        # commit replaced onto the version it superseded
+        for i in range(len(versions) - 1, -1, -1):
+            v = versions[i]
             if not v.get("commit"):
                 v["commit"] = fresh
                 stamped.append((p["id"], v.get("version"), fresh))
+                if i > 0 and not versions[i - 1].get("stl_hash"):
+                    prev_hash = stl_hash_before(fresh, stl)
+                    if prev_hash:
+                        versions[i - 1]["stl_hash"] = prev_hash
+                    else:
+                        print(f"  ! {p['id']}: could not derive superseded "
+                              f"geometry for v{versions[i - 1].get('version')} "
+                              f"(no {stl} at {fresh}~1); it will fall back to "
+                              "the live asset")
                 break
 
     if not stamped:

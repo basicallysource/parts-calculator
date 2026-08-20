@@ -46,12 +46,15 @@ PUBLIC_BASE = os.environ.get(
 # normal git blobs -- they are small and the site wants them at build time.
 SOURCES = [
     ("slicer/parts", "*.stl", "stl"),
-    ("static/stl/versions", "*.stl", "stl"),
-    ("static/plates", "*.3mf", "plate"),
-    ("static/stl", "all-parts.zip", "bundle"),
+    ("slicer/plates", "*.3mf", "plate"),
+    # The bundle is regenerated into gitignored build/ by filament.py; its
+    # bytes must reach the bucket because settings.all_parts_zip points there.
+    ("slicer/build/bundle", "all-parts.zip", "bundle"),
     # COTS/hardware product images are deliberately absent: they never enter
     # git. `--upload <file>` puts one on the bucket and prints the image_url to
-    # paste into parts.json.
+    # paste into parts.json. Historical part-version STLs are absent too: their
+    # bytes were uploaded by the regen that ran while that geometry was the
+    # live master, and parts.json pins them by stl_hash.
 ]
 
 CONTENT_TYPES = {".stl": "model/stl", ".3mf": "model/3mf", ".zip": "application/zip",
@@ -86,9 +89,9 @@ def load_credentials() -> tuple[str, str]:
     return key, secret
 
 
-def sha256(path: Path) -> str:
+def sha256(path: str | Path) -> str:
     h = hashlib.sha256()
-    with path.open("rb") as f:
+    with Path(path).open("rb") as f:
         first = True
         for chunk in iter(lambda: f.read(1024 * 1024), b""):
             # An unmaterialized LFS file hashes and uploads perfectly happily --

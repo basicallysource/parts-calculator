@@ -1,9 +1,11 @@
-# STLs/zips are committed as normal Git objects (NOT LFS) so Vercel serves the
-# real files — Vercel does not materialize Git LFS objects on deploy, which broke
-# the 3D previews and downloads. They're small enough (~tens of MB) for plain git.
+# No LFS anywhere in this repo. The only committed binaries are the AUTHORED
+# sources -- slicer/parts/*.stl masters and slicer/plates/*.3mf -- plus the
+# small generated PNGs the site wants at build time (static/renders,
+# static/plate-thumbs). Everything the site serves for download (STLs, plates,
+# the all-parts zip) and every product image comes from the content-addressed
+# bucket, pinned by URL/hash in the data (see scripts/sync_bucket.py).
 #
-# Hardware/product images are not in this repo at all -- not as blobs, not as
-# LFS. They live only on the bucket, pinned in slicer/parts.json as `image_url`
-# (see scripts/fetch_product_images.py). They were briefly LFS-tracked, which
-# published 130-byte pointer stubs under valid-looking content hashes and broke
-# every hardware photo on the site.
+# LFS is banned by scar tissue: images were briefly LFS-tracked, a CI job
+# checked out without lfs, and 130-byte pointer stubs got hashed and published
+# under valid-looking content-addressed URLs, breaking every hardware photo on
+# the site.

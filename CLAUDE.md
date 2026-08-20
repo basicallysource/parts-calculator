@@ -77,8 +77,10 @@ python scripts/sync_bucket.py             # upload missing + rewrite manifest
 ```
 
 Credentials come from `DO_SPACES_KEY` / `DO_SPACES_SECRET` (env, or
-`~/.config/do-spaces/sorter-v2-parts.env`). In CI they are repo secrets;
-`.github/workflows/sync-bucket.yml` runs the same script on push.
+`~/.config/do-spaces/sorter-v2-parts.env`). In CI they are repo secrets; the
+regen workflow (`.github/workflows/regen-parts.yml`) runs the same script
+right after slicing, then verifies every URL the generated data references
+actually resolves (`scripts/check_bucket_urls.py`).
 
 Uploads are idempotent — the key IS the content hash, and the script
 head-checks before writing, so re-runs upload nothing and identical bytes
@@ -112,12 +114,13 @@ and uploaded as the images. Every URL returned 200 with
 
 Because the bucket is content-addressed, **a wrong image URL is never a 404** —
 it's a 200 serving the wrong bytes, which no build or type check can see.
-`scripts/check_image_urls.py` fetches each URL and checks the magic bytes. It
+`scripts/check_bucket_urls.py` fetches each URL and checks the bytes (magic
+numbers for images; reachable, non-stub content for STLs/plates/the zip). It
 runs in `regen-parts.yml` before the commit-back, and takes a file argument so
-you can check your edit without invoking the slicer:
+you can check an image edit without invoking the slicer:
 
 ```bash
-python scripts/check_image_urls.py slicer/parts.json
+python scripts/check_bucket_urls.py slicer/parts.json
 ```
 
 ### The caching invariant — do not break this
@@ -142,34 +145,28 @@ Because hashes are permanent addresses, every historical revision stays
 downloadable forever with no archive to maintain — this is what lets a part
 revision pin an `stl_hash` and stay retrievable indefinitely.
 
-## Storage layout (in transition)
+## Storage layout
 
-Current state and target differ; know which you're in.
+The only binaries in git are the AUTHORED sources: `slicer/parts/**` (STL
+masters, ~49 MB) and `slicer/plates/*.3mf`, plus the small generated PNGs the
+site wants at build time (`static/renders/`, `static/plate-thumbs/`).
 
-**Today:** STLs are committed as normal git objects (see `.gitattributes`),
-duplicated in `slicer/parts/**` (canonical, 49 MB) and `static/stl/**`
-(byte-identical serving copies, 68 MB). `.git` is ~267 MB.
+Everything served for download comes from the bucket, content-addressed:
 
-**Target:** the site reads bucket URLs from `slicer/artifacts.json`;
-`static/stl/` is deleted; `slicer/parts/**` moves to Git LFS as the archival
-copy.
+- each part's `stl` URL and the `all_parts_zip` bundle URL in
+  `parts.generated.json` (the zip is staged under gitignored
+  `slicer/build/bundle/` and uploaded by `sync_bucket.py`);
+- each plate's `download` URL in `plates.generated.json`;
+- every product image (`image_url`, pinned in `parts.json`).
 
-The `.gitattributes` note says LFS is banned because Vercel does not
-materialize LFS objects, which broke previews and downloads. That
-constraint dissolved once the site started reading bucket URLs — Vercel
-never needs the bytes at build time, only the JSON manifest.
-
-**But do not migrate history to LFS yet.** Historical part revisions are
-not stored anywhere; `archive_versions()` in `slicer/filament.py`
-reconstructs them by reading pre-change geometry out of git history
-(`git show <commit>~1:<path>`). Under LFS that returns pointer text, the
-`is_lfs_pointer()` guard fires, and the revision silently falls back to the
-current geometry — wrong data with no error. LFS becomes safe only once
-each revision pins its own `stl_hash` in the manifest, making the bucket
-authoritative. See `notes/UNIFIED-PARTS-SYSTEM.md` §9 step 9.
-
-Renders (`static/renders/`, ~1.4 MB) stay as normal git blobs — small, and
-the site wants them at build time.
+**Historical part-version geometry is pinned, not reconstructed.** Each
+superseded version in `parts.json` carries `stl_hash` — the sha256 of its
+final bytes, written by `stamp_versions.py` at supersession time — and
+`archive_versions()` in `slicer/filament.py` fetches those bytes from the
+bucket. Git history is never consulted for geometry, which is what made the
+2026-08 history rewrite (dropping the old `static/stl` serving copies and 30+
+committed revisions of `all-parts.zip`) safe. The pre-rewrite history is
+preserved read-only at `basicallysource/parts-calculator-archive`.
 
 ## Known stale docs
 
