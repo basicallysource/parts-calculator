@@ -67,6 +67,31 @@
 		]
 	},
 	{
+		"id": "external-brackets-6",
+		"name": "external-brackets-6",
+		"download": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/64e17ce00e1f3f45ace0ebc81ac235a74d4828d4e87ea71a081cb1fe0e79b95f.3mf",
+		"thumbs": [
+			"/plate-thumbs/external-brackets-6-1.png"
+		],
+		"parts": [
+			{
+				"name": "bottom vertical bracket",
+				"count": 6,
+				"part_id": "ext-bracket-bottom-vertical"
+			},
+			{
+				"name": "external bracket cover",
+				"count": 6,
+				"part_id": "ext-bracket-cover"
+			},
+			{
+				"name": "left external bracket",
+				"count": 6,
+				"part_id": "ext-bracket-left"
+			}
+		]
+	},
+	{
 		"id": "external-brackets",
 		"name": "external-brackets",
 		"download": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/4a28da2e33e12340c3621421365add2fed8c1a65d235f8afb93ebfc2d8203ff0.3mf",
