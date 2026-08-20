@@ -78,11 +78,22 @@ export type Assembly = {
 	id: string;
 	name: string;
 	description: string;
+	docs?: string; // path on the docs site to the full assembly guide, e.g. /hardware/assembly/...
 	section?: string; // places an empty/stub assembly in the legacy section list
 	status?: 'stub' | 'partial';
 	joining?: Joining[]; // work needed to make these lines into one unit
 	lines?: AssemblyLine[];
 };
+
+/** The documentation site. An assembly's `docs` is a path on it, never a full
+ *  URL, so the two stay linkable if the host ever moves. */
+export const DOCS_BASE = 'https://docs.basically.website';
+
+/** Absolute URL of an assembly's write-up on the docs site, or null when that
+ *  assembly has no page there yet. */
+export function docsUrl(a: Assembly): string | null {
+	return a.docs ? DOCS_BASE + a.docs : null;
+}
 
 /** Hardware committed to a single physical part (heat inserts, press-fit
  *  bearings). Scales automatically with the part count. */
