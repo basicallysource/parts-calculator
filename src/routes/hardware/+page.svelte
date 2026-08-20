@@ -309,9 +309,10 @@
 		{#if img}
 			<span class="hw-thumb relative shrink-0">
 				<img src={img.src} alt={h.name} class="h-16 w-16 border border-border bg-white object-contain p-1" />
-				<!-- A family photo stands in for every length in its family, so the
-				     length — the only thing it can't show — is stamped on the corner. -->
-				{#if img.shared && lengthLabel}
+				<!-- A stand-in photo (a family photo, or the shared socket/button tile)
+				     covers every length, so the length — the one thing it can't show —
+				     is stamped on the corner. Any screw with a length gets it. -->
+				{#if lengthLabel}
 					<span class="hw-len">{lengthLabel}</span>
 				{/if}
 				<!-- hover preview; decorative, the thumbnail already carries the alt -->
