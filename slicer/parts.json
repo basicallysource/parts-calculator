@@ -1,5 +1,5 @@
 {
-  "_comment": "Source-of-truth manifest. filament.py slices each STL once and writes ../src/lib/data/parts.generated.json + thumbnails + STL copies. Per part: id, name, category, description (short, shown in app), internal_notes (extended, agent-only, NOT emitted to the app), version, created_at, updated_at, stl, quantity (per ONE instance of its category), color, optional. attributes (optional list of {label,value} shown in the app), versions (optional archetype history: list of {version,date,message,commit}; commit ties to a real git commit, null = pending an upcoming clean commit). low_tolerance (optional bool: part has little tolerance for dimensional error - a tight/precise fit - so a test print is worth doing) + low_tolerance_note (the specifics, shown in the app). color is one of {\"role\":\"<roleid>\"} (user-picked), {\"fixed\":\"<lego-id>\"}, {\"split\":[{\"color\":\"<lego-id>\",\"qty\":N},...]} (sums to quantity), or {\"any\":true}, or {\"by_section\":{\"<sectionid>\":<colorspec>,...}} (per-section color when a part lives in multiple sections). Machine = 1 of each non-scaling category + N of each scaling category. See ../notes/TERMINOLOGY.md. SCHEMA V2 (unified parts system, see ../notes/UNIFIED-PARTS-SYSTEM.md, incremental): a part may carry kind ('printed' when absent | 'cots'); cots parts have cots {type,size?,variant?}, category (display grouping on the hardware tab), note (builder-critical caveat from the BOM sheet), image (slicer-relative path, uploaded to the bucket by sync_bucket.py and served from there) OR image_url (an already-uploaded content-addressed bucket URL; BOM product images never touch git), sourcing {vendors:[{region,vendor,url,affiliate_url?,price,currency?,pack_qty?,as_of?,note?}]} (url is always the plain listing; affiliate_url is the same listing carrying the project's Amazon tag, mirroring the BOM sheet's 'US Source 1 with Affiliate' column — both are kept so a builder can choose) (price is USD unless currency says otherwise), and no stl/color/quantities. sheet_qty {per_machine|per_layer} / sheet_qty_text are TRANSITIONAL hand counts carried over from the BOM sheet; they die once these parts are placed as requires/lines in the tree. A printed part may carry requires [{part,qty}] = hardware committed to that single physical part (heat inserts, press-fit bearings); qty scales with the part automatically. An assembly may carry lines [{part|assembly, qty}] (qty is a number, or 'per-layer' = multiplied by the total layer count, or 'middle-layers' = layer count minus 2, the layers that sit between the top and bottom interfaces) and status 'stub' (placeholder, nothing inside yet) or 'partial' (some lines filled in) — these form the experimental machine tree rooted at the 'machine' assembly. A line may also reference a laser-cut part by id (e.g. 'top-plate'); those still live in src/lib/lasercut.ts and are resolved from there until §5.5 folds them into this manifest. Line ids are unique within an assembly: two joints that use the same screw are one merged line. Screws and other hardware that JOIN parts are lines of the assembly that makes the joint, never requires of either member (requires is only for hardware committed to one physical part). joining [{method,note}] records how the lines become one unit — 'solder'|'crimp'|'glue'|'press'|'self-tap' (screw cuts its own thread in printed plastic, no insert or nut) |'friction' (held by clamping force alone, e.g. jammed in an extrusion slot). A cots part that is cut from a bought length carries stock {unit_length_mm, cut_length_mm, pieces_per_unit, unit_label, piece_label}; its lines count PIECES and the app divides to get lengths to buy.",
+  "_comment": "Source-of-truth manifest. filament.py slices each STL once and writes ../src/lib/data/parts.generated.json + thumbnails + STL copies. Per part: id, name, category, description (short, shown in app), internal_notes (extended, agent-only, NOT emitted to the app), version, created_at, updated_at, stl_hash (sha256 pin of the master STL on the bucket; upload with scripts/sync_bucket.py --upload), quantity (per ONE instance of its category), color, optional. attributes (optional list of {label,value} shown in the app), versions (optional archetype history: list of {version,date,message,commit}; commit ties to a real git commit, null = pending an upcoming clean commit). low_tolerance (optional bool: part has little tolerance for dimensional error - a tight/precise fit - so a test print is worth doing) + low_tolerance_note (the specifics, shown in the app). color is one of {\"role\":\"<roleid>\"} (user-picked), {\"fixed\":\"<lego-id>\"}, {\"split\":[{\"color\":\"<lego-id>\",\"qty\":N},...]} (sums to quantity), or {\"any\":true}, or {\"by_section\":{\"<sectionid>\":<colorspec>,...}} (per-section color when a part lives in multiple sections). Machine = 1 of each non-scaling category + N of each scaling category. See ../notes/TERMINOLOGY.md. SCHEMA V2 (unified parts system, see ../notes/UNIFIED-PARTS-SYSTEM.md, incremental): a part may carry kind ('printed' when absent | 'cots'); cots parts have cots {type,size?,variant?}, category (display grouping on the hardware tab), note (builder-critical caveat from the BOM sheet), image (slicer-relative path, uploaded to the bucket by sync_bucket.py and served from there) OR image_url (an already-uploaded content-addressed bucket URL; BOM product images never touch git), sourcing {vendors:[{region,vendor,url,affiliate_url?,price,currency?,pack_qty?,as_of?,note?}]} (url is always the plain listing; affiliate_url is the same listing carrying the project's Amazon tag, mirroring the BOM sheet's 'US Source 1 with Affiliate' column — both are kept so a builder can choose) (price is USD unless currency says otherwise), and no stl/color/quantities. sheet_qty {per_machine|per_layer} / sheet_qty_text are TRANSITIONAL hand counts carried over from the BOM sheet; they die once these parts are placed as requires/lines in the tree. A printed part may carry requires [{part,qty}] = hardware committed to that single physical part (heat inserts, press-fit bearings); qty scales with the part automatically. An assembly may carry lines [{part|assembly, qty}] (qty is a number, or 'per-layer' = multiplied by the total layer count, or 'middle-layers' = layer count minus 2, the layers that sit between the top and bottom interfaces) and status 'stub' (placeholder, nothing inside yet) or 'partial' (some lines filled in) — these form the experimental machine tree rooted at the 'machine' assembly. A line may also reference a laser-cut part by id (e.g. 'top-plate'); those still live in src/lib/lasercut.ts and are resolved from there until §5.5 folds them into this manifest. Line ids are unique within an assembly: two joints that use the same screw are one merged line. Screws and other hardware that JOIN parts are lines of the assembly that makes the joint, never requires of either member (requires is only for hardware committed to one physical part). joining [{method,note}] records how the lines become one unit — 'solder'|'crimp'|'glue'|'press'|'self-tap' (screw cuts its own thread in printed plastic, no insert or nut) |'friction' (held by clamping force alone, e.g. jammed in an extrusion slot). A cots part that is cut from a bought length carries stock {unit_length_mm, cut_length_mm, pieces_per_unit, unit_label, piece_label}; its lines count PIECES and the app divides to get lengths to buy.",
   "sections": [
     {
       "id": "feeder",
@@ -276,7 +276,7 @@
         "classification-channel": 1
       },
       "assembly": null,
-      "stl": "parts/feeder/stator.stl",
+      "stl_hash": "323b2d1f94a5440119359498de7c7f706d4b32f4c54bec45e88b94c53064279b",
       "color": {
         "by_section": {
           "feeder": {
@@ -302,7 +302,7 @@
         "feeder": 3
       },
       "assembly": null,
-      "stl": "parts/feeder/rotor-faceted.stl",
+      "stl_hash": "350de3f8e27e7d0bb1f00d2c070c7f255da73987c9b2d86f639664c5db81bfd6",
       "color": {
         "split": [
           {
@@ -331,7 +331,7 @@
         "classification-channel": 1
       },
       "assembly": null,
-      "stl": "parts/feeder/output-gear.stl",
+      "stl_hash": "69ae2f998fe3caef3e9ea75c7b3081203ff7b2e690b8ef56e7c4b4380f19b0aa",
       "color": {
         "role": "feeder"
       },
@@ -357,7 +357,7 @@
         "classification-channel": 1
       },
       "assembly": null,
-      "stl": "parts/feeder/nema-bracket.stl",
+      "stl_hash": "8b2bea87360e0a1030c66f43ac652b3e07626acaa961a963b106358cdeabd845",
       "color": {
         "by_section": {
           "feeder": {
@@ -383,7 +383,7 @@
         "feeder": 2
       },
       "assembly": "light-post",
-      "stl": "parts/feeder/light-post.stl",
+      "stl_hash": "4298d9e5383cef563903685c5ba8eb3f177793b7aa3555710a864e2a000660c9",
       "color": {
         "role": "feeder"
       },
@@ -403,7 +403,7 @@
         "feeder": 2
       },
       "assembly": "light-post",
-      "stl": "parts/feeder/light-post-cap.stl",
+      "stl_hash": "8759618be4ccf9f764520921386a0eb1209733f15a9e34b673cd104265b3057a",
       "color": {
         "fixed": "ivory-white"
       },
@@ -422,7 +422,7 @@
         "feeder": 2
       },
       "assembly": "light-post",
-      "stl": "parts/feeder/light-post-cap-adapter.stl",
+      "stl_hash": "230825d03733af289fdc5fbf3b28b59f2d4f4cbb1d87b9db9e640f3d8d0e4a34",
       "color": {
         "role": "feeder"
       },
@@ -459,7 +459,7 @@
         "feeder": 1
       },
       "assembly": null,
-      "stl": "parts/feeder/bulk-cap.stl",
+      "stl_hash": "20223510233281bcdf32699903e054a22c0cffde8d6c4e7542f9ae8d1bd04a9f",
       "color": {
         "role": "feeder"
       },
@@ -478,7 +478,7 @@
         "classification-channel": 1
       },
       "assembly": "classification-chamber",
-      "stl": "parts/classification-channel/classification-dome.stl",
+      "stl_hash": "a6b8ec85b47dd24f549db12cd74dd6f4d09b92a5e92c4361efbf6cbf95fc498e",
       "color": {
         "fixed": "ivory-white"
       },
@@ -514,7 +514,7 @@
         "interface": 6
       },
       "assembly": null,
-      "stl": "parts/interface/interface-bracket.stl",
+      "stl_hash": "5835878c9a32a19bf56b75463137639e6c4fc60615af07313086444697fc717f",
       "color": {
         "role": "frame"
       },
@@ -539,7 +539,7 @@
         "interface": 6
       },
       "assembly": null,
-      "stl": "parts/interface/interface-spacer.stl",
+      "stl_hash": "43dda1e1554853a4759867ecb98e75a54631a9d46f947c548605c3c309709a29",
       "color": {
         "role": "frame"
       },
@@ -558,7 +558,7 @@
         "chute": 1
       },
       "assembly": null,
-      "stl": "parts/chute/chute-core.stl",
+      "stl_hash": "fccd4907faf05e295c070b5a5c2a41b6f89a5109bc7e368cb7632f26a2c19590",
       "color": {
         "role": "chute-core"
       },
@@ -585,7 +585,7 @@
       },
       "assembly": null,
       "folder": "bin-retainers",
-      "stl": "parts/bins/bin-retainer-left.stl",
+      "stl_hash": "6e1aa2f4446c9f399fe1d6232fb0991138358b48714ca3c9d27206fa4c728c57",
       "color": {
         "role": "frame"
       },
@@ -605,7 +605,7 @@
       },
       "assembly": null,
       "folder": "bin-retainers",
-      "stl": "parts/bins/bin-retainer-right.stl",
+      "stl_hash": "54704393c3e0786bb69eed1596296519d032aea277b00ffed1335347d03a8dc6",
       "color": {
         "role": "frame"
       },
@@ -625,7 +625,7 @@
         "interface": 6
       },
       "assembly": null,
-      "stl": "parts/layer/frame-crossbeam.stl",
+      "stl_hash": "45a69ae6847617b33b1aa45a379f0b413edba4d13203f4de40506a1f7cb80966",
       "color": {
         "role": "frame"
       },
@@ -646,7 +646,7 @@
         "interface": 12
       },
       "assembly": null,
-      "stl": "parts/layer/frame-90deg-bracket.stl",
+      "stl_hash": "1081b927cfb55fab0a62b2b3fdee9a86b39960fc0c1ac4d6119c983e39a2b491",
       "source": "1_printed_crossbeams - inner_90_bracket.stl",
       "color": {
         "role": "frame"
@@ -668,7 +668,7 @@
         "lazy-susan": 1
       },
       "assembly": null,
-      "stl": "parts/lazy-susan/ls-mount-to-chute.stl",
+      "stl_hash": "b63cc59f19780e07ce70f28ed4c6b6e90d6c1e6d469ff8692803ad97815ebfe6",
       "color": {
         "role": "chute-core"
       },
@@ -694,7 +694,7 @@
         "lazy-susan": 1
       },
       "assembly": null,
-      "stl": "parts/lazy-susan/ls-bottom-static.stl",
+      "stl_hash": "d658c97bd1516b3c61f37028761b46b9be1aa1f6cd26f9057fd9c45691f54488",
       "color": {
         "role": "frame"
       },
@@ -720,7 +720,7 @@
       },
       "assembly": null,
       "folder": "lazy-susan-extrusion-mounts",
-      "stl": "parts/lazy-susan/ls-mount-to-extrusion.stl",
+      "stl_hash": "1dac92ed155a14f17d65c6008e8aadd88f6797e975f31f9ccab6d310ce1382f1",
       "color": {
         "role": "frame"
       },
@@ -740,7 +740,7 @@
       },
       "assembly": null,
       "folder": "lazy-susan-extrusion-mounts",
-      "stl": "parts/lazy-susan/ls-hold-in-place.stl",
+      "stl_hash": "18fe2e7e1a18dde42bc8412d288909060d3db35949a7818d56939230d8838872",
       "color": {
         "role": "frame"
       },
@@ -759,7 +759,7 @@
         "lazy-susan": 1
       },
       "assembly": null,
-      "stl": "parts/lazy-susan/ls-washer.stl",
+      "stl_hash": "cdfc42cbc5c9285089498ebd013c8ee05fa48ad7adcf12c43eb2d1396ef2d231",
       "color": {
         "role": "frame"
       },
@@ -774,7 +774,7 @@
       "version": "1",
       "created_at": "2026-06-27",
       "updated_at": "2026-06-27",
-      "stl": "parts/external-bracket/ext-bracket-left.stl",
+      "stl_hash": "da4b3abd3db72070484178ef5aa1d0906397c6a310bdf0e22f724940bd62dba2",
       "source": "1_printed_crossbeams - left_external_bracket.stl",
       "quantities": {
         "layer": 6,
@@ -798,7 +798,7 @@
       "version": "1",
       "created_at": "2026-06-27",
       "updated_at": "2026-06-27",
-      "stl": "parts/external-bracket/ext-bracket-bottom-vertical.stl",
+      "stl_hash": "313397afb08fc1943f045905b96131f73f1dc70c05d59fd2583c77da38318c36",
       "source": "1_printed_crossbeams - bottom_vertical_bracket.stl",
       "quantities": {
         "layer": 6,
@@ -821,7 +821,7 @@
       "version": "1",
       "created_at": "2026-06-27",
       "updated_at": "2026-06-27",
-      "stl": "parts/external-bracket/ext-bracket-cover.stl",
+      "stl_hash": "f99e33cea11551b8222feac91c28015488ff2c239e632f5098322e7ea10fc96c",
       "source": "1_printed_crossbeams - external_bracket_cover.stl",
       "quantities": {
         "layer": 6,
@@ -851,7 +851,7 @@
       "layer_scope": "bottom-only",
       "assembly": "external-bracket",
       "onshape": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/w/473cbfa6d8551e3b96a576e2/e/ee7cac13ee3ea67850bf1cf3",
-      "stl": "parts/external-bracket/ext-bracket-foot-cover.stl",
+      "stl_hash": "96356ae844558770db2340012f013d5a18d119cea1facdeac58596b2b425f540",
       "color": {
         "role": "frame"
       },
@@ -887,7 +887,7 @@
         "interface": 1
       },
       "assembly": "fixed-upper-section",
-      "stl": "parts/interface/interface-upper-fixed-section.stl",
+      "stl_hash": "47d71e76dcfa387953add0876f279b8a8f26dd836d1d06d362f2d8e5477455ea",
       "color": {
         "role": "frame"
       },
@@ -912,7 +912,7 @@
         "interface": 5
       },
       "assembly": "fixed-upper-section",
-      "stl": "parts/interface/interface-rib.stl",
+      "stl_hash": "21976d79a569732eee539fcfb466d32251996860b04d6e8db4e197e47ec54f44",
       "color": {
         "role": "frame"
       },
@@ -932,7 +932,7 @@
         "interface": 1
       },
       "assembly": "fixed-upper-section",
-      "stl": "parts/interface/interface-rib-switch.stl",
+      "stl_hash": "71fd184f21ab0c3a9550eb07542d917014d995a8d607e82d23d764cc47c6efb0",
       "color": {
         "role": "frame"
       },
@@ -968,7 +968,7 @@
         "interface": 1
       },
       "assembly": "fixed-upper-section",
-      "stl": "parts/interface/interface-big-spacer.stl",
+      "stl_hash": "5fbb26d2e34975168e734a523dae50d691fcb5725427e1be1c6bc1c30e129643",
       "color": {
         "role": "frame"
       },
@@ -987,7 +987,7 @@
         "interface": 1
       },
       "assembly": "cable-clamp",
-      "stl": "parts/interface/cable-clamp-inner.stl",
+      "stl_hash": "a77f4963aada127b93e60161a8aa83685a03ce6f3beb318c270627f7641927af",
       "color": {
         "role": "chute-core"
       },
@@ -1022,7 +1022,7 @@
         "interface": 1
       },
       "assembly": "cable-clamp",
-      "stl": "parts/interface/cable-clamp-outer.stl",
+      "stl_hash": "dd778421784bf38babc9ccde0f1007ce61e7e2c575718a933e62aadfedd55484",
       "color": {
         "role": "chute-core"
       },
@@ -1043,7 +1043,7 @@
         "interface": 1
       },
       "assembly": "chute-stepper-gearing",
-      "stl": "parts/interface/interface-spur-gear.stl",
+      "stl_hash": "f5c3804796153c3ecb0bab5cc2c16983ed4b4f2edf97df45f2fa7c3a5d81e620",
       "color": {
         "role": "frame"
       },
@@ -1063,7 +1063,7 @@
         "interface": 1
       },
       "assembly": "chute-stepper-gearing",
-      "stl": "parts/interface/interface-idler-gear.stl",
+      "stl_hash": "86b04df825b6c019f6be0a8894bbbd05a42e6abab86d2694e4a99f5284b6c4d9",
       "color": {
         "role": "frame"
       },
@@ -1089,7 +1089,7 @@
         "interface": 1
       },
       "assembly": "chute-stepper-gearing",
-      "stl": "parts/interface/interface-nema23-bracket.stl",
+      "stl_hash": "69a9a1dd8c741866e723d8fd5a32baa78b233538a1341bf50eb0f2425a38d82a",
       "color": {
         "role": "frame"
       },
@@ -1115,7 +1115,7 @@
         "interface": 1
       },
       "assembly": "chute-stepper-gearing",
-      "stl": "parts/interface/chute-stepper-idler-bearing-retainer-outer.stl",
+      "stl_hash": "00180b3aaeab6c4e0222c4accfc69172ea358c68c1a07427324ba22e57795a23",
       "color": {
         "role": "frame"
       },
@@ -1136,7 +1136,7 @@
         "interface": 1
       },
       "assembly": "chute-stepper-gearing",
-      "stl": "parts/interface/chute-stepper-idler-bearing-retainer-inner.stl",
+      "stl_hash": "6157c7c623581c40285ecf8703c915aa95d921369000f5e68e25ccd2989073f4",
       "color": {
         "role": "frame"
       },
@@ -1156,7 +1156,7 @@
         "interface": 5
       },
       "assembly": "cable-cage",
-      "stl": "parts/interface/interface-cage-bracket.stl",
+      "stl_hash": "6164e958336a10b2a6f3910b6a0bc754996a15202d2719923b272e0963561074",
       "color": {
         "role": "frame"
       },
@@ -1175,7 +1175,7 @@
         "interface": 1
       },
       "assembly": "cable-cage",
-      "stl": "parts/interface/interface-cage-bracket-cable.stl",
+      "stl_hash": "081da7a95e53340f4f27219a224c0015905f176707c84f82c2f69bd72da85530",
       "color": {
         "role": "frame"
       },
@@ -1200,7 +1200,7 @@
         "interface": 1
       },
       "assembly": "cable-cage",
-      "stl": "parts/interface/ribbon-cable-clamp.stl",
+      "stl_hash": "39b7e6d0e9864c00ca1c75014c1243cabff5a4be54c7671e51352b922c5a0939",
       "color": {
         "role": "frame"
       },
@@ -1220,7 +1220,7 @@
       },
       "assembly": null,
       "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/12bfe1cca4fda5bc5763c0c9",
-      "stl": "parts/interface/top-interface-split-spur-gear-1.stl",
+      "stl_hash": "6a600fb6a6b3f2e5cf22f87fdce65ce0cbeddb2063f598de4dd25f63df23fe0f",
       "color": {
         "role": "chute-core"
       },
@@ -1240,7 +1240,7 @@
       },
       "assembly": null,
       "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/12bfe1cca4fda5bc5763c0c9",
-      "stl": "parts/interface/top-interface-split-spur-gear-2.stl",
+      "stl_hash": "c109b8b226a8652d7dd990168a58f52b202e35b842ee191cee49658daffacf7b",
       "color": {
         "role": "chute-core"
       },
@@ -1261,7 +1261,7 @@
       },
       "assembly": null,
       "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/12bfe1cca4fda5bc5763c0c9",
-      "stl": "parts/interface/top-interface-split-spur-gear-3.stl",
+      "stl_hash": "11f50ca23d809c133d2f409908e19b0e6c277e995a6d06e1c11da81bfe5dd6e1",
       "color": {
         "role": "chute-core"
       },
@@ -1291,7 +1291,7 @@
       },
       "assembly": "limit-switch",
       "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/f23afbf63ca583eed726c9b4",
-      "stl": "parts/interface/limit-switch-dowel-pin.stl",
+      "stl_hash": "08968eebc8fc928db76c12f0a502feaaa11bb026c5bbf03e9903fd9449581900",
       "color": {
         "role": "frame"
       },
@@ -1319,7 +1319,7 @@
       },
       "assembly": "limit-switch",
       "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/05b09a7158dd399ac6f8e446/e/70838d736e83bd9b6f0ccb7a",
-      "stl": "parts/interface/limit-switch-housing.stl",
+      "stl_hash": "5e22431ac91aad0af6d5878d2cc6fb2ae7dd9c45196dae25d9e2f997b6e3c540",
       "color": {
         "role": "frame"
       },
@@ -1345,7 +1345,7 @@
       },
       "assembly": "limit-switch",
       "onshape": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/w/6952c4b6ff33a9eff9bf58c6/e/3c6d45d569e85f2df62b8449",
-      "stl": "parts/interface/limit-switch-hammer.stl",
+      "stl_hash": "a5105d966296f54b7a01a04c21b46861bc407d1b221903def47130aa9b9ab678",
       "color": {
         "role": "chute-core"
       },
@@ -1364,7 +1364,7 @@
         "classification-channel": 1
       },
       "assembly": "classification-chamber",
-      "stl": "parts/classification-channel/rotor-finned.stl",
+      "stl_hash": "b8986ea64a9d83e3bb9bb7e116e92068d070bbffcc94ae1a3ce95c9ad5c8601b",
       "color": {
         "fixed": "ivory-white"
       },
@@ -1383,7 +1383,7 @@
         "feeder": 4
       },
       "assembly": null,
-      "stl": "parts/feeder/idler-gear.stl",
+      "stl_hash": "dd13e9269f08d3d9a698e043e446abb968ae998435ef7b552325f0b7db629eeb",
       "color": {
         "role": "feeder"
       },
@@ -1408,7 +1408,7 @@
         "feeder": 4
       },
       "assembly": null,
-      "stl": "parts/feeder/input-gear.stl",
+      "stl_hash": "3587940de2e8559ea125eb2acd59976aa7f3e45bd70b32f41044d1c8ae3a1b44",
       "color": {
         "role": "feeder"
       },
@@ -1427,7 +1427,7 @@
         "feeder": 2
       },
       "assembly": null,
-      "stl": "parts/feeder/output-guide.stl",
+      "stl_hash": "8115840b817f57467725c99b987ca4a036df1fe8b98a0991c438bea84ebbe549",
       "color": {
         "role": "feeder"
       },
@@ -1447,7 +1447,7 @@
       },
       "assembly": null,
       "folder": "funnel-brackets",
-      "stl": "parts/chute/funnel-bracket-left.stl",
+      "stl_hash": "ced3172731e0c2a64920edb072501efadf3c57325bf200fcb14bba0048dabff9",
       "color": {
         "role": "chute-core"
       },
@@ -1469,7 +1469,7 @@
       },
       "assembly": null,
       "folder": "funnel-brackets",
-      "stl": "parts/chute/funnel-bracket-right.stl",
+      "stl_hash": "f7932bce6ef7eddb1be6c64a738b41b6573d67bdadb40d6febf131e0a21ccb31",
       "color": {
         "role": "chute-core"
       },
@@ -1490,7 +1490,7 @@
         "chute": 1
       },
       "assembly": "chute-bearing",
-      "stl": "parts/chute/door-module.stl",
+      "stl_hash": "b832b7eab72a8392c80d35ebd67bb7cb6326bbc5c82a8592688ccda82fe315b3",
       "color": {
         "role": "chute-core"
       },
@@ -1515,7 +1515,7 @@
         "chute": 1
       },
       "assembly": "chute-bearing",
-      "stl": "parts/chute/bearing-holder-left.stl",
+      "stl_hash": "f0cc0eb5d575fc3d79cdea59caa0fcc6f7732c336a6830a186ffce51ef267a68",
       "color": {
         "role": "chute-core"
       },
@@ -1540,7 +1540,7 @@
         "chute": 1
       },
       "assembly": "chute-bearing",
-      "stl": "parts/chute/bearing-holder-right.stl",
+      "stl_hash": "9577bfc4f70bca72fe7c45d1c88a82df0ef14d712c67a395003c0deb9c89895b",
       "color": {
         "role": "chute-core"
       },
@@ -1565,7 +1565,7 @@
         "chute": 1
       },
       "assembly": "servo-adapter",
-      "stl": "parts/chute/servo-adapter-servo-side.stl",
+      "stl_hash": "a82b26f1d352e337ba3b14bf1440dcb163dae4c53e405dd82ae24d98ef5ac55c",
       "color": {
         "role": "chute-core"
       },
@@ -1584,7 +1584,7 @@
         "chute": 1
       },
       "assembly": "servo-adapter",
-      "stl": "parts/chute/servo-adapter-flap-side.stl",
+      "stl_hash": "546231d66be39ade1f502e53375608447228ced0e81bfa9211fd0fa938a02f05",
       "color": {
         "role": "chute-core"
       },
@@ -1603,7 +1603,7 @@
         "chute": 1
       },
       "assembly": "servo-bracket",
-      "stl": "parts/chute/servo-bracket-lower-arm.stl",
+      "stl_hash": "9d6c82450ddd4a21fd0b832f6085298c00414a4d530765651b355c7043754203",
       "color": {
         "role": "chute-core"
       },
@@ -1622,7 +1622,7 @@
         "chute": 1
       },
       "assembly": "servo-bracket",
-      "stl": "parts/chute/servo-bracket-side-arm.stl",
+      "stl_hash": "b37a2c6b9864744415a50c02da10425ac79d6d8f44c6938c941c36e60357464f",
       "color": {
         "role": "chute-core"
       },
@@ -1641,7 +1641,7 @@
         "chute": 1
       },
       "assembly": "servo-bracket",
-      "stl": "parts/chute/servo-bracket-cover.stl",
+      "stl_hash": "1ebad4ab6770ccf750f33c219e0815f106d44c1d0dce55cacef42b9fdc84c8d2",
       "color": {
         "role": "chute-core"
       },
@@ -1660,7 +1660,7 @@
         "chute": 1
       },
       "assembly": "servo-bracket",
-      "stl": "parts/chute/servo-bracket-housing.stl",
+      "stl_hash": "e03d031e35f6aeed0303564b228866ca783be596e98f0d52fc0aff8bf41d6bd9",
       "requires": [
         {
           "part": "hsi-m3-long",
@@ -1685,7 +1685,7 @@
         "feeder": 9
       },
       "assembly": null,
-      "stl": "parts/feeder/leg.stl",
+      "stl_hash": "6621b702d3ada3422d7e3eb72f86cc7fec8a86b842539f858b7784e4e4587592",
       "color": {
         "role": "feeder"
       },
@@ -1704,7 +1704,7 @@
         "feeder": 9
       },
       "assembly": null,
-      "stl": "parts/feeder/foot.stl",
+      "stl_hash": "8c70fc095a1495e9a75f2e88803a9de5cac2d6cc0351d977fd684bed5546ba7e",
       "color": {
         "role": "feeder"
       },
@@ -1723,7 +1723,7 @@
         "chute": 1
       },
       "assembly": null,
-      "stl": "parts/chute/chute-door.stl",
+      "stl_hash": "9291f5d03edcf10dc1b5f74df681ea1c33f89cacc680aa416f9031bddd1096ff",
       "color": {
         "role": "chute-core"
       },
@@ -1742,7 +1742,7 @@
         "feeder": 9
       },
       "assembly": null,
-      "stl": "parts/feeder/leg-extension.stl",
+      "stl_hash": "a6f22135b92ac953c3c83073064cc2531fe40277339dc3cd0cf0327f73813d50",
       "color": {
         "role": "feeder"
       },
@@ -1760,7 +1760,7 @@
         "feeder": 2
       },
       "assembly": "camera-mount",
-      "stl": "parts/feeder/camera-mount-part-6.stl",
+      "stl_hash": "b8dfcbe095b0f961276ffce9d01a70936c78e4bc701649670eb10d9385fdfea6",
       "color": {
         "role": "feeder"
       },
@@ -1778,7 +1778,7 @@
         "feeder": 2
       },
       "assembly": "camera-mount",
-      "stl": "parts/feeder/camera-mount-part-37.stl",
+      "stl_hash": "dd6a72f6ef324012529d0dd0f95b9e81b08fac5a95f0d1277917d4251742df78",
       "color": {
         "role": "feeder"
       },
@@ -1796,7 +1796,7 @@
         "feeder": 2
       },
       "assembly": "camera-mount",
-      "stl": "parts/feeder/camera-mount-part-37b.stl",
+      "stl_hash": "39a3d2c7816ac6c7ad1108111f0d6629564414ea147f0800dc76af85be0ac6c1",
       "color": {
         "role": "feeder"
       },
@@ -1814,7 +1814,7 @@
         "feeder": 4
       },
       "assembly": "camera-mount",
-      "stl": "parts/feeder/camera-mount-rod-mount.stl",
+      "stl_hash": "373b28aa2891096bc3231820d8f87a6a836b4ab3ba95f58f09708ff696ed6b86",
       "color": {
         "role": "feeder"
       },
@@ -1832,7 +1832,7 @@
         "classification-channel": 1
       },
       "assembly": "classification-chamber",
-      "stl": "parts/classification-channel/camera-led-insert.stl",
+      "stl_hash": "14202c7b6732d540148082a5d55b3f33ac532f111fb060bc00f95ed25799f816",
       "color": {
         "fixed": "ivory-white"
       },
@@ -1870,7 +1870,7 @@
         "classification-channel": 1
       },
       "assembly": "camera-extension",
-      "stl": "parts/classification-channel/camera-extension.stl",
+      "stl_hash": "1253c651918595ba46bfc57401c0b2b6aeb2893649fa6c0d4b92c486943deee4",
       "color": {
         "fixed": "ash-gray"
       },
@@ -1909,7 +1909,7 @@
         "classification-channel": 1
       },
       "assembly": "camera-extension",
-      "stl": "parts/classification-channel/camera-extension-mount.stl",
+      "stl_hash": "a69def7f420a0ac70bcc1be0827d5cb9e46b322ea5dfa09fa075f746b5b7f6c8",
       "color": {
         "fixed": "ash-gray"
       },
@@ -1930,7 +1930,7 @@
       },
       "assembly": null,
       "folder": "layer-connectors",
-      "stl": "parts/layer/layer-connector-1.stl",
+      "stl_hash": "c85e30f35445117061a4c7871f7823171bd503fbcd94ea77b53f405a5626ee1c",
       "color": {
         "role": "chute-core"
       },
@@ -1951,7 +1951,7 @@
       },
       "assembly": null,
       "folder": "layer-connectors",
-      "stl": "parts/layer/layer-connector-2.stl",
+      "stl_hash": "1df17cf7ff0fe530545b45dd107822db2a796f870de67aaa8769663a4eb941f2",
       "color": {
         "role": "chute-core"
       },
@@ -1971,7 +1971,7 @@
       },
       "assembly": null,
       "onshape": "https://cad.onshape.com/documents/238eb36f4ee3382c5a50a32b/w/78eed8b37e676b442c6450e1/e/753de7ce802d72cd739d82e2",
-      "stl": "parts/interface/chute-stepper-support-block.stl",
+      "stl_hash": "106dec95fef16977ebef133766df63d301b98885ac8a4bf9bf718e3eda72ac7f",
       "source": "Chute stepper support block.stl",
       "color": {
         "role": "frame"
@@ -1993,7 +1993,7 @@
       "assembly": null,
       "variant_group": "funnel",
       "variant_name": "Third size",
-      "stl": "parts/funnel/funnel-third.stl",
+      "stl_hash": "287f8f9936b958f15dc9acd832f6320cbc4fcfb9ee0f7cd73ea67d9953d16961",
       "color": {
         "role": "funnel"
       },
@@ -2014,7 +2014,7 @@
       "assembly": null,
       "variant_group": "funnel",
       "variant_name": "Half size",
-      "stl": "parts/funnel/funnel-half.stl",
+      "stl_hash": "533487b3dadbdf8ec33af0d9d5185c2d978325e03b13c56a2121135a16c69a53",
       "color": {
         "role": "funnel"
       },
@@ -2036,7 +2036,7 @@
       "folder": "printed-bins",
       "variant_group": "bin",
       "variant_name": "Half",
-      "stl": "parts/bins/bin-half-left.stl",
+      "stl_hash": "2073b94e6ea18fb2a836c3fc17633189771ca8b35a4dd86b0812b1b54ac1fdd5",
       "color": {
         "role": "bin"
       },
@@ -2057,7 +2057,7 @@
       "folder": "printed-bins",
       "variant_group": "bin",
       "variant_name": "Half",
-      "stl": "parts/bins/bin-half-right.stl",
+      "stl_hash": "93ccbb523ae5ee0b767a08ba53371f9c656caf175df2093ddd9c49af96db76d1",
       "color": {
         "role": "bin"
       },
@@ -2079,7 +2079,7 @@
       "variant_group": "bin",
       "variant_name": "Third",
       "source": "bin-third-left.stl",
-      "stl": "parts/bins/bin-third-left.stl",
+      "stl_hash": "16b47a00d4e464e08ad4f5fd66ab9dac33889d1dd84641fa9db99025d8dd08b5",
       "color": {
         "role": "bin"
       },
@@ -2101,7 +2101,7 @@
       "variant_group": "bin",
       "variant_name": "Third",
       "source": "bin-third-center.stl",
-      "stl": "parts/bins/bin-third-center.stl",
+      "stl_hash": "8237c2a114d13e5cc95580b92dd4182c5bbf3b957c63bef7b5245cb288bea1bb",
       "color": {
         "role": "bin"
       },
@@ -2123,7 +2123,7 @@
       "variant_group": "bin",
       "variant_name": "Third",
       "source": "bin-third-rightback.stl",
-      "stl": "parts/bins/bin-third-rightback.stl",
+      "stl_hash": "afc9d6e16cf3f8db7adb873f2c77158e8924c25ee29c4f669361a59d87d99f4e",
       "color": {
         "role": "bin"
       },
@@ -2142,7 +2142,7 @@
       },
       "assembly": null,
       "folder": "bearing-covers",
-      "stl": "parts/chute/bearing-cover-covered.stl",
+      "stl_hash": "1a177913356c66c6667093d333d457c0b8fedc3e4379ffe023e92670e58b7d1d",
       "color": {
         "role": "chute-core"
       },
@@ -2161,7 +2161,7 @@
       },
       "assembly": null,
       "folder": "bearing-covers",
-      "stl": "parts/chute/bearing-cover-servo.stl",
+      "stl_hash": "4573bb40f91390f1dcbe7c87eb187fa3a68e7c6ea5de17fc0f9e083e7506242b",
       "color": {
         "role": "chute-core"
       },
@@ -2180,7 +2180,7 @@
       },
       "assembly": "meanwell-psu-box",
       "onshape": "https://cad.onshape.com/documents/ff3546ceb03f5fc907e6ed4c/w/76ea03e60d160b9d0990194d/e/b9f80b00e4dd34407e23b560",
-      "stl": "parts/electronics/meanwell-psu-back-mount.stl",
+      "stl_hash": "e09524f65ab42f6647abd8d41f7e4bbde08be8e8261d488d0fbd92c0e8bbddcc",
       "source": "Meanwell 24v PSU Box - psu back mount.stl",
       "color": {
         "role": "frame"
@@ -2201,7 +2201,7 @@
       },
       "assembly": "meanwell-psu-box",
       "onshape": "https://cad.onshape.com/documents/ff3546ceb03f5fc907e6ed4c/w/76ea03e60d160b9d0990194d/e/b9f80b00e4dd34407e23b560",
-      "stl": "parts/electronics/meanwell-psu-connections.stl",
+      "stl_hash": "f94f353956fde415361167f6aa391e85b8f13ad619204d60b202fcf09a3686e9",
       "source": "Meanwell 24v PSU Box - psu connections.stl",
       "color": {
         "role": "frame"
@@ -2222,7 +2222,7 @@
       },
       "assembly": "meanwell-psu-box",
       "onshape": "https://cad.onshape.com/documents/ff3546ceb03f5fc907e6ed4c/w/76ea03e60d160b9d0990194d/e/b9f80b00e4dd34407e23b560",
-      "stl": "parts/electronics/meanwell-psu-cap.stl",
+      "stl_hash": "2fa72485f7b395f7cbcb898e99dff616475eb80bb80520b5dbd4b066032aed62",
       "source": "Meanwell 24v PSU Box - cap.stl",
       "color": {
         "role": "frame"

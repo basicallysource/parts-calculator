@@ -1408,7 +1408,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/323b2d1f94a5440119359498de7c7f706d4b32f4c54bec45e88b94c53064279b.stl",
-					"render": "/renders/stator.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/9f40a356e3c364f9b8825bceb44e880d9a8208e52781baf6ca82ec18a7472009.png",
 					"grams": 175.52
 				}
 			],
@@ -1417,7 +1417,7 @@
 			"support_grams": 23.42,
 			"support_used": true,
 			"support_intentional": true,
-			"print_seconds": 16014,
+			"print_seconds": 16012,
 			"color": {
 				"by_section": {
 					"feeder": {
@@ -1436,7 +1436,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/323b2d1f94a5440119359498de7c7f706d4b32f4c54bec45e88b94c53064279b.stl",
-			"render": "/renders/stator.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/9f40a356e3c364f9b8825bceb44e880d9a8208e52781baf6ca82ec18a7472009.png"
 		},
 		{
 			"id": "rotor-faceted",
@@ -1459,16 +1459,16 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/350de3f8e27e7d0bb1f00d2c070c7f255da73987c9b2d86f639664c5db81bfd6.stl",
-					"render": "/renders/rotor-faceted.png",
-					"grams": 166.51
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/a302129269057d0aba3f6cda1eefe0c6986acac6a1822dde9857c2cee088df3d.png",
+					"grams": 166.5
 				}
 			],
 			"attributes": [],
-			"grams": 166.51,
+			"grams": 166.5,
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 11081,
+			"print_seconds": 11084,
 			"color": {
 				"split": [
 					{
@@ -1489,7 +1489,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/350de3f8e27e7d0bb1f00d2c070c7f255da73987c9b2d86f639664c5db81bfd6.stl",
-			"render": "/renders/rotor-faceted.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/a302129269057d0aba3f6cda1eefe0c6986acac6a1822dde9857c2cee088df3d.png"
 		},
 		{
 			"id": "output-gear",
@@ -1513,16 +1513,16 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/69ae2f998fe3caef3e9ea75c7b3081203ff7b2e690b8ef56e7c4b4380f19b0aa.stl",
-					"render": "/renders/output-gear.png",
-					"grams": 59.69
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/5ebe12b3aade28331423b7a09fe2e72fb2dad0a5977a6621cf6b37ceae0160e6.png",
+					"grams": 59.67
 				}
 			],
 			"attributes": [],
-			"grams": 59.69,
+			"grams": 59.67,
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 7237,
+			"print_seconds": 7249,
 			"color": {
 				"role": "feeder"
 			},
@@ -1539,7 +1539,7 @@
 				}
 			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/69ae2f998fe3caef3e9ea75c7b3081203ff7b2e690b8ef56e7c4b4380f19b0aa.stl",
-			"render": "/renders/output-gear.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/5ebe12b3aade28331423b7a09fe2e72fb2dad0a5977a6621cf6b37ceae0160e6.png"
 		},
 		{
 			"id": "nema-bracket",
@@ -1563,16 +1563,16 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8b2bea87360e0a1030c66f43ac652b3e07626acaa961a963b106358cdeabd845.stl",
-					"render": "/renders/nema-bracket.png",
-					"grams": 72.42
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/3f159ceaf91ee261a91ecdc124108115181132721219b0f46eca9133968d1a72.png",
+					"grams": 72.45
 				}
 			],
 			"attributes": [],
-			"grams": 72.42,
+			"grams": 72.45,
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 7206,
+			"print_seconds": 7210,
 			"color": {
 				"by_section": {
 					"feeder": {
@@ -1591,7 +1591,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8b2bea87360e0a1030c66f43ac652b3e07626acaa961a963b106358cdeabd845.stl",
-			"render": "/renders/nema-bracket.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/3f159ceaf91ee261a91ecdc124108115181132721219b0f46eca9133968d1a72.png"
 		},
 		{
 			"id": "light-post",
@@ -1614,16 +1614,16 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/4298d9e5383cef563903685c5ba8eb3f177793b7aa3555710a864e2a000660c9.stl",
-					"render": "/renders/light-post.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/89c7c136fdef13314f78228d3f7d405b1c958d7b835a5b2c186012cbd71f82c4.png",
 					"grams": 13.16
 				}
 			],
 			"attributes": [],
 			"grams": 13.16,
-			"support_grams": 2.51,
+			"support_grams": 2.47,
 			"support_used": true,
 			"support_intentional": true,
-			"print_seconds": 5161,
+			"print_seconds": 5172,
 			"color": {
 				"role": "feeder"
 			},
@@ -1635,7 +1635,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/4298d9e5383cef563903685c5ba8eb3f177793b7aa3555710a864e2a000660c9.stl",
-			"render": "/renders/light-post.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/89c7c136fdef13314f78228d3f7d405b1c958d7b835a5b2c186012cbd71f82c4.png"
 		},
 		{
 			"id": "light-post-cap",
@@ -1658,7 +1658,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8759618be4ccf9f764520921386a0eb1209733f15a9e34b673cd104265b3057a.stl",
-					"render": "/renders/light-post-cap.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/210cd1dbed3419f540c879e0b7dc13e4fc3e384ca59c824979937e89d73106b2.png",
 					"grams": 21.98
 				}
 			],
@@ -1667,7 +1667,7 @@
 			"support_grams": 4.62,
 			"support_used": true,
 			"support_intentional": true,
-			"print_seconds": 3246,
+			"print_seconds": 3240,
 			"color": {
 				"fixed": "ivory-white"
 			},
@@ -1679,7 +1679,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8759618be4ccf9f764520921386a0eb1209733f15a9e34b673cd104265b3057a.stl",
-			"render": "/renders/light-post-cap.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/210cd1dbed3419f540c879e0b7dc13e4fc3e384ca59c824979937e89d73106b2.png"
 		},
 		{
 			"id": "light-post-cap-adapter",
@@ -1702,7 +1702,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/230825d03733af289fdc5fbf3b28b59f2d4f4cbb1d87b9db9e640f3d8d0e4a34.stl",
-					"render": "/renders/light-post-cap-adapter.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/c8c2094d7780f455d3ee8abb9968050609645547e09a99be06c4aecd8af0ba43.png",
 					"grams": 2.59
 				}
 			],
@@ -1711,7 +1711,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 956,
+			"print_seconds": 955,
 			"color": {
 				"role": "feeder"
 			},
@@ -1723,7 +1723,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/230825d03733af289fdc5fbf3b28b59f2d4f4cbb1d87b9db9e640f3d8d0e4a34.stl",
-			"render": "/renders/light-post-cap-adapter.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/c8c2094d7780f455d3ee8abb9968050609645547e09a99be06c4aecd8af0ba43.png"
 		},
 		{
 			"id": "bulk-cap",
@@ -1744,20 +1744,20 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version. The dovetail fit was too tight and could make the cap difficult to install on the stator.",
-					"commit": "da7a320",
+					"commit": "bd9f3a9",
 					"stl_hash": "c7200a59ee437fb073d90f0fcaf96773cf1aad0e6fcd34f5a68beb8f4752497a",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/03707ec6bfee05330c334a25d1d9c65a1961291400a345a8de3cbd98772485d1.png",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/c7200a59ee437fb073d90f0fcaf96773cf1aad0e6fcd34f5a68beb8f4752497a.stl",
-					"render": "/renders/versions/bulk-cap-v1.png",
 					"grams": 648.51
 				},
 				{
 					"version": "2",
 					"date": "2026-08-18",
 					"message": "Increased the dovetail clearance so the cap slides onto the stator more easily and seats without excessive force.",
-					"commit": "dd00cf6",
+					"commit": "a929381",
 					"onshape_version": "https://cad.onshape.com/documents/60aa51fc61d18f2155b99910/v/3101eccaa723ea34388cbee9/e/66109ce96b305bf318354f93",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/20223510233281bcdf32699903e054a22c0cffde8d6c4e7542f9ae8d1bd04a9f.stl",
-					"render": "/renders/bulk-cap.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/592e20477c38a3ce0f3373e4c3c1e28896ffe83fc01a7e769c0479a5e319e89a.png",
 					"grams": 620.43
 				}
 			],
@@ -1766,7 +1766,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 43772,
+			"print_seconds": 43773,
 			"color": {
 				"role": "feeder"
 			},
@@ -1778,7 +1778,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/20223510233281bcdf32699903e054a22c0cffde8d6c4e7542f9ae8d1bd04a9f.stl",
-			"render": "/renders/bulk-cap.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/592e20477c38a3ce0f3373e4c3c1e28896ffe83fc01a7e769c0479a5e319e89a.png"
 		},
 		{
 			"id": "classification-dome",
@@ -1801,7 +1801,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a6b8ec85b47dd24f549db12cd74dd6f4d09b92a5e92c4361efbf6cbf95fc498e.stl",
-					"render": "/renders/classification-dome.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/b97e17659573d334aade504185f3d4930d46a1f5c860440d0c7593d4be0532f1.png",
 					"grams": 371.28
 				}
 			],
@@ -1810,7 +1810,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 31045,
+			"print_seconds": 30870,
 			"color": {
 				"fixed": "ivory-white"
 			},
@@ -1822,7 +1822,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a6b8ec85b47dd24f549db12cd74dd6f4d09b92a5e92c4361efbf6cbf95fc498e.stl",
-			"render": "/renders/classification-dome.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/b97e17659573d334aade504185f3d4930d46a1f5c860440d0c7593d4be0532f1.png"
 		},
 		{
 			"id": "interface-bracket",
@@ -1843,29 +1843,29 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version. The fit around the horizontal aluminum spoke was too tight.",
-					"commit": "da7a320",
+					"commit": "bd9f3a9",
 					"stl_hash": "db2c0ecf58184c752a8d66035b2620a3d1570343167b8b2b7f3b7eedd402c58f",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/4fcdf952bf770131b993bd4525e30c85c6e3ce1d01cbb0e029df97a52bb4a8d1.png",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/db2c0ecf58184c752a8d66035b2620a3d1570343167b8b2b7f3b7eedd402c58f.stl",
-					"render": "/renders/versions/interface-bracket-v1.png",
-					"grams": 159.64
+					"grams": 159.48
 				},
 				{
 					"version": "2",
 					"date": "2026-08-18",
 					"message": "Added 0.2 mm clearance on every side of the horizontal aluminum spoke.",
-					"commit": "6587b3f",
+					"commit": "3385598",
 					"onshape_version": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/v/f845b960415692451f2903b1/e/77f0be233cae0dcaf1c2a391",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/5835878c9a32a19bf56b75463137639e6c4fc60615af07313086444697fc717f.stl",
-					"render": "/renders/interface-bracket.png",
-					"grams": 159.45
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/7402c1b1185d75a275a0d476cddd6f7af3f0a29677665e494281cf678c0b6a3c.png",
+					"grams": 159.46
 				}
 			],
 			"attributes": [],
-			"grams": 159.45,
+			"grams": 159.46,
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 14632,
+			"print_seconds": 14631,
 			"color": {
 				"role": "frame"
 			},
@@ -1882,7 +1882,7 @@
 				}
 			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/5835878c9a32a19bf56b75463137639e6c4fc60615af07313086444697fc717f.stl",
-			"render": "/renders/interface-bracket.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/7402c1b1185d75a275a0d476cddd6f7af3f0a29677665e494281cf678c0b6a3c.png"
 		},
 		{
 			"id": "interface-spacer",
@@ -1905,7 +1905,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/43dda1e1554853a4759867ecb98e75a54631a9d46f947c548605c3c309709a29.stl",
-					"render": "/renders/interface-spacer.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/3ca604cec0c15dfe6c9484d285e6c6f8700ffc7d62c43180f42e8c7f90207c57.png",
 					"grams": 45.26
 				}
 			],
@@ -1926,7 +1926,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/43dda1e1554853a4759867ecb98e75a54631a9d46f947c548605c3c309709a29.stl",
-			"render": "/renders/interface-spacer.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/3ca604cec0c15dfe6c9484d285e6c6f8700ffc7d62c43180f42e8c7f90207c57.png"
 		},
 		{
 			"id": "chute-core",
@@ -1949,7 +1949,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/fccd4907faf05e295c070b5a5c2a41b6f89a5109bc7e368cb7632f26a2c19590.stl",
-					"render": "/renders/chute-core.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/cca8c8cd8540f888cb3b6fc364b129b8710fc32fd7373c9bc3bd1deb0b307701.png",
 					"grams": 223.63
 				}
 			],
@@ -1958,7 +1958,7 @@
 			"support_grams": 9.29,
 			"support_used": true,
 			"support_intentional": false,
-			"print_seconds": 23591,
+			"print_seconds": 23978,
 			"color": {
 				"role": "chute-core"
 			},
@@ -1975,7 +1975,7 @@
 				}
 			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/fccd4907faf05e295c070b5a5c2a41b6f89a5109bc7e368cb7632f26a2c19590.stl",
-			"render": "/renders/chute-core.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/cca8c8cd8540f888cb3b6fc364b129b8710fc32fd7373c9bc3bd1deb0b307701.png"
 		},
 		{
 			"id": "bin-retainer-left",
@@ -1998,7 +1998,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/6e1aa2f4446c9f399fe1d6232fb0991138358b48714ca3c9d27206fa4c728c57.stl",
-					"render": "/renders/bin-retainer-left.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/5accf5e3bd602528e06eee0e72b5496cc299b7cd7a1f2d674e42c523137048b8.png",
 					"grams": 21.19
 				}
 			],
@@ -2007,7 +2007,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 2583,
+			"print_seconds": 2584,
 			"color": {
 				"role": "frame"
 			},
@@ -2019,7 +2019,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/6e1aa2f4446c9f399fe1d6232fb0991138358b48714ca3c9d27206fa4c728c57.stl",
-			"render": "/renders/bin-retainer-left.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/5accf5e3bd602528e06eee0e72b5496cc299b7cd7a1f2d674e42c523137048b8.png"
 		},
 		{
 			"id": "bin-retainer-right",
@@ -2042,7 +2042,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/54704393c3e0786bb69eed1596296519d032aea277b00ffed1335347d03a8dc6.stl",
-					"render": "/renders/bin-retainer-right.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/8c696985bd89ff4d9f5ccf9b2201d8431a6340c77a88effd8df80e8fb1c256bc.png",
 					"grams": 21.44
 				}
 			],
@@ -2051,7 +2051,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 2606,
+			"print_seconds": 2604,
 			"color": {
 				"role": "frame"
 			},
@@ -2063,7 +2063,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/54704393c3e0786bb69eed1596296519d032aea277b00ffed1335347d03a8dc6.stl",
-			"render": "/renders/bin-retainer-right.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/8c696985bd89ff4d9f5ccf9b2201d8431a6340c77a88effd8df80e8fb1c256bc.png"
 		},
 		{
 			"id": "frame-crossbeam",
@@ -2088,7 +2088,7 @@
 					"commit": null,
 					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/7279a42b05833c7b828efb0d/e/b0ee2e787191265cba1c1a31",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/45a69ae6847617b33b1aa45a379f0b413edba4d13203f4de40506a1f7cb80966.stl",
-					"render": "/renders/frame-crossbeam.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/f25f29198823562123af2c2508a93b2d27b9ef023528b143360a1dc620e1df4e.png",
 					"grams": 86.17
 				}
 			],
@@ -2109,7 +2109,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/45a69ae6847617b33b1aa45a379f0b413edba4d13203f4de40506a1f7cb80966.stl",
-			"render": "/renders/frame-crossbeam.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/f25f29198823562123af2c2508a93b2d27b9ef023528b143360a1dc620e1df4e.png"
 		},
 		{
 			"id": "frame-90deg-bracket",
@@ -2134,7 +2134,7 @@
 					"commit": null,
 					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/7279a42b05833c7b828efb0d/e/b0ee2e787191265cba1c1a31",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/1081b927cfb55fab0a62b2b3fdee9a86b39960fc0c1ac4d6119c983e39a2b491.stl",
-					"render": "/renders/frame-90deg-bracket.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/458863fdb2a5430633acca5ca10ae1530abc4aab8c8cb4b16acf3dfc7bee3c36.png",
 					"grams": 13.62
 				}
 			],
@@ -2155,7 +2155,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/1081b927cfb55fab0a62b2b3fdee9a86b39960fc0c1ac4d6119c983e39a2b491.stl",
-			"render": "/renders/frame-90deg-bracket.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/458863fdb2a5430633acca5ca10ae1530abc4aab8c8cb4b16acf3dfc7bee3c36.png"
 		},
 		{
 			"id": "ls-mount-to-chute",
@@ -2182,7 +2182,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/b63cc59f19780e07ce70f28ed4c6b6e90d6c1e6d469ff8692803ad97815ebfe6.stl",
-					"render": "/renders/ls-mount-to-chute.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/deb4cd4ab5258965785caf543074544ff2db82bddf797eda9e2c4b7921984ce6.png",
 					"grams": 233.62
 				}
 			],
@@ -2191,7 +2191,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 18175,
+			"print_seconds": 18078,
 			"color": {
 				"role": "chute-core"
 			},
@@ -2208,7 +2208,7 @@
 				}
 			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/b63cc59f19780e07ce70f28ed4c6b6e90d6c1e6d469ff8692803ad97815ebfe6.stl",
-			"render": "/renders/ls-mount-to-chute.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/deb4cd4ab5258965785caf543074544ff2db82bddf797eda9e2c4b7921984ce6.png"
 		},
 		{
 			"id": "ls-bottom-static",
@@ -2235,7 +2235,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/d658c97bd1516b3c61f37028761b46b9be1aa1f6cd26f9057fd9c45691f54488.stl",
-					"render": "/renders/ls-bottom-static.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/13556565c1809c438fa5ddc8ac5d564df0e565884e8fe9eed3f3ec13ea128fc5.png",
 					"grams": 206.81
 				}
 			],
@@ -2244,7 +2244,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 14392,
+			"print_seconds": 14391,
 			"color": {
 				"role": "frame"
 			},
@@ -2261,7 +2261,7 @@
 				}
 			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/d658c97bd1516b3c61f37028761b46b9be1aa1f6cd26f9057fd9c45691f54488.stl",
-			"render": "/renders/ls-bottom-static.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/13556565c1809c438fa5ddc8ac5d564df0e565884e8fe9eed3f3ec13ea128fc5.png"
 		},
 		{
 			"id": "ls-mount-to-extrusion",
@@ -2284,7 +2284,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/1dac92ed155a14f17d65c6008e8aadd88f6797e975f31f9ccab6d310ce1382f1.stl",
-					"render": "/renders/ls-mount-to-extrusion.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/3398069bba9963f0a9035ca00137b450f8e73beec02c676a65b1669c0aad2dac.png",
 					"grams": 56.06
 				}
 			],
@@ -2293,7 +2293,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 7480,
+			"print_seconds": 7508,
 			"color": {
 				"role": "frame"
 			},
@@ -2305,7 +2305,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/1dac92ed155a14f17d65c6008e8aadd88f6797e975f31f9ccab6d310ce1382f1.stl",
-			"render": "/renders/ls-mount-to-extrusion.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/3398069bba9963f0a9035ca00137b450f8e73beec02c676a65b1669c0aad2dac.png"
 		},
 		{
 			"id": "ls-hold-in-place",
@@ -2328,7 +2328,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/18fe2e7e1a18dde42bc8412d288909060d3db35949a7818d56939230d8838872.stl",
-					"render": "/renders/ls-hold-in-place.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/2179b49aa7e3abef1bc6d9fdbcde658faa63c2d75c30b60daa60fe293d20c23d.png",
 					"grams": 6.95
 				}
 			],
@@ -2349,7 +2349,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/18fe2e7e1a18dde42bc8412d288909060d3db35949a7818d56939230d8838872.stl",
-			"render": "/renders/ls-hold-in-place.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/2179b49aa7e3abef1bc6d9fdbcde658faa63c2d75c30b60daa60fe293d20c23d.png"
 		},
 		{
 			"id": "ls-washer",
@@ -2372,7 +2372,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/cdfc42cbc5c9285089498ebd013c8ee05fa48ad7adcf12c43eb2d1396ef2d231.stl",
-					"render": "/renders/ls-washer.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/c0b07f41d4794cca26ce2299c04f076003e33fb9641b1a240e07ab7fa7843496.png",
 					"grams": 10.63
 				}
 			],
@@ -2381,7 +2381,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 1456,
+			"print_seconds": 1458,
 			"color": {
 				"role": "frame"
 			},
@@ -2393,7 +2393,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/cdfc42cbc5c9285089498ebd013c8ee05fa48ad7adcf12c43eb2d1396ef2d231.stl",
-			"render": "/renders/ls-washer.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/c0b07f41d4794cca26ce2299c04f076003e33fb9641b1a240e07ab7fa7843496.png"
 		},
 		{
 			"id": "ext-bracket-left",
@@ -2418,7 +2418,7 @@
 					"commit": null,
 					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/7279a42b05833c7b828efb0d/e/b0ee2e787191265cba1c1a31",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/da4b3abd3db72070484178ef5aa1d0906397c6a310bdf0e22f724940bd62dba2.stl",
-					"render": "/renders/ext-bracket-left.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/36c8659a6c851988bd2ad5630668e5e970cd17a0dd22059a79beff40edbbdf49.png",
 					"grams": 48.52
 				}
 			],
@@ -2427,7 +2427,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 6009,
+			"print_seconds": 6010,
 			"color": {
 				"role": "frame"
 			},
@@ -2439,7 +2439,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/da4b3abd3db72070484178ef5aa1d0906397c6a310bdf0e22f724940bd62dba2.stl",
-			"render": "/renders/ext-bracket-left.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/36c8659a6c851988bd2ad5630668e5e970cd17a0dd22059a79beff40edbbdf49.png"
 		},
 		{
 			"id": "ext-bracket-bottom-vertical",
@@ -2464,16 +2464,16 @@
 					"commit": null,
 					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/7279a42b05833c7b828efb0d/e/b0ee2e787191265cba1c1a31",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/313397afb08fc1943f045905b96131f73f1dc70c05d59fd2583c77da38318c36.stl",
-					"render": "/renders/ext-bracket-bottom-vertical.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/54ddc519aa61df88fa84231316e23240a12f1637ad11d1b00f2ed13e190f132a.png",
 					"grams": 50.62
 				}
 			],
 			"attributes": [],
 			"grams": 50.62,
-			"support_grams": 10.41,
+			"support_grams": 10.43,
 			"support_used": true,
 			"support_intentional": false,
-			"print_seconds": 8753,
+			"print_seconds": 8873,
 			"color": {
 				"role": "frame"
 			},
@@ -2485,7 +2485,7 @@
 			"layer_scope": "non-bottom",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/313397afb08fc1943f045905b96131f73f1dc70c05d59fd2583c77da38318c36.stl",
-			"render": "/renders/ext-bracket-bottom-vertical.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/54ddc519aa61df88fa84231316e23240a12f1637ad11d1b00f2ed13e190f132a.png"
 		},
 		{
 			"id": "ext-bracket-cover",
@@ -2510,7 +2510,7 @@
 					"commit": null,
 					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/7279a42b05833c7b828efb0d/e/b0ee2e787191265cba1c1a31",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/f99e33cea11551b8222feac91c28015488ff2c239e632f5098322e7ea10fc96c.stl",
-					"render": "/renders/ext-bracket-cover.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/ebc5fc97d60b18f07e0dc56db8e8963fa9cbbcca1bfbad7f74ebad2ba8a3ace7.png",
 					"grams": 12.45
 				}
 			],
@@ -2531,7 +2531,7 @@
 			"layer_scope": "non-bottom",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/f99e33cea11551b8222feac91c28015488ff2c239e632f5098322e7ea10fc96c.stl",
-			"render": "/renders/ext-bracket-cover.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/ebc5fc97d60b18f07e0dc56db8e8963fa9cbbcca1bfbad7f74ebad2ba8a3ace7.png"
 		},
 		{
 			"id": "ext-bracket-foot-cover",
@@ -2554,7 +2554,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/96356ae844558770db2340012f013d5a18d119cea1facdeac58596b2b425f540.stl",
-					"render": "/renders/ext-bracket-foot-cover.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/8cb9ad21c850cfee1b8f4356ef23e0ea42e51b2a74083e31b82b947e644f6171.png",
 					"grams": 23.59
 				}
 			],
@@ -2563,7 +2563,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 3585,
+			"print_seconds": 3584,
 			"color": {
 				"role": "frame"
 			},
@@ -2575,7 +2575,7 @@
 			"layer_scope": "bottom-only",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/96356ae844558770db2340012f013d5a18d119cea1facdeac58596b2b425f540.stl",
-			"render": "/renders/ext-bracket-foot-cover.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/8cb9ad21c850cfee1b8f4356ef23e0ea42e51b2a74083e31b82b947e644f6171.png"
 		},
 		{
 			"id": "interface-upper-fixed-section",
@@ -2599,29 +2599,29 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": "9b7998e",
+					"commit": "c30b0e7",
 					"stl_hash": "bf52ad8b7b81dc61a3ed69517953ad52139f8eec291920627e6ff71a3bc3e0fd",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/94117a75e8eaf876ca804715f6be5d43f5178edc3756df1557892337f8cfc0bf.png",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/bf52ad8b7b81dc61a3ed69517953ad52139f8eec291920627e6ff71a3bc3e0fd.stl",
-					"render": "/renders/versions/interface-upper-fixed-section-v1.png",
 					"grams": 153.65
 				},
 				{
 					"version": "2",
 					"date": "2026-07-08",
 					"message": "Reshaped: now 35 mm tall (was 33 mm), with rib attachments.",
-					"commit": "9f838a0",
+					"commit": "8571937",
 					"onshape_version": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/v/3b8fafc8cab54b09332e14d2/e/8f693a0bd7ce7d62c0c00291",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/47d71e76dcfa387953add0876f279b8a8f26dd836d1d06d362f2d8e5477455ea.stl",
-					"render": "/renders/interface-upper-fixed-section.png",
-					"grams": 164.13
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/239d8db0295bbbd69677379e47fd81d29687bb32d3ab349534fdefa2efa0c6f5.png",
+					"grams": 164.14
 				}
 			],
 			"attributes": [],
-			"grams": 164.13,
+			"grams": 164.14,
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 12159,
+			"print_seconds": 12186,
 			"color": {
 				"role": "frame"
 			},
@@ -2638,7 +2638,7 @@
 				}
 			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/47d71e76dcfa387953add0876f279b8a8f26dd836d1d06d362f2d8e5477455ea.stl",
-			"render": "/renders/interface-upper-fixed-section.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/239d8db0295bbbd69677379e47fd81d29687bb32d3ab349534fdefa2efa0c6f5.png"
 		},
 		{
 			"id": "interface-rib",
@@ -2662,7 +2662,7 @@
 					"commit": null,
 					"onshape_version": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/v/3b8fafc8cab54b09332e14d2/e/8f693a0bd7ce7d62c0c00291",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/21976d79a569732eee539fcfb466d32251996860b04d6e8db4e197e47ec54f44.stl",
-					"render": "/renders/interface-rib.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/487cacc99d0f924b168cd9875714ae834c978a67579da6a4a0f90ac465f0bcf8.png",
 					"grams": 26.6
 				}
 			],
@@ -2671,7 +2671,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 3124,
+			"print_seconds": 3123,
 			"color": {
 				"role": "frame"
 			},
@@ -2683,7 +2683,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/21976d79a569732eee539fcfb466d32251996860b04d6e8db4e197e47ec54f44.stl",
-			"render": "/renders/interface-rib.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/487cacc99d0f924b168cd9875714ae834c978a67579da6a4a0f90ac465f0bcf8.png"
 		},
 		{
 			"id": "interface-rib-switch",
@@ -2707,7 +2707,7 @@
 					"commit": null,
 					"onshape_version": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/v/3b8fafc8cab54b09332e14d2/e/8f693a0bd7ce7d62c0c00291",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/71fd184f21ab0c3a9550eb07542d917014d995a8d607e82d23d764cc47c6efb0.stl",
-					"render": "/renders/interface-rib-switch.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/20652b8ad99c59d082f7eafe6868f2670b29850861fe5e1a3e2119383dae61dc.png",
 					"grams": 15.27
 				}
 			],
@@ -2728,7 +2728,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/71fd184f21ab0c3a9550eb07542d917014d995a8d607e82d23d764cc47c6efb0.stl",
-			"render": "/renders/interface-rib-switch.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/20652b8ad99c59d082f7eafe6868f2670b29850861fe5e1a3e2119383dae61dc.png"
 		},
 		{
 			"id": "interface-big-spacer",
@@ -2749,20 +2749,20 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": "9b7998e",
+					"commit": "c30b0e7",
 					"stl_hash": "8ca345012b63e33064706c787705fa3d3f39229891319935beb58eeede6d1a14",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/46621bef4ac9b2a192b1a16820341edddb3f8c545a6b40b8234f7e4e31478cb9.png",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8ca345012b63e33064706c787705fa3d3f39229891319935beb58eeede6d1a14.stl",
-					"render": "/renders/versions/interface-big-spacer-v1.png",
-					"grams": 22.19
+					"grams": 22.18
 				},
 				{
 					"version": "2",
 					"date": "2026-07-08",
 					"message": "Reshaped: now 1 mm thick (was 3 mm).",
-					"commit": "9f838a0",
+					"commit": "8571937",
 					"onshape_version": "https://cad.onshape.com/documents/36d65973fe08f685f790dc8b/v/3b8fafc8cab54b09332e14d2/e/8f693a0bd7ce7d62c0c00291",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/5fbb26d2e34975168e734a523dae50d691fcb5725427e1be1c6bc1c30e129643.stl",
-					"render": "/renders/interface-big-spacer.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/1876d0a47700d42e4e588772fc3a5b3b12158ef1519709e353721594bd5f0285.png",
 					"grams": 11.13
 				}
 			],
@@ -2771,7 +2771,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 1484,
+			"print_seconds": 1485,
 			"color": {
 				"role": "frame"
 			},
@@ -2783,7 +2783,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/5fbb26d2e34975168e734a523dae50d691fcb5725427e1be1c6bc1c30e129643.stl",
-			"render": "/renders/interface-big-spacer.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/1876d0a47700d42e4e588772fc3a5b3b12158ef1519709e353721594bd5f0285.png"
 		},
 		{
 			"id": "cable-clamp-inner",
@@ -2806,7 +2806,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a77f4963aada127b93e60161a8aa83685a03ce6f3beb318c270627f7641927af.stl",
-					"render": "/renders/cable-clamp-inner.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/57ae456a92ff178077954ca43b790d8ae62e5e8c00aab1219a1287a9dc511770.png",
 					"grams": 6.45
 				}
 			],
@@ -2815,7 +2815,7 @@
 			"support_grams": 0.92,
 			"support_used": true,
 			"support_intentional": true,
-			"print_seconds": 1949,
+			"print_seconds": 1948,
 			"color": {
 				"role": "chute-core"
 			},
@@ -2827,7 +2827,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a77f4963aada127b93e60161a8aa83685a03ce6f3beb318c270627f7641927af.stl",
-			"render": "/renders/cable-clamp-inner.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/57ae456a92ff178077954ca43b790d8ae62e5e8c00aab1219a1287a9dc511770.png"
 		},
 		{
 			"id": "cable-clamp-outer",
@@ -2848,28 +2848,28 @@
 					"version": "1",
 					"date": "2026-06-27",
 					"message": "Initial version.",
-					"commit": "9b7998e",
+					"commit": "c30b0e7",
 					"stl_hash": "34485f41055e82d098984ed49824fd0f93f471dac62ea86e6b83cf87482bf9fd",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/0dd67a0ab288196eefc912ca63ab3f3b6cd031df5ce1f9ae0e29ef37c1e56bec.png",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/34485f41055e82d098984ed49824fd0f93f471dac62ea86e6b83cf87482bf9fd.stl",
-					"render": "/renders/versions/cable-clamp-outer-v1.png",
-					"grams": 19.77
+					"grams": 19.76
 				},
 				{
 					"version": "2",
 					"date": "2026-07-18",
 					"message": "Enlarged the M3 nut pocket. The v1 pocket was undersized and the nut would not seat in it.",
-					"commit": "83950ac",
+					"commit": "112a155",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/dd778421784bf38babc9ccde0f1007ce61e7e2c575718a933e62aadfedd55484.stl",
-					"render": "/renders/cable-clamp-outer.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/2010b0756008e9b8ccee1179bab2ae21da50636496113f4b81ab5e5604b51128.png",
 					"grams": 19.76
 				}
 			],
 			"attributes": [],
 			"grams": 19.76,
-			"support_grams": 6.97,
+			"support_grams": 6.9,
 			"support_used": true,
 			"support_intentional": true,
-			"print_seconds": 3555,
+			"print_seconds": 3550,
 			"color": {
 				"role": "chute-core"
 			},
@@ -2881,7 +2881,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/dd778421784bf38babc9ccde0f1007ce61e7e2c575718a933e62aadfedd55484.stl",
-			"render": "/renders/cable-clamp-outer.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/2010b0756008e9b8ccee1179bab2ae21da50636496113f4b81ab5e5604b51128.png"
 		},
 		{
 			"id": "interface-spur-gear",
@@ -2908,7 +2908,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/f5c3804796153c3ecb0bab5cc2c16983ed4b4f2edf97df45f2fa7c3a5d81e620.stl",
-					"render": "/renders/interface-spur-gear.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/14818879e1b4ab947a59da99805ae44a31335e6e1cc796b7ceb9be6365d1a562.png",
 					"grams": 9.0
 				}
 			],
@@ -2917,7 +2917,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 1916,
+			"print_seconds": 1920,
 			"color": {
 				"role": "frame"
 			},
@@ -2929,7 +2929,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/f5c3804796153c3ecb0bab5cc2c16983ed4b4f2edf97df45f2fa7c3a5d81e620.stl",
-			"render": "/renders/interface-spur-gear.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/14818879e1b4ab947a59da99805ae44a31335e6e1cc796b7ceb9be6365d1a562.png"
 		},
 		{
 			"id": "interface-idler-gear",
@@ -2956,7 +2956,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/86b04df825b6c019f6be0a8894bbbd05a42e6abab86d2694e4a99f5284b6c4d9.stl",
-					"render": "/renders/interface-idler-gear.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/1430c7897dcc165784a54481e9f5432c7350ba5a1f03f2fb8cc013601ef0857d.png",
 					"grams": 8.98
 				}
 			],
@@ -2965,7 +2965,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 1989,
+			"print_seconds": 1993,
 			"color": {
 				"role": "frame"
 			},
@@ -2982,7 +2982,7 @@
 				}
 			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/86b04df825b6c019f6be0a8894bbbd05a42e6abab86d2694e4a99f5284b6c4d9.stl",
-			"render": "/renders/interface-idler-gear.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/1430c7897dcc165784a54481e9f5432c7350ba5a1f03f2fb8cc013601ef0857d.png"
 		},
 		{
 			"id": "interface-nema23-bracket",
@@ -3008,7 +3008,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/69a9a1dd8c741866e723d8fd5a32baa78b233538a1341bf50eb0f2425a38d82a.stl",
-					"render": "/renders/interface-nema23-bracket.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/45bccfecf5884a31710045b1d0fded5d54d8de332a208b3dae89d890bee7b4bd.png",
 					"grams": 45.02
 				}
 			],
@@ -3017,7 +3017,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 5392,
+			"print_seconds": 5384,
 			"color": {
 				"role": "frame"
 			},
@@ -3034,7 +3034,7 @@
 				}
 			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/69a9a1dd8c741866e723d8fd5a32baa78b233538a1341bf50eb0f2425a38d82a.stl",
-			"render": "/renders/interface-nema23-bracket.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/45bccfecf5884a31710045b1d0fded5d54d8de332a208b3dae89d890bee7b4bd.png"
 		},
 		{
 			"id": "chute-stepper-idler-bearing-retainer-outer",
@@ -3061,7 +3061,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/00180b3aaeab6c4e0222c4accfc69172ea358c68c1a07427324ba22e57795a23.stl",
-					"render": "/renders/chute-stepper-idler-bearing-retainer-outer.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/9c2f47c9347bef5ad1f4ebcf0b3d67d7d47569ccccba227e8dd719aca7b0d36f.png",
 					"grams": 1.43
 				}
 			],
@@ -3070,7 +3070,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 610,
+			"print_seconds": 609,
 			"color": {
 				"role": "frame"
 			},
@@ -3082,7 +3082,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/00180b3aaeab6c4e0222c4accfc69172ea358c68c1a07427324ba22e57795a23.stl",
-			"render": "/renders/chute-stepper-idler-bearing-retainer-outer.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/9c2f47c9347bef5ad1f4ebcf0b3d67d7d47569ccccba227e8dd719aca7b0d36f.png"
 		},
 		{
 			"id": "chute-stepper-idler-bearing-retainer-inner",
@@ -3109,7 +3109,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/6157c7c623581c40285ecf8703c915aa95d921369000f5e68e25ccd2989073f4.stl",
-					"render": "/renders/chute-stepper-idler-bearing-retainer-inner.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/6dc66e7775dd3825347f9cc6f2f4ab034dc59101e295f7ca2dc3a462c01b99dc.png",
 					"grams": 0.26
 				}
 			],
@@ -3130,7 +3130,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/6157c7c623581c40285ecf8703c915aa95d921369000f5e68e25ccd2989073f4.stl",
-			"render": "/renders/chute-stepper-idler-bearing-retainer-inner.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/6dc66e7775dd3825347f9cc6f2f4ab034dc59101e295f7ca2dc3a462c01b99dc.png"
 		},
 		{
 			"id": "interface-cage-bracket",
@@ -3153,7 +3153,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/6164e958336a10b2a6f3910b6a0bc754996a15202d2719923b272e0963561074.stl",
-					"render": "/renders/interface-cage-bracket.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/3fbdb08fe10df72c8a1d4e8120d48b49eddfdd96b85d4aaedb7cc30200a82bb0.png",
 					"grams": 15.89
 				}
 			],
@@ -3174,7 +3174,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/6164e958336a10b2a6f3910b6a0bc754996a15202d2719923b272e0963561074.stl",
-			"render": "/renders/interface-cage-bracket.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/3fbdb08fe10df72c8a1d4e8120d48b49eddfdd96b85d4aaedb7cc30200a82bb0.png"
 		},
 		{
 			"id": "interface-cage-bracket-cable",
@@ -3197,7 +3197,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/081da7a95e53340f4f27219a224c0015905f176707c84f82c2f69bd72da85530.stl",
-					"render": "/renders/interface-cage-bracket-cable.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/8252511ef969ad53490b4079a2a8a517c050f7b09263ed77d7a713935786b898.png",
 					"grams": 15.88
 				}
 			],
@@ -3223,7 +3223,7 @@
 				}
 			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/081da7a95e53340f4f27219a224c0015905f176707c84f82c2f69bd72da85530.stl",
-			"render": "/renders/interface-cage-bracket-cable.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/8252511ef969ad53490b4079a2a8a517c050f7b09263ed77d7a713935786b898.png"
 		},
 		{
 			"id": "ribbon-cable-clamp",
@@ -3246,7 +3246,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/39b7e6d0e9864c00ca1c75014c1243cabff5a4be54c7671e51352b922c5a0939.stl",
-					"render": "/renders/ribbon-cable-clamp.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/74511513786b621d7fa3a7b7fafc29de44b00c44ee939318b5141b8cf90076da.png",
 					"grams": 5.31
 				}
 			],
@@ -3267,7 +3267,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/39b7e6d0e9864c00ca1c75014c1243cabff5a4be54c7671e51352b922c5a0939.stl",
-			"render": "/renders/ribbon-cable-clamp.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/74511513786b621d7fa3a7b7fafc29de44b00c44ee939318b5141b8cf90076da.png"
 		},
 		{
 			"id": "top-interface-split-spur-gear-1",
@@ -3290,16 +3290,16 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/6a600fb6a6b3f2e5cf22f87fdce65ce0cbeddb2063f598de4dd25f63df23fe0f.stl",
-					"render": "/renders/top-interface-split-spur-gear-1.png",
-					"grams": 59.95
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/448b569fa9fdbd9ade5e33754f2da90a08a25a95e9bacbdd56ffa42912f33377.png",
+					"grams": 59.97
 				}
 			],
 			"attributes": [],
-			"grams": 59.95,
+			"grams": 59.97,
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 7668,
+			"print_seconds": 7684,
 			"color": {
 				"role": "chute-core"
 			},
@@ -3311,7 +3311,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/6a600fb6a6b3f2e5cf22f87fdce65ce0cbeddb2063f598de4dd25f63df23fe0f.stl",
-			"render": "/renders/top-interface-split-spur-gear-1.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/448b569fa9fdbd9ade5e33754f2da90a08a25a95e9bacbdd56ffa42912f33377.png"
 		},
 		{
 			"id": "top-interface-split-spur-gear-2",
@@ -3334,7 +3334,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/c109b8b226a8652d7dd990168a58f52b202e35b842ee191cee49658daffacf7b.stl",
-					"render": "/renders/top-interface-split-spur-gear-2.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/8c0757f4ea01d6eb28e5d6d972bb57de72dc257e7140f17ccf6aac65155a8170.png",
 					"grams": 8.0
 				}
 			],
@@ -3355,7 +3355,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/c109b8b226a8652d7dd990168a58f52b202e35b842ee191cee49658daffacf7b.stl",
-			"render": "/renders/top-interface-split-spur-gear-2.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/8c0757f4ea01d6eb28e5d6d972bb57de72dc257e7140f17ccf6aac65155a8170.png"
 		},
 		{
 			"id": "top-interface-split-spur-gear-3",
@@ -3381,16 +3381,16 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/11f50ca23d809c133d2f409908e19b0e6c277e995a6d06e1c11da81bfe5dd6e1.stl",
-					"render": "/renders/top-interface-split-spur-gear-3.png",
-					"grams": 588.31
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/453e3dfaa76e0515d786d6ceee38e5d909bf6b02bef94e0ecaee7da666cf7bfd.png",
+					"grams": 588.3
 				}
 			],
 			"attributes": [],
-			"grams": 588.31,
-			"support_grams": 400.67,
+			"grams": 588.3,
+			"support_grams": 400.58,
 			"support_used": true,
 			"support_intentional": false,
-			"print_seconds": 46257,
+			"print_seconds": 46254,
 			"color": {
 				"role": "chute-core"
 			},
@@ -3411,7 +3411,7 @@
 				}
 			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/11f50ca23d809c133d2f409908e19b0e6c277e995a6d06e1c11da81bfe5dd6e1.stl",
-			"render": "/renders/top-interface-split-spur-gear-3.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/453e3dfaa76e0515d786d6ceee38e5d909bf6b02bef94e0ecaee7da666cf7bfd.png"
 		},
 		{
 			"id": "limit-switch-dowel-pin",
@@ -3434,7 +3434,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/08968eebc8fc928db76c12f0a502feaaa11bb026c5bbf03e9903fd9449581900.stl",
-					"render": "/renders/limit-switch-dowel-pin.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/4ddcc09e9b28665f7336dd7a89e59989846c732b2e021ce3183e72ec45e3597a.png",
 					"grams": 0.71
 				}
 			],
@@ -3455,7 +3455,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/08968eebc8fc928db76c12f0a502feaaa11bb026c5bbf03e9903fd9449581900.stl",
-			"render": "/renders/limit-switch-dowel-pin.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/4ddcc09e9b28665f7336dd7a89e59989846c732b2e021ce3183e72ec45e3597a.png"
 		},
 		{
 			"id": "limit-switch-housing",
@@ -3476,9 +3476,9 @@
 					"version": "1",
 					"date": "2026-07-03",
 					"message": "Initial version.",
-					"commit": "c74e408",
+					"commit": "d3a6114",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/5e22431ac91aad0af6d5878d2cc6fb2ae7dd9c45196dae25d9e2f997b6e3c540.stl",
-					"render": "/renders/limit-switch-housing.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/8504c2959c674e9c5a330fb30f795f19d9b4c8e7fe6d9e8b87058f09d15571d5.png",
 					"grams": 10.13
 				}
 			],
@@ -3504,7 +3504,7 @@
 				}
 			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/5e22431ac91aad0af6d5878d2cc6fb2ae7dd9c45196dae25d9e2f997b6e3c540.stl",
-			"render": "/renders/limit-switch-housing.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/8504c2959c674e9c5a330fb30f795f19d9b4c8e7fe6d9e8b87058f09d15571d5.png"
 		},
 		{
 			"id": "limit-switch-hammer",
@@ -3527,7 +3527,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a5105d966296f54b7a01a04c21b46861bc407d1b221903def47130aa9b9ab678.stl",
-					"render": "/renders/limit-switch-hammer.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/1bbbf190b2904fa463b37882dac5057174a4fbffbfde2910b0d7d5062df107e7.png",
 					"grams": 3.56
 				}
 			],
@@ -3548,7 +3548,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a5105d966296f54b7a01a04c21b46861bc407d1b221903def47130aa9b9ab678.stl",
-			"render": "/renders/limit-switch-hammer.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/1bbbf190b2904fa463b37882dac5057174a4fbffbfde2910b0d7d5062df107e7.png"
 		},
 		{
 			"id": "rotor-finned",
@@ -3571,7 +3571,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/b8986ea64a9d83e3bb9bb7e116e92068d070bbffcc94ae1a3ce95c9ad5c8601b.stl",
-					"render": "/renders/rotor-finned.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/03eaaee398ab2fd28a655f6a1ffc9ea07682ccd564968ecb8b2f3890b4dc5283.png",
 					"grams": 178.76
 				}
 			],
@@ -3580,7 +3580,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 12910,
+			"print_seconds": 12914,
 			"color": {
 				"fixed": "ivory-white"
 			},
@@ -3592,7 +3592,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/b8986ea64a9d83e3bb9bb7e116e92068d070bbffcc94ae1a3ce95c9ad5c8601b.stl",
-			"render": "/renders/rotor-finned.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/03eaaee398ab2fd28a655f6a1ffc9ea07682ccd564968ecb8b2f3890b4dc5283.png"
 		},
 		{
 			"id": "idler-gear",
@@ -3615,7 +3615,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/dd13e9269f08d3d9a698e043e446abb968ae998435ef7b552325f0b7db629eeb.stl",
-					"render": "/renders/idler-gear.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/12196d79a9b36855f16e97061e8cbcd24e53a9c10d4d5981deea24a581f0034f.png",
 					"grams": 4.61
 				}
 			],
@@ -3624,7 +3624,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 1444,
+			"print_seconds": 1437,
 			"color": {
 				"role": "feeder"
 			},
@@ -3641,7 +3641,7 @@
 				}
 			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/dd13e9269f08d3d9a698e043e446abb968ae998435ef7b552325f0b7db629eeb.stl",
-			"render": "/renders/idler-gear.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/12196d79a9b36855f16e97061e8cbcd24e53a9c10d4d5981deea24a581f0034f.png"
 		},
 		{
 			"id": "input-gear",
@@ -3664,7 +3664,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/3587940de2e8559ea125eb2acd59976aa7f3e45bd70b32f41044d1c8ae3a1b44.stl",
-					"render": "/renders/input-gear.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/bd6a09aa8a997766bf287304ea19922e28bacd3c0aa8193ccffc0f1d8956faab.png",
 					"grams": 3.57
 				}
 			],
@@ -3685,7 +3685,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/3587940de2e8559ea125eb2acd59976aa7f3e45bd70b32f41044d1c8ae3a1b44.stl",
-			"render": "/renders/input-gear.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/bd6a09aa8a997766bf287304ea19922e28bacd3c0aa8193ccffc0f1d8956faab.png"
 		},
 		{
 			"id": "output-guide",
@@ -3708,7 +3708,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8115840b817f57467725c99b987ca4a036df1fe8b98a0991c438bea84ebbe549.stl",
-					"render": "/renders/output-guide.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/6f6fcd9efb13c384515b888fca5017699b7a04388f67cc47510cc24052733138.png",
 					"grams": 20.99
 				}
 			],
@@ -3729,7 +3729,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8115840b817f57467725c99b987ca4a036df1fe8b98a0991c438bea84ebbe549.stl",
-			"render": "/renders/output-guide.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/6f6fcd9efb13c384515b888fca5017699b7a04388f67cc47510cc24052733138.png"
 		},
 		{
 			"id": "funnel-bracket-left",
@@ -3753,7 +3753,7 @@
 					"commit": null,
 					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/353adf90e6a8a99bed6f90a5/e/f48c6c2ac5f2133685e12202",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/ced3172731e0c2a64920edb072501efadf3c57325bf200fcb14bba0048dabff9.stl",
-					"render": "/renders/funnel-bracket-left.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/3f3579837a86035ea0d86ea8790c253ba5fb6fa102119c8a69016f5c9b0ee3fd.png",
 					"grams": 28.75
 				}
 			],
@@ -3774,7 +3774,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/ced3172731e0c2a64920edb072501efadf3c57325bf200fcb14bba0048dabff9.stl",
-			"render": "/renders/funnel-bracket-left.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/3f3579837a86035ea0d86ea8790c253ba5fb6fa102119c8a69016f5c9b0ee3fd.png"
 		},
 		{
 			"id": "funnel-bracket-right",
@@ -3798,7 +3798,7 @@
 					"commit": null,
 					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/353adf90e6a8a99bed6f90a5/e/f48c6c2ac5f2133685e12202",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/f7932bce6ef7eddb1be6c64a738b41b6573d67bdadb40d6febf131e0a21ccb31.stl",
-					"render": "/renders/funnel-bracket-right.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/d9ee3183e22bc307c7f49af6411238706d87767b6e5aa01cdca8529deca1cfdc.png",
 					"grams": 28.75
 				}
 			],
@@ -3819,7 +3819,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/f7932bce6ef7eddb1be6c64a738b41b6573d67bdadb40d6febf131e0a21ccb31.stl",
-			"render": "/renders/funnel-bracket-right.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/d9ee3183e22bc307c7f49af6411238706d87767b6e5aa01cdca8529deca1cfdc.png"
 		},
 		{
 			"id": "bearing-race",
@@ -3842,7 +3842,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/b832b7eab72a8392c80d35ebd67bb7cb6326bbc5c82a8592688ccda82fe315b3.stl",
-					"render": "/renders/bearing-race.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/de760b9f3cda345b795b829347492ae4dff15bcf206431605c4ee248fda1bfe7.png",
 					"grams": 20.13
 				}
 			],
@@ -3851,7 +3851,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 2948,
+			"print_seconds": 2947,
 			"color": {
 				"role": "chute-core"
 			},
@@ -3868,7 +3868,7 @@
 				}
 			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/b832b7eab72a8392c80d35ebd67bb7cb6326bbc5c82a8592688ccda82fe315b3.stl",
-			"render": "/renders/bearing-race.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/de760b9f3cda345b795b829347492ae4dff15bcf206431605c4ee248fda1bfe7.png"
 		},
 		{
 			"id": "bearing-holder-left",
@@ -3891,16 +3891,16 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/f0cc0eb5d575fc3d79cdea59caa0fcc6f7732c336a6830a186ffce51ef267a68.stl",
-					"render": "/renders/bearing-holder-left.png",
-					"grams": 7.9
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/4586a4b998e813fcf75687263f99a67f83a1b2d5785368e2015570dadd8a8186.png",
+					"grams": 7.95
 				}
 			],
 			"attributes": [],
-			"grams": 7.9,
+			"grams": 7.95,
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 2226,
+			"print_seconds": 2231,
 			"color": {
 				"role": "chute-core"
 			},
@@ -3917,7 +3917,7 @@
 				}
 			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/f0cc0eb5d575fc3d79cdea59caa0fcc6f7732c336a6830a186ffce51ef267a68.stl",
-			"render": "/renders/bearing-holder-left.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/4586a4b998e813fcf75687263f99a67f83a1b2d5785368e2015570dadd8a8186.png"
 		},
 		{
 			"id": "bearing-holder-right",
@@ -3940,7 +3940,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/9577bfc4f70bca72fe7c45d1c88a82df0ef14d712c67a395003c0deb9c89895b.stl",
-					"render": "/renders/bearing-holder-right.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/e699ed23f6a6d3b527be6c38b6fd92042934d828599ea47f54cca1b15ae2e234.png",
 					"grams": 7.98
 				}
 			],
@@ -3966,7 +3966,7 @@
 				}
 			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/9577bfc4f70bca72fe7c45d1c88a82df0ef14d712c67a395003c0deb9c89895b.stl",
-			"render": "/renders/bearing-holder-right.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/e699ed23f6a6d3b527be6c38b6fd92042934d828599ea47f54cca1b15ae2e234.png"
 		},
 		{
 			"id": "servo-adapter-servo-side",
@@ -3989,7 +3989,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a82b26f1d352e337ba3b14bf1440dcb163dae4c53e405dd82ae24d98ef5ac55c.stl",
-					"render": "/renders/servo-adapter-servo-side.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/f634d936eba2d6cf72c2e20197f9ee2bcdac655714cab3e59f38112c064a1736.png",
 					"grams": 4.85
 				}
 			],
@@ -4010,7 +4010,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a82b26f1d352e337ba3b14bf1440dcb163dae4c53e405dd82ae24d98ef5ac55c.stl",
-			"render": "/renders/servo-adapter-servo-side.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/f634d936eba2d6cf72c2e20197f9ee2bcdac655714cab3e59f38112c064a1736.png"
 		},
 		{
 			"id": "servo-adapter-flap-side",
@@ -4033,7 +4033,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/546231d66be39ade1f502e53375608447228ced0e81bfa9211fd0fa938a02f05.stl",
-					"render": "/renders/servo-adapter-flap-side.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/5c7e86eaf53f84c987ad90c8bd7cd8ac8ebf280f16cba3e9721408cdd6705f72.png",
 					"grams": 5.25
 				}
 			],
@@ -4054,7 +4054,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/546231d66be39ade1f502e53375608447228ced0e81bfa9211fd0fa938a02f05.stl",
-			"render": "/renders/servo-adapter-flap-side.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/5c7e86eaf53f84c987ad90c8bd7cd8ac8ebf280f16cba3e9721408cdd6705f72.png"
 		},
 		{
 			"id": "servo-bracket-lower-arm",
@@ -4077,7 +4077,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/9d6c82450ddd4a21fd0b832f6085298c00414a4d530765651b355c7043754203.stl",
-					"render": "/renders/servo-bracket-lower-arm.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/c5ed1fa6176a6452792d1573c697c2355efd2e6ee4b5cadac7b40cd757c92630.png",
 					"grams": 13.96
 				}
 			],
@@ -4098,7 +4098,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/9d6c82450ddd4a21fd0b832f6085298c00414a4d530765651b355c7043754203.stl",
-			"render": "/renders/servo-bracket-lower-arm.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/c5ed1fa6176a6452792d1573c697c2355efd2e6ee4b5cadac7b40cd757c92630.png"
 		},
 		{
 			"id": "servo-bracket-side-arm",
@@ -4121,7 +4121,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/b37a2c6b9864744415a50c02da10425ac79d6d8f44c6938c941c36e60357464f.stl",
-					"render": "/renders/servo-bracket-side-arm.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/299fcdafc3e31e9861c7cfd4245d7f23ea1dce6f8fb67d806f2e652f1039525c.png",
 					"grams": 9.58
 				}
 			],
@@ -4142,7 +4142,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/b37a2c6b9864744415a50c02da10425ac79d6d8f44c6938c941c36e60357464f.stl",
-			"render": "/renders/servo-bracket-side-arm.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/299fcdafc3e31e9861c7cfd4245d7f23ea1dce6f8fb67d806f2e652f1039525c.png"
 		},
 		{
 			"id": "servo-bracket-cover",
@@ -4165,7 +4165,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/1ebad4ab6770ccf750f33c219e0815f106d44c1d0dce55cacef42b9fdc84c8d2.stl",
-					"render": "/renders/servo-bracket-cover.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/f12d0ef70ebdf559c6c3783eb4eaadcb0ff9a0c4073b0b0011cf16d599930547.png",
 					"grams": 6.0
 				}
 			],
@@ -4174,7 +4174,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 2183,
+			"print_seconds": 2182,
 			"color": {
 				"role": "chute-core"
 			},
@@ -4186,7 +4186,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/1ebad4ab6770ccf750f33c219e0815f106d44c1d0dce55cacef42b9fdc84c8d2.stl",
-			"render": "/renders/servo-bracket-cover.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/f12d0ef70ebdf559c6c3783eb4eaadcb0ff9a0c4073b0b0011cf16d599930547.png"
 		},
 		{
 			"id": "servo-bracket-housing",
@@ -4209,7 +4209,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/e03d031e35f6aeed0303564b228866ca783be596e98f0d52fc0aff8bf41d6bd9.stl",
-					"render": "/renders/servo-bracket-housing.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/f90de374d1be21c8bdcc7a315b960b6adc6b082c37073e492236d9d71b8457c8.png",
 					"grams": 17.31
 				}
 			],
@@ -4235,7 +4235,7 @@
 				}
 			],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/e03d031e35f6aeed0303564b228866ca783be596e98f0d52fc0aff8bf41d6bd9.stl",
-			"render": "/renders/servo-bracket-housing.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/f90de374d1be21c8bdcc7a315b960b6adc6b082c37073e492236d9d71b8457c8.png"
 		},
 		{
 			"id": "leg",
@@ -4258,7 +4258,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/6621b702d3ada3422d7e3eb72f86cc7fec8a86b842539f858b7784e4e4587592.stl",
-					"render": "/renders/leg.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/31bde03a603d941eca238465a895e8558cc34fa2ee1b12789a330664671adb3f.png",
 					"grams": 21.11
 				}
 			],
@@ -4279,7 +4279,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/6621b702d3ada3422d7e3eb72f86cc7fec8a86b842539f858b7784e4e4587592.stl",
-			"render": "/renders/leg.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/31bde03a603d941eca238465a895e8558cc34fa2ee1b12789a330664671adb3f.png"
 		},
 		{
 			"id": "foot",
@@ -4302,7 +4302,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8c70fc095a1495e9a75f2e88803a9de5cac2d6cc0351d977fd684bed5546ba7e.stl",
-					"render": "/renders/foot.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/ad909ea49b1d825ae1898673a4775317ab9c09aeb9ad009c4a56031ce2239d45.png",
 					"grams": 8.45
 				}
 			],
@@ -4323,7 +4323,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8c70fc095a1495e9a75f2e88803a9de5cac2d6cc0351d977fd684bed5546ba7e.stl",
-			"render": "/renders/foot.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/ad909ea49b1d825ae1898673a4775317ab9c09aeb9ad009c4a56031ce2239d45.png"
 		},
 		{
 			"id": "chute-door",
@@ -4346,13 +4346,13 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/9291f5d03edcf10dc1b5f74df681ea1c33f89cacc680aa416f9031bddd1096ff.stl",
-					"render": "/renders/chute-door.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/c5811afdde0ae5aa27cc1a4994f4c189d1c30de5a7890d9241039f1503c5f6f1.png",
 					"grams": 46.85
 				}
 			],
 			"attributes": [],
 			"grams": 46.85,
-			"support_grams": 3.53,
+			"support_grams": 3.54,
 			"support_used": true,
 			"support_intentional": false,
 			"print_seconds": 5504,
@@ -4367,7 +4367,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/9291f5d03edcf10dc1b5f74df681ea1c33f89cacc680aa416f9031bddd1096ff.stl",
-			"render": "/renders/chute-door.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/c5811afdde0ae5aa27cc1a4994f4c189d1c30de5a7890d9241039f1503c5f6f1.png"
 		},
 		{
 			"id": "leg-extension",
@@ -4390,7 +4390,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a6f22135b92ac953c3c83073064cc2531fe40277339dc3cd0cf0327f73813d50.stl",
-					"render": "/renders/leg-extension.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/8bd2a1e814ede17555ff6c8418a2d2e2a9e6ba15f4073f5b9fb730746d1f3a19.png",
 					"grams": 15.47
 				}
 			],
@@ -4411,7 +4411,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a6f22135b92ac953c3c83073064cc2531fe40277339dc3cd0cf0327f73813d50.stl",
-			"render": "/renders/leg-extension.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/8bd2a1e814ede17555ff6c8418a2d2e2a9e6ba15f4073f5b9fb730746d1f3a19.png"
 		},
 		{
 			"id": "camera-mount-part-6",
@@ -4434,7 +4434,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/b8dfcbe095b0f961276ffce9d01a70936c78e4bc701649670eb10d9385fdfea6.stl",
-					"render": "/renders/camera-mount-part-6.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/d8c2ad0163ad3f1f009d88d944bd3f413e1652cd86f6299eaaa34c7b613c028a.png",
 					"grams": 4.28
 				}
 			],
@@ -4455,7 +4455,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/b8dfcbe095b0f961276ffce9d01a70936c78e4bc701649670eb10d9385fdfea6.stl",
-			"render": "/renders/camera-mount-part-6.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/d8c2ad0163ad3f1f009d88d944bd3f413e1652cd86f6299eaaa34c7b613c028a.png"
 		},
 		{
 			"id": "camera-mount-part-37",
@@ -4478,7 +4478,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/dd6a72f6ef324012529d0dd0f95b9e81b08fac5a95f0d1277917d4251742df78.stl",
-					"render": "/renders/camera-mount-part-37.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/c85d1216ce70850146cff5d895644bdd46caa5af1bfa62169324d75823f767fb.png",
 					"grams": 19.14
 				}
 			],
@@ -4487,7 +4487,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 3507,
+			"print_seconds": 3504,
 			"color": {
 				"role": "feeder"
 			},
@@ -4499,7 +4499,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/dd6a72f6ef324012529d0dd0f95b9e81b08fac5a95f0d1277917d4251742df78.stl",
-			"render": "/renders/camera-mount-part-37.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/c85d1216ce70850146cff5d895644bdd46caa5af1bfa62169324d75823f767fb.png"
 		},
 		{
 			"id": "camera-mount-part-37b",
@@ -4522,7 +4522,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/39a3d2c7816ac6c7ad1108111f0d6629564414ea147f0800dc76af85be0ac6c1.stl",
-					"render": "/renders/camera-mount-part-37b.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/e7ccbaa3096bea81c6f41b85b602876918b4f9f63fe59137c18b8ef9df3990af.png",
 					"grams": 18.34
 				}
 			],
@@ -4531,7 +4531,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 3320,
+			"print_seconds": 3321,
 			"color": {
 				"role": "feeder"
 			},
@@ -4543,7 +4543,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/39a3d2c7816ac6c7ad1108111f0d6629564414ea147f0800dc76af85be0ac6c1.stl",
-			"render": "/renders/camera-mount-part-37b.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/e7ccbaa3096bea81c6f41b85b602876918b4f9f63fe59137c18b8ef9df3990af.png"
 		},
 		{
 			"id": "camera-mount-rod-mount",
@@ -4566,7 +4566,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/373b28aa2891096bc3231820d8f87a6a836b4ab3ba95f58f09708ff696ed6b86.stl",
-					"render": "/renders/camera-mount-rod-mount.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/84073b50298866a7bc77b409e961c8de6f7196a948a476bbbcb67333cac7942f.png",
 					"grams": 9.41
 				}
 			],
@@ -4587,7 +4587,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/373b28aa2891096bc3231820d8f87a6a836b4ab3ba95f58f09708ff696ed6b86.stl",
-			"render": "/renders/camera-mount-rod-mount.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/84073b50298866a7bc77b409e961c8de6f7196a948a476bbbcb67333cac7942f.png"
 		},
 		{
 			"id": "camera-led-insert",
@@ -4610,16 +4610,16 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/14202c7b6732d540148082a5d55b3f33ac532f111fb060bc00f95ed25799f816.stl",
-					"render": "/renders/camera-led-insert.png",
-					"grams": 106.12
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/8313d625fdda12e939cd1d93f825ec7c779b4cc7237ab230414afde870b94ce7.png",
+					"grams": 106.11
 				}
 			],
 			"attributes": [],
-			"grams": 106.12,
+			"grams": 106.11,
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 10331,
+			"print_seconds": 10305,
 			"color": {
 				"fixed": "ivory-white"
 			},
@@ -4631,7 +4631,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/14202c7b6732d540148082a5d55b3f33ac532f111fb060bc00f95ed25799f816.stl",
-			"render": "/renders/camera-led-insert.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/8313d625fdda12e939cd1d93f825ec7c779b4cc7237ab230414afde870b94ce7.png"
 		},
 		{
 			"id": "camera-extension",
@@ -4652,11 +4652,11 @@
 					"version": "1",
 					"date": "2026-07-08",
 					"message": "Initial version.",
-					"commit": "9f838a0",
+					"commit": "8571937",
 					"onshape_doc": "https://cad.onshape.com/documents/249bded2198af476185014b6",
 					"onshape_version": "https://cad.onshape.com/documents/249bded2198af476185014b6/v/57d753798ce11a250478918d/e/48c64d61f1276c46f515d6bd",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/1253c651918595ba46bfc57401c0b2b6aeb2893649fa6c0d4b92c486943deee4.stl",
-					"render": "/renders/camera-extension.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/26dfcc6961445eff993f62b3ca900c891816bd9cd41c5273aa66c2f5464ae84b.png",
 					"grams": 28.6
 				}
 			],
@@ -4686,7 +4686,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/1253c651918595ba46bfc57401c0b2b6aeb2893649fa6c0d4b92c486943deee4.stl",
-			"render": "/renders/camera-extension.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/26dfcc6961445eff993f62b3ca900c891816bd9cd41c5273aa66c2f5464ae84b.png"
 		},
 		{
 			"id": "camera-extension-mount",
@@ -4707,11 +4707,11 @@
 					"version": "1",
 					"date": "2026-07-08",
 					"message": "Initial version.",
-					"commit": "9f838a0",
+					"commit": "8571937",
 					"onshape_doc": "https://cad.onshape.com/documents/249bded2198af476185014b6",
 					"onshape_version": "https://cad.onshape.com/documents/249bded2198af476185014b6/v/57d753798ce11a250478918d/e/48c64d61f1276c46f515d6bd",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a69def7f420a0ac70bcc1be0827d5cb9e46b322ea5dfa09fa075f746b5b7f6c8.stl",
-					"render": "/renders/camera-extension-mount.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/7cc10610083f28d72b1443f9f66b53cf9b8ddfa1570583a40b6b361878fde064.png",
 					"grams": 7.58
 				}
 			],
@@ -4741,7 +4741,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a69def7f420a0ac70bcc1be0827d5cb9e46b322ea5dfa09fa075f746b5b7f6c8.stl",
-			"render": "/renders/camera-extension-mount.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/7cc10610083f28d72b1443f9f66b53cf9b8ddfa1570583a40b6b361878fde064.png"
 		},
 		{
 			"id": "layer-connector-1",
@@ -4766,7 +4766,7 @@
 					"commit": null,
 					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/765c27a61823977392947be1/e/c56e3247bb7cfbe93ba7ad08",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/c85e30f35445117061a4c7871f7823171bd503fbcd94ea77b53f405a5626ee1c.stl",
-					"render": "/renders/layer-connector-1.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/4c488a44fba4c64b4430405f885f58a397b6ed5538330ef3758a29a5d08f69a7.png",
 					"grams": 12.31
 				}
 			],
@@ -4775,7 +4775,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 2842,
+			"print_seconds": 2841,
 			"color": {
 				"role": "chute-core"
 			},
@@ -4787,7 +4787,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/c85e30f35445117061a4c7871f7823171bd503fbcd94ea77b53f405a5626ee1c.stl",
-			"render": "/renders/layer-connector-1.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/4c488a44fba4c64b4430405f885f58a397b6ed5538330ef3758a29a5d08f69a7.png"
 		},
 		{
 			"id": "layer-connector-2",
@@ -4812,7 +4812,7 @@
 					"commit": null,
 					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/765c27a61823977392947be1/e/c56e3247bb7cfbe93ba7ad08",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/1df17cf7ff0fe530545b45dd107822db2a796f870de67aaa8769663a4eb941f2.stl",
-					"render": "/renders/layer-connector-2.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/b6affb978f744f4a169daaab3da84b4a94601be3ce7078c290e20df86e9b074e.png",
 					"grams": 12.3
 				}
 			],
@@ -4833,7 +4833,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/1df17cf7ff0fe530545b45dd107822db2a796f870de67aaa8769663a4eb941f2.stl",
-			"render": "/renders/layer-connector-2.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/b6affb978f744f4a169daaab3da84b4a94601be3ce7078c290e20df86e9b074e.png"
 		},
 		{
 			"id": "chute-stepper-support-block",
@@ -4856,7 +4856,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/106dec95fef16977ebef133766df63d301b98885ac8a4bf9bf718e3eda72ac7f.stl",
-					"render": "/renders/chute-stepper-support-block.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/26150f7ac746617b57331f8fa87a12c4e4211ee69bff9ba333bb8283c9400b90.png",
 					"grams": 26.1
 				}
 			],
@@ -4877,7 +4877,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/106dec95fef16977ebef133766df63d301b98885ac8a4bf9bf718e3eda72ac7f.stl",
-			"render": "/renders/chute-stepper-support-block.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/26150f7ac746617b57331f8fa87a12c4e4211ee69bff9ba333bb8283c9400b90.png"
 		},
 		{
 			"id": "funnel-third",
@@ -4901,7 +4901,7 @@
 					"commit": null,
 					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/353adf90e6a8a99bed6f90a5/e/8f720225506283b24c872672",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/287f8f9936b958f15dc9acd832f6320cbc4fcfb9ee0f7cd73ea67d9953d16961.stl",
-					"render": "/renders/funnel-third.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/f8e54b0771bd5115e4bf71c5d11efaf7a437405db8f9efdd40ca33e345c651bf.png",
 					"grams": 216.27
 				}
 			],
@@ -4922,7 +4922,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/287f8f9936b958f15dc9acd832f6320cbc4fcfb9ee0f7cd73ea67d9953d16961.stl",
-			"render": "/renders/funnel-third.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/f8e54b0771bd5115e4bf71c5d11efaf7a437405db8f9efdd40ca33e345c651bf.png"
 		},
 		{
 			"id": "funnel-half",
@@ -4946,7 +4946,7 @@
 					"commit": null,
 					"onshape_version": "https://cad.onshape.com/documents/a4a1965bbaf3a15aff2b13ed/v/353adf90e6a8a99bed6f90a5/e/8f720225506283b24c872672",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/533487b3dadbdf8ec33af0d9d5185c2d978325e03b13c56a2121135a16c69a53.stl",
-					"render": "/renders/funnel-half.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/23708957eca45e403ee0778cd96aa38b633b4cf2c186729661550e8c5827272a.png",
 					"grams": 158.23
 				}
 			],
@@ -4967,7 +4967,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/533487b3dadbdf8ec33af0d9d5185c2d978325e03b13c56a2121135a16c69a53.stl",
-			"render": "/renders/funnel-half.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/23708957eca45e403ee0778cd96aa38b633b4cf2c186729661550e8c5827272a.png"
 		},
 		{
 			"id": "bin-half-left",
@@ -4990,16 +4990,16 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/2073b94e6ea18fb2a836c3fc17633189771ca8b35a4dd86b0812b1b54ac1fdd5.stl",
-					"render": "/renders/bin-half-left.png",
-					"grams": 171.55
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/fbb87ab6855bbbbfc72fc3557c4c1f7c942bd09e2e61bc45f33083bb9fee8814.png",
+					"grams": 171.54
 				}
 			],
 			"attributes": [],
-			"grams": 171.55,
-			"support_grams": 0.73,
+			"grams": 171.54,
+			"support_grams": 0.69,
 			"support_used": true,
 			"support_intentional": false,
-			"print_seconds": 16592,
+			"print_seconds": 16584,
 			"color": {
 				"role": "bin"
 			},
@@ -5011,7 +5011,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/2073b94e6ea18fb2a836c3fc17633189771ca8b35a4dd86b0812b1b54ac1fdd5.stl",
-			"render": "/renders/bin-half-left.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/fbb87ab6855bbbbfc72fc3557c4c1f7c942bd09e2e61bc45f33083bb9fee8814.png"
 		},
 		{
 			"id": "bin-half-right",
@@ -5034,16 +5034,16 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/93ccbb523ae5ee0b767a08ba53371f9c656caf175df2093ddd9c49af96db76d1.stl",
-					"render": "/renders/bin-half-right.png",
-					"grams": 171.67
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/ab2bee55f3824a7e26251c51c9704408671c6ed783f3955300a260be49bfe20d.png",
+					"grams": 171.5
 				}
 			],
 			"attributes": [],
-			"grams": 171.67,
-			"support_grams": 0.9,
+			"grams": 171.5,
+			"support_grams": 0.67,
 			"support_used": true,
 			"support_intentional": false,
-			"print_seconds": 16691,
+			"print_seconds": 16657,
 			"color": {
 				"role": "bin"
 			},
@@ -5055,7 +5055,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/93ccbb523ae5ee0b767a08ba53371f9c656caf175df2093ddd9c49af96db76d1.stl",
-			"render": "/renders/bin-half-right.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/ab2bee55f3824a7e26251c51c9704408671c6ed783f3955300a260be49bfe20d.png"
 		},
 		{
 			"id": "bin-third-left",
@@ -5078,16 +5078,16 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/16b47a00d4e464e08ad4f5fd66ab9dac33889d1dd84641fa9db99025d8dd08b5.stl",
-					"render": "/renders/bin-third-left.png",
-					"grams": 121.75
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/97b899ae02050b380853c89988d555fff57042b6db4e27d9e58a80d68f1c2367.png",
+					"grams": 121.81
 				}
 			],
 			"attributes": [],
-			"grams": 121.75,
-			"support_grams": 0.96,
+			"grams": 121.81,
+			"support_grams": 1.06,
 			"support_used": true,
 			"support_intentional": false,
-			"print_seconds": 12370,
+			"print_seconds": 12385,
 			"color": {
 				"role": "bin"
 			},
@@ -5099,7 +5099,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/16b47a00d4e464e08ad4f5fd66ab9dac33889d1dd84641fa9db99025d8dd08b5.stl",
-			"render": "/renders/bin-third-left.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/97b899ae02050b380853c89988d555fff57042b6db4e27d9e58a80d68f1c2367.png"
 		},
 		{
 			"id": "bin-third-center",
@@ -5122,7 +5122,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8237c2a114d13e5cc95580b92dd4182c5bbf3b957c63bef7b5245cb288bea1bb.stl",
-					"render": "/renders/bin-third-center.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/4e8613cade7ab03977120329c2a813cb20a1d650339dedfd6863aa191bc8d317.png",
 					"grams": 112.24
 				}
 			],
@@ -5143,7 +5143,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8237c2a114d13e5cc95580b92dd4182c5bbf3b957c63bef7b5245cb288bea1bb.stl",
-			"render": "/renders/bin-third-center.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/4e8613cade7ab03977120329c2a813cb20a1d650339dedfd6863aa191bc8d317.png"
 		},
 		{
 			"id": "bin-third-rightback",
@@ -5166,7 +5166,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/afc9d6e16cf3f8db7adb873f2c77158e8924c25ee29c4f669361a59d87d99f4e.stl",
-					"render": "/renders/bin-third-rightback.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/a34b83ec1f90c71cb4c4f4d28061dc633d4366e8a6feaf23ff5b9692d2b4504e.png",
 					"grams": 121.66
 				}
 			],
@@ -5187,7 +5187,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/afc9d6e16cf3f8db7adb873f2c77158e8924c25ee29c4f669361a59d87d99f4e.stl",
-			"render": "/renders/bin-third-rightback.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/a34b83ec1f90c71cb4c4f4d28061dc633d4366e8a6feaf23ff5b9692d2b4504e.png"
 		},
 		{
 			"id": "bearing-cover-covered",
@@ -5210,7 +5210,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/1a177913356c66c6667093d333d457c0b8fedc3e4379ffe023e92670e58b7d1d.stl",
-					"render": "/renders/bearing-cover-covered.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/776b20f2edf1b070d2814a940b77bd695c9c2f73667a8f42b3ab1a9adaf97516.png",
 					"grams": 6.47
 				}
 			],
@@ -5231,7 +5231,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/1a177913356c66c6667093d333d457c0b8fedc3e4379ffe023e92670e58b7d1d.stl",
-			"render": "/renders/bearing-cover-covered.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/776b20f2edf1b070d2814a940b77bd695c9c2f73667a8f42b3ab1a9adaf97516.png"
 		},
 		{
 			"id": "bearing-cover-servo",
@@ -5254,7 +5254,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/4573bb40f91390f1dcbe7c87eb187fa3a68e7c6ea5de17fc0f9e083e7506242b.stl",
-					"render": "/renders/bearing-cover-servo.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/dfddacb1f416c77f575e14b90c234f428691d0cb49f1e5e3911a97d249d248d6.png",
 					"grams": 5.9
 				}
 			],
@@ -5263,7 +5263,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 2427,
+			"print_seconds": 2426,
 			"color": {
 				"role": "chute-core"
 			},
@@ -5275,7 +5275,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/4573bb40f91390f1dcbe7c87eb187fa3a68e7c6ea5de17fc0f9e083e7506242b.stl",
-			"render": "/renders/bearing-cover-servo.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/dfddacb1f416c77f575e14b90c234f428691d0cb49f1e5e3911a97d249d248d6.png"
 		},
 		{
 			"id": "meanwell-psu-back-mount",
@@ -5298,7 +5298,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/e09524f65ab42f6647abd8d41f7e4bbde08be8e8261d488d0fbd92c0e8bbddcc.stl",
-					"render": "/renders/meanwell-psu-back-mount.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/bfc39905f6027d61f04d5e7b8cd7f72f506223a834bbd62bf944497bd9204114.png",
 					"grams": 55.74
 				}
 			],
@@ -5319,7 +5319,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/e09524f65ab42f6647abd8d41f7e4bbde08be8e8261d488d0fbd92c0e8bbddcc.stl",
-			"render": "/renders/meanwell-psu-back-mount.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/bfc39905f6027d61f04d5e7b8cd7f72f506223a834bbd62bf944497bd9204114.png"
 		},
 		{
 			"id": "meanwell-psu-connections",
@@ -5342,7 +5342,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/f94f353956fde415361167f6aa391e85b8f13ad619204d60b202fcf09a3686e9.stl",
-					"render": "/renders/meanwell-psu-connections.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/e14c520edb0ffa8223be78127626e9e8948a13c7a2c5499a17ebe552247f6e87.png",
 					"grams": 101.9
 				}
 			],
@@ -5351,7 +5351,7 @@
 			"support_grams": 0.0,
 			"support_used": false,
 			"support_intentional": false,
-			"print_seconds": 10960,
+			"print_seconds": 10583,
 			"color": {
 				"role": "frame"
 			},
@@ -5363,7 +5363,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/f94f353956fde415361167f6aa391e85b8f13ad619204d60b202fcf09a3686e9.stl",
-			"render": "/renders/meanwell-psu-connections.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/e14c520edb0ffa8223be78127626e9e8948a13c7a2c5499a17ebe552247f6e87.png"
 		},
 		{
 			"id": "meanwell-psu-cap",
@@ -5386,7 +5386,7 @@
 					"message": "Initial version.",
 					"commit": null,
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/2fa72485f7b395f7cbcb898e99dff616475eb80bb80520b5dbd4b066032aed62.stl",
-					"render": "/renders/meanwell-psu-cap.png",
+					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/6df1c20518fb7ad60045872259d02e109054e56cf8581776f6ca9e62ad311900.png",
 					"grams": 60.81
 				}
 			],
@@ -5407,7 +5407,7 @@
 			"layer_scope": "all",
 			"requires": [],
 			"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/2fa72485f7b395f7cbcb898e99dff616475eb80bb80520b5dbd4b066032aed62.stl",
-			"render": "/renders/meanwell-psu-cap.png"
+			"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/6df1c20518fb7ad60045872259d02e109054e56cf8581776f6ca9e62ad311900.png"
 		}
 	],
 	"hardware": [

@@ -2,460 +2,495 @@
   "bucket": "sorter-v2-parts",
   "public_base": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com",
   "artifacts": {
-    "slicer/parts/bins/bin-half-left.stl": {
-      "sha256": "2073b94e6ea18fb2a836c3fc17633189771ca8b35a4dd86b0812b1b54ac1fdd5",
-      "size": 10884,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/2073b94e6ea18fb2a836c3fc17633189771ca8b35a4dd86b0812b1b54ac1fdd5.stl"
-    },
-    "slicer/parts/bins/bin-half-right.stl": {
-      "sha256": "93ccbb523ae5ee0b767a08ba53371f9c656caf175df2093ddd9c49af96db76d1",
-      "size": 10784,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/93ccbb523ae5ee0b767a08ba53371f9c656caf175df2093ddd9c49af96db76d1.stl"
-    },
-    "slicer/parts/bins/bin-retainer-left.stl": {
-      "sha256": "6e1aa2f4446c9f399fe1d6232fb0991138358b48714ca3c9d27206fa4c728c57",
-      "size": 116084,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/6e1aa2f4446c9f399fe1d6232fb0991138358b48714ca3c9d27206fa4c728c57.stl"
-    },
-    "slicer/parts/bins/bin-retainer-right.stl": {
-      "sha256": "54704393c3e0786bb69eed1596296519d032aea277b00ffed1335347d03a8dc6",
-      "size": 115884,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/54704393c3e0786bb69eed1596296519d032aea277b00ffed1335347d03a8dc6.stl"
-    },
-    "slicer/parts/bins/bin-third-center.stl": {
-      "sha256": "8237c2a114d13e5cc95580b92dd4182c5bbf3b957c63bef7b5245cb288bea1bb",
-      "size": 6084,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8237c2a114d13e5cc95580b92dd4182c5bbf3b957c63bef7b5245cb288bea1bb.stl"
-    },
-    "slicer/parts/bins/bin-third-left.stl": {
-      "sha256": "16b47a00d4e464e08ad4f5fd66ab9dac33889d1dd84641fa9db99025d8dd08b5",
-      "size": 9084,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/16b47a00d4e464e08ad4f5fd66ab9dac33889d1dd84641fa9db99025d8dd08b5.stl"
-    },
-    "slicer/parts/bins/bin-third-rightback.stl": {
-      "sha256": "afc9d6e16cf3f8db7adb873f2c77158e8924c25ee29c4f669361a59d87d99f4e",
-      "size": 9084,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/afc9d6e16cf3f8db7adb873f2c77158e8924c25ee29c4f669361a59d87d99f4e.stl"
-    },
-    "slicer/parts/chute/bearing-cover-covered.stl": {
-      "sha256": "1a177913356c66c6667093d333d457c0b8fedc3e4379ffe023e92670e58b7d1d",
-      "size": 327384,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/1a177913356c66c6667093d333d457c0b8fedc3e4379ffe023e92670e58b7d1d.stl"
-    },
-    "slicer/parts/chute/bearing-cover-servo.stl": {
-      "sha256": "4573bb40f91390f1dcbe7c87eb187fa3a68e7c6ea5de17fc0f9e083e7506242b",
-      "size": 344184,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/4573bb40f91390f1dcbe7c87eb187fa3a68e7c6ea5de17fc0f9e083e7506242b.stl"
-    },
-    "slicer/parts/chute/bearing-holder-left.stl": {
-      "sha256": "f0cc0eb5d575fc3d79cdea59caa0fcc6f7732c336a6830a186ffce51ef267a68",
-      "size": 301784,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/f0cc0eb5d575fc3d79cdea59caa0fcc6f7732c336a6830a186ffce51ef267a68.stl"
-    },
-    "slicer/parts/chute/bearing-holder-right.stl": {
-      "sha256": "9577bfc4f70bca72fe7c45d1c88a82df0ef14d712c67a395003c0deb9c89895b",
-      "size": 301584,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/9577bfc4f70bca72fe7c45d1c88a82df0ef14d712c67a395003c0deb9c89895b.stl"
-    },
-    "slicer/parts/chute/chute-core.stl": {
-      "sha256": "fccd4907faf05e295c070b5a5c2a41b6f89a5109bc7e368cb7632f26a2c19590",
-      "size": 1674284,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/fccd4907faf05e295c070b5a5c2a41b6f89a5109bc7e368cb7632f26a2c19590.stl"
-    },
-    "slicer/parts/chute/chute-door.stl": {
-      "sha256": "9291f5d03edcf10dc1b5f74df681ea1c33f89cacc680aa416f9031bddd1096ff",
-      "size": 171284,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/9291f5d03edcf10dc1b5f74df681ea1c33f89cacc680aa416f9031bddd1096ff.stl"
-    },
-    "slicer/parts/chute/door-module.stl": {
-      "sha256": "b832b7eab72a8392c80d35ebd67bb7cb6326bbc5c82a8592688ccda82fe315b3",
-      "size": 204284,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/b832b7eab72a8392c80d35ebd67bb7cb6326bbc5c82a8592688ccda82fe315b3.stl"
-    },
-    "slicer/parts/chute/funnel-bracket-left.stl": {
-      "sha256": "ced3172731e0c2a64920edb072501efadf3c57325bf200fcb14bba0048dabff9",
-      "size": 139684,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/ced3172731e0c2a64920edb072501efadf3c57325bf200fcb14bba0048dabff9.stl"
-    },
-    "slicer/parts/chute/funnel-bracket-right.stl": {
-      "sha256": "f7932bce6ef7eddb1be6c64a738b41b6573d67bdadb40d6febf131e0a21ccb31",
-      "size": 139684,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/f7932bce6ef7eddb1be6c64a738b41b6573d67bdadb40d6febf131e0a21ccb31.stl"
-    },
-    "slicer/parts/chute/servo-adapter-flap-side.stl": {
-      "sha256": "546231d66be39ade1f502e53375608447228ced0e81bfa9211fd0fa938a02f05",
-      "size": 261784,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/546231d66be39ade1f502e53375608447228ced0e81bfa9211fd0fa938a02f05.stl"
-    },
-    "slicer/parts/chute/servo-adapter-servo-side.stl": {
-      "sha256": "a82b26f1d352e337ba3b14bf1440dcb163dae4c53e405dd82ae24d98ef5ac55c",
-      "size": 214384,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a82b26f1d352e337ba3b14bf1440dcb163dae4c53e405dd82ae24d98ef5ac55c.stl"
-    },
-    "slicer/parts/chute/servo-bracket-cover.stl": {
-      "sha256": "1ebad4ab6770ccf750f33c219e0815f106d44c1d0dce55cacef42b9fdc84c8d2",
-      "size": 162884,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/1ebad4ab6770ccf750f33c219e0815f106d44c1d0dce55cacef42b9fdc84c8d2.stl"
-    },
-    "slicer/parts/chute/servo-bracket-housing.stl": {
-      "sha256": "e03d031e35f6aeed0303564b228866ca783be596e98f0d52fc0aff8bf41d6bd9",
-      "size": 259084,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/e03d031e35f6aeed0303564b228866ca783be596e98f0d52fc0aff8bf41d6bd9.stl"
-    },
-    "slicer/parts/chute/servo-bracket-lower-arm.stl": {
-      "sha256": "9d6c82450ddd4a21fd0b832f6085298c00414a4d530765651b355c7043754203",
-      "size": 179284,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/9d6c82450ddd4a21fd0b832f6085298c00414a4d530765651b355c7043754203.stl"
-    },
-    "slicer/parts/chute/servo-bracket-side-arm.stl": {
-      "sha256": "b37a2c6b9864744415a50c02da10425ac79d6d8f44c6938c941c36e60357464f",
-      "size": 132284,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/b37a2c6b9864744415a50c02da10425ac79d6d8f44c6938c941c36e60357464f.stl"
-    },
-    "slicer/parts/classification-channel/camera-extension-mount.stl": {
-      "sha256": "a69def7f420a0ac70bcc1be0827d5cb9e46b322ea5dfa09fa075f746b5b7f6c8",
-      "size": 121084,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a69def7f420a0ac70bcc1be0827d5cb9e46b322ea5dfa09fa075f746b5b7f6c8.stl"
-    },
-    "slicer/parts/classification-channel/camera-extension.stl": {
-      "sha256": "1253c651918595ba46bfc57401c0b2b6aeb2893649fa6c0d4b92c486943deee4",
-      "size": 795284,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/1253c651918595ba46bfc57401c0b2b6aeb2893649fa6c0d4b92c486943deee4.stl"
-    },
-    "slicer/parts/classification-channel/camera-led-insert.stl": {
-      "sha256": "14202c7b6732d540148082a5d55b3f33ac532f111fb060bc00f95ed25799f816",
-      "size": 2049284,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/14202c7b6732d540148082a5d55b3f33ac532f111fb060bc00f95ed25799f816.stl"
-    },
-    "slicer/parts/classification-channel/classification-dome.stl": {
-      "sha256": "a6b8ec85b47dd24f549db12cd74dd6f4d09b92a5e92c4361efbf6cbf95fc498e",
-      "size": 820284,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a6b8ec85b47dd24f549db12cd74dd6f4d09b92a5e92c4361efbf6cbf95fc498e.stl"
-    },
-    "slicer/parts/classification-channel/rotor-finned.stl": {
-      "sha256": "b8986ea64a9d83e3bb9bb7e116e92068d070bbffcc94ae1a3ce95c9ad5c8601b",
-      "size": 732984,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/b8986ea64a9d83e3bb9bb7e116e92068d070bbffcc94ae1a3ce95c9ad5c8601b.stl"
-    },
-    "slicer/parts/electronics/meanwell-psu-back-mount.stl": {
-      "sha256": "e09524f65ab42f6647abd8d41f7e4bbde08be8e8261d488d0fbd92c0e8bbddcc",
-      "size": 1543184,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/e09524f65ab42f6647abd8d41f7e4bbde08be8e8261d488d0fbd92c0e8bbddcc.stl"
-    },
-    "slicer/parts/electronics/meanwell-psu-cap.stl": {
-      "sha256": "2fa72485f7b395f7cbcb898e99dff616475eb80bb80520b5dbd4b066032aed62",
-      "size": 604184,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/2fa72485f7b395f7cbcb898e99dff616475eb80bb80520b5dbd4b066032aed62.stl"
-    },
-    "slicer/parts/electronics/meanwell-psu-connections.stl": {
-      "sha256": "f94f353956fde415361167f6aa391e85b8f13ad619204d60b202fcf09a3686e9",
-      "size": 1021884,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/f94f353956fde415361167f6aa391e85b8f13ad619204d60b202fcf09a3686e9.stl"
-    },
-    "slicer/parts/external-bracket/ext-bracket-bottom-vertical.stl": {
-      "sha256": "313397afb08fc1943f045905b96131f73f1dc70c05d59fd2583c77da38318c36",
-      "size": 341584,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/313397afb08fc1943f045905b96131f73f1dc70c05d59fd2583c77da38318c36.stl"
-    },
-    "slicer/parts/external-bracket/ext-bracket-cover.stl": {
-      "sha256": "f99e33cea11551b8222feac91c28015488ff2c239e632f5098322e7ea10fc96c",
-      "size": 22184,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/f99e33cea11551b8222feac91c28015488ff2c239e632f5098322e7ea10fc96c.stl"
-    },
-    "slicer/parts/external-bracket/ext-bracket-foot-cover.stl": {
-      "sha256": "96356ae844558770db2340012f013d5a18d119cea1facdeac58596b2b425f540",
-      "size": 154084,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/96356ae844558770db2340012f013d5a18d119cea1facdeac58596b2b425f540.stl"
-    },
-    "slicer/parts/external-bracket/ext-bracket-left.stl": {
-      "sha256": "da4b3abd3db72070484178ef5aa1d0906397c6a310bdf0e22f724940bd62dba2",
-      "size": 459284,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/da4b3abd3db72070484178ef5aa1d0906397c6a310bdf0e22f724940bd62dba2.stl"
-    },
-    "slicer/parts/feeder/bulk-cap.stl": {
-      "sha256": "20223510233281bcdf32699903e054a22c0cffde8d6c4e7542f9ae8d1bd04a9f",
-      "size": 405984,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/20223510233281bcdf32699903e054a22c0cffde8d6c4e7542f9ae8d1bd04a9f.stl"
-    },
-    "slicer/parts/feeder/camera-mount-part-37.stl": {
-      "sha256": "dd6a72f6ef324012529d0dd0f95b9e81b08fac5a95f0d1277917d4251742df78",
-      "size": 1144984,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/dd6a72f6ef324012529d0dd0f95b9e81b08fac5a95f0d1277917d4251742df78.stl"
-    },
-    "slicer/parts/feeder/camera-mount-part-37b.stl": {
-      "sha256": "39a3d2c7816ac6c7ad1108111f0d6629564414ea147f0800dc76af85be0ac6c1",
-      "size": 726484,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/39a3d2c7816ac6c7ad1108111f0d6629564414ea147f0800dc76af85be0ac6c1.stl"
-    },
-    "slicer/parts/feeder/camera-mount-part-6.stl": {
-      "sha256": "b8dfcbe095b0f961276ffce9d01a70936c78e4bc701649670eb10d9385fdfea6",
-      "size": 658084,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/b8dfcbe095b0f961276ffce9d01a70936c78e4bc701649670eb10d9385fdfea6.stl"
-    },
-    "slicer/parts/feeder/camera-mount-rod-mount.stl": {
-      "sha256": "373b28aa2891096bc3231820d8f87a6a836b4ab3ba95f58f09708ff696ed6b86",
-      "size": 402484,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/373b28aa2891096bc3231820d8f87a6a836b4ab3ba95f58f09708ff696ed6b86.stl"
-    },
-    "slicer/parts/feeder/foot.stl": {
-      "sha256": "8c70fc095a1495e9a75f2e88803a9de5cac2d6cc0351d977fd684bed5546ba7e",
-      "size": 96484,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8c70fc095a1495e9a75f2e88803a9de5cac2d6cc0351d977fd684bed5546ba7e.stl"
-    },
-    "slicer/parts/feeder/idler-gear.stl": {
-      "sha256": "dd13e9269f08d3d9a698e043e446abb968ae998435ef7b552325f0b7db629eeb",
-      "size": 655084,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/dd13e9269f08d3d9a698e043e446abb968ae998435ef7b552325f0b7db629eeb.stl"
-    },
-    "slicer/parts/feeder/input-gear.stl": {
-      "sha256": "3587940de2e8559ea125eb2acd59976aa7f3e45bd70b32f41044d1c8ae3a1b44",
-      "size": 397284,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/3587940de2e8559ea125eb2acd59976aa7f3e45bd70b32f41044d1c8ae3a1b44.stl"
-    },
-    "slicer/parts/feeder/leg-extension.stl": {
-      "sha256": "a6f22135b92ac953c3c83073064cc2531fe40277339dc3cd0cf0327f73813d50",
-      "size": 76184,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a6f22135b92ac953c3c83073064cc2531fe40277339dc3cd0cf0327f73813d50.stl"
-    },
-    "slicer/parts/feeder/leg.stl": {
-      "sha256": "6621b702d3ada3422d7e3eb72f86cc7fec8a86b842539f858b7784e4e4587592",
-      "size": 95784,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/6621b702d3ada3422d7e3eb72f86cc7fec8a86b842539f858b7784e4e4587592.stl"
-    },
-    "slicer/parts/feeder/light-post-cap-adapter.stl": {
-      "sha256": "230825d03733af289fdc5fbf3b28b59f2d4f4cbb1d87b9db9e640f3d8d0e4a34",
-      "size": 310884,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/230825d03733af289fdc5fbf3b28b59f2d4f4cbb1d87b9db9e640f3d8d0e4a34.stl"
-    },
-    "slicer/parts/feeder/light-post-cap.stl": {
-      "sha256": "8759618be4ccf9f764520921386a0eb1209733f15a9e34b673cd104265b3057a",
-      "size": 207384,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8759618be4ccf9f764520921386a0eb1209733f15a9e34b673cd104265b3057a.stl"
-    },
-    "slicer/parts/feeder/light-post.stl": {
-      "sha256": "4298d9e5383cef563903685c5ba8eb3f177793b7aa3555710a864e2a000660c9",
-      "size": 3045084,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/4298d9e5383cef563903685c5ba8eb3f177793b7aa3555710a864e2a000660c9.stl"
-    },
-    "slicer/parts/feeder/nema-bracket.stl": {
-      "sha256": "8b2bea87360e0a1030c66f43ac652b3e07626acaa961a963b106358cdeabd845",
-      "size": 1120684,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8b2bea87360e0a1030c66f43ac652b3e07626acaa961a963b106358cdeabd845.stl"
-    },
-    "slicer/parts/feeder/output-gear.stl": {
-      "sha256": "69ae2f998fe3caef3e9ea75c7b3081203ff7b2e690b8ef56e7c4b4380f19b0aa",
-      "size": 2426584,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/69ae2f998fe3caef3e9ea75c7b3081203ff7b2e690b8ef56e7c4b4380f19b0aa.stl"
-    },
-    "slicer/parts/feeder/output-guide.stl": {
-      "sha256": "8115840b817f57467725c99b987ca4a036df1fe8b98a0991c438bea84ebbe549",
-      "size": 187184,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/8115840b817f57467725c99b987ca4a036df1fe8b98a0991c438bea84ebbe549.stl"
-    },
-    "slicer/parts/feeder/rotor-faceted.stl": {
-      "sha256": "350de3f8e27e7d0bb1f00d2c070c7f255da73987c9b2d86f639664c5db81bfd6",
-      "size": 297484,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/350de3f8e27e7d0bb1f00d2c070c7f255da73987c9b2d86f639664c5db81bfd6.stl"
-    },
-    "slicer/parts/feeder/stator.stl": {
-      "sha256": "323b2d1f94a5440119359498de7c7f706d4b32f4c54bec45e88b94c53064279b",
-      "size": 901884,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/323b2d1f94a5440119359498de7c7f706d4b32f4c54bec45e88b94c53064279b.stl"
-    },
-    "slicer/parts/funnel/funnel-half.stl": {
-      "sha256": "533487b3dadbdf8ec33af0d9d5185c2d978325e03b13c56a2121135a16c69a53",
-      "size": 76984,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/533487b3dadbdf8ec33af0d9d5185c2d978325e03b13c56a2121135a16c69a53.stl"
-    },
-    "slicer/parts/funnel/funnel-third.stl": {
-      "sha256": "287f8f9936b958f15dc9acd832f6320cbc4fcfb9ee0f7cd73ea67d9953d16961",
-      "size": 70084,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/287f8f9936b958f15dc9acd832f6320cbc4fcfb9ee0f7cd73ea67d9953d16961.stl"
-    },
-    "slicer/parts/interface/cable-clamp-inner.stl": {
-      "sha256": "a77f4963aada127b93e60161a8aa83685a03ce6f3beb318c270627f7641927af",
-      "size": 628534,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a77f4963aada127b93e60161a8aa83685a03ce6f3beb318c270627f7641927af.stl"
-    },
-    "slicer/parts/interface/cable-clamp-outer.stl": {
-      "sha256": "dd778421784bf38babc9ccde0f1007ce61e7e2c575718a933e62aadfedd55484",
-      "size": 398484,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/dd778421784bf38babc9ccde0f1007ce61e7e2c575718a933e62aadfedd55484.stl"
-    },
-    "slicer/parts/interface/chute-stepper-idler-bearing-retainer-inner.stl": {
-      "sha256": "6157c7c623581c40285ecf8703c915aa95d921369000f5e68e25ccd2989073f4",
-      "size": 86484,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/6157c7c623581c40285ecf8703c915aa95d921369000f5e68e25ccd2989073f4.stl"
-    },
-    "slicer/parts/interface/chute-stepper-idler-bearing-retainer-outer.stl": {
-      "sha256": "00180b3aaeab6c4e0222c4accfc69172ea358c68c1a07427324ba22e57795a23",
-      "size": 290084,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/00180b3aaeab6c4e0222c4accfc69172ea358c68c1a07427324ba22e57795a23.stl"
-    },
-    "slicer/parts/interface/chute-stepper-support-block.stl": {
-      "sha256": "106dec95fef16977ebef133766df63d301b98885ac8a4bf9bf718e3eda72ac7f",
-      "size": 68284,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/106dec95fef16977ebef133766df63d301b98885ac8a4bf9bf718e3eda72ac7f.stl"
-    },
-    "slicer/parts/interface/interface-big-spacer.stl": {
-      "sha256": "5fbb26d2e34975168e734a523dae50d691fcb5725427e1be1c6bc1c30e129643",
-      "size": 173684,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/5fbb26d2e34975168e734a523dae50d691fcb5725427e1be1c6bc1c30e129643.stl"
-    },
-    "slicer/parts/interface/interface-bracket.stl": {
-      "sha256": "5835878c9a32a19bf56b75463137639e6c4fc60615af07313086444697fc717f",
-      "size": 756484,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/5835878c9a32a19bf56b75463137639e6c4fc60615af07313086444697fc717f.stl"
-    },
-    "slicer/parts/interface/interface-cage-bracket-cable.stl": {
-      "sha256": "081da7a95e53340f4f27219a224c0015905f176707c84f82c2f69bd72da85530",
-      "size": 308384,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/081da7a95e53340f4f27219a224c0015905f176707c84f82c2f69bd72da85530.stl"
-    },
-    "slicer/parts/interface/interface-cage-bracket.stl": {
-      "sha256": "6164e958336a10b2a6f3910b6a0bc754996a15202d2719923b272e0963561074",
-      "size": 260584,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/6164e958336a10b2a6f3910b6a0bc754996a15202d2719923b272e0963561074.stl"
-    },
-    "slicer/parts/interface/interface-idler-gear.stl": {
-      "sha256": "86b04df825b6c019f6be0a8894bbbd05a42e6abab86d2694e4a99f5284b6c4d9",
-      "size": 1390484,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/86b04df825b6c019f6be0a8894bbbd05a42e6abab86d2694e4a99f5284b6c4d9.stl"
-    },
-    "slicer/parts/interface/interface-nema23-bracket.stl": {
-      "sha256": "69a9a1dd8c741866e723d8fd5a32baa78b233538a1341bf50eb0f2425a38d82a",
-      "size": 2426584,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/69a9a1dd8c741866e723d8fd5a32baa78b233538a1341bf50eb0f2425a38d82a.stl"
-    },
-    "slicer/parts/interface/interface-rib-switch.stl": {
-      "sha256": "71fd184f21ab0c3a9550eb07542d917014d995a8d607e82d23d764cc47c6efb0",
-      "size": 458384,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/71fd184f21ab0c3a9550eb07542d917014d995a8d607e82d23d764cc47c6efb0.stl"
-    },
-    "slicer/parts/interface/interface-rib.stl": {
-      "sha256": "21976d79a569732eee539fcfb466d32251996860b04d6e8db4e197e47ec54f44",
-      "size": 672984,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/21976d79a569732eee539fcfb466d32251996860b04d6e8db4e197e47ec54f44.stl"
-    },
-    "slicer/parts/interface/interface-spacer.stl": {
-      "sha256": "43dda1e1554853a4759867ecb98e75a54631a9d46f947c548605c3c309709a29",
-      "size": 96084,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/43dda1e1554853a4759867ecb98e75a54631a9d46f947c548605c3c309709a29.stl"
-    },
-    "slicer/parts/interface/interface-spur-gear.stl": {
-      "sha256": "f5c3804796153c3ecb0bab5cc2c16983ed4b4f2edf97df45f2fa7c3a5d81e620",
-      "size": 1682984,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/f5c3804796153c3ecb0bab5cc2c16983ed4b4f2edf97df45f2fa7c3a5d81e620.stl"
-    },
-    "slicer/parts/interface/interface-upper-fixed-section.stl": {
-      "sha256": "47d71e76dcfa387953add0876f279b8a8f26dd836d1d06d362f2d8e5477455ea",
-      "size": 2468984,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/47d71e76dcfa387953add0876f279b8a8f26dd836d1d06d362f2d8e5477455ea.stl"
-    },
-    "slicer/parts/interface/limit-switch-dowel-pin.stl": {
-      "sha256": "08968eebc8fc928db76c12f0a502feaaa11bb026c5bbf03e9903fd9449581900",
-      "size": 57684,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/08968eebc8fc928db76c12f0a502feaaa11bb026c5bbf03e9903fd9449581900.stl"
-    },
-    "slicer/parts/interface/limit-switch-hammer.stl": {
-      "sha256": "a5105d966296f54b7a01a04c21b46861bc407d1b221903def47130aa9b9ab678",
-      "size": 196884,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/a5105d966296f54b7a01a04c21b46861bc407d1b221903def47130aa9b9ab678.stl"
-    },
-    "slicer/parts/interface/limit-switch-housing.stl": {
-      "sha256": "5e22431ac91aad0af6d5878d2cc6fb2ae7dd9c45196dae25d9e2f997b6e3c540",
-      "size": 218684,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/5e22431ac91aad0af6d5878d2cc6fb2ae7dd9c45196dae25d9e2f997b6e3c540.stl"
-    },
-    "slicer/parts/interface/ribbon-cable-clamp.stl": {
-      "sha256": "39b7e6d0e9864c00ca1c75014c1243cabff5a4be54c7671e51352b922c5a0939",
-      "size": 72284,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/39b7e6d0e9864c00ca1c75014c1243cabff5a4be54c7671e51352b922c5a0939.stl"
-    },
-    "slicer/parts/interface/top-interface-split-spur-gear-1.stl": {
-      "sha256": "6a600fb6a6b3f2e5cf22f87fdce65ce0cbeddb2063f598de4dd25f63df23fe0f",
-      "size": 2029084,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/6a600fb6a6b3f2e5cf22f87fdce65ce0cbeddb2063f598de4dd25f63df23fe0f.stl"
-    },
-    "slicer/parts/interface/top-interface-split-spur-gear-2.stl": {
-      "sha256": "c109b8b226a8652d7dd990168a58f52b202e35b842ee191cee49658daffacf7b",
-      "size": 263184,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/c109b8b226a8652d7dd990168a58f52b202e35b842ee191cee49658daffacf7b.stl"
-    },
-    "slicer/parts/interface/top-interface-split-spur-gear-3.stl": {
-      "sha256": "11f50ca23d809c133d2f409908e19b0e6c277e995a6d06e1c11da81bfe5dd6e1",
-      "size": 4632684,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/11f50ca23d809c133d2f409908e19b0e6c277e995a6d06e1c11da81bfe5dd6e1.stl"
-    },
-    "slicer/parts/layer/frame-90deg-bracket.stl": {
-      "sha256": "1081b927cfb55fab0a62b2b3fdee9a86b39960fc0c1ac4d6119c983e39a2b491",
-      "size": 112984,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/1081b927cfb55fab0a62b2b3fdee9a86b39960fc0c1ac4d6119c983e39a2b491.stl"
-    },
-    "slicer/parts/layer/frame-crossbeam.stl": {
-      "sha256": "45a69ae6847617b33b1aa45a379f0b413edba4d13203f4de40506a1f7cb80966",
-      "size": 192484,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/45a69ae6847617b33b1aa45a379f0b413edba4d13203f4de40506a1f7cb80966.stl"
-    },
-    "slicer/parts/layer/layer-connector-1.stl": {
-      "sha256": "c85e30f35445117061a4c7871f7823171bd503fbcd94ea77b53f405a5626ee1c",
-      "size": 90084,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/c85e30f35445117061a4c7871f7823171bd503fbcd94ea77b53f405a5626ee1c.stl"
-    },
-    "slicer/parts/layer/layer-connector-2.stl": {
-      "sha256": "1df17cf7ff0fe530545b45dd107822db2a796f870de67aaa8769663a4eb941f2",
-      "size": 90084,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/1df17cf7ff0fe530545b45dd107822db2a796f870de67aaa8769663a4eb941f2.stl"
-    },
-    "slicer/parts/lazy-susan/ls-bottom-static.stl": {
-      "sha256": "d658c97bd1516b3c61f37028761b46b9be1aa1f6cd26f9057fd9c45691f54488",
-      "size": 754284,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/d658c97bd1516b3c61f37028761b46b9be1aa1f6cd26f9057fd9c45691f54488.stl"
-    },
-    "slicer/parts/lazy-susan/ls-hold-in-place.stl": {
-      "sha256": "18fe2e7e1a18dde42bc8412d288909060d3db35949a7818d56939230d8838872",
-      "size": 95084,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/18fe2e7e1a18dde42bc8412d288909060d3db35949a7818d56939230d8838872.stl"
-    },
-    "slicer/parts/lazy-susan/ls-mount-to-chute.stl": {
-      "sha256": "b63cc59f19780e07ce70f28ed4c6b6e90d6c1e6d469ff8692803ad97815ebfe6",
-      "size": 2574784,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/b63cc59f19780e07ce70f28ed4c6b6e90d6c1e6d469ff8692803ad97815ebfe6.stl"
-    },
-    "slicer/parts/lazy-susan/ls-mount-to-extrusion.stl": {
-      "sha256": "1dac92ed155a14f17d65c6008e8aadd88f6797e975f31f9ccab6d310ce1382f1",
-      "size": 463984,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/1dac92ed155a14f17d65c6008e8aadd88f6797e975f31f9ccab6d310ce1382f1.stl"
-    },
-    "slicer/parts/lazy-susan/ls-washer.stl": {
-      "sha256": "cdfc42cbc5c9285089498ebd013c8ee05fa48ad7adcf12c43eb2d1396ef2d231",
-      "size": 174884,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/cdfc42cbc5c9285089498ebd013c8ee05fa48ad7adcf12c43eb2d1396ef2d231.stl"
-    },
-    "slicer/plates/3-bins.3mf": {
-      "sha256": "c6147c79afa98f0f566f9dbbc9818779472c9cf0c5d874b7570800b06c67686d",
-      "size": 43258,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/c6147c79afa98f0f566f9dbbc9818779472c9cf0c5d874b7570800b06c67686d.3mf"
-    },
-    "slicer/plates/90-deg-brackets.3mf": {
-      "sha256": "6aab6886d1d32a693710441da6c2d80190fcbea9f5a690a08fbe2beec36b9941",
-      "size": 722243,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/6aab6886d1d32a693710441da6c2d80190fcbea9f5a690a08fbe2beec36b9941.3mf"
-    },
-    "slicer/plates/chute-core-and-funnel-brackets.3mf": {
-      "sha256": "3605074a7ee51919737ed2a9b6cb0d522919e776e8e8ecf2944f4fe7aa7e3ae4",
-      "size": 555954,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/3605074a7ee51919737ed2a9b6cb0d522919e776e8e8ecf2944f4fe7aa7e3ae4.3mf"
-    },
-    "slicer/plates/external-brackets-6.3mf": {
-      "sha256": "64e17ce00e1f3f45ace0ebc81ac235a74d4828d4e87ea71a081cb1fe0e79b95f",
-      "size": 1409674,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/64e17ce00e1f3f45ace0ebc81ac235a74d4828d4e87ea71a081cb1fe0e79b95f.3mf"
-    },
-    "slicer/plates/external-brackets.3mf": {
-      "sha256": "4a28da2e33e12340c3621421365add2fed8c1a65d235f8afb93ebfc2d8203ff0",
-      "size": 297441,
-      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/plate/4a28da2e33e12340c3621421365add2fed8c1a65d235f8afb93ebfc2d8203ff0.3mf"
+    "slicer/build/renders/bearing-cover-covered.png": {
+      "sha256": "776b20f2edf1b070d2814a940b77bd695c9c2f73667a8f42b3ab1a9adaf97516",
+      "size": 32688,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/776b20f2edf1b070d2814a940b77bd695c9c2f73667a8f42b3ab1a9adaf97516.png"
+    },
+    "slicer/build/renders/bearing-cover-servo.png": {
+      "sha256": "dfddacb1f416c77f575e14b90c234f428691d0cb49f1e5e3911a97d249d248d6",
+      "size": 36501,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/dfddacb1f416c77f575e14b90c234f428691d0cb49f1e5e3911a97d249d248d6.png"
+    },
+    "slicer/build/renders/bearing-holder-left.png": {
+      "sha256": "4586a4b998e813fcf75687263f99a67f83a1b2d5785368e2015570dadd8a8186",
+      "size": 31641,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/4586a4b998e813fcf75687263f99a67f83a1b2d5785368e2015570dadd8a8186.png"
+    },
+    "slicer/build/renders/bearing-holder-right.png": {
+      "sha256": "e699ed23f6a6d3b527be6c38b6fd92042934d828599ea47f54cca1b15ae2e234",
+      "size": 27151,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/e699ed23f6a6d3b527be6c38b6fd92042934d828599ea47f54cca1b15ae2e234.png"
+    },
+    "slicer/build/renders/bearing-race.png": {
+      "sha256": "de760b9f3cda345b795b829347492ae4dff15bcf206431605c4ee248fda1bfe7",
+      "size": 12660,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/de760b9f3cda345b795b829347492ae4dff15bcf206431605c4ee248fda1bfe7.png"
+    },
+    "slicer/build/renders/bin-half-left.png": {
+      "sha256": "fbb87ab6855bbbbfc72fc3557c4c1f7c942bd09e2e61bc45f33083bb9fee8814",
+      "size": 15890,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/fbb87ab6855bbbbfc72fc3557c4c1f7c942bd09e2e61bc45f33083bb9fee8814.png"
+    },
+    "slicer/build/renders/bin-half-right.png": {
+      "sha256": "ab2bee55f3824a7e26251c51c9704408671c6ed783f3955300a260be49bfe20d",
+      "size": 15985,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/ab2bee55f3824a7e26251c51c9704408671c6ed783f3955300a260be49bfe20d.png"
+    },
+    "slicer/build/renders/bin-retainer-left.png": {
+      "sha256": "5accf5e3bd602528e06eee0e72b5496cc299b7cd7a1f2d674e42c523137048b8",
+      "size": 4930,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/5accf5e3bd602528e06eee0e72b5496cc299b7cd7a1f2d674e42c523137048b8.png"
+    },
+    "slicer/build/renders/bin-retainer-right.png": {
+      "sha256": "8c696985bd89ff4d9f5ccf9b2201d8431a6340c77a88effd8df80e8fb1c256bc",
+      "size": 4785,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/8c696985bd89ff4d9f5ccf9b2201d8431a6340c77a88effd8df80e8fb1c256bc.png"
+    },
+    "slicer/build/renders/bin-third-center.png": {
+      "sha256": "4e8613cade7ab03977120329c2a813cb20a1d650339dedfd6863aa191bc8d317",
+      "size": 13863,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/4e8613cade7ab03977120329c2a813cb20a1d650339dedfd6863aa191bc8d317.png"
+    },
+    "slicer/build/renders/bin-third-left.png": {
+      "sha256": "97b899ae02050b380853c89988d555fff57042b6db4e27d9e58a80d68f1c2367",
+      "size": 14735,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/97b899ae02050b380853c89988d555fff57042b6db4e27d9e58a80d68f1c2367.png"
+    },
+    "slicer/build/renders/bin-third-rightback.png": {
+      "sha256": "a34b83ec1f90c71cb4c4f4d28061dc633d4366e8a6feaf23ff5b9692d2b4504e",
+      "size": 13331,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/a34b83ec1f90c71cb4c4f4d28061dc633d4366e8a6feaf23ff5b9692d2b4504e.png"
+    },
+    "slicer/build/renders/bulk-cap.png": {
+      "sha256": "592e20477c38a3ce0f3373e4c3c1e28896ffe83fc01a7e769c0479a5e319e89a",
+      "size": 13634,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/592e20477c38a3ce0f3373e4c3c1e28896ffe83fc01a7e769c0479a5e319e89a.png"
+    },
+    "slicer/build/renders/cable-clamp-inner.png": {
+      "sha256": "57ae456a92ff178077954ca43b790d8ae62e5e8c00aab1219a1287a9dc511770",
+      "size": 14302,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/57ae456a92ff178077954ca43b790d8ae62e5e8c00aab1219a1287a9dc511770.png"
+    },
+    "slicer/build/renders/cable-clamp-outer.png": {
+      "sha256": "2010b0756008e9b8ccee1179bab2ae21da50636496113f4b81ab5e5604b51128",
+      "size": 12803,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/2010b0756008e9b8ccee1179bab2ae21da50636496113f4b81ab5e5604b51128.png"
+    },
+    "slicer/build/renders/camera-extension-mount.png": {
+      "sha256": "7cc10610083f28d72b1443f9f66b53cf9b8ddfa1570583a40b6b361878fde064",
+      "size": 18827,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/7cc10610083f28d72b1443f9f66b53cf9b8ddfa1570583a40b6b361878fde064.png"
+    },
+    "slicer/build/renders/camera-extension.png": {
+      "sha256": "26dfcc6961445eff993f62b3ca900c891816bd9cd41c5273aa66c2f5464ae84b",
+      "size": 29235,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/26dfcc6961445eff993f62b3ca900c891816bd9cd41c5273aa66c2f5464ae84b.png"
+    },
+    "slicer/build/renders/camera-led-insert.png": {
+      "sha256": "8313d625fdda12e939cd1d93f825ec7c779b4cc7237ab230414afde870b94ce7",
+      "size": 28327,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/8313d625fdda12e939cd1d93f825ec7c779b4cc7237ab230414afde870b94ce7.png"
+    },
+    "slicer/build/renders/camera-mount-part-37.png": {
+      "sha256": "c85d1216ce70850146cff5d895644bdd46caa5af1bfa62169324d75823f767fb",
+      "size": 6644,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/c85d1216ce70850146cff5d895644bdd46caa5af1bfa62169324d75823f767fb.png"
+    },
+    "slicer/build/renders/camera-mount-part-37b.png": {
+      "sha256": "e7ccbaa3096bea81c6f41b85b602876918b4f9f63fe59137c18b8ef9df3990af",
+      "size": 6330,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/e7ccbaa3096bea81c6f41b85b602876918b4f9f63fe59137c18b8ef9df3990af.png"
+    },
+    "slicer/build/renders/camera-mount-part-6.png": {
+      "sha256": "d8c2ad0163ad3f1f009d88d944bd3f413e1652cd86f6299eaaa34c7b613c028a",
+      "size": 10648,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/d8c2ad0163ad3f1f009d88d944bd3f413e1652cd86f6299eaaa34c7b613c028a.png"
+    },
+    "slicer/build/renders/camera-mount-rod-mount.png": {
+      "sha256": "84073b50298866a7bc77b409e961c8de6f7196a948a476bbbcb67333cac7942f",
+      "size": 6179,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/84073b50298866a7bc77b409e961c8de6f7196a948a476bbbcb67333cac7942f.png"
+    },
+    "slicer/build/renders/chute-core.png": {
+      "sha256": "cca8c8cd8540f888cb3b6fc364b129b8710fc32fd7373c9bc3bd1deb0b307701",
+      "size": 24999,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/cca8c8cd8540f888cb3b6fc364b129b8710fc32fd7373c9bc3bd1deb0b307701.png"
+    },
+    "slicer/build/renders/chute-door.png": {
+      "sha256": "c5811afdde0ae5aa27cc1a4994f4c189d1c30de5a7890d9241039f1503c5f6f1",
+      "size": 12102,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/c5811afdde0ae5aa27cc1a4994f4c189d1c30de5a7890d9241039f1503c5f6f1.png"
+    },
+    "slicer/build/renders/chute-stepper-idler-bearing-retainer-inner.png": {
+      "sha256": "6dc66e7775dd3825347f9cc6f2f4ab034dc59101e295f7ca2dc3a462c01b99dc",
+      "size": 15588,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/6dc66e7775dd3825347f9cc6f2f4ab034dc59101e295f7ca2dc3a462c01b99dc.png"
+    },
+    "slicer/build/renders/chute-stepper-idler-bearing-retainer-outer.png": {
+      "sha256": "9c2f47c9347bef5ad1f4ebcf0b3d67d7d47569ccccba227e8dd719aca7b0d36f",
+      "size": 12175,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/9c2f47c9347bef5ad1f4ebcf0b3d67d7d47569ccccba227e8dd719aca7b0d36f.png"
+    },
+    "slicer/build/renders/chute-stepper-support-block.png": {
+      "sha256": "26150f7ac746617b57331f8fa87a12c4e4211ee69bff9ba333bb8283c9400b90",
+      "size": 7398,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/26150f7ac746617b57331f8fa87a12c4e4211ee69bff9ba333bb8283c9400b90.png"
+    },
+    "slicer/build/renders/classification-dome.png": {
+      "sha256": "b97e17659573d334aade504185f3d4930d46a1f5c860440d0c7593d4be0532f1",
+      "size": 37937,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/b97e17659573d334aade504185f3d4930d46a1f5c860440d0c7593d4be0532f1.png"
+    },
+    "slicer/build/renders/ext-bracket-bottom-vertical.png": {
+      "sha256": "54ddc519aa61df88fa84231316e23240a12f1637ad11d1b00f2ed13e190f132a",
+      "size": 7825,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/54ddc519aa61df88fa84231316e23240a12f1637ad11d1b00f2ed13e190f132a.png"
+    },
+    "slicer/build/renders/ext-bracket-cover.png": {
+      "sha256": "ebc5fc97d60b18f07e0dc56db8e8963fa9cbbcca1bfbad7f74ebad2ba8a3ace7",
+      "size": 9149,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/ebc5fc97d60b18f07e0dc56db8e8963fa9cbbcca1bfbad7f74ebad2ba8a3ace7.png"
+    },
+    "slicer/build/renders/ext-bracket-foot-cover.png": {
+      "sha256": "8cb9ad21c850cfee1b8f4356ef23e0ea42e51b2a74083e31b82b947e644f6171",
+      "size": 11457,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/8cb9ad21c850cfee1b8f4356ef23e0ea42e51b2a74083e31b82b947e644f6171.png"
+    },
+    "slicer/build/renders/ext-bracket-left.png": {
+      "sha256": "36c8659a6c851988bd2ad5630668e5e970cd17a0dd22059a79beff40edbbdf49",
+      "size": 6476,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/36c8659a6c851988bd2ad5630668e5e970cd17a0dd22059a79beff40edbbdf49.png"
+    },
+    "slicer/build/renders/foot.png": {
+      "sha256": "ad909ea49b1d825ae1898673a4775317ab9c09aeb9ad009c4a56031ce2239d45",
+      "size": 4827,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/ad909ea49b1d825ae1898673a4775317ab9c09aeb9ad009c4a56031ce2239d45.png"
+    },
+    "slicer/build/renders/frame-90deg-bracket.png": {
+      "sha256": "458863fdb2a5430633acca5ca10ae1530abc4aab8c8cb4b16acf3dfc7bee3c36",
+      "size": 5300,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/458863fdb2a5430633acca5ca10ae1530abc4aab8c8cb4b16acf3dfc7bee3c36.png"
+    },
+    "slicer/build/renders/frame-crossbeam.png": {
+      "sha256": "f25f29198823562123af2c2508a93b2d27b9ef023528b143360a1dc620e1df4e",
+      "size": 5935,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/f25f29198823562123af2c2508a93b2d27b9ef023528b143360a1dc620e1df4e.png"
+    },
+    "slicer/build/renders/funnel-bracket-left.png": {
+      "sha256": "3f3579837a86035ea0d86ea8790c253ba5fb6fa102119c8a69016f5c9b0ee3fd",
+      "size": 19262,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/3f3579837a86035ea0d86ea8790c253ba5fb6fa102119c8a69016f5c9b0ee3fd.png"
+    },
+    "slicer/build/renders/funnel-bracket-right.png": {
+      "sha256": "d9ee3183e22bc307c7f49af6411238706d87767b6e5aa01cdca8529deca1cfdc",
+      "size": 18326,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/d9ee3183e22bc307c7f49af6411238706d87767b6e5aa01cdca8529deca1cfdc.png"
+    },
+    "slicer/build/renders/funnel-half.png": {
+      "sha256": "23708957eca45e403ee0778cd96aa38b633b4cf2c186729661550e8c5827272a",
+      "size": 28027,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/23708957eca45e403ee0778cd96aa38b633b4cf2c186729661550e8c5827272a.png"
+    },
+    "slicer/build/renders/funnel-third.png": {
+      "sha256": "f8e54b0771bd5115e4bf71c5d11efaf7a437405db8f9efdd40ca33e345c651bf",
+      "size": 21306,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/f8e54b0771bd5115e4bf71c5d11efaf7a437405db8f9efdd40ca33e345c651bf.png"
+    },
+    "slicer/build/renders/idler-gear.png": {
+      "sha256": "12196d79a9b36855f16e97061e8cbcd24e53a9c10d4d5981deea24a581f0034f",
+      "size": 17139,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/12196d79a9b36855f16e97061e8cbcd24e53a9c10d4d5981deea24a581f0034f.png"
+    },
+    "slicer/build/renders/input-gear.png": {
+      "sha256": "bd6a09aa8a997766bf287304ea19922e28bacd3c0aa8193ccffc0f1d8956faab",
+      "size": 21021,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/bd6a09aa8a997766bf287304ea19922e28bacd3c0aa8193ccffc0f1d8956faab.png"
+    },
+    "slicer/build/renders/interface-big-spacer.png": {
+      "sha256": "1876d0a47700d42e4e588772fc3a5b3b12158ef1519709e353721594bd5f0285",
+      "size": 7113,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/1876d0a47700d42e4e588772fc3a5b3b12158ef1519709e353721594bd5f0285.png"
+    },
+    "slicer/build/renders/interface-bracket.png": {
+      "sha256": "7402c1b1185d75a275a0d476cddd6f7af3f0a29677665e494281cf678c0b6a3c",
+      "size": 6846,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/7402c1b1185d75a275a0d476cddd6f7af3f0a29677665e494281cf678c0b6a3c.png"
+    },
+    "slicer/build/renders/interface-cage-bracket-cable.png": {
+      "sha256": "8252511ef969ad53490b4079a2a8a517c050f7b09263ed77d7a713935786b898",
+      "size": 5663,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/8252511ef969ad53490b4079a2a8a517c050f7b09263ed77d7a713935786b898.png"
+    },
+    "slicer/build/renders/interface-cage-bracket.png": {
+      "sha256": "3fbdb08fe10df72c8a1d4e8120d48b49eddfdd96b85d4aaedb7cc30200a82bb0",
+      "size": 5380,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/3fbdb08fe10df72c8a1d4e8120d48b49eddfdd96b85d4aaedb7cc30200a82bb0.png"
+    },
+    "slicer/build/renders/interface-idler-gear.png": {
+      "sha256": "1430c7897dcc165784a54481e9f5432c7350ba5a1f03f2fb8cc013601ef0857d",
+      "size": 17058,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/1430c7897dcc165784a54481e9f5432c7350ba5a1f03f2fb8cc013601ef0857d.png"
+    },
+    "slicer/build/renders/interface-nema23-bracket.png": {
+      "sha256": "45bccfecf5884a31710045b1d0fded5d54d8de332a208b3dae89d890bee7b4bd",
+      "size": 7074,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/45bccfecf5884a31710045b1d0fded5d54d8de332a208b3dae89d890bee7b4bd.png"
+    },
+    "slicer/build/renders/interface-rib-switch.png": {
+      "sha256": "20652b8ad99c59d082f7eafe6868f2670b29850861fe5e1a3e2119383dae61dc",
+      "size": 5533,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/20652b8ad99c59d082f7eafe6868f2670b29850861fe5e1a3e2119383dae61dc.png"
+    },
+    "slicer/build/renders/interface-rib.png": {
+      "sha256": "487cacc99d0f924b168cd9875714ae834c978a67579da6a4a0f90ac465f0bcf8",
+      "size": 9649,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/487cacc99d0f924b168cd9875714ae834c978a67579da6a4a0f90ac465f0bcf8.png"
+    },
+    "slicer/build/renders/interface-spacer.png": {
+      "sha256": "3ca604cec0c15dfe6c9484d285e6c6f8700ffc7d62c43180f42e8c7f90207c57",
+      "size": 5661,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/3ca604cec0c15dfe6c9484d285e6c6f8700ffc7d62c43180f42e8c7f90207c57.png"
+    },
+    "slicer/build/renders/interface-spur-gear.png": {
+      "sha256": "14818879e1b4ab947a59da99805ae44a31335e6e1cc796b7ceb9be6365d1a562",
+      "size": 17295,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/14818879e1b4ab947a59da99805ae44a31335e6e1cc796b7ceb9be6365d1a562.png"
+    },
+    "slicer/build/renders/interface-upper-fixed-section.png": {
+      "sha256": "239d8db0295bbbd69677379e47fd81d29687bb32d3ab349534fdefa2efa0c6f5",
+      "size": 13117,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/239d8db0295bbbd69677379e47fd81d29687bb32d3ab349534fdefa2efa0c6f5.png"
+    },
+    "slicer/build/renders/layer-connector-1.png": {
+      "sha256": "4c488a44fba4c64b4430405f885f58a397b6ed5538330ef3758a29a5d08f69a7",
+      "size": 17083,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/4c488a44fba4c64b4430405f885f58a397b6ed5538330ef3758a29a5d08f69a7.png"
+    },
+    "slicer/build/renders/layer-connector-2.png": {
+      "sha256": "b6affb978f744f4a169daaab3da84b4a94601be3ce7078c290e20df86e9b074e",
+      "size": 12794,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/b6affb978f744f4a169daaab3da84b4a94601be3ce7078c290e20df86e9b074e.png"
+    },
+    "slicer/build/renders/leg-extension.png": {
+      "sha256": "8bd2a1e814ede17555ff6c8418a2d2e2a9e6ba15f4073f5b9fb730746d1f3a19",
+      "size": 4363,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/8bd2a1e814ede17555ff6c8418a2d2e2a9e6ba15f4073f5b9fb730746d1f3a19.png"
+    },
+    "slicer/build/renders/leg.png": {
+      "sha256": "31bde03a603d941eca238465a895e8558cc34fa2ee1b12789a330664671adb3f",
+      "size": 3701,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/31bde03a603d941eca238465a895e8558cc34fa2ee1b12789a330664671adb3f.png"
+    },
+    "slicer/build/renders/light-post-cap-adapter.png": {
+      "sha256": "c8c2094d7780f455d3ee8abb9968050609645547e09a99be06c4aecd8af0ba43",
+      "size": 15367,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/c8c2094d7780f455d3ee8abb9968050609645547e09a99be06c4aecd8af0ba43.png"
+    },
+    "slicer/build/renders/light-post-cap.png": {
+      "sha256": "210cd1dbed3419f540c879e0b7dc13e4fc3e384ca59c824979937e89d73106b2",
+      "size": 29200,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/210cd1dbed3419f540c879e0b7dc13e4fc3e384ca59c824979937e89d73106b2.png"
+    },
+    "slicer/build/renders/light-post.png": {
+      "sha256": "89c7c136fdef13314f78228d3f7d405b1c958d7b835a5b2c186012cbd71f82c4",
+      "size": 7218,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/89c7c136fdef13314f78228d3f7d405b1c958d7b835a5b2c186012cbd71f82c4.png"
+    },
+    "slicer/build/renders/limit-switch-dowel-pin.png": {
+      "sha256": "4ddcc09e9b28665f7336dd7a89e59989846c732b2e021ce3183e72ec45e3597a",
+      "size": 8688,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/4ddcc09e9b28665f7336dd7a89e59989846c732b2e021ce3183e72ec45e3597a.png"
+    },
+    "slicer/build/renders/limit-switch-hammer.png": {
+      "sha256": "1bbbf190b2904fa463b37882dac5057174a4fbffbfde2910b0d7d5062df107e7",
+      "size": 12208,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/1bbbf190b2904fa463b37882dac5057174a4fbffbfde2910b0d7d5062df107e7.png"
+    },
+    "slicer/build/renders/limit-switch-housing.png": {
+      "sha256": "8504c2959c674e9c5a330fb30f795f19d9b4c8e7fe6d9e8b87058f09d15571d5",
+      "size": 6986,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/8504c2959c674e9c5a330fb30f795f19d9b4c8e7fe6d9e8b87058f09d15571d5.png"
+    },
+    "slicer/build/renders/ls-bottom-static.png": {
+      "sha256": "13556565c1809c438fa5ddc8ac5d564df0e565884e8fe9eed3f3ec13ea128fc5",
+      "size": 13901,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/13556565c1809c438fa5ddc8ac5d564df0e565884e8fe9eed3f3ec13ea128fc5.png"
+    },
+    "slicer/build/renders/ls-hold-in-place.png": {
+      "sha256": "2179b49aa7e3abef1bc6d9fdbcde658faa63c2d75c30b60daa60fe293d20c23d",
+      "size": 10679,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/2179b49aa7e3abef1bc6d9fdbcde658faa63c2d75c30b60daa60fe293d20c23d.png"
+    },
+    "slicer/build/renders/ls-mount-to-chute.png": {
+      "sha256": "deb4cd4ab5258965785caf543074544ff2db82bddf797eda9e2c4b7921984ce6",
+      "size": 40494,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/deb4cd4ab5258965785caf543074544ff2db82bddf797eda9e2c4b7921984ce6.png"
+    },
+    "slicer/build/renders/ls-mount-to-extrusion.png": {
+      "sha256": "3398069bba9963f0a9035ca00137b450f8e73beec02c676a65b1669c0aad2dac",
+      "size": 5583,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/3398069bba9963f0a9035ca00137b450f8e73beec02c676a65b1669c0aad2dac.png"
+    },
+    "slicer/build/renders/ls-washer.png": {
+      "sha256": "c0b07f41d4794cca26ce2299c04f076003e33fb9641b1a240e07ab7fa7843496",
+      "size": 7149,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/c0b07f41d4794cca26ce2299c04f076003e33fb9641b1a240e07ab7fa7843496.png"
+    },
+    "slicer/build/renders/meanwell-psu-back-mount.png": {
+      "sha256": "bfc39905f6027d61f04d5e7b8cd7f72f506223a834bbd62bf944497bd9204114",
+      "size": 5098,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/bfc39905f6027d61f04d5e7b8cd7f72f506223a834bbd62bf944497bd9204114.png"
+    },
+    "slicer/build/renders/meanwell-psu-cap.png": {
+      "sha256": "6df1c20518fb7ad60045872259d02e109054e56cf8581776f6ca9e62ad311900",
+      "size": 5354,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/6df1c20518fb7ad60045872259d02e109054e56cf8581776f6ca9e62ad311900.png"
+    },
+    "slicer/build/renders/meanwell-psu-connections.png": {
+      "sha256": "e14c520edb0ffa8223be78127626e9e8948a13c7a2c5499a17ebe552247f6e87",
+      "size": 7732,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/e14c520edb0ffa8223be78127626e9e8948a13c7a2c5499a17ebe552247f6e87.png"
+    },
+    "slicer/build/renders/nema-bracket.png": {
+      "sha256": "3f159ceaf91ee261a91ecdc124108115181132721219b0f46eca9133968d1a72",
+      "size": 6455,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/3f159ceaf91ee261a91ecdc124108115181132721219b0f46eca9133968d1a72.png"
+    },
+    "slicer/build/renders/output-gear.png": {
+      "sha256": "5ebe12b3aade28331423b7a09fe2e72fb2dad0a5977a6621cf6b37ceae0160e6",
+      "size": 13446,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/5ebe12b3aade28331423b7a09fe2e72fb2dad0a5977a6621cf6b37ceae0160e6.png"
+    },
+    "slicer/build/renders/output-guide.png": {
+      "sha256": "6f6fcd9efb13c384515b888fca5017699b7a04388f67cc47510cc24052733138",
+      "size": 6744,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/6f6fcd9efb13c384515b888fca5017699b7a04388f67cc47510cc24052733138.png"
+    },
+    "slicer/build/renders/ribbon-cable-clamp.png": {
+      "sha256": "74511513786b621d7fa3a7b7fafc29de44b00c44ee939318b5141b8cf90076da",
+      "size": 6333,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/74511513786b621d7fa3a7b7fafc29de44b00c44ee939318b5141b8cf90076da.png"
+    },
+    "slicer/build/renders/rotor-faceted.png": {
+      "sha256": "a302129269057d0aba3f6cda1eefe0c6986acac6a1822dde9857c2cee088df3d",
+      "size": 20416,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/a302129269057d0aba3f6cda1eefe0c6986acac6a1822dde9857c2cee088df3d.png"
+    },
+    "slicer/build/renders/rotor-finned.png": {
+      "sha256": "03eaaee398ab2fd28a655f6a1ffc9ea07682ccd564968ecb8b2f3890b4dc5283",
+      "size": 24469,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/03eaaee398ab2fd28a655f6a1ffc9ea07682ccd564968ecb8b2f3890b4dc5283.png"
+    },
+    "slicer/build/renders/servo-adapter-flap-side.png": {
+      "sha256": "5c7e86eaf53f84c987ad90c8bd7cd8ac8ebf280f16cba3e9721408cdd6705f72",
+      "size": 27552,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/5c7e86eaf53f84c987ad90c8bd7cd8ac8ebf280f16cba3e9721408cdd6705f72.png"
+    },
+    "slicer/build/renders/servo-adapter-servo-side.png": {
+      "sha256": "f634d936eba2d6cf72c2e20197f9ee2bcdac655714cab3e59f38112c064a1736",
+      "size": 33072,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/f634d936eba2d6cf72c2e20197f9ee2bcdac655714cab3e59f38112c064a1736.png"
+    },
+    "slicer/build/renders/servo-bracket-cover.png": {
+      "sha256": "f12d0ef70ebdf559c6c3783eb4eaadcb0ff9a0c4073b0b0011cf16d599930547",
+      "size": 14053,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/f12d0ef70ebdf559c6c3783eb4eaadcb0ff9a0c4073b0b0011cf16d599930547.png"
+    },
+    "slicer/build/renders/servo-bracket-housing.png": {
+      "sha256": "f90de374d1be21c8bdcc7a315b960b6adc6b082c37073e492236d9d71b8457c8",
+      "size": 15678,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/f90de374d1be21c8bdcc7a315b960b6adc6b082c37073e492236d9d71b8457c8.png"
+    },
+    "slicer/build/renders/servo-bracket-lower-arm.png": {
+      "sha256": "c5ed1fa6176a6452792d1573c697c2355efd2e6ee4b5cadac7b40cd757c92630",
+      "size": 11152,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/c5ed1fa6176a6452792d1573c697c2355efd2e6ee4b5cadac7b40cd757c92630.png"
+    },
+    "slicer/build/renders/servo-bracket-side-arm.png": {
+      "sha256": "299fcdafc3e31e9861c7cfd4245d7f23ea1dce6f8fb67d806f2e652f1039525c",
+      "size": 13290,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/299fcdafc3e31e9861c7cfd4245d7f23ea1dce6f8fb67d806f2e652f1039525c.png"
+    },
+    "slicer/build/renders/stator.png": {
+      "sha256": "9f40a356e3c364f9b8825bceb44e880d9a8208e52781baf6ca82ec18a7472009",
+      "size": 13070,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/9f40a356e3c364f9b8825bceb44e880d9a8208e52781baf6ca82ec18a7472009.png"
+    },
+    "slicer/build/renders/top-interface-split-spur-gear-1.png": {
+      "sha256": "448b569fa9fdbd9ade5e33754f2da90a08a25a95e9bacbdd56ffa42912f33377",
+      "size": 19006,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/448b569fa9fdbd9ade5e33754f2da90a08a25a95e9bacbdd56ffa42912f33377.png"
+    },
+    "slicer/build/renders/top-interface-split-spur-gear-2.png": {
+      "sha256": "8c0757f4ea01d6eb28e5d6d972bb57de72dc257e7140f17ccf6aac65155a8170",
+      "size": 13360,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/8c0757f4ea01d6eb28e5d6d972bb57de72dc257e7140f17ccf6aac65155a8170.png"
+    },
+    "slicer/build/renders/top-interface-split-spur-gear-3.png": {
+      "sha256": "453e3dfaa76e0515d786d6ceee38e5d909bf6b02bef94e0ecaee7da666cf7bfd",
+      "size": 27909,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/453e3dfaa76e0515d786d6ceee38e5d909bf6b02bef94e0ecaee7da666cf7bfd.png"
+    },
+    "slicer/build/renders/versions/bulk-cap-v1.png": {
+      "sha256": "03707ec6bfee05330c334a25d1d9c65a1961291400a345a8de3cbd98772485d1",
+      "size": 13649,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/03707ec6bfee05330c334a25d1d9c65a1961291400a345a8de3cbd98772485d1.png"
+    },
+    "slicer/build/renders/versions/cable-clamp-outer-v1.png": {
+      "sha256": "0dd67a0ab288196eefc912ca63ab3f3b6cd031df5ce1f9ae0e29ef37c1e56bec",
+      "size": 12836,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/0dd67a0ab288196eefc912ca63ab3f3b6cd031df5ce1f9ae0e29ef37c1e56bec.png"
+    },
+    "slicer/build/renders/versions/interface-big-spacer-v1.png": {
+      "sha256": "46621bef4ac9b2a192b1a16820341edddb3f8c545a6b40b8234f7e4e31478cb9",
+      "size": 8217,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/46621bef4ac9b2a192b1a16820341edddb3f8c545a6b40b8234f7e4e31478cb9.png"
+    },
+    "slicer/build/renders/versions/interface-bracket-v1.png": {
+      "sha256": "4fcdf952bf770131b993bd4525e30c85c6e3ce1d01cbb0e029df97a52bb4a8d1",
+      "size": 6849,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/4fcdf952bf770131b993bd4525e30c85c6e3ce1d01cbb0e029df97a52bb4a8d1.png"
+    },
+    "slicer/build/renders/versions/interface-upper-fixed-section-v1.png": {
+      "sha256": "94117a75e8eaf876ca804715f6be5d43f5178edc3756df1557892337f8cfc0bf",
+      "size": 12672,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/94117a75e8eaf876ca804715f6be5d43f5178edc3756df1557892337f8cfc0bf.png"
+    },
+    "slicer/build/plate-thumbs/3-bins-1.png": {
+      "sha256": "4ef3faa71f64fe9015b195f85aa927a04e48eb85e35c248b0130c8b7b10e983e",
+      "size": 5361,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/thumb/4ef3faa71f64fe9015b195f85aa927a04e48eb85e35c248b0130c8b7b10e983e.png"
+    },
+    "slicer/build/plate-thumbs/90-deg-brackets-1.png": {
+      "sha256": "bcf2dbe5a41beb2b52024c7302b4c85facbba6923a80a8a9d8a6010e2bcfffd2",
+      "size": 13044,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/thumb/bcf2dbe5a41beb2b52024c7302b4c85facbba6923a80a8a9d8a6010e2bcfffd2.png"
+    },
+    "slicer/build/plate-thumbs/chute-core-and-funnel-brackets-1.png": {
+      "sha256": "16ca235ae431874eacf3f5ec275eddd7fc96a6f3a9929b6df9be19b3a9aa41b6",
+      "size": 10009,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/thumb/16ca235ae431874eacf3f5ec275eddd7fc96a6f3a9929b6df9be19b3a9aa41b6.png"
+    },
+    "slicer/build/plate-thumbs/chute-core-and-funnel-brackets-2.png": {
+      "sha256": "e63bbb31714f411784cd2dbaf880e620fe9c0bb9c5bc621ab78888e747450815",
+      "size": 9716,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/thumb/e63bbb31714f411784cd2dbaf880e620fe9c0bb9c5bc621ab78888e747450815.png"
+    },
+    "slicer/build/plate-thumbs/chute-core-and-funnel-brackets-3.png": {
+      "sha256": "4f64ada068524e35fa4cbd554208116fb7f724b2d93703c196f4c6f4631c0297",
+      "size": 5384,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/thumb/4f64ada068524e35fa4cbd554208116fb7f724b2d93703c196f4c6f4631c0297.png"
+    },
+    "slicer/build/plate-thumbs/external-brackets-1.png": {
+      "sha256": "fd853f80cfc03cc61e26bd349cf5b26a1c2b0076a0c8e187f149b3d9bd38bc1c",
+      "size": 16604,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/thumb/fd853f80cfc03cc61e26bd349cf5b26a1c2b0076a0c8e187f149b3d9bd38bc1c.png"
+    },
+    "slicer/build/plate-thumbs/external-brackets-6-1.png": {
+      "sha256": "eaa2e470eb10cb80d38fb577fba3bf1e313cc1369629f9fd37c64c2f6e6c23a5",
+      "size": 23603,
+      "url": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/thumb/eaa2e470eb10cb80d38fb577fba3bf1e313cc1369629f9fd37c64c2f6e6c23a5.png"
     },
     "slicer/build/bundle/all-parts.zip": {
       "sha256": "b12f5f6485387ca7188204a55cba237ce07a5fa57626819f48c09129a98e4635",

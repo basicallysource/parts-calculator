@@ -56,8 +56,10 @@ def collect_urls() -> dict[str, str]:
     add(parts.get("settings", {}).get("all_parts_zip"), "binary")
     for p in parts.get("parts", []):
         add(p.get("stl"), "binary")
+        add(p.get("render"), "image")
         for v in p.get("versions") or []:
             add(v.get("stl"), "binary")
+            add(v.get("render"), "image")
     for h in parts.get("hardware", []):
         add(h.get("image"), "image")
     for f in parts.get("families", []):
@@ -69,6 +71,8 @@ def collect_urls() -> dict[str, str]:
     if PLATES.exists():
         for plate in json.loads(PLATES.read_text()):
             add(plate.get("download"), "binary")
+            for t in plate.get("thumbs") or []:
+                add(t, "image")
 
     return urls
 
