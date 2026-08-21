@@ -1958,7 +1958,7 @@
 			"support_grams": 9.29,
 			"support_used": true,
 			"support_intentional": false,
-			"print_seconds": 23628,
+			"print_seconds": 23591,
 			"color": {
 				"role": "chute-core"
 			},
@@ -2852,7 +2852,7 @@
 					"stl_hash": "34485f41055e82d098984ed49824fd0f93f471dac62ea86e6b83cf87482bf9fd",
 					"render": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/render/ca79ce549550b61de0afa3125c96733aba074e0e06e1062daa672d3c1a6ea826.png",
 					"stl": "https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/stl/34485f41055e82d098984ed49824fd0f93f471dac62ea86e6b83cf87482bf9fd.stl",
-					"grams": 19.76
+					"grams": 19.77
 				},
 				{
 					"version": "2",
