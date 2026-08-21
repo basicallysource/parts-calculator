@@ -78,13 +78,13 @@
 	<figure class="m-0">
 		<div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
 			<img
-				src="/examples/handcut-top-plate-1.jpg"
+				src="https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/4cada9d1b70e2cf3dd196b4e0d9d05b9102068a719d8866a26fcee21603ba0db.jpg"
 				alt="A hand-cut hexagonal top plate with the drilled hole pattern and center opening"
 				class="w-full border border-border"
 				loading="lazy"
 			/>
 			<img
-				src="/examples/handcut-top-plate-2.jpg"
+				src="https://sorter-v2-parts.nyc3.cdn.digitaloceanspaces.com/img/67d2fbb69a5186ec479492b77e8248485618d0b5e8eaf5aec62e6c7328b48938.jpg"
 				alt="The same hand-cut top plate with the interface assembly mounted"
 				class="w-full border border-border"
 				loading="lazy"

@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
-"""Sync build artifacts (STLs, 3MFs) to DigitalOcean Spaces, content-addressed.
+"""The bucket is the only home binary content has; this script feeds it.
 
 Every file is stored at <prefix>/<sha256><ext> and uploaded only if absent, so
 re-runs are cheap and identical bytes are never stored twice. Because the
-address IS the content hash, every historical revision stays downloadable
-forever with zero redundancy -- which is what lets parts.json pin an
-`stl_hash` per revision (see notes/UNIFIED-PARTS-SYSTEM.md section 7).
+address IS the content hash, every revision of every asset stays downloadable
+forever with zero redundancy -- which is what lets parts.json pin masters and
+historical versions by `stl_hash` (see notes/UNIFIED-PARTS-SYSTEM.md section 7).
+Nothing binary is committed to git, anywhere, ever.
+
+Two jobs:
+  * sync (no args): upload what filament.py freshly produced under build/
+    (renders, plate thumbnails, the all-parts zip) and write the manifest.
+  * --upload FILE...: author an asset -- an STL master, a plate 3mf, a product
+    image -- straight onto the bucket, printing the pin line to paste into
+    slicer/parts.json or slicer/plates.json.
 
 Credentials, in order of precedence:
   1. env: DO_SPACES_KEY / DO_SPACES_SECRET
@@ -14,10 +22,7 @@ Credentials, in order of precedence:
 Usage:
   python scripts/sync_bucket.py --dry-run     # show what would upload
   python scripts/sync_bucket.py               # upload missing, write manifest
-  python scripts/sync_bucket.py --upload a.png b.jpg
-                                              # put product images on the bucket
-                                              # and print the image_url to paste
-                                              # into slicer/parts.json
+  python scripts/sync_bucket.py --upload part.stl plate.3mf photo.jpg
 """
 
 from __future__ import annotations
@@ -44,17 +49,17 @@ PUBLIC_BASE = os.environ.get(
 # Directories whose contents get pushed. Keep this list narrow: only things
 # the website serves or that pin a revision. Renders (1.4M total) stay as
 # normal git blobs -- they are small and the site wants them at build time.
+# Everything here lives in gitignored build/, freshly produced by filament.py:
+# renders and plate thumbnails it generated this run, and the all-parts zip.
+# Files that were memoized (already uploaded by an earlier run) are not on
+# disk, so a sync only pushes new bytes. Masters and plates never appear:
+# they are authored straight onto the bucket with `--upload` and pinned by
+# hash in slicer/parts.json / plates.json, so their bytes exist before any
+# regen needs them.
 SOURCES = [
-    ("slicer/parts", "*.stl", "stl"),
-    ("slicer/plates", "*.3mf", "plate"),
-    # The bundle is regenerated into gitignored build/ by filament.py; its
-    # bytes must reach the bucket because settings.all_parts_zip points there.
+    ("slicer/build/renders", "*.png", "render"),
+    ("slicer/build/plate-thumbs", "*.png", "thumb"),
     ("slicer/build/bundle", "all-parts.zip", "bundle"),
-    # COTS/hardware product images are deliberately absent: they never enter
-    # git. `--upload <file>` puts one on the bucket and prints the image_url to
-    # paste into parts.json. Historical part-version STLs are absent too: their
-    # bytes were uploaded by the regen that ran while that geometry was the
-    # live master, and parts.json pins them by stl_hash.
 ]
 
 CONTENT_TYPES = {".stl": "model/stl", ".3mf": "model/3mf", ".zip": "application/zip",
@@ -169,12 +174,15 @@ def s3_client():
     )
 
 
-def upload_loose(paths: list[str], prefix: str = "img") -> None:
-    """Put image files on the bucket and print the image_url for each.
+def upload_loose(paths: list[str]) -> None:
+    """Author an asset straight onto the bucket and print the line to paste.
 
-    This is how a product image gets onto the site: someone hands you a photo,
-    you upload it, you paste the printed line into slicer/parts.json. The file
-    itself is never copied into the repo.
+    This is the ONLY way binary content enters the system -- nothing binary is
+    committed. The prefix and the paste-line follow from the file type:
+
+      .stl        -> stl/<sha>.stl      "stl_hash": "<sha>"   (slicer/parts.json)
+      .3mf        -> plate/<sha>.3mf    "hash": "<sha>"       (slicer/plates.json)
+      images      -> img/<sha>.<ext>    "image_url": "<url>"  (slicer/parts.json)
     """
     s3 = s3_client()
     for raw in paths:
@@ -182,14 +190,23 @@ def upload_loose(paths: list[str], prefix: str = "img") -> None:
         if not p.is_file():
             sys.exit(f"not a file: {p}")
         # sha256() refuses LFS pointers, so a stub can't be published here either.
-        key = f"{prefix}/{sha256(p)}{p.suffix}"
+        digest = sha256(p)
+        suffix = p.suffix.lower()
+        prefix = {"": "img", ".stl": "stl", ".3mf": "plate"}.get(
+            suffix if suffix in (".stl", ".3mf") else "", "img")
+        key = f"{prefix}/{digest}{suffix}"
         try:
             s3.head_object(Bucket=BUCKET, Key=key)
             print(f"  already on the bucket  {p.name}")
         except Exception:
             s3.upload_file(str(p), BUCKET, key, ExtraArgs=upload_args(p.name))
             print(f"  uploaded  {p.name}  ({p.stat().st_size / 1e6:.1f} MB)")
-        print(f'    "image_url": "{PUBLIC_BASE}/{key}"')
+        if prefix == "stl":
+            print(f'    "stl_hash": "{digest}"')
+        elif prefix == "plate":
+            print(f'    "hash": "{digest}"')
+        else:
+            print(f'    "image_url": "{PUBLIC_BASE}/{key}"')
 
 
 def collect() -> list[dict]:
@@ -218,9 +235,9 @@ def main() -> None:
     ap.add_argument("--dry-run", action="store_true", help="report only, upload nothing")
     ap.add_argument("--set-cors", action="store_true", help="apply the CORS policy and exit")
     ap.add_argument("--upload", nargs="+", metavar="FILE",
-                    help="put product image(s) on the bucket and print the image_url "
-                         "to paste into slicer/parts.json; the file is never copied "
-                         "into the repo")
+                    help="author asset(s) straight onto the bucket and print the "
+                         "pin line to paste (stl_hash for .stl, hash for .3mf, "
+                         "image_url for images); files are never copied into the repo")
     args = ap.parse_args()
 
     if args.upload:

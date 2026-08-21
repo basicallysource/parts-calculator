@@ -16,7 +16,7 @@ the generated data is a content-addressed bucket URL (see scripts/
 sync_bucket.py, which uploads the bytes); no binary serving copies live in the
 repo.
 
-Commit the generated JSON and thumbnails. Re-run this whenever a part STL
+Commit the generated JSON (nothing else changes in git). Re-run whenever a pin
 changes or you add/remove parts.
 
 Run:  /opt/homebrew/opt/python@3.11/libexec/bin/python filament.py [--force]
@@ -70,14 +70,21 @@ BUILD = os.path.join(HERE, "build")       # gitignored slicer scratch
 CACHE = os.path.join(BUILD, "cache")
 PROFILE_DIR = os.path.join(BUILD, "profiles")
 DATA_OUT = os.path.join(REPO, "src", "lib", "data", "parts.generated.json")
-RENDERS_OUT = os.path.join(REPO, "static", "renders")
+# NOTHING binary is written into the repo. Masters are fetched from the bucket
+# by the stl_hash pinned per part in parts.json; renders, plate thumbnails and
+# the all-parts zip are staged under gitignored build/ and uploaded
+# content-addressed by sync_bucket.py -- the generated JSON carries their
+# bucket URLs. Freshly produced files are the only ones on disk, so an upload
+# run only ever pushes new bytes.
+MASTERS = os.path.join(BUILD, "masters")
+RENDERS_OUT = os.path.join(BUILD, "renders")
 VERS_RENDERS_OUT = os.path.join(RENDERS_OUT, "versions")
-# The all-parts zip is staged under gitignored build/ for sync_bucket.py to
-# upload; the site links its content-addressed bucket URL (settings.all_parts_zip).
+RENDER_META = os.path.join(CACHE, "renders-meta")   # (stl bytes, hex) -> URL memo
 BUNDLE_OUT = os.path.join(BUILD, "bundle")
-# build plates: pre-arranged .3mf files you drop in slicer/plates/ (auto-discovered)
-PLATES_SRC = os.path.join(HERE, "plates")
-PLATE_THUMB_OUT = os.path.join(REPO, "static", "plate-thumbs")
+# build plates: pre-arranged .3mf files pinned by hash in slicer/plates.json
+PLATES_SRC = os.path.join(BUILD, "plates")
+PLATES_MANIFEST = os.path.join(HERE, "plates.json")
+PLATE_THUMB_OUT = os.path.join(BUILD, "plate-thumbs")
 PLATES_DATA = os.path.join(REPO, "src", "lib", "data", "plates.generated.json")
 
 
@@ -127,20 +134,46 @@ def normalize_versions(part):
     return [entry]
 
 
-def fetch_artifact(sha, dest):
-    """Materialize a content-addressed bucket STL at dest, verifying the hash.
+def fetch_artifact(sha, dest, prefix="stl", suffix=".stl"):
+    """Materialize a content-addressed bucket object at dest, verifying the hash.
 
-    Skips the download when dest already holds the right bytes (the slice-memo
-    cache keeps these around between runs)."""
+    Skips the download when dest already holds the right bytes (gitignored
+    build/ keeps these around between local runs)."""
     if os.path.exists(dest) and sha256_file(dest) == sha:
         return
-    url = f"{PUBLIC_BASE}/stl/{sha}.stl"
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
+    url = f"{PUBLIC_BASE}/{prefix}/{sha}{suffix}"
     with urllib.request.urlopen(url, timeout=60) as r, open(dest, "wb") as f:
         shutil.copyfileobj(r, f)
     got = sha256_file(dest)
     if got != sha:
         os.remove(dest)
         raise RuntimeError(f"bucket object {url} hashed to {got}, expected {sha}")
+
+
+def master_stl(p):
+    """Local path of a part's master STL, fetched by its pinned stl_hash."""
+    dest = os.path.join(MASTERS, p["id"] + ".stl")
+    fetch_artifact(p["stl_hash"], dest)
+    return dest
+
+
+def render_url_for(stl_abs, hexcolor, out_png, force):
+    """Bucket URL for this geometry's thumbnail, rendering only when needed.
+
+    Memoized on (STL bytes, hex): the same geometry in the same color is the
+    same picture, so its content-addressed URL never changes and nothing needs
+    re-rendering or re-uploading. A fresh render lands in build/renders/ where
+    sync_bucket.py picks it up."""
+    key = hashlib.sha1(open(stl_abs, "rb").read() + hexcolor.encode()).hexdigest()[:16]
+    meta = os.path.join(RENDER_META, key + ".json")
+    if not force and os.path.exists(meta):
+        return json.load(open(meta))["url"]
+    render(stl_abs, out_png, hexcolor)
+    url = artifact_url(out_png, prefix="render")
+    os.makedirs(RENDER_META, exist_ok=True)
+    json.dump({"url": url}, open(meta, "w"))
+    return url
 
 
 def archive_versions(parts_by_id, out_parts, profiles, hexmap, role_defaults, force):
@@ -159,11 +192,9 @@ def archive_versions(parts_by_id, out_parts, profiles, hexmap, role_defaults, fo
     for out in out_parts:
         p = parts_by_id[out["id"]]
         versions = out.get("versions") or []
-        stl_abs = os.path.join(HERE, p["stl"])
-        current_sha = sha256_file(stl_abs) if os.path.exists(stl_abs) else None
         for i, v in enumerate(versions):
             pin = v.get("stl_hash")
-            if i == len(versions) - 1 or not pin or pin == current_sha:
+            if i == len(versions) - 1 or not pin or pin == p.get("stl_hash"):
                 # newest / unpinned / geometry unchanged -> the live part asset
                 if out.get("stl"):
                     v["stl"], v["render"], v["grams"] = out["stl"], out["render"], out["grams"]
@@ -173,13 +204,12 @@ def archive_versions(parts_by_id, out_parts, profiles, hexmap, role_defaults, fo
             fetch_artifact(pin, tmp)
             info = slice_part(tmp, profiles, support=bool(p.get("support", False)), force=force)
             png = os.path.join(VERS_RENDERS_OUT, vid + ".png")
-            if force or not os.path.exists(png):
-                try:
-                    render(tmp, png, default_hex(p, role_defaults, hexmap))
-                except Exception as e:
-                    print(f"  ! version render failed for {vid}: {e}")
+            try:
+                v["render"] = render_url_for(tmp, default_hex(p, role_defaults, hexmap), png, force)
+            except Exception as e:
+                print(f"  ! version render failed for {vid}: {e}")
+                v["render"] = None
             v["stl"] = f"{PUBLIC_BASE}/stl/{pin}.stl"
-            v["render"] = f"/renders/versions/{vid}.png"
             v["grams"] = info["grams"] if info else None
             archived += 1
     print(f"  {archived} historical part version(s) resolved from pinned stl_hash")
@@ -621,10 +651,10 @@ def main():
     forced_support = []
     printed = [p for p in manifest["parts"] if p.get("kind", "printed") == "printed"]
     for i, p in enumerate(printed, 1):
-        stl_abs = os.path.join(HERE, p["stl"])
-        if not os.path.exists(stl_abs):
-            print(f"  ! missing STL, skipping: {p['stl']}")
+        if not p.get("stl_hash"):
+            print(f"  ! no stl_hash pinned, skipping: {p['id']}")
             continue
+        stl_abs = master_stl(p)
         want = bool(p.get("support", False))
         info = slice_part(stl_abs, profiles, support=want, force=args.force)
         if info is None and not want:
@@ -638,11 +668,12 @@ def main():
             continue
 
         png = os.path.join(RENDERS_OUT, p["id"] + ".png")
-        if args.force or info.get("fresh") or not os.path.exists(png):
-            try:
-                render(stl_abs, png, default_hex(p, role_defaults, hexmap))
-            except Exception as e:
-                print(f"  ! render failed for {p['id']}: {e}")
+        try:
+            render_url = render_url_for(stl_abs, default_hex(p, role_defaults, hexmap),
+                                        png, args.force)
+        except Exception as e:
+            print(f"  ! render failed for {p['id']}: {e}")
+            render_url = None
 
         zip_members.append((stl_abs, p["id"] + ".stl"))
 
@@ -676,8 +707,8 @@ def main():
             "low_tolerance_note": p.get("low_tolerance_note"),
             "layer_scope": p.get("layer_scope", "all"),
             "requires": p.get("requires", []),
-            "stl": artifact_url(stl_abs),
-            "render": f"/renders/{p['id']}.png",
+            "stl": f"{PUBLIC_BASE}/stl/{p['stl_hash']}.stl",
+            "render": render_url,
         })
         sup = " +support" if info["support_used"] else ""
         # [n/total] makes mid-run CI log pings read as real progress
@@ -731,7 +762,7 @@ def main():
     json.dump(data, open(DATA_OUT, "w"), indent="\t")
 
     print(f"\nwrote {DATA_OUT}")
-    print(f"  {len(out_parts)} parts · thumbnails -> static/renders · STLs + bundle -> bucket")
+    print(f"  {len(out_parts)} parts · thumbnails, STLs + bundle -> bucket")
     if forced_support:
         print(f"  ~ {len(forced_support)} part(s) needed support to slice (floating regions "
               f"in modeled orientation); sliced WITH support: {', '.join(forced_support)}")
@@ -746,27 +777,30 @@ def main():
 
 
 def process_plates(manifest):
-    """Auto-discover pre-arranged build plates (slicer/plates/*.3mf): pull each
-    one's embedded plate previews and read the parts it contains (cross-linked
-    to manifest parts via each part's optional `source` filename). Downloads are
-    the content-addressed bucket URL; sync_bucket.py uploads the bytes."""
+    """Build plates from slicer/plates.json: each entry pins a 3mf on the
+    bucket by hash. Fetch it, pull its embedded plate previews (uploaded
+    content-addressed too), and read the parts it contains (cross-linked to
+    manifest parts via each part's optional `source` filename)."""
     import re
-    import glob
     import collections
     os.makedirs(PLATE_THUMB_OUT, exist_ok=True)
     src_to_id = {p["source"]: p["id"] for p in manifest["parts"] if p.get("source")}
+    entries = json.load(open(PLATES_MANIFEST))["plates"] if os.path.exists(PLATES_MANIFEST) else []
     out = []
-    for f in sorted(glob.glob(os.path.join(PLATES_SRC, "*.3mf"))):
-        base = os.path.splitext(os.path.basename(f))[0]
+    for entry in entries:
+        base = os.path.splitext(entry["file"])[0]
         pid = re.sub(r"[^a-z0-9]+", "-", base.lower()).strip("-")
+        f = os.path.join(PLATES_SRC, pid + ".3mf")
+        fetch_artifact(entry["hash"], f, prefix="plate", suffix=".3mf")
         thumbs = []
         with zipfile.ZipFile(f) as z:
             for name in sorted(n for n in z.namelist() if re.match(r"Metadata/plate_\d+\.png$", n)):
                 num = re.search(r"plate_(\d+)", name).group(1)
                 tn = f"{pid}-{num}.png"
-                with open(os.path.join(PLATE_THUMB_OUT, tn), "wb") as o:
+                tp = os.path.join(PLATE_THUMB_OUT, tn)
+                with open(tp, "wb") as o:
                     o.write(z.read(name))
-                thumbs.append(f"/plate-thumbs/{tn}")
+                thumbs.append(artifact_url(tp, prefix="thumb"))
             cfg = z.read("Metadata/model_settings.config").decode("utf-8", "ignore")
         raw = re.findall(r'<object\b[^>]*>\s*<metadata key="name" value="([^"]+)"', cfg)
         # Skip decorative/label objects (e.g. embossed "text_shape"); real parts are .stl
@@ -778,10 +812,10 @@ def process_plates(manifest):
             parts.append({"name": pretty.replace("_", " ").strip(), "count": c,
                           "part_id": src_to_id.get(nm)})
         parts.sort(key=lambda x: -x["count"])
-        out.append({"id": pid, "name": base, "download": artifact_url(f, prefix="plate"),
+        out.append({"id": pid, "name": base, "download": f"{PUBLIC_BASE}/plate/{entry['hash']}.3mf",
                     "thumbs": thumbs, "parts": parts})
     json.dump(out, open(PLATES_DATA, "w"), indent="\t")
-    print(f"  {len(out)} build plate(s) -> plates.generated.json (+ static/plate-thumbs)")
+    print(f"  {len(out)} build plate(s) -> plates.generated.json (thumbs -> bucket)")
 
 
 if __name__ == "__main__":

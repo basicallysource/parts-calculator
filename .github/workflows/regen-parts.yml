@@ -1,11 +1,13 @@
 name: Regenerate part data
 
 # Runs the slicer pipeline (OrcaSlicer CLI, headless) whenever its inputs
-# change on a PR branch or main, and commits the regenerated JSON, renders,
-# and serving copies back to the branch. This makes CI the canonical slicer
-# environment: any agent (or human) can edit slicer/parts.json or drop in an
-# STL, push, and the Vercel preview picks up correct measured grams and fresh
-# thumbnails without a local OrcaSlicer install.
+# change on a PR branch or main, and commits the regenerated JSON back to the
+# branch. This makes CI the canonical slicer environment: any agent (or
+# human) can upload an STL (scripts/sync_bucket.py --upload), pin its hash in
+# slicer/parts.json, push, and the preview picks up correct measured grams
+# and fresh thumbnails without a local OrcaSlicer install. Masters are
+# fetched from the bucket by pin; renders and thumbnails go back to the
+# bucket content-addressed. Nothing binary is committed.
 #
 # Speed model:
 #  - Only slicer-input paths trigger this at all; most PRs run nothing.
@@ -23,8 +25,7 @@ on:
   pull_request:
     paths:
       - 'slicer/parts.json'
-      - 'slicer/parts/**'
-      - 'slicer/plates/**'
+      - 'slicer/plates.json'
       - 'slicer/filament.py'
       - 'slicer/requirements.txt'
       - 'src/lib/bambu-colors.ts'
@@ -34,8 +35,7 @@ on:
     branches: [main]
     paths:
       - 'slicer/parts.json'
-      - 'slicer/parts/**'
-      - 'slicer/plates/**'
+      - 'slicer/plates.json'
       - 'slicer/filament.py'
       - 'slicer/requirements.txt'
       - 'src/lib/bambu-colors.ts'
@@ -136,9 +136,14 @@ jobs:
       - name: Restore slice memo cache
         uses: actions/cache@v4
         with:
-          path: slicer/build/cache/*/info.json
-          key: slice-memos-v1-${{ github.run_id }}
-          restore-keys: slice-memos-v1-
+          # Slice memos AND render-URL memos: the render memo is what keeps a
+          # regen from re-rendering (and re-uploading) every thumbnail. Cold
+          # cache -> one full re-render pass, new content-addressed URLs.
+          path: |
+            slicer/build/cache/*/info.json
+            slicer/build/cache/renders-meta/*.json
+          key: slice-memos-v2-${{ github.run_id }}
+          restore-keys: slice-memos-v2-
 
       - name: Regenerate
         run: |
@@ -172,7 +177,6 @@ jobs:
         run: |
           git add src/lib/data/parts.generated.json \
                   src/lib/data/plates.generated.json \
-                  static/renders static/plate-thumbs \
                   slicer/artifacts.json
           if git diff --cached --quiet; then
             echo "outputs already up to date"
